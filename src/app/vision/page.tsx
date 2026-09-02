@@ -5,6 +5,7 @@ import { PillarCard } from "@/components/sections/Cards";
 import { VisionDiagramHeute, VisionDiagramZukunft } from "@/components/sections/VisionDiagram";
 import { CTASection } from "@/components/sections/CTASection";
 import { sozialePfeiler, betroffeneGruppen } from "@/content/pillars";
+import { LockupStacked } from "@/components/ui/Logo";
 import {
   IconCompass,
   IconDocument,
@@ -40,12 +41,13 @@ export default function VisionPage() {
   return (
     <>
       <section>
-        <Container className="py-16 sm:py-20">
+        <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.3fr_1fr]">
           <SectionHeading
             eyebrow="Unsere Vision"
             title="Verwaltung muss für Menschen gemacht sein."
             lede="Deutschland verfügt über funktionierende Institutionen, aber Bürgerinnen und Bürger erleben Verwaltung häufig als fragmentiert. Jede Behörde besitzt eigene Formulare, Portale, Schreiben, Anforderungen und Nachweise. Der Bürger trägt die Verantwortung, alles miteinander zu verbinden."
           />
+          <LockupStacked className="mx-auto w-52 lg:mx-0" />
         </Container>
       </section>
 

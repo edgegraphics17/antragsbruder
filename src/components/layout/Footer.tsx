@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { footerNav } from "@/content/nav";
 import { site } from "@/content/site";
-import { LogoMark } from "@/components/ui/Logo";
+import { MascotIcon, Wordmark } from "@/components/ui/Logo";
 
 function FooterColumn({ title, links }: { title: string; links: { label: string; href: string }[] }) {
   return (
@@ -27,9 +27,9 @@ export function Footer() {
       <Container className="py-16">
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-6">
           <div className="col-span-2 lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 font-display text-lg font-bold text-cream">
-              <LogoMark className="h-8 w-8 bg-cream text-brand-900" />
-              {site.name}
+            <Link href="/" className="flex items-center gap-2" aria-label={site.name}>
+              <MascotIcon className="h-11 w-11" />
+              <Wordmark variant="cream" className="w-28" />
             </Link>
             <p className="mt-4 max-w-[22ch] text-sm leading-relaxed text-brand-200">{site.claim}</p>
           </div>

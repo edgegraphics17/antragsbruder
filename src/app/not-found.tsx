@@ -1,13 +1,13 @@
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { IconCompass } from "@/components/ui/icons";
+import { MascotFull } from "@/components/ui/Logo";
 
 export default function NotFound() {
   return (
     <section>
-      <Container className="flex flex-col items-center py-24 text-center sm:py-32">
-        <IconCompass className="h-10 w-10 text-brand-800" />
-        <h1 className="font-display mt-6 text-3xl font-bold text-ink sm:text-4xl">
+      <Container className="flex flex-col items-center py-16 text-center sm:py-24">
+        <MascotFull priority className="w-48 sm:w-56" />
+        <h1 className="font-display mt-2 text-3xl font-bold text-ink sm:text-4xl">
           Diese Seite haben wir nicht gefunden.
         </h1>
         <p className="mt-4 max-w-md text-ink-soft">

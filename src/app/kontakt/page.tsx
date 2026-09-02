@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { KontaktForm } from "@/components/sections/KontaktForm";
 import { IconMail } from "@/components/ui/icons";
+import { LockupHorizontal } from "@/components/ui/Logo";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default async function KontaktPage({
     <section>
       <Container className="grid gap-12 py-16 sm:py-20 lg:grid-cols-2">
         <div>
+          <LockupHorizontal priority className="mb-8 w-56" />
           <SectionHeading
             eyebrow="Kontakt"
             title="Wir sind für dich da."

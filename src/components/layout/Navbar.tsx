@@ -5,7 +5,7 @@ import { useState } from "react";
 import { mainNav } from "@/content/nav";
 import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
-import { LogoMark } from "@/components/ui/Logo";
+import { MascotIcon } from "@/components/ui/Logo";
 import { IconChevronDown, IconClose, IconMenu } from "@/components/ui/icons";
 
 export function Navbar() {
@@ -21,8 +21,8 @@ export function Navbar() {
         Zum Inhalt springen
       </a>
       <div className="mx-auto flex h-18 max-w-6xl items-center justify-between px-5 py-3 sm:px-8">
-        <Link href="/" className="flex items-center gap-2.5 font-display text-xl font-bold text-ink">
-          <LogoMark />
+        <Link href="/" className="flex items-center gap-2 font-display text-xl font-bold text-ink">
+          <MascotIcon className="h-12 w-12" priority />
           {site.name}
         </Link>
 

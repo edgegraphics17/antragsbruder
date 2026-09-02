@@ -1,10 +1,16 @@
 import { IconCheck, IconClock, IconDocument } from "@/components/ui/icons";
+import { MascotFull } from "@/components/ui/Logo";
 
 export function HeroVisual() {
   return (
     <div className="relative mx-auto w-full max-w-md">
       <div className="absolute -left-6 -top-6 h-40 w-40 rounded-full bg-brand-300/50 blur-2xl" aria-hidden="true" />
       <div className="absolute -right-8 bottom-0 h-52 w-52 rounded-full bg-brand-500/20 blur-3xl" aria-hidden="true" />
+
+      <MascotFull
+        priority
+        className="absolute -bottom-10 -left-14 z-10 hidden w-40 drop-shadow-xl sm:block lg:-left-20 lg:w-48"
+      />
 
       <div className="relative rounded-[2rem] border border-line-soft bg-white p-5 shadow-xl shadow-brand-950/10">
         <div className="flex items-center justify-between border-b border-line-soft pb-4">

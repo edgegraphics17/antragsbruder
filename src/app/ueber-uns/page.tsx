@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CTASection } from "@/components/sections/CTASection";
+import { MascotFull } from "@/components/ui/Logo";
 
 export const metadata: Metadata = {
   title: "Über uns",
@@ -21,12 +22,13 @@ export default function UeberUnsPage() {
   return (
     <>
       <section>
-        <Container className="py-16 sm:py-20">
+        <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.3fr_1fr]">
           <SectionHeading
             eyebrow="Über uns"
             title="Warum es Antragsbruder gibt."
             lede="Wir haben gesehen, wie Menschen Ordner und Taschen voller Dokumente besitzen und trotzdem nicht wissen, welcher Brief gerade wichtig ist. Aus diesem Problem ist Antragsbruder entstanden."
           />
+          <MascotFull priority className="mx-auto w-48 sm:w-56 lg:mx-0" />
         </Container>
       </section>
 
