@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-cream: #f4efe3;
+  --color-cream-deep: #e9e0c9;
+  --color-paper: #fbf8f1;
+  --color-ink: #201f19;
+  --color-ink-soft: #4a4a3f;
+  --color-green-950: #1f2716;
+  --color-green-900: #2c3620;
+  --color-green-800: #3a4728;
+  --color-green-700: #4c5b34;
+  --color-green-600: #5f6f41;
+  --color-green-500: #74845a;
+  --color-green-400: #94a179;
+  --color-green-300: #b7c0a2;
+  --color-green-200: #d7ddc9;
+  --color-green-100: #e9ecdf;
+  --color-green-50: #f2f4ec;
+  --color-white: #ffffff;
+  --color-line: #ded4b7;
+  --color-line-soft: #e8e0cb;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-cream: var(--color-cream);
+  --color-cream-deep: var(--color-cream-deep);
+  --color-paper: var(--color-paper);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-green-950: var(--color-green-950);
+  --color-green-900: var(--color-green-900);
+  --color-green-800: var(--color-green-800);
+  --color-green-700: var(--color-green-700);
+  --color-green-600: var(--color-green-600);
+  --color-green-500: var(--color-green-500);
+  --color-green-400: var(--color-green-400);
+  --color-green-300: var(--color-green-300);
+  --color-green-200: var(--color-green-200);
+  --color-green-100: var(--color-green-100);
+  --color-green-50: var(--color-green-50);
+  --color-line: var(--color-line);
+  --color-line-soft: var(--color-line-soft);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-heading);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.font-display {
+  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--color-green-700);
+  color: var(--color-paper);
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-green-700);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
