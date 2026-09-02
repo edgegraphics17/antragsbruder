@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/karim/.claude/skills/ui-ux-pro-max/**)",
+      "Bash(python3 scripts/search.py \"German consumer service govtech fintech administrative help warm trustworthy\" --design-system -p \"Antragsbruder\" -f markdown)",
+      "Bash(npm -v)",
+      "Bash(git --version)",
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --app --eslint --src-dir --import-alias \"@/*\" --use-npm --turbopack --yes)"
+    ]
+  }
+}
