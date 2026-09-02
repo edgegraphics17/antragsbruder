@@ -13,7 +13,7 @@ export default function DatenschutzPage() {
   return (
     <section>
       <Container className="max-w-3xl py-16 sm:py-20">
-        <h1 className="font-display text-4xl font-semibold tracking-tight text-ink">Datenschutzerklärung</h1>
+        <h1 className="font-display text-4xl font-bold tracking-tight text-ink">Datenschutzerklärung</h1>
 
         <DisclaimerBox title="Rechtlicher Hinweis" className="mt-8">
           Dies ist ein strukturierter Entwurf einer Datenschutzerklärung auf Basis der DSGVO. Er ist vor
@@ -28,7 +28,7 @@ export default function DatenschutzPage() {
             <p>{legalPlaceholder.zipCity}</p>
             <p>
               E-Mail:{" "}
-              <a href={`mailto:${site.contactEmail}`} className="text-green-800 underline">
+              <a href={`mailto:${site.contactEmail}`} className="text-brand-800 underline">
                 {site.contactEmail}
               </a>
             </p>
@@ -80,7 +80,7 @@ export default function DatenschutzPage() {
               Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
               Datenübertragbarkeit sowie Widerspruch gegen die Verarbeitung deiner Daten. Zudem kannst du eine
               erteilte Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen. Wende dich hierzu an{" "}
-              <a href={`mailto:${site.contactEmail}`} className="text-green-800 underline">
+              <a href={`mailto:${site.contactEmail}`} className="text-brand-800 underline">
                 {site.contactEmail}
               </a>
               .
@@ -98,7 +98,7 @@ export default function DatenschutzPage() {
             <p>
               Wir setzen technische und organisatorische Maßnahmen ein, um deine Daten angemessen zu schützen. Mehr
               zu unseren Prinzipien findest du auf unserer Seite{" "}
-              <a href="/sicherheit" className="text-green-800 underline">
+              <a href="/sicherheit" className="text-brand-800 underline">
                 Sicherheit & Datenschutz
               </a>
               .

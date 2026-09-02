@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { ButtonAction } from "@/components/ui/Button";
+import { IconUpload } from "@/components/ui/icons";
 import { site } from "@/content/site";
 
 const anliegenOptions = [
@@ -28,7 +29,7 @@ export function IntakeForm({ defaultAnliegen = "" }: { defaultAnliegen?: string 
     const description = String(form.get("description") || "").trim();
 
     if (!name || !email || !consent) {
-      setError("Bitte fülle Name, E-Mail aus und bestätige den Datenschutzhinweis.");
+      setError("Bitte Name und E-Mail eintragen und Häkchen setzen.");
       return;
     }
 
@@ -57,17 +58,17 @@ export function IntakeForm({ defaultAnliegen = "" }: { defaultAnliegen?: string 
   }
 
   return (
-    <div className="rounded-2xl border border-line-soft bg-white p-6 sm:p-8">
+    <div className="rounded-3xl border border-line-soft bg-white p-6 sm:p-8">
       <form onSubmit={handleSubmit} className="space-y-5" noValidate>
         <div>
-          <label htmlFor="anliegen" className="mb-1.5 block text-sm font-medium text-ink">
-            Was brauchst du?
+          <label htmlFor="anliegen" className="mb-1.5 block text-base font-semibold text-ink">
+            Worum geht&apos;s?
           </label>
           <select
             id="anliegen"
             name="anliegen"
             defaultValue={defaultAnliegen}
-            className="w-full rounded-xl border border-line bg-cream px-4 py-3 text-sm text-ink focus-visible:outline-2 focus-visible:outline-green-700"
+            className="w-full min-h-12 rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
           >
             <option value="" disabled>
               Bitte auswählen
@@ -82,7 +83,7 @@ export function IntakeForm({ defaultAnliegen = "" }: { defaultAnliegen?: string 
 
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
-            <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-ink">
+            <label htmlFor="name" className="mb-1.5 block text-base font-semibold text-ink">
               Name <span aria-hidden="true">*</span>
             </label>
             <input
@@ -91,11 +92,11 @@ export function IntakeForm({ defaultAnliegen = "" }: { defaultAnliegen?: string 
               type="text"
               required
               autoComplete="name"
-              className="w-full min-h-11 rounded-xl border border-line bg-cream px-4 py-3 text-sm text-ink focus-visible:outline-2 focus-visible:outline-green-700"
+              className="w-full min-h-12 rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
             />
           </div>
           <div>
-            <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-ink">
+            <label htmlFor="email" className="mb-1.5 block text-base font-semibold text-ink">
               E-Mail <span aria-hidden="true">*</span>
             </label>
             <input
@@ -104,40 +105,40 @@ export function IntakeForm({ defaultAnliegen = "" }: { defaultAnliegen?: string 
               type="email"
               required
               autoComplete="email"
-              className="w-full min-h-11 rounded-xl border border-line bg-cream px-4 py-3 text-sm text-ink focus-visible:outline-2 focus-visible:outline-green-700"
+              className="w-full min-h-12 rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-ink">
-            Telefon <span className="text-ink-soft">(optional)</span>
+          <label htmlFor="phone" className="mb-1.5 block text-base font-semibold text-ink">
+            Telefon <span className="font-normal text-ink-soft">(optional)</span>
           </label>
           <input
             id="phone"
             name="phone"
             type="tel"
             autoComplete="tel"
-            className="w-full min-h-11 rounded-xl border border-line bg-cream px-4 py-3 text-sm text-ink focus-visible:outline-2 focus-visible:outline-green-700"
+            className="w-full min-h-12 rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
           />
         </div>
 
         <div>
-          <label htmlFor="description" className="mb-1.5 block text-sm font-medium text-ink">
-            Kurze Beschreibung <span className="text-ink-soft">(optional)</span>
+          <label htmlFor="description" className="mb-1.5 block text-base font-semibold text-ink">
+            Nachricht <span className="font-normal text-ink-soft">(optional)</span>
           </label>
           <textarea
             id="description"
             name="description"
             rows={4}
-            className="w-full rounded-xl border border-line bg-cream px-4 py-3 text-sm text-ink focus-visible:outline-2 focus-visible:outline-green-700"
-            placeholder="Worum geht es? Von welcher Stelle kommt das Schreiben?"
+            className="w-full rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
+            placeholder="Von welchem Amt ist der Brief? Worum geht's?"
           />
         </div>
 
-        <div className="rounded-xl border border-dashed border-green-400 bg-green-50 px-4 py-3 text-sm text-ink-soft">
-          Klicke unten auf „Anfrage senden“ – dein E-Mail-Programm öffnet sich mit einer vorbereiteten Nachricht an
-          uns. Hänge dort dein Dokument (PDF, JPG oder PNG) einfach an.
+        <div className="flex items-start gap-3 rounded-2xl border border-dashed border-brand-400 bg-brand-50 px-4 py-3 text-sm text-ink-soft">
+          <IconUpload className="h-5 w-5 shrink-0 text-brand-700" />
+          <span>Dein E-Mail-Programm öffnet sich gleich – häng dort einfach dein Dokument an (PDF, JPG oder PNG).</span>
         </div>
 
         <label className="flex items-start gap-3 text-sm text-ink-soft">
@@ -145,15 +146,15 @@ export function IntakeForm({ defaultAnliegen = "" }: { defaultAnliegen?: string 
             type="checkbox"
             checked={consent}
             onChange={(e) => setConsent(e.target.checked)}
-            className="mt-0.5 h-5 w-5 shrink-0 rounded border-line text-green-800 focus-visible:outline-2 focus-visible:outline-green-700"
+            className="mt-0.5 h-5 w-5 shrink-0 rounded border-line text-brand-800 focus-visible:outline-2 focus-visible:outline-brand-700"
             required
           />
           <span>
-            Ich habe die{" "}
-            <a href="/datenschutz" className="underline hover:text-green-800">
-              Datenschutzhinweise
+            Ich bin mit der{" "}
+            <a href="/datenschutz" className="underline hover:text-brand-800">
+              Datenschutzerklärung
             </a>{" "}
-            gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden.
+            einverstanden.
           </span>
         </label>
 
@@ -164,12 +165,12 @@ export function IntakeForm({ defaultAnliegen = "" }: { defaultAnliegen?: string 
         ) : null}
 
         <ButtonAction type="submit" size="lg" className="w-full sm:w-auto">
-          Anfrage senden
+          Jetzt senden
         </ButtonAction>
 
         {submitted ? (
-          <p role="status" className="text-sm font-medium text-green-800">
-            Dein E-Mail-Programm sollte sich soeben geöffnet haben. Falls nicht, schreib uns direkt an{" "}
+          <p role="status" className="text-sm font-medium text-brand-800">
+            Fast geschafft! Falls sich dein E-Mail-Programm nicht geöffnet hat, schreib uns direkt an{" "}
             <a href={`mailto:${site.contactEmail}`} className="underline">
               {site.contactEmail}
             </a>

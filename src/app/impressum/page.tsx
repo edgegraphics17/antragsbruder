@@ -13,7 +13,7 @@ export default function ImpressumPage() {
   return (
     <section>
       <Container className="max-w-3xl py-16 sm:py-20">
-        <h1 className="font-display text-4xl font-semibold tracking-tight text-ink">Impressum</h1>
+        <h1 className="font-display text-4xl font-bold tracking-tight text-ink">Impressum</h1>
         <p className="mt-4 text-sm text-ink-soft">Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>
 
         <DisclaimerBox title="Platzhalter-Hinweis" className="mt-8">
@@ -37,7 +37,7 @@ export default function ImpressumPage() {
             <p>Telefon: {legalPlaceholder.phone}</p>
             <p>
               E-Mail:{" "}
-              <a href={`mailto:${site.contactEmail}`} className="text-green-800 underline">
+              <a href={`mailto:${site.contactEmail}`} className="text-brand-800 underline">
                 {site.contactEmail}
               </a>
             </p>
@@ -64,7 +64,7 @@ export default function ImpressumPage() {
                 href="https://ec.europa.eu/consumers/odr/"
                 target="_blank"
                 rel="noreferrer"
-                className="text-green-800 underline"
+                className="text-brand-800 underline"
               >
                 ec.europa.eu/consumers/odr
               </a>

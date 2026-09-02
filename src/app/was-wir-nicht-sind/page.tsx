@@ -26,8 +26,8 @@ export default function WasWirNichtSindPage() {
         <Container className="py-16">
           <div className="grid gap-5 sm:grid-cols-2">
             {wasWirNichtSind.map((w) => (
-              <div key={w.title} className="rounded-2xl border border-line-soft bg-white p-6">
-                <h3 className="font-display text-lg font-semibold text-ink">{w.title}</h3>
+              <div key={w.title} className="rounded-3xl border border-line-soft bg-white p-6">
+                <h3 className="font-display text-lg font-bold text-ink">{w.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">{w.text}</p>
               </div>
             ))}

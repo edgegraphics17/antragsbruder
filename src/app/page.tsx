@@ -49,7 +49,7 @@ export default function HomePage() {
         <Container className="grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-2 lg:py-28">
           <div>
             <StatusBadge status="jetzt" label="Ab sofort verfügbar" />
-            <h1 className="font-display mt-5 text-4xl font-semibold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            <h1 className="font-display mt-5 text-4xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-6xl">
               Papierkram? <br className="hidden sm:block" />
               Gib her.
             </h1>
@@ -91,7 +91,7 @@ export default function HomePage() {
               "Fristen, die sich in Fließtext verstecken",
               "Immer wieder dieselben persönlichen Angaben eintragen",
             ].map((t) => (
-              <div key={t} className="rounded-2xl border border-line-soft bg-white p-5 text-sm text-ink-soft">
+              <div key={t} className="rounded-3xl border border-line-soft bg-white p-5 text-sm text-ink-soft">
                 {t}
               </div>
             ))}
@@ -173,7 +173,7 @@ export default function HomePage() {
         <Container className="grid items-center gap-10 py-20 lg:grid-cols-2">
           <div>
             <StatusBadge status="vision" />
-            <h2 className="font-display mt-4 text-3xl font-semibold text-ink sm:text-4xl">
+            <h2 className="font-display mt-4 text-3xl font-bold text-ink sm:text-4xl">
               Heute helfen wir bei Papierkram. Langfristig entsteht ein persönliches digitales Verwaltungsbüro.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-ink-soft">
@@ -184,8 +184,8 @@ export default function HomePage() {
               Unsere Vision ansehen
             </Button>
           </div>
-          <div className="rounded-2xl border border-green-700/40 bg-green-50 p-8">
-            <IconCompass className="h-8 w-8 text-green-800" />
+          <div className="rounded-3xl border border-brand-700/40 bg-brand-50 p-8">
+            <IconCompass className="h-8 w-8 text-brand-800" />
             <p className="mt-4 text-sm leading-relaxed text-ink-soft">
               Von der Briefhilfe über den digitalen Verwaltungsordner bis zur Life-Event-Administration: Auf unserer
               Roadmap zeigen wir, wie wir Verwaltung Schritt für Schritt digitalisieren möchten.
@@ -195,14 +195,14 @@ export default function HomePage() {
       </section>
 
       {/* SOZIALE MISSION */}
-      <section className="bg-green-950">
+      <section className="bg-brand-950">
         <Container className="grid items-center gap-10 py-20 text-cream lg:grid-cols-2">
           <div>
-            <IconHeart className="h-8 w-8 text-green-300" />
-            <h2 className="font-display mt-4 text-3xl font-semibold sm:text-4xl">
+            <IconHeart className="h-8 w-8 text-brand-300" />
+            <h2 className="font-display mt-4 text-3xl font-bold sm:text-4xl">
               Verwaltung darf niemanden zurücklassen.
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-green-200">
+            <p className="mt-4 text-lg leading-relaxed text-brand-200">
               Komplexe Verwaltung trifft nicht alle Menschen gleich stark. Antragsbruder möchte administrative
               Teilhabe erleichtern – besonders dort, wo sie heute besonders schwerfällt.
             </p>
@@ -210,14 +210,14 @@ export default function HomePage() {
               href="/verantwortung"
               variant="outline"
               size="lg"
-              className="mt-6 border-green-400 text-cream hover:bg-green-800"
+              className="mt-6 border-brand-400 text-cream hover:bg-brand-800"
             >
               Mehr über unsere Verantwortung
             </Button>
           </div>
           <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {betroffeneGruppen.map((g) => (
-              <li key={g} className="rounded-xl border border-green-800 bg-green-900/60 px-4 py-3 text-sm">
+              <li key={g} className="rounded-2xl border border-brand-800 bg-brand-900/60 px-4 py-3 text-sm">
                 {g}
               </li>
             ))}

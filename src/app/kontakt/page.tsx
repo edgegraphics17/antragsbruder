@@ -29,11 +29,11 @@ export default async function KontaktPage({
             title="Wir sind für dich da."
             lede="Ob Support, allgemeine Frage oder Partnerschaft – schreib uns, wir melden uns."
           />
-          <div className="mt-8 flex items-start gap-3 rounded-2xl border border-line-soft bg-white p-5">
-            <IconMail className="h-5 w-5 shrink-0 text-green-800" />
+          <div className="mt-8 flex items-start gap-3 rounded-3xl border border-line-soft bg-white p-5">
+            <IconMail className="h-5 w-5 shrink-0 text-brand-800" />
             <div className="text-sm text-ink-soft">
               <p className="font-medium text-ink">Direkt per E-Mail</p>
-              <a href={`mailto:${site.contactEmail}`} className="underline hover:text-green-800">
+              <a href={`mailto:${site.contactEmail}`} className="underline hover:text-brand-800">
                 {site.contactEmail}
               </a>
             </div>

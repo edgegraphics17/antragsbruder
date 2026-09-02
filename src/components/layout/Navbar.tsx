@@ -5,6 +5,7 @@ import { useState } from "react";
 import { mainNav } from "@/content/nav";
 import { site } from "@/content/site";
 import { Button } from "@/components/ui/Button";
+import { LogoMark } from "@/components/ui/Logo";
 import { IconChevronDown, IconClose, IconMenu } from "@/components/ui/icons";
 
 export function Navbar() {
@@ -15,18 +16,13 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-line-soft/70 bg-cream/90 backdrop-blur">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-green-900 focus:px-4 focus:py-2 focus:text-cream"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand-900 focus:px-4 focus:py-2 focus:text-cream"
       >
         Zum Inhalt springen
       </a>
       <div className="mx-auto flex h-18 max-w-6xl items-center justify-between px-5 py-3 sm:px-8">
-        <Link href="/" className="flex items-center gap-2 font-display text-xl font-semibold text-ink">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-green-900 text-cream">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M6 3h9l5 5v13H6V3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-              <path d="M9 13h6M9 17h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-            </svg>
-          </span>
+        <Link href="/" className="flex items-center gap-2.5 font-display text-xl font-bold text-ink">
+          <LogoMark />
           {site.name}
         </Link>
 
@@ -40,7 +36,7 @@ export function Navbar() {
             >
               {group.items ? (
                 <button
-                  className="flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-green-100 hover:text-green-900 cursor-pointer"
+                  className="flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-brand-100 hover:text-brand-900 cursor-pointer"
                   aria-expanded={activeGroup === group.label}
                   onClick={() => setActiveGroup(activeGroup === group.label ? null : group.label)}
                 >
@@ -50,19 +46,19 @@ export function Navbar() {
               ) : (
                 <Link
                   href={group.href!}
-                  className="whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-green-100 hover:text-green-900"
+                  className="whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-brand-100 hover:text-brand-900"
                 >
                   {group.label}
                 </Link>
               )}
               {group.items && activeGroup === group.label ? (
                 <div className="absolute left-0 top-full w-72 pt-2">
-                  <div className="rounded-2xl border border-line-soft bg-white p-2 shadow-lg shadow-green-950/5">
+                  <div className="rounded-3xl border border-line-soft bg-white p-2 shadow-lg shadow-brand-950/5">
                     {group.items.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
-                        className="block rounded-xl px-3 py-2.5 text-sm hover:bg-green-50"
+                        className="block rounded-2xl px-3 py-2.5 text-sm hover:bg-brand-50"
                       >
                         <span className="block font-medium text-ink">{item.label}</span>
                         {item.description ? (
@@ -87,7 +83,7 @@ export function Navbar() {
         </div>
 
         <button
-          className="flex h-11 w-11 items-center justify-center rounded-full text-ink hover:bg-green-100 lg:hidden cursor-pointer"
+          className="flex h-11 w-11 items-center justify-center rounded-full text-ink hover:bg-brand-100 lg:hidden cursor-pointer"
           aria-label={open ? "Menü schließen" : "Menü öffnen"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -118,7 +114,7 @@ export function Navbar() {
                       <Link
                         key={item.href}
                         href={item.href}
-                        className="rounded-lg px-2 py-2.5 text-sm text-ink-soft hover:bg-green-50"
+                        className="rounded-lg px-2 py-2.5 text-sm text-ink-soft hover:bg-brand-50"
                         onClick={() => setOpen(false)}
                       >
                         {item.label}

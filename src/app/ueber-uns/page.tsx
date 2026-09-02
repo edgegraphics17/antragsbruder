@@ -33,7 +33,7 @@ export default function UeberUnsPage() {
       <section className="bg-cream-deep/60">
         <Container className="grid gap-10 py-16 lg:grid-cols-2">
           <div>
-            <h2 className="font-display text-2xl font-semibold text-ink">Was wir beobachten</h2>
+            <h2 className="font-display text-2xl font-bold text-ink">Was wir beobachten</h2>
             <p className="mt-3 text-sm leading-relaxed text-ink-soft">
               Deutschland verfügt über funktionierende Institutionen. Trotzdem erleben viele Menschen Verwaltung als
               fragmentiert, schwer verständlich und zeitaufwendig – unabhängig von Bildung, Sprache oder digitaler
@@ -41,7 +41,7 @@ export default function UeberUnsPage() {
             </p>
           </div>
           <div>
-            <h2 className="font-display text-2xl font-semibold text-ink">Was wir verändern möchten</h2>
+            <h2 className="font-display text-2xl font-bold text-ink">Was wir verändern möchten</h2>
             <p className="mt-3 text-sm leading-relaxed text-ink-soft">
               Wir möchten Menschen eine verständliche, strukturierte und menschliche Anlaufstelle für ihren
               Papierkram geben – heute als Service, langfristig als persönliches digitales Verwaltungsbüro.
@@ -57,7 +57,7 @@ export default function UeberUnsPage() {
             {prinzipien.map((p) => (
               <div
                 key={p}
-                className="rounded-xl border border-line-soft bg-white px-5 py-4 text-center text-sm font-medium text-ink"
+                className="rounded-2xl border border-line-soft bg-white px-5 py-4 text-center text-sm font-medium text-ink"
               >
                 {p}
               </div>

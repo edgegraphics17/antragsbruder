@@ -43,10 +43,10 @@ export default function DigitalisierungPage() {
       <section className="bg-cream-deep/60">
         <Container className="py-16">
           <StatusBadge status="jetzt" />
-          <h2 className="font-display mt-4 text-2xl font-semibold text-ink sm:text-3xl">Heute schon möglich</h2>
+          <h2 className="font-display mt-4 text-2xl font-bold text-ink sm:text-3xl">Heute schon möglich</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {heute.map((t) => (
-              <div key={t} className="rounded-2xl border border-line-soft bg-white p-5 text-sm text-ink-soft">
+              <div key={t} className="rounded-3xl border border-line-soft bg-white p-5 text-sm text-ink-soft">
                 {t}
               </div>
             ))}
@@ -60,16 +60,16 @@ export default function DigitalisierungPage() {
       <section>
         <Container className="py-20">
           <StatusBadge status="vision" />
-          <h2 className="font-display mt-4 text-2xl font-semibold text-ink sm:text-3xl">Teil unserer Vision</h2>
+          <h2 className="font-display mt-4 text-2xl font-bold text-ink sm:text-3xl">Teil unserer Vision</h2>
           <p className="mt-3 max-w-2xl text-sm text-ink-soft">
             Die folgenden Funktionen sind noch nicht verfügbar. Sie zeigen, wohin sich Antragsbruder entwickeln
             soll.
           </p>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {vision.map((v) => (
-              <div key={v.title} className="rounded-2xl border border-dashed border-green-400 bg-green-50 p-6">
-                <v.icon className="h-6 w-6 text-green-800" />
-                <h3 className="font-display mt-3 text-base font-semibold text-ink">{v.title}</h3>
+              <div key={v.title} className="rounded-3xl border border-dashed border-brand-400 bg-brand-50 p-6">
+                <v.icon className="h-6 w-6 text-brand-800" />
+                <h3 className="font-display mt-3 text-base font-bold text-ink">{v.title}</h3>
                 <p className="mt-1 text-sm text-ink-soft">{v.text}</p>
                 <StatusBadge status="vision" className="mt-4" />
               </div>

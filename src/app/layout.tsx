@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Inter, Baloo_2 } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -11,7 +11,7 @@ const bodyFont = Inter({
   display: "swap",
 });
 
-const headingFont = Manrope({
+const headingFont = Baloo_2({
   variable: "--font-heading",
   subsets: ["latin"],
   weight: ["600", "700", "800"],

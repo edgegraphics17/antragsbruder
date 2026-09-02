@@ -42,8 +42,8 @@ export default async function HilfeStartenPage({
         <Container className="py-12">
           <ol className="grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {schritte.map((s) => (
-              <li key={s.n} className="rounded-2xl border border-line-soft bg-white p-4">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green-900 text-xs font-semibold text-cream">
+              <li key={s.n} className="rounded-3xl border border-line-soft bg-white p-4">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-900 text-xs font-semibold text-cream">
                   {s.n}
                 </span>
                 <p className="mt-3 text-sm font-semibold text-ink">{s.title}</p>

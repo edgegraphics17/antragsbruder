@@ -1,9 +1,9 @@
 type Status = "jetzt" | "entwicklung" | "vision" | "demnaechst";
 
 const styles: Record<Status, string> = {
-  jetzt: "bg-green-900 text-cream",
-  entwicklung: "bg-green-200 text-green-900",
-  vision: "border border-green-700 text-green-800 bg-transparent",
+  jetzt: "bg-brand-600 text-white",
+  entwicklung: "bg-brand-200 text-brand-900",
+  vision: "border border-brand-700 text-brand-800 bg-transparent",
   demnaechst: "bg-cream-deep text-ink-soft border border-line",
 };
 

@@ -30,14 +30,14 @@ export default function ServicesPage() {
             <article
               key={s.slug}
               id={s.slug}
-              className="scroll-mt-24 rounded-2xl border border-line-soft bg-white p-6 sm:p-8"
+              className="scroll-mt-24 rounded-3xl border border-line-soft bg-white p-6 sm:p-8"
             >
               <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-green-700">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">
                     Service {String(i + 1).padStart(2, "0")}
                   </p>
-                  <h2 className="font-display mt-2 text-2xl font-semibold text-ink">{s.title}</h2>
+                  <h2 className="font-display mt-2 text-2xl font-bold text-ink">{s.title}</h2>
                   <p className="mt-3 text-sm leading-relaxed text-ink-soft">{s.problem}</p>
                   <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                     <Button href={s.ctaHref} size="md">
@@ -58,18 +58,18 @@ export default function ServicesPage() {
                     <ul className="mt-2 space-y-1.5">
                       {s.ablauf.map((a) => (
                         <li key={a} className="flex items-start gap-2 text-sm text-ink-soft">
-                          <IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-green-700" />
+                          <IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-brand-700" />
                           {a}
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="rounded-xl bg-cream p-4">
+                  <div className="rounded-2xl bg-cream p-4">
                     <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft">Beispiel</p>
                     <p className="mt-1 text-sm text-ink-soft">{s.beispiel}</p>
                   </div>
-                  <div className="rounded-xl border border-green-800/20 bg-green-50 p-4">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-green-800">Grenzen</p>
+                  <div className="rounded-2xl border border-brand-800/20 bg-brand-50 p-4">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-brand-800">Grenzen</p>
                     <p className="mt-1 text-sm text-ink-soft">{s.grenzen}</p>
                   </div>
                 </div>

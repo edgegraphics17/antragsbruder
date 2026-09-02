@@ -36,7 +36,7 @@ export default function RoadmapPage() {
                   {s}
                 </span>
                 {i < automationSteps.length - 1 ? (
-                  <IconArrowRight className="h-4 w-4 text-green-700" />
+                  <IconArrowRight className="h-4 w-4 text-brand-700" />
                 ) : null}
               </div>
             ))}
@@ -56,7 +56,7 @@ export default function RoadmapPage() {
 
       <section className="pb-20">
         <Container>
-          <div className="rounded-2xl border border-line-soft bg-white p-6 text-sm leading-relaxed text-ink-soft sm:p-8">
+          <div className="rounded-3xl border border-line-soft bg-white p-6 text-sm leading-relaxed text-ink-soft sm:p-8">
             Diese Roadmap zeigt Entwicklungsstufen, keine garantierten Releases oder Fertigstellungstermine. Wir
             passen unsere Prioritäten an das an, was Menschen im Alltag wirklich brauchen.
           </div>

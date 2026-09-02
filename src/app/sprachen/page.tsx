@@ -15,8 +15,8 @@ export default function SprachenPage() {
     <>
       <section>
         <Container className="py-16 sm:py-20">
-          <IconSpark className="h-8 w-8 text-green-800" />
-          <h1 className="font-display mt-4 max-w-2xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+          <IconSpark className="h-8 w-8 text-brand-800" />
+          <h1 className="font-display mt-4 max-w-2xl text-4xl font-bold tracking-tight text-ink sm:text-5xl">
             Administrative Informationen sollen einfacher verständlich werden.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
@@ -29,7 +29,7 @@ export default function SprachenPage() {
       <section className="bg-cream-deep/60">
         <Container className="py-16">
           <StatusBadge status="jetzt" />
-          <h2 className="font-display mt-4 text-2xl font-semibold text-ink sm:text-3xl">Heute</h2>
+          <h2 className="font-display mt-4 text-2xl font-bold text-ink sm:text-3xl">Heute</h2>
           <p className="mt-3 max-w-2xl text-ink-soft">
             Wir erklären dir Behördenschreiben schon jetzt auf Deutsch in einfachen, klaren Worten – ohne
             Fachbegriffe, die niemand ungefragt versteht.
@@ -40,7 +40,7 @@ export default function SprachenPage() {
       <section className="py-20">
         <Container>
           <StatusBadge status="vision" />
-          <h2 className="font-display mt-4 text-2xl font-semibold text-ink sm:text-3xl">Unsere Vision</h2>
+          <h2 className="font-display mt-4 text-2xl font-bold text-ink sm:text-3xl">Unsere Vision</h2>
           <ul className="mt-4 max-w-2xl list-disc space-y-2 pl-5 text-ink-soft">
             <li>Erklärungen in einfacher Sprache</li>
             <li>Mehrsprachige Erklärungen zu Behördenschreiben</li>

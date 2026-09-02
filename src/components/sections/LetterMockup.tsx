@@ -3,9 +3,9 @@ import { IconCheck } from "@/components/ui/icons";
 export function LetterMockup() {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
-      <div className="rounded-2xl border border-line-soft bg-white p-5">
+      <div className="rounded-3xl border border-line-soft bg-white p-5">
         <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-ink-soft">Originalbrief</p>
-        <div className="space-y-2 rounded-xl bg-cream p-4 font-mono text-[11px] leading-relaxed text-ink-soft">
+        <div className="space-y-2 rounded-2xl bg-cream p-4 font-mono text-[11px] leading-relaxed text-ink-soft">
           <p className="text-ink">Jobcenter Musterstadt</p>
           <p>Aufforderung zur Mitwirkung gem. § 60 SGB I</p>
           <div className="my-2 h-px bg-line" />
@@ -17,8 +17,8 @@ export function LetterMockup() {
           <p>Anlage 1, Anlage 2, Anlage VM</p>
         </div>
       </div>
-      <div className="rounded-2xl border border-green-700/40 bg-green-50 p-5">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-green-800">Kurz erklärt</p>
+      <div className="rounded-3xl border border-brand-700/40 bg-brand-50 p-5">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-brand-800">Kurz erklärt</p>
         <dl className="space-y-3 text-sm">
           <div>
             <dt className="font-semibold text-ink">Was ist passiert?</dt>
@@ -34,7 +34,7 @@ export function LetterMockup() {
           </div>
           <div>
             <dt className="flex items-center gap-1.5 font-semibold text-ink">
-              <IconCheck className="h-4 w-4 text-green-700" /> Was fehlt noch?
+              <IconCheck className="h-4 w-4 text-brand-700" /> Was fehlt noch?
             </dt>
             <dd className="text-ink-soft">Nur die Anlage VM – die anderen liegen schon vor.</dd>
           </div>

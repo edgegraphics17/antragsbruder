@@ -29,8 +29,8 @@ export default function PreisePage() {
           {pricingTiers.map((tier) => (
             <div
               key={tier.title}
-              className={`flex flex-col rounded-2xl border p-6 ${
-                tier.highlight ? "border-green-800 bg-green-900 text-cream" : "border-line-soft bg-white"
+              className={`flex flex-col rounded-3xl border p-6 ${
+                tier.highlight ? "border-brand-800 bg-brand-900 text-cream" : "border-line-soft bg-white"
               }`}
             >
               {tier.badge ? (
@@ -38,19 +38,19 @@ export default function PreisePage() {
                   {tier.badge}
                 </span>
               ) : null}
-              <h3 className="font-display text-lg font-semibold">{tier.title}</h3>
-              <p className={`mt-2 text-sm leading-relaxed ${tier.highlight ? "text-green-100" : "text-ink-soft"}`}>
+              <h3 className="font-display text-lg font-bold">{tier.title}</h3>
+              <p className={`mt-2 text-sm leading-relaxed ${tier.highlight ? "text-brand-100" : "text-ink-soft"}`}>
                 {tier.description}
               </p>
               <p className="mt-5 text-xl font-semibold">{tier.priceLabel}</p>
               {tier.priceNote ? (
-                <p className={`text-xs ${tier.highlight ? "text-green-200" : "text-ink-soft"}`}>{tier.priceNote}</p>
+                <p className={`text-xs ${tier.highlight ? "text-brand-200" : "text-ink-soft"}`}>{tier.priceNote}</p>
               ) : null}
               <ul className="mt-5 flex-1 space-y-2">
                 {tier.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-sm">
-                    <IconCheck className={`mt-0.5 h-4 w-4 shrink-0 ${tier.highlight ? "text-green-300" : "text-green-700"}`} />
-                    <span className={tier.highlight ? "text-green-100" : "text-ink-soft"}>{f}</span>
+                    <IconCheck className={`mt-0.5 h-4 w-4 shrink-0 ${tier.highlight ? "text-brand-300" : "text-brand-700"}`} />
+                    <span className={tier.highlight ? "text-brand-100" : "text-ink-soft"}>{f}</span>
                   </li>
                 ))}
               </ul>

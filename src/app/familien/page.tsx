@@ -17,8 +17,8 @@ export default function FamilienPage() {
     <>
       <section>
         <Container className="py-16 sm:py-20">
-          <IconUsers className="h-8 w-8 text-green-800" />
-          <h1 className="font-display mt-4 max-w-2xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+          <IconUsers className="h-8 w-8 text-brand-800" />
+          <h1 className="font-display mt-4 max-w-2xl text-4xl font-bold tracking-tight text-ink sm:text-5xl">
             Papierkram betrifft selten nur eine Person.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
@@ -49,7 +49,7 @@ export default function FamilienPage() {
       <section className="py-20">
         <Container>
           <StatusBadge status="vision" />
-          <h2 className="font-display mt-4 text-2xl font-semibold text-ink sm:text-3xl">Family Vault</h2>
+          <h2 className="font-display mt-4 text-2xl font-bold text-ink sm:text-3xl">Family Vault</h2>
           <p className="mt-3 max-w-2xl text-ink-soft">
             Langfristig möchten wir einen gemeinsamen Familienordner ermöglichen, in dem berechtigte
             Familienmitglieder Dokumente und Fristen gemeinsam im Blick behalten – nur mit Einwilligung und einem

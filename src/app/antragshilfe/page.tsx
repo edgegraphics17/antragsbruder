@@ -72,8 +72,8 @@ export default function AntragshilfePage() {
               "Eingaben vollständig zusammenstellen",
               "Dokumente für die Einreichung aufbereiten",
             ].map((t) => (
-              <div key={t} className="flex items-start gap-3 rounded-2xl border border-line-soft bg-white p-5">
-                <IconCheck className="mt-0.5 h-5 w-5 shrink-0 text-green-700" />
+              <div key={t} className="flex items-start gap-3 rounded-3xl border border-line-soft bg-white p-5">
+                <IconCheck className="mt-0.5 h-5 w-5 shrink-0 text-brand-700" />
                 <p className="text-sm text-ink-soft">{t}</p>
               </div>
             ))}

@@ -28,7 +28,7 @@ export function SimpleContactForm({
     const message = String(form.get("message") || "").trim();
 
     if (!name || !email || !message || !consent) {
-      setError("Bitte fülle Name, E-Mail und Nachricht aus und bestätige den Datenschutzhinweis.");
+      setError("Bitte Name, E-Mail und Nachricht ausfüllen und Häkchen setzen.");
       return;
     }
 
@@ -49,10 +49,10 @@ export function SimpleContactForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-line-soft bg-white p-6 sm:p-8" noValidate>
+    <form onSubmit={handleSubmit} className="space-y-5 rounded-3xl border border-line-soft bg-white p-6 sm:p-8" noValidate>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-ink">
+          <label htmlFor="name" className="mb-1.5 block text-base font-semibold text-ink">
             Name <span aria-hidden="true">*</span>
           </label>
           <input
@@ -60,11 +60,11 @@ export function SimpleContactForm({
             name="name"
             required
             autoComplete="name"
-            className="w-full min-h-11 rounded-xl border border-line bg-cream px-4 py-3 text-sm text-ink focus-visible:outline-2 focus-visible:outline-green-700"
+            className="w-full min-h-12 rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
           />
         </div>
         <div>
-          <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-ink">
+          <label htmlFor="email" className="mb-1.5 block text-base font-semibold text-ink">
             E-Mail <span aria-hidden="true">*</span>
           </label>
           <input
@@ -73,24 +73,24 @@ export function SimpleContactForm({
             type="email"
             required
             autoComplete="email"
-            className="w-full min-h-11 rounded-xl border border-line bg-cream px-4 py-3 text-sm text-ink focus-visible:outline-2 focus-visible:outline-green-700"
+            className="w-full min-h-12 rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
           />
         </div>
       </div>
       {fields.includes("organisation") ? (
         <div>
-          <label htmlFor="organisation" className="mb-1.5 block text-sm font-medium text-ink">
+          <label htmlFor="organisation" className="mb-1.5 block text-base font-semibold text-ink">
             Organisation <span className="text-ink-soft">(optional)</span>
           </label>
           <input
             id="organisation"
             name="organisation"
-            className="w-full min-h-11 rounded-xl border border-line bg-cream px-4 py-3 text-sm text-ink focus-visible:outline-2 focus-visible:outline-green-700"
+            className="w-full min-h-12 rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
           />
         </div>
       ) : null}
       <div>
-        <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink">
+        <label htmlFor="message" className="mb-1.5 block text-base font-semibold text-ink">
           Nachricht <span aria-hidden="true">*</span>
         </label>
         <textarea
@@ -98,7 +98,7 @@ export function SimpleContactForm({
           name="message"
           rows={5}
           required
-          className="w-full rounded-xl border border-line bg-cream px-4 py-3 text-sm text-ink focus-visible:outline-2 focus-visible:outline-green-700"
+          className="w-full rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
         />
       </div>
       <label className="flex items-start gap-3 text-sm text-ink-soft">
@@ -107,14 +107,14 @@ export function SimpleContactForm({
           checked={consent}
           onChange={(e) => setConsent(e.target.checked)}
           required
-          className="mt-0.5 h-5 w-5 shrink-0 rounded border-line text-green-800 focus-visible:outline-2 focus-visible:outline-green-700"
+          className="mt-0.5 h-5 w-5 shrink-0 rounded border-line text-brand-800 focus-visible:outline-2 focus-visible:outline-brand-700"
         />
         <span>
-          Ich habe die{" "}
-          <a href="/datenschutz" className="underline hover:text-green-800">
-            Datenschutzhinweise
+          Ich bin mit der{" "}
+          <a href="/datenschutz" className="underline hover:text-brand-800">
+            Datenschutzerklärung
           </a>{" "}
-          gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung einverstanden.
+          einverstanden.
         </span>
       </label>
       {error ? (
@@ -126,8 +126,8 @@ export function SimpleContactForm({
         {submitLabel}
       </ButtonAction>
       {submitted ? (
-        <p role="status" className="text-sm font-medium text-green-800">
-          Dein E-Mail-Programm sollte sich soeben geöffnet haben. Falls nicht, schreib uns direkt an{" "}
+        <p role="status" className="text-sm font-medium text-brand-800">
+          Fast geschafft! Falls sich dein E-Mail-Programm nicht geöffnet hat, schreib uns direkt an{" "}
           <a href={`mailto:${toEmail}`} className="underline">
             {toEmail}
           </a>

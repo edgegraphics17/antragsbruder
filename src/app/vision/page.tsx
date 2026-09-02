@@ -52,7 +52,7 @@ export default function VisionPage() {
       <section className="bg-cream-deep/60">
         <Container className="py-16">
           <div className="mb-10 text-center">
-            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">Unsere These</h2>
+            <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">Unsere These</h2>
             <p className="mx-auto mt-3 max-w-2xl text-lg leading-relaxed text-ink-soft">
               Der Bürger braucht eine eigene Verwaltungsoberfläche. Nicht eine weitere Behörde – sondern eine
               persönliche Schicht zwischen Bürger und Verwaltung. Antragsbruder soll diese Schicht werden.
@@ -77,9 +77,9 @@ export default function VisionPage() {
           />
           <div className="mt-10 grid gap-5 sm:grid-cols-3">
             {lifeEvents.map((e) => (
-              <div key={e.title} className="rounded-2xl border border-dashed border-green-400 bg-green-50 p-6">
-                <IconDocument className="h-6 w-6 text-green-800" />
-                <h3 className="font-display mt-3 text-lg font-semibold text-ink">„{e.title}“</h3>
+              <div key={e.title} className="rounded-3xl border border-dashed border-brand-400 bg-brand-50 p-6">
+                <IconDocument className="h-6 w-6 text-brand-800" />
+                <h3 className="font-display mt-3 text-lg font-bold text-ink">„{e.title}“</h3>
                 <ul className="mt-3 space-y-1.5">
                   {e.items.map((i) => (
                     <li key={i} className="text-sm text-ink-soft">
@@ -97,19 +97,19 @@ export default function VisionPage() {
         </Container>
       </section>
 
-      <section className="bg-green-950 py-20 text-cream">
+      <section className="bg-brand-950 py-20 text-cream">
         <Container>
-          <p className="text-sm font-semibold uppercase tracking-wide text-green-300">Soziale Vision</p>
-          <h2 className="font-display mt-3 max-w-2xl text-3xl font-semibold sm:text-4xl">
+          <p className="text-sm font-semibold uppercase tracking-wide text-brand-300">Soziale Vision</p>
+          <h2 className="font-display mt-3 max-w-2xl text-3xl font-bold sm:text-4xl">
             Bürokratie darf keine soziale Barriere sein.
           </h2>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-green-200">
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-brand-200">
             Ein komplizierter Brief kann für eine Person eine kleine Unannehmlichkeit sein. Für eine andere Person
             kann derselbe Brief zu einem existenziellen Problem werden.
           </p>
           <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {betroffeneGruppen.map((g) => (
-              <li key={g} className="rounded-xl border border-green-800 bg-green-900/60 px-4 py-3 text-sm">
+              <li key={g} className="rounded-2xl border border-brand-800 bg-brand-900/60 px-4 py-3 text-sm">
                 {g}
               </li>
             ))}
@@ -131,8 +131,8 @@ export default function VisionPage() {
 
       <section className="pb-20">
         <Container>
-          <div className="rounded-2xl border border-line-soft bg-white p-8 text-center">
-            <p className="font-display text-xl font-semibold text-ink sm:text-2xl">Unsere Mission</p>
+          <div className="rounded-3xl border border-line-soft bg-white p-8 text-center">
+            <p className="font-display text-xl font-bold text-ink sm:text-2xl">Unsere Mission</p>
             <p className="mx-auto mt-3 max-w-2xl text-ink-soft">
               Wir machen private Verwaltung verständlicher, strukturierter und zugänglicher – damit Menschen weniger
               Zeit mit Papierkram und mehr Zeit mit ihrem Leben verbringen.

@@ -60,11 +60,11 @@ export default function SoFunktioniertsPage() {
         <Container className="py-16">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {steps.map((s) => (
-              <div key={s.n} className="rounded-2xl border border-line-soft bg-white p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-green-900 text-sm font-semibold text-cream">
+              <div key={s.n} className="rounded-3xl border border-line-soft bg-white p-6">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-900 text-sm font-semibold text-cream">
                   {s.n}
                 </span>
-                <h3 className="font-display mt-4 text-lg font-semibold text-ink">{s.title}</h3>
+                <h3 className="font-display mt-4 text-lg font-bold text-ink">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.text}</p>
               </div>
             ))}
@@ -87,7 +87,7 @@ export default function SoFunktioniertsPage() {
                 "Du behältst jederzeit die Kontrolle über deine Angaben und Entscheidungen.",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-3 text-sm text-ink-soft">
-                  <IconCheck className="mt-0.5 h-5 w-5 shrink-0 text-green-700" />
+                  <IconCheck className="mt-0.5 h-5 w-5 shrink-0 text-brand-700" />
                   {t}
                 </li>
               ))}

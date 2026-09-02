@@ -15,8 +15,8 @@ export default function SeniorenPage() {
     <>
       <section>
         <Container className="py-16 sm:py-20">
-          <IconHeart className="h-8 w-8 text-green-800" />
-          <h1 className="font-display mt-4 max-w-2xl text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+          <IconHeart className="h-8 w-8 text-brand-800" />
+          <h1 className="font-display mt-4 max-w-2xl text-4xl font-bold tracking-tight text-ink sm:text-5xl">
             Respektvolle Unterstützung, kein Ersatz für Eigenständigkeit.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
@@ -31,16 +31,16 @@ export default function SeniorenPage() {
         <Container className="py-16">
           <SectionHeading eyebrow="Jetzt schon möglich" title="Menschliche Unterstützung, wenn digitale Wege schwerfallen" />
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-line-soft bg-white p-5 text-sm text-ink-soft">
+            <div className="rounded-3xl border border-line-soft bg-white p-5 text-sm text-ink-soft">
               Behördenbriefe verständlich erklärt – ohne Fachjargon.
             </div>
-            <div className="rounded-2xl border border-line-soft bg-white p-5 text-sm text-ink-soft">
+            <div className="rounded-3xl border border-line-soft bg-white p-5 text-sm text-ink-soft">
               Unterstützung bei der Zusammenstellung von Unterlagen für Anträge.
             </div>
-            <div className="rounded-2xl border border-line-soft bg-white p-5 text-sm text-ink-soft">
+            <div className="rounded-3xl border border-line-soft bg-white p-5 text-sm text-ink-soft">
               Digitalisierung wichtiger Papiere für einen besseren Überblick.
             </div>
-            <div className="rounded-2xl border border-line-soft bg-white p-5 text-sm text-ink-soft">
+            <div className="rounded-3xl border border-line-soft bg-white p-5 text-sm text-ink-soft">
               Persönlicher Ansprechpartner bei Rückfragen zum Vorgang.
             </div>
           </div>
@@ -50,7 +50,7 @@ export default function SeniorenPage() {
       <section className="py-20">
         <Container>
           <StatusBadge status="vision" />
-          <h2 className="font-display mt-4 text-2xl font-semibold text-ink sm:text-3xl">
+          <h2 className="font-display mt-4 text-2xl font-bold text-ink sm:text-3xl">
             Gemeinsame Übersicht für Angehörige
           </h2>
           <p className="mt-3 max-w-2xl text-ink-soft">

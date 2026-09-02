@@ -46,7 +46,7 @@ export default function VerantwortungPage() {
           </p>
           <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {betroffeneGruppen.map((g) => (
-              <li key={g} className="rounded-xl border border-line-soft bg-white px-4 py-3 text-sm text-ink">
+              <li key={g} className="rounded-2xl border border-line-soft bg-white px-4 py-3 text-sm text-ink">
                 {g}
               </li>
             ))}
@@ -84,8 +84,8 @@ export default function VerantwortungPage() {
 
       <section className="py-20">
         <Container>
-          <div className="rounded-2xl border border-green-700/40 bg-green-50 p-8 sm:p-10">
-            <p className="font-display text-xl font-semibold text-ink sm:text-2xl">Konstruktiv statt kritisch</p>
+          <div className="rounded-3xl border border-brand-700/40 bg-brand-50 p-8 sm:p-10">
+            <p className="font-display text-xl font-bold text-ink sm:text-2xl">Konstruktiv statt kritisch</p>
             <p className="mt-3 max-w-2xl text-ink-soft">
               Deutschland digitalisiert viele Prozesse. Wir möchten Bürgerinnen und Bürger dabei unterstützen, diese
               Angebote einfacher zu nutzen – nicht gegen bestehende Institutionen argumentieren.

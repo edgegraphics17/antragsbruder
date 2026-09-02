@@ -1,25 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --color-cream: #f4efe3;
-  --color-cream-deep: #e9e0c9;
-  --color-paper: #fbf8f1;
-  --color-ink: #201f19;
-  --color-ink-soft: #4a4a3f;
-  --color-green-950: #1f2716;
-  --color-green-900: #2c3620;
-  --color-green-800: #3a4728;
-  --color-green-700: #4c5b34;
-  --color-green-600: #5f6f41;
-  --color-green-500: #74845a;
-  --color-green-400: #94a179;
-  --color-green-300: #b7c0a2;
-  --color-green-200: #d7ddc9;
-  --color-green-100: #e9ecdf;
-  --color-green-50: #f2f4ec;
+  --color-cream: #faf6ea;
+  --color-cream-deep: #f1e9d3;
+  --color-paper: #fffdf7;
+  --color-ink: #22261f;
+  --color-ink-soft: #55594f;
+  --color-brand-950: #12302f;
+  --color-brand-900: #163d3b;
+  --color-brand-800: #1b4d4a;
+  --color-brand-700: #235f5b;
+  --color-brand-600: #2f7370;
+  --color-brand-500: #4a9895;
+  --color-brand-400: #6bb0ad;
+  --color-brand-300: #97c9c6;
+  --color-brand-200: #c3e0de;
+  --color-brand-100: #e0eeed;
+  --color-brand-50: #f0f7f6;
+  --color-charcoal: #2c2f33;
   --color-white: #ffffff;
-  --color-line: #ded4b7;
-  --color-line-soft: #e8e0cb;
+  --color-line: #e2d7b8;
+  --color-line-soft: #ece3cc;
 }
 
 @theme inline {
@@ -28,17 +29,18 @@
   --color-paper: var(--color-paper);
   --color-ink: var(--color-ink);
   --color-ink-soft: var(--color-ink-soft);
-  --color-green-950: var(--color-green-950);
-  --color-green-900: var(--color-green-900);
-  --color-green-800: var(--color-green-800);
-  --color-green-700: var(--color-green-700);
-  --color-green-600: var(--color-green-600);
-  --color-green-500: var(--color-green-500);
-  --color-green-400: var(--color-green-400);
-  --color-green-300: var(--color-green-300);
-  --color-green-200: var(--color-green-200);
-  --color-green-100: var(--color-green-100);
-  --color-green-50: var(--color-green-50);
+  --color-brand-950: var(--color-brand-950);
+  --color-brand-900: var(--color-brand-900);
+  --color-brand-800: var(--color-brand-800);
+  --color-brand-700: var(--color-brand-700);
+  --color-brand-600: var(--color-brand-600);
+  --color-brand-500: var(--color-brand-500);
+  --color-brand-400: var(--color-brand-400);
+  --color-brand-300: var(--color-brand-300);
+  --color-brand-200: var(--color-brand-200);
+  --color-brand-100: var(--color-brand-100);
+  --color-brand-50: var(--color-brand-50);
+  --color-charcoal: var(--color-charcoal);
   --color-line: var(--color-line);
   --color-line-soft: var(--color-line-soft);
   --font-sans: var(--font-body);
@@ -67,7 +69,7 @@ body {
 }
 
 ::selection {
-  background: var(--color-green-700);
+  background: var(--color-brand-600);
   color: var(--color-paper);
 }
 
@@ -77,7 +79,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-green-700);
+  outline: 2px solid var(--color-brand-600);
   outline-offset: 3px;
   border-radius: 2px;
 }

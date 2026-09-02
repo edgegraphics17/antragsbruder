@@ -8,7 +8,7 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="divide-y divide-line-soft rounded-2xl border border-line-soft bg-white">
+    <div className="divide-y divide-line-soft rounded-3xl border border-line-soft bg-white">
       {items.map((item, i) => {
         const isOpen = openIndex === i;
         return (
@@ -22,7 +22,7 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
               >
                 <span className="text-base font-medium text-ink">{item.question}</span>
                 <span
-                  className={`shrink-0 text-green-700 transition-transform duration-200 ${
+                  className={`shrink-0 text-brand-700 transition-transform duration-200 ${
                     isOpen ? "rotate-180" : ""
                   }`}
                 >

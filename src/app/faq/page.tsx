@@ -23,7 +23,7 @@ export default function FaqPage() {
         <Container className="space-y-12">
           {faqGroups.map((g) => (
             <div key={g.group}>
-              <h2 className="font-display mb-4 text-xl font-semibold text-ink">{g.group}</h2>
+              <h2 className="font-display mb-4 text-xl font-bold text-ink">{g.group}</h2>
               <FaqAccordion items={g.items} />
             </div>
           ))}
