@@ -49,7 +49,7 @@ const KLIMA: Record<number, number> & { mehr: number } = {
   mehr: 4.8,
 };
 
-function hoechstbetragMiete(personen: number, mietstufeIdx: number) {
+export function hoechstbetragMiete(personen: number, mietstufeIdx: number) {
   const base = personen <= 5 ? HOECHST[personen][mietstufeIdx] : HOECHST[5][mietstufeIdx] + (personen - 5) * HOECHST.mehr[mietstufeIdx];
   const klima = personen <= 5 ? KLIMA[personen] : KLIMA[5] + (personen - 5) * KLIMA.mehr;
   return base + klima;

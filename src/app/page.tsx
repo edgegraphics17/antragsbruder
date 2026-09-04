@@ -204,6 +204,66 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* GRUNDSICHERUNGSGELD-RECHNER */}
+      <section>
+        <Container className="py-20">
+          <div className="grid items-center gap-10 rounded-3xl border border-brand-700/30 bg-brand-50 p-8 lg:grid-cols-2 lg:p-12">
+            <div>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+                <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
+                Kostenloses Tool
+              </span>
+              <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+                Weißt du, ob dir Grundsicherungsgeld zusteht?
+              </h2>
+              <p className="mt-4 max-w-lg text-lg leading-relaxed text-ink-soft">
+                Mit unserem Grundsicherungsgeld-Rechner (früher Bürgergeld) findest du in wenigen Minuten heraus, ob
+                du wahrscheinlich Anspruch hast – kostenlos, einfach und in mehreren Sprachen.
+              </p>
+              <ul className="mt-6 space-y-2 text-sm text-ink-soft">
+                {[
+                  "Kostenloser Schnell-Check ohne Anmeldung",
+                  "Verfügbar auf Deutsch, Englisch, Arabisch und weiteren Sprachen",
+                  "Anspruch? Wir übernehmen deinen Antrag für 99 €",
+                ].map((t) => (
+                  <li key={t} className="flex items-start gap-2">
+                    <IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-brand-700" />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button href="/grundsicherungsrechner" size="lg">
+                  Jetzt Grundsicherungsgeld berechnen
+                </Button>
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-line-soft bg-white p-6 sm:p-8">
+              <IconCoin className="h-8 w-8 text-brand-700" />
+              <p className="mt-4 text-sm font-semibold text-ink-soft">Dein mögliches Grundsicherungsgeld</p>
+              <p className="font-display mt-1 text-5xl font-extrabold tracking-tight text-ink">
+                842 <span className="text-lg font-semibold text-ink-soft">€ / Monat</span>
+              </p>
+              <p className="mt-2 text-xs text-ink-soft">Beispielhafte Berechnung – dein Ergebnis kann abweichen.</p>
+              <div className="mt-6 border-t border-line-soft pt-5">
+                <p className="mb-2.5 text-xs font-semibold uppercase tracking-wide text-ink-soft">Verfügbare Sprachen</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {languages.map((l) => (
+                    <span
+                      key={l.code}
+                      className="rounded-full border border-line bg-cream px-2.5 py-1 text-xs font-medium text-ink"
+                    >
+                      {l.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* BEISPIELABLAUF */}
       <section>
         <Container className="py-20">
