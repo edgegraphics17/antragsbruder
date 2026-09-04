@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
@@ -98,9 +99,9 @@ export default function DatenschutzPage() {
             <p>
               Wir setzen technische und organisatorische Maßnahmen ein, um deine Daten angemessen zu schützen. Mehr
               zu unseren Prinzipien findest du auf unserer Seite{" "}
-              <a href="/sicherheit" className="text-brand-800 underline">
+              <Link href="/sicherheit" className="text-brand-800 underline">
                 Sicherheit & Datenschutz
-              </a>
+              </Link>
               .
             </p>
           </LegalSection>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { ButtonAction } from "@/components/ui/Button";
 
@@ -111,9 +112,9 @@ export function SimpleContactForm({
         />
         <span>
           Ich bin mit der{" "}
-          <a href="/datenschutz" className="underline hover:text-brand-800">
+          <Link href="/datenschutz" className="underline hover:text-brand-800">
             Datenschutzerklärung
-          </a>{" "}
+          </Link>{" "}
           einverstanden.
         </span>
       </label>

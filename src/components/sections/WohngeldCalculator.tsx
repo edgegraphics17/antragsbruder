@@ -1,20 +1,27 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button, ButtonAction } from "@/components/ui/Button";
 import { IconCheck } from "@/components/ui/icons";
 import { languages, dict, type LangCode } from "@/content/wohngeld-i18n";
 import { calculateWohngeld, type CalcResult } from "@/content/wohngeld-calc";
+import { localeHref } from "@/i18n/config";
 
 type Step = 1 | 2 | 3;
 
 const inputBase =
   "w-full min-h-12 rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700";
 
-export function WohngeldCalculator() {
-  const [lang, setLang] = useState<LangCode>("de");
+export function WohngeldCalculator({ locale }: { locale: LangCode }) {
+  const router = useRouter();
+  const lang = locale;
   const t = dict[lang];
   const langMeta = languages.find((l) => l.code === lang)!;
+
+  function changeLanguage(next: string) {
+    router.push(localeHref(next as LangCode, "/wohngeldrechner"));
+  }
 
   const [step, setStep] = useState<Step>(1);
   const [householdSize, setHouseholdSize] = useState(2);
@@ -63,10 +70,15 @@ export function WohngeldCalculator() {
   }
 
   const ctaHref = useMemo(() => {
-    if (!result) return "/hilfe-starten?anliegen=wohngeld";
-    const summary = `Wohngeld-Rechner-Ergebnis: ca. ${result.amount} €/Monat, Haushaltsgröße ${result.householdSize}, Miete ${rentNum} €, Einkommen ${incomeNum} €.`;
-    return `/hilfe-starten?anliegen=wohngeld&details=${encodeURIComponent(summary)}`;
-  }, [result, rentNum, incomeNum]);
+    if (!result) return localeHref(lang, "/wohngeldrechner/antrag");
+    const params = new URLSearchParams({
+      betrag: String(result.amount),
+      haushalt: String(result.householdSize),
+      miete: String(rentNum),
+      einkommen: String(incomeNum),
+    });
+    return `${localeHref(lang, "/wohngeldrechner/antrag")}?${params.toString()}`;
+  }, [result, rentNum, incomeNum, lang]);
 
   const totalSteps = 2;
 
@@ -80,7 +92,7 @@ export function WohngeldCalculator() {
         <select
           id="wg-lang"
           value={lang}
-          onChange={(e) => setLang(e.target.value as LangCode)}
+          onChange={(e) => changeLanguage(e.target.value)}
           className="rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
         >
           {languages.map((l) => (
@@ -160,7 +172,7 @@ export function WohngeldCalculator() {
                 type="number"
                 min={0}
                 inputMode="decimal"
-                placeholder="z. B. 650"
+                placeholder="650"
                 value={rent}
                 onChange={(e) => setRent(e.target.value)}
                 className={inputBase}
@@ -215,7 +227,7 @@ export function WohngeldCalculator() {
                 type="number"
                 min={0}
                 inputMode="decimal"
-                placeholder="z. B. 1800"
+                placeholder="1800"
                 value={income}
                 onChange={(e) => setIncome(e.target.value)}
                 className={inputBase}
