@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
@@ -52,9 +53,9 @@ export default function AgbPage() {
             <p>
               Die jeweils gültigen Preise werden vor Auftragserteilung mitgeteilt. Unverbindliche Richtwerte finden
               sich auf unserer{" "}
-              <a href="/preise" className="text-brand-800 underline">
+              <Link href="/preise" className="text-brand-800 underline">
                 Preisseite
-              </a>
+              </Link>
               .
             </p>
           </LegalSection>
@@ -72,9 +73,9 @@ export default function AgbPage() {
             <p>
               {site.name} übernimmt keine Gewähr dafür, dass ein Antrag bewilligt wird oder eine bestimmte Leistung
               zusteht. {site.name} erbringt keine Rechts- oder Steuerberatung. Näheres unter{" "}
-              <a href="/was-wir-nicht-sind" className="text-brand-800 underline">
+              <Link href="/was-wir-nicht-sind" className="text-brand-800 underline">
                 Was wir nicht sind
-              </a>
+              </Link>
               .
             </p>
           </LegalSection>
@@ -97,9 +98,9 @@ export default function AgbPage() {
           <LegalSection title="§ 9 Datenschutz">
             <p>
               Informationen zum Umgang mit personenbezogenen Daten findest du in unserer{" "}
-              <a href="/datenschutz" className="text-brand-800 underline">
+              <Link href="/datenschutz" className="text-brand-800 underline">
                 Datenschutzerklärung
-              </a>
+              </Link>
               .
             </p>
           </LegalSection>

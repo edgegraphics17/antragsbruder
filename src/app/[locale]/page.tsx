@@ -21,6 +21,7 @@ import {
 import { warumPillars, betroffeneGruppen } from "@/content/pillars";
 import { site } from "@/content/site";
 import { languages } from "@/content/wohngeld-i18n";
+import { locales, localeHref, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 
 const beispielSteps = [
   "Schreiben hochgeladen",
@@ -44,7 +45,15 @@ const loesungSteps = [
 
 const pillarIcons = [IconSpark, IconHeart, IconFolder, IconCompass, IconLock, IconUsers];
 
-export default function HomePage() {
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const href = (path: string) => localeHref(locale, path);
+
   return (
     <>
       {/* HERO */}
@@ -61,10 +70,10 @@ export default function HomePage() {
               verstehen, zu organisieren und vorzubereiten – einfach, digital und menschlich.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href="/hilfe-starten" size="lg">
+              <Button href={href("/hilfe-starten")} size="lg">
                 Papierkram hochladen
               </Button>
-              <Button href="/so-funktionierts" variant="secondary" size="lg">
+              <Button href={href("/so-funktionierts")} variant="secondary" size="lg">
                 So funktioniert&apos;s
               </Button>
             </div>
@@ -124,21 +133,21 @@ export default function HomePage() {
               title="Ich habe einen Brief bekommen"
               text="Wir helfen dir zu verstehen, was darin verlangt wird – verständlich und ohne Behördendeutsch."
               ctaLabel="Brief hochladen"
-              href="/hilfe-starten?anliegen=brief"
+              href={href("/hilfe-starten?anliegen=brief")}
             />
             <EntryCard
               icon={<IconFolder className="h-6 w-6" />}
               title="Ich brauche Hilfe bei einem Antrag"
               text="Wir helfen dir dabei, Informationen und Dokumente strukturiert zusammenzustellen."
               ctaLabel="Antrag starten"
-              href="/hilfe-starten?anliegen=antrag"
+              href={href("/hilfe-starten?anliegen=antrag")}
             />
             <EntryCard
               icon={<IconClock className="h-6 w-6" />}
               title="Mein Papierkram ist Chaos"
               text="Wir helfen dir, Ordnung in deine Unterlagen zu bringen – digital und übersichtlich."
               ctaLabel="Ordnung schaffen"
-              href="/hilfe-starten?anliegen=papierkram"
+              href={href("/hilfe-starten?anliegen=papierkram")}
             />
           </div>
         </Container>
@@ -173,7 +182,7 @@ export default function HomePage() {
                 ))}
               </ul>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button href="/wohngeldrechner" size="lg">
+                <Button href={href("/wohngeldrechner")} size="lg">
                   Jetzt Wohngeld berechnen
                 </Button>
               </div>
@@ -233,7 +242,7 @@ export default function HomePage() {
                 ))}
               </ul>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button href="/grundsicherungsrechner" size="lg">
+                <Button href={href("/grundsicherungsrechner")} size="lg">
                   Jetzt Grundsicherungsgeld berechnen
                 </Button>
               </div>
@@ -303,7 +312,7 @@ export default function HomePage() {
               Unsere Vision ist ein Deutschland, in dem niemand an Papierkram scheitert. Schritt für Schritt bauen
               wir daran, private Verwaltung einfacher und zugänglicher zu machen.
             </p>
-            <Button href="/vision" variant="outline" size="lg" className="mt-6">
+            <Button href={href("/vision")} variant="outline" size="lg" className="mt-6">
               Unsere Vision ansehen
             </Button>
           </div>
@@ -330,7 +339,7 @@ export default function HomePage() {
               Teilhabe erleichtern – besonders dort, wo sie heute besonders schwerfällt.
             </p>
             <Button
-              href="/verantwortung"
+              href={href("/verantwortung")}
               variant="outline"
               size="lg"
               className="mt-6 border-brand-400 text-cream hover:bg-brand-800"
@@ -353,9 +362,9 @@ export default function HomePage() {
         title="Was liegt gerade auf deinem Tisch?"
         text="Brief, Antrag oder Papierchaos – dein Antragsbruder schaut sich das gerne an."
         primaryLabel="Jetzt Hilfe starten"
-        primaryHref="/hilfe-starten"
+        primaryHref={href("/hilfe-starten")}
         secondaryLabel="So funktioniert's"
-        secondaryHref="/so-funktionierts"
+        secondaryHref={href("/so-funktionierts")}
       />
     </>
   );

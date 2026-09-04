@@ -1,84 +1,121 @@
+import type { Locale } from "@/i18n/config";
+import { localeHref } from "@/i18n/config";
+import { commonDict } from "@/content/i18n/common";
+
 export type NavLink = {
-  label: string;
+  key: string;
   href: string;
+  label: string;
   description?: string;
 };
 
 export type NavGroup = {
-  label: string;
+  key: string;
   href?: string;
+  label: string;
   items?: NavLink[];
 };
 
-export const mainNav: NavGroup[] = [
-  { label: "So funktioniert's", href: "/so-funktionierts" },
-  { label: "Wohngeld-Rechner", href: "/wohngeldrechner" },
-  { label: "Grundsicherungsgeld-Rechner", href: "/grundsicherungsrechner" },
+type StructureLink = { key: string; href: string };
+type StructureGroup = { key: string; href?: string; items?: StructureLink[] };
+
+const structure: StructureGroup[] = [
+  { key: "howItWorks", href: "/so-funktionierts" },
+  { key: "wohngeldRechner", href: "/wohngeldrechner" },
+  { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
   {
-    label: "Services",
+    key: "services",
     href: "/services",
     items: [
-      { label: "Alle Services", href: "/services", description: "Der Überblick über unsere Unterstützung" },
-      { label: "Briefe verstehen", href: "/briefhilfe", description: "Behördendeutsch in normales Deutsch" },
-      { label: "Antragshilfe", href: "/antragshilfe", description: "Unterlagen sammeln, Anträge vorbereiten" },
-      { label: "Digitalisierung", href: "/digitalisierung", description: "Vom Papierstapel zum digitalen Ordner" },
+      { key: "allServices", href: "/services" },
+      { key: "briefhilfe", href: "/briefhilfe" },
+      { key: "antragshilfe", href: "/antragshilfe" },
+      { key: "digitalisierung", href: "/digitalisierung" },
     ],
   },
   {
-    label: "Vision",
+    key: "vision",
     href: "/vision",
     items: [
-      { label: "Unsere Vision", href: "/vision", description: "Das digitale Verwaltungsbüro für Deutschland" },
-      { label: "Roadmap", href: "/roadmap", description: "Unser Weg in fünf Phasen" },
-      { label: "Verantwortung", href: "/verantwortung", description: "Unsere soziale Haltung" },
-      { label: "Sicherheit & Datenschutz", href: "/sicherheit", description: "Wie wir mit deinen Daten umgehen" },
+      { key: "visionMain", href: "/vision" },
+      { key: "roadmap", href: "/roadmap" },
+      { key: "verantwortung", href: "/verantwortung" },
+      { key: "sicherheit", href: "/sicherheit" },
     ],
   },
   {
-    label: "Für wen?",
+    key: "forWhom",
     items: [
-      { label: "Für Familien", href: "/familien" },
-      { label: "Für Senioren & Angehörige", href: "/senioren" },
-      { label: "Sprache & Zugang", href: "/sprachen" },
-      { label: "Für Partner", href: "/partner" },
+      { key: "familien", href: "/familien" },
+      { key: "senioren", href: "/senioren" },
+      { key: "sprachen", href: "/sprachen" },
+      { key: "partner", href: "/partner" },
     ],
   },
-  { label: "Preise", href: "/preise" },
-  { label: "FAQ", href: "/faq" },
+  { key: "pricing", href: "/preise" },
+  { key: "faq", href: "/faq" },
 ];
 
-export const footerNav = {
+const footerStructure: Record<"produkt" | "vision" | "zielgruppen" | "unternehmen" | "legal", StructureLink[]> = {
   produkt: [
-    { label: "So funktioniert's", href: "/so-funktionierts" },
-    { label: "Alle Services", href: "/services" },
-    { label: "Wohngeld-Rechner", href: "/wohngeldrechner" },
-    { label: "Grundsicherungsgeld-Rechner", href: "/grundsicherungsrechner" },
-    { label: "Briefe verstehen", href: "/briefhilfe" },
-    { label: "Antragshilfe", href: "/antragshilfe" },
-    { label: "Digitalisierung", href: "/digitalisierung" },
-    { label: "Preise", href: "/preise" },
+    { key: "howItWorks", href: "/so-funktionierts" },
+    { key: "allServices", href: "/services" },
+    { key: "wohngeldRechner", href: "/wohngeldrechner" },
+    { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
+    { key: "briefhilfe", href: "/briefhilfe" },
+    { key: "antragshilfe", href: "/antragshilfe" },
+    { key: "digitalisierung", href: "/digitalisierung" },
+    { key: "pricing", href: "/preise" },
   ],
   vision: [
-    { label: "Unsere Vision", href: "/vision" },
-    { label: "Roadmap", href: "/roadmap" },
-    { label: "Soziale Verantwortung", href: "/verantwortung" },
-    { label: "Sicherheit & Datenschutz", href: "/sicherheit" },
+    { key: "visionMain", href: "/vision" },
+    { key: "roadmap", href: "/roadmap" },
+    { key: "verantwortung", href: "/verantwortung" },
+    { key: "sicherheit", href: "/sicherheit" },
   ],
   zielgruppen: [
-    { label: "Für Familien", href: "/familien" },
-    { label: "Für Senioren & Angehörige", href: "/senioren" },
-    { label: "Sprache & Zugang", href: "/sprachen" },
-    { label: "Für Partner", href: "/partner" },
+    { key: "familien", href: "/familien" },
+    { key: "senioren", href: "/senioren" },
+    { key: "sprachen", href: "/sprachen" },
+    { key: "partner", href: "/partner" },
   ],
   unternehmen: [
-    { label: "Über uns", href: "/ueber-uns" },
-    { label: "FAQ", href: "/faq" },
-    { label: "Was wir nicht sind", href: "/was-wir-nicht-sind" },
-    { label: "Kontakt", href: "/kontakt" },
+    { key: "ueberUns", href: "/ueber-uns" },
+    { key: "faq", href: "/faq" },
+    { key: "wasWirNichtSind", href: "/was-wir-nicht-sind" },
+    { key: "kontakt", href: "/kontakt" },
   ],
   legal: [
-    { label: "Impressum", href: "/impressum" },
-    { label: "Datenschutz", href: "/datenschutz" },
-    { label: "AGB", href: "/agb" },
+    { key: "impressum", href: "/impressum" },
+    { key: "datenschutz", href: "/datenschutz" },
+    { key: "agb", href: "/agb" },
   ],
 };
+
+export function getMainNav(locale: Locale): NavGroup[] {
+  const t = commonDict[locale];
+  return structure.map((group) => ({
+    key: group.key,
+    label: t.nav[group.key],
+    href: group.href ? localeHref(locale, group.href) : undefined,
+    items: group.items?.map((item) => ({
+      key: item.key,
+      href: localeHref(locale, item.href),
+      label: t.nav[item.key],
+      description: t.navDescriptions[item.key],
+    })),
+  }));
+}
+
+export function getFooterNav(locale: Locale): Record<keyof typeof footerStructure, NavLink[]> {
+  const t = commonDict[locale];
+  const result = {} as Record<keyof typeof footerStructure, NavLink[]>;
+  for (const key of Object.keys(footerStructure) as (keyof typeof footerStructure)[]) {
+    result[key] = footerStructure[key].map((item) => ({
+      key: item.key,
+      href: localeHref(locale, item.href),
+      label: t.nav[item.key],
+    }));
+  }
+  return result;
+}

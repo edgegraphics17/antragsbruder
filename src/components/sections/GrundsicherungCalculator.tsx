@@ -1,10 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button, ButtonAction } from "@/components/ui/Button";
 import { IconCheck } from "@/components/ui/icons";
 import { languages, dict, mietstufeOptions, type LangCode } from "@/content/grundsicherung-i18n";
 import { calculateGrundsicherung, KINDERGELD_DEFAULT, type CalcResult } from "@/content/grundsicherung-calc";
+import { localeHref } from "@/i18n/config";
+import { searchLocation, stufeToTier, type LocationMatch, type Tier } from "@/content/mietstufen-lookup";
 
 type Step = 1 | 2 | 3 | 4;
 
@@ -14,14 +17,25 @@ const inputBase =
 const checkCard =
   "flex items-start gap-3 rounded-2xl border border-line bg-cream px-4 py-3 text-sm text-ink";
 
+const tierStyles: Record<Tier, string> = {
+  guenstig: "bg-brand-100 text-brand-900",
+  durchschnittlich: "bg-brand-300 text-brand-950",
+  teuer: "bg-brand-700 text-white",
+};
+
 function fmt(n: number, lang: LangCode) {
   return n.toLocaleString(lang === "de" ? "de-DE" : "en-US", { maximumFractionDigits: 2 });
 }
 
-export function GrundsicherungCalculator() {
-  const [lang, setLang] = useState<LangCode>("de");
+export function GrundsicherungCalculator({ locale }: { locale: LangCode }) {
+  const router = useRouter();
+  const lang = locale;
   const t = dict[lang];
   const langMeta = languages.find((l) => l.code === lang)!;
+
+  function changeLanguage(next: string) {
+    router.push(localeHref(next as LangCode, "/grundsicherungsrechner"));
+  }
 
   const [step, setStep] = useState<Step>(1);
   const [error, setError] = useState<string | null>(null);
@@ -40,7 +54,12 @@ export function GrundsicherungCalculator() {
   // Step 2 — Wohnen
   const [kaltmiete, setKaltmiete] = useState("");
   const [heizkosten, setHeizkosten] = useState("");
-  const [mietstufeIdx, setMietstufeIdx] = useState(2);
+  const [locationQuery, setLocationQuery] = useState("");
+  const [locationResults, setLocationResults] = useState<LocationMatch[]>([]);
+  const [selectedLocation, setSelectedLocation] = useState<LocationMatch | null>(null);
+  const [searchingLocation, setSearchingLocation] = useState(false);
+  const [manualOverride, setManualOverride] = useState(false);
+  const [manualMietstufeIdx, setManualMietstufeIdx] = useState(2);
   const [knowsOfficial, setKnowsOfficial] = useState(false);
   const [officialLimit, setOfficialLimit] = useState("");
 
@@ -53,6 +72,44 @@ export function GrundsicherungCalculator() {
 
   const [result, setResult] = useState<CalcResult | null>(null);
   const [showDetails, setShowDetails] = useState(false);
+
+  const resolvedMietstufeIdx = manualOverride
+    ? manualMietstufeIdx
+    : selectedLocation
+      ? selectedLocation.stufe - 1
+      : null;
+
+  useEffect(() => {
+    if (manualOverride || selectedLocation) {
+      setLocationResults([]);
+      return;
+    }
+    const query = locationQuery.trim();
+    if (query.length < 2) {
+      setLocationResults([]);
+      return;
+    }
+    let cancelled = false;
+    setSearchingLocation(true);
+    const timer = setTimeout(() => {
+      searchLocation(query).then((results) => {
+        if (cancelled) return;
+        setLocationResults(results);
+        setSearchingLocation(false);
+      });
+    }, 150);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [locationQuery, selectedLocation, manualOverride]);
+
+  function selectLocation(loc: LocationMatch) {
+    setSelectedLocation(loc);
+    setLocationQuery(`${loc.name} (${loc.plz})`);
+    setLocationResults([]);
+    setError(null);
+  }
 
   function handleKidsCountChange(raw: number) {
     const n = Math.min(10, Math.max(0, Number.isFinite(raw) ? raw : 0));
@@ -96,6 +153,10 @@ export function GrundsicherungCalculator() {
       setError(t.required);
       return;
     }
+    if (resolvedMietstufeIdx == null) {
+      setError(t.required);
+      return;
+    }
     setStep(3);
   }
 
@@ -111,7 +172,7 @@ export function GrundsicherungCalculator() {
       disability,
       kaltmiete: Number(kaltmiete) || 0,
       heizkosten: Number(heizkosten) || 0,
-      mietstufeIdx,
+      mietstufeIdx: resolvedMietstufeIdx ?? 2,
       knowsOfficialLimit: knowsOfficial,
       officialLimit: Number(officialLimit) || 0,
       applicantErwerb: Number(applicantErwerb) || 0,
@@ -151,7 +212,7 @@ export function GrundsicherungCalculator() {
         <select
           id="gs-lang"
           value={lang}
-          onChange={(e) => setLang(e.target.value as LangCode)}
+          onChange={(e) => changeLanguage(e.target.value)}
           className="rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
         >
           {languages.map((l) => (
@@ -376,22 +437,104 @@ export function GrundsicherungCalculator() {
             </p>
 
             <div>
-              <label htmlFor="gs-ms" className="mb-1.5 block text-base font-semibold text-ink">
-                {t.mietstufeLabel}
+              <label htmlFor="gs-location" className="mb-1.5 block text-base font-semibold text-ink">
+                {t.locationLabel}
               </label>
-              <select
-                id="gs-ms"
-                value={mietstufeIdx}
-                onChange={(e) => setMietstufeIdx(Number(e.target.value))}
-                className={inputBase}
-              >
-                {mietstufeLabels.map((label, idx) => (
-                  <option key={label} value={idx}>
-                    {label}
-                  </option>
-                ))}
-              </select>
-              <p className="mt-1.5 text-xs leading-relaxed text-ink-soft">{t.mietstufeHint}</p>
+
+              {!manualOverride ? (
+                <>
+                  <div className="relative">
+                    <input
+                      id="gs-location"
+                      type="text"
+                      autoComplete="off"
+                      placeholder={t.locationPlaceholder}
+                      value={locationQuery}
+                      onChange={(e) => {
+                        setLocationQuery(e.target.value);
+                        setSelectedLocation(null);
+                      }}
+                      className={inputBase}
+                    />
+                    {searchingLocation ? (
+                      <span
+                        className="absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 animate-spin rounded-full border-2 border-brand-300 border-t-brand-700"
+                        aria-hidden="true"
+                      />
+                    ) : null}
+                    {locationResults.length > 0 ? (
+                      <ul className="absolute z-10 mt-1.5 max-h-64 w-full overflow-auto rounded-2xl border border-line bg-white shadow-lg">
+                        {locationResults.map((loc) => (
+                          <li key={`${loc.name}-${loc.plz}-${loc.kreis}`}>
+                            <button
+                              type="button"
+                              onClick={() => selectLocation(loc)}
+                              className="flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left text-sm hover:bg-cream cursor-pointer"
+                            >
+                              <span className="font-medium text-ink">{loc.name}</span>
+                              <span className="shrink-0 text-xs text-ink-soft">
+                                {loc.plz} · {loc.kreis}
+                              </span>
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+
+                  <div aria-live="polite">
+                    {selectedLocation ? (
+                      <span
+                        className={`mt-2 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${tierStyles[stufeToTier(selectedLocation.stufe)]}`}
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
+                        {
+                          {
+                            guenstig: t.tierGuenstig,
+                            durchschnittlich: t.tierDurchschnittlich,
+                            teuer: t.tierTeuer,
+                          }[stufeToTier(selectedLocation.stufe)]
+                        }
+                      </span>
+                    ) : locationQuery.trim().length >= 2 && !searchingLocation && locationResults.length === 0 ? (
+                      <p className="mt-1.5 text-xs leading-relaxed text-ink-soft">{t.locationNoMatch}</p>
+                    ) : (
+                      <p className="mt-1.5 text-xs leading-relaxed text-ink-soft">{t.mietstufeHint}</p>
+                    )}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setManualOverride(true)}
+                    className="mt-2 block text-xs font-semibold text-brand-700 underline underline-offset-2 cursor-pointer"
+                  >
+                    {t.manualOverrideToggle}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <select
+                    id="gs-location"
+                    value={manualMietstufeIdx}
+                    onChange={(e) => setManualMietstufeIdx(Number(e.target.value))}
+                    className={inputBase}
+                  >
+                    {mietstufeLabels.map((label, idx) => (
+                      <option key={label} value={idx}>
+                        {label}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="mt-1.5 text-xs leading-relaxed text-ink-soft">{t.mietstufeHint}</p>
+                  <button
+                    type="button"
+                    onClick={() => setManualOverride(false)}
+                    className="mt-2 block text-xs font-semibold text-brand-700 underline underline-offset-2 cursor-pointer"
+                  >
+                    {t.manualOverrideHide}
+                  </button>
+                </>
+              )}
             </div>
 
             <label className={checkCard}>

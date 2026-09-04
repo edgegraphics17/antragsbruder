@@ -1,26 +1,45 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button, ButtonAction } from "@/components/ui/Button";
 import { IconCheck } from "@/components/ui/icons";
 import { languages, dict, type LangCode } from "@/content/wohngeld-i18n";
 import { calculateWohngeld, type CalcResult } from "@/content/wohngeld-calc";
+import { localeHref } from "@/i18n/config";
+import { searchLocation, stufeToTier, type LocationMatch, type Tier } from "@/content/mietstufen-lookup";
 
 type Step = 1 | 2 | 3;
 
 const inputBase =
   "w-full min-h-12 rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700";
 
-export function WohngeldCalculator() {
-  const [lang, setLang] = useState<LangCode>("de");
+const tierStyles: Record<Tier, string> = {
+  guenstig: "bg-brand-100 text-brand-900",
+  durchschnittlich: "bg-brand-300 text-brand-950",
+  teuer: "bg-brand-700 text-white",
+};
+
+export function WohngeldCalculator({ locale }: { locale: LangCode }) {
+  const router = useRouter();
+  const lang = locale;
   const t = dict[lang];
   const langMeta = languages.find((l) => l.code === lang)!;
+
+  function changeLanguage(next: string) {
+    router.push(localeHref(next as LangCode, "/wohngeldrechner"));
+  }
 
   const [step, setStep] = useState<Step>(1);
   const [householdSize, setHouseholdSize] = useState(2);
   const [singleParent, setSingleParent] = useState(false);
   const [rent, setRent] = useState<string>("");
-  const [mietstufeIdx, setMietstufeIdx] = useState(2);
+  const [locationQuery, setLocationQuery] = useState("");
+  const [locationResults, setLocationResults] = useState<LocationMatch[]>([]);
+  const [selectedLocation, setSelectedLocation] = useState<LocationMatch | null>(null);
+  const [searchingLocation, setSearchingLocation] = useState(false);
+  const [manualOverride, setManualOverride] = useState(false);
+  const [manualMietstufeIdx, setManualMietstufeIdx] = useState(2);
   const [income, setIncome] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<CalcResult | null>(null);
@@ -28,10 +47,51 @@ export function WohngeldCalculator() {
 
   const rentNum = Number(rent);
   const incomeNum = Number(income);
+  const resolvedMietstufeIdx = manualOverride
+    ? manualMietstufeIdx
+    : selectedLocation
+      ? selectedLocation.stufe - 1
+      : null;
+
+  useEffect(() => {
+    if (manualOverride || selectedLocation) {
+      setLocationResults([]);
+      return;
+    }
+    const query = locationQuery.trim();
+    if (query.length < 2) {
+      setLocationResults([]);
+      return;
+    }
+    let cancelled = false;
+    setSearchingLocation(true);
+    const timer = setTimeout(() => {
+      searchLocation(query).then((results) => {
+        if (cancelled) return;
+        setLocationResults(results);
+        setSearchingLocation(false);
+      });
+    }, 150);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [locationQuery, selectedLocation, manualOverride]);
+
+  function selectLocation(loc: LocationMatch) {
+    setSelectedLocation(loc);
+    setLocationQuery(`${loc.name} (${loc.plz})`);
+    setLocationResults([]);
+    setError(null);
+  }
 
   function goToStep2() {
     setError(null);
     if (!rent || rentNum <= 0) {
+      setError(t.required);
+      return;
+    }
+    if (resolvedMietstufeIdx == null) {
       setError(t.required);
       return;
     }
@@ -48,7 +108,7 @@ export function WohngeldCalculator() {
       householdSize,
       singleParent,
       monthlyRent: rentNum,
-      mietstufeIdx,
+      mietstufeIdx: resolvedMietstufeIdx ?? 2,
       monthlyNetIncome: incomeNum,
     });
     setResult(res);
@@ -63,10 +123,15 @@ export function WohngeldCalculator() {
   }
 
   const ctaHref = useMemo(() => {
-    if (!result) return "/hilfe-starten?anliegen=wohngeld";
-    const summary = `Wohngeld-Rechner-Ergebnis: ca. ${result.amount} €/Monat, Haushaltsgröße ${result.householdSize}, Miete ${rentNum} €, Einkommen ${incomeNum} €.`;
-    return `/hilfe-starten?anliegen=wohngeld&details=${encodeURIComponent(summary)}`;
-  }, [result, rentNum, incomeNum]);
+    if (!result) return localeHref(lang, "/wohngeldrechner/antrag");
+    const params = new URLSearchParams({
+      betrag: String(result.amount),
+      haushalt: String(result.householdSize),
+      miete: String(rentNum),
+      einkommen: String(incomeNum),
+    });
+    return `${localeHref(lang, "/wohngeldrechner/antrag")}?${params.toString()}`;
+  }, [result, rentNum, incomeNum, lang]);
 
   const totalSteps = 2;
 
@@ -80,7 +145,7 @@ export function WohngeldCalculator() {
         <select
           id="wg-lang"
           value={lang}
-          onChange={(e) => setLang(e.target.value as LangCode)}
+          onChange={(e) => changeLanguage(e.target.value)}
           className="rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
         >
           {languages.map((l) => (
@@ -160,7 +225,7 @@ export function WohngeldCalculator() {
                 type="number"
                 min={0}
                 inputMode="decimal"
-                placeholder="z. B. 650"
+                placeholder="650"
                 value={rent}
                 onChange={(e) => setRent(e.target.value)}
                 className={inputBase}
@@ -169,22 +234,104 @@ export function WohngeldCalculator() {
             </div>
 
             <div>
-              <label htmlFor="wg-ms" className="mb-1.5 block text-base font-semibold text-ink">
-                {t.mietstufeLabel}
+              <label htmlFor="wg-location" className="mb-1.5 block text-base font-semibold text-ink">
+                {t.locationLabel}
               </label>
-              <select
-                id="wg-ms"
-                value={mietstufeIdx}
-                onChange={(e) => setMietstufeIdx(Number(e.target.value))}
-                className={inputBase}
-              >
-                {t.mietstufeOptions.map((label, idx) => (
-                  <option key={label} value={idx}>
-                    {label}
-                  </option>
-                ))}
-              </select>
-              <p className="mt-1.5 text-xs leading-relaxed text-ink-soft">{t.mietstufeHint}</p>
+
+              {!manualOverride ? (
+                <>
+                  <div className="relative">
+                    <input
+                      id="wg-location"
+                      type="text"
+                      autoComplete="off"
+                      placeholder={t.locationPlaceholder}
+                      value={locationQuery}
+                      onChange={(e) => {
+                        setLocationQuery(e.target.value);
+                        setSelectedLocation(null);
+                      }}
+                      className={inputBase}
+                    />
+                    {searchingLocation ? (
+                      <span
+                        className="absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 animate-spin rounded-full border-2 border-brand-300 border-t-brand-700"
+                        aria-hidden="true"
+                      />
+                    ) : null}
+                    {locationResults.length > 0 ? (
+                      <ul className="absolute z-10 mt-1.5 max-h-64 w-full overflow-auto rounded-2xl border border-line bg-white shadow-lg">
+                        {locationResults.map((loc) => (
+                          <li key={`${loc.name}-${loc.plz}-${loc.kreis}`}>
+                            <button
+                              type="button"
+                              onClick={() => selectLocation(loc)}
+                              className="flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left text-sm hover:bg-cream cursor-pointer"
+                            >
+                              <span className="font-medium text-ink">{loc.name}</span>
+                              <span className="shrink-0 text-xs text-ink-soft">
+                                {loc.plz} · {loc.kreis}
+                              </span>
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+
+                  <div aria-live="polite">
+                    {selectedLocation ? (
+                      <span
+                        className={`mt-2 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${tierStyles[stufeToTier(selectedLocation.stufe)]}`}
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
+                        {
+                          {
+                            guenstig: t.tierGuenstig,
+                            durchschnittlich: t.tierDurchschnittlich,
+                            teuer: t.tierTeuer,
+                          }[stufeToTier(selectedLocation.stufe)]
+                        }
+                      </span>
+                    ) : locationQuery.trim().length >= 2 && !searchingLocation && locationResults.length === 0 ? (
+                      <p className="mt-1.5 text-xs leading-relaxed text-ink-soft">{t.locationNoMatch}</p>
+                    ) : (
+                      <p className="mt-1.5 text-xs leading-relaxed text-ink-soft">{t.locationHint}</p>
+                    )}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setManualOverride(true)}
+                    className="mt-2 block text-xs font-semibold text-brand-700 underline underline-offset-2 cursor-pointer"
+                  >
+                    {t.manualOverrideToggle}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <select
+                    id="wg-location"
+                    value={manualMietstufeIdx}
+                    onChange={(e) => setManualMietstufeIdx(Number(e.target.value))}
+                    className={inputBase}
+                  >
+                    {t.mietstufeOptions.map((label, idx) => (
+                      <option key={label} value={idx}>
+                        {label}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="mt-1.5 text-xs leading-relaxed text-ink-soft">{t.mietstufeHint}</p>
+                  <button
+                    type="button"
+                    onClick={() => setManualOverride(false)}
+                    className="mt-2 block text-xs font-semibold text-brand-700 underline underline-offset-2 cursor-pointer"
+                  >
+                    {t.manualOverrideHide}
+                  </button>
+                </>
+              )}
             </div>
 
             {error ? (
@@ -215,7 +362,7 @@ export function WohngeldCalculator() {
                 type="number"
                 min={0}
                 inputMode="decimal"
-                placeholder="z. B. 1800"
+                placeholder="1800"
                 value={income}
                 onChange={(e) => setIncome(e.target.value)}
                 className={inputBase}

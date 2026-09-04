@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
+import { locales, localeHref } from "@/i18n/config";
 
-const routes = [
+const germanOnlyRoutes = [
   "",
   "/so-funktionierts",
   "/services",
@@ -27,12 +28,27 @@ const routes = [
   "/agb",
 ];
 
+// Routes with real per-language content — every locale is worth indexing.
+const translatedRoutes = ["/wohngeldrechner", "/wohngeldrechner/antrag"];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = `https://${site.domain}`;
-  return routes.map((path) => ({
+
+  const german = germanOnlyRoutes.map((path) => ({
     url: `${base}${path}`,
     lastModified: new Date(),
-    changeFrequency: "weekly",
+    changeFrequency: "weekly" as const,
     priority: path === "" ? 1 : 0.6,
   }));
+
+  const translated = translatedRoutes.flatMap((path) =>
+    locales.map((locale) => ({
+      url: `${base}${localeHref(locale, path)}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    }))
+  );
+
+  return [...german, ...translated];
 }

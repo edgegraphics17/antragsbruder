@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -62,9 +63,9 @@ export default function SicherheitPage() {
             <p className="mt-2 text-sm leading-relaxed text-ink-soft">
               Du kannst jederzeit erfragen, welche Daten wir über dich verarbeiten, und eine Löschung anfragen –
               soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Details findest du in unserer{" "}
-              <a href="/datenschutz" className="text-brand-800 underline">
+              <Link href="/datenschutz" className="text-brand-800 underline">
                 Datenschutzerklärung
-              </a>
+              </Link>
               .
             </p>
           </div>
