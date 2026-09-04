@@ -58,6 +58,15 @@ export function IconCheck({ className = "h-5 w-5" }: IconProps) {
   );
 }
 
+export function IconCoin({ className = "h-6 w-6" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`} aria-hidden="true">
+      <circle cx="12" cy="12" r="9" strokeWidth="1.7" />
+      <path d="M12 7.5v9M9.5 15c0 1.1 1 2 2.5 2s2.5-.8 2.5-2c0-1.4-1.3-1.8-2.5-2.2C10.8 12.4 9.5 12 9.5 10.6c0-1.1 1-1.9 2.5-1.9s2.5.7 2.5 1.9" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function IconArrowRight({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`} aria-hidden="true">

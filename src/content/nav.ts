@@ -12,6 +12,7 @@ export type NavGroup = {
 
 export const mainNav: NavGroup[] = [
   { label: "So funktioniert's", href: "/so-funktionierts" },
+  { label: "Wohngeld-Rechner", href: "/wohngeldrechner" },
   {
     label: "Services",
     href: "/services",
@@ -49,6 +50,7 @@ export const footerNav = {
   produkt: [
     { label: "So funktioniert's", href: "/so-funktionierts" },
     { label: "Alle Services", href: "/services" },
+    { label: "Wohngeld-Rechner", href: "/wohngeldrechner" },
     { label: "Briefe verstehen", href: "/briefhilfe" },
     { label: "Antragshilfe", href: "/antragshilfe" },
     { label: "Digitalisierung", href: "/digitalisierung" },

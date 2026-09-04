@@ -8,11 +8,18 @@ import { site } from "@/content/site";
 const anliegenOptions = [
   { value: "brief", label: "Ich habe einen Brief bekommen" },
   { value: "antrag", label: "Ich brauche Hilfe bei einem Antrag" },
+  { value: "wohngeld", label: "Ich möchte Wohngeld beantragen" },
   { value: "papierkram", label: "Mein Papierkram ist Chaos" },
   { value: "sonstiges", label: "Etwas anderes" },
 ];
 
-export function IntakeForm({ defaultAnliegen = "" }: { defaultAnliegen?: string }) {
+export function IntakeForm({
+  defaultAnliegen = "",
+  defaultDescription = "",
+}: {
+  defaultAnliegen?: string;
+  defaultDescription?: string;
+}) {
   const [submitted, setSubmitted] = useState(false);
   const [consent, setConsent] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -131,6 +138,7 @@ export function IntakeForm({ defaultAnliegen = "" }: { defaultAnliegen?: string 
             id="description"
             name="description"
             rows={4}
+            defaultValue={defaultDescription}
             className="w-full rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
             placeholder="Von welchem Amt ist der Brief? Worum geht's?"
           />

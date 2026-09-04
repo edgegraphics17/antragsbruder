@@ -20,11 +20,12 @@ const schritte = [
 export default async function HilfeStartenPage({
   searchParams,
 }: {
-  searchParams: Promise<{ anliegen?: string }>;
+  searchParams: Promise<{ anliegen?: string; details?: string }>;
 }) {
   const params = await searchParams;
-  const validAnliegen = ["brief", "antrag", "papierkram", "sonstiges"];
+  const validAnliegen = ["brief", "antrag", "wohngeld", "papierkram", "sonstiges"];
   const defaultAnliegen = params.anliegen && validAnliegen.includes(params.anliegen) ? params.anliegen : "";
+  const defaultDescription = params.details ? decodeURIComponent(params.details) : "";
 
   return (
     <>
@@ -56,7 +57,7 @@ export default async function HilfeStartenPage({
 
       <section className="py-16">
         <Container className="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
-          <IntakeForm defaultAnliegen={defaultAnliegen} />
+          <IntakeForm defaultAnliegen={defaultAnliegen} defaultDescription={defaultDescription} />
           <div className="space-y-5">
             <DisclaimerBox title="Realistisch statt versprochen">
               Wir versprechen keine bestimmte Antwortzeit. Bei umfangreicheren Anliegen kann die Sichtung etwas
