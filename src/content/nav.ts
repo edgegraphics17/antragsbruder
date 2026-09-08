@@ -19,24 +19,35 @@ export type NavGroup = {
 type StructureLink = { key: string; href: string };
 type StructureGroup = { key: string; href?: string; items?: StructureLink[] };
 
+// "Hilfe starten" is intentionally absent here: it is the header's primary CTA
+// button on the right, so listing it again as a nav link would duplicate it.
 const structure: StructureGroup[] = [
-  { key: "hilfeStarten", href: "/hilfe-starten" },
-  { key: "briefVerstehen", href: "/brief-verstehen" },
-  { key: "antragVorbereiten", href: "/antrag-vorbereiten" },
-  { key: "unterlagenCheck", href: "/unterlagen-check" },
-  { key: "papierkramOrdnen", href: "/papierkram-ordnen" },
-  { key: "pricing", href: "/preise" },
+  {
+    key: "services",
+    items: [
+      { key: "briefVerstehen", href: "/brief-verstehen" },
+      { key: "antragVorbereiten", href: "/antrag-vorbereiten" },
+      { key: "unterlagenCheck", href: "/unterlagen-check" },
+      { key: "papierkramOrdnen", href: "/papierkram-ordnen" },
+    ],
+  },
+  {
+    key: "tools",
+    items: [
+      { key: "wohngeldRechner", href: "/wohngeldrechner" },
+      { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
+    ],
+  },
   {
     key: "mehr",
     items: [
       { key: "howItWorks", href: "/so-funktionierts" },
-      { key: "wohngeldRechner", href: "/wohngeldrechner" },
-      { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
+      { key: "pricing", href: "/preise" },
       { key: "ueberUns", href: "/wer-wir-sind" },
       { key: "faq", href: "/faq" },
-      { key: "kontakt", href: "/kontakt" },
     ],
   },
+  { key: "kontakt", href: "/kontakt" },
 ];
 
 const footerStructure: Record<"produkt" | "unternehmen" | "legal", StructureLink[]> = {

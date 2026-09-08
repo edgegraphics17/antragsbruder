@@ -181,3 +181,13 @@ export function IconBuilding({ className = "h-6 w-6" }: IconProps) {
     </svg>
   );
 }
+
+export function IconGlobe({ className = "h-6 w-6" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`} aria-hidden="true">
+      <circle cx="12" cy="12" r="9" strokeWidth="1.7" />
+      <path d="M3 12h18" strokeWidth="1.7" strokeLinecap="round" />
+      <path d="M12 3c2.4 2.5 3.6 5.5 3.6 9s-1.2 6.5-3.6 9c-2.4-2.5-3.6-5.5-3.6-9S9.6 5.5 12 3Z" strokeWidth="1.7" strokeLinejoin="round" />
+    </svg>
+  );
+}
