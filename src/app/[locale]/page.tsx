@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StatusBadge } from "@/components/ui/Badge";
 import { HeroVisual } from "@/components/sections/HeroVisual";
+import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { EntryCard, PillarCard } from "@/components/sections/Cards";
 import { CTASection } from "@/components/sections/CTASection";
 import { IconClock, IconCoin, IconDocument, IconFolder, IconMail, IconSpark } from "@/components/ui/icons";
@@ -143,6 +144,20 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               const Icon = pillarIcons[i];
               return <PillarCard key={p.title} icon={<Icon className="h-5 w-5" />} title={p.title} text={p.text} />;
             })}
+          </div>
+        </Container>
+      </section>
+
+      {/* FOTOSTREIFEN */}
+      <section className="overflow-hidden">
+        <Container className="py-16 sm:py-20">
+          <div className="grid grid-cols-3 gap-4 sm:gap-6">
+            <PhotoFrame
+              src="/images/photos/coworking-warm.jpg"
+              alt=""
+              className="col-span-2 aspect-[4/3] sm:aspect-[16/9]"
+            />
+            <PhotoFrame src="/images/photos/ordner-regal.jpg" alt="" className="aspect-[3/4]" />
           </div>
         </Container>
       </section>

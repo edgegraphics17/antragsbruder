@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { IconCheck } from "@/components/ui/icons";
+import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { pricingTiers } from "@/content/pricing";
 import { dict } from "@/content/preise-i18n";
 import { locales, isLocale, defaultLocale, localeHref, type Locale } from "@/i18n/config";
@@ -32,8 +33,9 @@ export default async function PreisePage({ params }: { params: Promise<{ locale:
   return (
     <>
       <section>
-        <Container className="py-16 sm:py-20">
+        <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.2fr_1fr]">
           <SectionHeading eyebrow={t.eyebrow} title={t.title} lede={t.lede} />
+          <PhotoFrame src="/images/photos/team-monitore.jpg" alt="" priority className="aspect-[4/3] w-full" />
         </Container>
       </section>
 

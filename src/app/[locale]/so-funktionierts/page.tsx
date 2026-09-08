@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { CTASection } from "@/components/sections/CTASection";
 import { IconCheck } from "@/components/ui/icons";
+import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { locales, localeHref, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 import { dict } from "@/content/so-funktionierts-i18n";
 
@@ -31,8 +32,9 @@ export default async function SoFunktioniertsPage({ params }: { params: Promise<
   return (
     <>
       <section>
-        <Container className="py-16 sm:py-20">
+        <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.2fr_1fr]">
           <SectionHeading eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
+          <PhotoFrame src="/images/photos/coworking-warm.jpg" alt="" priority className="aspect-[4/3] w-full" />
         </Container>
       </section>
 

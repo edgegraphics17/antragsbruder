@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { KontaktForm } from "@/components/sections/KontaktForm";
 import { IconMail } from "@/components/ui/icons";
 import { LockupHorizontal } from "@/components/ui/Logo";
+import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { site } from "@/content/site";
 import { dict } from "@/content/kontakt-i18n";
 import { locales, isLocale, defaultLocale, type Locale } from "@/i18n/config";
@@ -44,6 +45,7 @@ export default async function KontaktPage({
         <div>
           <LockupHorizontal priority className="mb-8 w-56" />
           <SectionHeading eyebrow={t.eyebrow} title={t.title} lede={t.lede} />
+          <PhotoFrame src="/images/photos/coworking-blau.jpg" alt="" className="mt-6 aspect-[16/9] w-full" />
           <div className="mt-8 flex items-start gap-3 rounded-3xl border border-line-soft bg-white p-5">
             <IconMail className="h-5 w-5 shrink-0 text-brand-800" />
             <div className="text-sm text-ink-soft">

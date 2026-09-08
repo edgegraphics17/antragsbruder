@@ -6,6 +6,7 @@ import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { ProcessFlow } from "@/components/sections/ProcessFlow";
 import { CTASection } from "@/components/sections/CTASection";
 import { IconCheck, IconClose } from "@/components/ui/icons";
+import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { locales, localeHref, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 import { dict } from "@/content/unterlagen-check-i18n";
 
@@ -34,7 +35,8 @@ export default async function UnterlagenCheckPage({ params }: { params: Promise<
   return (
     <>
       <section>
-        <Container className="py-16 sm:py-20">
+        <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.2fr_1fr]">
+          <div>
           <SectionHeading eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
           <div className="mt-6 flex flex-wrap items-center gap-4">
             <Button href={ctaHref} size="lg">
@@ -42,6 +44,8 @@ export default async function UnterlagenCheckPage({ params }: { params: Promise<
             </Button>
             <span className="text-sm font-semibold text-brand-700">{t.heroPrice}</span>
           </div>
+          </div>
+          <PhotoFrame src="/images/photos/aktenstapel.jpg" alt="" priority className="aspect-[4/3] w-full" />
         </Container>
       </section>
 

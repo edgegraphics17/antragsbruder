@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { ProcessFlow } from "@/components/sections/ProcessFlow";
+import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { CTASection } from "@/components/sections/CTASection";
 import { locales, localeHref, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 import { dict } from "@/content/papierkram-ordnen-i18n";
@@ -32,14 +33,17 @@ export default async function PapierkramOrdnenPage({ params }: { params: Promise
   return (
     <>
       <section>
-        <Container className="py-16 sm:py-20">
-          <SectionHeading eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
-          <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <Button href={href("/hilfe-starten?anliegen=papierkram")} size="lg">
-              {t.heroButtonLabel}
-            </Button>
-            <span className="text-lg font-semibold text-brand-800">{t.priceLabel}</span>
+        <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.2fr_1fr]">
+          <div>
+            <SectionHeading eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
+            <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+              <Button href={href("/hilfe-starten?anliegen=papierkram")} size="lg">
+                {t.heroButtonLabel}
+              </Button>
+              <span className="text-lg font-semibold text-brand-800">{t.priceLabel}</span>
+            </div>
           </div>
+          <PhotoFrame src="/images/photos/ordner-regal.jpg" alt="" priority className="aspect-[4/3] w-full" />
         </Container>
       </section>
 

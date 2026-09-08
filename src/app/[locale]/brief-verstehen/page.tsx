@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { LetterMockup } from "@/components/sections/LetterMockup";
+import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { ProcessFlow } from "@/components/sections/ProcessFlow";
 import { CTASection } from "@/components/sections/CTASection";
 import { locales, localeHref, isLocale, defaultLocale, type Locale } from "@/i18n/config";
@@ -33,13 +34,16 @@ export default async function BriefVerstehenPage({ params }: { params: Promise<{
   return (
     <>
       <section>
-        <Container className="py-16 sm:py-20">
-          <SectionHeading eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
-          <div className="mt-6">
-            <Button href={href("/hilfe-starten?anliegen=brief")} size="lg">
-              {t.uploadButtonLabel}
-            </Button>
+        <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.2fr_1fr]">
+          <div>
+            <SectionHeading eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
+            <div className="mt-6">
+              <Button href={href("/hilfe-starten?anliegen=brief")} size="lg">
+                {t.uploadButtonLabel}
+              </Button>
+            </div>
           </div>
+          <PhotoFrame src="/images/photos/buecher-markt.jpg" alt="" priority className="aspect-[4/3] w-full" />
         </Container>
       </section>
 

@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { CTASection } from "@/components/sections/CTASection";
 import { MascotFull } from "@/components/ui/Logo";
+import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { dict } from "@/content/wer-wir-sind-i18n";
 import { locales, localeHref, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 
@@ -52,19 +53,26 @@ export default async function WerWirSindPage({ params }: { params: Promise<{ loc
       </section>
 
       <section className="py-16 sm:py-20">
-        <Container>
-          <SectionHeading title={t.grenzenTitle} lede={t.grenzenLede} />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {t.grenzen.map((item) => (
-              <div key={item.title} className="rounded-2xl border border-line-soft bg-white p-6">
-                <h3 className="font-display text-base font-bold text-ink">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{item.text}</p>
-              </div>
-            ))}
+        <Container className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.7fr]">
+          <div>
+            <SectionHeading title={t.grenzenTitle} lede={t.grenzenLede} />
+            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              {t.grenzen.map((item) => (
+                <div key={item.title} className="rounded-2xl border border-line-soft bg-white p-6">
+                  <h3 className="font-display text-base font-bold text-ink">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{item.text}</p>
+                </div>
+              ))}
+            </div>
+            <DisclaimerBox title={t.grenzenDisclaimerTitle} className="mt-8">
+              {t.grenzenDisclaimerText}
+            </DisclaimerBox>
           </div>
-          <DisclaimerBox title={t.grenzenDisclaimerTitle} className="mt-8">
-            {t.grenzenDisclaimerText}
-          </DisclaimerBox>
+          <PhotoFrame
+            src="/images/photos/coworking-team.jpg"
+            alt=""
+            className="aspect-[3/4] hidden w-full lg:block"
+          />
         </Container>
       </section>
 

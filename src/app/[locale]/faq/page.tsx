@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { CTASection } from "@/components/sections/CTASection";
+import Image from "next/image";
 import { faqGroups } from "@/content/faq";
 import { dict } from "@/content/faq-i18n";
 import { locales, isLocale, defaultLocale, localeHref, type Locale } from "@/i18n/config";
@@ -30,8 +31,17 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
 
   return (
     <>
-      <section>
-        <Container className="py-16 sm:py-20">
+      <section className="relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[38%] sm:block" aria-hidden="true">
+          <Image
+            src="/images/photos/fassade-muster.jpg"
+            alt=""
+            fill
+            className="object-cover opacity-[0.08]"
+            style={{ maskImage: "linear-gradient(to left, black, transparent)" }}
+          />
+        </div>
+        <Container className="relative py-16 sm:py-20">
           <SectionHeading eyebrow={t.eyebrow} title={t.title} lede={t.lede} />
         </Container>
       </section>
