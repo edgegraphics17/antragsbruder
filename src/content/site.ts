@@ -2,9 +2,9 @@ export const site = {
   name: "Antragsbruder",
   domain: "antragsbruder.de",
   claim: "Papierkram? Schick ihn deinem Antragsbruder.",
-  contactEmail: "hallo@antragsbruder.de",
-  supportEmail: "support@antragsbruder.de",
-  partnerEmail: "partner@antragsbruder.de",
+  contactEmail: "info@antragsbruder.de",
+  supportEmail: "info@antragsbruder.de",
+  partnerEmail: "info@antragsbruder.de",
   description:
     "Antragsbruder hilft dir, Behördenbriefe, Anträge und Papierkram zu verstehen, zu organisieren und vorzubereiten – einfach, digital und menschlich.",
 };
