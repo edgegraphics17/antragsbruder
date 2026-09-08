@@ -30,8 +30,8 @@ export function Footer({ locale }: { locale: Locale }) {
   return (
     <footer className="bg-brand-950 text-cream">
       <Container className="py-16">
-        <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-6">
-          <div className="col-span-2 lg:col-span-1">
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
+          <div className="col-span-2 sm:col-span-1">
             <Link href={localeHref(locale, "/")} className="flex items-center gap-2" aria-label={site.name}>
               <MascotIcon className="h-11 w-11" />
               <Wordmark variant="cream" className="w-28" />
@@ -39,8 +39,6 @@ export function Footer({ locale }: { locale: Locale }) {
             <p className="mt-4 max-w-[22ch] text-sm leading-relaxed text-brand-200">{t.footer.claim}</p>
           </div>
           <FooterColumn title={t.footer.colProdukt} links={footerNav.produkt} />
-          <FooterColumn title={t.footer.colVision} links={footerNav.vision} />
-          <FooterColumn title={t.footer.colZielgruppen} links={footerNav.zielgruppen} />
           <FooterColumn title={t.footer.colUnternehmen} links={footerNav.unternehmen} />
           <FooterColumn title={t.footer.colRechtliches} links={footerNav.legal} />
         </div>

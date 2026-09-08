@@ -90,7 +90,7 @@ export default async function DatenschutzPage({ params }: { params: Promise<{ lo
           <LegalSection title={t.section9Heading}>
             <p>
               {t.section9TextBefore}{" "}
-              <Link href={localeHref(locale, "/sicherheit")} className="text-brand-800 underline">
+              <Link href={localeHref(locale, "/wer-wir-sind")} className="text-brand-800 underline">
                 {t.section9LinkText}
               </Link>
               {t.section9TextAfter}

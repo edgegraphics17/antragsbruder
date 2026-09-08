@@ -1,7 +1,11 @@
-import { IconCheck, IconClock, IconDocument } from "@/components/ui/icons";
+import { IconCheck, IconClock } from "@/components/ui/icons";
 import { MascotFull } from "@/components/ui/Logo";
+import { commonDict } from "@/content/i18n/common";
+import type { Locale } from "@/i18n/config";
 
-export function HeroVisual() {
+export function HeroVisual({ locale }: { locale: Locale }) {
+  const t = commonDict[locale].heroVisual;
+
   return (
     <div className="relative mx-auto w-full max-w-md">
       <div className="absolute -left-6 -top-6 h-40 w-40 rounded-full bg-brand-300/50 blur-2xl" aria-hidden="true" />
@@ -13,39 +17,27 @@ export function HeroVisual() {
       />
 
       <div className="relative rounded-[2rem] border border-line-soft bg-white p-5 shadow-xl shadow-brand-950/10">
-        <div className="flex items-center justify-between border-b border-line-soft pb-4">
-          <div className="flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-100 text-brand-800">
-              <IconDocument className="h-4 w-4" />
-            </span>
-            <div>
-              <p className="text-sm font-semibold text-ink">Dein Vorgang</p>
-              <p className="text-xs text-ink-soft">Jobcenter · Mitwirkung</p>
-            </div>
-          </div>
-          <span className="rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold text-brand-800">
-            In Bearbeitung
-          </span>
+        <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft">{t.senderLabel}</p>
+        <div className="mt-2 rounded-2xl bg-cream p-4 font-mono text-[11px] leading-relaxed text-ink-soft">
+          <p className="text-ink">{t.sender}</p>
+          <p>{t.letterExcerpt}</p>
         </div>
 
-        <ul className="mt-4 space-y-3">
+        <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-brand-800">{t.explainedLabel}</p>
+        <ul className="mt-2 space-y-2">
           <li className="flex items-center gap-3 rounded-2xl bg-brand-50 px-3 py-2.5">
-            <IconCheck className="h-4 w-4 text-brand-700" />
-            <span className="text-sm text-ink">Anlage 1 · vorhanden</span>
+            <IconCheck className="h-4 w-4 shrink-0 text-brand-700" />
+            <span className="text-sm text-ink">{t.item1}</span>
           </li>
           <li className="flex items-center gap-3 rounded-2xl bg-brand-50 px-3 py-2.5">
-            <IconCheck className="h-4 w-4 text-brand-700" />
-            <span className="text-sm text-ink">Anlage 2 · vorhanden</span>
+            <IconCheck className="h-4 w-4 shrink-0 text-brand-700" />
+            <span className="text-sm text-ink">{t.item2}</span>
           </li>
           <li className="flex items-center gap-3 rounded-2xl border border-dashed border-brand-400 px-3 py-2.5">
-            <IconClock className="h-4 w-4 text-brand-700" />
-            <span className="text-sm text-ink">Anlage VM · fehlt noch</span>
+            <IconClock className="h-4 w-4 shrink-0 text-brand-700" />
+            <span className="text-sm text-ink">{t.item3Missing}</span>
           </li>
         </ul>
-
-        <div className="mt-5 rounded-2xl bg-brand-900 px-4 py-3 text-sm text-cream">
-          Frist erfasst: <span className="font-semibold">14. Oktober</span>
-        </div>
       </div>
     </div>
   );

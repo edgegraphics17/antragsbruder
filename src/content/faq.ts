@@ -11,7 +11,7 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Was ist Antragsbruder?",
           answer:
-            "Antragsbruder ist ein Service, der dir hilft, Behördenbriefe, Anträge und Papierkram zu verstehen, zu organisieren und vorzubereiten – einfach, digital und mit menschlicher Unterstützung. Langfristig möchten wir das persönliche digitale Verwaltungsbüro für Bürgerinnen und Bürger in Deutschland werden.",
+            "Antragsbruder hilft dir, Behördenbriefe zu verstehen, Anträge vorzubereiten und deinen Papierkram zu ordnen. Du schickst uns dein Dokument, wir sagen dir, worum es geht und was als Nächstes zu tun ist.",
         },
         {
           question: "Ist Antragsbruder eine Behörde?",
@@ -56,12 +56,12 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Kann ich meinen kompletten Papierkram digitalisieren lassen?",
           answer:
-            "Ja, das ist Teil unseres Services „Papierkram-Reset“. Wir helfen dir dabei, größere Mengen an Unterlagen zu digitalisieren, zu sortieren und strukturiert abzulegen.",
+            "Ja, das ist Teil unseres Services „Papierkram ordnen“. Wir helfen dir dabei, größere Mengen an Unterlagen zu digitalisieren, zu sortieren und strukturiert abzulegen.",
         },
         {
           question: "Was passiert mit meinen Dokumenten?",
           answer:
-            "Deine Dokumente werden ausschließlich zur Bearbeitung deines Anliegens verwendet. Datensparsamkeit und ein verantwortungsvoller Umgang mit deinen Informationen sind Teil unseres Produkts. Mehr dazu auf unserer Sicherheitsseite.",
+            "Deine Dokumente werden ausschließlich zur Bearbeitung deines Anliegens verwendet. Datensparsamkeit und ein verantwortungsvoller Umgang mit deinen Informationen sind Teil unseres Produkts. Mehr dazu auf unserer Datenschutz-Seite.",
         },
       ],
     },
@@ -90,21 +90,6 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         },
       ],
     },
-    {
-      group: "Zukunft & Partner",
-      items: [
-        {
-          question: "Welche Funktionen kommen später?",
-          answer:
-            "Perspektivisch planen wir unter anderem einen persönlichen Dokumententresor, wiederverwendbare Stammdaten, einen Familienordner und eine automatische Zuordnung von Fristen. Details dazu findest du auf unserer Roadmap – als Vision gekennzeichnet, nicht als heute verfügbare Funktion.",
-        },
-        {
-          question: "Wie kann ich Partner werden?",
-          answer:
-            "Organisationen wie Bildungsträger, soziale Träger oder Wohnungsunternehmen können über unsere Partnerseite eine Partnerschaft anfragen.",
-        },
-      ],
-    },
   ],
   en: [
     {
@@ -113,7 +98,7 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "What is Antragsbruder?",
           answer:
-            "Antragsbruder is a service that helps you understand, organize and prepare official letters, applications and paperwork – simple, digital and with human support. In the long run, we want to become the personal digital administration office for people living in Germany.",
+            "Antragsbruder helps you understand official letters, prepare applications and get your paperwork in order. You send us your document, and we tell you what it means and what to do next.",
         },
         {
           question: "Is Antragsbruder a government agency?",
@@ -158,12 +143,12 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Can I have all my paperwork digitized?",
           answer:
-            "Yes, that's part of our \"Paperwork Reset\" service. We help you digitize, sort and structure larger amounts of documents.",
+            "Yes, that's part of our \"Sort your paperwork\" service. We help you digitize, sort and structure larger amounts of documents.",
         },
         {
           question: "What happens to my documents?",
           answer:
-            "Your documents are used exclusively to process your request. Data minimization and responsible handling of your information are part of our product. More on our security page.",
+            "Your documents are used exclusively to process your request. Data minimization and responsible handling of your information are part of our product. More on our privacy page.",
         },
       ],
     },
@@ -192,21 +177,6 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         },
       ],
     },
-    {
-      group: "Future & partners",
-      items: [
-        {
-          question: "What features are coming later?",
-          answer:
-            "Looking ahead, we're planning things like a personal document vault, reusable master data, a family folder and automatic deadline matching. You'll find details on our roadmap – marked as a vision, not as a feature available today.",
-        },
-        {
-          question: "How can I become a partner?",
-          answer:
-            "Organizations such as education providers, social service organizations or housing companies can request a partnership via our partner page.",
-        },
-      ],
-    },
   ],
   ar: [
     {
@@ -215,7 +185,7 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "ما هو Antragsbruder؟",
           answer:
-            "Antragsbruder هو خدمة تساعدك على فهم وتنظيم وتحضير خطابات الجهات الرسمية والطلبات والأوراق – بطريقة بسيطة ورقمية وبدعم بشري. على المدى الطويل، نريد أن نصبح المكتب الإداري الرقمي الشخصي للمقيمين في ألمانيا.",
+            "يساعدك Antragsbruder على فهم خطابات الجهات الرسمية وتحضير الطلبات وترتيب أوراقك. ترسل لنا مستندك، ونخبرك بما يعنيه وما هي الخطوة التالية.",
         },
         {
           question: "هل Antragsbruder جهة حكومية؟",
@@ -260,12 +230,12 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "هل يمكنني رقمنة كل أوراقي؟",
           answer:
-            "نعم، هذا جزء من خدمتنا «إعادة تنظيم الأوراق». نساعدك على رقمنة كميات كبيرة من المستندات وفرزها وترتيبها بشكل منظم.",
+            "نعم، هذا جزء من خدمتنا «ترتيب الأوراق». نساعدك على رقمنة كميات كبيرة من المستندات وفرزها وترتيبها بشكل منظم.",
         },
         {
           question: "ماذا يحدث لمستنداتي؟",
           answer:
-            "تُستخدم مستنداتك حصريًا لمعالجة طلبك. تقليل البيانات والتعامل المسؤول مع معلوماتك جزء من منتجنا. مزيد من التفاصيل في صفحة الأمان لدينا.",
+            "تُستخدم مستنداتك حصريًا لمعالجة طلبك. تقليل البيانات والتعامل المسؤول مع معلوماتك جزء من منتجنا. مزيد من التفاصيل في صفحة حماية البيانات لدينا.",
         },
       ],
     },
@@ -294,21 +264,6 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         },
       ],
     },
-    {
-      group: "المستقبل والشركاء",
-      items: [
-        {
-          question: "ما الميزات القادمة لاحقًا؟",
-          answer:
-            "على المدى البعيد، نخطط لأشياء مثل خزنة مستندات شخصية، وبيانات أساسية قابلة لإعادة الاستخدام، ومجلد عائلي، ومطابقة تلقائية للمواعيد النهائية. تجد التفاصيل في خارطة الطريق لدينا – وهي موسومة كرؤية مستقبلية وليست ميزة متاحة اليوم.",
-        },
-        {
-          question: "كيف يمكنني أن أصبح شريكًا؟",
-          answer:
-            "يمكن للمؤسسات مثل الجهات التعليمية أو المؤسسات الاجتماعية أو شركات الإسكان طلب شراكة عبر صفحة الشركاء لدينا.",
-        },
-      ],
-    },
   ],
   tr: [
     {
@@ -317,7 +272,7 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Antragsbruder nedir?",
           answer:
-            "Antragsbruder, resmi yazıları, başvuruları ve evrak işlerini anlamana, düzenlemene ve hazırlamana yardımcı olan bir hizmettir – basit, dijital ve insan desteğiyle. Uzun vadede Almanya'daki insanlar için kişisel dijital idari büro olmayı hedefliyoruz.",
+            "Antragsbruder, resmi yazıları anlamana, başvurularını hazırlamana ve evrakını düzene sokmana yardımcı olur. Belgeni bize gönderirsin, biz de sana ne anlama geldiğini ve sırada ne olduğunu söyleriz.",
         },
         {
           question: "Antragsbruder bir resmi kurum mu?",
@@ -362,12 +317,12 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Tüm evrakımı dijitalleştirebilir miyim?",
           answer:
-            "Evet, bu \"Evrak Sıfırlama\" hizmetimizin bir parçasıdır. Büyük miktarda belgeyi dijitalleştirmen, sınıflandırman ve düzenli şekilde saklaman için sana yardımcı oluyoruz.",
+            "Evet, bu \"Evrakları Düzenleme\" hizmetimizin bir parçasıdır. Büyük miktarda belgeyi dijitalleştirmen, sınıflandırman ve düzenli şekilde saklaman için sana yardımcı oluyoruz.",
         },
         {
           question: "Belgelerime ne oluyor?",
           answer:
-            "Belgelerin yalnızca talebini işleme almak için kullanılır. Veri tasarrufu ve bilgilerinle sorumlu bir şekilde ilgilenmek ürünümüzün bir parçasıdır. Daha fazlası için güvenlik sayfamıza bakabilirsin.",
+            "Belgelerin yalnızca talebini işleme almak için kullanılır. Veri tasarrufu ve bilgilerinle sorumlu bir şekilde ilgilenmek ürünümüzün bir parçasıdır. Daha fazlası için gizlilik sayfamıza bakabilirsin.",
         },
       ],
     },
@@ -396,21 +351,6 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         },
       ],
     },
-    {
-      group: "Gelecek ve iş ortakları",
-      items: [
-        {
-          question: "İleride hangi özellikler geliyor?",
-          answer:
-            "İleriye dönük olarak kişisel bir belge kasası, yeniden kullanılabilir temel veriler, bir aile klasörü ve sürelerin otomatik eşleştirilmesi gibi özellikler planlıyoruz. Ayrıntıları yol haritamızda bulabilirsin – bugün kullanılabilir bir özellik olarak değil, bir vizyon olarak işaretlenmiştir.",
-        },
-        {
-          question: "Nasıl iş ortağı olabilirim?",
-          answer:
-            "Eğitim kurumları, sosyal kuruluşlar veya konut şirketleri gibi organizasyonlar iş ortağı sayfamız üzerinden bir ortaklık talep edebilir.",
-        },
-      ],
-    },
   ],
   ru: [
     {
@@ -419,7 +359,7 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Что такое Antragsbruder?",
           answer:
-            "Antragsbruder — это сервис, который помогает вам понимать, организовывать и готовить письма от ведомств, заявления и документы – просто, цифрово и с поддержкой людей. В перспективе мы хотим стать личным цифровым административным офисом для жителей Германии.",
+            "Antragsbruder помогает вам понимать письма от ведомств, готовить заявления и приводить документы в порядок. Вы присылаете нам документ, а мы говорим, о чём он и что делать дальше.",
         },
         {
           question: "Antragsbruder — это ведомство?",
@@ -469,7 +409,7 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Что происходит с моими документами?",
           answer:
-            "Ваши документы используются исключительно для обработки вашего запроса. Минимизация данных и ответственное обращение с вашей информацией — часть нашего продукта. Подробнее на странице безопасности.",
+            "Ваши документы используются исключительно для обработки вашего запроса. Минимизация данных и ответственное обращение с вашей информацией — часть нашего продукта. Подробнее на странице о защите данных.",
         },
       ],
     },
@@ -498,21 +438,6 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         },
       ],
     },
-    {
-      group: "Будущее и партнёры",
-      items: [
-        {
-          question: "Какие функции появятся позже?",
-          answer:
-            "В перспективе мы планируем, среди прочего, личное хранилище документов, повторно используемые базовые данные, семейную папку и автоматическое сопоставление сроков. Подробности вы найдёте на нашей дорожной карте – это обозначено как видение, а не как доступная сегодня функция.",
-        },
-        {
-          question: "Как стать партнёром?",
-          answer:
-            "Организации, такие как образовательные учреждения, социальные организации или жилищные компании, могут подать заявку на партнёрство через нашу страницу для партнёров.",
-        },
-      ],
-    },
   ],
   uk: [
     {
@@ -521,7 +446,7 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Що таке Antragsbruder?",
           answer:
-            "Antragsbruder — це сервіс, який допомагає вам розуміти, організовувати та готувати офіційні листи, заяви й документи – просто, цифрово і з підтримкою людей. У перспективі ми хочемо стати особистим цифровим адміністративним офісом для людей у Німеччині.",
+            "Antragsbruder допомагає вам розуміти офіційні листи, готувати заяви та впорядковувати документи. Ви надсилаєте нам документ, а ми кажемо, про що він і що робити далі.",
         },
         {
           question: "Antragsbruder — це державна установа?",
@@ -571,7 +496,7 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Що відбувається з моїми документами?",
           answer:
-            "Ваші документи використовуються виключно для обробки вашого запиту. Мінімізація даних і відповідальне ставлення до вашої інформації — частина нашого продукту. Докладніше на нашій сторінці безпеки.",
+            "Ваші документи використовуються виключно для обробки вашого запиту. Мінімізація даних і відповідальне ставлення до вашої інформації — частина нашого продукту. Докладніше на нашій сторінці про захист даних.",
         },
       ],
     },
@@ -600,21 +525,6 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         },
       ],
     },
-    {
-      group: "Майбутнє та партнери",
-      items: [
-        {
-          question: "Які функції з'являться пізніше?",
-          answer:
-            "У перспективі ми плануємо, серед іншого, особисте сховище документів, багаторазові базові дані, сімейну папку та автоматичне зіставлення строків. Деталі ви знайдете на нашій дорожній карті – це позначено як бачення, а не як доступна сьогодні функція.",
-        },
-        {
-          question: "Як стати партнером?",
-          answer:
-            "Організації, такі як освітні заклади, соціальні організації чи житлові компанії, можуть подати запит на партнерство через нашу сторінку для партнерів.",
-        },
-      ],
-    },
   ],
   pl: [
     {
@@ -623,7 +533,7 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Czym jest Antragsbruder?",
           answer:
-            "Antragsbruder to usługa, która pomaga ci rozumieć, porządkować i przygotowywać pisma urzędowe, wnioski i dokumenty – prosto, cyfrowo i przy wsparciu ludzi. W dłuższej perspektywie chcemy stać się osobistym cyfrowym biurem administracyjnym dla mieszkańców Niemiec.",
+            "Antragsbruder pomaga ci rozumieć pisma urzędowe, przygotowywać wnioski i porządkować twoją dokumentację. Przesyłasz nam swój dokument, a my mówimy ci, o co w nim chodzi i co zrobić dalej.",
         },
         {
           question: "Czy Antragsbruder jest urzędem?",
@@ -673,7 +583,7 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Co dzieje się z moimi dokumentami?",
           answer:
-            "Twoje dokumenty są wykorzystywane wyłącznie do obsługi twojej sprawy. Minimalizacja danych i odpowiedzialne obchodzenie się z twoimi informacjami są częścią naszego produktu. Więcej informacji na naszej stronie o bezpieczeństwie.",
+            "Twoje dokumenty są wykorzystywane wyłącznie do obsługi twojej sprawy. Minimalizacja danych i odpowiedzialne obchodzenie się z twoimi informacjami są częścią naszego produktu. Więcej informacji na naszej stronie o ochronie danych.",
         },
       ],
     },
@@ -702,21 +612,6 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         },
       ],
     },
-    {
-      group: "Przyszłość i partnerzy",
-      items: [
-        {
-          question: "Jakie funkcje pojawią się w przyszłości?",
-          answer:
-            "W przyszłości planujemy między innymi osobisty sejf na dokumenty, wielokrotnego użytku dane podstawowe, folder rodzinny oraz automatyczne przypisywanie terminów. Szczegóły znajdziesz na naszej mapie drogowej – oznaczone jako wizja, a nie jako funkcja dostępna już dziś.",
-        },
-        {
-          question: "Jak mogę zostać partnerem?",
-          answer:
-            "Organizacje takie jak placówki edukacyjne, organizacje społeczne czy firmy mieszkaniowe mogą zgłosić chęć współpracy poprzez naszą stronę dla partnerów.",
-        },
-      ],
-    },
   ],
   bg: [
     {
@@ -725,7 +620,7 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Какво е Antragsbruder?",
           answer:
-            "Antragsbruder е услуга, която ви помага да разбирате, организирате и подготвяте писма от институции, заявления и документи – просто, цифрово и с човешка подкрепа. В дългосрочен план искаме да станем личната цифрова административна служба за хората в Германия.",
+            "Antragsbruder ви помага да разбирате писма от институции, да подготвяте заявления и да подредите документите си. Изпращате ни своя документ, а ние ви казваме за какво става дума и какво следва.",
         },
         {
           question: "Antragsbruder държавна институция ли е?",
@@ -775,7 +670,7 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Какво се случва с моите документи?",
           answer:
-            "Вашите документи се използват единствено за обработка на вашето запитване. Минимизирането на данни и отговорното боравене с вашата информация са част от нашия продукт. Повече на нашата страница за сигурност.",
+            "Вашите документи се използват единствено за обработка на вашето запитване. Минимизирането на данни и отговорното боравене с вашата информация са част от нашия продукт. Повече на нашата страница за защита на данните.",
         },
       ],
     },
@@ -804,21 +699,6 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         },
       ],
     },
-    {
-      group: "Бъдеще и партньори",
-      items: [
-        {
-          question: "Какви функции предстоят по-нататък?",
-          answer:
-            "В перспектива планираме, наред с други неща, личен трезор за документи, многократно използваеми основни данни, семейна папка и автоматично съпоставяне на срокове. Подробности ще намерите в нашата пътна карта – обозначени като визия, а не като налична днес функция.",
-        },
-        {
-          question: "Как мога да стана партньор?",
-          answer:
-            "Организации като образователни институции, социални организации или жилищни компании могат да заявят партньорство чрез нашата страница за партньори.",
-        },
-      ],
-    },
   ],
   ro: [
     {
@@ -827,7 +707,7 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Ce este Antragsbruder?",
           answer:
-            "Antragsbruder este un serviciu care te ajută să înțelegi, să organizezi și să pregătești scrisorile de la autorități, cererile și actele – simplu, digital și cu sprijin uman. Pe termen lung, ne dorim să devenim biroul administrativ digital personal pentru oamenii din Germania.",
+            "Antragsbruder te ajută să înțelegi scrisorile de la autorități, să pregătești cererile și să îți pui actele în ordine. Ne trimiți documentul tău, iar noi îți spunem despre ce este vorba și ce ai de făcut mai departe.",
         },
         {
           question: "Antragsbruder este o autoritate?",
@@ -872,12 +752,12 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
         {
           question: "Îmi pot digitiza toate actele?",
           answer:
-            "Da, acest lucru face parte din serviciul nostru „Resetarea actelor”. Te ajutăm să digitizezi, sortezi și organizezi structurat cantități mai mari de documente.",
+            "Da, acest lucru face parte din serviciul nostru „Organizarea actelor”. Te ajutăm să digitizezi, sortezi și organizezi structurat cantități mai mari de documente.",
         },
         {
           question: "Ce se întâmplă cu documentele mele?",
           answer:
-            "Documentele tale sunt folosite exclusiv pentru procesarea cererii tale. Minimizarea datelor și gestionarea responsabilă a informațiilor tale fac parte din produsul nostru. Mai multe detalii pe pagina noastră despre securitate.",
+            "Documentele tale sunt folosite exclusiv pentru procesarea cererii tale. Minimizarea datelor și gestionarea responsabilă a informațiilor tale fac parte din produsul nostru. Mai multe detalii pe pagina noastră despre protecția datelor.",
         },
       ],
     },
@@ -903,21 +783,6 @@ export const faqGroups: Record<Locale, FaqGroup[]> = {
           question: "Cine verifică rezultatele?",
           answer:
             "Pentru cazuri importante sau neobișnuite este prevăzută o verificare umană. Nu ne bazăm pe decizii complet autonome.",
-        },
-      ],
-    },
-    {
-      group: "Viitor și parteneri",
-      items: [
-        {
-          question: "Ce funcții urmează să apară?",
-          answer:
-            "Pe termen lung, plănuim printre altele un seif personal de documente, date de bază reutilizabile, un dosar de familie și asocierea automată a termenelor. Găsești detalii pe roadmap-ul nostru – marcate ca viziune, nu ca funcție disponibilă azi.",
-        },
-        {
-          question: "Cum pot deveni partener?",
-          answer:
-            "Organizații precum furnizori de educație, organizații sociale sau companii imobiliare pot solicita un parteneriat prin pagina noastră pentru parteneri.",
         },
       ],
     },

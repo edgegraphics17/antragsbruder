@@ -33,7 +33,7 @@ export default async function HilfeStartenPage({
   const t = dict[locale];
 
   const sp = await searchParams;
-  const validAnliegen = ["brief", "antrag", "wohngeld", "papierkram", "sonstiges"];
+  const validAnliegen = ["brief", "antrag", "wohngeld", "unterlagen", "papierkram", "dringend", "sonstiges"];
   const defaultAnliegen = sp.anliegen && validAnliegen.includes(sp.anliegen) ? sp.anliegen : "";
   const defaultDescription = sp.details ? decodeURIComponent(sp.details) : "";
 

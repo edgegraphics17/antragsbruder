@@ -66,7 +66,7 @@ export default async function AgbPage({ params }: { params: Promise<{ locale: st
           <LegalSection title={t.s6Heading}>
             <p>
               {t.s6TextBefore(site.name)}{" "}
-              <Link href={localeHref(locale, "/was-wir-nicht-sind")} className="text-brand-800 underline">
+              <Link href={localeHref(locale, "/wer-wir-sind")} className="text-brand-800 underline">
                 {t.s6LinkText}
               </Link>
               {t.s6TextAfter}

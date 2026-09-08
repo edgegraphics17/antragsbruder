@@ -5,239 +5,133 @@ export type Pillar = {
   text: string;
 };
 
+// Drei konkrete Versprechen statt sechs abstrakter Adjektive.
+// Siehe Audit-Report §1.4: austauschbare Pillar-Cards ohne Markenbezug.
 export const warumPillars: Record<Locale, Pillar[]> = {
   de: [
     {
-      title: "Einfach",
-      text: "Wir erklären Verwaltung verständlich – ohne Behördendeutsch und ohne Fachjargon.",
+      title: "Behördendeutsch übersetzt",
+      text: "Wir schreiben Behördendeutsch in normales Deutsch um. Kein Fachjargon.",
     },
     {
-      title: "Menschlich",
-      text: "Bei Bedarf steht ein echter Ansprechpartner hinter deinem Vorgang.",
+      title: "Digital statt Chaos-Ordner",
+      text: "Deine Unterlagen liegen digital sortiert. Nicht im Aktenordner, nicht im E-Mail-Postfach.",
     },
     {
-      title: "Digital",
-      text: "Dokumente sollen nicht mehr in Papierstapeln verschwinden, sondern digital auffindbar bleiben.",
-    },
-    {
-      title: "Strukturiert",
-      text: "Jeder Vorgang bekommt einen klaren Status – du weißt immer, woran du bist.",
-    },
-    {
-      title: "Sicher gedacht",
-      text: "Datenschutz und ein verantwortungsvoller Umgang mit deinen Informationen gehören zum Produkt.",
-    },
-    {
-      title: "Für Menschen gemacht",
-      text: "Technologie ist für uns Mittel zum Zweck – nicht das Produktversprechen.",
+      title: "Ein Mensch antwortet",
+      text: "Du hast eine Frage? Du schreibst einem Menschen, nicht einem Chatbot.",
     },
   ],
   en: [
     {
-      title: "Simple",
-      text: "We explain admin matters in plain language – no bureaucratic jargon, no technical terms.",
+      title: "Official jargon, translated",
+      text: "We turn official German into plain German. No jargon.",
     },
     {
-      title: "Human",
-      text: "When you need it, a real person is behind your case.",
+      title: "Digital, not a pile of paper",
+      text: "Your documents are sorted digitally. Not in a folder, not buried in your inbox.",
     },
     {
-      title: "Digital",
-      text: "Documents shouldn't disappear into paper stacks anymore, but stay digitally findable.",
-    },
-    {
-      title: "Structured",
-      text: "Every case gets a clear status – you always know where you stand.",
-    },
-    {
-      title: "Built with security in mind",
-      text: "Data protection and responsible handling of your information are part of the product.",
-    },
-    {
-      title: "Made for people",
-      text: "For us, technology is a means to an end – not the product promise itself.",
+      title: "A real person answers",
+      text: "Got a question? You write to a person, not a chatbot.",
     },
   ],
   ar: [
     {
-      title: "بسيط",
-      text: "نشرح لك الأمور الإدارية بلغة واضحة – بدون لغة بيروقراطية معقدة ودون مصطلحات تقنية.",
+      title: "لغة الجهات الرسمية مُترجمة",
+      text: "نحوّل اللغة الرسمية المعقدة إلى ألمانية بسيطة. بدون مصطلحات معقدة.",
     },
     {
-      title: "إنساني",
-      text: "عند الحاجة، يقف شخص حقيقي وراء معاملتك.",
+      title: "رقمي وليس فوضى أوراق",
+      text: "مستنداتك مرتبة رقميًا. لا في ملف ورقي ولا ضائعة في بريدك الإلكتروني.",
     },
     {
-      title: "رقمي",
-      text: "لم تعد المستندات تختفي في أكوام الورق، بل تبقى قابلة للعثور عليها رقميًا.",
-    },
-    {
-      title: "منظم",
-      text: "كل معاملة تحصل على حالة واضحة – تعرف دائمًا أين أنت.",
-    },
-    {
-      title: "مصمم بأمان",
-      text: "حماية البيانات والتعامل المسؤول مع معلوماتك جزء من المنتج.",
-    },
-    {
-      title: "مصمم من أجل الناس",
-      text: "بالنسبة لنا، التكنولوجيا وسيلة لتحقيق هدف – وليست وعد المنتج نفسه.",
+      title: "شخص حقيقي يرد",
+      text: "لديك سؤال؟ تكتب لشخص حقيقي، وليس لروبوت محادثة.",
     },
   ],
   tr: [
     {
-      title: "Basit",
-      text: "İdari işleri sade bir dille açıklıyoruz – resmi dairelerin karmaşık dili ve jargon olmadan.",
+      title: "Resmi dil, sade dile çevrilir",
+      text: "Karmaşık resmi Almancayı sade Almancaya çeviriyoruz. Jargon yok.",
     },
     {
-      title: "İnsancıl",
-      text: "İhtiyacın olduğunda, işinin arkasında gerçek bir kişi olur.",
+      title: "Dijital, kağıt yığını değil",
+      text: "Belgelerin dijital olarak sıralanır. Ne bir klasörde, ne de e-postanda kaybolur.",
     },
     {
-      title: "Dijital",
-      text: "Belgeler artık kağıt yığınlarında kaybolmuyor, dijital olarak kolayca bulunabiliyor.",
-    },
-    {
-      title: "Yapılandırılmış",
-      text: "Her işlem net bir duruma sahip olur – her zaman nerede olduğunu bilirsin.",
-    },
-    {
-      title: "Güvenlik gözetilerek tasarlandı",
-      text: "Veri koruma ve bilgilerinle sorumlu bir şekilde ilgilenmek ürünün bir parçasıdır.",
-    },
-    {
-      title: "İnsanlar için yapıldı",
-      text: "Bizim için teknoloji bir amaca ulaşmanın aracıdır – ürünün kendisi değil.",
+      title: "Gerçek bir kişi yanıtlar",
+      text: "Bir sorun mu var? Bir chatbot'a değil, gerçek bir kişiye yazarsın.",
     },
   ],
   ru: [
     {
-      title: "Просто",
-      text: "Мы объясняем административные вопросы понятным языком – без бюрократического и технического жаргона.",
+      title: "Бюрократический язык переведён",
+      text: "Мы переводим сложный официальный немецкий на понятный. Без жаргона.",
     },
     {
-      title: "По-человечески",
-      text: "При необходимости за твоим делом стоит реальный человек.",
+      title: "Цифровой порядок, не бумажный хаос",
+      text: "Твои документы отсортированы в цифровом виде. Не в папке, не в почте.",
     },
     {
-      title: "Цифровой",
-      text: "Документы больше не теряются в бумажных стопках, а остаются легко находимыми в цифровом виде.",
-    },
-    {
-      title: "Структурировано",
-      text: "У каждого дела есть понятный статус – ты всегда знаешь, на каком этапе находишься.",
-    },
-    {
-      title: "Продумано с точки зрения безопасности",
-      text: "Защита данных и ответственное обращение с твоей информацией – часть продукта.",
-    },
-    {
-      title: "Создано для людей",
-      text: "Для нас технология – это средство, а не само обещание продукта.",
+      title: "Отвечает живой человек",
+      text: "Есть вопрос? Ты пишешь человеку, а не чат-боту.",
     },
   ],
   uk: [
     {
-      title: "Просто",
-      text: "Ми пояснюємо адміністративні питання зрозумілою мовою – без бюрократичного та технічного жаргону.",
+      title: "Бюрократична мова перекладена",
+      text: "Ми перекладаємо складну офіційну німецьку на зрозумілу. Без жаргону.",
     },
     {
-      title: "По-людськи",
-      text: "За потреби за твоєю справою стоїть реальна людина.",
+      title: "Цифровий порядок замість паперового хаосу",
+      text: "Твої документи відсортовані в цифровому вигляді. Не в папці, не в пошті.",
     },
     {
-      title: "Цифровий",
-      text: "Документи більше не губляться в паперових стосах, а залишаються легко знаходжуваними в цифровому вигляді.",
-    },
-    {
-      title: "Структуровано",
-      text: "Кожна справа отримує зрозумілий статус – ти завжди знаєш, на якому етапі перебуваєш.",
-    },
-    {
-      title: "Продумано з огляду на безпеку",
-      text: "Захист даних та відповідальне поводження з твоєю інформацією – частина продукту.",
-    },
-    {
-      title: "Створено для людей",
-      text: "Для нас технологія – це засіб, а не саме обіцянка продукту.",
+      title: "Відповідає жива людина",
+      text: "Є питання? Ти пишеш людині, а не чат-боту.",
     },
   ],
   pl: [
     {
-      title: "Proste",
-      text: "Wyjaśniamy sprawy urzędowe zrozumiałym językiem – bez urzędowego żargonu i fachowych terminów.",
+      title: "Urzędowy żargon przetłumaczony",
+      text: "Zamieniamy skomplikowany urzędowy niemiecki na prosty. Bez żargonu.",
     },
     {
-      title: "Ludzkie",
-      text: "W razie potrzeby za twoją sprawą stoi prawdziwa osoba.",
+      title: "Cyfrowo, nie w stercie papierów",
+      text: "Twoje dokumenty są uporządkowane cyfrowo. Nie w segregatorze, nie zagubione w skrzynce mailowej.",
     },
     {
-      title: "Cyfrowe",
-      text: "Dokumenty nie giną już w stosach papieru, tylko pozostają łatwo dostępne cyfrowo.",
-    },
-    {
-      title: "Uporządkowane",
-      text: "Każda sprawa otrzymuje jasny status – zawsze wiesz, na czym stoisz.",
-    },
-    {
-      title: "Zaprojektowane z myślą o bezpieczeństwie",
-      text: "Ochrona danych i odpowiedzialne obchodzenie się z twoimi informacjami to część produktu.",
-    },
-    {
-      title: "Stworzone dla ludzi",
-      text: "Dla nas technologia jest środkiem do celu – a nie obietnicą samą w sobie.",
+      title: "Odpowiada prawdziwa osoba",
+      text: "Masz pytanie? Piszesz do człowieka, nie do chatbota.",
     },
   ],
   bg: [
     {
-      title: "Просто",
-      text: "Обясняваме административните въпроси на разбираем език – без бюрократичен и технически жаргон.",
+      title: "Бюрократичният език преведен",
+      text: "Превръщаме сложния официален немски в прост. Без жаргон.",
     },
     {
-      title: "По човешки",
-      text: "При нужда зад твоя случай стои истински човек.",
+      title: "Дигитално, не купчина хартия",
+      text: "Документите ти са подредени дигитално. Не в папка, не изгубени в пощата.",
     },
     {
-      title: "Дигитално",
-      text: "Документите вече не изчезват в купчини хартия, а остават лесно откриваеми дигитално.",
-    },
-    {
-      title: "Структурирано",
-      text: "Всеки случай получава ясен статус – винаги знаеш какво се случва.",
-    },
-    {
-      title: "Мислено за сигурност",
-      text: "Защитата на данните и отговорното боравене с твоята информация са част от продукта.",
-    },
-    {
-      title: "Създадено за хора",
-      text: "За нас технологията е средство за постигане на цел – а не самото обещание на продукта.",
+      title: "Отговаря истински човек",
+      text: "Имаш въпрос? Пишеш на човек, не на чатбот.",
     },
   ],
   ro: [
     {
-      title: "Simplu",
-      text: "Explicăm chestiunile administrative pe înțelesul tuturor – fără limbaj birocratic sau jargon tehnic.",
+      title: "Limbajul oficial, tradus",
+      text: "Transformăm germana oficială complicată în germană simplă. Fără jargon.",
     },
     {
-      title: "Uman",
-      text: "Atunci când ai nevoie, o persoană reală se ocupă de cazul tău.",
+      title: "Digital, nu teanc de hârtii",
+      text: "Actele tale sunt sortate digital. Nu într-un dosar, nu pierdute în inbox.",
     },
     {
-      title: "Digital",
-      text: "Documentele nu se mai pierd în teancuri de hârtie, ci rămân ușor de găsit digital.",
-    },
-    {
-      title: "Structurat",
-      text: "Fiecare caz primește un status clar – știi mereu unde te afli.",
-    },
-    {
-      title: "Gândit pentru siguranță",
-      text: "Protecția datelor și gestionarea responsabilă a informațiilor tale fac parte din produs.",
-    },
-    {
-      title: "Făcut pentru oameni",
-      text: "Pentru noi, tehnologia este un mijloc, nu promisiunea produsului în sine.",
+      title: "Îți răspunde o persoană reală",
+      text: "Ai o întrebare? Scrii unei persoane, nu unui chatbot.",
     },
   ],
 };

@@ -20,69 +20,39 @@ type StructureLink = { key: string; href: string };
 type StructureGroup = { key: string; href?: string; items?: StructureLink[] };
 
 const structure: StructureGroup[] = [
-  { key: "howItWorks", href: "/so-funktionierts" },
-  { key: "wohngeldRechner", href: "/wohngeldrechner" },
-  { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
-  {
-    key: "services",
-    href: "/services",
-    items: [
-      { key: "allServices", href: "/services" },
-      { key: "briefhilfe", href: "/briefhilfe" },
-      { key: "antragshilfe", href: "/antragshilfe" },
-      { key: "digitalisierung", href: "/digitalisierung" },
-    ],
-  },
-  {
-    key: "vision",
-    href: "/vision",
-    items: [
-      { key: "visionMain", href: "/vision" },
-      { key: "roadmap", href: "/roadmap" },
-      { key: "verantwortung", href: "/verantwortung" },
-      { key: "sicherheit", href: "/sicherheit" },
-    ],
-  },
-  {
-    key: "forWhom",
-    items: [
-      { key: "familien", href: "/familien" },
-      { key: "senioren", href: "/senioren" },
-      { key: "sprachen", href: "/sprachen" },
-      { key: "partner", href: "/partner" },
-    ],
-  },
+  { key: "hilfeStarten", href: "/hilfe-starten" },
+  { key: "briefVerstehen", href: "/brief-verstehen" },
+  { key: "antragVorbereiten", href: "/antrag-vorbereiten" },
+  { key: "unterlagenCheck", href: "/unterlagen-check" },
+  { key: "papierkramOrdnen", href: "/papierkram-ordnen" },
   { key: "pricing", href: "/preise" },
-  { key: "faq", href: "/faq" },
+  {
+    key: "mehr",
+    items: [
+      { key: "howItWorks", href: "/so-funktionierts" },
+      { key: "wohngeldRechner", href: "/wohngeldrechner" },
+      { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
+      { key: "ueberUns", href: "/wer-wir-sind" },
+      { key: "faq", href: "/faq" },
+      { key: "kontakt", href: "/kontakt" },
+    ],
+  },
 ];
 
-const footerStructure: Record<"produkt" | "vision" | "zielgruppen" | "unternehmen" | "legal", StructureLink[]> = {
+const footerStructure: Record<"produkt" | "unternehmen" | "legal", StructureLink[]> = {
   produkt: [
-    { key: "howItWorks", href: "/so-funktionierts" },
-    { key: "allServices", href: "/services" },
+    { key: "briefVerstehen", href: "/brief-verstehen" },
+    { key: "antragVorbereiten", href: "/antrag-vorbereiten" },
+    { key: "unterlagenCheck", href: "/unterlagen-check" },
+    { key: "papierkramOrdnen", href: "/papierkram-ordnen" },
+    { key: "pricing", href: "/preise" },
     { key: "wohngeldRechner", href: "/wohngeldrechner" },
     { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
-    { key: "briefhilfe", href: "/briefhilfe" },
-    { key: "antragshilfe", href: "/antragshilfe" },
-    { key: "digitalisierung", href: "/digitalisierung" },
-    { key: "pricing", href: "/preise" },
-  ],
-  vision: [
-    { key: "visionMain", href: "/vision" },
-    { key: "roadmap", href: "/roadmap" },
-    { key: "verantwortung", href: "/verantwortung" },
-    { key: "sicherheit", href: "/sicherheit" },
-  ],
-  zielgruppen: [
-    { key: "familien", href: "/familien" },
-    { key: "senioren", href: "/senioren" },
-    { key: "sprachen", href: "/sprachen" },
-    { key: "partner", href: "/partner" },
   ],
   unternehmen: [
-    { key: "ueberUns", href: "/ueber-uns" },
+    { key: "ueberUns", href: "/wer-wir-sind" },
+    { key: "howItWorks", href: "/so-funktionierts" },
     { key: "faq", href: "/faq" },
-    { key: "wasWirNichtSind", href: "/was-wir-nicht-sind" },
     { key: "kontakt", href: "/kontakt" },
   ],
   legal: [
