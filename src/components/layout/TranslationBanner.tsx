@@ -12,6 +12,7 @@ const TRANSLATED_PATHS = new Set([
   "/wohngeldrechner",
   "/wohngeldrechner/antrag",
   "/grundsicherungsrechner",
+  "/bafoegrechner",
   "/so-funktionierts",
   "/hilfe-starten",
   "/brief-verstehen",

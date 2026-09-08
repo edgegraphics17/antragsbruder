@@ -85,7 +85,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section>
         <Container className="py-20">
           <SectionHeading eyebrow={t.rechnerEyebrow} title={t.rechnerTitle} lede={t.rechnerLede} />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <div className="rounded-3xl border border-brand-700/30 bg-brand-50 p-6 sm:p-8">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
                 <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
@@ -120,6 +120,24 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <p className="mt-1 text-xs text-ink-soft">{t.grundsicherungCaption}</p>
               <Button href={href("/grundsicherungsrechner")} size="md" className="mt-6">
                 {t.grundsicherungCta}
+              </Button>
+            </div>
+
+            <div className="rounded-3xl border border-brand-700/30 bg-brand-50 p-6 sm:p-8">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+                <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
+                {t.toolBadge}
+              </span>
+              <h3 className="font-display mt-4 text-xl font-bold text-ink">{t.bafoegTitle}</h3>
+              <div className="mt-4 flex items-end gap-2">
+                <IconCoin className="mb-1 h-6 w-6 shrink-0 text-brand-700" />
+                <p className="font-display text-3xl font-extrabold tracking-tight text-ink">
+                  {t.bafoegAmount} <span className="text-sm font-semibold text-ink-soft">{t.bafoegUnit}</span>
+                </p>
+              </div>
+              <p className="mt-1 text-xs text-ink-soft">{t.bafoegCaption}</p>
+              <Button href={href("/bafoegrechner")} size="md" className="mt-6">
+                {t.bafoegCta}
               </Button>
             </div>
           </div>
