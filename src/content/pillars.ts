@@ -14,8 +14,8 @@ export const warumPillars: Record<Locale, Pillar[]> = {
       text: "Wir schreiben Behördendeutsch in normales Deutsch um. Kein Fachjargon.",
     },
     {
-      title: "Digital statt Chaos-Ordner",
-      text: "Deine Unterlagen liegen digital sortiert. Nicht im Aktenordner, nicht im E-Mail-Postfach.",
+      title: "Leistungen mitdenken",
+      text: "Wir sehen nicht nur einen Antrag – wir prüfen, ob dir weitere Leistungen zustehen könnten.",
     },
     {
       title: "Ein Mensch antwortet",
@@ -28,8 +28,8 @@ export const warumPillars: Record<Locale, Pillar[]> = {
       text: "We turn official German into plain German. No jargon.",
     },
     {
-      title: "Digital, not a pile of paper",
-      text: "Your documents are sorted digitally. Not in a folder, not buried in your inbox.",
+      title: "Thinking beyond one benefit",
+      text: "We don't just see one application – we check whether you might be entitled to more.",
     },
     {
       title: "A real person answers",
@@ -42,8 +42,8 @@ export const warumPillars: Record<Locale, Pillar[]> = {
       text: "نحوّل اللغة الرسمية المعقدة إلى ألمانية بسيطة. بدون مصطلحات معقدة.",
     },
     {
-      title: "رقمي وليس فوضى أوراق",
-      text: "مستنداتك مرتبة رقميًا. لا في ملف ورقي ولا ضائعة في بريدك الإلكتروني.",
+      title: "التفكير فيما وراء المزايا",
+      text: "لا نرى طلبًا واحدًا فقط – نتحقق مما إذا كنت تستحق مزايا أخرى.",
     },
     {
       title: "شخص حقيقي يرد",
@@ -56,8 +56,8 @@ export const warumPillars: Record<Locale, Pillar[]> = {
       text: "Karmaşık resmi Almancayı sade Almancaya çeviriyoruz. Jargon yok.",
     },
     {
-      title: "Dijital, kağıt yığını değil",
-      text: "Belgelerin dijital olarak sıralanır. Ne bir klasörde, ne de e-postanda kaybolur.",
+      title: "Tek yardımın ötesinde düşünmek",
+      text: "Sadece bir başvuru görmüyoruz – başka yardımlar için de haklı olup olmadığını kontrol ediyoruz.",
     },
     {
       title: "Gerçek bir kişi yanıtlar",
@@ -70,8 +70,8 @@ export const warumPillars: Record<Locale, Pillar[]> = {
       text: "Мы переводим сложный официальный немецкий на понятный. Без жаргона.",
     },
     {
-      title: "Цифровой порядок, не бумажный хаос",
-      text: "Твои документы отсортированы в цифровом виде. Не в папке, не в почте.",
+      title: "Думать за пределами одной льготы",
+      text: "Мы видим не только одно заявление – мы проверяем, не положены ли тебе другие льготы.",
     },
     {
       title: "Отвечает живой человек",
@@ -84,8 +84,8 @@ export const warumPillars: Record<Locale, Pillar[]> = {
       text: "Ми перекладаємо складну офіційну німецьку на зрозумілу. Без жаргону.",
     },
     {
-      title: "Цифровий порядок замість паперового хаосу",
-      text: "Твої документи відсортовані в цифровому вигляді. Не в папці, не в пошті.",
+      title: "Думати за межами однієї пільги",
+      text: "Ми бачимо не тільки одну заяву – ми перевіряємо, чи не належать тобі інші пільги.",
     },
     {
       title: "Відповідає жива людина",
@@ -98,8 +98,8 @@ export const warumPillars: Record<Locale, Pillar[]> = {
       text: "Zamieniamy skomplikowany urzędowy niemiecki na prosty. Bez żargonu.",
     },
     {
-      title: "Cyfrowo, nie w stercie papierów",
-      text: "Twoje dokumenty są uporządkowane cyfrowo. Nie w segregatorze, nie zagubione w skrzynce mailowej.",
+      title: "Myślenie poza jednym świadczeniem",
+      text: "Widzimy nie tylko jeden wniosek – sprawdzamy, czy nie przysługują ci inne świadczenia.",
     },
     {
       title: "Odpowiada prawdziwa osoba",
@@ -112,8 +112,8 @@ export const warumPillars: Record<Locale, Pillar[]> = {
       text: "Превръщаме сложния официален немски в прост. Без жаргон.",
     },
     {
-      title: "Дигитално, не купчина хартия",
-      text: "Документите ти са подредени дигитално. Не в папка, не изгубени в пощата.",
+      title: "Мислене извън една помощ",
+      text: "Виждаме не само едно заявление – проверяваме дали не ти се полагат други помощи.",
     },
     {
       title: "Отговаря истински човек",
@@ -126,8 +126,8 @@ export const warumPillars: Record<Locale, Pillar[]> = {
       text: "Transformăm germana oficială complicată în germană simplă. Fără jargon.",
     },
     {
-      title: "Digital, nu teanc de hârtii",
-      text: "Actele tale sunt sortate digital. Nu într-un dosar, nu pierdute în inbox.",
+      title: "Gândirea dincolo de un beneficiu",
+      text: "Nu vedem doar o cerere – verificăm dacă nu îți revin și alte beneficii.",
     },
     {
       title: "Îți răspunde o persoană reală",

@@ -25,6 +25,7 @@ const structure: StructureGroup[] = [
   {
     key: "services",
     items: [
+      { key: "anspruecheChecken", href: "/ansprueche-checken" },
       { key: "briefVerstehen", href: "/brief-verstehen" },
       { key: "antragVorbereiten", href: "/antrag-vorbereiten" },
       { key: "unterlagenCheck", href: "/unterlagen-check" },
@@ -53,6 +54,7 @@ const structure: StructureGroup[] = [
 
 const footerStructure: Record<"produkt" | "unternehmen" | "legal", StructureLink[]> = {
   produkt: [
+    { key: "anspruecheChecken", href: "/ansprueche-checken" },
     { key: "briefVerstehen", href: "/brief-verstehen" },
     { key: "antragVorbereiten", href: "/antrag-vorbereiten" },
     { key: "unterlagenCheck", href: "/unterlagen-check" },

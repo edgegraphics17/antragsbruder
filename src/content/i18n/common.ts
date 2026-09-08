@@ -72,6 +72,7 @@ export const commonDict: Record<Locale, CommonDict> = {
   de: {
     nav: {
       hilfeStarten: "Hilfe starten",
+      anspruecheChecken: "Ansprüche checken",
       briefVerstehen: "Brief verstehen",
       antragVorbereiten: "Antrag vorbereiten",
       unterlagenCheck: "Unterlagen prüfen",
@@ -92,6 +93,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       agb: "AGB",
     },
     navDescriptions: {
+      anspruecheChecken: "Prüfen, welche Leistungen dir zustehen könnten",
       briefVerstehen: "Amtspost in einfacher Sprache erklärt",
       antragVorbereiten: "Formulare vorbereiten statt selbst grübeln",
       unterlagenCheck: "Prüfen, ob alle Nachweise vollständig sind",
@@ -169,12 +171,13 @@ export const commonDict: Record<Locale, CommonDict> = {
     },
     meta: {
       description:
-        "Antragsbruder hilft dir, Behördenbriefe, Anträge und Papierkram zu verstehen, zu organisieren und vorzubereiten – einfach, digital und menschlich.",
+        "Wir erklären dir Briefe vom Amt. Wir bereiten deine Anträge vor. Ohne Behördendeutsch, ohne Stress – mit deinem Antragsbruder.",
     },
   },
   en: {
     nav: {
       hilfeStarten: "Get help",
+      anspruecheChecken: "Check entitlements",
       briefVerstehen: "Understand a letter",
       antragVorbereiten: "Prepare an application",
       unterlagenCheck: "Check your documents",
@@ -195,6 +198,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       agb: "Terms",
     },
     navDescriptions: {
+      anspruecheChecken: "Check which benefits you might be entitled to",
       briefVerstehen: "Official letters explained in plain language",
       antragVorbereiten: "We prepare your forms, you just sign",
       unterlagenCheck: "Check whether all your documents are there",
@@ -272,12 +276,13 @@ export const commonDict: Record<Locale, CommonDict> = {
     },
     meta: {
       description:
-        "Antragsbruder helps you understand, organise and prepare official letters, applications and paperwork – simply, digitally and with a human touch.",
+        "We explain your official letters in plain language. We prepare your applications. No jargon, no stress – with your Antragsbruder.",
     },
   },
   ar: {
     nav: {
       hilfeStarten: "ابدأ المساعدة",
+      anspruecheChecken: "تحقق من الاستحقاقات",
       briefVerstehen: "افهم رسالة",
       antragVorbereiten: "جهّز طلبًا",
       unterlagenCheck: "تحقق من مستنداتك",
@@ -298,6 +303,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       agb: "الشروط والأحكام",
     },
     navDescriptions: {
+      anspruecheChecken: "تحقق من المزايا التي قد تكون مستحقًا لها",
       briefVerstehen: "رسائل الجهات الرسمية بلغة بسيطة",
       antragVorbereiten: "نجهّز استماراتك بدل أن تحتار فيها",
       unterlagenCheck: "تحقق من اكتمال جميع المستندات",
@@ -375,12 +381,13 @@ export const commonDict: Record<Locale, CommonDict> = {
     },
     meta: {
       description:
-        "يساعدك أنتراغسبرودر على فهم وتنظيم وتحضير الرسائل الرسمية والطلبات والأوراق – ببساطة ورقمياً وبلمسة إنسانية.",
+        "نشرح لك الرسائل الرسمية بلغة بسيطة. نجهّز طلباتك. بدون مصطلحات رسمية، بدون توتر – مع أنتراغسبرودر.",
     },
   },
   tr: {
     nav: {
       hilfeStarten: "Yardım al",
+      anspruecheChecken: "Hakları kontrol et",
       briefVerstehen: "Bir mektubu anla",
       antragVorbereiten: "Başvuru hazırla",
       unterlagenCheck: "Belgelerini kontrol et",
@@ -401,6 +408,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       agb: "Kullanım şartları",
     },
     navDescriptions: {
+      anspruecheChecken: "Haklarını ve yardımları kontrol et",
       briefVerstehen: "Resmî yazılar sade bir dille açıklanır",
       antragVorbereiten: "Formlarını senin yerine hazırlarız",
       unterlagenCheck: "Tüm belgelerin tam olup olmadığını kontrol et",
@@ -478,12 +486,13 @@ export const commonDict: Record<Locale, CommonDict> = {
     },
     meta: {
       description:
-        "Antragsbruder, resmi mektupları, başvuruları ve evrak işlerini anlamana, düzenlemene ve hazırlamana yardımcı olur – basit, dijital ve insani bir şekilde.",
+        "Resmi yazıları sade bir dille açıklarız. Başvurularını hazırlarız. Resmî jargon yok, stres yok – Antragsbruder ile.",
     },
   },
   ru: {
     nav: {
       hilfeStarten: "Начать",
+      anspruecheChecken: "Проверить права",
       briefVerstehen: "Понять письмо",
       antragVorbereiten: "Подготовить заявление",
       unterlagenCheck: "Проверить документы",
@@ -504,6 +513,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       agb: "Условия",
     },
     navDescriptions: {
+      anspruecheChecken: "Проверить, какие льготы могут быть актуальны",
       briefVerstehen: "Письма от ведомств простым языком",
       antragVorbereiten: "Готовим ваши формуляры за вас",
       unterlagenCheck: "Проверяем, все ли документы на месте",
@@ -581,12 +591,13 @@ export const commonDict: Record<Locale, CommonDict> = {
     },
     meta: {
       description:
-        "Antragsbruder помогает вам понимать, организовывать и готовить официальные письма, заявления и документы – просто, в цифровом виде и по-человечески.",
+        "Мы объясняем официальные письма простым языком. Готовим ваши заявления. Без канцелярита, без стресса – с Antragsbruder.",
     },
   },
   uk: {
     nav: {
       hilfeStarten: "Почати",
+      anspruecheChecken: "Перевірити права",
       briefVerstehen: "Зрозуміти лист",
       antragVorbereiten: "Підготувати заяву",
       unterlagenCheck: "Перевірити документи",
@@ -607,6 +618,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       agb: "Умови",
     },
     navDescriptions: {
+      anspruecheChecken: "Перевірити, які пільги можуть бути актуальні",
       briefVerstehen: "Листи від відомств простою мовою",
       antragVorbereiten: "Готуємо ваші формуляри замість вас",
       unterlagenCheck: "Перевіряємо, чи всі документи на місці",
@@ -684,12 +696,13 @@ export const commonDict: Record<Locale, CommonDict> = {
     },
     meta: {
       description:
-        "Antragsbruder допомагає вам розуміти, організовувати та готувати офіційні листи, заяви та документи – просто, цифрово і по-людськи.",
+        "Ми пояснюємо офіційні листи простою мовою. Готуємо ваші заяви. Без канцеляриту, без стресу – з Antragsbruder.",
     },
   },
   pl: {
     nav: {
       hilfeStarten: "Zacznij tutaj",
+      anspruecheChecken: "Sprawdź uprawnienia",
       briefVerstehen: "Zrozum pismo",
       antragVorbereiten: "Przygotuj wniosek",
       unterlagenCheck: "Sprawdź dokumenty",
@@ -710,6 +723,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       agb: "Regulamin",
     },
     navDescriptions: {
+      anspruecheChecken: "Sprawdź, które świadczenia mogą być dla ciebie istotne",
       briefVerstehen: "Pisma z urzędu w prostym języku",
       antragVorbereiten: "Przygotujemy twoje formularze za ciebie",
       unterlagenCheck: "Sprawdź, czy masz wszystkie dokumenty",
@@ -787,12 +801,13 @@ export const commonDict: Record<Locale, CommonDict> = {
     },
     meta: {
       description:
-        "Antragsbruder pomaga ci rozumieć, organizować i przygotowywać urzędowe pisma, wnioski i dokumenty – prosto, cyfrowo i po ludzku.",
+        "Wyjaśniamy urzędowe pisma prostym językiem. Przygotowujemy twoje wnioski. Bez urzędowego żargonu, bez stresu – z Antragsbruder.",
     },
   },
   bg: {
     nav: {
       hilfeStarten: "Започни",
+      anspruecheChecken: "Провери правата",
       briefVerstehen: "Разбери писмо",
       antragVorbereiten: "Подготви заявление",
       unterlagenCheck: "Провери документите",
@@ -813,6 +828,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       agb: "Общи условия",
     },
     navDescriptions: {
+      anspruecheChecken: "Провери кои помощи могат да са актуални за теб",
       briefVerstehen: "Писма от институциите на разбираем език",
       antragVorbereiten: "Подготвяме формулярите вместо теб",
       unterlagenCheck: "Провери дали всички документи са налице",
@@ -890,12 +906,13 @@ export const commonDict: Record<Locale, CommonDict> = {
     },
     meta: {
       description:
-        "Antragsbruder ви помага да разбирате, организирате и подготвяте официални писма, заявления и документи – просто, цифрово и по човешки.",
+        "Обясняваме официалните писма на разбираем език. Подготвяме вашите заявления. Без канцелярски жаргон, без стрес – с Antragsbruder.",
     },
   },
   ro: {
     nav: {
       hilfeStarten: "Începe",
+      anspruecheChecken: "Verifică-ți drepturile",
       briefVerstehen: "Înțelege o scrisoare",
       antragVorbereiten: "Pregătește o cerere",
       unterlagenCheck: "Verifică documentele",
@@ -916,6 +933,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       agb: "Termeni și condiții",
     },
     navDescriptions: {
+      anspruecheChecken: "Verifică ce beneficii ar putea fi relevante pentru tine",
       briefVerstehen: "Scrisori de la autorități pe înțelesul tuturor",
       antragVorbereiten: "Îți pregătim formularele în locul tău",
       unterlagenCheck: "Verifică dacă ai toate documentele",
@@ -993,7 +1011,7 @@ export const commonDict: Record<Locale, CommonDict> = {
     },
     meta: {
       description:
-        "Antragsbruder te ajută să înțelegi, organizezi și pregătești scrisori oficiale, cereri și acte – simplu, digital și uman.",
+        "Explicăm scrisorile oficiale pe înțelesul tuturor. Pregătem cererile tale. Fără birocrație, fără stres – cu Antragsbruder.",
     },
   },
 };

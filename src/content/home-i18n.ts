@@ -19,6 +19,9 @@ export type Dict = {
   entryChaosTitle: string;
   entryChaosText: string;
   entryChaosCta: string;
+  entryAnspruecheTitle: string;
+  entryAnspruecheText: string;
+  entryAnspruecheCta: string;
 
   rechnerEyebrow: string;
   rechnerTitle: string;
@@ -78,6 +81,9 @@ export const dict: Record<Locale, Dict> = {
     entryChaosTitle: "Mein Papierkram ist Chaos",
     entryChaosText: "Wir helfen dir, Ordnung in deine Unterlagen zu bringen – digital und übersichtlich.",
     entryChaosCta: "Ordnung schaffen",
+    entryAnspruecheTitle: "Ich weiß nicht, was mir zusteht",
+    entryAnspruecheText: "Erzähl uns kurz, was bei dir gerade los ist. Wir zeigen dir, welche Leistungen du prüfen solltest.",
+    entryAnspruecheCta: "Ansprüche checken",
 
     rechnerEyebrow: "Kostenlos & ohne Anmeldung",
     rechnerTitle: "Weißt du, ob dir Geld zusteht?",
@@ -141,6 +147,9 @@ export const dict: Record<Locale, Dict> = {
     entryChaosTitle: "My paperwork is chaos",
     entryChaosText: "We help you bring order to your documents – digitally and clearly.",
     entryChaosCta: "Get organized",
+    entryAnspruecheTitle: "I don't know what I'm entitled to",
+    entryAnspruecheText: "Tell us briefly what's going on. We'll show you which benefits to check.",
+    entryAnspruecheCta: "Check entitlements",
 
     rechnerEyebrow: "Free, no sign-up",
     rechnerTitle: "Do you know if you're entitled to money?",
@@ -204,6 +213,9 @@ export const dict: Record<Locale, Dict> = {
     entryChaosTitle: "أوراقي في فوضى",
     entryChaosText: "نساعدك على تنظيم مستنداتك رقميًا وبوضوح.",
     entryChaosCta: "رتّب أوراقك",
+    entryAnspruecheTitle: "لا أعرف ما الذي أستحقه",
+    entryAnspruecheText: "أخبرنا باختصار ما يجري. سنعرض لك المزايا التي يجب التحقق منها.",
+    entryAnspruecheCta: "تحقق من الاستحقاقات",
 
     rechnerEyebrow: "مجاني وبدون تسجيل",
     rechnerTitle: "هل تعرف إن كان لديك حق في مبلغ مالي؟",
@@ -267,6 +279,9 @@ export const dict: Record<Locale, Dict> = {
     entryChaosTitle: "Evrakım karman çorman",
     entryChaosText: "Belgelerine dijital ve düzenli bir şekilde düzen kazandırmana yardımcı oluruz.",
     entryChaosCta: "Düzeni sağla",
+    entryAnspruecheTitle: "Ne hakkım olduğunu bilmiyorum",
+    entryAnspruecheText: "Şu an ne olduğunu kısaca anlat. Hangi yardımları kontrol etmen gerektiğini gösterelim.",
+    entryAnspruecheCta: "Hakları kontrol et",
 
     rechnerEyebrow: "Ücretsiz, kayıt gerekmez",
     rechnerTitle: "Sana para hakkın olup olmadığını biliyor musun?",
@@ -330,6 +345,9 @@ export const dict: Record<Locale, Dict> = {
     entryChaosTitle: "У меня хаос с бумагами",
     entryChaosText: "Мы поможем навести порядок в твоих документах — цифровой и понятный.",
     entryChaosCta: "Навести порядок",
+    entryAnspruecheTitle: "Я не знаю, что мне положено",
+    entryAnspruecheText: "Расскажи коротко, что происходит. Мы покажем, какие льготы могут быть актуальны.",
+    entryAnspruecheCta: "Проверить права",
 
     rechnerEyebrow: "Бесплатно, без регистрации",
     rechnerTitle: "Знаешь, положены ли тебе деньги?",
@@ -393,6 +411,9 @@ export const dict: Record<Locale, Dict> = {
     entryChaosTitle: "У мене хаос з паперами",
     entryChaosText: "Ми допоможемо навести лад у твоїх документах — цифровий і зрозумілий.",
     entryChaosCta: "Навести лад",
+    entryAnspruecheTitle: "Я не знаю, що мені належить",
+    entryAnspruecheText: "Розкажи коротко, що відбувається. Ми покажемо, які пільги можуть бути актуальні.",
+    entryAnspruecheCta: "Перевірити права",
 
     rechnerEyebrow: "Безкоштовно, без реєстрації",
     rechnerTitle: "Знаєш, чи належать тобі гроші?",
@@ -456,6 +477,9 @@ export const dict: Record<Locale, Dict> = {
     entryChaosTitle: "Mam bałagan w papierach",
     entryChaosText: "Pomożemy ci uporządkować dokumenty — cyfrowo i przejrzyście.",
     entryChaosCta: "Zrób porządek",
+    entryAnspruecheTitle: "Nie wiem, co mi się należy",
+    entryAnspruecheText: "Opowiedz krótko, co się dzieje. Pokażemy, które świadczenia mogą być istotne.",
+    entryAnspruecheCta: "Sprawdź uprawnienia",
 
     rechnerEyebrow: "Bezpłatnie, bez rejestracji",
     rechnerTitle: "Wiesz, czy należą ci się pieniądze?",
@@ -519,6 +543,9 @@ export const dict: Record<Locale, Dict> = {
     entryChaosTitle: "Документите ми са в хаос",
     entryChaosText: "Помагаме ти да подредиш документите си — дигитално и ясно.",
     entryChaosCta: "Подреди документите",
+    entryAnspruecheTitle: "Не знам какво ми се полага",
+    entryAnspruecheText: "Разкажи накратко какво се случва. Ще ти покажем кои помощи могат да са актуални.",
+    entryAnspruecheCta: "Провери правата",
 
     rechnerEyebrow: "Безплатно, без регистрация",
     rechnerTitle: "Знаеш ли дали ти се полагат пари?",
@@ -582,6 +609,9 @@ export const dict: Record<Locale, Dict> = {
     entryChaosTitle: "Actele mele sunt haos",
     entryChaosText: "Te ajutăm să pui ordine în documentele tale, digital și clar.",
     entryChaosCta: "Pune ordine",
+    entryAnspruecheTitle: "Nu știu ce îmi revine",
+    entryAnspruecheText: "Spune-ne pe scurt ce se întâmplă. Îți vom arăta ce beneficii ar trebui să verifici.",
+    entryAnspruecheCta: "Verifică drepturile",
 
     rechnerEyebrow: "Gratuit, fără înregistrare",
     rechnerTitle: "Știi dacă ai dreptul la bani?",

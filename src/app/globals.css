@@ -73,6 +73,13 @@ body {
   color: var(--color-paper);
 }
 
+@media (max-width: 640px) {
+  .mobile-py-lg { padding-top: 3rem; padding-bottom: 3rem; }
+  .mobile-py-xl { padding-top: 4rem; padding-bottom: 4rem; }
+  .mobile-gap { gap: 0.75rem; }
+  .mobile-mt { margin-top: 1.5rem; }
+}
+
 a,
 button {
   touch-action: manipulation;

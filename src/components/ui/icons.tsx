@@ -191,3 +191,42 @@ export function IconGlobe({ className = "h-6 w-6" }: IconProps) {
     </svg>
   );
 }
+
+export function IconBriefcase({ className = "h-6 w-6" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`} aria-hidden="true">
+      <rect x="3" y="7" width="18" height="13" rx="2" strokeWidth="1.7" />
+      <path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" strokeWidth="1.7" strokeLinecap="round" />
+      <path d="M3 12h18" strokeWidth="1.7" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconBaby({ className = "h-6 w-6" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`} aria-hidden="true">
+      <circle cx="12" cy="8" r="4" strokeWidth="1.7" />
+      <path d="M8 14h8M10 18h4M12 16v2" strokeWidth="1.7" strokeLinecap="round" />
+      <path d="M9 6h.01M15 6h.01" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconHome({ className = "h-6 w-6" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`} aria-hidden="true">
+      <path d="M3 11l9-7 9 7" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function IconHands({ className = "h-6 w-6" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`} aria-hidden="true">
+      <path d="M12 3v18M12 3l-4 4M12 3l4 4" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5 12c0-2 1-4 3-5M19 12c0-2-1-4-3-5" strokeWidth="1.7" strokeLinecap="round" />
+      <path d="M5 18c0-2 1-4 3-5M19 18c0-2-1-4-3-5" strokeWidth="1.7" strokeLinecap="round" />
+    </svg>
+  );
+}
