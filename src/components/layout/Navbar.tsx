@@ -31,7 +31,7 @@ export function Navbar({ locale }: { locale: Locale }) {
           {site.name}
         </Link>
 
-        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Hauptnavigation">
+        <nav className="hidden items-center gap-0.5 lg:flex" aria-label={t.navbar.mainNavLabel}>
           {mainNav.map((group) => (
             <div
               key={group.key}
@@ -111,7 +111,7 @@ export function Navbar({ locale }: { locale: Locale }) {
               className="w-full rounded-2xl border border-line bg-white px-3 py-2.5 text-sm font-semibold text-ink cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-700"
             />
           </div>
-          <nav className="flex flex-col gap-1" aria-label="Mobile Navigation">
+          <nav className="flex flex-col gap-1" aria-label={t.navbar.mobileNavLabel}>
             {mainNav.map((group) => (
               <div key={group.key} className="border-b border-line-soft/60 py-1">
                 {group.href ? (

@@ -5,22 +5,19 @@ import { FormEvent, useState } from "react";
 import { ButtonAction } from "@/components/ui/Button";
 import { IconUpload } from "@/components/ui/icons";
 import { site } from "@/content/site";
-
-const anliegenOptions = [
-  { value: "brief", label: "Ich habe einen Brief bekommen" },
-  { value: "antrag", label: "Ich brauche Hilfe bei einem Antrag" },
-  { value: "wohngeld", label: "Ich möchte Wohngeld beantragen" },
-  { value: "papierkram", label: "Mein Papierkram ist Chaos" },
-  { value: "sonstiges", label: "Etwas anderes" },
-];
+import { commonDict } from "@/content/i18n/common";
+import { localeHref, type Locale } from "@/i18n/config";
 
 export function IntakeForm({
+  locale,
   defaultAnliegen = "",
   defaultDescription = "",
 }: {
+  locale: Locale;
   defaultAnliegen?: string;
   defaultDescription?: string;
 }) {
+  const t = commonDict[locale].intakeForm;
   const [submitted, setSubmitted] = useState(false);
   const [consent, setConsent] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -37,11 +34,11 @@ export function IntakeForm({
     const description = String(form.get("description") || "").trim();
 
     if (!name || !email || !consent) {
-      setError("Bitte Name und E-Mail eintragen und Häkchen setzen.");
+      setError(t.requiredError);
       return;
     }
 
-    const anliegenLabel = anliegenOptions.find((o) => o.value === anliegen)?.label ?? anliegen;
+    const anliegenLabel = t.anliegenOptions.find((o) => o.value === anliegen)?.label ?? anliegen;
     const subject = `Anfrage über antragsbruder.de – ${anliegenLabel}`;
     const body = [
       `Anliegen: ${anliegenLabel}`,
@@ -50,7 +47,7 @@ export function IntakeForm({
       phone ? `Telefon: ${phone}` : null,
       "",
       "Beschreibung:",
-      description || "(keine Angabe)",
+      description || t.noAnswer,
       "",
       "Hinweis: Bitte relevante Dokumente (PDF, JPG oder PNG) dieser E-Mail als Anhang beifügen.",
     ]
@@ -70,7 +67,7 @@ export function IntakeForm({
       <form onSubmit={handleSubmit} className="space-y-5" noValidate>
         <div>
           <label htmlFor="anliegen" className="mb-1.5 block text-base font-semibold text-ink">
-            Worum geht&apos;s?
+            {t.anliegenLabel}
           </label>
           <select
             id="anliegen"
@@ -79,9 +76,9 @@ export function IntakeForm({
             className="w-full min-h-12 rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
           >
             <option value="" disabled>
-              Bitte auswählen
+              {t.pleaseSelect}
             </option>
-            {anliegenOptions.map((o) => (
+            {t.anliegenOptions.map((o) => (
               <option key={o.value} value={o.value}>
                 {o.label}
               </option>
@@ -92,7 +89,7 @@ export function IntakeForm({
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label htmlFor="name" className="mb-1.5 block text-base font-semibold text-ink">
-              Name <span aria-hidden="true">*</span>
+              {t.nameLabel} <span aria-hidden="true">*</span>
             </label>
             <input
               id="name"
@@ -105,7 +102,7 @@ export function IntakeForm({
           </div>
           <div>
             <label htmlFor="email" className="mb-1.5 block text-base font-semibold text-ink">
-              E-Mail <span aria-hidden="true">*</span>
+              {t.emailLabel} <span aria-hidden="true">*</span>
             </label>
             <input
               id="email"
@@ -120,7 +117,7 @@ export function IntakeForm({
 
         <div>
           <label htmlFor="phone" className="mb-1.5 block text-base font-semibold text-ink">
-            Telefon <span className="font-normal text-ink-soft">(optional)</span>
+            {t.phoneLabel} <span className="font-normal text-ink-soft">{t.optional}</span>
           </label>
           <input
             id="phone"
@@ -133,7 +130,7 @@ export function IntakeForm({
 
         <div>
           <label htmlFor="description" className="mb-1.5 block text-base font-semibold text-ink">
-            Nachricht <span className="font-normal text-ink-soft">(optional)</span>
+            {t.messageLabel} <span className="font-normal text-ink-soft">{t.optional}</span>
           </label>
           <textarea
             id="description"
@@ -141,13 +138,13 @@ export function IntakeForm({
             rows={4}
             defaultValue={defaultDescription}
             className="w-full rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
-            placeholder="Von welchem Amt ist der Brief? Worum geht's?"
+            placeholder={t.messagePlaceholder}
           />
         </div>
 
         <div className="flex items-start gap-3 rounded-2xl border border-dashed border-brand-400 bg-brand-50 px-4 py-3 text-sm text-ink-soft">
           <IconUpload className="h-5 w-5 shrink-0 text-brand-700" />
-          <span>Dein E-Mail-Programm öffnet sich gleich – häng dort einfach dein Dokument an (PDF, JPG oder PNG).</span>
+          <span>{t.uploadHint}</span>
         </div>
 
         <label className="flex items-start gap-3 text-sm text-ink-soft">
@@ -159,11 +156,11 @@ export function IntakeForm({
             required
           />
           <span>
-            Ich bin mit der{" "}
-            <Link href="/datenschutz" className="underline hover:text-brand-800">
-              Datenschutzerklärung
+            {t.consentPrefix}{" "}
+            <Link href={localeHref(locale, "/datenschutz")} className="underline hover:text-brand-800">
+              {t.consentLinkText}
             </Link>{" "}
-            einverstanden.
+            {t.consentSuffix}
           </span>
         </label>
 
@@ -174,16 +171,12 @@ export function IntakeForm({
         ) : null}
 
         <ButtonAction type="submit" size="lg" className="w-full sm:w-auto">
-          Jetzt senden
+          {t.submitLabel}
         </ButtonAction>
 
         {submitted ? (
           <p role="status" className="text-sm font-medium text-brand-800">
-            Fast geschafft! Falls sich dein E-Mail-Programm nicht geöffnet hat, schreib uns direkt an{" "}
-            <a href={`mailto:${site.contactEmail}`} className="underline">
-              {site.contactEmail}
-            </a>
-            .
+            {t.submittedText(site.contactEmail)}
           </p>
         ) : null}
       </form>

@@ -6,7 +6,8 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { TranslationBanner } from "@/components/layout/TranslationBanner";
 import { site } from "@/content/site";
-import { locales, localeMeta, isLocale, localeHref, type Locale } from "@/i18n/config";
+import { commonDict } from "@/content/i18n/common";
+import { locales, localeMeta, isLocale, localeHref, defaultLocale, type Locale } from "@/i18n/config";
 
 const bodyFont = Inter({
   variable: "--font-body",
@@ -31,27 +32,30 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale: rawLocale } = await params;
-  const locale: Locale = isLocale(rawLocale) ? rawLocale : "de";
+  const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
+  const t = commonDict[locale];
 
   const languages: Record<string, string> = {};
   for (const l of locales) {
     languages[l] = localeHref(l, "/");
   }
 
+  const defaultTitle = `${site.name} – ${t.footer.claim}`;
+
   return {
     metadataBase: new URL(`https://${site.domain}`),
     title: {
-      default: `${site.name} – Papierkram? Schick ihn deinem Antragsbruder.`,
+      default: defaultTitle,
       template: `%s – ${site.name}`,
     },
-    description: site.description,
+    description: t.meta.description,
     alternates: {
       canonical: localeHref(locale, "/"),
       languages,
     },
     openGraph: {
-      title: `${site.name} – Papierkram? Schick ihn deinem Antragsbruder.`,
-      description: site.description,
+      title: defaultTitle,
+      description: t.meta.description,
       url: `https://${site.domain}`,
       siteName: site.name,
       locale,
@@ -60,7 +64,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: site.name,
-      description: site.description,
+      description: t.meta.description,
     },
   };
 }

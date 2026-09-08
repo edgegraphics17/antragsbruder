@@ -4,24 +4,41 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { CTASection } from "@/components/sections/CTASection";
 import { faqGroups } from "@/content/faq";
+import { dict } from "@/content/faq-i18n";
+import { locales, isLocale, defaultLocale, localeHref, type Locale } from "@/i18n/config";
 
-export const metadata: Metadata = {
-  title: "FAQ",
-  description: "Häufige Fragen zu Antragsbruder: Dokumente, Anträge, Fristen, Datenschutz und mehr.",
-};
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
-export default function FaqPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+  return { title: t.metaTitle, description: t.metaDescription };
+}
+
+export default async function FaqPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+  const groups = faqGroups[locale];
+
   return (
     <>
       <section>
         <Container className="py-16 sm:py-20">
-          <SectionHeading eyebrow="FAQ" title="Häufige Fragen" lede="Alles, was du vor dem Start wissen möchtest." />
+          <SectionHeading eyebrow={t.eyebrow} title={t.title} lede={t.lede} />
         </Container>
       </section>
 
       <section className="pb-20">
         <Container className="space-y-12">
-          {faqGroups.map((g) => (
+          {groups.map((g) => (
             <div key={g.group}>
               <h2 className="font-display mb-4 text-xl font-bold text-ink">{g.group}</h2>
               <FaqAccordion items={g.items} />
@@ -31,11 +48,11 @@ export default function FaqPage() {
       </section>
 
       <CTASection
-        title="Deine Frage war nicht dabei?"
-        primaryLabel="Kontakt aufnehmen"
-        primaryHref="/kontakt"
-        secondaryLabel="Papierkram hochladen"
-        secondaryHref="/hilfe-starten"
+        title={t.ctaTitle}
+        primaryLabel={t.ctaPrimaryLabel}
+        primaryHref={localeHref(locale, "/kontakt")}
+        secondaryLabel={t.ctaSecondaryLabel}
+        secondaryHref={localeHref(locale, "/hilfe-starten")}
       />
     </>
   );

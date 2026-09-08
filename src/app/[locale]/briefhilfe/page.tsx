@@ -6,25 +6,38 @@ import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { LetterMockup } from "@/components/sections/LetterMockup";
 import { ProcessFlow } from "@/components/sections/ProcessFlow";
 import { CTASection } from "@/components/sections/CTASection";
+import { locales, localeHref, isLocale, defaultLocale, type Locale } from "@/i18n/config";
+import { dict } from "@/content/briefhilfe-i18n";
 
-export const metadata: Metadata = {
-  title: "Briefe verstehen",
-  description: "Behördendeutsch übersetzen wir in normales Deutsch – lade dein Schreiben hoch und verstehe, worum es geht.",
-};
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
-export default function BriefhilfePage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+  return { title: t.metaTitle, description: t.metaDescription };
+}
+
+export default async function BriefhilfePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+  const href = (path: string) => localeHref(locale, path);
+
   return (
     <>
       <section>
         <Container className="py-16 sm:py-20">
-          <SectionHeading
-            eyebrow="Briefhilfe"
-            title="Behördendeutsch übersetzen wir in normales Deutsch."
-            lede="Du lädst dein Schreiben hoch. Wir helfen dir zu verstehen, worum es geht, was benötigt wird und welche nächsten Schritte anstehen."
-          />
+          <SectionHeading eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
           <div className="mt-6">
-            <Button href="/hilfe-starten?anliegen=brief" size="lg">
-              Brief hochladen
+            <Button href={href("/hilfe-starten?anliegen=brief")} size="lg">
+              {t.uploadButtonLabel}
             </Button>
           </div>
         </Container>
@@ -39,43 +52,19 @@ export default function BriefhilfePage() {
       <section>
         <Container className="grid gap-12 py-20 lg:grid-cols-2">
           <div>
-            <SectionHeading title="Was wir dir zeigen" />
+            <SectionHeading title={t.whatWeShowTitle} />
             <ul className="mt-6 space-y-4 text-sm leading-relaxed text-ink-soft">
-              <li>
-                <strong className="text-ink">Von wem der Brief stammt</strong> – Absender und Zuständigkeit auf
-                einen Blick.
-              </li>
-              <li>
-                <strong className="text-ink">Worum es geht</strong> – das Anliegen in wenigen, klaren Sätzen.
-              </li>
-              <li>
-                <strong className="text-ink">Welche Informationen verlangt werden</strong> – ohne Paragraphen
-                nachschlagen zu müssen.
-              </li>
-              <li>
-                <strong className="text-ink">Welche Unterlagen benötigt werden</strong> – konkret und
-                nachvollziehbar.
-              </li>
-              <li>
-                <strong className="text-ink">Welche Termine oder Fristen relevant sind</strong> – damit nichts
-                untergeht.
-              </li>
-              <li>
-                <strong className="text-ink">Welche nächsten Schritte anstehen</strong> – verständlich formuliert.
-              </li>
+              {t.whatWeShowItems.map((item) => (
+                <li key={item.bold}>
+                  <strong className="text-ink">{item.bold}</strong> – {item.rest}
+                </li>
+              ))}
             </ul>
           </div>
           <div>
-            <SectionHeading title="So läuft es ab" />
+            <SectionHeading title={t.howItWorksTitle} />
             <div className="mt-6">
-              <ProcessFlow
-                steps={[
-                  "Schreiben als Foto oder PDF hochladen",
-                  "Wir erfassen den Vorgang",
-                  "Du erhältst eine verständliche Zusammenfassung",
-                  "Du siehst die nächsten Schritte",
-                ]}
-              />
+              <ProcessFlow steps={t.processSteps} />
             </div>
           </div>
         </Container>
@@ -83,19 +72,11 @@ export default function BriefhilfePage() {
 
       <section className="pb-20">
         <Container>
-          <DisclaimerBox title="Wichtig zu wissen">
-            Wir prüfen dein Schreiben nicht rechtlich und treffen keine Aussage darüber, was dir rechtlich zusteht.
-            Wir helfen dir, den Inhalt deines Schreibens zu verstehen und die nächsten administrativen Schritte
-            einzuordnen.
-          </DisclaimerBox>
+          <DisclaimerBox title={t.disclaimerTitle}>{t.disclaimerText}</DisclaimerBox>
         </Container>
       </section>
 
-      <CTASection
-        title="Verstehe deinen nächsten Brief in wenigen Minuten."
-        primaryLabel="Brief hochladen"
-        primaryHref="/hilfe-starten?anliegen=brief"
-      />
+      <CTASection title={t.ctaTitle} primaryLabel={t.ctaButtonLabel} primaryHref={href("/hilfe-starten?anliegen=brief")} />
     </>
   );
 }

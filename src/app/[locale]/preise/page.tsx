@@ -5,28 +5,41 @@ import { Button } from "@/components/ui/Button";
 import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { IconCheck } from "@/components/ui/icons";
 import { pricingTiers } from "@/content/pricing";
+import { dict } from "@/content/preise-i18n";
+import { locales, isLocale, defaultLocale, localeHref, type Locale } from "@/i18n/config";
 
-export const metadata: Metadata = {
-  title: "Preise",
-  description: "Unsere Preise im Überblick – transparent kommuniziert, mit klaren Hinweisen, wo Preise noch individuell abgestimmt werden.",
-};
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
-export default function PreisePage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+  return { title: t.metaTitle, description: t.metaDescription };
+}
+
+export default async function PreisePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+  const tiers = pricingTiers[locale];
+
   return (
     <>
       <section>
         <Container className="py-16 sm:py-20">
-          <SectionHeading
-            eyebrow="Preise"
-            title="Transparent, so gut es zum Start eben geht."
-            lede="Manche Vorgänge sind in Aufwand und Umfang sehr unterschiedlich. Deshalb nennen wir dir bei individuellen Leistungen den Preis, sobald wir deinen Vorgang gesichtet haben."
-          />
+          <SectionHeading eyebrow={t.eyebrow} title={t.title} lede={t.lede} />
         </Container>
       </section>
 
       <section className="bg-cream-deep/60 pb-20">
         <Container className="grid gap-5 py-16 sm:grid-cols-2 lg:grid-cols-4">
-          {pricingTiers.map((tier) => (
+          {tiers.map((tier) => (
             <div
               key={tier.title}
               className={`flex flex-col rounded-3xl border p-6 ${
@@ -55,7 +68,7 @@ export default function PreisePage() {
                 ))}
               </ul>
               <Button
-                href={tier.ctaHref}
+                href={localeHref(locale, tier.ctaHref)}
                 variant={tier.highlight ? "secondary" : "outline"}
                 size="md"
                 className="mt-6"
@@ -69,11 +82,7 @@ export default function PreisePage() {
 
       <section className="py-20">
         <Container>
-          <DisclaimerBox title="Zur Preisgestaltung">
-            Die genannten Preise sind vorläufige Richtwerte für unsere Startphase und noch nicht final festgelegt.
-            Bei individuellen Leistungen nennen wir dir den konkreten Preis, nachdem wir deinen Vorgang gesichtet
-            haben.
-          </DisclaimerBox>
+          <DisclaimerBox title={t.disclaimerTitle}>{t.disclaimerText}</DisclaimerBox>
         </Container>
       </section>
     </>

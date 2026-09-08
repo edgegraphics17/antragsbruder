@@ -6,33 +6,46 @@ import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { CTASection } from "@/components/sections/CTASection";
 import { IconCheck, IconLock } from "@/components/ui/icons";
 import { sicherheitsPrinzipien } from "@/content/pillars";
+import { dict } from "@/content/sicherheit-i18n";
+import { isLocale, defaultLocale, locales, localeHref, type Locale } from "@/i18n/config";
 
-export const metadata: Metadata = {
-  title: "Sicherheit & Datenschutz",
-  description: "Warum Datenschutz für uns zentral ist und nach welchen Prinzipien wir unsere Systeme entwickeln.",
-};
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
-export default function SicherheitPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+  return { title: t.metaTitle, description: t.metaDescription };
+}
+
+export default async function SicherheitPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+
   return (
     <>
       <section>
         <Container className="py-16 sm:py-20">
           <IconLock className="h-8 w-8 text-brand-800" />
           <h1 className="font-display mt-4 max-w-2xl text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-            Sicherheit & Datenschutz
+            {t.title}
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
-            Antragsbruder verarbeitet potenziell sehr persönliche Dokumente. Deshalb muss Datenschutz Teil der
-            Produktarchitektur sein – nicht ein nachträglicher Zusatz.
-          </p>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">{t.lede}</p>
         </Container>
       </section>
 
       <section className="bg-cream-deep/60">
         <Container className="py-16">
-          <SectionHeading title="Unsere Prinzipien" />
+          <SectionHeading title={t.principlesTitle} />
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {sicherheitsPrinzipien.map((p) => (
+            {sicherheitsPrinzipien[locale].map((p) => (
               <div key={p.title} className="rounded-3xl border border-line-soft bg-white p-5">
                 <IconCheck className="h-5 w-5 text-brand-700" />
                 <h3 className="font-display mt-3 text-base font-bold text-ink">{p.title}</h3>
@@ -45,13 +58,8 @@ export default function SicherheitPage() {
 
       <section className="py-20">
         <Container>
-          <DisclaimerBox title="Ehrlich zum Stand der technischen Umsetzung">
-            <p>
-              Unsere Systeme werden nach den oben genannten Prinzipien entwickelt. Wo die technische Umsetzung noch
-              nicht final abgeschlossen ist, kommunizieren wir das offen, statt Sicherheitsversprechen zu machen, die
-              wir aktuell nicht belegen können. Konkrete Zertifizierungen oder Standards nennen wir erst, sobald sie
-              tatsächlich bestätigt sind.
-            </p>
+          <DisclaimerBox title={t.disclaimerTitle}>
+            <p>{t.disclaimerText}</p>
           </DisclaimerBox>
         </Container>
       </section>
@@ -59,32 +67,28 @@ export default function SicherheitPage() {
       <section className="pb-20">
         <Container className="grid gap-6 sm:grid-cols-2">
           <div className="rounded-3xl border border-line-soft bg-white p-6">
-            <h3 className="font-display text-lg font-bold text-ink">Deine Rechte</h3>
+            <h3 className="font-display text-lg font-bold text-ink">{t.rightsTitle}</h3>
             <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-              Du kannst jederzeit erfragen, welche Daten wir über dich verarbeiten, und eine Löschung anfragen –
-              soweit keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Details findest du in unserer{" "}
-              <Link href="/datenschutz" className="text-brand-800 underline">
-                Datenschutzerklärung
+              {t.rightsText}{" "}
+              <Link href={localeHref(locale, "/datenschutz")} className="text-brand-800 underline">
+                {t.rightsLink}
               </Link>
               .
             </p>
           </div>
           <div className="rounded-3xl border border-line-soft bg-white p-6">
-            <h3 className="font-display text-lg font-bold text-ink">Menschliche Kontrolle</h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-              Wichtige oder ungewöhnliche Vorgänge werden von Menschen geprüft. Wir setzen nicht auf vollständig
-              autonome Entscheidungen über deine Daten oder deinen Vorgang.
-            </p>
+            <h3 className="font-display text-lg font-bold text-ink">{t.controlTitle}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-ink-soft">{t.controlText}</p>
           </div>
         </Container>
       </section>
 
       <CTASection
-        title="Fragen zum Umgang mit deinen Daten?"
-        primaryLabel="Kontakt aufnehmen"
-        primaryHref="/kontakt"
-        secondaryLabel="Datenschutzerklärung lesen"
-        secondaryHref="/datenschutz"
+        title={t.ctaTitle}
+        primaryLabel={t.ctaPrimary}
+        primaryHref={localeHref(locale, "/kontakt")}
+        secondaryLabel={t.ctaSecondary}
+        secondaryHref={localeHref(locale, "/datenschutz")}
       />
     </>
   );

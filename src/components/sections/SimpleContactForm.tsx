@@ -3,18 +3,23 @@
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { ButtonAction } from "@/components/ui/Button";
+import { commonDict } from "@/content/i18n/common";
+import { localeHref, type Locale } from "@/i18n/config";
 
 export function SimpleContactForm({
+  locale,
   toEmail,
   subjectPrefix,
   fields = ["organisation"],
-  submitLabel = "Nachricht senden",
+  submitLabel,
 }: {
+  locale: Locale;
   toEmail: string;
   subjectPrefix: string;
   fields?: ("organisation" | "topic")[];
-  submitLabel?: string;
+  submitLabel: string;
 }) {
+  const t = commonDict[locale].contactForm;
   const [submitted, setSubmitted] = useState(false);
   const [consent, setConsent] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -29,7 +34,7 @@ export function SimpleContactForm({
     const message = String(form.get("message") || "").trim();
 
     if (!name || !email || !message || !consent) {
-      setError("Bitte Name, E-Mail und Nachricht ausfüllen und Häkchen setzen.");
+      setError(t.requiredError);
       return;
     }
 
@@ -54,7 +59,7 @@ export function SimpleContactForm({
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className="mb-1.5 block text-base font-semibold text-ink">
-            Name <span aria-hidden="true">*</span>
+            {t.nameLabel} <span aria-hidden="true">*</span>
           </label>
           <input
             id="name"
@@ -66,7 +71,7 @@ export function SimpleContactForm({
         </div>
         <div>
           <label htmlFor="email" className="mb-1.5 block text-base font-semibold text-ink">
-            E-Mail <span aria-hidden="true">*</span>
+            {t.emailLabel} <span aria-hidden="true">*</span>
           </label>
           <input
             id="email"
@@ -81,7 +86,7 @@ export function SimpleContactForm({
       {fields.includes("organisation") ? (
         <div>
           <label htmlFor="organisation" className="mb-1.5 block text-base font-semibold text-ink">
-            Organisation <span className="text-ink-soft">(optional)</span>
+            {t.organisationLabel} <span className="text-ink-soft">{t.optional}</span>
           </label>
           <input
             id="organisation"
@@ -92,7 +97,7 @@ export function SimpleContactForm({
       ) : null}
       <div>
         <label htmlFor="message" className="mb-1.5 block text-base font-semibold text-ink">
-          Nachricht <span aria-hidden="true">*</span>
+          {t.messageLabel} <span aria-hidden="true">*</span>
         </label>
         <textarea
           id="message"
@@ -111,11 +116,11 @@ export function SimpleContactForm({
           className="mt-0.5 h-5 w-5 shrink-0 rounded border-line text-brand-800 focus-visible:outline-2 focus-visible:outline-brand-700"
         />
         <span>
-          Ich bin mit der{" "}
-          <Link href="/datenschutz" className="underline hover:text-brand-800">
-            Datenschutzerklärung
+          {t.consentPrefix}{" "}
+          <Link href={localeHref(locale, "/datenschutz")} className="underline hover:text-brand-800">
+            {t.consentLinkText}
           </Link>{" "}
-          einverstanden.
+          {t.consentSuffix}
         </span>
       </label>
       {error ? (
@@ -128,11 +133,7 @@ export function SimpleContactForm({
       </ButtonAction>
       {submitted ? (
         <p role="status" className="text-sm font-medium text-brand-800">
-          Fast geschafft! Falls sich dein E-Mail-Programm nicht geöffnet hat, schreib uns direkt an{" "}
-          <a href={`mailto:${toEmail}`} className="underline">
-            {toEmail}
-          </a>
-          .
+          {t.submittedText(toEmail)}
         </p>
       ) : null}
     </form>

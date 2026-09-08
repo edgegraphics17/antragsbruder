@@ -4,7 +4,14 @@ export type CommonDict = {
   nav: Record<string, string>;
   navDescriptions: Record<string, string>;
   buttons: { kontakt: string; papierkramHochladen: string };
-  navbar: { skipToContent: string; menuOpen: string; menuClose: string; language: string };
+  navbar: {
+    skipToContent: string;
+    menuOpen: string;
+    menuClose: string;
+    language: string;
+    mainNavLabel: string;
+    mobileNavLabel: string;
+  };
   footer: {
     colProdukt: string;
     colVision: string;
@@ -16,6 +23,40 @@ export type CommonDict = {
     disclaimer: string;
   };
   translationNotice: string;
+  contactForm: {
+    nameLabel: string;
+    emailLabel: string;
+    organisationLabel: string;
+    optional: string;
+    messageLabel: string;
+    consentPrefix: string;
+    consentLinkText: string;
+    consentSuffix: string;
+    requiredError: string;
+    submittedText: (email: string) => string;
+  };
+  intakeForm: {
+    anliegenLabel: string;
+    pleaseSelect: string;
+    anliegenOptions: { value: string; label: string }[];
+    nameLabel: string;
+    emailLabel: string;
+    phoneLabel: string;
+    optional: string;
+    messageLabel: string;
+    messagePlaceholder: string;
+    uploadHint: string;
+    consentPrefix: string;
+    consentLinkText: string;
+    consentSuffix: string;
+    requiredError: string;
+    submitLabel: string;
+    submittedText: (email: string) => string;
+    noAnswer: string;
+  };
+  meta: {
+    description: string;
+  };
 };
 
 // Stable keys shared between the nav structure (src/content/nav.ts) and the
@@ -62,7 +103,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       sicherheit: "Wie wir mit deinen Daten umgehen",
     },
     buttons: { kontakt: "Kontakt", papierkramHochladen: "Papierkram hochladen" },
-    navbar: { skipToContent: "Zum Inhalt springen", menuOpen: "Menü öffnen", menuClose: "Menü schließen", language: "Sprache" },
+    navbar: { skipToContent: "Zum Inhalt springen", menuOpen: "Menü öffnen", menuClose: "Menü schließen", language: "Sprache", mainNavLabel: "Hauptnavigation", mobileNavLabel: "Mobile Navigation" },
     footer: {
       colProdukt: "Produkt",
       colVision: "Vision",
@@ -75,6 +116,49 @@ export const commonDict: Record<Locale, CommonDict> = {
         "Antragsbruder bietet keine Rechts-, Steuer- oder sonstige regulierte Beratungsleistung. Wir unterstützen bei der Organisation und Vorbereitung von Verwaltungsvorgängen.",
     },
     translationNotice: "Diese Seite ist aktuell nur auf Deutsch verfügbar. Wir übersetzen die Website Schritt für Schritt.",
+    contactForm: {
+      nameLabel: "Name",
+      emailLabel: "E-Mail",
+      organisationLabel: "Organisation",
+      optional: "(optional)",
+      messageLabel: "Nachricht",
+      consentPrefix: "Ich bin mit der",
+      consentLinkText: "Datenschutzerklärung",
+      consentSuffix: "einverstanden.",
+      requiredError: "Bitte Name, E-Mail und Nachricht ausfüllen und Häkchen setzen.",
+      submittedText: (email) =>
+        `Fast geschafft! Falls sich dein E-Mail-Programm nicht geöffnet hat, schreib uns direkt an ${email}.`,
+    },
+    intakeForm: {
+      anliegenLabel: "Worum geht's?",
+      pleaseSelect: "Bitte auswählen",
+      anliegenOptions: [
+        { value: "brief", label: "Ich habe einen Brief bekommen" },
+        { value: "antrag", label: "Ich brauche Hilfe bei einem Antrag" },
+        { value: "wohngeld", label: "Ich möchte Wohngeld beantragen" },
+        { value: "papierkram", label: "Mein Papierkram ist Chaos" },
+        { value: "sonstiges", label: "Etwas anderes" },
+      ],
+      nameLabel: "Name",
+      emailLabel: "E-Mail",
+      phoneLabel: "Telefon",
+      optional: "(optional)",
+      messageLabel: "Nachricht",
+      messagePlaceholder: "Von welchem Amt ist der Brief? Worum geht's?",
+      uploadHint: "Dein E-Mail-Programm öffnet sich gleich – häng dort einfach dein Dokument an (PDF, JPG oder PNG).",
+      consentPrefix: "Ich bin mit der",
+      consentLinkText: "Datenschutzerklärung",
+      consentSuffix: "einverstanden.",
+      requiredError: "Bitte Name und E-Mail eintragen und Häkchen setzen.",
+      submitLabel: "Jetzt senden",
+      submittedText: (email) =>
+        `Fast geschafft! Falls sich dein E-Mail-Programm nicht geöffnet hat, schreib uns direkt an ${email}.`,
+      noAnswer: "(keine Angabe)",
+    },
+    meta: {
+      description:
+        "Antragsbruder hilft dir, Behördenbriefe, Anträge und Papierkram zu verstehen, zu organisieren und vorzubereiten – einfach, digital und menschlich.",
+    },
   },
   en: {
     nav: {
@@ -117,7 +201,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       sicherheit: "How we handle your data",
     },
     buttons: { kontakt: "Contact", papierkramHochladen: "Upload your paperwork" },
-    navbar: { skipToContent: "Skip to content", menuOpen: "Open menu", menuClose: "Close menu", language: "Language" },
+    navbar: { skipToContent: "Skip to content", menuOpen: "Open menu", menuClose: "Close menu", language: "Language", mainNavLabel: "Main navigation", mobileNavLabel: "Mobile navigation" },
     footer: {
       colProdukt: "Product",
       colVision: "Vision",
@@ -130,6 +214,49 @@ export const commonDict: Record<Locale, CommonDict> = {
         "Antragsbruder does not provide legal, tax or other regulated advice. We support you in organising and preparing administrative matters.",
     },
     translationNotice: "This page is currently only available in German. We're translating the site step by step.",
+    contactForm: {
+      nameLabel: "Name",
+      emailLabel: "Email",
+      organisationLabel: "Organisation",
+      optional: "(optional)",
+      messageLabel: "Message",
+      consentPrefix: "I agree to the",
+      consentLinkText: "privacy policy",
+      consentSuffix: ".",
+      requiredError: "Please fill in your name, email and message, and check the box.",
+      submittedText: (email) =>
+        `Almost there! If your email program didn't open, write to us directly at ${email}.`,
+    },
+    intakeForm: {
+      anliegenLabel: "What's this about?",
+      pleaseSelect: "Please select",
+      anliegenOptions: [
+        { value: "brief", label: "I received a letter" },
+        { value: "antrag", label: "I need help with an application" },
+        { value: "wohngeld", label: "I want to apply for housing benefit" },
+        { value: "papierkram", label: "My paperwork is a mess" },
+        { value: "sonstiges", label: "Something else" },
+      ],
+      nameLabel: "Name",
+      emailLabel: "Email",
+      phoneLabel: "Phone",
+      optional: "(optional)",
+      messageLabel: "Message",
+      messagePlaceholder: "Which office is the letter from? What's it about?",
+      uploadHint: "Your email program will open in a moment – just attach your document there (PDF, JPG or PNG).",
+      consentPrefix: "I agree to the",
+      consentLinkText: "privacy policy",
+      consentSuffix: ".",
+      requiredError: "Please enter your name and email, and check the box.",
+      submitLabel: "Send now",
+      submittedText: (email) =>
+        `Almost there! If your email program didn't open, write to us directly at ${email}.`,
+      noAnswer: "(none given)",
+    },
+    meta: {
+      description:
+        "Antragsbruder helps you understand, organise and prepare official letters, applications and paperwork – simply, digitally and with a human touch.",
+    },
   },
   ar: {
     nav: {
@@ -172,7 +299,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       sicherheit: "كيف نتعامل مع بياناتك",
     },
     buttons: { kontakt: "تواصل معنا", papierkramHochladen: "ارفع مستنداتك" },
-    navbar: { skipToContent: "الانتقال إلى المحتوى", menuOpen: "فتح القائمة", menuClose: "إغلاق القائمة", language: "اللغة" },
+    navbar: { skipToContent: "الانتقال إلى المحتوى", menuOpen: "فتح القائمة", menuClose: "إغلاق القائمة", language: "اللغة", mainNavLabel: "التنقل الرئيسي", mobileNavLabel: "التنقل على الجوال" },
     footer: {
       colProdukt: "الخدمة",
       colVision: "رؤيتنا",
@@ -185,6 +312,49 @@ export const commonDict: Record<Locale, CommonDict> = {
         "لا تقدم أنتراغسبرودر استشارات قانونية أو ضريبية أو أي استشارة منظمة أخرى. نحن نساعد في تنظيم وتحضير المعاملات الإدارية.",
     },
     translationNotice: "هذه الصفحة متاحة حاليًا باللغة الألمانية فقط. نقوم بترجمة الموقع خطوة بخطوة.",
+    contactForm: {
+      nameLabel: "الاسم",
+      emailLabel: "البريد الإلكتروني",
+      organisationLabel: "المؤسسة",
+      optional: "(اختياري)",
+      messageLabel: "الرسالة",
+      consentPrefix: "أوافق على",
+      consentLinkText: "سياسة الخصوصية",
+      consentSuffix: ".",
+      requiredError: "يرجى إدخال الاسم والبريد الإلكتروني والرسالة وتحديد المربع.",
+      submittedText: (email) =>
+        `كدنا ننتهي! إذا لم يفتح برنامج البريد الإلكتروني لديك، راسلنا مباشرة على ${email}.`,
+    },
+    intakeForm: {
+      anliegenLabel: "عن ماذا يدور الأمر؟",
+      pleaseSelect: "يرجى الاختيار",
+      anliegenOptions: [
+        { value: "brief", label: "استلمت رسالة" },
+        { value: "antrag", label: "أحتاج مساعدة في طلب" },
+        { value: "wohngeld", label: "أريد التقدم بطلب إعانة سكن" },
+        { value: "papierkram", label: "أوراقي في حالة فوضى" },
+        { value: "sonstiges", label: "شيء آخر" },
+      ],
+      nameLabel: "الاسم",
+      emailLabel: "البريد الإلكتروني",
+      phoneLabel: "الهاتف",
+      optional: "(اختياري)",
+      messageLabel: "الرسالة",
+      messagePlaceholder: "من أي جهة الرسالة؟ عن ماذا يدور الأمر؟",
+      uploadHint: "سيفتح برنامج البريد الإلكتروني لديك خلال لحظات – أرفق مستندك هناك (PDF أو JPG أو PNG).",
+      consentPrefix: "أوافق على",
+      consentLinkText: "سياسة الخصوصية",
+      consentSuffix: ".",
+      requiredError: "يرجى إدخال الاسم والبريد الإلكتروني وتحديد المربع.",
+      submitLabel: "إرسال الآن",
+      submittedText: (email) =>
+        `كدنا ننتهي! إذا لم يفتح برنامج البريد الإلكتروني لديك، راسلنا مباشرة على ${email}.`,
+      noAnswer: "(لم يُذكر)",
+    },
+    meta: {
+      description:
+        "يساعدك أنتراغسبرودر على فهم وتنظيم وتحضير الرسائل الرسمية والطلبات والأوراق – ببساطة ورقمياً وبلمسة إنسانية.",
+    },
   },
   tr: {
     nav: {
@@ -227,7 +397,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       sicherheit: "Verilerinle nasıl ilgilendiğimiz",
     },
     buttons: { kontakt: "İletişim", papierkramHochladen: "Belgelerini yükle" },
-    navbar: { skipToContent: "İçeriğe atla", menuOpen: "Menüyü aç", menuClose: "Menüyü kapat", language: "Dil" },
+    navbar: { skipToContent: "İçeriğe atla", menuOpen: "Menüyü aç", menuClose: "Menüyü kapat", language: "Dil", mainNavLabel: "Ana gezinme", mobileNavLabel: "Mobil gezinme" },
     footer: {
       colProdukt: "Ürün",
       colVision: "Vizyon",
@@ -240,6 +410,49 @@ export const commonDict: Record<Locale, CommonDict> = {
         "Antragsbruder hukuki, mali veya başka bir düzenlenmiş danışmanlık hizmeti sunmaz. İdari işlemlerin düzenlenmesi ve hazırlanmasında destek oluruz.",
     },
     translationNotice: "Bu sayfa şu anda yalnızca Almanca olarak mevcuttur. Siteyi adım adım çeviriyoruz.",
+    contactForm: {
+      nameLabel: "Ad",
+      emailLabel: "E-posta",
+      organisationLabel: "Kurum",
+      optional: "(isteğe bağlı)",
+      messageLabel: "Mesaj",
+      consentPrefix: "",
+      consentLinkText: "Gizlilik politikasını",
+      consentSuffix: "kabul ediyorum.",
+      requiredError: "Lütfen adınızı, e-postanızı ve mesajınızı girin ve kutuyu işaretleyin.",
+      submittedText: (email) =>
+        `Neredeyse tamam! E-posta programınız açılmadıysa bize doğrudan ${email} adresinden yazın.`,
+    },
+    intakeForm: {
+      anliegenLabel: "Konu nedir?",
+      pleaseSelect: "Lütfen seçin",
+      anliegenOptions: [
+        { value: "brief", label: "Bir mektup aldım" },
+        { value: "antrag", label: "Bir başvuruda yardıma ihtiyacım var" },
+        { value: "wohngeld", label: "Konut yardımı başvurusu yapmak istiyorum" },
+        { value: "papierkram", label: "Evraklarım karmakarışık" },
+        { value: "sonstiges", label: "Başka bir şey" },
+      ],
+      nameLabel: "Ad",
+      emailLabel: "E-posta",
+      phoneLabel: "Telefon",
+      optional: "(isteğe bağlı)",
+      messageLabel: "Mesaj",
+      messagePlaceholder: "Mektup hangi kurumdan? Konu ne?",
+      uploadHint: "E-posta programınız birazdan açılacak – belgenizi (PDF, JPG veya PNG) oraya ekleyin.",
+      consentPrefix: "",
+      consentLinkText: "Gizlilik politikasını",
+      consentSuffix: "kabul ediyorum.",
+      requiredError: "Lütfen adınızı ve e-postanızı girin ve kutuyu işaretleyin.",
+      submitLabel: "Şimdi gönder",
+      submittedText: (email) =>
+        `Neredeyse tamam! E-posta programınız açılmadıysa bize doğrudan ${email} adresinden yazın.`,
+      noAnswer: "(belirtilmedi)",
+    },
+    meta: {
+      description:
+        "Antragsbruder, resmi mektupları, başvuruları ve evrak işlerini anlamana, düzenlemene ve hazırlamana yardımcı olur – basit, dijital ve insani bir şekilde.",
+    },
   },
   ru: {
     nav: {
@@ -282,7 +495,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       sicherheit: "Как мы обращаемся с вашими данными",
     },
     buttons: { kontakt: "Контакты", papierkramHochladen: "Загрузить документы" },
-    navbar: { skipToContent: "Перейти к содержимому", menuOpen: "Открыть меню", menuClose: "Закрыть меню", language: "Язык" },
+    navbar: { skipToContent: "Перейти к содержимому", menuOpen: "Открыть меню", menuClose: "Закрыть меню", language: "Язык", mainNavLabel: "Основная навигация", mobileNavLabel: "Мобильная навигация" },
     footer: {
       colProdukt: "Продукт",
       colVision: "Видение",
@@ -295,6 +508,49 @@ export const commonDict: Record<Locale, CommonDict> = {
         "Antragsbruder не предоставляет юридические, налоговые или иные регулируемые консультационные услуги. Мы помогаем организовывать и готовить административные процессы.",
     },
     translationNotice: "Эта страница пока доступна только на немецком языке. Мы переводим сайт постепенно.",
+    contactForm: {
+      nameLabel: "Имя",
+      emailLabel: "Эл. почта",
+      organisationLabel: "Организация",
+      optional: "(необязательно)",
+      messageLabel: "Сообщение",
+      consentPrefix: "Я согласен(на) с",
+      consentLinkText: "политикой конфиденциальности",
+      consentSuffix: ".",
+      requiredError: "Пожалуйста, заполните имя, эл. почту и сообщение, а также поставьте галочку.",
+      submittedText: (email) =>
+        `Почти готово! Если почтовая программа не открылась, напишите нам напрямую на ${email}.`,
+    },
+    intakeForm: {
+      anliegenLabel: "В чём вопрос?",
+      pleaseSelect: "Пожалуйста, выберите",
+      anliegenOptions: [
+        { value: "brief", label: "Я получил(а) письмо" },
+        { value: "antrag", label: "Мне нужна помощь с заявлением" },
+        { value: "wohngeld", label: "Я хочу подать заявление на Wohngeld" },
+        { value: "papierkram", label: "У меня хаос с документами" },
+        { value: "sonstiges", label: "Что-то другое" },
+      ],
+      nameLabel: "Имя",
+      emailLabel: "Эл. почта",
+      phoneLabel: "Телефон",
+      optional: "(необязательно)",
+      messageLabel: "Сообщение",
+      messagePlaceholder: "От какого ведомства письмо? В чём вопрос?",
+      uploadHint: "Сейчас откроется ваша почтовая программа – просто прикрепите документ (PDF, JPG или PNG).",
+      consentPrefix: "Я согласен(на) с",
+      consentLinkText: "политикой конфиденциальности",
+      consentSuffix: ".",
+      requiredError: "Пожалуйста, укажите имя и эл. почту и поставьте галочку.",
+      submitLabel: "Отправить",
+      submittedText: (email) =>
+        `Почти готово! Если почтовая программа не открылась, напишите нам напрямую на ${email}.`,
+      noAnswer: "(не указано)",
+    },
+    meta: {
+      description:
+        "Antragsbruder помогает вам понимать, организовывать и готовить официальные письма, заявления и документы – просто, в цифровом виде и по-человечески.",
+    },
   },
   uk: {
     nav: {
@@ -337,7 +593,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       sicherheit: "Як ми поводимося з вашими даними",
     },
     buttons: { kontakt: "Контакти", papierkramHochladen: "Завантажити документи" },
-    navbar: { skipToContent: "Перейти до вмісту", menuOpen: "Відкрити меню", menuClose: "Закрити меню", language: "Мова" },
+    navbar: { skipToContent: "Перейти до вмісту", menuOpen: "Відкрити меню", menuClose: "Закрити меню", language: "Мова", mainNavLabel: "Основна навігація", mobileNavLabel: "Мобільна навігація" },
     footer: {
       colProdukt: "Продукт",
       colVision: "Бачення",
@@ -350,6 +606,49 @@ export const commonDict: Record<Locale, CommonDict> = {
         "Antragsbruder не надає юридичні, податкові чи інші регульовані консультаційні послуги. Ми допомагаємо організовувати та готувати адміністративні процеси.",
     },
     translationNotice: "Ця сторінка наразі доступна лише німецькою мовою. Ми перекладаємо сайт поступово.",
+    contactForm: {
+      nameLabel: "Ім'я",
+      emailLabel: "Ел. пошта",
+      organisationLabel: "Організація",
+      optional: "(необов'язково)",
+      messageLabel: "Повідомлення",
+      consentPrefix: "Я погоджуюсь з",
+      consentLinkText: "політикою конфіденційності",
+      consentSuffix: ".",
+      requiredError: "Будь ласка, заповніть ім'я, ел. пошту та повідомлення, і поставте позначку.",
+      submittedText: (email) =>
+        `Майже готово! Якщо поштова програма не відкрилася, напишіть нам напряму на ${email}.`,
+    },
+    intakeForm: {
+      anliegenLabel: "Про що йдеться?",
+      pleaseSelect: "Будь ласка, оберіть",
+      anliegenOptions: [
+        { value: "brief", label: "Я отримав(ла) лист" },
+        { value: "antrag", label: "Мені потрібна допомога із заявою" },
+        { value: "wohngeld", label: "Я хочу подати заяву на Wohngeld" },
+        { value: "papierkram", label: "У мене хаос з документами" },
+        { value: "sonstiges", label: "Щось інше" },
+      ],
+      nameLabel: "Ім'я",
+      emailLabel: "Ел. пошта",
+      phoneLabel: "Телефон",
+      optional: "(необов'язково)",
+      messageLabel: "Повідомлення",
+      messagePlaceholder: "Від якого відомства лист? Про що йдеться?",
+      uploadHint: "Зараз відкриється ваша поштова програма – просто додайте документ (PDF, JPG або PNG).",
+      consentPrefix: "Я погоджуюсь з",
+      consentLinkText: "політикою конфіденційності",
+      consentSuffix: ".",
+      requiredError: "Будь ласка, вкажіть ім'я та ел. пошту і поставте позначку.",
+      submitLabel: "Надіслати",
+      submittedText: (email) =>
+        `Майже готово! Якщо поштова програма не відкрилася, напишіть нам напряму на ${email}.`,
+      noAnswer: "(не вказано)",
+    },
+    meta: {
+      description:
+        "Antragsbruder допомагає вам розуміти, організовувати та готувати офіційні листи, заяви та документи – просто, цифрово і по-людськи.",
+    },
   },
   pl: {
     nav: {
@@ -392,7 +691,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       sicherheit: "Jak dbamy o twoje dane",
     },
     buttons: { kontakt: "Kontakt", papierkramHochladen: "Prześlij dokumenty" },
-    navbar: { skipToContent: "Przejdź do treści", menuOpen: "Otwórz menu", menuClose: "Zamknij menu", language: "Język" },
+    navbar: { skipToContent: "Przejdź do treści", menuOpen: "Otwórz menu", menuClose: "Zamknij menu", language: "Język", mainNavLabel: "Nawigacja główna", mobileNavLabel: "Nawigacja mobilna" },
     footer: {
       colProdukt: "Produkt",
       colVision: "Wizja",
@@ -405,6 +704,49 @@ export const commonDict: Record<Locale, CommonDict> = {
         "Antragsbruder nie świadczy usług doradztwa prawnego, podatkowego ani innego regulowanego doradztwa. Wspieramy w organizacji i przygotowaniu spraw urzędowych.",
     },
     translationNotice: "Ta strona jest obecnie dostępna tylko w języku niemieckim. Tłumaczymy stronę krok po kroku.",
+    contactForm: {
+      nameLabel: "Imię",
+      emailLabel: "E-mail",
+      organisationLabel: "Organizacja",
+      optional: "(opcjonalnie)",
+      messageLabel: "Wiadomość",
+      consentPrefix: "Akceptuję",
+      consentLinkText: "politykę prywatności",
+      consentSuffix: ".",
+      requiredError: "Wypełnij imię, e-mail i wiadomość oraz zaznacz pole wyboru.",
+      submittedText: (email) =>
+        `Już prawie gotowe! Jeśli program pocztowy się nie otworzył, napisz do nas bezpośrednio na ${email}.`,
+    },
+    intakeForm: {
+      anliegenLabel: "O co chodzi?",
+      pleaseSelect: "Proszę wybrać",
+      anliegenOptions: [
+        { value: "brief", label: "Otrzymałem/am pismo" },
+        { value: "antrag", label: "Potrzebuję pomocy z wnioskiem" },
+        { value: "wohngeld", label: "Chcę złożyć wniosek o Wohngeld" },
+        { value: "papierkram", label: "Mam chaos w dokumentach" },
+        { value: "sonstiges", label: "Coś innego" },
+      ],
+      nameLabel: "Imię",
+      emailLabel: "E-mail",
+      phoneLabel: "Telefon",
+      optional: "(opcjonalnie)",
+      messageLabel: "Wiadomość",
+      messagePlaceholder: "Z jakiego urzędu jest pismo? O co chodzi?",
+      uploadHint: "Twój program pocztowy zaraz się otworzy – po prostu załącz tam dokument (PDF, JPG lub PNG).",
+      consentPrefix: "Akceptuję",
+      consentLinkText: "politykę prywatności",
+      consentSuffix: ".",
+      requiredError: "Podaj imię i e-mail oraz zaznacz pole wyboru.",
+      submitLabel: "Wyślij teraz",
+      submittedText: (email) =>
+        `Już prawie gotowe! Jeśli program pocztowy się nie otworzył, napisz do nas bezpośrednio na ${email}.`,
+      noAnswer: "(brak danych)",
+    },
+    meta: {
+      description:
+        "Antragsbruder pomaga ci rozumieć, organizować i przygotowywać urzędowe pisma, wnioski i dokumenty – prosto, cyfrowo i po ludzku.",
+    },
   },
   bg: {
     nav: {
@@ -447,7 +789,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       sicherheit: "Как се грижим за вашите данни",
     },
     buttons: { kontakt: "Контакт", papierkramHochladen: "Качи документите си" },
-    navbar: { skipToContent: "Към съдържанието", menuOpen: "Отвори менюто", menuClose: "Затвори менюто", language: "Език" },
+    navbar: { skipToContent: "Към съдържанието", menuOpen: "Отвори менюто", menuClose: "Затвори менюто", language: "Език", mainNavLabel: "Основна навигация", mobileNavLabel: "Мобилна навигация" },
     footer: {
       colProdukt: "Продукт",
       colVision: "Визия",
@@ -460,6 +802,49 @@ export const commonDict: Record<Locale, CommonDict> = {
         "Antragsbruder не предоставя правни, данъчни или други регулирани консултантски услуги. Ние помагаме при организирането и подготовката на административни процедури.",
     },
     translationNotice: "Тази страница в момента е достъпна само на немски език. Превеждаме сайта стъпка по стъпка.",
+    contactForm: {
+      nameLabel: "Име",
+      emailLabel: "Имейл",
+      organisationLabel: "Организация",
+      optional: "(незадължително)",
+      messageLabel: "Съобщение",
+      consentPrefix: "Съгласен/съгласна съм с",
+      consentLinkText: "политиката за поверителност",
+      consentSuffix: ".",
+      requiredError: "Моля, попълнете име, имейл и съобщение и отметнете квадратчето.",
+      submittedText: (email) =>
+        `Почти готово! Ако пощенската ви програма не се отвори, пишете ни директно на ${email}.`,
+    },
+    intakeForm: {
+      anliegenLabel: "За какво става въпрос?",
+      pleaseSelect: "Моля, изберете",
+      anliegenOptions: [
+        { value: "brief", label: "Получих писмо" },
+        { value: "antrag", label: "Нуждая се от помощ със заявление" },
+        { value: "wohngeld", label: "Искам да кандидатствам за Wohngeld" },
+        { value: "papierkram", label: "Документите ми са в хаос" },
+        { value: "sonstiges", label: "Нещо друго" },
+      ],
+      nameLabel: "Име",
+      emailLabel: "Имейл",
+      phoneLabel: "Телефон",
+      optional: "(незадължително)",
+      messageLabel: "Съобщение",
+      messagePlaceholder: "От коя институция е писмото? За какво става въпрос?",
+      uploadHint: "Пощенската ви програма ще се отвори след малко – просто прикачете документа там (PDF, JPG или PNG).",
+      consentPrefix: "Съгласен/съгласна съм с",
+      consentLinkText: "политиката за поверителност",
+      consentSuffix: ".",
+      requiredError: "Моля, въведете име и имейл и отметнете квадратчето.",
+      submitLabel: "Изпрати сега",
+      submittedText: (email) =>
+        `Почти готово! Ако пощенската ви програма не се отвори, пишете ни директно на ${email}.`,
+      noAnswer: "(не е посочено)",
+    },
+    meta: {
+      description:
+        "Antragsbruder ви помага да разбирате, организирате и подготвяте официални писма, заявления и документи – просто, цифрово и по човешки.",
+    },
   },
   ro: {
     nav: {
@@ -502,7 +887,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       sicherheit: "Cum tratăm datele tale",
     },
     buttons: { kontakt: "Contact", papierkramHochladen: "Încarcă documentele" },
-    navbar: { skipToContent: "Sari la conținut", menuOpen: "Deschide meniul", menuClose: "Închide meniul", language: "Limbă" },
+    navbar: { skipToContent: "Sari la conținut", menuOpen: "Deschide meniul", menuClose: "Închide meniul", language: "Limbă", mainNavLabel: "Navigare principală", mobileNavLabel: "Navigare mobilă" },
     footer: {
       colProdukt: "Produs",
       colVision: "Viziune",
@@ -515,5 +900,48 @@ export const commonDict: Record<Locale, CommonDict> = {
         "Antragsbruder nu oferă consultanță juridică, fiscală sau alte servicii de consultanță reglementate. Te sprijinim în organizarea și pregătirea proceselor administrative.",
     },
     translationNotice: "Această pagină este momentan disponibilă doar în limba germană. Traducem site-ul pas cu pas.",
+    contactForm: {
+      nameLabel: "Nume",
+      emailLabel: "E-mail",
+      organisationLabel: "Organizație",
+      optional: "(opțional)",
+      messageLabel: "Mesaj",
+      consentPrefix: "Sunt de acord cu",
+      consentLinkText: "politica de confidențialitate",
+      consentSuffix: ".",
+      requiredError: "Te rugăm să completezi numele, e-mailul și mesajul și să bifezi căsuța.",
+      submittedText: (email) =>
+        `Aproape gata! Dacă programul tău de e-mail nu s-a deschis, scrie-ne direct la ${email}.`,
+    },
+    intakeForm: {
+      anliegenLabel: "Despre ce este vorba?",
+      pleaseSelect: "Te rugăm să alegi",
+      anliegenOptions: [
+        { value: "brief", label: "Am primit o scrisoare" },
+        { value: "antrag", label: "Am nevoie de ajutor cu o cerere" },
+        { value: "wohngeld", label: "Vreau să solicit Wohngeld" },
+        { value: "papierkram", label: "Actele mele sunt un haos" },
+        { value: "sonstiges", label: "Altceva" },
+      ],
+      nameLabel: "Nume",
+      emailLabel: "E-mail",
+      phoneLabel: "Telefon",
+      optional: "(opțional)",
+      messageLabel: "Mesaj",
+      messagePlaceholder: "De la ce instituție este scrisoarea? Despre ce este vorba?",
+      uploadHint: "Programul tău de e-mail se va deschide imediat – atașează acolo documentul (PDF, JPG sau PNG).",
+      consentPrefix: "Sunt de acord cu",
+      consentLinkText: "politica de confidențialitate",
+      consentSuffix: ".",
+      requiredError: "Te rugăm să completezi numele și e-mailul și să bifezi căsuța.",
+      submitLabel: "Trimite acum",
+      submittedText: (email) =>
+        `Aproape gata! Dacă programul tău de e-mail nu s-a deschis, scrie-ne direct la ${email}.`,
+      noAnswer: "(nespecificat)",
+    },
+    meta: {
+      description:
+        "Antragsbruder te ajută să înțelegi, organizezi și pregătești scrisori oficiale, cereri și acte – simplu, digital și uman.",
+    },
   },
 };

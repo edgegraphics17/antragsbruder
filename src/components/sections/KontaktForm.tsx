@@ -4,14 +4,22 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { ButtonAction } from "@/components/ui/Button";
 import { site } from "@/content/site";
+import { dict } from "@/content/kontakt-i18n";
+import { localeHref, type Locale } from "@/i18n/config";
 
-const themen = [
-  { value: "allgemein", label: "Allgemeine Frage", email: site.contactEmail },
-  { value: "support", label: "Support zu meinem Vorgang", email: site.supportEmail },
-  { value: "partner", label: "Partnerschaft", email: site.partnerEmail },
-];
-
-export function KontaktForm({ defaultThema = "allgemein" }: { defaultThema?: string }) {
+export function KontaktForm({
+  defaultThema = "allgemein",
+  locale,
+}: {
+  defaultThema?: string;
+  locale: Locale;
+}) {
+  const t = dict[locale];
+  const themen = [
+    { value: "allgemein", label: t.formThemaAllgemein, email: site.contactEmail },
+    { value: "support", label: t.formThemaSupport, email: site.supportEmail },
+    { value: "partner", label: t.formThemaPartner, email: site.partnerEmail },
+  ];
   const [submitted, setSubmitted] = useState(false);
   const [consent, setConsent] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -26,11 +34,11 @@ export function KontaktForm({ defaultThema = "allgemein" }: { defaultThema?: str
     const themaValue = String(form.get("thema") || "allgemein");
 
     if (!name || !email || !message || !consent) {
-      setError("Bitte Name, E-Mail und Nachricht ausfüllen und Häkchen setzen.");
+      setError(t.formError);
       return;
     }
 
-    const thema = themen.find((t) => t.value === themaValue) ?? themen[0];
+    const thema = themen.find((opt) => opt.value === themaValue) ?? themen[0];
     const subject = `${thema.label} über antragsbruder.de – ${name}`;
     const body = `Name: ${name}\nE-Mail: ${email}\nThema: ${thema.label}\n\nNachricht:\n${message}`;
 
@@ -42,7 +50,7 @@ export function KontaktForm({ defaultThema = "allgemein" }: { defaultThema?: str
     <form onSubmit={handleSubmit} className="space-y-5 rounded-3xl border border-line-soft bg-white p-6 sm:p-8" noValidate>
       <div>
         <label htmlFor="thema" className="mb-1.5 block text-base font-semibold text-ink">
-          Worum geht es?
+          {t.formThemaLabel}
         </label>
         <select
           id="thema"
@@ -50,9 +58,9 @@ export function KontaktForm({ defaultThema = "allgemein" }: { defaultThema?: str
           defaultValue={defaultThema}
           className="w-full min-h-12 rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink focus-visible:outline-2 focus-visible:outline-brand-700"
         >
-          {themen.map((t) => (
-            <option key={t.value} value={t.value}>
-              {t.label}
+          {themen.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
             </option>
           ))}
         </select>
@@ -60,7 +68,7 @@ export function KontaktForm({ defaultThema = "allgemein" }: { defaultThema?: str
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className="mb-1.5 block text-base font-semibold text-ink">
-            Name <span aria-hidden="true">*</span>
+            {t.formNameLabel} <span aria-hidden="true">*</span>
           </label>
           <input
             id="name"
@@ -72,7 +80,7 @@ export function KontaktForm({ defaultThema = "allgemein" }: { defaultThema?: str
         </div>
         <div>
           <label htmlFor="email" className="mb-1.5 block text-base font-semibold text-ink">
-            E-Mail <span aria-hidden="true">*</span>
+            {t.formEmailLabel} <span aria-hidden="true">*</span>
           </label>
           <input
             id="email"
@@ -86,7 +94,7 @@ export function KontaktForm({ defaultThema = "allgemein" }: { defaultThema?: str
       </div>
       <div>
         <label htmlFor="message" className="mb-1.5 block text-base font-semibold text-ink">
-          Nachricht <span aria-hidden="true">*</span>
+          {t.formMessageLabel} <span aria-hidden="true">*</span>
         </label>
         <textarea
           id="message"
@@ -105,11 +113,11 @@ export function KontaktForm({ defaultThema = "allgemein" }: { defaultThema?: str
           className="mt-0.5 h-5 w-5 shrink-0 rounded border-line text-brand-800 focus-visible:outline-2 focus-visible:outline-brand-700"
         />
         <span>
-          Ich bin mit der{" "}
-          <Link href="/datenschutz" className="underline hover:text-brand-800">
-            Datenschutzerklärung
+          {t.formConsentPrefix ? `${t.formConsentPrefix} ` : ""}
+          <Link href={localeHref(locale, "/datenschutz")} className="underline hover:text-brand-800">
+            {t.formConsentLink}
           </Link>{" "}
-          einverstanden.
+          {t.formConsentSuffix}
         </span>
       </label>
       {error ? (
@@ -118,11 +126,11 @@ export function KontaktForm({ defaultThema = "allgemein" }: { defaultThema?: str
         </p>
       ) : null}
       <ButtonAction type="submit" size="lg" className="w-full sm:w-auto">
-        Jetzt senden
+        {t.formSubmit}
       </ButtonAction>
       {submitted ? (
         <p role="status" className="text-sm font-medium text-brand-800">
-          Fast geschafft! Falls sich dein E-Mail-Programm nicht geöffnet hat, schreib uns direkt an{" "}
+          {t.formSubmittedPrefix}{" "}
           <a href={`mailto:${site.contactEmail}`} className="underline">
             {site.contactEmail}
           </a>

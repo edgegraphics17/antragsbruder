@@ -3,31 +3,35 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CTASection } from "@/components/sections/CTASection";
 import { MascotFull } from "@/components/ui/Logo";
+import { dict } from "@/content/ueber-uns-i18n";
+import { locales, localeHref, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 
-export const metadata: Metadata = {
-  title: "Über uns",
-  description: "Warum es Antragsbruder gibt, was wir beobachten und was wir verändern möchten.",
-};
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
-const prinzipien = [
-  "Einfach vor kompliziert",
-  "Mensch vor Prozess",
-  "Verständnis vor Automatisierung",
-  "Datenschutz vor Bequemlichkeit",
-  "Hilfe vor Bürokratie",
-  "Technologie mit Verantwortung",
-];
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+  return { title: t.metaTitle, description: t.metaDescription };
+}
 
-export default function UeberUnsPage() {
+export default async function UeberUnsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+  const href = (path: string) => localeHref(locale, path);
+
   return (
     <>
       <section>
         <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.3fr_1fr]">
-          <SectionHeading
-            eyebrow="Über uns"
-            title="Warum es Antragsbruder gibt."
-            lede="Wir haben gesehen, wie Menschen Ordner und Taschen voller Dokumente besitzen und trotzdem nicht wissen, welcher Brief gerade wichtig ist. Aus diesem Problem ist Antragsbruder entstanden."
-          />
+          <SectionHeading eyebrow={t.eyebrow} title={t.title} lede={t.lede} />
           <MascotFull priority className="mx-auto w-48 sm:w-56 lg:mx-0" />
         </Container>
       </section>
@@ -35,28 +39,21 @@ export default function UeberUnsPage() {
       <section className="bg-cream-deep/60">
         <Container className="grid gap-10 py-16 lg:grid-cols-2">
           <div>
-            <h2 className="font-display text-2xl font-bold text-ink">Was wir beobachten</h2>
-            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              Deutschland verfügt über funktionierende Institutionen. Trotzdem erleben viele Menschen Verwaltung als
-              fragmentiert, schwer verständlich und zeitaufwendig – unabhängig von Bildung, Sprache oder digitaler
-              Erfahrung.
-            </p>
+            <h2 className="font-display text-2xl font-bold text-ink">{t.observeTitle}</h2>
+            <p className="mt-3 text-sm leading-relaxed text-ink-soft">{t.observeText}</p>
           </div>
           <div>
-            <h2 className="font-display text-2xl font-bold text-ink">Was wir verändern möchten</h2>
-            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              Wir möchten Menschen eine verständliche, strukturierte und menschliche Anlaufstelle für ihren
-              Papierkram geben – heute als Service, langfristig als persönliches digitales Verwaltungsbüro.
-            </p>
+            <h2 className="font-display text-2xl font-bold text-ink">{t.changeTitle}</h2>
+            <p className="mt-3 text-sm leading-relaxed text-ink-soft">{t.changeText}</p>
           </div>
         </Container>
       </section>
 
       <section className="py-20">
         <Container>
-          <SectionHeading title="Unsere Prinzipien" align="center" className="mx-auto" />
+          <SectionHeading title={t.prinzipienTitle} align="center" className="mx-auto" />
           <div className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-2">
-            {prinzipien.map((p) => (
+            {t.prinzipien.map((p) => (
               <div
                 key={p}
                 className="rounded-2xl border border-line-soft bg-white px-5 py-4 text-center text-sm font-medium text-ink"
@@ -69,11 +66,11 @@ export default function UeberUnsPage() {
       </section>
 
       <CTASection
-        title="Lerne, wie wir arbeiten."
-        primaryLabel="So funktioniert's"
-        primaryHref="/so-funktionierts"
-        secondaryLabel="Unsere Vision"
-        secondaryHref="/vision"
+        title={t.ctaTitle}
+        primaryLabel={t.ctaPrimaryLabel}
+        primaryHref={href("/so-funktionierts")}
+        secondaryLabel={t.ctaSecondaryLabel}
+        secondaryHref={href("/vision")}
       />
     </>
   );

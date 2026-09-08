@@ -3,63 +3,79 @@ import { Container } from "@/components/ui/Container";
 import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { LegalSection } from "@/components/ui/LegalSection";
 import { legalPlaceholder, site } from "@/content/site";
+import { locales, isLocale, defaultLocale, type Locale } from "@/i18n/config";
+import { dict } from "@/content/impressum-i18n";
 
-export const metadata: Metadata = {
-  title: "Impressum",
-  description: "Impressum von Antragsbruder gemäß § 5 Digitale-Dienste-Gesetz (DDG).",
-};
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
-export default function ImpressumPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+  return { title: t.metaTitle, description: t.metaDescription };
+}
+
+export default async function ImpressumPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+
   return (
     <section>
       <Container className="max-w-3xl py-16 sm:py-20">
-        <h1 className="font-display text-4xl font-bold tracking-tight text-ink">Impressum</h1>
-        <p className="mt-4 text-sm text-ink-soft">Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>
+        <h1 className="font-display text-4xl font-bold tracking-tight text-ink">{t.pageTitle}</h1>
+        <p className="mt-4 text-sm text-ink-soft">{t.subtitle}</p>
 
-        <DisclaimerBox title="Platzhalter-Hinweis" className="mt-8">
-          Diese Seite enthält vorläufige Platzhalter für Unternehmensangaben. Vor Veröffentlichung müssen alle mit
-          „(Platzhalter)“ gekennzeichneten Angaben durch die tatsächlichen, geprüften Unternehmensdaten ersetzt und
-          rechtlich geprüft werden.
+        <DisclaimerBox title={t.placeholderTitle} className="mt-8">
+          {t.placeholderText}
         </DisclaimerBox>
 
         <div className="mt-8">
-          <LegalSection title="Anbieter">
+          <LegalSection title={t.anbieterHeading}>
             <p>{legalPlaceholder.companyName}</p>
             <p>{legalPlaceholder.street}</p>
             <p>{legalPlaceholder.zipCity}</p>
           </LegalSection>
 
-          <LegalSection title="Vertreten durch">
+          <LegalSection title={t.vertretenDurchHeading}>
             <p>{legalPlaceholder.owner}</p>
           </LegalSection>
 
-          <LegalSection title="Kontakt">
-            <p>Telefon: {legalPlaceholder.phone}</p>
+          <LegalSection title={t.kontaktHeading}>
             <p>
-              E-Mail:{" "}
+              {t.phoneLabel} {legalPlaceholder.phone}
+            </p>
+            <p>
+              {t.emailLabel}{" "}
               <a href={`mailto:${site.contactEmail}`} className="text-brand-800 underline">
                 {site.contactEmail}
               </a>
             </p>
           </LegalSection>
 
-          <LegalSection title="Registereintrag">
+          <LegalSection title={t.registerHeading}>
             <p>{legalPlaceholder.register}</p>
           </LegalSection>
 
-          <LegalSection title="Umsatzsteuer-Identifikationsnummer">
+          <LegalSection title={t.vatHeading}>
             <p>{legalPlaceholder.vatId}</p>
           </LegalSection>
 
-          <LegalSection title="Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV">
+          <LegalSection title={t.responsibleHeading}>
             <p>{legalPlaceholder.owner}</p>
             <p>{legalPlaceholder.street}</p>
             <p>{legalPlaceholder.zipCity}</p>
           </LegalSection>
 
-          <LegalSection title="EU-Streitschlichtung">
+          <LegalSection title={t.disputeHeading}>
             <p>
-              Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:{" "}
+              {t.disputeTextBefore}{" "}
               <a
                 href="https://ec.europa.eu/consumers/odr/"
                 target="_blank"
@@ -68,15 +84,12 @@ export default function ImpressumPage() {
               >
                 ec.europa.eu/consumers/odr
               </a>
-              . Unsere E-Mail-Adresse findest du oben.
+              {t.disputeTextAfter}
             </p>
           </LegalSection>
 
-          <LegalSection title="Verbraucherstreitbeilegung">
-            <p>
-              {site.name} ist nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer
-              Verbraucherschlichtungsstelle teilzunehmen. Diese Angabe ist vor Veröffentlichung final zu prüfen.
-            </p>
+          <LegalSection title={t.consumerDisputeHeading}>
+            <p>{t.consumerDisputeText(site.name)}</p>
           </LegalSection>
         </div>
       </Container>

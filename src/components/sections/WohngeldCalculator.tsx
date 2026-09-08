@@ -55,15 +55,16 @@ export function WohngeldCalculator({ locale }: { locale: LangCode }) {
 
   useEffect(() => {
     if (manualOverride || selectedLocation) {
-      setLocationResults([]);
       return;
     }
     const query = locationQuery.trim();
     if (query.length < 2) {
-      setLocationResults([]);
       return;
     }
     let cancelled = false;
+    // Kicking off the debounced lookup's loading flag is the documented
+    // pattern for an async fetch inside an effect.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSearchingLocation(true);
     const timer = setTimeout(() => {
       searchLocation(query).then((results) => {
@@ -259,7 +260,7 @@ export function WohngeldCalculator({ locale }: { locale: LangCode }) {
                         aria-hidden="true"
                       />
                     ) : null}
-                    {locationResults.length > 0 ? (
+                    {!selectedLocation && locationResults.length > 0 ? (
                       <ul className="absolute z-10 mt-1.5 max-h-64 w-full overflow-auto rounded-2xl border border-line bg-white shadow-lg">
                         {locationResults.map((loc) => (
                           <li key={`${loc.name}-${loc.plz}-${loc.kreis}`}>

@@ -3,29 +3,41 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CTASection } from "@/components/sections/CTASection";
 import { wasWirNichtSind } from "@/content/pillars";
+import { dict } from "@/content/was-wir-nicht-sind-i18n";
+import { isLocale, defaultLocale, locales, localeHref, type Locale } from "@/i18n/config";
 
-export const metadata: Metadata = {
-  title: "Was wir nicht sind",
-  description: "Klare Grenzen gehören für uns dazu: Antragsbruder ersetzt keine Rechtsanwälte, Steuerberater oder behördliche Entscheidungen.",
-};
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
-export default function WasWirNichtSindPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+  return { title: t.metaTitle, description: t.metaDescription };
+}
+
+export default async function WasWirNichtSindPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+
   return (
     <>
       <section>
         <Container className="py-16 sm:py-20">
-          <SectionHeading
-            eyebrow="Klare Grenzen"
-            title="Klare Grenzen gehören für uns dazu."
-            lede="Vertrauen entsteht dadurch, dass wir sagen, was wir sind – und was wir nicht sind."
-          />
+          <SectionHeading eyebrow={t.eyebrow} title={t.title} lede={t.lede} />
         </Container>
       </section>
 
       <section className="bg-cream-deep/60">
         <Container className="py-16">
           <div className="grid gap-5 sm:grid-cols-2">
-            {wasWirNichtSind.map((w) => (
+            {wasWirNichtSind[locale].map((w) => (
               <div key={w.title} className="rounded-3xl border border-line-soft bg-white p-6">
                 <h3 className="font-display text-lg font-bold text-ink">{w.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">{w.text}</p>
@@ -37,21 +49,16 @@ export default function WasWirNichtSindPage() {
 
       <section className="py-20">
         <Container className="max-w-2xl">
-          <p className="text-lg leading-relaxed text-ink-soft">
-            Wir helfen bei administrativen Prozessen: Verstehen, Organisieren und Vorbereiten. Wenn ein Vorgang eine
-            rechtliche oder andere regulierte fachliche Prüfung verlangt, können andere qualifizierte Stellen
-            erforderlich sein. Langfristig möchten wir dich über ein Partnernetzwerk an geeignete Ansprechpartner
-            weitervermitteln.
-          </p>
+          <p className="text-lg leading-relaxed text-ink-soft">{t.bodyText}</p>
         </Container>
       </section>
 
       <CTASection
-        title="Noch Fragen zu unseren Grenzen?"
-        primaryLabel="FAQ ansehen"
-        primaryHref="/faq"
-        secondaryLabel="Kontakt aufnehmen"
-        secondaryHref="/kontakt"
+        title={t.ctaTitle}
+        primaryLabel={t.ctaPrimary}
+        primaryHref={localeHref(locale, "/faq")}
+        secondaryLabel={t.ctaSecondary}
+        secondaryHref={localeHref(locale, "/kontakt")}
       />
     </>
   );

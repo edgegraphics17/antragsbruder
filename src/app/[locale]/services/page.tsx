@@ -5,28 +5,41 @@ import { Button } from "@/components/ui/Button";
 import { IconCheck } from "@/components/ui/icons";
 import { CTASection } from "@/components/sections/CTASection";
 import { services } from "@/content/services";
+import { dict } from "@/content/services-page-i18n";
+import { locales, localeHref, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 
-export const metadata: Metadata = {
-  title: "Unsere Services",
-  description: "Alle Services von Antragsbruder im Überblick: Briefhilfe, Antragshilfe, Dokumenten-Check, Digitalisierung, Organisation, Fristenübersicht und Verwaltungsbegleitung.",
-};
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
-export default function ServicesPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+  return { title: t.metaTitle, description: t.metaDescription };
+}
+
+export default async function ServicesPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+  const href = (path: string) => localeHref(locale, path);
+
   return (
     <>
       <section>
         <Container className="py-16 sm:py-20">
-          <SectionHeading
-            eyebrow="Unsere Services"
-            title="Sieben Wege, wie wir dir helfen können."
-            lede="Von einem einzelnen Brief bis zum vollständigen Papierkram-Reset – jeder Service hat klare Grenzen und einen klaren Ablauf."
-          />
+          <SectionHeading eyebrow={t.eyebrow} title={t.title} lede={t.lede} />
         </Container>
       </section>
 
       <section className="pb-20">
         <Container className="space-y-6">
-          {services.map((s, i) => (
+          {services[locale].map((s, i) => (
             <article
               key={s.slug}
               id={s.slug}
@@ -35,26 +48,26 @@ export default function ServicesPage() {
               <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">
-                    Service {String(i + 1).padStart(2, "0")}
+                    {t.serviceLabel} {String(i + 1).padStart(2, "0")}
                   </p>
                   <h2 className="font-display mt-2 text-2xl font-bold text-ink">{s.title}</h2>
                   <p className="mt-3 text-sm leading-relaxed text-ink-soft">{s.problem}</p>
                   <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                    <Button href={s.ctaHref} size="md">
+                    <Button href={href(s.ctaHref)} size="md">
                       {s.ctaLabel}
                     </Button>
                     <Button href={`#${s.slug}`} variant="ghost" size="md">
-                      Details
+                      {t.detailsLabel}
                     </Button>
                   </div>
                 </div>
                 <div className="space-y-5">
                   <div>
-                    <p className="text-sm font-semibold text-ink">Unser Beitrag</p>
+                    <p className="text-sm font-semibold text-ink">{t.beitragLabel}</p>
                     <p className="mt-1 text-sm leading-relaxed text-ink-soft">{s.beitrag}</p>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-ink">Typischer Ablauf</p>
+                    <p className="text-sm font-semibold text-ink">{t.ablaufLabel}</p>
                     <ul className="mt-2 space-y-1.5">
                       {s.ablauf.map((a) => (
                         <li key={a} className="flex items-start gap-2 text-sm text-ink-soft">
@@ -65,11 +78,11 @@ export default function ServicesPage() {
                     </ul>
                   </div>
                   <div className="rounded-2xl bg-cream p-4">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft">Beispiel</p>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft">{t.beispielLabel}</p>
                     <p className="mt-1 text-sm text-ink-soft">{s.beispiel}</p>
                   </div>
                   <div className="rounded-2xl border border-brand-800/20 bg-brand-50 p-4">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-brand-800">Grenzen</p>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-brand-800">{t.grenzenLabel}</p>
                     <p className="mt-1 text-sm text-ink-soft">{s.grenzen}</p>
                   </div>
                 </div>
@@ -80,12 +93,12 @@ export default function ServicesPage() {
       </section>
 
       <CTASection
-        title="Nicht sicher, welcher Service passt?"
-        text="Schreib uns kurz – wir sagen dir, wie wir dir am besten helfen können."
-        primaryLabel="Jetzt Hilfe starten"
-        primaryHref="/hilfe-starten"
-        secondaryLabel="Kontakt aufnehmen"
-        secondaryHref="/kontakt"
+        title={t.ctaTitle}
+        text={t.ctaText}
+        primaryLabel={t.ctaPrimaryLabel}
+        primaryHref={href("/hilfe-starten")}
+        secondaryLabel={t.ctaSecondaryLabel}
+        secondaryHref={href("/kontakt")}
       />
     </>
   );

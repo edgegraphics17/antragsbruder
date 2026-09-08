@@ -4,48 +4,45 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PillarCard } from "@/components/sections/Cards";
 import { CTASection } from "@/components/sections/CTASection";
 import { betroffeneGruppen, sozialePfeiler } from "@/content/pillars";
+import { dict } from "@/content/verantwortung-i18n";
+import { isLocale, defaultLocale, locales, localeHref, type Locale } from "@/i18n/config";
 import { IconCompass, IconFolder, IconHeart, IconLock, IconSpark } from "@/components/ui/icons";
-
-export const metadata: Metadata = {
-  title: "Soziale Verantwortung",
-  description: "Unsere gesellschaftliche Haltung: Digitalisierung im Verwaltungsbereich soll reale Belastung für Bürgerinnen und Bürger reduzieren.",
-};
 
 const pfeilerIcons = [IconSpark, IconCompass, IconFolder, IconLock, IconHeart];
 
-const themen = [
-  "Teilhabe",
-  "Sprachbarrieren",
-  "Digitale Barrieren",
-  "Senioren",
-  "Soziale Mobilität",
-  "Administrative Überforderung",
-  "Menschliche Unterstützung",
-  "Verantwortungsvoller Technikeinsatz",
-];
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
-export default function VerantwortungPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+  return { title: t.metaTitle, description: t.metaDescription };
+}
+
+export default async function VerantwortungPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  const t = dict[locale];
+
   return (
     <>
       <section>
         <Container className="py-16 sm:py-20">
-          <SectionHeading
-            eyebrow="Soziale Verantwortung"
-            title="Bürokratie darf keine soziale Barriere sein."
-            lede="Wir glauben, dass Digitalisierung im Verwaltungsbereich dann sinnvoll ist, wenn sie reale Belastung für Bürgerinnen und Bürger reduziert."
-          />
+          <SectionHeading eyebrow={t.heroEyebrow} title={t.heroTitle} lede={t.heroLede} />
         </Container>
       </section>
 
       <section className="bg-cream-deep/60">
         <Container className="py-16">
-          <p className="max-w-2xl text-lg leading-relaxed text-ink-soft">
-            Komplexität trifft Menschen unterschiedlich. Ein komplizierter Brief kann für eine Person eine kleine
-            Unannehmlichkeit sein. Für eine andere Person kann derselbe Brief zu einem existenziellen Problem
-            werden. Besonders betroffen können sein:
-          </p>
+          <p className="max-w-2xl text-lg leading-relaxed text-ink-soft">{t.affectedIntro}</p>
           <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {betroffeneGruppen.map((g) => (
+            {betroffeneGruppen[locale].map((g) => (
               <li key={g} className="rounded-2xl border border-line-soft bg-white px-4 py-3 text-sm text-ink">
                 {g}
               </li>
@@ -56,12 +53,9 @@ export default function VerantwortungPage() {
 
       <section>
         <Container className="py-20">
-          <SectionHeading
-            title="Unsere soziale Idee"
-            lede="Technologie soll nicht nur Prozesse beschleunigen. Sie soll Zugang vereinfachen."
-          />
+          <SectionHeading title={t.ideaTitle} lede={t.ideaLede} />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {sozialePfeiler.map((p, i) => {
+            {sozialePfeiler[locale].map((p, i) => {
               const Icon = pfeilerIcons[i];
               return <PillarCard key={p.title} icon={<Icon className="h-5 w-5" />} title={p.title} text={p.text} />;
             })}
@@ -71,11 +65,11 @@ export default function VerantwortungPage() {
 
       <section className="bg-cream-deep/60">
         <Container className="py-20">
-          <SectionHeading title="Themen, die uns wichtig sind" align="center" className="mx-auto" />
+          <SectionHeading title={t.themesTitle} align="center" className="mx-auto" />
           <div className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-3">
-            {themen.map((t) => (
-              <span key={t} className="rounded-full border border-line-soft bg-white px-4 py-2 text-sm text-ink">
-                {t}
+            {t.themen.map((th) => (
+              <span key={th} className="rounded-full border border-line-soft bg-white px-4 py-2 text-sm text-ink">
+                {th}
               </span>
             ))}
           </div>
@@ -85,21 +79,18 @@ export default function VerantwortungPage() {
       <section className="py-20">
         <Container>
           <div className="rounded-3xl border border-brand-700/40 bg-brand-50 p-8 sm:p-10">
-            <p className="font-display text-xl font-bold text-ink sm:text-2xl">Konstruktiv statt kritisch</p>
-            <p className="mt-3 max-w-2xl text-ink-soft">
-              Deutschland digitalisiert viele Prozesse. Wir möchten Bürgerinnen und Bürger dabei unterstützen, diese
-              Angebote einfacher zu nutzen – nicht gegen bestehende Institutionen argumentieren.
-            </p>
+            <p className="font-display text-xl font-bold text-ink sm:text-2xl">{t.boxTitle}</p>
+            <p className="mt-3 max-w-2xl text-ink-soft">{t.boxText}</p>
           </div>
         </Container>
       </section>
 
       <CTASection
-        title="Verwaltung soll niemanden zurücklassen."
-        primaryLabel="Jetzt Hilfe starten"
-        primaryHref="/hilfe-starten"
-        secondaryLabel="Unsere Vision lesen"
-        secondaryHref="/vision"
+        title={t.ctaTitle}
+        primaryLabel={t.ctaPrimary}
+        primaryHref={localeHref(locale, "/hilfe-starten")}
+        secondaryLabel={t.ctaSecondary}
+        secondaryHref={localeHref(locale, "/vision")}
       />
     </>
   );

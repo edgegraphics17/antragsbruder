@@ -7,7 +7,34 @@ import { commonDict } from "@/content/i18n/common";
 // Pages with real per-language content. Everything else still renders (in
 // German) under a locale prefix, but shows a translated notice instead of
 // silently presenting untranslated copy as if it were localized.
-const TRANSLATED_PATHS = new Set(["/wohngeldrechner", "/wohngeldrechner/antrag"]);
+const TRANSLATED_PATHS = new Set([
+  "/",
+  "/wohngeldrechner",
+  "/wohngeldrechner/antrag",
+  "/grundsicherungsrechner",
+  "/so-funktionierts",
+  "/hilfe-starten",
+  "/briefhilfe",
+  "/antragshilfe",
+  "/digitalisierung",
+  "/familien",
+  "/senioren",
+  "/sprachen",
+  "/partner",
+  "/preise",
+  "/faq",
+  "/kontakt",
+  "/roadmap",
+  "/services",
+  "/ueber-uns",
+  "/impressum",
+  "/datenschutz",
+  "/agb",
+  "/vision",
+  "/was-wir-nicht-sind",
+  "/verantwortung",
+  "/sicherheit",
+]);
 
 export function TranslationBanner({ locale }: { locale: Locale }) {
   const pathname = usePathname();
