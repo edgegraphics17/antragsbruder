@@ -21,6 +21,7 @@ const routes = [
   "/impressum",
   "/datenschutz",
   "/agb",
+  "/datenbank",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
