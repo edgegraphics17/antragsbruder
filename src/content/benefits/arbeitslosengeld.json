@@ -1,0 +1,179 @@
+{
+  "id": "arbeitslosengeld-i",
+  "official_name": "Arbeitslosengeld (ALG I)",
+  "aliases": [
+    "ALG I",
+    "Arbeitslosengeld I",
+    "Arbeitslosenversicherungsleistung"
+  ],
+  "former_names": [],
+  "type": "social_benefit",
+  "status": "verified",
+  "category": "Arbeit & Beschäftigung",
+  "subcategory": "Arbeitslosigkeit",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesagentur für Arbeit",
+    "authority": "Agentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de",
+    "phone": "0800 4 555500"
+  },
+  "target_groups": [
+    "Arbeitslose",
+    "Versicherungspflichtig Beschäftigte"
+  ],
+  "life_situations": [
+    "job_lost"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "alg-r1",
+        "description": "Arbeitslos gemeldet bei der Agentur für Arbeit",
+        "condition": "arbeitslos_gemeldet",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "alg-r2",
+        "description": "Mindestens 12 Monate versicherungspflichtig beschäftigt in den letzten 30 Monaten",
+        "condition": "mindestens_12_monate_versicherungspflichtig",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "alg-r3",
+        "description": "Arbeitsfähig und verfügbar",
+        "condition": "arbeitsfaehig_verfuegbar",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "alg-r4",
+        "description": "Versicherungspflichtige Beschäftigung aufgenommen oder beendet",
+        "condition": "versicherungspflichtige_beschaeftigung",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "special_conditions": [
+      "Kein eigener Verschuldungsgrund für Arbeitslosigkeit (Sperrzeit möglich)"
+    ]
+  },
+  "calculation": {
+    "method": "Prozentuales Ersatzverhältnis zum Durchschnittsentgelt der letzten 12 Monate",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Berechnung des Bruttoarbeitsentgelts der letzten 12 Monate",
+        "formula": "Summe Bruttoentgelt / 12"
+      },
+      {
+        "step": 2,
+        "description": "Abzug von Lohnsteuer, Solidaritätszuschlag und 20% Pauschale für Sozialversicherung",
+        "formula": "Brutto - Steuer - 20% SV-Pauschale = Leistungsentgelt (Nettoäquivalent)"
+      },
+      {
+        "step": 3,
+        "description": "Anwendung des prozentualen Ersatzverhältnisses",
+        "formula": "60% ohne Kind, 67% mit Kind"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": null,
+    "typical_amount": "ca. 60% des letzten Nettogehalts (67% mit Kind)",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "60% des Nettogehalts ohne Kind, 67% mit minderjährigem Kind",
+    "depends_on": [
+      "bruttoentgelt_12_monate",
+      "steuerklasse",
+      "kinder"
+    ]
+  },
+  "application": {
+    "method": "Online, persönlich bei der Agentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/arbeitslosengeld",
+    "forms": [
+      "Arbeitslosmeldung",
+      "Antrag auf Arbeitslosengeld"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Nachweis der Beendigung des Arbeitsverhältnisses",
+      "Kündigung oder Aufhebungsvertrag",
+      "Letzte 3 Gehaltsabrechnungen",
+      "Kinder-/Geburtsurkunden falls vorhanden"
+    ],
+    "processing_time": "ca. 4-6 Wochen",
+    "deadlines": {
+      "description": "Spätestens am ersten Tag der Arbeitslosigkeit melden",
+      "note": "Anspruch entsteht erst ab Arbeitslosmeldung"
+    }
+  },
+  "legal_basis": [
+    "§§ 136-164 SGB III",
+    "§§ 323, 327, 337 SGB III"
+  ],
+  "compatible_with": [],
+  "incompatible_with": [
+    "buergergeld"
+  ],
+  "related_benefits": [
+    "buergergeld",
+    "sozialversicherung"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Das Arbeitslosengeld ist eine Versicherungsleistung, wenn Sie ihren Job verloren haben. Sie erhalten ca. 60% Ihres letzten Nettogehalts.",
+    "for_whom": "Für Menschen, die arbeitslos gewesen und zuvor versicherungspflichtig beschäftigt waren.",
+    "requirements": "Sie müssen in den letzten 30 Monaten mindestens 12 Monate versicherungspflichtig beschäftigt gewesen sein, arbeitslos gemeldet und arbeitsfähig sein.",
+    "how_much": "60% Ihres letzten Nettogehalts (ohne Kind), 67% mit minderjährigem Kind.",
+    "how_calculated": "Aus Ihrem durchschnittlichen Bruttoverdienst der letzten 12 Monate werden Steuern und 20% für die Sozialversicherung abgezogen, dann 60% oder 67% davon ausgezahlt.",
+    "documents_needed": "Personalausweis, Kündigungsnachweis, letzte Gehaltsabrechnungen, ggf. Kinderurkunden",
+    "where_to_apply": "Bei der örtlich zuständigen Agentur für Arbeit (online oder persönlich)",
+    "deadlines": "Sich spätestens am 1. Tag der Arbeitslosigkeit melden. Fristverlust bei Verspätung.",
+    "faq": [
+      {
+        "question": "Wie lange bekomme ich Arbeitslosengeld?",
+        "answer": "Abhängig von Alter und Versicherungsdauer: 6 Monate (12 Monate versichert) bis 24 Monate (48 Monate versichert ab 58 Jahre)."
+      },
+      {
+        "question": "Muss ich mich um neue Arbeit bemühen?",
+        "answer": "Ja, Sie sind verpflichtet, aktiv nach Arbeit zu suchen und mit der Agentur für Arbeit zusammenzuarbeiten."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/arbeitslosengeld/finanzielle-hilfen/arbeitslosengeld-anspruch-hoehe-dauer",
+      "title": "Arbeitslosengeld: Anspruch, Höhe, Dauer",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.bmas.de/DE/Arbeit/Arbeitslosengeld/Anspruchsdauer/anspruchsdauer-art.html",
+      "title": "Anspruchsdauer von Arbeitslosengeld",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-09-08",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Regelbedarfe 2024/2025/2026 unverändert",
+    "SGB III als Rechtsgrundlage"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,194 @@
+{
+  "id": "hinterbliebenenrente",
+  "official_name": "Hinterbliebenenrente",
+  "aliases": [
+    "Witwenrente",
+    "Witwerrente",
+    "Waisenrente",
+    "Renten an Hinterbliebene"
+  ],
+  "former_names": [
+    "Witwen- und Waisenrente"
+  ],
+  "type": "social_benefit",
+  "status": "verified",
+  "category": "Rente & Vorsorge",
+  "subcategory": "Hinterbliebenenversorgung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Deutsche Rentenversicherung",
+    "authority": "Deutsche Rentenversicherung Bund",
+    "url": "https://www.deutsche-rentenversicherung.de",
+    "phone": "0800 1000 4800"
+  },
+  "target_groups": [
+    "Witwen/Witwer",
+    "Waisen",
+    "Geschiedene Ehepartner mit Erziehungsrente"
+  ],
+  "life_situations": [
+    "hinterbliebene",
+    "witwe",
+    "witwer",
+    "waise"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "hbr-r1",
+        "description": "Ehegatte oder eingetragener Lebenspartner war versichert und verstorben",
+        "condition": "ehegatte_verstorben",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "hbr-r2",
+        "description": "Große Witwen-/Witwerrente: Mindestalter erreigt (2026: 46 Jahre 6 Monate)",
+        "condition": "mindestalter_erreicht",
+        "required": false,
+        "category": "personal"
+      },
+      {
+        "rule_id": "hbr-r3",
+        "description": "Große Witwen-/Witwerrente: Erwerbsminderung oder Kindererziehung",
+        "condition": "erwerbsmindert_oder_kinder",
+        "required": false,
+        "category": "personal"
+      },
+      {
+        "rule_id": "hbr-r4",
+        "description": "Waisenrente: Kind unter 18 Jahren (bis 27 bei Ausbildung)",
+        "condition": "kind_unter_18_27",
+        "required": true,
+        "category": "personal"
+      }
+    ],
+    "special_conditions": [
+      "Große Rente: 55% der Rente des Verstorbenen (ab Mindestalter oder mit Kind/erwerbsmindert)",
+      "Kleine Rente: 25% der Rente des Verstorbenen (bis 24 Monate, sonst nur bei Mindestalter/Kind/Erwerbsminderung)",
+      "Freibetrag 2026: 1.122,53 Euro monatlich (+ 238,11 Euro pro waisenberechtigtem Kind)",
+      "Einkommen wird zu 40% über dem Freibetrag angerechnet"
+    ]
+  },
+  "calculation": {
+    "method": "Prozentuale Anrechnung an die Rente des Verstorbenen abzüglich eigener Einkünfte über dem Freibetrag",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Ermittlung der Rente des Verstorbenen",
+        "formula": "Persönliche Entgeltpunkte des Verstorbenen × Rentenwert"
+      },
+      {
+        "step": 2,
+        "description": "Anwendung des Prozentsatzes (große Rente 55%, kleine Rente 25%)",
+        "formula": "Rente Verstorbenen × 0,55 (groß) oder × 0,25 (klein)"
+      },
+      {
+        "step": 3,
+        "description": "Abzug von 40% des Einkommens über dem Freibetrag",
+        "formula": "Rente - (Einkommen - Freibetrag) × 0,4"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Große Rente: 55% der Rente des Verstorbenen; Kleine Rente: 25%",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Große Rente: 55% der Rente des Verstorbenen; Kleine Rente: 25% (abzgl. Einkommen über Freibetrag)",
+    "depends_on": [
+      "rente_verstorbenen",
+      "einkommen",
+      "kinder",
+      "art_rente"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich oder online bei der Deutschen Rentenversicherung",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Renten-an-Hinterbliebene/renten-an-hinterbliebene_node",
+    "forms": [
+      "Antrag auf Hinterbliebenenrente"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Versicherungsnummer des Verstorbenen",
+      "Sterbeurkunde",
+      "Heiratsurkunde",
+      "Kontoauszug (IBAN)",
+      "ggf. Geburtsurkunden der Kinder",
+      "ggf. Nachweis über Erwerbsminderung"
+    ],
+    "processing_time": "ca. 2-4 Monate",
+    "deadlines": {
+      "description": "Antrag innerhalb von 3 Monaten nach Tod",
+      "note": "Rente wird ab dem Monat des Todes gezahlt, wenn Antrag innerhalb von 3 Monaten gestellt wird"
+    }
+  },
+  "legal_basis": [
+    "§§ 46-76 SGB VI",
+    "§ 46 SGB VI (Hinterbliebenenrenten)",
+    "§ 47 SGB VI (Witwen- und Witwerrente)",
+    "§ 48 SGB VI (Waisenrente)"
+  ],
+  "compatible_with": [
+    "waise"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "altersrente",
+    "erwerbsminderungsrente"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Hinterbliebenenrente sichert Sie und Ihre Kinder finanziell ab, wenn Ihr Ehegatte oder Lebenspartner verstorben ist.",
+    "for_whom": "Für Witwen, Witwer und Waisen eines verstorbenen Versicherten.",
+    "requirements": "Der Verstorbene muss versichert gewesen sein. Für die große Rente müssen Sie das Mindestalter erreicht haben, erwerbsmindert sein oder ein Kind erziehen.",
+    "how_mind": "Große Rente: 55% der Rente des Verstorbenen. Kleine Rente: 25%. Waisenrente: 20% (Vollwaise 40%).",
+    "how_calculated": "Die Rente des Verstorbenen wird mit 55% (groß) oder 25% (klein) multipliziert. Eigenes Einkommen über dem Freibetrag (2026: 1.122,53 Euro) wird zu 40% angerechnet.",
+    "documents_needed": "Personalausweis, Versicherungsnummer des Verstorbenen, Sterbeurkunde, Heiratsurkunde, Kontoauszug, ggf. Kinderurkunden",
+    "where_to_apply": "Bei der Deutsche Rentenversicherung (online, schriftlich oder persönlich)",
+    "deadlines": "Antrag innerhalb von 3 Monaten nach dem Tod stellen, sonst ab Antragsmonat.",
+    "faq": [
+      {
+        "question": "Was passiert bei erneuter Heirat?",
+        "answer": "Die Witwen-/Witwerrente erlischt bei erneuter Heirat. Es gibt jedoch Ausnahmen bei besonderen Härtefällen."
+      },
+      {
+        "question": "Wie lange bekomme ich die Rente?",
+        "answer": "Die große Rente wird lebenslang gezahlt. Die kleine Rente maximal 24 Monate, es sei denn, Sie erfüllen die Voraussetzungen für die große Rente."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Renten-an-Hinterbliebene/renten-an-hinterbliebene_node",
+      "title": "Renten für Hinterbliebene",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    },
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/Rheinland/DE/Presse/Pressemitteilungen/2026/26-07-23-hinterbliebene-einkommen",
+      "title": "Hinterbliebenenrente: Höherer Freibetrag seit Juli",
+      "organization": "Deutsche Rentenversicherung Rheinland",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-09",
+  "valid_from": "2026-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Freibetrag 2026: 1.122,53 Euro monatlich",
+    "Zusatzfreibetrag pro Kind: 238,11 Euro",
+    "Mindestalter für große Rente 2026: 46 Jahre 6 Monate"
+  ],
+  "created_at": "2026-09-09",
+  "updated_at": "2026-09-09"
+}

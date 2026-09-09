@@ -1,0 +1,179 @@
+{
+  "id": "pflegezeitgeld",
+  "official_name": "Pflegeunterstützungsgeld (Pflegezeitgeld)",
+  "aliases": [
+    "Pflegezeitgeld",
+    "Pflegeunterstützungsgeld",
+    "Lohnersatz bei Pflegezeit"
+  ],
+  "former_names": [
+    "Pflegezeitgeld nach Pflegezeitgesetz"
+  ],
+  "type": "care_benefit",
+  "status": "verified",
+  "category": "Pflege",
+  "subcategory": "Pflegezeit",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Pflegekasse",
+    "authority": "Gesetzliche Pflegeversicherung",
+    "url": "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/leistungen-der-pflegeversicherung/leistungen-im-ueberblick/wie-wird-die-vereinbarkeit-von-pflege-und-beruf-gefoerdert",
+    "phone": ""
+  },
+  "target_groups": [
+    "Arbeitnehmer",
+    "Arbeitnehmerinnen",
+    "Beschäftigte mit pflegebedürftigen Angehörigen"
+  ],
+  "life_situations": [
+    "pflege",
+    "angehoerige_pflegen",
+    "familie"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "pzg-r1",
+        "description": "Pflegebedürftiger naher Angehöriger in häuslicher Umgebung (Pflegegrad 1-5)",
+        "condition": "angehoeriger_pflegebeduerftig",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "pzg-r2",
+        "description": "Arbeitnehmer mit Anspruch auf Pflegezeit oder Familienpflegezeit",
+        "condition": "pflegezeit_oder_familienpflegezeit",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "pzg-r3",
+        "description": "Krankenkasse wurde über die Freestellung informiert",
+        "condition": "krankenkasse_informiert",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "special_conditions": [
+      "Höchstbetrag 2026: 135,63 Euro pro Tag (max. 10 Tage/Jahr)",
+      "Gilt für Pflegezeit (max. 6 Monate) und Familienpflegezeit (max. 24 Monate)",
+      "Kein Anspruch während Elterngeld, Krankengeld oder Arbeitslosengeld"
+    ]
+  },
+  "calculation": {
+    "method": "Pauschale pro Tag der Freistellung",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Feststellung der Tage der Freistellung",
+        "formula": "Anzahl der Kalendertage der Freistellung von der Arbeit"
+      },
+      {
+        "step": 2,
+        "description": "Berechnung des Tagesbetrags",
+        "formula": "Höchstbetrag 2026: 135,63 Euro pro Tag"
+      },
+      {
+        "step": 3,
+        "description": "Berechnung des Gesamtbetrags (max. 10 Tage)",
+        "formula": "Tage × 135,63 Euro (max. 10 Tage = 1.356,30 Euro)"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 1356.3,
+    "typical_amount": "Bis zu 135,63 Euro pro Tag (max. 10 Tage im Jahr)",
+    "frequency": "as_needed",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Bis zu 135,63 Euro pro Tag, maximal 10 Tage pro Jahr (max. 1.356,30 Euro)",
+    "depends_on": [
+      "tage_freistellung"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich bei der Pflegekasse",
+    "url": "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/leistungen-der-pflegeversicherung/leistungen-im-ueberblick/wie-wird-die-vereinbarkeit-von-pflege-und-beruf-gefoerdert",
+    "forms": [
+      "Antrag auf Pflegeunterstützungsgeld"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Bescheid über Pflegegrad des Angehörigen",
+      "Bestätigung des Arbeitgebers über Freistellung",
+      "Kontoauszug (IBAN)"
+    ],
+    "processing_time": "ca. 2-4 Wochen",
+    "deadlines": {
+      "description": "Antrag während oder nach der Freistellung stellen",
+      "note": "Familienpflegezeit: Antrag 8 Wochen vorher stellen"
+    }
+  },
+  "legal_basis": [
+    "§ 44a SGB XI (Pflegeunterstützungsgeld)",
+    "Pflegezeitgesetz (PZG)",
+    "Familienpflegezeitgesetz (FPfZG)"
+  ],
+  "compatible_with": [
+    "familienpflegezeit"
+  ],
+  "incompatible_with": [
+    "pflegegeld"
+  ],
+  "related_benefits": [
+    "familienpflegezeit",
+    "pflegegeld"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Das Pflegeunterstützungsgeld ist ein Lohnersatz, wenn Sie für die Pflege eines Angehörigen vorübergehend von der Arbeit freigestellt sind.",
+    "for_whom": "Für Arbeitnehmer, die für die Pflege eines Angehörigen von der Arbeit freigestellt sind (max. 10 Tage im Jahr).",
+    "requirements": "Ihr Angehöriger muss pflegebedürftig sein, Sie müssen von der Arbeit freigestellt sein und die Krankenkasse muss informiert sein.",
+    "how_mind": "Bis zu 135,63 Euro pro Tag, maximal 10 Tage im Jahr (max. 1.356,30 Euro).",
+    "how_calculated": "Es wird ein Pauschalbetrag pro Tag der Freistellung gezahlt, unabhängig vom entgangenen Verdienst.",
+    "documents_needed": "Personalausweis, Bescheid über Pflegegrad, Bestätigung des Arbeitgebers, Kontoauszug",
+    "where_to_apply": "Bei Ihrer gesetzlichen Pflegekasse (schriftlich)",
+    "deadlines": "Antrag während oder nach der Freistellung stellen. Bei Familienpflegezeit 8 Wochen vorher.",
+    "faq": [
+      {
+        "question": "Wie lange kann ich das Pflegeunterstützungsgeld bekommen?",
+        "answer": "Maximal 10 Tage im Kalenderjahr, unabhängig davon, ob es Pflegezeit oder Familienpflegezeit ist."
+      },
+      {
+        "question": "Muss ich mich beim Arbeitgeber bewerben?",
+        "answer": "Ja, die Freistellung muss mit dem Arbeitgeber vereinbart werden. Der Arbeitgeber muss die Krankenkasse informieren."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/leistungen-der-pflegeversicherung/leistungen-im-ueberblick/wie-wird-die-vereinbarkeit-von-pflege-und-beruf-gefoerdert",
+      "title": "Wie wird die Vereinbarkeit von Pflege und Beruf gefördert?",
+      "organization": "Bundesministerium für Gesundheit",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    },
+    {
+      "url": "https://www.pflege.de/pflegekasse-pflegefinanzierung/pflegeleistungen/pflegeunterstuetzungsgeld/",
+      "title": "Pflegeunterstützungsgeld",
+      "organization": "Pflege.de",
+      "last_verified": "2026-09-09",
+      "type": "secondary"
+    }
+  ],
+  "last_verified": "2026-09-09",
+  "valid_from": "2026-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Höchstbetrag 2026: 135,63 Euro pro Tag",
+    "Maximal 10 Tage pro Jahr",
+    "Gilt für Pflegezeit (6 Monate) und Familienpflegezeit (24 Monate)"
+  ],
+  "created_at": "2026-09-09",
+  "updated_at": "2026-09-09"
+}

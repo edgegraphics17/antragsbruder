@@ -1,0 +1,168 @@
+{
+  "id": "elterngeld",
+  "official_name": "Elterngeld",
+  "aliases": ["Basiselterngeld", "ElterngeldPlus", "Partnerschaftsbonus", "Elterngeld Plus"],
+  "former_names": [],
+  "type": "family_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Elterngeld",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Elterngeldstelle",
+    "authority": "Bundesministerium für Familie, Senioren, Frauen und Jugend (BMFSFJ)",
+    "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/elterngeld",
+    "phone": "030 20179165"
+  },
+  "target_groups": ["Eltern", "Alleinerziehende", "Adoptiveltern"],
+  "life_situations": ["kind_bekommen", "familie", "alleinerziehend", "adoption"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "eg-001",
+        "description": "Elternteil hat Anspruch nach Geburt oder Adoption",
+        "condition": "Kind wurde gegeben oder adoptiert",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "eg-002",
+        "description": "Elternteil lebt im selben Haushalt wie das Kind",
+        "condition": "Gemeinsamer Haushalt mit dem Kind",
+        "required": true,
+        "category": "household"
+      },
+      {
+        "rule_id": "eg-003",
+        "description": "Elternteil ist oder war erwerbstätig",
+        "condition": "Einkommen aus Erwerbstätigkeit vor der Geburt",
+        "required": true,
+          "category": "income"
+      },
+      {
+        "rule_id": "eg-004",
+        "description": "Einkommensgrenze für Höchstbetrag",
+        "condition": "Nettoeinkommen vor Geburt über 2.770 Euro (für Höchstbetrag)",
+        "required": false,
+        "category": "income"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Elterngeld-Netto",
+        "threshold": 2770,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Basiselterngeld: bis 14 Lebensmonate des Kindes",
+      "ElterngeldPlus: bis 32 Lebensmonate (doppelte Dauer, halber Betrag)",
+      "Partnerschaftsbonus: 2-4 zusätzliche Monate bei paralleler Erwerbstätigkeit (30-35 Std.)",
+      "Mindestbetrag: 300 Euro (auch bei Einkommenswegfall)",
+      "Geschwisterbonus: 10% Zuschlag bei jüngeren Geschwistern"
+    ]
+  },
+  "calculation": {
+    "method": "67% des durchschnittlichen Nettoeinkommens aus Erwerbstätigkeit vor der Geburt",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Durchschnittliches Nettoeinkommen vor Geburt berechnen",
+        "formula": "Nettoeinkommen / Monate",
+        "value": "Individuell"
+      },
+      {
+        "step": 2,
+        "description": "67% des Nettoeinkommens als Elterngeld",
+        "formula": "Nettoeinkommen × 0,67",
+        "value": "300-1.800 Euro"
+      },
+      {
+        "step": 3,
+        "description": "ElterngeldPlus: halber Betrag, doppelte Dauer",
+        "formula": "Basiselterngeld / 2",
+        "value": "150-900 Euro"
+      }
+    ],
+    "min_amount": 300,
+    "max_amount": 1800,
+    "typical_amount": "67% des vorherigen Nettoeinkommens, mindestens 300 Euro, maximal 1.800 Euro",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "67% des Nettoeinkommens vor Geburt, mindestens 300 Euro, maximal 1.800 Euro (Basiselterngeld)",
+    "min_monthly": 300,
+    "max_monthly": 1800,
+    "one_time": null,
+    "depends_on": ["Nettoeinkommen vor Geburt", "Anzahl Kinder", "Bezugsform"]
+  },
+  "application": {
+    "method": "Schriftlich bei der Elterngeldstelle des Wohnortes",
+    "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/elterngeld",
+    "forms": ["Antrag auf Elterngeld"],
+    "required_documents": ["Geburtsurkunde", "Einkommensnachweise", "Arbeitsvertrag", "Krankenkassennachweis"],
+    "processing_time": "4-8 Wochen",
+    "deadlines": {
+      "description": "Antrag innerhalb der ersten 14 Lebensmonate stellen",
+      "note": "Rückwirkend nur 3 Monate möglich"
+    }
+  },
+  "legal_basis": ["§§ 1 ff. BEEG (Bundeselterngeld- und Elternzeitgesetz)"],
+  "compatible_with": ["kindergeld", "elternzeit", "mutterschaftsgeld"],
+  "incompatible_with": ["arbeitslosengeld-i"],
+  "related_benefits": ["elternzeit", "kindergeld", "mutterschaftsgeld"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Elterngeld ersetzt einen Teil des Einkommens, das durch die Betreuung des Kindes ausfällt.",
+    "for_whom": "Eltern, die nach der Geburt zeitweise nicht oder weniger arbeiten",
+    "requirements": "Ehe oder Lebenspartnerschaft mit dem Kind, eigener Haushalt, vorherige Erwerbstätigkeit",
+    "how_much": "67% des vorherigen Nettoeinkommens, mindestens 300 Euro, maximal 1.800 Euro pro Monat",
+    "how_calculated": "Prozentsatz des durchschnittlichen Nettoeinkommens der letzten 12 Monate vor der Geburt",
+    "documents_needed": "Geburtsurkunde, Einkommensnachweise, Arbeitsvertrag, Krankenkassennachweis",
+    "where_to_apply": "Elterngeldstelle des zuständigen Landes (in der Regel beim Jugendamt)",
+    "deadlines": "Innerhalb der ersten 14 Lebensmonate des Kindes stellen",
+    "faq": [
+      {
+        "question": "Was ist der Unterschied zwischen Basiselterngeld und ElterngeldPlus?",
+        "answer": "Basiselterngeld wird bis zum 14. Lebensmonat gezahlt, ElterngeldPlus bis zum 32. Monat - aber nur mit halbem Betrag"
+      },
+      {
+        "question": "Kann ich Elterngeld und arbeiten gleichzeitig bekommen?",
+        "answer": "Ja, bei Teilzeitarbeit wird der Verdienst angerechnet, aber Elterngeld wird reduziert"
+      },
+      {
+        "question": "Was ist der Partnerschaftsbonus?",
+        "answer": "2-4 zusätzliche ElterngeldPlus-Monate, wenn beide Eltern 30-35 Stunden pro Woche arbeiten"
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/elterngeld",
+      "title": "Elterngeld - BMBFSFJ",
+      "organization": "Bundesministerium für Familie, Senioren, Frauen und Jugend",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/beeg/",
+      "title": "BEEG - Gesetz zum Elterngeld und zur Elternzeit",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Neue Einkommensgrenzen seit 1. April 2025", "ElterngeldPlus: 150-900 Euro", "Partnerschaftsbonus: 2-4 Monate bei paralleler Erwerbstätigkeit"],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

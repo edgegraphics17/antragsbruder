@@ -1,0 +1,178 @@
+{
+  "id": "bildungskredit_kfw",
+  "official_name": "Bildungskredit (KfW-Studienkredit / Kredit Nr. 173 und 174)",
+  "aliases": ["Bildungskredit", "KfW-Studienkredit", "KfW-Kredit", "Studienkredit", "Bildungskredit KfW", "Kredit Nr. 173", "Kredit Nr. 174"],
+  "former_names": ["Bildungskredit der KfW"],
+  "type": "education_benefit",
+  "status": "verified",
+  "category": "Studium & Bildung",
+  "subcategory": "Studienfinanzierung durch Kredite",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Kreditanstalt für Wiederaufbau (KfW)",
+    "authority": "KfW / Bundesverwaltungsamt (BVA)",
+    "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Studieren-Qualifizieren/",
+    "phone": "0800-5399001"
+  },
+  "target_groups": ["Studierende (ab 18 Jahren)", "Schüler (ab 18 Jahren)", "Auszubildende (ab 18 Jahren)", "Fortgeschrittene Studierende (ab 5. Semester)"],
+  "life_situations": ["student", "ausbildung"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "bildungskredit_alter",
+        "description": "Alter zwischen 18 und 35 Jahren (Studienkredit), bis 44 Jahre (Promotion)",
+        "condition": "alter >= 18 AND alter <= 35",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "bildungskredit_studium",
+        "description": "Studium an einer staatlich anerkannten Hochschule (ab 5. Fachsemester)",
+        "condition": "studium_ab_5_fachsemester",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bildungskredit_deutschland",
+        "description": "Deutsche Staatsangehörigkeit oder dauerhafter Aufenthalt in Deutschland",
+        "condition": "deutsch OR dauerhaft_in_deutschland",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "bildungskredit_einkommen",
+        "description": "Keine Sicherheiten erflicht (Bildungskredit), Bonitätsprüfung (Studienkredit)",
+        "condition": "bonitaet_pruefung",
+        "required": false,
+        "category": "income"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Studienkredit",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2025-01-01"
+      }
+    ],
+    "asset_rules": {
+      "threshold": 0,
+      "exemptions": ["Keine Sicherheiten erforderlich (Bildungskredit)"],
+      "last_updated": "2025-01-01"
+    },
+    "special_conditions": [
+      "Studienkredit: Kombinierbar mit BAföG und Bildungskredit",
+      "Bildungskredit: Bis zu 7.200€ für einmalige Kosten",
+      "Studienkredit: Bis zu 650€/Monat"
+    ]
+  },
+  "calculation": {
+    "method": "Kreditbetrag abhängig von Art der Förderung",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Bildungskredit (Nr. 173)",
+        "value": "Bis zu 7.200€ als Einmalzahlung (bis 3.600€ pro Auszahlung)",
+        "note": "Für einmalige Kosten (Laptop, Materialien, Mietkaution)"
+      },
+      {
+        "step": 2,
+        "description": "KfW-Studienkredit (Nr. 174)",
+        "value": "Bis zu 650€ monatlich",
+        "note": "Für laufende Lebenshaltungskosten"
+      },
+      {
+        "step": 3,
+        "description": "Kreditlaufzeit",
+        "value": "14 Semester (unter 24 J.) bis 10 Semester (24-34 J.)",
+        "note": "Maximale Kreditsumme: 54.600€"
+      }
+    ],
+    "min_amount": 1,
+    "max_amount": 650,
+    "typical_amount": "400€-650€ monatlich",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Bildungskredit: Bis zu 7.200€ (einmalig). KfW-Studienkredit: Bis zu 650€/Monat (max. 54.600€)",
+    "min_monthly": 1,
+    "max_monthly": 650,
+    "one_time": 7200,
+    "depends_on": ["Art des Kredits", "Alter", "Fachsemester", "Bonität"]
+  },
+  "application": {
+    "method": "Online bei der KfW oder beim Bundesverwaltungsamt (BVA)",
+    "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Studieren-Qualifizieren/",
+    "forms": ["Antrag auf Bildungskredit", "Antrag auf KfW-Studienkredit"],
+    "required_documents": ["Personalausweis", "Immatrikulationsbescheinigung", "Kontoauszüge", "Nachweis des Fachsemesters (Studienkredit)"],
+    "processing_time": "2-4 Wochen",
+    "deadlines": {
+      "description": "Keine festen Fristen, Antrag frühzeitig stellen",
+      "note": "Kreditvertrag muss vor Auszahlung unterzeichnet werden"
+    }
+  },
+  "legal_basis": ["KfW-Förderprogramm (Kredit Nr. 173 und 174)", "Bildungskreditprogramm der KfW"],
+  "compatible_with": ["bafoeg", "aufstiegsbafoeg", "stipendien"],
+  "incompatible_with": ["berufsausbildungsbeihilfe_bab"],
+  "related_benefits": ["bafoeg", "aufstiegsbafoeg", "stipendien"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der Bildungskredit und KfW-Studienkredit sind zinsgünstige Kredite der KfW zur Finanzierung von Studium und Ausbildung. Sie ergänzen BAföG.",
+    "for_whom": "Studierende ab dem 5. Fachsemester, Schüler und Auszubildende ab 18 Jahren, die eine Finanzierung für ihr Studium oder ihre Ausbildung benötigen.",
+    "requirements": "Alter zwischen 18 und 35 Jahren, Studium an einer staatlich anerkannten Hochschule (ab 5. Semester), deutsche Staatsangehörigkeit oder dauerhafter Aufenthalt.",
+    "how_much": "Bildungskredit: Bis zu 7.200€ als Einmalzahlung. KfW-Studienkredit: Bis zu 650€ monatlich (max. 54.600€).",
+    "how_calculated": "Der Kreditbetrag richtet sich nach dem individuellen Bedarf. Die KfW prüft die Bonität (Studienkredit) oder gewährt ohne Sicherheiten (Bildungskredit).",
+    "documents_needed": "Personalausweis, Immatrikulationsbescheinigung, Kontoauszüge, Nachweis des Fachsemesters (Studienkredit).",
+    "where_to_apply": "Online bei der KfW (kfw.de) oder beim Bundesverwaltungsamt (BVA) für den Bildungskredit.",
+    "deadlines": "Keine festen Fristen. Antrag frühzeitig stellen, da die Bearbeitung 2-4 Wochen dauert.",
+    "faq": [
+      {
+        "question": "Kann ich Bildungskredit und BAföG kombinieren?",
+        "answer": "Ja, Bildungskredit und BAföG sind kombinierbar. Der Bildungskredit ergänzt BAföG, wenn die Förderung nicht ausreicht."
+      },
+      {
+        "question": "Wann muss ich den Kredit zurückzahlen?",
+        "answer": "Die Rückzahlung beginnt 18-23 Monate nach Ende der Förderung. Die Laufzeit beträgt maximal 15 Jahre."
+      },
+      {
+        "question": "Brauche ich einen Bürgen?",
+        "answer": "Nein, für den Bildungskredit sind keine Sicherheiten erforderlich. Beim Studienkredit prüft die KfW die Bonität."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Studieren-Qualifizieren/F%C3%B6rderprodukte/Bildungskredit-(173)/",
+      "title": "Bildungskredit (173) - KfW",
+      "organization": "KfW",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    },
+    {
+      "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Studieren-Qualifizieren/F%C3%B6rderprodukte/KfW-Studienkredit-(174)/",
+      "title": "KfW-Studienkredit (174)",
+      "organization": "KfW",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    },
+    {
+      "url": "https://www.bva.bund.de/DE/Services/Buerger/Schule-Ausbildung-Studium/Bildungskredit/bildungskredit_node.html",
+      "title": "Bildungskredit - Bundesverwaltungsamt",
+      "organization": "BVA",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Der Bildungskredit (Nr. 173) wird vom Bundesverwaltungsamt (BVA) auf Basis des KfW-Programms gewährt. Der KfW-Studienkredit (Nr. 174) wird direkt von der KfW vergeben. Beide Kredite sind zinsgünstig und kombinierbar mit BAföG."],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

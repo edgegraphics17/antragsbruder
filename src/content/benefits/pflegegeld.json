@@ -1,0 +1,182 @@
+{
+  "id": "pflegegeld",
+  "official_name": "Pflegegeld",
+  "aliases": [
+    "Pflegegeld der Pflegeversicherung",
+    "Pflegegeld SGB XI",
+    "Geldleistung für häusliche Pflege",
+    "Pflegegeld bei Pflegegrad"
+  ],
+  "former_names": [],
+  "type": "care_benefit",
+  "status": "verified",
+  "category": "Pflege",
+  "subcategory": "Häusliche Pflege",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Pflegekasse",
+    "authority": "Zuständige Pflegekasse (bei gesetzlich Versicherten) oder privates Versicherungsunternehmen",
+    "url": "https://www.pflegeversicherung.de",
+    "phone": "Kontakt über Pflegekasse"
+  },
+  "target_groups": [
+    "Pflegebedürftige mit Pflegegrad 2 bis 5",
+    "Personen, die zu Hause von Angehörigen oder selbst beschafften Pflegehilfen gepflegt werden"
+  ],
+  "life_situations": [
+    "pflege_angehoeriger",
+    "kann_nicht_arbeiten",
+    "senior"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "elg-pg-01",
+        "description": "Pflegebedürftigkeit mit Pflegegrad 2 bis 5",
+        "condition": "Feststellung der Pflegebedürftigkeit durch den Medizinischen Dienst (MDK/MD) mit Zuordnung zu Pflegegrad 2, 3, 4 oder 5",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-pg-02",
+        "description": "Häusliche Pflege",
+        "condition": "Die Pflege wird in der häuslichen Umgebung erbracht (nicht vollstationär)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "elg-pg-03",
+        "description": "Selbst beschaffte Pflegehilfen",
+        "condition": "Anstelle von Pflegesachleistungen werden selbst beschaffte Pflegehilfen in Anspruch genommen",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Für Pflegegrad 1 besteht kein Anspruch auf Pflegegeld",
+      "Bei vollstationärer Pflege entfällt der Anspruch auf Pflegegeld",
+      "Während Kurzzeitpflege oder Verhinderungspflege wird das Pflegegeld zur Hälfte für bis zu 8 Wochen fortgewährt"
+    ]
+  },
+  "calculation": {
+    "method": "Pauschale monatliche Geldleistung nach Pflegegrad",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Pflegegrad ermitteln lassen",
+        "value": "Pflegegrad 2, 3, 4 oder 5"
+      },
+      {
+        "step": 2,
+        "description": "Anspruch prüfen",
+        "value": "Häusliche Pflege, keine vollstationäre Pflege"
+      }
+    ],
+    "min_amount": 347,
+    "max_amount": 990,
+    "typical_amount": "347€ (PG2), 599€ (PG3), 800€ (PG4), 990€ (PG5) monatlich",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Monatliche Geldleistung nach Pflegegrad",
+    "min_monthly": 347,
+    "max_monthly": 990,
+    "depends_on": [
+      "Pflegegrad"
+    ]
+  },
+  "application": {
+    "method": "Antrag bei der zuständigen Pflegekasse",
+    "url": "https://www.pflegeversicherung.de/leistungen/pflegegeld",
+    "forms": [
+      "Antrag auf Pflegegeld"
+    ],
+    "required_documents": [
+      "Ärztliches Attest / Gutachten des MDK zum Pflegegrad",
+      "Antrag auf Pflegegeld",
+      "Nachweis über Versicherung bei der Pflegekasse"
+    ],
+    "processing_time": "Innerhalb von 5 Wochen nach Antragstellung",
+    "deadlines": {
+      "description": "Antrag nach Feststellung des Pflegegrads stellen",
+      "note": "Keine feste Frist, aber rückwirkend maximal 1 Monat vor Antragstellung"
+    }
+  },
+  "legal_basis": [
+    "§ 37 SGB XI",
+    "§ 30 Abs. 1 SGB XI"
+  ],
+  "compatible_with": [
+    "pflegesachleistungen",
+    "verhinderungspflege",
+    "entlastungsleistungen",
+    "hilfsmittel"
+  ],
+  "incompatible_with": [
+    "vollstationäre_pflege"
+  ],
+  "related_benefits": [
+    "pflegesachleistungen",
+    "entlastungsleistungen",
+    "verhinderungspflege"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Pflegegeld ist eine monatliche Geldleistung der Pflegeversicherung für pflegebedürftige Menschen, die zu Hause gepflegt werden und keine Pflegesachleistungen in Anspruch nehmen.",
+    "for_whom": "Pflegebedürftige mit Pflegegrad 2 bis 5, die zu Hause von Angehörigen oder selbst beschafften Kräften gepflegt werden.",
+    "requirements": "Pflegegrad 2 bis 5, häusliche Pflege (nicht vollstationär).",
+    "how_much": "Zwischen 347 Euro (Pflegegrad 2) und 990 Euro (Pflegegrad 5) pro Monat.",
+    "how_calculated": "Pauschale Beträge je nach Pflegegrad - keine Einkommensprüfung.",
+    "documents_needed": "Antrag auf Pflegegeld, ärztliches Gutachten zum Pflegegrad.",
+    "where_to_apply": "Bei Ihrer zuständigen Pflegekasse (bei gesetzlich Versicherten) oder privaten Pflegeversicherung.",
+    "deadlines": "Keine feste Frist. Antrag nach Pflegegradfeststellung stellen.",
+    "faq": [
+      {
+        "question": "Bekomme ich auch Pflegegeld bei Pflegegrad 1?",
+        "answer": "Nein, für Pflegegrad 1 wird kein Pflegegeld gewährt. Es bestehen jedoch andere Leistungsansprüche."
+      },
+      {
+        "question": "Was passiert mit dem Pflegegeld bei Kurzzeitpflege?",
+        "answer": "Während Kurzzeitpflege wird das Pflegegeld zur Hälfte für bis zu 8 Wochen je Kalenderjahr fortgewährt."
+      },
+      {
+        "question": "Muss ich für das Pflegegeld Einkommensteuer zahlen?",
+        "answer": "Nein, Pflegegeld ist steuerfrei."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_11/__37.html",
+      "title": "§ 37 SGB XI - Pflegegeld für selbst beschaffte Pflegehilfen",
+      "organization": "Gesetze im Internet",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3_Downloads/P/Pflegeversicherung_Leistungsbeitraege/Uebersicht_Leistungsbetraege_2025.pdf",
+      "title": "Leistungsansprüche der Versicherten im Jahr 2025",
+      "organization": "Bundesministerium für Gesundheit",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Leistungsbeträge ab 1.1.2025: PG2=347€, PG3=599€, PG4=800€, PG5=990€",
+    "Pflegegeld ist steuerfrei",
+    "Keine Einkommensprüfung für Pflegegeld"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

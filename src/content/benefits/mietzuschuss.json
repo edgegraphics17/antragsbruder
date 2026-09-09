@@ -1,0 +1,163 @@
+{
+  "id": "mietzuschuss",
+  "official_name": "Mietzuschuss (laufende Wohngeldleistung)",
+  "aliases": [
+    "Wohgeld Mieter",
+    "Laufende Wohngeldleistung",
+    "Monatlicher Wohnkostenzuschuss"
+  ],
+  "former_names": [],
+  "type": "housing_benefit",
+  "status": "verified",
+  "category": "Wohnen & Immobilien",
+  "subcategory": "Laufende Wohngeldleistung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Wohngeldbehörde",
+    "authority": "Wohngeldbehörde der Gemeinde / Stadt",
+    "url": "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld-plus/wohngeld-plus_node.html"
+  },
+  "target_groups": [
+    "Mieter",
+    "Untermieter",
+    "Wohnberechtigungsschein-Inhaber"
+  ],
+  "life_situations": [
+    "wohnkosten_hoch",
+    "alleinerziehend",
+    "rentner",
+    "student"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "mietzuschuss_tenant",
+        "description": "Mieter oder Untermieter",
+        "condition": "Antragsteller muss Mieter oder Untermieter sein",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "mietzuschuss_income",
+        "description": "Einkommensgrenze",
+        "condition": "Bruttoeinkommen unter der Grenze für Haushaltsgröße und Mietstufe",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "mietzuschuss_residence",
+        "description": "Eigennutzung",
+        "condition": "Wohnung muss selbst genutzt werden",
+        "required": true,
+        "category": "location"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "1-Personen-Haushalt, Mietstufe 4",
+        "threshold": 1541,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-01-01"
+      },
+      {
+        "applies_to": "2-Personen-Haushalt, Mietstufe 4",
+        "threshold": 2080,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-01-01"
+      }
+    ]
+  },
+  "calculation": {
+    "method": "Laufende monatliche Zahlung nach § 19 WoGG",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Monatlicher Zuschuss zur Miete. Höchstbeträge 2026: 1 Person Mietstufe 4 = 640,60€ inkl. Heizkosten.",
+    "min_monthly": 10,
+    "max_monthly": 1566,
+    "depends_on": [
+      "Haushaltsgröße",
+      "Mietstufe",
+      "Bruttoeinkommen",
+      "Miete"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich oder online bei der Wohngeldbehörde",
+    "forms": [
+      "Wohngeldantrag"
+    ],
+    "required_documents": [
+      "Mietvertrag",
+      "Mietbescheinigung",
+      "Einkommensnachweise",
+      "Kontoauszüge"
+    ],
+    "processing_time": "4-8 Wochen"
+  },
+  "legal_basis": [
+    "§§ 1-46 Wohngeldgesetz (WoGG)"
+  ],
+  "compatible_with": [
+    "kindergeld",
+    "bafoeg",
+    "unterhaltsvorschuss"
+  ],
+  "incompatible_with": [
+    "buergergeld",
+    "grundsicherung"
+  ],
+  "related_benefits": [
+    "wohngeld",
+    "lastenzuschuss",
+    "wohnberechtigungsschein"
+  ],
+  "user_content": {
+    "short_explanation": "Mietzuschuss ist die laufende monatliche Wohngeldleistung für Mieter.",
+    "for_whom": "Mieter mit geringem Einkommen, die ihre Miete kaum noch bezahlen können.",
+    "requirements": "Sie müssen Mieter sein, in Deutschland wohnen und ein geringes Einkommen haben.",
+    "how_much": "Im Durchschnitt ca. 300 Euro pro Monat.",
+    "how_calculations": "Die Wohngeldbehörde berechnet aus Einkommen, Haushaltsgröße und Miete den Zuschuss.",
+    "documents_needed": "Mietvertrag, Gehaltsabrechnungen, Kontoauszüge.",
+    "where_to_apply": "Bei der Wohngeldbehörde Ihrer Stadt oder Gemeinde.",
+    "deadlines": "Wird ab Monat der Antragstellung für 12 Monate gewährt.",
+    "faq": [
+      {
+        "question": "Kann ich Mietzuschuss online beantragen?",
+        "answer": "Bei einigen Behörden ja, bei anderen nur schriftlich."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld-plus/wohngeld-plus_node.html",
+      "title": "BMWSB Wohngeld für Mieter",
+      "organization": "Bundesministerium für Wohnen, Stadtentwicklung und Bauwesen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/wogg/",
+      "title": "Wohngeldgesetz (WoGG)",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Mietzuschuss ist die praktische Umsetzung des Wohgeldes für Mieter."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

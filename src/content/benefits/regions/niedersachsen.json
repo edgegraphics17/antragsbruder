@@ -1,0 +1,78 @@
+{
+  "state": "Niedersachsen",
+  "state_code": "NI",
+  "benefits": [
+    {
+      "id": "nds-nbank-gruendung",
+      "official_name": "NBank Gründungsförderung Niedersachsen",
+      "description": "Innovationsförderprogramm für Start-ups im Hightech-Segment in Niedersachsen. Unterstützung von innovativen Gründungen.",
+      "type": "business_subsidy",
+      "provider": "NBank (Investitions- und Förderbank Niedersachsen)",
+      "url": "https://www.nbank.de/F%C3%B6rderprogramme/Aktuelle-F%C3%B6rderprogramme/",
+      "status": "verified"
+    },
+    {
+      "id": "nds-nbank-innovationsfoerderung",
+      "official_name": "Niedersächsisches Innovationsförderprogramm",
+      "description": "Förderung von Vorhaben der industriellen Forschung und experimentellen Entwicklung. Einzelvorhaben von KMU oder Verbundvorhaben.",
+      "type": "business_subsidy",
+      "provider": "NBank (Investitions- und Förderbank Niedersachsen)",
+      "url": "https://www.foerderdatenbank.de/FDB/Content/DE/Foerderprogramm/Land/Niedersachsen/niedersaechsisches-innovationsfoerderprogramm.html",
+      "status": "verified"
+    },
+    {
+      "id": "nds-gruendungsstipendium",
+      "official_name": "Gründungsstipendium Niedersachsen",
+      "description": "Stipendium für Existenzgründer in der Gründungs- und Aufbauphase sowie Vorgründungsphase.",
+      "type": "business_subsidy",
+      "provider": "NBank / Hochschulen Niedersachsen",
+      "url": "https://sigu-plattform.de/foerderfinder/gruendungsstipendium-niedersachsen/",
+      "status": "verified"
+    },
+    {
+      "id": "nds-zukunftsraeume",
+      "official_name": "Förderprogramm Zukunftsräume Niedersachsen",
+      "description": "Stärkung zentraler Orte in ländlichen Räumen. Nächster Antragsstichtag: 31.08.2026.",
+      "type": "social_benefit",
+      "provider": "Niedersächsisches Ministerium für Ernährung, Landwirtschaft und Forsten",
+      "url": "https://www.arl-bs.niedersachsen.de/zukunftsraeume/forderprogramm-zukunftsraume-niedersachsen-179907.html",
+      "status": "verified"
+    },
+    {
+      "id": "nds-stadtebaufoerderung",
+      "official_name": "Städtebauförderung Niedersachsen",
+      "description": "Förderung von Ordnungs- und Erschließungsmaßnahmen sowie Wachstum und nachhaltige Erneuerung. Förderung beträgt 2/3 der förderfähigen Kosten.",
+      "type": "housing_benefit",
+      "provider": "Niedersächsisches Ministerium für Wirtschaft, Bauen und Tourismus",
+      "url": "https://www.mw.niedersachsen.de/startseite/bauen_wohnen/stadtebauforderung/stadtebauforderung-in-niedersachsen-217289.html",
+      "status": "verified"
+    },
+    {
+      "id": "nds-waermewende",
+      "official_name": "Wärmewende in Niedersachsen",
+      "description": "Förderprogramme zur Wärmewende: Wärmepumpen, Solarthermie, Wärmenetzanschlüsse. Zusammengestellt von der Klimaschutz- und Energieagentur Niedersachsen.",
+      "type": "energy_subsidy",
+      "provider": "Klimaschutz- und Energieagentur Niedersachsen",
+      "url": "https://www.niedersachsen.de/energie/waermewende/warmewende-in-niedersachsen-227497.html",
+      "status": "verified"
+    },
+    {
+      "id": "nds-sportstatten",
+      "official_name": "Sportstätteninvestitionsprogramm Niedersachsen",
+      "description": "Land fördert Sportstätten in Niedersachsen mit 50 Millionen Euro (2025-2026). Förderschwerpunkt: Lehrschwimmbecken in Kommunen.",
+      "type": "social_benefit",
+      "provider": "Niedersächsisches Ministerium für Inneres, Sport und Integration",
+      "url": "https://www.mi.niedersachsen.de/startseite/themen/sport_kultur_soziales/sport/sportstatten/sportstatteninvestitionsprogramm-62832.html",
+      "status": "verified"
+    },
+    {
+      "id": "nds-zukunft-niedersachsen",
+      "official_name": "Zukunft.Niedersachsen",
+      "description": "Gemeinsames Förderprogramm für Forschung, Lehre und Transfer des Niedersächsischen Ministeriums für Wissenschaft und Kultur und der VolkswagenStiftung.",
+      "type": "education_benefit",
+      "provider": "Niedersächsisches Ministerium für Wissenschaft und Kultur / VolkswagenStiftung",
+      "url": "https://zukunft.niedersachsen.de/",
+      "status": "verified"
+    }
+  ]
+}

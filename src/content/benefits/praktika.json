@@ -1,0 +1,178 @@
+{
+  "id": "praktika",
+  "official_name": "Praktikumsförderung (Europäisches Solidaritätskorps, BJSV, Erasmus+)",
+  "aliases": ["Praktikumsförderung", "Europäisches Solidaritätskorps", "ESK", "Erasmus+", "Praktikum im Ausland", "BSJV", "Solidaritätskorps"],
+  "former_names": ["Europäischer Freiwilligendienst (EFJ)", "JUGEND für Europa"],
+  "type": "education_benefit",
+  "status": "verified",
+  "category": "Studium & Bildung",
+  "subcategory": "Praktikums- und Auslandförderung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesministerium für Familie, Senioren, Frauen und Jugend (BMFSFJ) / Europäische Kommission",
+    "authority": "JUGEND für Europa / OeAD",
+    "url": "https://youth.europa.eu/solidarity_de",
+    "phone": ""
+  },
+  "target_groups": ["Junge Menschen (18-30 Jahre)", "Studierende", "Auszubildende", "Schüler", "Berufsrückkehrer"],
+  "life_situations": ["student", "ausbildung", "weiterbildung"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "praktikum_alter",
+        "description": "Alter zwischen 18 und 30 Jahren (ESK) oder 16-30 Jahre (Erasmus+)",
+        "condition": "alter >= 18 AND alter <= 30",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "praktikum_staatsangehoerigkeit",
+        "description": "EU-Staatsangehörigkeit oder dauerhafter Aufenthalt in der EU",
+        "condition": "eu_staatsangehoerigkeit OR dauerhafter_aufenthalt_eu",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "praktikum_engagement",
+        "description": "Engagement für die Gemeinschaft (soziales, ökologisches, kulturelles)",
+        "condition": "engagement_fuer_gemeinschaft",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "praktikum_projekt",
+        "description": "Teilnahme an einem anerkannten Projekt (ESK) oder Programm (Erasmus+)",
+        "condition": "anerkanntes_projekt",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Taschengeld",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2025-01-01"
+      }
+    ],
+    "asset_rules": {
+      "threshold": 0,
+      "exemptions": [],
+      "last_updated": "2025-01-01"
+    },
+    "special_conditions": [
+      "ESK: Vollständige Förderung (Unterkunft, Verpflegung, Taschengeld, Versicherung)",
+      "Erasmus+: Förderung von Studierenden und Auszubildenden im Ausland",
+      "BSJV: Förderung von Solidaritätsprojekten"
+    ]
+  },
+  "calculation": {
+    "method": "Vollständige Förderung (ESK) oder Zuschuss (Erasmus+)",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Europäisches Solidaritätskorps (ESK)",
+        "value": "Vollständige Förderung: Unterkunft, Verpflegung, Taschengeld, Versicherung, Sprachkurs",
+        "note": "Für Freiwilligendienste und Solidaritätsprojekte"
+      },
+      {
+        "step": 2,
+        "description": "Erasmus+",
+        "value": "Zuschuss für Studium/Praktikum im Ausland (bis zu 600€/Monat)",
+        "note": "Für Studierende und Auszubildende"
+      },
+      {
+        "step": 3,
+        "description": "BSJV (Bundesprogramm für junge Solidarität)",
+        "value": "Förderung von Solidaritätsprojekten",
+        "note": "Für Projekte in Deutschland"
+      }
+    ],
+    "min_amount": 1,
+    "max_amount": 600,
+    "typical_amount": "200€-600€ monatlich (Taschengeld/Zuschuss)",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Praktikumsförderung: ESK vollständige Förderung (Unterkunft, Verpflegung, Taschengeld), Erasmus+ bis 600€/Monat",
+    "min_monthly": 1,
+    "max_monthly": 600,
+    "one_time": 0,
+    "depends_on": ["Art des Programms", "Land", "Dauer", "Projekt"]
+  },
+  "application": {
+    "method": "Bewerbung bei der zuständigen Stelle (JUGEND für Europa, OeAD, Erasmus+-Koordinatoren)",
+    "url": "https://youth.europa.eu/solidarity_de",
+    "forms": ["Bewerbungsformular (je nach Programm)"],
+    "required_documents": ["Lebenslauf", "Motivationsschreiben", "Sprachnachweise", "Immatrikulationsbescheinigung", "Ausbildungsvertrag"],
+    "processing_time": "3-6 Monate",
+    "deadlines": {
+      "description": "Bewerbungsfristen variieren je nach Programm",
+      "note": "ESK: Laufende Bewerbung, Erasmus+: Jährliche Fristen"
+    }
+  },
+  "legal_basis": ["EU-Programm Europäisches Solidaritätskorps", "EU-Programm Erasmus+", "Bundesprogramm für junge Solidarität (BSJV)"],
+  "compatible_with": ["bafoeg", "berufsausbildungsbeihilfe_bab", "stipendien"],
+  "incompatible_with": [],
+  "related_benefits": ["bafoeg", "berufsausbildungsbeihilfe_bab", "stipendien"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Praktikumsförderung unterstützt junge Menschen bei Praktika und Freiwilligendiensten im Ausland. Das Europäische Solidaritätskorps (ESK) und Erasmus+ sind die wichtigsten Programme.",
+    "for_whom": "Junge Menschen zwischen 18 und 30 Jahren, die ein Praktikum oder einen Freiwilligendienst im Ausland absolvieren wollen. Auch Studierende und Auszubildende können sich bewerben.",
+    "requirements": "Alter zwischen 18 und 30 Jahren, EU-Staatsangehörigkeit oder dauerhafter Aufenthalt, Engagement für die Gemeinschaft, Teilnahme an einem anerkannten Projekt.",
+    "how_much": "ESK: Vollständige Förderung (Unterkunft, Verpflegung, Taschengeld, Versicherung, Sprachkurs). Erasmus+: Zuschuss bis 600€/Monat.",
+    "how_calculated": "Die Förderung richtet sich nach dem Programm und dem Land. ESK bietet vollständige Förderung, Erasmus+ einen Zuschuss.",
+    "documents_needed": "Lebenslauf, Motivationsschreiben, Sprachnachweise, Immatrikulationsbescheinigung, Ausbildungsvertrag.",
+    "where_to_apply": "JUGEND für Europa (ESK), OeAD (Erasmus+), Erasmus+-Koordinatoren an Hochschulen.",
+    "deadlines": "Bewerbungsfristen variieren je nach Programm. ESK: Laufende Bewerbung. Erasmus+: Jährliche Fristen.",
+    "faq": [
+      {
+        "question": "Was ist der Unterschied zwischen ESK und Erasmus+?",
+        "answer": "ESK fördert Freiwilligendienste und Solidaritätsprojekte (vollständige Förderung). Erasmus+ fördert Studium und Praktikum im Ausland (Zuschuss)."
+      },
+      {
+        "question": "Kann ich mich auch bewerben, wenn ich keine Sprachkenntnisse habe?",
+        "answer": "Ja, Sprachkurse werden oft angeboten. Grundkenntnisse sind hilfreich, aber nicht immer erforderlich."
+      },
+      {
+        "question": "Muss ich das Praktikum selbst organisieren?",
+        "answer": "Nein, die Programme vermitteln Projekte und Praktika. Sie können sich auch selbst um ein Praktikum bemühen und dann Förderung beantragen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://youth.europa.eu/solidarity_de",
+      "title": "Über das Europäische Solidaritätskorps",
+      "organization": "Europäische Kommission",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.jugendfuereuropa.de/esk",
+      "title": "Europäisches Solidaritätskorps - JUGEND für Europa",
+      "organization": "BMFSFJ",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://solidaritaetskorps.oead.at/",
+      "title": "Europäisches Solidaritätskorps (ESK)",
+      "organization": "OeAD",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Das Europäische Solidaritätskorps (ESK) wurde 2018 gestartet und löste den Europäischen Freiwilligendienst (EFJ) ab. Erasmus+ wird seit 2014 angeboten. Beide Programme werden von der EU finanziert."],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

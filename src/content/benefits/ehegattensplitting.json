@@ -1,0 +1,158 @@
+{
+  "id": "ehegattensplitting",
+  "official_name": "Ehegattensplitting",
+  "aliases": ["Splittingverfahren", "Ehegattenbesteuerung", "Splittingtarif", "Zusammenveranlagung"],
+  "former_names": [],
+  "type": "tax_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Ehegattensplitting",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Finanzamt",
+    "authority": "Bundesministerium der Finanzen",
+    "url": "https://www.gesetze-im-internet.de/estg/__32a.html",
+    "phone": "030 18682-0"
+  },
+  "target_groups": ["Verheiratete Paare", "Eheleute", "Zusammenveranlagte"],
+  "life_situations": ["familie", "ehe", "trennung"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "es-001",
+        "description": "Eheleute sind zusammen zur Einkommensteuer veranlagt",
+        "condition": "Ehe besteht und Zusammenveranlagung beantragt",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "es-002",
+        "description": "Beide Eheleute sind steuerpflichtig",
+        "condition": "Einkünfte in Deutschland",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "es-003",
+        "description": "Ehe wurde nicht geschieden oder aufgehoben",
+        "condition": "Ehe besteht rechtskräftig",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Steuer wird für die Hälfte des gemeinsamen Einkommens berechnet und verdoppelt",
+      "Vorteilhaft bei unterschiedlichen Einkommen der Eheleute",
+      "Nachteilig bei gleichen hohen Einkommen",
+      "Steuerklasse IV mit Faktor oder III/5 empfohlen"
+    ]
+  },
+  "calculation": {
+    "method": "Steuer für die Hälfte des gemeinsamen Einkommens berechnen und verdoppeln",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Gemeinsames zu versteuerndes Einkommen berechnen",
+        "formula": "Ehegatte A + Ehegatte B",
+        "value": "Summe"
+      },
+      {
+        "step": 2,
+        "description": "Hälfte des Einkommens nehmen",
+        "formula": "Gesamteinkommen / 2",
+        "value": "Hälfte"
+      },
+      {
+        "step": 3,
+        "description": "Steuer nach Tarif berechnen",
+        "formula": "Steuer nach § 32a EStG",
+        "value": "Steuerbetrag"
+      },
+      {
+        "step": 4,
+        "description": "Ergebnis verdoppeln",
+        "formula": "Steuer × 2",
+        "value": "Gesamtsteuer"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": null,
+    "typical_amount": "Vorteil bei unterschiedlichen Einkommen, Nachteil bei gleichen hohen Einkommen",
+    "frequency": "yearly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Kein fester Betrag - Steuerersparnis durch Progressionsvorteil",
+    "min_monthly": 0,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Einkommen beider Eheleute", "Einkommensunterschied"]
+  },
+  "application": {
+    "method": "Über die Einkommensteuererklärung",
+    "url": "https://www.gesetze-im-internet.de/estg/__32a.html",
+    "forms": ["Einkommensteuererklärung", "Anlage S"],
+    "required_documents": ["Einkommensnachweise beider Eheleute", "Heiratsurkunde"],
+    "processing_time": "2-6 Monate (Steuererklärung)",
+    "deadlines": {
+      "description": "Mit der Einkommensteuererklärung (31.07. des Folgejahres)",
+      "note": "Zusammenveranlagung wird automatisch geprüft"
+    }
+  },
+  "legal_basis": ["§ 32a EStG (Einkommensteuertarif)", "§§ 26, 26b EStG (Zusammenveranlagung)"],
+  "compatible_with": ["steuer_familie", "kindergeld", "kinderfreibetrag"],
+  "incompatible_with": [],
+  "related_benefits": ["steuer_familie", "kindergeld"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Das Ehegattensplitting berechnet die Steuer für Ehepaare günstiger als für Ledige.",
+    "for_whom": "Verheiratete Paare mit unterschiedlichen Einkommen",
+    "requirements": "Ehe besteht, Zusammenveranlagung, beide steuerpflichtig",
+    "how_much": "Kein fester Betrag - Steuerersparnis durch Progressionsvorteil",
+    "how_calculated": "Steuer für die Hälfte des gemeinsamen Einkommens berechnen und verdoppeln",
+    "documents_needed": "Einkommensnachweise beider Eheleute, Heiratsurkunde",
+    "where_to_apply": "Über die Einkommensteuererklärung beim Finanzamt",
+    "deadlines": "Mit der Steuererklärung (31.07. des Folgejahres)",
+    "faq": [
+      {
+        "question": "Lohnt sich das Ehegattensplitting?",
+        "answer": "Ja, bei unterschiedlichen Einkommen der Eheleute. Bei gleichen hohen Einkommen kann es nachteilig sein"
+      },
+      {
+        "question": "Wie viel spart man durch das Ehegattensplitting?",
+        "answer": "Der Vorteil hängt vom Einkommensunterschied ab. Bei einem Ehepartner mit 0 Euro und einem mit 60.000 Euro kann die Ersparnis mehrere Tausend Euro betragen"
+      },
+      {
+        "question": "Kann man das Ehegattensplitting ablehnen?",
+        "answer": "Ja, durch Wahl der Steuerklasse IV ohne Faktor oder durch Einzelveranlagung"
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/estg/__32a.html",
+      "title": "§ 32a EStG - Einkommensteuertarif",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bundesfinanzministerium.de/",
+      "title": "Bundesfinanzministerium",
+      "organization": "Bundesministerium der Finanzen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Splittingverfahren: Steuer für Hälfte des Einkommens berechnen und verdoppelt", "Vorteilhaft bei unterschiedlichen Einkommen", "Steuerklasse IV mit Faktor oder III/5 empfohlen"],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

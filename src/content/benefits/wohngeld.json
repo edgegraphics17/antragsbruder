@@ -1,0 +1,169 @@
+{
+  "id": "wohngeld",
+  "official_name": "Wohngeld (Wohngeldgesetz)",
+  "aliases": [
+    "Wohngeld",
+    "Wohngeld-Plus",
+    "Mietzuschuss",
+    "Lastenzuschuss"
+  ],
+  "former_names": [],
+  "type": "housing_benefit",
+  "status": "verified",
+  "category": "Wohnen",
+  "subcategory": "Mietzuschuss",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Wohngeldbehörde",
+    "authority": "Wohngeldbehörde der jeweiligen Kommune / des Kreises",
+    "url": "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeldrechner/wohngeldrechner-2025_node.html",
+    "phone": ""
+  },
+  "target_groups": [
+    "Mieteigene mit geringem Einkommen",
+    "Eigentümer mit geringem Einkommen"
+  ],
+  "life_situations": [
+    "wohnkosten_hoch",
+    "einkommen_nicht_genug"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "wg-r1",
+        "description": "Einkommen unterhalb der Einkommensgrenze",
+        "condition": "einkommen_unter_grenze",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "wg-r2",
+        "description": "Miete oder Belastung (Eigentum) nachweisbar",
+        "condition": "miete_nachweisbar",
+        "required": true,
+        "category": "household"
+      },
+      {
+        "rule_id": "wg-r3",
+        "description": "Wohnsitz in der betreffenden Wohnung",
+        "condition": "wohnsitz",
+        "required": true,
+        "category": "location"
+      }
+    ],
+    "special_conditions": [
+      "Kein Anspruch auf andere Transferleistungen (Bürgergeld, Sozialhilfe) - Ausnahmen möglich"
+    ]
+  },
+  "calculation": {
+    "method": "Komplexe Formel basierend auf Einkommen, Miete, Haushaltsgröße und Mietstufe",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Ermittlung der Mietstufe (1-7) basierend auf dem Wohnlage"
+      },
+      {
+        "step": 2,
+        "description": "Prüfung der Einkommensobergrenze"
+      },
+      {
+        "step": 3,
+        "description": "Berechnung des Wohngelds nach Formel: W = (M - (a + b*Y + c*Y²)) * F"
+      }
+    ],
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Abhängig von Mietstufe, Haushaltsgröße und Einkommen",
+    "min_monthly": 0,
+    "max_monthly": null,
+    "depends_on": [
+      "mietstufe",
+      "haushaltsgroesse",
+      "einkommen",
+      "miete"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich bei der Wohngeldbehörde",
+    "url": "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeldrechner/wohngeldrechner-2025_node.html",
+    "forms": [
+      "Antrag auf Wohngeld (Mietzuschuss)",
+      "Antrag auf Wohngeld (Lastenzuschuss für Eigentümer)"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Mietvertrag",
+      "Einkommensnachweise (letzte 12 Monate)",
+      "Grundbucheintrag bei Eigentum",
+      "Energieausweis"
+    ],
+    "processing_time": "ca. 6-12 Wochen"
+  },
+  "legal_basis": [
+    "Wohngeldgesetz (WoGG)",
+    "Wohngeldverordnung (WoGV)"
+  ],
+  "compatible_with": [
+    "buergergeld",
+    "kinderzuschlag",
+    "bildungspaket"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "buergergeld",
+    "kinderzuschlag"
+  ],
+  "user_content": {
+    "short_explanation": "Wohngeld ist ein Zuschuss zur Miete oder Belastung für Eigentümer, wenn Ihr Einkommen nicht ausreicht.",
+    "for_whom": "Für Mieter und Eigentümer mit geringem Einkommen, die ihre Wohnkosten nicht alleine tragen können.",
+    "requirements": "Ihr Einkommen muss unterhalb der Einkommensgrenze liegen, die von Haushaltsgröße und Mietstufe abhängt.",
+    "how_much": "Hängt von Miete, Einkommen, Haushaltsgröße und Mietstufe ab. Rechner auf der Website des BMWSB.",
+    "how_calculated": "Komplexe Formel: Wohngeld = (Miete - (Grundbetrag + Einkommensanteil)) * Faktor.",
+    "documents_needed": "Mietvertrag, Einkommensnachweise der letzten 12 Monate, Personalausweis",
+    "where_to_apply": "Bei der Wohngeldbehörde Ihrer Kommune oder des Kreises",
+    "deadlines": "Keine spezifischen Fristen, aber rückwirkend nur 12 Monate möglich.",
+    "faq": [
+      {
+        "question": "Kann ich Wohngeld und Bürgergeld gleichzeitig bekommen?",
+        "answer": "Ja, Wohngeld und Bürgergeld sind grundsätzlich kompatibel."
+      },
+      {
+        "question": "Wie lange bekomme ich Wohngeld?",
+        "answer": "In der Regel für 12 Monate, dann muss der Antrag verlängert werden."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeldrechner/wohngeldrechner-2025_node.html",
+      "title": "Wohngeld-Plus Rechner",
+      "organization": "Bundesministerium für Wohnen, Stadtentwicklung und Bauwesen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.wohngeld.org/einkommen/",
+      "title": "Wohngeld Einkommen 2026",
+      "organization": "Wohngeld.org",
+      "last_verified": "2026-09-08",
+      "type": "secondary"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-09-08",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Mietstufen 1-7 je nach Wohnlage",
+    "Einkommensgrennen variieren stark nach Mietstufe und Haushaltsgröße",
+    "Wohngeld-Plus Novelle 2024/2025"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,152 @@
+{
+  "id": "sanierung_zuschuss",
+  "official_name": "Zuschüsse für Sanierung (KfW und BAFA)",
+  "aliases": [
+    "Gebäudesanierung",
+    "Energieeffiziente Sanierung",
+    "Denkmalschutz Sanierung",
+    "KfW 261 262"
+  ],
+  "former_names": [],
+  "type": "energy_subsidy",
+  "status": "verified",
+  "category": "Wohnen & Immobilien",
+  "subcategory": "Sanierungsförderung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "KfW Bankengruppe / BAFA",
+    "authority": "KfW und Hausbank / BAFA",
+    "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/"
+  },
+  "target_groups": [
+    "Eigentümer",
+    "Vermieter",
+    "Denkmalbesitzer"
+  ],
+  "life_situations": [
+    "sanierung",
+    "denkmal",
+    "energiekosten_sparen"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "sanierung_owner",
+        "description": "Eigentümer",
+        "condition": "Antragsteller muss Eigentümer der Immobilie sein",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "sanierung_existing",
+        "description": "Bestandsgebäude",
+        "condition": "Gebäude muss bestehen (kein Neubau)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "sanierung_energy",
+        "description": "Energieeinsparung",
+        "condition": "Sanierung muss zu messbarer Energieeinsparung führen",
+        "required": true,
+        "category": "status"
+      }
+    ]
+  },
+  "calculation": {
+    "method": "Förderkredit mit Tilgungszuschuss oder Investitionszuschuss",
+    "min_amount": 0,
+    "max_amount": 150000,
+    "typical_amount": "Kredit bis 150.000 Euro je Wohneinheit, Tilgungszuschuss 5-50%",
+    "frequency": "once",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "KfW 261: bis 150.000 Euro Kredit je Wohneinheit. BAFA: bis 30.000 Euro Zuschuss.",
+    "one_time": 150000,
+    "depends_on": [
+      "Maßnahme",
+      "Energiestandard",
+      "Kosten"
+    ]
+  },
+  "application": {
+    "method": "Über Hausbank (KfW) oder direkt bei BAFA",
+    "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/",
+    "forms": [
+      "KfW-Antrag",
+      "BAFA-Antrag"
+    ],
+    "required_documents": [
+      "Energieberatung / Energieausweis",
+      "Kostenvoranschläge",
+      "Baugenehmigung (falls erforderlich)",
+      "Denkmalschutz-Gutachten (falls zutreffend)"
+    ],
+    "processing_time": "4-8 Wochen"
+  },
+  "legal_basis": [
+    "KfW-Programme 261, 262, 461",
+    "Bundesförderung für effiziente Gebäude (BEG)"
+  ],
+  "compatible_with": [
+    "energiesanierung",
+    "barrierefrei_umbauen",
+    "denkmalschutz"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "energiesanierung",
+    "barrierefrei_umbauen",
+    "neubau_zuschuss"
+  ],
+  "user_content": {
+    "short_explanation": "Sanierungszuschüsse unterstützen die energetische oder denkmalgebundene Sanierung bestehender Gebäude.",
+    "for_whom": "Eigentümer, die ihr Haus sanieren oder denkmalgeschützte Gebäude modernisieren.",
+    "requirements": "Das Gebäude muss bestehen. Bei Denkmalschutz: besondere Auflagen.",
+    "how_much": "Kredit bis 150.000 Euro je Wohneinheit mit Tilgungszuschuss.",
+    "how_calculations": "Die Förderung richtet sich nach den Maßnahmen und den eingesparten Energiekosten.",
+    "documents_needed": "Energieberatung, Kostenvoranschläge, ggf. Denkmalschutz-Gutachten.",
+    "where_to_apply": "KfW über Hausbank, BAFA direkt online.",
+    "deadlines": "Antrag vor Baubeginn stellen.",
+    "faq": [
+      {
+        "question": "Gibt es Förderung für Denkmalschutz?",
+        "answer": "Ja, KfW 261/262 bietet spezielle Konditionen für denkmalgeschützte Gebäude."
+      },
+      {
+        "question": "Kann ich Einzelmaßnahmen fördern?",
+        "answer": "Ja, sowohl KfW als auch BAFA fördern auch Einzelmaßnahmen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/",
+      "title": "KfW Förderung für Neubau",
+      "organization": "KfW Bankengruppe",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    },
+    {
+      "url": "https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html",
+      "title": "Bundesförderung für effiziente Gebäude (BEG)",
+      "organization": "Bundesamt für Wirtschaft und Ausfuhrkontrolle",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "KfW 461 ist der Tilgungszuschuss für Komplettsanierung."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

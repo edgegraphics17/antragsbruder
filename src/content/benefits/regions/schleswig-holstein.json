@@ -1,0 +1,78 @@
+{
+  "state": "Schleswig-Holstein",
+  "state_code": "SH",
+  "benefits": [
+    {
+      "id": "sh-ibsh-immo-eigentum",
+      "official_name": "IB.SH Immo Eigentum Schleswig-Holstein",
+      "description": "Förderung des Neubaus und Kaufs von selbst genutzten Immobilien. Darlehen bis 100.000 Euro, 40 % der Gesamtkosten.",
+      "type": "housing_benefit",
+      "provider": "Investitionsbank Schleswig-Holstein (IB.SH)",
+      "url": "https://www.foerderdatenbank.de/FDB/Content/DE/Foerderprogramm/Land/Schleswig-Holstein/ib-sh-immo-eigentum.html",
+      "status": "verified"
+    },
+    {
+      "id": "sh-ibsh-wohnen",
+      "official_name": "IB.SH Sonderprogramm Neue Perspektive Wohnen",
+      "description": "Unterstützung der Entstehung zusatzlichen Wohnraums in Schleswig-Holstein.",
+      "type": "housing_benefit",
+      "provider": "Investitionsbank Schleswig-Holstein (IB.SH)",
+      "url": "https://www.foerdersuche.org/foerderung/ibsh-sonderprogramm-neue-perspektive-wohnen",
+      "status": "verified"
+    },
+    {
+      "id": "sh-ibsh-soziale-wohnraumfoerderung",
+      "official_name": "Soziale Wohnraumförderung für Eigentumsmaßnahmen",
+      "description": "Förderung für Familien mit Kindern (auch Alleinerziehende) und/oder schwerbehinderte Menschen. Kombination mit KfW möglich.",
+      "type": "housing_benefit",
+      "provider": "Investitionsbank Schleswig-Holstein (IB.SH)",
+      "url": "https://www.ib-sh.de/produkt/soziale-wohnraumfoerderung-fuer-eigentumsmassnahmen/",
+      "status": "verified"
+    },
+    {
+      "id": "sh-ibsh-weiterbildungsbonus",
+      "official_name": "Weiterbildungsbonus Schleswig-Holstein",
+      "description": "Förderung der beruflichen Weiterbildung. Bewilligungsbehörde ist die IB.SH. Antragstellung online im Serviceportal.",
+      "type": "education_benefit",
+      "provider": "Investitionsbank Schleswig-Holstein (IB.SH)",
+      "url": "https://www.schleswig-holstein.de/DE/fachinhalte/W/weiterbildung/Weiterbildungsbonus_HT",
+      "status": "verified"
+    },
+    {
+      "id": "sh-ibsh-immo-effizienzhaus",
+      "official_name": "IB.SH Immo Effizienzhaus",
+      "description": "Ergänzungsdarlehen für energetische Sanierung. Kombination mit KfW 458 (30 % Grundförderung) und BAFA möglich.",
+      "type": "energy_subsidy",
+      "provider": "Investitionsbank Schleswig-Holstein (IB.SH)",
+      "url": "https://www.ee-experten.com/wissen/aktuelles/energetische-sanierung-2026-in-schleswig-holstein-diese-foerderprogramme-lohnen-sich-jetzt.html",
+      "status": "verified"
+    },
+    {
+      "id": "sh-kommunaler-investitionsfonds",
+      "official_name": "Kommunaler Investitionsfonds (KIF) Schleswig-Holstein",
+      "description": "Für 2026 stehen 80 Mio. Euro für kommunale Investitionsmaßnahmen zur Verfügung.",
+      "type": "business_subsidy",
+      "provider": "Ministerium des Inneren, Sport und Verwaltung Schleswig-Holstein",
+      "url": "https://www.schleswig-holstein.de/DE/landesregierung/themen/inneres-sicherheit-verwaltung/kommunales/KommunaleFoerderung/_documents/kif",
+      "status": "verified"
+    },
+    {
+      "id": "sh-sportmailliarde",
+      "official_name": "Sportmilliarde Schleswig-Holstein",
+      "description": "Förderung von Sportstätten. Kommunen können bis 15. Januar 2026 Projektskizzen einreichen.",
+      "type": "social_benefit",
+      "provider": "Ministerium für Inneres, Sport und Verwaltung Schleswig-Holstein",
+      "url": "https://www.schleswig-holstein.de/DE/landesregierung/ministerien-behoerden/IV/_startseite/Artikel2025/IV/251121_sportmilliarde",
+      "status": "verified"
+    },
+    {
+      "id": "sh-landesgeburtstag-foerderung",
+      "official_name": "80 Jahre Land Schleswig-Holstein Förderung",
+      "description": "Förderung von Projekten im Rahmen des Jubiläums 80 Jahre Land. 01.01.-31.12.2026.",
+      "type": "social_benefit",
+      "provider": "Landesregierung Schleswig-Holstein",
+      "url": "https://www.schleswig-holstein.de/DE/landesportal/kampagne/landesgeburtstag/foerdern-lassen/_documents/foerderrichtlinie-80-jahre-sh",
+      "status": "verified"
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "id": "spendenabzug",
+  "official_name": "Spendenabzug nach §§ 10a, 10b EStG",
+  "aliases": [
+    "Spendenabzug",
+    "Spendensteuerabzug",
+    "§ 10a EStG",
+    "§ 10b EStG"
+  ],
+  "former_names": [],
+  "type": "tax_benefit",
+  "status": "verified",
+  "category": "Steuern & Finanzen",
+  "subcategory": "Sonderausgaben",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium der Finanzen",
+    "authority": "Finanzamt",
+    "url": "https://www.bundesfinanzministerium.de",
+    "phone": ""
+  },
+  "target_groups": [
+    "Spender",
+    "Geber",
+    "Unternehmen mit Spenden"
+  ],
+  "life_situations": [
+    "wohltätigkeit",
+    "spende"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "spenden_organisation",
+        "description": "Zuwendung an eine steuerbegünstigte Körperschaft (gemeinnützig)",
+        "condition": "charitable_organization",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "spenden_nachweis",
+        "description": "Zuwendungsbestätigung des Empfängers",
+        "condition": "donation_receipt",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "spenden_art",
+        "description": "Zuwendung in Geld oder Sachwerten (keine Dienstleistungen)",
+        "condition": "monetary_or_material",
+        "required": true,
+        "category": "personal"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Einkünfte",
+        "threshold": 20,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "last_updated": "2026-01-01"
+      }
+    ],
+    "asset_rules": null,
+    "special_conditions": [
+      "Spenden sind Sonderausgaben (nicht als Betriebsausgaben abziehbar)",
+      "Höchstbetrag: 20% des Gesamtbetrags der Einkünfte oder 4 Promille der Umsätze (Unternehmen)",
+      "Zuwendungsbestätigung erforderlich (ab 300 Euro amtl. Muster, darunter einfache Bestätigung)"
+    ]
+  },
+  "calculation": {
+    "method": "Spenden als Sonderausgaben abziehbar, Höchstbetrag 20% der Einkünfte",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Höchstbetrag für natürliche Personen",
+        "formula": "20% des Gesamtbetrags der Einkünfte",
+        "value": "20%",
+        "note": "Pro Kalenderjahr"
+      },
+      {
+        "step": 2,
+        "description": "Höchstbetrag für Unternehmen",
+        "formula": "4 Promille der gesamten Umsätze + 20% des Gesamtbetrags der Einkünfte",
+        "value": "4 Promille / 20%",
+        "note": "Pro Kalenderjahr"
+      },
+      {
+        "step": 3,
+        "description": "Übertragung bei Überschreitung des Höchstbetrags",
+        "formula": "Spenden können auf Folgejahre übertragen werden",
+        "value": "bis zu 10 Jahre",
+        "note": "Bei hohen Spenden möglich"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": null,
+    "typical_amount": "Abzugsfähig bis 20% der Einkünfte",
+    "frequency": "yearly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Spenden sind als Sonderausgaben abziehbar, bis zu 20% des Gesamtbetrags der Einkünfte",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": null,
+    "depends_on": [
+      "Höhe der Spenden",
+      "Gesamtbetrag der Einkünfte",
+      "Steuertarif"
+    ]
+  },
+  "application": {
+    "method": "Steuererklärung (Anlage A, Feld Sonderausgaben)",
+    "url": "https://www.elster.de",
+    "forms": [
+      "Anlage A"
+    ],
+    "required_documents": [
+      "Zuwendungsbestätigung des Empfängers",
+      "Zahlungsnachweise (Kontoauszüge)",
+      "Falls Sachwertspende: Gutachten oder Nachweis des Werts"
+    ],
+    "processing_time": "4-8 Wochen nach Abgabe der Steuererklärung",
+    "deadlines": {
+      "description": "Steuererklärung Frist",
+      "date": "31.07. des Folgejahres",
+      "note": "Spenden müssen im Kalenderjahr geleistet worden sein"
+    }
+  },
+  "legal_basis": [
+    "§ 10a EStG",
+    "§ 10b EStG"
+  ],
+  "compatible_with": [
+    "sonderausgaben",
+    "werbungskosten",
+    "kirchensteuer"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "kirchensteuer",
+    "sonderausgaben",
+    "steuerberatungskosten"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Spenden an gemeinnützige Organisationen können als Sonderausgaben von der Einkommensteuer abgezogen werden. Der Abzug ist bis zu 20% des Gesamtbetrags der Einkünfte möglich.",
+    "for_whom": "Für alle Steuerpflichtigen, die Spenden an gemeinnützige Organisationen leisten - ob als natürliche Person oder Unternehmen.",
+    "requirements": "Sie spenden an eine steuerbegünstigte Körperschaft (gemeinnützig, mildtätig, kirchlich). Sie erhalten eine Zuwendungsbestätigung und können die Spenden nachweisen.",
+    "how_much": "Bis zu 20% Ihres Gesamtbetrags der Einkünfte können Sie als Spenden abziehen. Bei Unternehmen gilt zusätzlich ein Höchstbetrag von 4 Promille der Umsätze.",
+    "how_calculated": "Die Spenden werden als Sonderausgaben abgezogen, was Ihre steuerpflichtigen Einkünfte reduziert. Die tatsächliche Steuerersparnis hängt vom Steuersatz ab (bis ca. 45% des Spendenbetrags).",
+    "documents_needed": "Zuwendungsbestätigung des Empfängers, Kontoauszüge als Zahlungsnachweise. Ab 300 Euro ist die amtliche Musterbestätigung erforderlich.",
+    "where_to_apply": "Beim zuständigen Finanzamt über die Steuererklärung (Anlage A). Online über ELSTER.",
+    "deadlines": "Steuererklärung bis 31. Juli des Folgejahres.",
+    "faq": [
+      {
+        "question": "Welche Organisationen sind steuerbegünstigt?",
+        "answer": "Gemeinnützige Körperschaften (Vereine, Stiftungen), mildtätige Organisationen, kirchliche Einrichtungen und juristische Personen des öffentlichen Rechts."
+      },
+      {
+        "question": "Ab welcher Spendenhöhe brauche ich eine Bestätigung?",
+        "answer": "Ab 300 Euro ist die amtliche Zuwendungsbestätigung (Muster des BMF) erforderlich. Unter 300 Euro reicht eine einfache Bestätigung."
+      },
+      {
+        "question": "Kann ich Sachwertspenden abziehen?",
+        "answer": "Ja, auch Sachwertspenden (z.B. Kleidung, Möbel) sind abziehbar, sofern ein Wertnachweis vorliegt."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/estg/__10a.html",
+      "title": "EStG § 10a - Sonderausgaben",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/estg/__10b.html",
+      "title": "EStG § 10b - Steuerbegünstigte Zwecke",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://esth.bundesfinanzministerium.de/esth/2025/A-Einkommensteuergesetz/II-Einkommen-2-24b/5-Sonderausgaben-10-10g/Paragraf-10b/inhalt.html",
+      "title": "EStH 2025 - § 10b - Steuerbegünstigte Zwecke",
+      "organization": "Bundesministerium der Finanzen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": "2026-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Spenden bis 20% der Einkünfte abziehbar",
+    "Unternehmen: 4 Promille der Umsätze möglich",
+    "Zuwendungsbestätigung ab 300 Euro erforderlich"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

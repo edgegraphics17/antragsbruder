@@ -1,0 +1,69 @@
+{
+  "state": "Berlin",
+  "state_code": "BE",
+  "benefits": [
+    {
+      "id": "berlin-wirtschaftsfoerderung",
+      "official_name": "Berliner Wirtschaftsförderung",
+      "description": "Förderung für Unternehmen und Investoren in Berlin. Umfassendes Förder- und Beratungsangebot für Gründungen, Innovation und Wachstum.",
+      "type": "business_subsidy",
+      "provider": "Senatsverwaltung für Wirtschaft, Energie und Betriebe Berlin",
+      "url": "https://www.berlin.de/wirtschaft/wirtschaftsfoerderung/foerderung-fuer-unternehmen-und-investoren/",
+      "status": "verified"
+    },
+    {
+      "id": "berlin-startup-gruenderbonus",
+      "official_name": "GründungsBONUS Berlin",
+      "description": "Förderung für Start-ups in Berlin. Darlehensprogramme und Zuschüsse für innovative Unternehmen in der Wachstumsphase.",
+      "type": "business_subsidy",
+      "provider": "Senatsverwaltung für Wirtschaft, Energie und Betriebe Berlin",
+      "url": "https://www.berlin.de/sen/wirtschaft/gruenden-und-foerdern/investitionsfoerderung/wachsen/darlehen/",
+      "status": "verified"
+    },
+    {
+      "id": "berlin-efre-2021-2027",
+      "official_name": "EFRE-Förderperiode 2021-2027 Berlin",
+      "description": "Europäischer Fonds für regionale Entwicklung in Berlin. Förderung von Innovation, Gründung, Digitalisierung und Klimaschutz.",
+      "type": "business_subsidy",
+      "provider": "Senatsverwaltung für Wirtschaft, Energie und Betriebe Berlin",
+      "url": "https://www.berlin.de/sen/wirtschaft/gruenden-und-foerdern/europaeische-strukturfonds/efre-foerderperiode-2021-2027/",
+      "status": "verified"
+    },
+    {
+      "id": "berlin-schallschutzfenster",
+      "official_name": "Berliner Schallschutzfensterprogramm 2026/2027",
+      "description": "Förderung des Einbaus von Schallschutzfenstern für Wohngebäude an lauten Straßen und Schienenwegen.",
+      "type": "housing_benefit",
+      "provider": "Senatsverwaltung für Umwelt, Verkehr, Klimaschutz und Verbraucherschutz Berlin",
+      "url": "https://www.berlin.de/sen/uvk/umwelt/laerm/schallschutzfensterprogramm/",
+      "status": "verified"
+    },
+    {
+      "id": "berlin-kulturfoerderung",
+      "official_name": "Berliner Kulturförderung",
+      "description": "Vielfältige Förderprogramme im Bereich Kultur: Bildende Kunst, Darstellende Kunst/Tanz, Musik, interkulturelle Projekte, zeitgeschichtliche Projekte.",
+      "type": "social_benefit",
+      "provider": "Senatsverwaltung für Kultur und gesellschaftliche Teilhabe Berlin",
+      "url": "https://www.berlin.de/sen/kultur/foerderung/foerderprogramme/",
+      "status": "verified"
+    },
+    {
+      "id": "berlin-impact-foerderung",
+      "official_name": "IMPACT-Förderung / Diversitätsfonds Berlin",
+      "description": "Förderung von Projekten im Bereich Weltoffenes Berlin. Antragsfrist für 2026 endete am 25. September 2025.",
+      "type": "social_benefit",
+      "provider": "Senatsverwaltung für Kultur und gesellschaftliche Teilhabe Berlin",
+      "url": "https://www.berlin.de/sen/kultur/foerderung/foerderprogramme/interkulturelle-projekte/artikel.82020.php",
+      "status": "verified"
+    },
+    {
+      "id": "berlin-innovationsfoerderung",
+      "official_name": "Berliner Innovationsförderung",
+      "description": "Damit aus innovativen Ideen marktfähige Produkte werden, bietet Berlin ein umfangreiches Förder- und Beratungsangebot für Start-ups und KMU.",
+      "type": "business_subsidy",
+      "provider": "Senatsverwaltung für Wirtschaft, Energie und Betriebe Berlin",
+      "url": "https://www.berlin.de/wirtschaft/wirtschaftsfoerderung/innovationsfoerderung/",
+      "status": "verified"
+    }
+  ]
+}

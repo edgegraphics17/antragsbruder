@@ -1,0 +1,178 @@
+{
+  "id": "weiterbildungsfoerderung",
+  "official_name": "Weiterbildungsförderung (Aufstiegsstipendium, Bildungsprämie, Qualifizierungschancengesetz)",
+  "aliases": ["Weiterbildungsförderung", "Aufstiegsstipendium", "Bildungsprämie", "Qualifizierungschancengesetz", "QCG", "Weiterbildungsstipendium", "Bildungsgutschein"],
+  "former_names": ["WeGebAU (Weiterbildung Geringqualifizierter und beschäftigter Älterer)"],
+  "type": "education_benefit",
+  "status": "verified",
+  "category": "Studium & Bildung",
+  "subcategory": "Förderung beruflicher Weiterbildung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesagentur für Arbeit / Stiftung Begabtenförderung berufliche Bildung (SBB)",
+    "authority": "Agentur für Arbeit / SBB",
+    "url": "https://www.arbeitsagentur.de/karriere-und-weiterbildung/foerderung-berufliche-weiterbildung",
+    "phone": "0800-4-555500"
+  },
+  "target_groups": ["Berufstätige mit abgeschlossener Berufsausbildung", "Geringqualifizierte", "Ältere Beschäftigte", "Personen in Kurzarbeit", "Menschen mit Behinderung"],
+  "life_situations": ["weiterbildung", "arbeit_arbeitnehmer"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "wb_berufstaetig",
+        "description": "Beschäftigung (mindestens 12 Monate in sozialversicherungspflichtiger Beschäftigung oder 2 Jahre in den letzten 5 Jahren)",
+        "condition": "beschaeftigt >= 12_monate OR (beschaeftigt >= 2_jahre_in_5_jahren)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "wb_qualifikation",
+        "description": "Abgeschlossene Berufsausbildung oder mindestens 2 Jahre Berufserfahrung",
+        "condition": "berufsausbildung_abgeschlossen OR berufserfahrung >= 2_jahre",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "wb_fortbildung_foerderungsfaehig",
+        "description": "Förderungsfähige Weiterbildung (staatlich anerkannter Abschluss oder Zertifikat)",
+        "condition": "anerkannte_weiterbildung OR zertifizierte_weiterbildung",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "wb_betriebszugehoerigkeit",
+        "description": "Zugehörigkeit zum Betrieb (mindestens 6 Monate oder 1 Jahr bei kleinen Betrieben)",
+        "condition": "betriebszugehoerigkeit >= 6_monate",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Bruttoentgelt (Qualifizierungsgeld)",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2025-01-01"
+      }
+    ],
+    "asset_rules": {
+      "threshold": 0,
+      "exemptions": [],
+      "last_updated": "2025-01-01"
+    },
+    "special_conditions": [
+      "Bildungsprämie: 500€ für bestandene Abschlussprüfung (1.000€ bei Vollzeit)",
+      "Qualifizierungsgeld: 60% (67% mit Kind) des Nettoentgelts",
+      "Förderung unabhängig von Ausbildung, Alter und Betriebsgröße"
+    ]
+  },
+  "calculation": {
+    "method": "Übernahme der Weiterbildungskosten und/oder Qualifizierungsgeld",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Weiterbildungskosten übernehmen",
+        "value": "Bis zu 100% der Kosten (abhängig von Betriebsgröße und Zielgruppe)",
+        "note": "Kleine Betriebe erhalten höhere Förderung"
+      },
+      {
+        "step": 2,
+        "description": "Qualifizierungsgeld bei Vollzeitweiterbildung",
+        "value": "60% (67% mit Kind) des Nettoentgelts",
+        "note": "Entgeltersatzleistung"
+      },
+      {
+        "step": 3,
+        "description": "Bildungsprämie bei bestandener Prüfung",
+        "value": "500€ (1.000€ bei Vollzeit)",
+        "note": "Einmalige Prämie"
+      }
+    ],
+    "min_amount": 1,
+    "max_amount": 15000,
+    "typical_amount": "1.000€-5.000€ für Weiterbildungskosten",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Weiterbildungsförderung: Bis zu 100% der Weiterbildungskosten, Qualifizierungsgeld 60-67% des Nettoentgelts, Bildungsprämie 500€-1.000€",
+    "min_monthly": 1,
+    "max_monthly": 0,
+    "one_time": 15000,
+    "depends_on": ["Art der Weiterbildung", "Betriebsgröße", "Zielgruppe", "Einkommen"]
+  },
+  "application": {
+    "method": "Persönlich bei der Agentur für Arbeit (Beratungsgespräch erforderlich)",
+    "url": "https://www.arbeitsagentur.de/karriere-und-weiterbildung/foerderung-berufliche-weiterbildung",
+    "forms": ["Antrag auf Förderung der beruflichen Weiterbildung", "Bildungsgutschein"],
+    "required_documents": ["Antragsformular", "Nachweis Berufsausbildung", "Kostenaufstellung der Weiterbildung", "Arbeitsvertrag", "Gehaltsnachweise"],
+    "processing_time": "4-8 Wochen",
+    "deadlines": {
+      "description": "Antrag vor Beginn der Weiterbildung stellen",
+      "note": "Bildungsgutschein muss vor Beginn vorliegen"
+    }
+  },
+  "legal_basis": ["§§ 81-96 SGB III", "Qualifizierungschancengesetz (QCG)", "Aufstiegsfortbildungsförderungsgesetz (AFBG)"],
+  "compatible_with": ["aufstiegsbafoeg", "bildungskredit_kfw", "steuererstattung"],
+  "incompatible_with": ["berufsausbildungsbeihilfe_bab"],
+  "related_benefits": ["aufstiegsbafoeg", "bildungskredit_kfw", "berufsausbildungsbeihilfe_bab"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Weiterbildungsförderung unterstützt Berufstätige bei der Finanzierung von Weiterbildungen. Es gibt verschiedene Förderinstrumente: Bildungsgutschein, Qualifizierungsgeld und Bildungsprämie.",
+    "for_whom": "Berufstätige mit abgeschlossener Berufsausbildung, die sich weiterqualifizieren wollen. Besonders gefördert werden Geringqualifizierte, ältere Beschäftigte und Menschen in Kurzarbeit.",
+    "requirements": "Abgeschlossene Berufsausbildung oder 2 Jahre Berufserfahrung, Beschäftigung (mindestens 12 Monate), förderungsfähige Weiterbildung.",
+    "how_much": "Bis zu 100% der Weiterbildungskosten werden übernommen. Bei Vollzeitweiterbildung gibt es Qualifizierungsgeld (60-67% des Nettoentgelts). Bei bestandener Prüfung: Bildungsprämie 500€-1.000€.",
+    "how_calculated": "Die Förderung hängt von der Art der Weiterbildung, der Betriebsgröße und der Zielgruppe ab. Kleine Betriebe erhalten höhere Förderung.",
+    "documents_needed": "Antragsformular, Nachweis der Berufsausbildung, Kostenaufstellung der Weiterbildung, Arbeitsvertrag, Gehaltsnachweise.",
+    "where_to_apply": "Agentur für Arbeit (persönliches Beratungsgespräch erforderlich).",
+    "deadlines": "Antrag vor Beginn der Weiterbildung stellen. Der Bildungsgutschein muss vor Beginn der Maßnahme vorliegen.",
+    "faq": [
+      {
+        "question": "Was ist der Bildungsgutschein?",
+        "answer": "Der Bildungsgutschein ist ein Nachweis, dass die Agentur für Arbeit die Weiterbildung fördert. Er muss vor Beginn der Maßnahme vorliegen."
+      },
+      {
+        "question": "Kann ich die Weiterbildung frei wählen?",
+        "answer": "Die Weiterbildung muss förderungsfähig sein (staatlich anerkannter Abschluss oder zertifiziert). Die Agentur für Arbeit berät bei der Auswahl."
+      },
+      {
+        "question": "Gibt es Förderung für Weiterbildung im Ausland?",
+        "answer": "Ja, unter bestimmten Voraussetzungen. Die Weiterbildung muss in einem EU/EWR-Staat stattfinden und anerkannt sein."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/karriere-und-weiterbildung/foerderung-berufliche-weiterbildung",
+      "title": "Förderung der beruflichen Weiterbildung - Bundesagentur für Arbeit",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_3/__81.html",
+      "title": "§ 81 SGB III - Förderung der beruflichen Weiterbildung",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bmbf.de/aufstiegsstipendium",
+      "title": "Aufstiegsstipendium - BMBF",
+      "organization": "BMBF",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2019-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Das Qualifizierungschancengesetz (QCG) trat 2019 in Kraft und erweiterte die Weiterbildungsförderung erheblich. Die Förderung ist jetzt weitgehend unabhängig von Ausbildung, Alter und Betriebsgröße."],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

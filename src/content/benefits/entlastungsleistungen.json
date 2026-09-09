@@ -1,0 +1,183 @@
+{
+  "id": "entlastungsleistungen",
+  "official_name": "Entlastungsleistung",
+  "aliases": [
+    "Entlastungsbetrag SGB XI",
+    "Entlastungsleistung §45c SGB XI",
+    "Entlastung für pflegende Angehörige",
+    "Entlastungsgeld Pflege"
+  ],
+  "former_names": [],
+  "type": "care_benefit",
+  "status": "verified",
+  "category": "Pflege",
+  "subcategory": "Häusliche Pflege - Entlastung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Pflegekasse",
+    "authority": "Zuständige Pflegekasse (bei gesetzlich Versicherten) oder privates Versicherungsunternehmen",
+    "url": "https://www.pflegeversicherung.de",
+    "phone": "Kontakt über Pflegekasse"
+  },
+  "target_groups": [
+    "Pflegebedürftige mit Pflegegrad 2 bis 5 in häuslicher Pflege",
+    "Pflegende Angehörige"
+  ],
+  "life_situations": [
+    "pflege_angehoeriger",
+    "kann_nicht_arbeiten",
+    "senior"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "elg-el-01",
+        "description": "Pflegebedürftigkeit mit Pflegegrad 2 bis 5",
+        "condition": "Feststellung der Pflegebedürftigkeit durch den Medizinischen Dienst (MDK/MD) mit Zuordnung zu Pflegegrad 2, 3, 4 oder 5",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-el-02",
+        "description": "Häusliche Pflege",
+        "condition": "Die Pflege wird in der häuslichen Umgebung erbracht (nicht vollstationär)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "elg-el-03",
+        "description": "Inanspruchnahme von Pflegeleistungen",
+        "condition": "Der Pflegebedürftige nutzt Leistungen der Pflegeversicherung (Sachleistung, Pflegegeld, Tagespflege, Kurzzeitpflege, ambulante Pflegedienste)",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Für Pflegegrad 1 besteht ein Anspruch auf Entlastungsbetrag nach § 66 SGB XII (Sozialhilfe)",
+      "Keine Einkommensprüfung",
+      "Kann auch bei Pflegegrad 1 über SGB XII beantragt werden"
+    ]
+  },
+  "calculation": {
+    "method": "Pauschaler monatlicher Betrag für Entlastungsleistungen",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Pflegegrad ermitteln lassen",
+        "value": "Pflegegrad 2, 3, 4 oder 5"
+      },
+      {
+        "step": 2,
+        "description": "Anspruch prüfen",
+        "value": "Häusliche Pflege, Nutzung von Pflegeleistungen"
+      }
+    ],
+    "min_amount": 131,
+    "max_amount": 131,
+    "typical_amount": "131 Euro monatlich",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Monatlicher Entlastungsbetrag",
+    "min_monthly": 131,
+    "max_monthly": 131,
+    "depends_on": [
+      "Pflegegrad"
+    ]
+  },
+  "application": {
+    "method": "Antrag bei der zuständigen Pflegekasse",
+    "url": "https://www.pflegeversicherung.de/leistungen/entlastungsleistung",
+    "forms": [
+      "Antrag auf Entlastungsleistung"
+    ],
+    "required_documents": [
+      "Ärztliches Attest / Gutachten des MDK zum Pflegegrad",
+      "Antrag auf Entlastungsleistung",
+      "Nachweis über Inanspruchnahme von Pflegeleistungen"
+    ],
+    "processing_time": "Innerhalb von 5 Wochen nach Antragstellung",
+    "deadlines": {
+      "description": "Antrag nach Feststellung des Pflegegrads stellen",
+      "note": "Keine feste Frist, aber rückwirkend maximal 1 Monat vor Antragstellung"
+    }
+  },
+  "legal_basis": [
+    "§ 45c SGB XI (Entlastungsbetrag)",
+    "§ 66 SGB XII (Entlastungsbetrag bei Pflegegrad 1)",
+    "§ 30 Abs. 1 SGB XI"
+  ],
+  "compatible_with": [
+    "pflegegeld",
+    "pflegesachleistungen",
+    "verhinderungspflege",
+    "hilfsmittel"
+  ],
+  "incompatible_with": [
+    "vollstationäre_pflege"
+  ],
+  "related_benefits": [
+    "pflegegeld",
+    "verhinderungspflege",
+    "vollstationäre_pflege"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Entlastungsleistung ist ein monatlicher Betrag für pflegebedürftige Menschen, die zu Hause gepflegt werden, um die Pflege zu entlasten und Angebote zur Unterstützung im Alltag zu finanzieren.",
+    "for_whom": "Pflegebedürftige mit Pflegegrad 2 bis 5 in häuslicher Pflege.",
+    "requirements": "Pflegegrad 2 bis 5, häusliche Pflege.",
+    "how_much": "131 Euro pro Monat.",
+    "how_calculated": "Pauschale 131 Euro pro Monat - keine Einkommensprüfung.",
+    "documents_needed": "Antrag auf Entlastungsleistung, ärztliches Gutachten zum Pflegegrad.",
+    "where_to_apply": "Bei Ihrer zuständigen Pflegekasse (bei gesetzlich Versicherten) oder privaten Pflegeversicherung.",
+    "deadlines": "Keine feste Frist. Antrag nach Pflegegradfeststellung stellen.",
+    "faq": [
+      {
+        "question": "Bekomme ich auch Entlastungsleistung bei Pflegegrad 1?",
+        "answer": "Nach SGB XI nicht, aber nach § 66 SGB XII (Hilfe zur Pflege) kann bei Pflegegrad 1 ein Entlastungsbetrag beantragt werden."
+      },
+      {
+        "question": "Wofür kann ich den Entlastungsbetrag verwenden?",
+        "answer": "Für Angebote zur Unterstützung im Alltag wie Betreuungsgruppen, Helferkreise, Tagesbetreuung, Alltagsbegleiter, Pflegebegleiter, Serviceangebote für haushaltsnahe Dienstleistungen."
+      },
+      {
+        "question": "Muss ich den Entlastungsbetrag zurückzahlen?",
+        "answer": "Nein, die Entlastungsleistung ist ein Zuschuss und muss nicht zurückgezahlt werden."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_11/__45c.html",
+      "title": "§ 45c SGB XI - Förderung der Weiterentwicklung der Versorgungsstrukturen und des Ehrenamts",
+      "organization": "Gesetze im Internet",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3_Downloads/P/Pflegeversicherung_Leistungsbeitraege/Uebersicht_Leistungsbetraege_2025.pdf",
+      "title": "Leistungsansprüche der Versicherten im Jahr 2025",
+      "organization": "Bundesministerium für Gesundheit",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Entlastungsbetrag: 131 Euro monatlich",
+    "Für Pflegegrad 1: Entlastungsbetrag nach § 66 SGB XII (Sozialhilfe)",
+    "Keine Einkommensprüfung"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

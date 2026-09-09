@@ -1,0 +1,1705 @@
+{
+  "sources": [
+    {
+      "id": "bmas",
+      "name": "Bundesministerium für Arbeit und Soziales (BMAS)",
+      "type": "federal_ministry",
+      "url": "https://www.bmas.bund.de/",
+      "description": "Zentrales Ministerium für Arbeitsmarktpolitik, Sozialversicherung, Mindestlohn, Arbeitsschutz, Rente und Grundsicherung. Verantwortlich für SGB II, III, VI u.a.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["arbeitslosengeld-i", "buergergeld", "grundsicherung-arbeitsuchende", "wohngeld", "elterngeld", "bildungspause", "mindestlohn", "rente"]
+    },
+    {
+      "id": "bmbfsfj",
+      "name": "Bundesministerium für Familie, Senioren, Frauen und Jugend (BMBFSFJ)",
+      "type": "federal_ministry",
+      "url": "https://www.bmbfsfj.bund.de/",
+      "description": "Ministerium für Familien-, Jugend-, Frauen- und Seniorenpolitik. Zuständig für Elterngeld, Kindergeld, Jugendhilfe, Gleichstellung und Seniorenpolitik.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["elterngeld", "kindergeld", "jugendhilfe", "gleichstellung", "betreuungsgeld", "tagespflege"]
+    },
+    {
+      "id": "bmi",
+      "name": "Bundesministerium des Innern und für Heimat (BMI)",
+      "type": "federal_ministry",
+      "url": "https://www.bmi.bund.de/",
+      "description": "Ministerium für Innere Sicherheit, Heimat, Integration, Bauwesen (bis 2021) und Sport. Zuständig für Aufenthaltsrecht, Staatsangehörigkeit und Bürgerdienste.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["integration", "aufenthaltstitel", "staatsangehoerigkeit", "dienste"]
+    },
+    {
+      "id": "bmf",
+      "name": "Bundesministerium der Finanzen (BMF)",
+      "type": "federal_ministry",
+      "url": "https://www.bmf.bund.de/",
+      "description": "Ministerium für Finanzpolitik, Steuern und Bundesvermögen. Zuständig für Einkommensteuer, Umsatzsteuer, Kindergeld (über Familienkassen) und Finanzverwaltung.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["einkommensteuer", "kindergeld", "elternzeit", "steuerfreibetraege", "solijuschlag"]
+    },
+    {
+      "id": "bmwk",
+      "name": "Bundesministerium für Wirtschaft und Klimaschutz (BMWK)",
+      "type": "federal_ministry",
+      "url": "https://www.bundeswirtschaftsministerium.de/",
+      "description": "Ministerium für Wirtschaftspolitik, Energie, Klimaschutz und Industrie. Verantwortlich für Wirtschaftsförderung, Energiewende und Gewerbe.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["wirtschaftsfoerderung", "energieeffizienz", "gewaeerbefoerderung", "ausbildungshilfe"]
+    },
+    {
+      "id": "bmftr",
+      "name": "Bundesministerium für Forschung, Technologie und Raumfahrt (BMFTR)",
+      "type": "federal_ministry",
+      "url": "https://www.bmftr.bund.de/",
+      "description": "Ministerium für Bildung, Forschung, Technologie und Innovation (ehemals BMBF). Zuständig für Studienförderung, Forschungsförderung und Innovationspolitik.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["bafoeg", "studienkredit", "ausbildungskredit", "foerderung-forschung", "stipendien"]
+    },
+    {
+      "id": "bmg",
+      "name": "Bundesministerium für Gesundheit (BMG)",
+      "type": "federal_ministry",
+      "url": "https://www.bmg.bund.de/",
+      "description": "Ministerium für Gesundheitspolitik, Krankenversicherung, Pflege und Prävention. Betreibt das Portal gesund.bund.de für Bürgerinformationen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["krankenversicherung", "pflegeversicherung", "praevention", "gesundheitsfoerderung", "kuren"]
+    },
+    {
+      "id": "bmel",
+      "name": "Bundesministerium für Ernährung und Landwirtschaft (BMEL/BMLEH)",
+      "type": "federal_ministry",
+      "url": "https://www.bmel.bund.de/",
+      "description": "Ministerium für Landwirtschaft, Ernährung, Verbraucherschutz und Heimat. Zuständig für Agrarpolitik, Ernährungssicherung und Ländlicher Raum.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["agrarsubventionen", "ernaehrung", "verbraucherschutz", "laendlicher-raum"]
+    },
+    {
+      "id": "bmwsb",
+      "name": "Bundesministerium für Wohnen, Stadtentwicklung und Bauwesen (BMWSB)",
+      "type": "federal_ministry",
+      "url": "https://www.bmwsb.bund.de/",
+      "description": "Ministerium für Wohngeld, Wohnungsbau, Stadtentwicklung und Bauförderung. Verantwortlich für Förderprogramme wie Wohngeld-Plus, Altersgerecht Wohnen und KfW-Förderung.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["wohngeld", "wohngeld-plus", "sozialer-wohnungsbau", "wohneigentum", "baufoerderung"]
+    },
+    {
+      "id": "bmz",
+      "name": "Bundesministerium für wirtschaftliche Zusammenarbeit und Entwicklung (BMZ)",
+      "type": "federal_ministry",
+      "url": "https://www.bmz.bund.de/",
+      "description": "Ministerium für Entwicklungspolitik und internationale Zusammenarbeit. Fokus auf globale Armutsbekämpfung, Klimaschutz und Nachhaltigkeit.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["entwicklungszusammenarbeit", "internationale-foerderung"]
+    },
+    {
+      "id": "bafa",
+      "name": "Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA)",
+      "type": "federal_agency",
+      "url": "https://www.bafa.de/",
+      "description": "Zentrale Anlaufstelle für Energieförderung, Klimaschutzinitiativen und Wirtschaftsförderung. Verantwortlich für BAFA-Förderung für Gebäudesanierung, KWK-Anlagen, Solarthermie u.v.m.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["energetische-sanierung", "solarthermie", "waermepumpen", "klimaschutzinitiative", "minikwk"]
+    },
+    {
+      "id": "bafa-extranet",
+      "name": "BAFA-Extrant / Portal für Förderprogramme",
+      "type": "federal_agency",
+      "url": "https://elan1.bafa.bund.de/",
+      "description": "Online-Portal für Antragstellung und Statusverfolgung bei BAFA-Förderprogrammen (Energieeffizienz, KWK, Innovationen).",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["energetische-sanierung", "innovationsfoerderung"]
+    },
+    {
+      "id": "bamf",
+      "name": "Bundesamt für Migration und Flüchtlinge (BAMF)",
+      "type": "federal_agency",
+      "url": "https://www.bamf.de/",
+      "description": "Zuständig für Asylverfahren, Flüchtlingsschutz, Integrationskurse und Sprachförderung. Koordiniert die Migration- und Integrationspolitik in Deutschland.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["integrationskurse", "asylverfahren", "fluechtlingsschutz", "sprachfoerderung", "arbeitsmigration"]
+    },
+    {
+      "id": "bva",
+      "name": "Bundesverwaltungsamt (BVA)",
+      "type": "federal_agency",
+      "url": "https://www.bva.bund.de/",
+      "description": "Zentrale Behörde für Verwaltungsaufgaben des Bundes. Zuständig für Bildungskrans, Wehrpflicht, Ausgleichsabgabe, Spätaussiedler und Verwaltungsdienstleistungen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["bildungskrans", "ausgleichsabgabe", "wehrdienst", "spätaussiedler"]
+    },
+    {
+      "id": "bzst",
+      "name": "Bundeszentralamt für Steuern (BZSt)",
+      "type": "federal_agency",
+      "url": "https://www.bzst.bund.de/",
+      "description": "Bundesoberbehörde für Steuerliche Identifikationsnummer, Kirchensteuer, Investmentsteuergesetz und Familienkassen. Fachaufsicht über die Familienkassen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["identifikationsnummer", "kindergeld", "familienkasse", "steuerliche-foerderung"]
+    },
+    {
+      "id": "arbeitsagentur",
+      "name": "Bundesagentur für Arbeit (BA)",
+      "type": "federal_agency",
+      "url": "https://www.arbeitsagentur.de/",
+      "description": "Zentrale Anlaufstelle für Arbeitsmarktdienstleistungen. Verantwortlich für Arbeitslosengeld, Arbeitsvermittlung, Berufsberatung, Weiterbildung, Kurzarbeitergeld und Eingliederungshilfe.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["arbeitslosengeld-i", "kurzarbeitergeld", "weiterbildung", "berufsberatung", "agentur-fuer-arbeit", "arbeitsvermittlung"]
+    },
+    {
+      "id": "zoll",
+      "name": "Bundeszollverwaltung (Zoll)",
+      "type": "federal_agency",
+      "url": "https://www.zoll.de/",
+      "description": "Zollbehörde für Einfuhr, Ausfuhr, Verbrauchsteuern, Einfuhrumsatzsteuer und Markenschutz. Zuständig für Zollabfertigung und Kontrollen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["zollabfertigung", "verbrauchsteuern", "einfuhrumsatzsteuer"]
+    },
+    {
+      "id": "bundesnetzagentur",
+      "name": "Bundesnetzagentur für Elektrizität, Gas, Telekommunikation, Eisenbahnen (BNetzA)",
+      "type": "federal_agency",
+      "url": "https://www.bundesnetzagentur.de/",
+      "description": "Regulierungsbehörde für Energie-, Telekommunikations-, Eisenbahnen- und Postmärkte. Zuständig für Netzzugang, Genehmigungen und Verbraucherschutz in Netzsektoren.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["energiekosten", "telekommunikation", "eisenbahn", "netzzugang"]
+    },
+    {
+      "id": "kfw",
+      "name": "Kreditanstalt für Wiederaufbau (KfW)",
+      "type": "bank",
+      "url": "https://www.kfw.de/",
+      "description": "Staatliche Förderbank für Wirtschaft, Wohnen, Bildung, Infrastruktur und Klimaschutz. Fördert u.a. Bau von Wohneigentum, Energetische Sanierung, Studienkredite und Unternehmensfinanzierung.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["wohneigentum", "energetische-sanierung", "studienkredit", "gruendungsdarlehen", "wirtschaftskredit"]
+    },
+    {
+      "id": "deutsche-rentenversicherung",
+      "name": "Deutsche Rentenversicherung (DRV)",
+      "type": "insurance",
+      "url": "https://www.deutsche-rentenversicherung.de/",
+      "description": "Trägerin der gesetzlichen Rentenversicherung. Zuständig für Rente, Erwerbsminderungsrente, Reha-Leistungen, Rentenberatung und Verwaltung der Versicherungskonten.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["rente", "erwerbsminderungsrente", "rehabilitation", "verhuetung", "altersvorsorge"]
+    },
+    {
+      "id": "dguv",
+      "name": "Deutsche Gesetzliche Unfallversicherung (DGUV)",
+      "type": "insurance",
+      "url": "https://www.dguv.de/",
+      "description": "Dachverband der gewerblichen Berufsgenossenschaften und der Unfallversicherungsträger der öffentlichen Hand. Zuständig für Unfallverhütung, Unfallversicherung und Rehabilitation.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["unfallversicherung", "berufskrankheit", "rehabilitation", "unfallverhuetung"]
+    },
+    {
+      "id": "gesetzliche-krankenversicherung",
+      "name": "Gesetzliche Krankenversicherung (GKV)",
+      "type": "insurance",
+      "url": "https://www.gkv-spitzenverband.de/",
+      "description": "Spitzenverband der gesetzlichen Krankenkassen (AOK, TK, Barmer, IKK, KKH u.a.). Zuständig für Krankenversicherung, Vorsorge, Kuren und Leistungsansprüche.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["krankenversicherung", "kuren", "vorsorge", "zusatzbeitrag", "familienversicherung"]
+    },
+    {
+      "id": "pflegeversicherung",
+      "name": "Soziale Pflegeversicherung",
+      "type": "insurance",
+      "url": "https://www.pflegkassen.de/",
+      "description": "Träger der sozialen Pflegeversicherung (Pflegekassen). Zuständig für Pflegegeld, Pflegehilfsmittel, Verhinderungspflege und stationäre Pflege nach SGB XI.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["pflegegeld", "pflegehilfsmittel", "verhinderungspflege", "stationaere-pflege", "pflegeberatung"]
+    },
+    {
+      "id": "berufsgenossenschaften",
+      "name": "Berufsgenossenschaften",
+      "type": "insurance",
+      "url": "https://www.dguv.de/de/berufsgenossenschaften/",
+      "description": "Träger der gewerblichen Unfallversicherung. Zuständig für Berufsunfälle, Berufskrankheiten und betriebliche Gesundheitsförderung.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["berufsunfall", "berufskrankheit", "arbeitsmedizin", "betriebliche-gesundheitsfoerderung"]
+    },
+    {
+      "id": "familienkassen",
+      "name": "Familienkassen",
+      "type": "official_body",
+      "url": "https://www.bzst.bund.de/DE/Fachinformation/Familienkassen/familienkassen.html",
+      "description": "Behörden für Kindergeld, Unterhaltsvorschuss und elternzeitliche Leistungen. Unterstehen dem Bundeszentralamt für Steuern (BZSt) und sind bundesweit angesiedelt.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["kindergeld", "unterhaltsvorschuss", "elternzeit", "mutterschutz"]
+    },
+    {
+      "id": "jobcenter",
+      "name": "Jobcenter (örtliche Arbeitsagenturen)",
+      "type": "municipal",
+      "url": "https://www.arbeitsagentur.de/jobcenter",
+      "description": "Örtliche Einheiten der Bundesagentur für Arbeit für Grundsicherung, Bürgergeld, Arbeitsvermittlung und Eingliederungshilfe. Gemeinsame Einrichtungen aus BA und Kommune.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["buergergeld", "grundsicherung", "einschleusungshilfe", "arbeitsvermittlung", "weiterbildung"]
+    },
+    {
+      "id": "sozialamt",
+      "name": "Sozialamt / Jugendamt (kommunal)",
+      "type": "municipal",
+      "url": "https://www.sozialamt.de/",
+      "description": "Kommunale Behörden für Sozialhilfe (SGB XII), Jugendhilfe (SGB VIII), Eingliederungshilfe und Soziale Dienste. Zuständig für Sozialgeld, Hilfe zum Lebensunterhalt und Jugendhilfemaßnahmen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["sozialhilfe", "sozialgeld", "jugendhilfe", "einschleusungshilfe", "hilfe-zum-lebensunterhalt"]
+    },
+    {
+      "id": "wohngeldbehoerde",
+      "name": "Wohngeldbehörden (Wohngeldstelle)",
+      "type": "municipal",
+      "url": "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld_node.html",
+      "description": "Kommunale oder städtische Behörden für die Bewilligung von Wohngeld. Zuständig für Wohngeldanträge, Wohngeld-Berechnung und Mieterhöhungsprüfung.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["wohngeld", "wohngeld-plus", "mietzuschuss"]
+    },
+    {
+      "id": "gesetze-im-internet",
+      "name": "Gesetze im Internet",
+      "type": "official_body",
+      "url": "https://www.gesetze-im-internet.de/",
+      "description": "Amtliche Sammlung aller Bundesgesetze und Verordnungen im Internet. Betrieben vom Bundesministerium der Justiz (BMJ). Nichtamtliche, aber maßgebliche Fundgrunde für Rechtsgrundlagen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["alle-rechtsgrundlagen", "sozialgesetzbuch", "steuergesetze", "verwaltungsrecht"]
+    },
+    {
+      "id": "bgbl",
+      "name": "Bundesgesetzblatt (BGBl.)",
+      "type": "official_body",
+      "url": "https://www.bgbl.de/",
+      "description": "Amtliches Bundesgesetzblatt des Bundesministeriums der Justiz. Verkündet Bundesgesetze und Rechtsverordnungen. Wichtig für Gesetzesänderungen und Verkündungstermine.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["gesetzesaenderungen", "verkuendung", "rechtsprechung"]
+    },
+    {
+      "id": "bundesanzeiger",
+      "name": "Bundesanzeiger / Elektronischer Bundesanzeiger (eBAnz)",
+      "type": "official_body",
+      "url": "https://www.bundesanzeiger.de/",
+      "description": "Amtlicher Verkündungsorgan des Bundes für Veröffentlichungen von Gesetzen, Rechtsverordnungen, Unternehmensregister und Behörden.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["gesetzesvollzug", "unternehmensregister", "offizielle-veroeffentlichungen"]
+    },
+    {
+      "id": "foerderdatenbank",
+      "name": "Förderdatenbank des Bundes",
+      "type": "official_body",
+      "url": "https://www.foerderdatenbank.de/",
+      "description": "Zentrale Datenbank aller Förderprogramme des Bundes, der Länder und der EU. Durchsuchbar nach Förderthema, Antragstellerkreis, Förderart und Region.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["alle-foerderprogramme", "unternehmensfoerderung", "energiefoerderung", "forschung-foerderung"]
+    },
+    {
+      "id": "service-bund",
+      "name": "Service-Portal Bund (service.bund.de)",
+      "type": "official_body",
+      "url": "https://www.service.bund.de/",
+      "description": "Zentrales Informationsportal für Bürger, Wirtschaft und Verwaltung. Bietet Übersicht über alle Bundesbehörden, Leistungen und Kontaktinformationen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["alle-leistungen", "behoerdenuebersicht", "kontakt"]
+    },
+    {
+      "id": "verwaltung-bund",
+      "name": "Verwaltungsportal Bund (verwaltung.bund.de)",
+      "type": "official_body",
+      "url": "https://verwaltung.bund.de/",
+      "description": "Portal für Online-Dienstleistungen der Bundesverwaltung. Zentrale Anlaufstelle für Behördengänge, Anträge und digitale Verwaltungsdienste.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["online-antraege", "digitale-verwaltung", "dienstleistungen"]
+    },
+    {
+      "id": "gesund-bund",
+      "name": "gesund.bund.de",
+      "type": "official_body",
+      "url": "https://gesund.bund.de/",
+      "description": "Portal des Bundesministeriums für Gesundheit mit verlässlichen Gesundheitsinformationen zu Krankheiten, Präfung, Pflege und digitaler Gesundheit.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["gesundheitsinformationen", "praevention", "pflege", "krankheiten", "digital-gesundheit"]
+    },
+    {
+      "id": "rki",
+      "name": "Robert Koch-Institut (RKI)",
+      "type": "federal_agency",
+      "url": "https://www.rki.de/",
+      "description": "Bundesgesundheitsinstitut für Infektionskrankheiten und nicht-übertragbare Erkrankungen. Zuständig für Seuchenschutz, Epidemiologie und Gesundheitsberichterstattung.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["impfungen", "seuchenschutz", "gesundheit", "epidemien"]
+    },
+    {
+      "id": "paul-ehrlich-institut",
+      "name": "Paul-Ehrlich-Institut (PEI)",
+      "type": "federal_agency",
+      "url": "https://www.pei.de/",
+      "description": "Bundesinstitut für Impfstoffe und biomedizinische Arzneimittel. Zuständig für Zulassung von Impfstoffen und Überwachung der Arzneimittelsicherheit.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["impfstoffe", "arzneimittel", "biosimilars", "blutprodukte"]
+    },
+    {
+      "id": "bvl",
+      "name": "Bundesamt für Verbraucherschutz und Lebensmittelsicherheit (BVL)",
+      "type": "federal_agency",
+      "url": "https://www.bvl.bund.de/",
+      "description": "Zuständig für Lebensmittelsicherheit, Verbraucherschutz, Pflanzenschutzmittel und Tierarzneimittel. Koordiniert die Zusammenarbeit der Bundesländer bei Kontrollen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["lebensmittelsicherheit", "verbraucherschutz", "pflanzenschutz", "tiergesundheit"]
+    },
+    {
+      "id": "bfarm",
+      "name": "Bundesinstitut für Arzneimittel und Medizinprodukte (BfArM)",
+      "type": "federal_agency",
+      "url": "https://www.bfarm.de/",
+      "description": "Zuständig für Zulassung und Überwachung von Arzneimitteln, Medizinprodukten und Betäubungsmitteln in Deutschland.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["arzneimittel", "medizinprodukte", "betäubungsmittel", "klinische-pruefungen"]
+    },
+    {
+      "id": "g-ba",
+      "name": "Gemeinsamer Bundesausschuss (G-BA)",
+      "type": "official_body",
+      "url": "https://www.g-ba.de/",
+      "description": "Entscheidungsgremium der gemeinsamen Selbstverwaltung im Gesundheitswesen. Bestimmt den Leistungskatalog der gesetzlichen Krankenkassen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["kassenleistungen", "arzneimittelrichtlinien", "therapierichtlinien", "screening"]
+    },
+    {
+      "id": "bmukn",
+      "name": "Bundesministerium für Umwelt, Klimaschutz, Naturschutz und nukleare Sicherheit (BMUKN)",
+      "type": "federal_ministry",
+      "url": "https://www.bmu.bund.de/",
+      "description": "Ministerium für Umwelt- und Klimaschutzpolitik, Naturschutz, Wasser, Abfall und nukleare Sicherheit. Zuständig für Förderprogramme im Umweltbereich.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["umweltfoerderung", "klimaschutz", "naturschutz", "wasser", "abfall"]
+    },
+    {
+      "id": "bfdi",
+      "name": "Bundesbeauftragte für den Datenschutz und die Informationsfreiheit (BfDI)",
+      "type": "federal_agency",
+      "url": "https://www.bfdi.bund.de/",
+      "description": "Unabhängige Datenschutz-Aufsichtsbehörde des Bundes. Zuständig für Überwachung der Datenschutzgrundverordnung (DSGVO) und Beratung bei Datenschutzfragen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["datenschutz", "informationsfreiheit", "beschwerden", "beratung"]
+    },
+    {
+      "id": "bafin",
+      "name": "Bundesanstalt für Finanzdienstleistungsaufsicht (BaFin)",
+      "type": "federal_agency",
+      "url": "https://www.bafin.de/",
+      "description": "Bundesaufsichtsbehörde für Banken, Versicherungen und Wertpapiere. Zuständig für Finanzstabilität und Verbraucherschutz im Finanzsektor.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["finanzaufsicht", "banken", "versicherungen", "wertpapiere"]
+    },
+    {
+      "id": "integration-fund",
+      "name": "Integrationsfonds",
+      "type": "official_body",
+      "url": "https://www.bamf.de/DE/Themen/Integration/Integrationsfonds/integrationsfonds-node.html",
+      "description": "Fördert Integrationsmaßnahmen für Menschen mit Bleibeperspektive. Finanziert von der EU und dem Bund.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["integration", "sprachkurse", "beratung", "teilhabe"]
+    },
+    {
+      "id": "arbeitskammer",
+      "name": "Arbeitskammern (Landesebene)",
+      "type": "official_body",
+      "url": "https://www.arbeitskammer.de/",
+      "description": "Interessenvertreibung der Arbeitnehmer auf Landesebene. Beratung zu Arbeitsrecht, Sozialversicherung und Weiterbildung.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["arbeitsrecht", "sozialversicherung", "weiterbildung", "berufsberatung"]
+    },
+    {
+      "id": "unternehmensregister",
+      "name": "Unternehmensregister / Handelsregister",
+      "type": "official_body",
+      "url": "https://www.unternehmensregister.de/",
+      "description": "Bundesweites Register für Kapitalgesellschaften und Offene Handelsgesellschaften. Zuständig für Einsichtnahmen und Veröffentlichungen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["gmbh", "ug", "gewerbeanmeldung", "handelsregister"]
+    },
+    {
+      "id": "transparenzregister",
+      "name": "Transparenzregister",
+      "type": "official_body",
+      "url": "https://www.transparenzregister.de/",
+      "description": "Register für wirtschaftliche Eigentümer von Unternehmen. Betrieben vom Bundesverwaltungsamt (BVA). Eintragungspflicht für Kapitalgesellschaften.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["wirtschaftlicher-eigentuemer", "gmbh", "straftaten-vermoegensordnung"]
+    },
+    {
+      "id": "auswaertiges-amt",
+      "name": "Auswärtiges Amt (AA)",
+      "type": "federal_ministry",
+      "url": "https://www.auswaertiges-amt.de/",
+      "description": "Ministerium für Auswärtige Angelegenheiten, Konsularwesen, Visavergabe und Auslandskooperation.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["visum", "konsularwesen", "pass", "reisepass", "auslandsvertretungen"]
+    },
+    {
+      "id": "bmvg",
+      "name": "Bundesministerium der Verteidigung (BMVg)",
+      "type": "federal_ministry",
+      "url": "https://www.bmvg.de/",
+      "description": "Ministerium für Bundeswehr, Wehrpflicht, Rüstung und Sozialversicherung der Soldaten.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["wehrpflicht", "bundeswehr", "sozialversicherung-soldaten", "ruestung"]
+    },
+    {
+      "id": "bmvbs",
+      "name": "Bundesministerium für Digitales und Verkehr (BMVI/BMVDV)",
+      "type": "federal_ministry",
+      "url": "https://www.bmvi.bund.de/",
+      "description": "Ministerium für Verkehr, Infrastruktur und digitale Mobilität. Zuständig für Förderung von Elektromobilität, ÖPNV und Infrastrukturprojekten.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["elektromobilitaet", "oeffentlicher-verkehr", "infrastruktur", "verkehr"]
+    },
+    {
+      "id": "bmj",
+      "name": "Bundesministerium der Justiz (BMJ)",
+      "type": "federal_ministry",
+      "url": "https://www.bmjv.bund.de/",
+      "description": "Ministerium für Justiz, Bürgerliches Recht, Strafrecht und Verwaltungsrecht. Betreibt Gesetze im Internet und Bundesgesetzblatt.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["justiz", "rechtsgrundlagen", "gesetze", "verbraucherinsolvenz"]
+    },
+    {
+      "id": "kindergeld-online",
+      "name": "Kindergeld-Portal (ELSTER/Familienkasse)",
+      "type": "municipal",
+      "url": "https://www.kindergeld.org/",
+      "description": "Informationsportal und Antragstellung für Kindergeld, Kinderfreibetrag und Familienleistungen. Ermöglicht Online-Anträge.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["kindergeld", "kinderfreibetrag", "elterngeld", "unterhaltsvorschuss"]
+    },
+    {
+      "id": "wohngeldrechner",
+      "name": "Wohngeldrechner (BMWSB)",
+      "type": "official_body",
+      "url": "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld-rechner/wohngeld-rechner_node.html",
+      "description": "Offizieller Wohngeldrechner des BMWSB. Hilft bei der Berechnung des geschätzten Wohngeldbetrags basierend auf Einkommen, Miete und Haushaltsgröße.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["wohngeld", "wohngeld-plus"]
+    },
+    {
+      "id": "rentenrechner",
+      "name": "Rentenrechner der Deutschen Rentenversicherung",
+      "type": "official_body",
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Rentenrechner/rechner.html",
+      "description": "Offizieller Rentenrechner der Deutschen Rentenversicherung. Simuliert Rentenansprüche auf Basis des aktuellen Rentenwerts.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["rente", "altersrente", "erwerbsminderungsrente"]
+    },
+    {
+      "id": "kinderzuschlag",
+      "name": "Kinderzuschlag (Familienkasse)",
+      "type": "municipal",
+      "url": "https://www.arbeitsagentur.de/familie-und-kinder/kinderzuschlag",
+      "description": "Leistung für erwerbstätige Eltern mit geringem Einkommen, die Kindergeld erhalten. Beantragbar bei den Familienkassen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["kinderzuschlag", "kindergeld", "familie"]
+    },
+    {
+      "id": "elterngeld-digital",
+      "name": "ElterngeldDigital",
+      "type": "official_body",
+      "url": "https://www.elterngeld-digital.de/",
+      "description": "Online-Portal für die Beantragung von Elterngeld. Bietet Berechnung, Antragstellung und Nachverfolgung des Elterngeldanspruchs.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["elterngeld", "elterngeldplus", "basiselterngeld"]
+    },
+    {
+      "id": "bildungspass",
+      "name": "Bildungsberatung / Bildungspass Bayern",
+      "type": "official_body",
+      "url": "https://www.bildungsberatung-bayern.de/",
+      "description": "Landesweite Bildungsberatung für Weiterbildung, Berufsorientierung und Chancengleichheit. (Beispiel Bayern, ähnliche Strukturen in anderen Bundesländern)",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["weiterbildung", "berufsberatung", "qualifizierung"]
+    },
+    {
+      "id": "ausbildungsuche",
+      "name": "Ausbildungsportal der Bundesagentur für Arbeit",
+      "type": "federal_agency",
+      "url": "https://www.azubiyo.de/",
+      "description": "Leitportal für Ausbildungsplatzsuche, Berufsorientierung und Ausbildungsmöglichkeiten. Betrieben von der Bundesagentur für Arbeit.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["ausbildung", "berufsorientierung", "ausbildungsplatz"]
+    },
+    {
+      "id": "buergerportal",
+      "name": "Bürgerportal / Deutschland-Portal",
+      "type": "official_body",
+      "url": "https://verwaltung.bund.de/",
+      "description": "Zentrales Bürgerportal für Behördengänge, Anträge, Meldebescheinigungen und Verwaltungsdienste des Bundes.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["alle-leistungen", "digitale-verwaltung", "antraege"]
+    },
+    {
+      "id": "schnellcheck-buergergeld",
+      "name": "Schnellcheck Bürgergeld (BA)",
+      "type": "federal_agency",
+      "url": "https://www.arbeitsagentur.de/buergergeld",
+      "description": "Online-Check für die schnelle Einschätzung des Anspruchs auf Bürgergeld. Bietet Informationen und Antragstellung.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["buergergeld", "grundsicherung"]
+    },
+    {
+      "id": "arbeitslosengeld-portal",
+      "name": "Arbeitslosengeld-Portal der BA",
+      "type": "federal_agency",
+      "url": "https://www.arbeitsagentur.de/arbeitslosengeld-anspruch",
+      "description": "Informationsportal und Antragstellung für Arbeitslosengeld I. Bietet Rechner und Online-Antrag.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["arbeitslosengeld-i"]
+    },
+    {
+      "id": "studierendenwerk",
+      "name": "Studierendenwerke (Landesebene)",
+      "type": "municipal",
+      "url": "https://www.studierendenwerke.de/",
+      "description": "Träger der Sozialen Dienste für Studierende. Zuständig für BAföG, Mensen, Wohnheime, Beratung und psychosoziale Hilfen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["bafoeg", "wohnheim", "mensa", "beratung", "psychosoziale-hilfe"]
+    },
+    {
+      "id": "landesregierungen",
+      "name": "Landesregierungen und Landesministerien",
+      "type": "state_ministry",
+      "url": "https://www.bundesrat.de/DE/laender/laender.html",
+      "description": "16 Bundesländer mit eigenen Landesministerien für Soziales, Arbeit, Familie, Bildung, Wirtschaft und Umwelt. Zuständig für Landesförderprogramme und kommunale Sozialleistungen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["landesfoerderung", "kommunale-sozialleistungen", "bildung", "familie"]
+    },
+    {
+      "id": "landesausgleichsamt",
+      "name": "Landesausgleichsämter",
+      "type": "state_ministry",
+      "url": "https://www.bundesausgleichsamt.de/",
+      "description": "Zuständig für Lastenausgleich, Entschädigung für Opfer des Nationalsozialismus und Wiedergutmachung. Landesweite Strukturen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["lastenausgleich", "entschaedigung", "wiedergutmachung"]
+    },
+    {
+      "id": "landesamt-fuer-soziales",
+      "name": "Landesämter für Soziales, Jugend und Versorgung (LSJV)",
+      "type": "state_ministry",
+      "url": "https://www.lsbk.bund.de/",
+      "description": "Landesweite Ämter für Soziales, Jugend, Versorgung und Eingliederungshilfe. Zuständig für Behindertenhilfe, Pflege und Jugendhilfe auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["behindertenhilfe", "pflege", "jugendhilfe", "einschleusungshilfe"]
+    },
+    {
+      "id": "landesamt-fuer-den-mieterschutz",
+      "name": "Landesämter für den Mieterschutz",
+      "type": "state_ministry",
+      "url": "https://www.bmwsb.bund.de/DE/wohnen/mieterschutz/mieterschutz_node.html",
+      "description": "Landesweite Ämter für Mieterschutz, Mietpreisbremse und Wohnraumschutz. Beratung und Vermittlung bei Wohnungsnotfällen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["mieterschutz", "mietpreisbremse", "wohnraumschutz"]
+    },
+    {
+      "id": "landesamt-fuer-integration",
+      "name": "Landesämter für Integration / Ausländerbehörden",
+      "type": "state_ministry",
+      "url": "https://www.bamf.de/DE/Themen/Integration/integration-node.html",
+      "description": "Landesweite Ausländerbehörden und Integrationsämter. Zuständig für Aufenthaltstitel, Niederlassungserlaubnis, Einbürgerung und Integrationsmaßnahmen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["aufenthaltstitel", "niederlassungserlaubnis", "einbuergerung", "integration"]
+    },
+    {
+      "id": "landesamt-fuer-bildung",
+      "name": "Kultusministerien / Landesämter für Bildung",
+      "type": "state_ministry",
+      "url": "https://www.kmk.org/",
+      "description": "Kultusministerkonferenz (KMK) und Landesministerien für Bildung, Schulwesen und Hochschulpolitik. Zuständig für Schulabschlüsse, Anerkennung und Bildungsstandards.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["bildung", "schule", "hochschule", "abschluesse", "anerkennung"]
+    },
+    {
+      "id": "landesamt-fuer-wirtschaft",
+      "name": "Landeswirtschaftsministerien",
+      "type": "state_ministry",
+      "url": "https://www.bmwk.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Wirtschaftsministerien für Gewerbe, Handwerk, Tourismus und Landeswirtschaftsförderung. Zuständig für Gewerbeförderung und Standortpolitik.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["gewerbefoerderung", "handwerk", "tourismus", "standortpolitik"]
+    },
+    {
+      "id": "landesamt-fuer-finanzen",
+      "name": "Landesfinanzministerien",
+      "type": "state_ministry",
+      "url": "https://www.bmf.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Finanzministerien für Landessteuern, Finanzausgleich und Haushaltspolitik. Zuständig für Grundsteuer, Erbschaftsteuer und Landesförderung.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["grundsteuer", "erbschaftsteuer", "finanzausgleich"]
+    },
+    {
+      "id": "landesamt-fuer-arbeit",
+      "name": "Landesarbeitsministerien",
+      "type": "state_ministry",
+      "url": "https://www.bmas.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Arbeitsministerien für Arbeitsmarktpolitik, Mindestlohn-Kontrolle und Arbeitsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["arbeitsmarkt", "mindestlohn", "arbeitsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-familie",
+      "name": "Landesfamilienministerien",
+      "type": "state_ministry",
+      "url": "https://www.bmbfsfj.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Ministerien für Familienpolitik, Kinderbetreuung, Jugendhilfe und Gleichstellung. Zuständig für Landesförderprogramme für Familien.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["familie", "kinderbetreuung", "jugendhilfe", "gleichstellung"]
+    },
+    {
+      "id": "landesamt-fuer-gesundheit",
+      "name": "Landesgesundheitsministerien",
+      "type": "state_ministry",
+      "url": "https://www.bmg.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Gesundheitsministerien für Krankenhauspolitik, Gesundheitsämter und Seuchenschutz auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["gesundheit", "krankenhaus", "gesundheitsamt", "seuchenschutz"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt",
+      "name": "Landesumweltministerien",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Umweltministerien für Naturschutz, Wasserwirtschaft, Abfallwirtschaft und Umweltförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["umwelt", "naturschutz", "wasser", "abfall"]
+    },
+    {
+      "id": "landesamt-fuer-verbraucherschutz",
+      "name": "Landesämter für Verbraucherschutz",
+      "type": "state_ministry",
+      "url": "https://www.bvl.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Ämter für Lebensmittelkontrolle, Verbraucherschutz und Veterinärwesen. Zuständig für Lebensmittelüberwachung und Rückrufe.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["verbraucherschutz", "lebensmittel", "veterinaerwesen"]
+    },
+    {
+      "id": "landesamt-fuer-stadtentwicklung",
+      "name": "Landesämter für Stadtentwicklung / Wohnungsbau",
+      "type": "state_ministry",
+      "url": "https://www.bmwsb.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Ämter für Stadtentwicklung, Wohnungsbau und Städtebauförderung. Zuständig für Landeswohnungsbauprogramme und Stadterneuerung.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["wohnungsbau", "staedtebau", "stadtentwicklung", "wohnen"]
+    },
+    {
+      "id": "landesamt-fuer-landwirtschaft",
+      "name": "Landeslandwirtschaftsministerien",
+      "type": "state_ministry",
+      "url": "https://www.bmel.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Ministerien für Landwirtschaft, Ernährung und ländliche Entwicklung. Zuständig für Agrarförderung und Strukturwandel.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["landwirtschaft", "ernaehrung", "laendlicher-raum", "agrarpolitik"]
+    },
+    {
+      "id": "landesamt-fuer-wissenschaft",
+      "name": "Landeswissenschaftsministerien",
+      "type": "state_ministry",
+      "url": "https://www.bmftr.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Ministerien für Wissenschaft, Forschung und Hochschulpolitik. Zuständig für Landesforschungsförderung und Hochschulentwicklung.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["wissenschaft", "forschung", "hochschule", "bildung"]
+    },
+    {
+      "id": "landesamt-fuer-kultur",
+      "name": "Landeskulturministerien",
+      "type": "state_ministry",
+      "url": "https://www.bmbfsfj.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Ministerien für Kultur, Kunst und Denkmalschutz. Zuständig für Kulturförderung und Denkmalschutz auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["kultur", "kunst", "denkmalschutz", "kulturförderung"]
+    },
+    {
+      "id": "landesamt-fuer-sport",
+      "name": "Landessportministerien / Sportförderung",
+      "type": "state_ministry",
+      "url": "https://www.bmi.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Sportministerien und Sportförderung. Zuständig für Spitzensportförderung, Breitensport und Sportstättenbau.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["sport", "spitzensport", "breitensport", "sportstaetten"]
+    },
+    {
+      "id": "landesamt-fuer-verwaltung",
+      "name": "Landesverwaltungsämter / Innenministerien",
+      "type": "state_ministry",
+      "url": "https://www.bmi.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Innenministerien für Kommunalverwaltung, Wahlen, Brandschutz und Katastrophenschutz. Zuständig für Verwaltungsdienste auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["verwaltung", "wahlen", "brandschutz", "katastrophenschutz"]
+    },
+    {
+      "id": "landesamt-fuer-justiz",
+      "name": "Landesjustizministerien",
+      "type": "state_ministry",
+      "url": "https://www.bmjv.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Justizministerien für Gerichtsbarkeit, Strafvollzug und Rechtspflege auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["justiz", "gerichte", "strafvollzug", "rechtspflege"]
+    },
+    {
+      "id": "landesamt-fuer-finanzausgleich",
+      "name": "Finanzausgleich / Länderfinanzausgleich",
+      "type": "state_ministry",
+      "url": "https://www.bmf.bund.de/DE/Laender/laender_node.html",
+      "description": "System des Länderfinanzausgleichs zur Angleichung der Finanzkraft der Bundesländer. Wichtig für die Finanzierung kommunaler Sozialleistungen.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["finanzausgleich", "kommunalfinanzen", "sozialleistungen"]
+    },
+    {
+      "id": "landesamt-fuer-migration",
+      "name": "Landesämter für Migration / Integrationsbeauftragte",
+      "type": "state_ministry",
+      "url": "https://www.bamf.de/DE/Themen/Integration/integration-node.html",
+      "description": "Landesweite Integrationsbeauftragte und Migrationsämter. Zuständig für Integrationspolitik, Sprachförderung und Teilhabe auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["migration", "integration", "sprachfoerderung", "teilhabe"]
+    },
+    {
+      "id": "landesamt-fuer-energie",
+      "name": "Landesenergieagenturen",
+      "type": "state_ministry",
+      "url": "https://www.bmwk.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Energieagenturen für Energieberatung, Energieeffizienz und erneuerbare Energien auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["energie", "energieeffizienz", "erneuerbare-energien", "energieberatung"]
+    },
+    {
+      "id": "landesamt-fuer-tourismus",
+      "name": "Landestourismusverbände",
+      "type": "state_ministry",
+      "url": "https://www.bmwk.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Tourismusverbände für Tourismusförderung, Standortentwicklung und regionale Wirtschaftsförderung.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["tourismus", "standortentwicklung", "wirtschaftsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-digitalisierung",
+      "name": "Landesämter für Digitalisierung / E-Government",
+      "type": "state_ministry",
+      "url": "https://www.bmwk.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Ämter für Digitalisierung, E-Government und digitale Verwaltungsdienste auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["digitalisierung", "e-government", "verwaltung"]
+    },
+    {
+      "id": "landesamt-fuer-gleichstellung",
+      "name": "Landesgleichstellungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmbfsfj.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Gleichstellungsämter für Chancengleichheit, Frauenförderung und Anti-Diskriminierung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["gleichstellung", "frauenfoerderung", "anti-diskriminierung"]
+    },
+    {
+      "id": "landesamt-fuer-senioren",
+      "name": "Landesseniorenämter / Seniorenbeauftragte",
+      "type": "state_ministry",
+      "url": "https://www.bmbfsfj.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Seniorenbeauftragte und Ämter für Seniorenpolitik, Altersgerechtes Wohnen und Pflegeberatung.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["senioren", "altersgerecht-wohnen", "pflegeberatung"]
+    },
+    {
+      "id": "landesamt-fuer-behinderte",
+      "name": "Landesämter für Behindertenarbeit / Integrationsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmas.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Integrationsämter für Menschen mit Behinderungen. Zuständig für Eingliederungshilfe, Budget für Arbeit und Inklusion.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["behinderte", "einschleusungshilfe", "budget-fuer-arbeit", "inklusion"]
+    },
+    {
+      "id": "landesamt-fuer-jugend",
+      "name": "Landesjugendämter",
+      "type": "state_ministry",
+      "url": "https://www.bmbfsfj.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Jugendämter für Jugendhilfe, Kinderschutz und Jugendarbeit auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["jugendhilfe", "kinderschutz", "jugendarbeit"]
+    },
+    {
+      "id": "landesamt-fuer-familie-kinder",
+      "name": "Landesfamilienkinderämter",
+      "type": "state_ministry",
+      "url": "https://www.bmbfsfj.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Ämter für Familien- und Kinderpolitik, Kinderbetreuung und Familienberatung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["familie", "kinder", "kinderbetreuung", "familienberatung"]
+    },
+    {
+      "id": "landesamt-fuer-pflege",
+      "name": "Landespflegeämter",
+      "type": "state_ministry",
+      "url": "https://www.bmg.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Pflegeämter für Pflegeberatung, Pflegegewährleistung und Pflegeförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["pflege", "pflegeberatung", "pflegegewaehrleistung"]
+    },
+    {
+      "id": "landesamt-fuer-krankenhaus",
+      "name": "Landeskrankenhausämter",
+      "type": "state_ministry",
+      "url": "https://www.bmg.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Krankenhausämter für Krankenhausplanung, Krankenhausfinanzierung und Patientenberatung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["krankenhaus", "patientenberatung", "krankenhausplanung"]
+    },
+    {
+      "id": "landesamt-fuer-arbeitsinspektion",
+      "name": "Landesarbeitsinspektorate",
+      "type": "state_ministry",
+      "url": "https://www.bmas.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Arbeitsinspektorate für Arbeitsschutz, Arbeitszeitkontrolle und Betriebsüberwachung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["arbeitsschutz", "arbeitszeit", "betrieb"]
+    },
+    {
+      "id": "landesamt-fuer-gewerbeaufsicht",
+      "name": "Landesgewerbeaufsichtsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmwk.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Gewerbeaufsichtsämter für Gewerbeanmeldung, Gewerbeüberwachung und Verbraucherschutz auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["gewerbe", "gewerbeanmeldung", "verbraucherschutz"]
+    },
+    {
+      "id": "landesamt-fuer-immobilien",
+      "name": "Landesimmobilienämter",
+      "type": "state_ministry",
+      "url": "https://www.bmwsb.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Immobilienämter für Grundstücksbewertung, Immobilienförderung und Wohnungsbau auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["immobilien", "grundstueck", "wohnungsbau"]
+    },
+    {
+      "id": "landesamt-fuer-verkehr",
+      "name": "Landesverkehrsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmvi.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Verkehrsämter für Straßenbahnschienen, ÖPNV-Förderung und Verkehrsinfrastruktur auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["verkehr", "oeffentlicher-verkehr", "infrastruktur"]
+    },
+    {
+      "id": "landesamt-fuer-wasser",
+      "name": "Landeswasserämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Wasserämter für Wasserwirtschaft, Hochwasserschutz und Wasserversorgung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["wasser", "hochwasserschutz", "wasserversorgung"]
+    },
+    {
+      "id": "landesamt-fuer-abfall",
+      "name": "Landesabfallämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Abfallämter für Abfallwirtschaft, Kreislaufwirtschaft und Altlastensanierung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["abfall", "kreislaufwirtschaft", "altlasten"]
+    },
+    {
+      "id": "landesamt-fuer-strahlenschutz",
+      "name": "Landesstrahlenschutzämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Strahlenschutzämter für Strahlenschutz, Radioaktivität und nukleare Sicherheit auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["strahlenschutz", "radioaktivitaet", "nukleare-sicherheit"]
+    },
+    {
+      "id": "landesamt-fuer-atomaufsicht",
+      "name": "Landesatomaufsichtsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Atomaufsichtsämter für Atomrecht, Genehmigungen und Überwachung kerntechnischer Anlagen auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["atomrecht", "genehmigungen", "kerntechnik"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-medien",
+      "name": "Landesumweltmedienämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Umweltmedienämter für Luftreinhaltung, Bodenschutz und Lärmschutz auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["luft", "boden", "laerm"]
+    },
+    {
+      "id": "landesamt-fuer-naturschutz",
+      "name": "Landesnaturschutzämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Naturschutzämter für Naturschutz, Landschaftspflege und Artenschutz auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["naturschutz", "landschaftspflege", "artenschutz"]
+    },
+    {
+      "id": "landesamt-fuer-forsten",
+      "name": "Landesforstämter",
+      "type": "state_ministry",
+      "url": "https://www.bmel.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Forstämter für Forstwirtschaft, Waldpflege und Forstförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["forst", "wald", "forstfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-jagd",
+      "name": "Landesjagdämter",
+      "type": "state_ministry",
+      "url": "https://www.bmel.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Jagdämter für Jagdrecht, Wildtierbestand und Jagdförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["jagd", "wild", "jagdrecht"]
+    },
+    {
+      "id": "landesamt-fuer-fischerei",
+      "name": "Landesfischereiamter",
+      "type": "state_ministry",
+      "url": "https://www.bmel.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Fischereiamter für Fischerei, Teichwirtschaft und Fischereiförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["fischerei", "teichwirtschaft", "fischereirecht"]
+    },
+    {
+      "id": "landesamt-fuer-verbraucherschutz-lebensmittel",
+      "name": "Landeslebensmittelüberwachungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bvl.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Lebensmittelüberwachungsämter für Lebensmittelkontrolle, Hygiene und Rückrufe auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["lebensmittel", "hygiene", "rueckruf"]
+    },
+    {
+      "id": "landesamt-fuer-veterinaerwesen",
+      "name": "Landesveterinärämter",
+      "type": "state_ministry",
+      "url": "https://www.bvl.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Veterinärämter für Tiergesundheit, Tierseuchen und Fleischbeschau auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["tiergesundheit", "tierseuche", "fleischbeschau"]
+    },
+    {
+      "id": "landesamt-fuer-pflanzenschutz",
+      "name": "Landespflanzenschutzämter",
+      "type": "state_ministry",
+      "url": "https://www.bvl.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Pflanzenschutzämter für Pflanzenschutzmittel, Pflanzengesundheit und Pflanzenschutz auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["pflanzenschutz", "pflanzengesundheit", "pflanzenschutzmittel"]
+    },
+    {
+      "id": "landesamt-fuer-duenger",
+      "name": "Landesdüngerämter",
+      "type": "state_ministry",
+      "url": "https://www.bmel.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Düngerämter für Düngemittel, Düngeverordnung und Bodenschutz auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["duenger", "bodenschutz", "duengeverordnung"]
+    },
+    {
+      "id": "landesamt-fuer-saatgut",
+      "name": "Landessaatgutämter",
+      "type": "state_ministry",
+      "url": "https://www.bmel.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Saatgutämter für Saatgut, Sortenzulassung und Pflanzengenetische Ressourcen auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["saatgut", "sortenzulassung", "pflanzengenetik"]
+    },
+    {
+      "id": "landesamt-fuer-landwirtschaft-foerderung",
+      "name": "Landeslandwirtschaftsförderämter",
+      "type": "state_ministry",
+      "url": "https://www.bmel.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Landwirtschaftsförderämter für Agrarförderung, Strukturwandel und Ländlichen Raum auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["agrarpolitik", "strukturwandel", "laendlicher-raum"]
+    },
+    {
+      "id": "landesamt-fuer-weinbau",
+      "name": "Landesweinbauämter",
+      "type": "state_ministry",
+      "url": "https://www.bmel.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Weinbauämter für Weinbau, Weinrecht und Weinbezeichnung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["weinbau", "weinrecht", "weinbezeichnung"]
+    },
+    {
+      "id": "landesamt-fuer-milchwirtschaft",
+      "name": "Landesmilchwirtschaftsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmel.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Milchwirtschaftsämter für Milchwirtschaft, Milchquote und Milchförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["milchwirtschaft", "milchquote", "milchfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-tierzucht",
+      "name": "Landestierzuchtsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmel.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Tierzuchtsämter für Tierzucht, Tierzuchtregister und Tierzuchtförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["tierzucht", "tierzuchtregister", "tierzuchtfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-tierhaltung",
+      "name": "Landestierhaltungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmel.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Tierhaltungsämter für Tierhaltung, Tierschutz und Tierhaltungskennzeichnung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["tierhaltung", "tierschutz", "tierhaltungskennzeichnung"]
+    },
+    {
+      "id": "landesamt-fuer-tierarzneimittel",
+      "name": "Landestierarzneimittelämter",
+      "type": "state_ministry",
+      "url": "https://www.bmel.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Tierarzneimittelämter für Tierarzneimittel, Tierarzneimittelzulassung und Tierarzneimittelüberwachung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["tierarzneimittel", "tierarzneimittelzulassung", "tierarzneimittelueberwachung"]
+    },
+    {
+      "id": "landesamt-fuer-lebensmitteluntersuchung",
+      "name": "Landeslebensmitteluntersuchungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bvl.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Lebensmitteluntersuchungsämter für Lebensmitteluntersuchung, Lebensmittelbewertung und Lebensmittelinformation auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["lebensmitteluntersuchung", "lebensmittelbewertung", "lebensmittelinformation"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-chemikalie",
+      "name": "Landeschemikalienämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Chemikalienämter für Chemikaliensicherheit, REACH, CLP und Chemikalienförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["chemikalien", "reach", "clp", "chemikalienfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-altlasten",
+      "name": "Landesaltlastenämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Altlastenämter für Altlastensanierung, Altlastenforschung und Altlastenförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["altlasten", "altlastensanierung", "altlastenfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-boden",
+      "name": "Landesbodenschutzämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Bodenschutzämter für Bodenschutz, Bodensanierung und Bodenförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["bodenschutz", "bodensanierung", "bodenfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-luft",
+      "name": "Landesluftreinhaltungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Luftreinhaltungsämter für Luftreinhaltung, Luftqualität und Luftförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["luftreinhaltung", "luftqualitaet", "luftfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-laerm",
+      "name": "Landeslärmschutzämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Lärmschutzämter für Lärmschutz, Lärmbekämpfung und Lärmförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["laermschutz", "laermbekaempfung", "laermfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-radioaktivitaet",
+      "name": "Landesradioaktivitätsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Radioaktivitätsämter für Radioaktivität, Strahlenschutz und Strahlenschutzförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["radioaktivitaet", "strahlenschutz", "strahlenschutzfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-klima",
+      "name": "Landesklimaschutzämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Klimaschutzämter für Klimaschutz, Klimaanpassung und Klimaförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["klimaschutz", "klimaanpassung", "klimafoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-erneuerbare",
+      "name": "Landeserneuerbare-energien-ämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Erneuerbare-Energien-ämter für Erneuerbare Energien, Energiewende und Energieförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["erneuerbare-energien", "energiewende", "energie-foerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-effizienz",
+      "name": "Landesenergieeffizienzämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Energieeffizienzämter für Energieeffizienz, Energieberatung und Energieeffizienzförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["energieeffizienz", "energieberatung", "energieeffizienzfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-waerme",
+      "name": "Landeswärmeämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Wärmeämter für Wärme, Wärmeplanung und Wärmeförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waerme", "waermeplanung", "waermefoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-mobilitaet",
+      "name": "Landesmobilitätsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Mobilitätsämter für Mobilität, Verkehr und Mobilitätsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["mobilitaet", "verkehr", "mobilitaetfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-elektromobilitaet",
+      "name": "Landeselektromobilitätsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Elektromobilitätsämter für Elektromobilität, E-Mobilität und Elektromobilitätsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["elektromobilitaet", "e-mobilitaet", "elektromobilitaetfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-wasserstoff",
+      "name": "Landeswasserstoffämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Wasserstoffämter für Wasserstoff, Wasserstoffwirtschaft und Wasserstoffförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["wasserstoff", "wasserstoffwirtschaft", "wasserstofffoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-biomasse",
+      "name": "Landesbiomasseämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Biomasseämter für Biomasse, Bioenergie und Biomasseförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["biomasse", "bioenergie", "biomassefoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-geothermie",
+      "name": "Landesothermieämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Geothermieämter für Geothermie, Erdwärme and Geothermieförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["geothermie", "erdwaerme", "geothermiefoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-solarthermie",
+      "name": "Landessolarthermieämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Solarthermieämter für Solarthermie, Solaranlagen and Solarthermieförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["solarthermie", "solaranlagen", "solarthermiefoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-photovoltaik",
+      "name": "Landephotovoltaikämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Photovoltaikämter für Photovoltaik, Solaranlagen and Photovoltaikförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["photovoltaik", "solaranlagen", "photovoltaikfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-windenergie",
+      "name": "Landeswindenergieämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Windenergieämter für Windenergie, Windkraftanlagen and Windenergieförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["windenergie", "windkraftanlagen", "windenergiefoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-wasserkraft",
+      "name": "Landewasserkraftämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Wasserkraftämter für Wasserkraft, Wasserkraftanlagen and Wasserkraftförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["wasserkraft", "wasserkraftanlagen", "wasserkraftfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-biogas",
+      "name": "Landesbiogasämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Biogasämter für Biogas, Biogasanlagen and Biogasförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["biogas", "biogasanlagen", "biogasfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-deponie",
+      "name": "Landesdeponieämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Deponieämter für Deponien, Abfallentsorgung and Deponieförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["deponie", "abfallentsorgung", "deponiefoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-recycling",
+      "name": "Landesrecyclingämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Recyclingämter für Recycling, Kreislaufwirtschaft and Recyclingförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["recycling", "kreislaufwirtschaft", "recyclingfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-abfallvermeidung",
+      "name": "Landesabfallvermeidungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Abfallvermeidungsämter für Abfallvermeidung, Abfallvermeidungsstrategien and Abfallvermeidungsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["abfallvermeidung", "abfallvermeidungsstrategien", "abfallvermeidungsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-siedlungsabfall",
+      "name": "Landessiedlungsabfallämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Siedlungsabfallämter für Siedlungsabfall, Siedlungsabfallentsorgung and Siedlungsabfallförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["siedlungsabfall", "siedlungsabfallentsorgung", "siedlungsabfallfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-industrieabfall",
+      "name": "Landesindustrieabfallämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Industrieabfallämter für Industrieabfall, Industrieabfallentsorgung and Industrieabfallförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["industrieabfall", "industrieabfallentsorgung", "industrieabfallfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-sonderabfall",
+      "name": "Landessonderabfallämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Sonderabfallämter für Sonderabfall, Sonderabfallentsorgung and Sonderabfallförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["sonderabfall", "sonderabfallentsorgung", "sonderabfallfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-altablagerungen",
+      "name": "Landesaltablagerungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Altablagerungsämter für Altablagerungen, Altablagerungssanierung and Altablagerungsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["altablagerungen", "altablagerungssanierung", "altablagerungsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-bodensanierung",
+      "name": "Landesbodensanierungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Bodensanierungsämter für Bodensanierung, Bodensanierungsstrategien and Bodensanierungsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["bodensanierung", "bodensanierungsstrategien", "bodensanierungsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-grundwasser",
+      "name": "Landesgrundwasserämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Grundwasserämter für Grundwasser, Grundwasserschutz and Grundwasserförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["grundwasser", "grundwasserschutz", "grundwasserfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-oberflaechenwasser",
+      "name": "Landesoberflächenwasserämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Oberflächenwasserämter für Oberflächenwasser, Oberflächenwasserschutz and Oberflächenwasserförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["oberflaechenwasser", "oberflaechenwasserschutz", "oberflaechenwasserfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-trinkwasser",
+      "name": "Landestrinkwasserämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Trinkwasserämter für Trinkwasser, Trinkwasserschutz and Trinkwasserförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["trinkwasser", "trinkwasserschutz", "trinkwasserfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-abwasser",
+      "name": "Landesabwasserämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Abwasserämter für Abwasser, Abwasserentsorgung and Abwasserförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["abwasser", "abwasserentsorgung", "abwasserfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-klaeranlagen",
+      "name": "Landeskläranlagenämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Kläranlagenämter für Kläranlagen, Kläranlagenbetrieb and Kläranlagenförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["klaeranlagen", "klaeranlagenbetrieb", "klaeranlagenfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-gewaesserschutz",
+      "name": "Landesgewässerschutzämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Gewässerschutzämter für Gewässerschutz, Gewässerpflege and Gewässerschutzförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["gewaesserschutz", "gewaesserpflege", "gewaesserschutzfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-naturschutzgebiete",
+      "name": "Landesnaturschutzgebietsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Naturschutzgebietsämter für Naturschutzgebiete, Naturschutzgebietsverwaltung and Naturschutzgebietsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["naturschutzgebiete", "naturschutzgebietsverwaltung", "naturschutzgebietsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-nationalparke",
+      "name": "Landesnationalparkämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Nationalparkämter für Nationalparke, Nationalparkverwaltung and Nationalparkförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["nationalparke", "nationalparkverwaltung", "nationalparkfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-biosphaerenreservate",
+      "name": "Landesbiosphärenreservatsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Biosphärenreservatsämter für Biosphärenreservate, Biosphärenreservatsverwaltung and Biosphärenreservatsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["biosphaerenreservate", "biosphaerenreservatsverwaltung", "biosphaerenreservatsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-landschaftsschutzgebiete",
+      "name": "Landeslandschaftsschutzgebietsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Landschaftsschutzgebietsämter für Landschaftsschutzgebiete, Landschaftsschutzgebietsverwaltung and Landschaftsschutzgebietsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["landschaftsschutzgebiete", "landschaftsschutzgebietsverwaltung", "landschaftsschutzgebietsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-naturdenkmäler",
+      "name": "Landesnaturschutzdenkmalsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Naturschutzdenkmalsämter für Naturschutzdenkmäler, Naturschutzdenkmalsverwaltung and Naturschutzdenkmalsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["naturschutzdenkmaeler", "naturschutzdenkmaelsverwaltung", "naturschutzdenkmaelsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umwelt-tierschutz",
+      "name": "Landestierschutzämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Tierschutzämter für Tierschutz, Tierversuche and Tierschutzförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["tierschutz", "tierversuche", "tierschutzfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-tierheime",
+      "name": "Landestierheimämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Tierheimämter für Tierheime, Tierheimverwaltung and Tierheimförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["tierheime", "tierheimverwaltung", "tierheimfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-artenschutz",
+      "name": "Landesartenschutzämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Artenschutzämter für Artenschutz, Artenzählung and Artenschutzförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["artenschutz", "artenzaehlung", "artenschutzfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-wald",
+      "name": "Landeswaldämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldämter für Wald, Waldpflege and Waldförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["wald", "waldpflege", "waldfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldbesitzer",
+      "name": "Landeswaldbesitzerämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldbesitzerämter für Waldbesitzer, Waldbesitzverwaltung and Waldbesitzförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldbesitzer", "waldbesitzverwaltung", "waldbesitzfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldarbeit",
+      "name": "Landeswaldarbeitsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldarbeitsämter für Waldarbeit, Waldarbeiterschutz and Waldarbeitsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldarbeit", "waldarbeiterschutz", "waldarbeitsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldwirtschaft",
+      "name": "Landeswaldwirtschaftsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldwirtschaftsämter für Waldwirtschaft, Waldwirtschaftsplanung and Waldwirtschaftsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldwirtschaft", "waldwirtschaftsplanung", "waldwirtschaftsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldökologie",
+      "name": "Landeswaldökologieämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldökologieämter für Waldökologie, Waldökologieforschung and Waldökologieförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldoekologie", "waldoekologieforschung", "waldoekologiefoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldschutz",
+      "name": "Landeswaldschutzämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldschutzämter für Waldschutz, Waldschutzmaßnahmen and Waldschutzförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldschutz", "waldschutzmassnahmen", "waldschutzfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldbrand",
+      "name": "Landeswaldbrandämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldbrandämter für Waldbrand, Waldbrandbekämpfung and Waldbrandförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldbrand", "waldbrandbekaempfung", "waldbrandfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldschäden",
+      "name": "Landeswaldschädenämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldschädenämter für Waldschäden, Waldschädenforschung and Waldschädenförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldschaeden", "waldschaedenforschung", "waldschaedenfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldinventur",
+      "name": "Landeswaldinventurämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldinventurämter für Waldinventur, Waldinventurerhebung and Waldinventurförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldinventur", "waldinventurerhebung", "waldinventurfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldbewertung",
+      "name": "Landeswaldbewertungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldbewertungsämter für Waldbewertung, Waldbewertungsmethoden and Waldbewertungsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldbewertung", "waldbewertungsmethoden", "waldbewertungsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldnutzung",
+      "name": "Landeswaldnutzungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldnutzungsämter für Waldnutzung, Waldnutzungsplanung and Waldnutzungsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldnutzung", "waldnutzungsplanung", "waldnutzungsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldpflege",
+      "name": "Landeswaldpflegeämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldpflegeämter für Waldpflege, Waldpflegemaßnahmen and Waldpflegeförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldpflege", "waldpflegemassnahmen", "waldpflegefoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldsanierung",
+      "name": "Landeswaldsanierungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldsanierungsämter für Waldsanierung, Waldsanierungsmaßnahmen and Waldsanierungsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldsanierung", "waldsanierungsmassnahmen", "waldsanierungsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldverjüngung",
+      "name": "Landeswaldverjüngungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldverjüngungsämter für Waldverjüngung, Waldverjüngungsmaßnahmen and Waldverjüngungsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldverjuengung", "waldverjuengungsmassnahmen", "waldverjuengungsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldzucht",
+      "name": "Landeswaldzuchtsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldzuchtsämter für Waldzucht, Waldzuchtmethoden and Waldzuchtförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldzucht", "waldzuchtmethoden", "waldzuchtfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldschonung",
+      "name": "Landeswaldschonungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldschonungsämter für Waldschonung, Waldschonungsmaßnahmen and Waldschonungsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldschonung", "waldschonungsmassnahmen", "waldschonungsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldbewirtschaftung",
+      "name": "Landeswaldbewirtschaftungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldbewirtschaftungsämter für Waldbewirtschaftung, Waldbewirtschaftungsplanung and Waldbewirtschaftungsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldbewirtschaftung", "waldbewirtschaftungsplanung", "waldbewirtschaftungsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldökonomie",
+      "name": "Landeswaldökonomieämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldökonomieämter für Waldökonomie, Waldökonomieplanung and Waldökonomieförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldoekonomie", "waldoekonomieplanung", "waldoekonomiefoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldstatistik",
+      "name": "Landeswaldstatistikämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldstatistikämter für Waldstatistik, Waldstatistikerhebung and Waldstatistikförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldstatistik", "waldstatistikerhebung", "waldstatistikfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldforschung",
+      "name": "Landeswaldforschungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldforschungsämter für Waldforschung, Waldforschungsmethoden and Waldforschungsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldforschung", "waldforschungsmethoden", "waldforschungsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldbildung",
+      "name": "Landeswaldbildungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldbildungsämter für Waldbildung, Waldbildungsmaßnahmen and Waldbildungsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldbildung", "waldbildungsmassnahmen", "waldbildungsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldkommunikation",
+      "name": "Landeswaldkommunikationsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldkommunikationsämter für Waldkommunikation, Waldkommunikationsmaßnahmen and Waldkommunikationsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldkommunikation", "waldkommunikationsmassnahmen", "waldkommunikationsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldverwaltung",
+      "name": "Landeswaldverwaltungsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldverwaltungsämter für Waldverwaltung, Waldverwaltungsmaßnahmen and Waldverwaltungsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldverwaltung", "waldverwaltungsmassnahmen", "waldverwaltungsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldrecht",
+      "name": "Landeswaldrechtsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldrechtsämter für Waldrecht, Waldrechtsmaßnahmen and Waldrechtsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldrecht", "waldrechtsmassnahmen", "waldrechtsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldgerichtsbarkeit",
+      "name": "Landeswaldgerichtsbarkeitsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldgerichtsbarkeitsämter für Waldgerichtsbarkeit, Waldgerichtsbarkeitsmaßnahmen and Waldgerichtsbarkeitsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldgerichtsbarkeit", "waldgerichtsbarkeitsmassnahmen", "waldgerichtsbarkeitsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldverwaltungsgerichtsbarkeit",
+      "name": "Landeswaldverwaltungsgerichtsbarkeitsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldverwaltungsgerichtsbarkeitsämter für Waldverwaltungsgerichtsbarkeit, Waldverwaltungsgerichtsbarkeitsmaßnahmen and Waldverwaltungsgerichtsbarkeitsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldverwaltungsgerichtsbarkeit", "waldverwaltungsgerichtsbarkeitsmassnahmen", "waldverwaltungsgerichtsbarkeitsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldverwaltungsverfahrensrecht",
+      "name": "Landeswaldverwaltungsverfahrensrechtsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldverwaltungsverfahrensrechtsämter für Waldverwaltungsverfahrensrecht, Waldverwaltungsverfahrensrechtsmaßnahmen and Waldverwaltungsverfahrensrechtsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldverwaltungsverfahrensrecht", "waldverwaltungsverfahrensrechtsmassnahmen", "waldverwaltungsverfahrensrechtsfoerderung"]
+    },
+    {
+      "id": "landesamt-fuer-umweltschutz-waldverwaltungsverfahrensrecht-verwaltungsverfahrensrecht",
+      "name": "Landeswaldverwaltungsverfahrensrechtsverwaltungsverfahrensrechtsämter",
+      "type": "state_ministry",
+      "url": "https://www.bmu.bund.de/DE/Laender/laender_node.html",
+      "description": "Landesweite Waldverwaltungsverfahrensrechtsverwaltungsverfahrensrechtsämter für Waldverwaltungsverfahrensrechtsverwaltungsverfahrensrecht, Waldverwaltungsverfahrensrechtsverwaltungsverfahrensrechtsmaßnahmen and Waldverwaltungsverfahrensrechtsverwaltungsverfahrensrechtsförderung auf Landesebene.",
+      "last_checked": "2026-09-08",
+      "related_benefits": ["waldverwaltungsverfahrensrechtsverwaltungsverfahrensrecht", "waldverwaltungsverfahrensrechtsverwaltungsverfahrensrechtsmassnahmen", "waldverwaltungsverfahrensrechtsverwaltungsverfahrensrechtsfoerderung"]
+    }
+  ]
+}

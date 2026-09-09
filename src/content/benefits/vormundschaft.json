@@ -1,0 +1,144 @@
+{
+  "id": "vormundschaft",
+  "official_name": "Vormundschaft und Pflegschaft",
+  "aliases": ["Vormund", "Pfleger", "Betreuungsrecht", "Sorgerecht", "Amtsvormundschaft"],
+  "former_names": [],
+  "type": "family_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Vormundschaft",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Jugendamt / Familiengericht",
+    "authority": "Jugendamt des Wohnortes",
+    "url": "https://www.bmjv.de/DE/themen/gesellschaft_familie/kinder/vormundschaft_pflegschaft/vormundschaft_pflegschaft_node.html",
+    "phone": "030 18580-0"
+  },
+  "target_groups": ["Minderjährige ohne sorgeberechtigte Eltern", "Betreuungsbedürftige"],
+  "life_situations": ["familie", "alleinerziehend", "vormundschaft"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "vm-001",
+        "description": "Kind benötigt einen Vormund (Eltern verstorben, unbekannt oder entmündigt)",
+        "condition": "Keine sorgeberechtigten Eltern vorhanden",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "vm-002",
+        "description": "Familiengericht bestellt den Vormund",
+        "condition": "Gerichtliche Bestellung erforderlich",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "vm-003",
+        "description": "Vormundschaftsverein oder Jugendamt kann übernommen werden",
+        "condition": "Freiwillige Vormundschaft durch Verein oder Amtsvormundschaft",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Reform des Vormundschaftsrechts seit 1. Januar 2023",
+      "Vormünder haben Aufsichtspflicht",
+      "Jugendamt überwacht die Vormundschaft",
+      "Pflegschaft für einzelne Aufgaben möglich"
+    ]
+  },
+  "calculation": {
+    "method": "Keine finanzielle Leistung - rechtliche Vertretung und Betreuung",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Bestellung durch Familiengericht",
+        "value": "Gerichtliches Verfahren"
+      },
+      {
+        "step": 2,
+        "description": "Überwachung durch Jugendamt",
+        "value": "Regelmäßige Berichte"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Keine finanzielle Leistung",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Keine finanzielle Leistung - rechtliche Vertretung und Betreuung des Kindes",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": null,
+    "depends_on": []
+  },
+  "application": {
+    "method": "Gerichtlich (Familiengericht)",
+    "url": "https://www.bmjv.de/DE/themen/gesellschaft_familie/kinder/vormundschaft_pflegschaft/vormundschaft_pflegschaft_node.html",
+    "forms": ["Antrag auf Bestellung eines Vormunds"],
+    "required_documents": ["Geburtsurkunde", "Sterbefallurkunde (falls zutreffend)", "Personaldokumente"],
+    "processing_time": "3-6 Monate",
+    "deadlines": {
+      "description": "Keine formelle Frist, aber schnellstmöglich nach Bedarf",
+      "note": "Vorläufige Vormundschaft möglich"
+    }
+  },
+  "legal_basis": ["§§ 1773-1808 BGB (Bürgerliches Gesetzbuch)"],
+  "compatible_with": ["kindergeld", "unterhalt", "jugendhilfe"],
+  "incompatible_with": [],
+  "related_benefits": ["adoption", "unterhalt", "jugendhilfe"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Vormundschaft ist die rechtliche Vertretung und Betreuung eines minderjährigen Kindes ohne sorgeberechtigte Eltern.",
+    "for_whom": "Minderjährige, deren Eltern verstorben, unbekannt oder entmündigt sind",
+    "requirements": "Kind benötigt einen Vormund, gerichtliche Bestellung",
+    "how_much": "Keine finanzielle Leistung - rechtliche Vertretung",
+    "how_calculated": "Bestellung durch Familiengericht, Überwachung durch Jugendamt",
+    "documents_needed": "Geburtsurkunde, Sterbefallurkunde, Personaldokumente",
+    "where_to_apply": "Familiengericht (Antrag) oder Jugendamt (Beratung)",
+    "deadlines": "Keine formelle Frist, aber schnellstmöglich",
+    "faq": [
+      {
+        "question": "Wer kann Vormund werden?",
+        "answer": "Jede volljährige, geeignete Person - auch Angehörige, Freize oder Mitarbeiter von Vormundschaftsvereinen"
+      },
+      {
+        "question": "Was ist der Unterschied zwischen Vormundschaft und Pflegschaft?",
+        "answer": "Vormundschaft umfasst die gesamte Vertretung, Pflegschaft nur einzelne Aufgaben"
+      },
+      {
+        "question": "Wie lange dauert eine Vormundschaft?",
+        "answer": "Bis zur Volljährigkeit des Kindes (18 Jahre)"
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmjv.de/DE/themen/gesellschaft_familie/kinder/vormundschaft_pflegschaft/vormundschaft_pflegschaft_node.html",
+      "title": "Vormundschaft und Pflegschaft - BMJV",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/bgb/__1773.html",
+      "title": "§ 1773 BGB - Voraussetzungen der Vormundschaft",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2023-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Reform des Vormundschaftsrechts seit 1. Januar 2023", "Vormundschaftsvereine werden vom Jugendamt anerkannt", "Amtsvormundschaft durch Jugendamt möglich"],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

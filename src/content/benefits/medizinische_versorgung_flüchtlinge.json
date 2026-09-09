@@ -1,0 +1,179 @@
+{
+  "id": "medizinische_versorgung_flüchtlinge",
+  "official_name": "Medizinische Versorgung für Geflüchtete",
+  "aliases": ["Gesundheitsversorgung Flüchtlinge", "Gesundheitskarte Geflüchtete", "Krankenversorgung Asylbewerber", "Gesundheitsamt Flüchtlinge", "§ 4 AsylbLG"],
+  "former_names": [],
+  "type": "health_benefit",
+  "status": "verified",
+  "category": "Integration & Aufenthalt",
+  "subcategory": "Medizinische Versorgung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Gesundheitsämter / Kassenärztliche Vereinigungen / Krankenhäuser",
+    "authority": "Kommunale Gesundheitsämter / Kassenärztliche Vereinigungen (KV)",
+    "url": "https://www.gesetze-im-internet.de/asylblg/__4.html",
+    "phone": "030 18681-0"
+  },
+  "target_groups": [
+    "Asylbewerber (mit Aufenthaltsgestattung)",
+    "Geduldete",
+    "Schutzsuchende in Gemeinschaftsunterkünften",
+    "Subsidiär Schutzberechtigte (in Übergangsphase)",
+    "Kinder von Asylbewerbern"
+  ],
+  "life_situations": ["asyl", "migration"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "mvf-001",
+        "description": "Asylbewerber mit Aufenthaltsgestattung",
+        "condition": "Asylbewerber mit Aufenthaltsgestattung nach § 55 AsylG",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "mvf-002",
+        "description": "Geduldete",
+        "condition": "Geduldete nach § 60a AufenthG",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "mvf-003",
+        "description": "Aufenthalt in Gemeinschaftsunterkunft",
+        "condition": "Wohnsitz in einer Gemeinschaftsunterkunft (Erstaufnahme)",
+        "required": false,
+        "category": "location"
+      },
+      {
+        "rule_id": "mvf-004",
+        "description": "Keine Krankenversicherung",
+        "condition": "Keine Mitgliedschaft in einer gesetzlichen oder privaten Krankenversicherung",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Alle",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Eingeschränkter Leistungskatalog: nur akute Erkrankungen und Schmerzzustände",
+      "Schwangerschaft und Geburt: umfassende Versorgung (§ 4 Abs. 2 AsylbLG)",
+      "Kinder: erweiterter Leistungskatalog (Vorsorge, Impfungen)",
+      "Gesundheitskarte: nach 15 Monaten Aufenthalt (in manchen Bundesländern)",
+      "Psychotherapie: nur in Ausnahmefällen"
+    ]
+  },
+  "calculation": {
+    "method": "Kein Geldbetrag; Sachleistung durch Gesundheitsamt/KV",
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Kostenlose medizinische Versorgung (eingeschränkt)",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Kostenlose medizinische Versorgung (eingeschränkt auf akute Erkrankungen); keine regelmäßige Zahlung",
+    "depends_on": ["Art der Erkrankung", "Bundesland", "Aufenthaltsdauer"]
+  },
+  "application": {
+    "method": "Persönlich beim Gesundheitsamt oder bei zugelassenen Ärzten",
+    "url": "https://www.gesetze-im-internet.de/asylblg/__4.html",
+    "forms": ["Keine; direkte Inanspruchnahme"],
+    "required_documents": [
+      "Aufenthaltsgestattung oder Duldung",
+      "Gesundheitskarte (falls vorhanden)",
+      "Impfpass (falls vorhanden)"
+    ],
+    "processing_time": "Sofort",
+    "deadlines": {
+      "description": "Keine Frist; bei Bedarf",
+      "note": "Bei akuten Beschwerden sofort zum Arzt"
+    }
+  },
+  "legal_basis": [
+    "§ 4 AsylbLG – Leistungen bei Krankheit, Schwangerschaft und Geburt",
+    "§ 6 AsylbLG – Leistungen in besonderen Fällen",
+    "§ 3 AsylbLG – Grundleistungen",
+    "Landesgesetze zur Gesundheitsversorgung Geflüchteter",
+    "Infektionsschutzgesetz (IfSG)"
+  ],
+  "compatible_with": [
+    "schutzsuchende",
+    "beratung_migranten"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "schutzsuchende",
+    "beratung_migranten"
+  ],
+  "user_content": {
+    "short_explanation": "Geflüchtete haben Anspruch auf medizinische Versorgung bei akuten Erkrankungen und Schmerzzuständen. Schwangerschaft und Geburt werden umfassend versorgt. Die Versorgung erfolgt über das Gesundheitsamt oder zugelassene Ärzte.",
+    "for_whom": "Für Asylbewerber, Geduldete und Schutzsuchende, die nicht krankenversichert sind.",
+    "requirements": "Aufenthaltsgestattung oder Duldung; keine Krankenversicherung.",
+    "how_much": "Kostenlose medizinische Versorgung (eingeschränkt). Bei akuten Erkrankungen und Schmerzzuständen werden die Kosten übernommen.",
+    "how_calculed": "Die medizinische Versorgung ist eine Sachleistung. Das Gesundheitsamt oder die KV zahlt die Kosten direkt.",
+    "documents_needed": "Aufenthaltsgestattung oder Duldung, ggf. Gesundheitskarte.",
+    "where_to_apply": "Gesundheitsamt, zugelassene Ärzte (mit KV-Zulassung), Krankenhäuser (Notfälle).",
+    "deadlines": "Keine Frist. Bei akuten Beschwerden sofort zum Arzt.",
+    "faq": [
+      {
+        "question": "Was ist bei Krankheit zu tun?",
+        "answer": "Bei akuten Erkrankungen oder Schmerzen können Sie zu einem zugelassenen Arzt gehen. Die Kosten werden vom Gesundheitsamt übernommen. Bei Notfällen: Krankenhaus aufsuchen."
+      },
+      {
+        "question": "Bekomme ich eine Gesundheitskarte?",
+        "answer": "In manchen Bundesländern erhalten Sie nach 15 Monaten Aufenthalt eine Gesundheitskarte. Vorher werden die Leistungen über das Gesundheitsamt abgerechnet."
+      },
+      {
+        "question": "Was ist bei Schwangerschaft?",
+        "answer": "Schwangerschaft und Geburt werden umfassend versorgt: Vorsorge, Entbindung, Nachsorge. Die Kosten werden komplett übernommen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/asylblg/__4.html",
+      "title": "§ 4 AsylbLG – Leistungen bei Krankheit, Schwangerschaft und Geburt",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/asylblg/",
+      "title": "Asylbewerberleistungsgesetz (AsylbLG)",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.fluechtlingsrat-bayern.de/hintergrund/medizinische-versorgung/",
+      "title": "Medizinische Versorgung – Bayerischer Flüchtlingsrat",
+      "organization": "Bayerischer Flüchtlingsrat",
+      "last_verified": "2026-09-08",
+      "type": "secondary"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "1993-11-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "§ 4 AsylbLG: Eingeschränkte medizinische Versorgung (akute Erkrankungen)",
+    "Schwangerschaft und Geburt: umfassende Versorgung",
+    "Kinder: erweiterter Leistungskatalog (Vorsorge, Impfungen)",
+    "Gesundheitskarte: nach 15 Monaten in manchen Bundesländern",
+    "Psychotherapie: nur in Ausnahmefällen möglich"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

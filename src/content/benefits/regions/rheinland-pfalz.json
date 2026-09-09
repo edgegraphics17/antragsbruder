@@ -1,0 +1,69 @@
+{
+  "state": "Rheinland-Pfalz",
+  "state_code": "RP",
+  "benefits": [
+    {
+      "id": "rp-isb-wohneigentum",
+      "official_name": "ISB-Darlehen Wohneigentum Rheinland-Pfalz",
+      "description": "Zinsgünstiges Darlehen für den Bau, Erwerb oder die selbstgenutzte Immobilie. Darlehenshöhe: 25.000 bis 100.000 Euro. Tilgungszuschuss bis 35 % bei Effizienzhaus 55.",
+      "type": "housing_benefit",
+      "provider": "Investitions- und Strukturbank Rheinland-Pfalz (ISB)",
+      "url": "https://isb.rlp.de/foerderung/503.html",
+      "status": "verified"
+    },
+    {
+      "id": "rp-zukunftsprogramm",
+      "official_name": "Regionales Zukunftsprogramm Rheinland-Pfalz",
+      "description": "Stärkung von Regionen in ihren spezifischen Stärken und Bewältigung lokaler Herausforderungen.",
+      "type": "business_subsidy",
+      "provider": "Ministerium für Wirtschaft, Verkehr, Landwirtschaft und Weinbau Rheinland-Pfalz",
+      "url": "https://zukunftsprogramm.rlp.de/",
+      "status": "verified"
+    },
+    {
+      "id": "rp-leader",
+      "official_name": "LEADER-Förderprogramm Rheinland-Pfalz",
+      "description": "21 LEADER-Regionen in der EU-Förderperiode 2023-2027. Förderung ländlicher Entwicklung durch lokale Aktionsgruppen.",
+      "type": "business_subsidy",
+      "provider": "Aufsichts- und Dienstleistungsdirektion Rheinland-Pfalz",
+      "url": "https://add.rlp.de/themen/internationales/foerderungen-im-europaeischen-bereich/leader",
+      "status": "verified"
+    },
+    {
+      "id": "rp-qualischeck",
+      "official_name": "Förderprogramm QualiScheck",
+      "description": "Zuschuss für individuell geplante berufliche Weiterbildungsmaßnahmen von Beschäftigten. Jährlich bis zu 1.500 Euro.",
+      "type": "education_benefit",
+      "provider": "ESF Rheinland-Pfalz",
+      "url": "https://esf.rlp.de/berufliche-weiterbildung/qualischeck",
+      "status": "verified"
+    },
+    {
+      "id": "rp-innenstaedte",
+      "official_name": "Innenstädte der Zukunft Rheinland-Pfalz",
+      "description": "Förderung innerstädtischer Projekte. Für 2025 stehen 5 Mio. Euro bereit.",
+      "type": "social_benefit",
+      "provider": "Ministerium des Innern und für Sport Rheinland-Pfalz",
+      "url": "https://innenstaedte.rlp.de/foerderprogramme/",
+      "status": "verified"
+    },
+    {
+      "id": "rp-sportstaetten",
+      "official_name": "Sportstättenförderprogramm Land in Bewegung",
+      "description": "Förderung des Neu- und Umbaus von Sportanlagen. Fortführung 2025 und 2026.",
+      "type": "social_benefit",
+      "provider": "Ministerium des Innern und für Sport Rheinland-Pfalz",
+      "url": "https://mdi.rlp.de/service/pressemitteilungen/detail/foerderprogramme-fuer-bewegungsangebote-werden-fortgefuehrt",
+      "status": "verified"
+    },
+    {
+      "id": "rp-it-support-schulen",
+      "official_name": "IT-Support an Schulen Rheinland-Pfalz",
+      "description": "Förderung des professionellen technischen Supports von digitalen Lehr-Lerninfrastrukturen an Schulen.",
+      "type": "education_benefit",
+      "provider": "Ministerium für Bildung Rheinland-Pfalz",
+      "url": "https://add.rlp.de/themen/foerderprogramm/foerderungen-im-schulischen-bereich/it-support-an-schulen",
+      "status": "verified"
+    }
+  ]
+}

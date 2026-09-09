@@ -1,0 +1,153 @@
+{
+  "id": "gruenderpraemie",
+  "official_name": "Gründerprämie / Meistergründungsprämie (NRW)",
+  "aliases": [
+    "Meistergründungsprämie",
+    "Gründerprämie NRW",
+    "Handwerksmeister-Förderung"
+  ],
+  "former_names": [],
+  "type": "business_subsidy",
+  "status": "partially_verified",
+  "category": "Existenzgründung",
+  "subcategory": "Landesförderung für Handwerksmeister",
+  "level": "state",
+  "regions": [
+    "NW"
+  ],
+  "provider": {
+    "name": "Handwerkskammer",
+    "authority": "Handwerkskammer NRW",
+    "url": "https://www.hwk-nrw.de/",
+    "phone": "0211 96980"
+  },
+  "target_groups": [
+    "Handwerksmeister",
+    "Existenzgründer",
+    "Handwerksbetriebe"
+  ],
+  "life_situations": [
+    "arbeit_selbststaendig",
+    "gründung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "gp_01",
+        "description": "Meisterbrief im Handwerk",
+        "condition": "meisterbrief = true",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "gp_02",
+        "description": "Gründung eines Handwerksbetriebs",
+        "condition": "handwerksbetrieb_gruendung = true",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "gp_03",
+        "description": "Wohnsitz oder Betriebssitz in Nordrhein-Westfalen",
+        "condition": "wohnsitz = 'NW' OR betriebssitz = 'NW'",
+        "required": true,
+        "category": "location"
+      }
+    ],
+    "special_conditions": [
+      "Nur in Nordrhein-Westfalen",
+      "Andere Bundesländer haben ähnliche Programme"
+    ]
+  },
+  "calculation": {
+    "method": "Pauschalzuschuss für Handwerksmeister",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Zuschuss wird als Starthilfe gewährt",
+        "note": "Höhe variiert je nach Programm"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Individuell",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Pauschalzuschuss für Handwerksmeister bei Betriebsgründung",
+    "depends_on": [
+      "programm",
+      "bundesland"
+    ]
+  },
+  "application": {
+    "method": "Bei der zuständigen Handwerkskammer",
+    "url": "https://www.hwk-nrw.de/",
+    "forms": [
+      "Antrag auf Meistergründungsprämie"
+    ],
+    "required_documents": [
+      "Meisterbrief",
+      "Gewerbeanmeldung",
+      "Geschäftsplan",
+      "Finanzplan"
+    ],
+    "processing_time": "4-6 Wochen",
+    "deadlines": {
+      "description": "Innerhalb eines Jahres nach Meisterprüfung",
+      "note": "Fristen beachten!"
+    }
+  },
+  "legal_basis": [
+    "Landesförderung NRW",
+    "Handwerksordnung"
+  ],
+  "compatible_with": [
+    "gruendungszuschuss",
+    "existenzgruenderkredit"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "gruendungszuschuss",
+    "existenzgruenderkredit"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Meistergründungsprämie ist ein Zuschuss für Handwerksmeister, die sich in Nordrhein-Westfalen selbstständig machen.",
+    "for_whom": "Handwerksmeister in NRW, die einen Betrieb gründen",
+    "requirements": "Meisterbrief, Gewerbeanmeldung, Betriebssitz in NRW",
+    "how_much": "Pauschalzuschuss (Höhe variiert)",
+    "how_calculation": "Wird als Starthilfe gewährt",
+    "documents_needed": "Meisterbrief, Gewerbeanmeldung, Geschäftsplan",
+    "where_to_apply": "Bei der Handwerkskammer NRW",
+    "deadlines": "Innerhalb eines Jahres nach Meisterprüfung",
+    "faq": [
+      {
+        "question": "Gibt es die Prämie auch in anderen Bundesländern?",
+        "answer": "Ja, viele Bundesländer haben ähnliche Programme für Handwerksmeister."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.hwk-nrw.de/",
+      "title": "Handwerkskammer NRW",
+      "organization": "Handwerkskammer NRW",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2020-01-01",
+  "valid_until": null,
+  "confidence": "medium",
+  "verification_status": "partially_verified",
+  "notes": [
+    "Beispiel für Landesförderung – andere Bundesländer haben ähnliche Programme",
+    "Höhe und Konditionen variieren je nach Bundesland"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

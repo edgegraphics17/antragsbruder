@@ -1,0 +1,150 @@
+{
+  "id": "schangerschaftsleistungen",
+  "official_name": "Leistungen in der Schwangerschaft",
+  "aliases": ["Mutterschaftsrichtlinien", "Schwangerschaftsvorsorge", "Vorsorgeuntersuchungen", "Mutterpass", "Ultraschall"],
+  "former_names": [],
+  "type": "health_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Schwangerschaftsvorsorge",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Krankenkasse / Gemeinsamer Bundesausschuss (G-BA)",
+    "authority": "Gemeinsamer Bundesausschuss",
+    "url": "https://www.g-ba.de/richtlinien/19/",
+    "phone": "030 4000-40"
+  },
+  "target_groups": ["Schwangere", "Gesetzlich Versicherte"],
+  "life_situations": ["schwanger", "kind_bekommen", "familie"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "sl-001",
+        "description": "Frau ist schwanger und gesetzlich krankenversichert",
+        "condition": "Schwangerschaft und Versicherung",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "sl-002",
+        "description": "Vorsorgeuntersuchungen werden von Arzt/Hebammen durchgeführt",
+        "condition": "Ärztliche oder hebammengeleitete Versorgung",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "sl-003",
+        "description": "Mutterpass wird geführt",
+        "condition": "Dokumentation der Schwangerschaft",
+        "required": true,
+        "category": "health"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "3 Ultraschalluntersuchungen im 3., 6. und 8. Schwangerschaftsmonat",
+      "Regelmäßige Vorsorgeuntersuchungen alle 4 Wochen",
+      "HIV-, Hepatitis B-, Syphilis-Screening",
+      "Nicht-invasiver Pränataltest (NIPT) auf eigene Kosten möglich",
+      "Alle Untersuchungen sind freiwillig"
+    ]
+  },
+  "calculation": {
+    "method": "Kostenlose Vorsorgeuntersuchungen im Rahmen der Mutterschaftsrichtlinien",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Vorsorgeuntersuchungen bei Arzt/Hebammen",
+        "value": "Kostenlos über Krankenkasse"
+      },
+      {
+        "step": 2,
+        "description": "3 Ultraschalluntersuchungen",
+        "value": "Kostenlos"
+      },
+      {
+        "step": 3,
+        "description": "Laboruntersuchungen",
+        "value": "Kostenlos"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Kostenlose Vorsorgeuntersuchungen",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Kostenlose Vorsorgeuntersuchungen im Rahmen der Mutterschaftsrichtlinien",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": null,
+    "depends_on": []
+  },
+  "application": {
+    "method": "Über Arzt oder Hebamme",
+    "url": "https://www.g-ba.de/richtlinien/19/",
+    "forms": ["Mutterpass", "Überweisungsscheine"],
+    "required_documents": ["Krankenkassenkarte", "Mutterpass"],
+    "processing_time": "Sofort",
+    "deadlines": {
+      "description": "Erste Untersuchung möglichst früh in der Schwangerschaft",
+      "note": "Ultraschall: 3., 6. und 8. Schwangerschaftsmonat"
+    }
+  },
+  "legal_basis": ["Mutterschaftsrichtlinie des G-BA", "§§ 2, 4 Mutterschaftsrichtlinie", "§ 24d SGB V (Hebammenhilfe)"],
+  "compatible_with": ["mutschutz", "mutterschaftsgeld", "elterngeld"],
+  "incompatible_with": [],
+  "related_benefits": ["mutschutz", "mutterschaftsgeld", "geburt"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Schwangere haben Anspruch auf kostenlose Vorsorgeuntersuchungen im Rahmen der Mutterschaftsrichtlinien.",
+    "for_whom": "Schwangere, gesetzlich krankenversicherte Frauen",
+    "requirements": "Schwangerschaft, Krankenversicherung, Mutterpass",
+    "how_much": "Kostenlose Vorsorgeuntersuchungen (Ultraschall, Labor, ärztliche Untersuchungen)",
+    "how_calculated": "Im Rahmen der Mutterschaftsrichtlinien des G-BA",
+    "documents_needed": "Krankenkassenkarte, Mutterpass",
+    "where_to_apply": "Bei Frauenärzten, Gynäkologen oder Hebammen",
+    "deadlines": "Erste Untersuchung möglichst früh, Ultraschall im 3., 6. und 8. Monat",
+    "faq": [
+      {
+        "question": "Wie viele Ultraschalluntersuchungen sind kostenlos?",
+        "answer": "3 Ultraschalluntersuchungen sind kostenlos: im 3., 6. und 8. Schwangerschaftsmonat"
+      },
+      {
+        "question": "Was ist der Mutterpass?",
+        "answer": "Der Mutterpass dokumentiert den Verlauf der Schwangerschaft und alle Untersuchungen"
+      },
+      {
+        "question": "Sind alle Untersuchungen Pflicht?",
+        "answer": "Nein, alle Untersuchungen sind freiwillig - Sie können eine Untersuchung ablehnen"
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.g-ba.de/richtlinien/19/",
+      "title": "Mutterschafts-Richtlinie - Gemeinsamer Bundesausschuss",
+      "organization": "Gemeinsamer Bundesausschuss",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.g-ba.de/themen/methodenbewertung/schwangerschaft-mutterschaft/",
+      "title": "Schwangerschaft und Mutterschaft - G-BA",
+      "organization": "Gemeinsamer Bundesausschuss",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["3 Ultraschalluntersuchungen: 3., 6. und 8. Schwangerschaftsmonat", "Alle Untersuchungen sind freiwillig", "Hebammenhilfe ist ebenfalls kostenlos", "NIPT (Pränataltest) auf eigene Kosten"],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

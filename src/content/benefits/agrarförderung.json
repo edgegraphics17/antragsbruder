@@ -1,0 +1,204 @@
+{
+  "id": "agrarförderung-gak",
+  "official_name": "Gemeinschaftsaufgabe Verbesserung der Agrarstruktur und des Küstenschutzes (GAK)",
+  "aliases": [
+    "GAK",
+    "Agrarstrukturförderung",
+    "ELER-Förderung",
+    "Europäischer Landwirtschaftsfonds für die Entwicklung des ländlichen Raums",
+    "Nationaler Strategieplan GAP"
+  ],
+  "former_names": [],
+  "type": "agriculture_subsidy",
+  "status": "verified",
+  "category": "Landwirtschaft & Ländlicher Raum",
+  "subcategory": "Agrarförderung (ELER/GAK)",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium für Landwirtschaft, Ernährung und Heimat (BMLEH)",
+    "authority": "Landesministerien / PLANAK",
+    "url": "https://www.bmleh.de/DE/themen/laendliche-regionen/foerderung-des-laendlichen-raumes/gemeinschaftsaufgabe-agrarstruktur-kuestenschutz/gak.html",
+    "phone": "0228 6845-0"
+  },
+  "target_groups": [
+    "Landwirte und Landwirtinnen",
+    "Ländliche Gemeinden",
+    "Forstbetriebe",
+    "Fischereibetriebe",
+    "Ländliche Unternehmen"
+  ],
+  "life_situations": [
+    "landwirtschaft",
+    "forstwirtschaft",
+    "ländlicher_raum"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "af-001",
+        "description": "Landwirtschaftlicher Betrieb oder ländliches Unternehmen",
+        "condition": "Antragsteller muss im ländlichen Raum tätig sein",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "af-002",
+        "description": "Förderfähige Maßnahme",
+        "condition": "Vorhaben muss zu den GAK-Förderbereichen passen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "af-003",
+        "description": "Wirtschaftlichkeit",
+        "condition": "Nachweis der Wirtschaftlichkeit und Finanzierbarkeit",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "GAK-Förderung",
+        "threshold": 0,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "region": "all",
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "GAK-Rahmenplan 2025-2028 gilt",
+      "Rund 1,067 Mrd. Euro Bundesmittel für 2026",
+      "ELER-Mittel werden über Nationalen Strategieplan abgerufen"
+    ]
+  },
+  "calculation": {
+    "method": "Verschiedene Förderarten je nach Maßnahme (Zuschüsse, Darlehen, Bürgschaften)",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Identifikation des Förderbereichs",
+        "formula": "Förderbereich 1-4 wählen",
+        "note": "ILE, Agrarinvestitionen, Ausgleichszulage, Begleitmaßnahmen"
+      },
+      {
+        "step": 2,
+        "description": "Berechnung der Förderung",
+        "formula": "Je nach Maßnahme unterschiedlich",
+        "note": "Zuschüsse, zinsgünstige Darlehen, Bürgschaften"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Variiert je nach Maßnahme und Förderbereich",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Förderung je nach Maßnahme: Zuschüsse, zinsgünstige Darlehen oder Bürgschaften",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": [
+      "Förderbereich",
+      "Art der Maßnahme",
+      "Bundesland"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich bei der zuständigen Landesbehörde",
+    "url": "https://www.bmleh.de/DE/themen/laendliche-regionen/foerderung-des-laendlichen-raumes/gemeinschaftsaufgabe-agrarstruktur-kuestenschutz/gak.html",
+    "forms": [
+      "GAK-Antrag",
+      "Projektbeschreibung",
+      "Finanzierungsplan"
+    ],
+    "required_documents": [
+      "Vollständig ausgefüllter Antrag",
+      "Projektbeschreibung",
+      "Finanzierungsplan",
+      "Kostenvoranschäge",
+      "Falls zutreffend: Baugenehmigung"
+    ],
+    "processing_time": "3-12 Monate je nach Maßnahme",
+    "deadlines": {
+      "description": "Jährliche Antragsfristen je nach Bundesland",
+      "date": "Variiert",
+      "note": "Bei der zuständigen Landesbehörde erfragen"
+    }
+  },
+  "legal_basis": [
+    "Gesetz über die Gemeinschaftsaufgabe Verbesserung der Agrarstruktur und des Küstenschutzes (GAKG)",
+    "Verordnung (EU) Nr. 1305/2013 (ELER)",
+    "Verordnung (EU) 2022/2105 über die GAP",
+    "Nationaler Strategieplan GAP 2023-2027",
+    "GAK-Rahmenplan 2025-2028"
+  ],
+  "compatible_with": [
+    "landwirtschaft-investitionen",
+    "junglandwirte-einkommensstuetzung",
+    "tierhaltung-umbau",
+    "umweltprogramme-fakt",
+    "forstwirtschaft",
+    "biologischer-bau"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "landwirtschaft-investitionen",
+    "forstwirtschaft",
+    "umweltprogramme",
+    "regional-agrarfoerderung"
+  ],
+  "user_content": {
+    "short_explanation": "Die GAK ist das Hauptinstrument der deutschen Agrarstrukturförderung – sie unterstützt Investitionen, ländliche Entwicklung und Naturschutz.",
+    "for_whom": "Landwirte, ländliche Gemeinden, Forst- und Fischereibetriebe, die in ländlichen Räumen investieren.",
+    "requirements": "Vorhaben im ländlichen Raum, Wirtschaftlichkeit, Einhaltung der GAK-Fördergrundsätze.",
+    "how_much": "Variiert je nach Maßnahme – Zuschüsse, zinsgünstige Darlehen oder Bürgschaften.",
+    "how_calculated": "Je nach Förderbereich unterschiedlich. 2026 stehen rund 1,067 Mrd. Euro Bundesmittel zur Verfügung.",
+    "documents_needed": "Antrag, Projektbeschreibung, Finanzierungsplan, Kostenvoranschäge.",
+    "where_to_apply": "Bei der zuständigen Landesbehörde (Landwirtschaftsministerium).",
+    "deadlines": "Jährliche Antragsfristen je nach Bundesland.",
+    "faq": [
+      {
+        "question": "Was ist der Unterschied zwischen GAK und ELER?",
+        "answer": "GAK ist das nationale Instrument, ELER der EU-Fonds. In Deutschland werden ELER-Mittel über die GAK abgewickelt."
+      },
+      {
+        "question": "Welche Förderbereiche gibt es?",
+        "answer": "Integrierte Ländliche Entwicklung (ILE), Agrarinvestitionen, Ausgleichszulage für benachteiligte Gebiete, Begleitmaßnahmen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmleh.de/DE/themen/laendliche-regionen/foerderung-des-laendlichen-raumes/gemeinschaftsaufgabe-agrarstruktur-kuestenschutz/gak.html",
+      "title": "Gemeinschaftsaufgabe Agrarstruktur + Küstenschutz - BMLEH",
+      "organization": "BMLEH",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/agrstruktg/BJNR015730969.html",
+      "title": "GAKG - Gesetz über die Gemeinschaftsaufgabe",
+      "organization": "Bundesregierung",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": "2028-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "GAK-Rahmenplan 2025-2028 wurde am 10.12.2025 verabschiedet",
+    "Rund 1,067 Mrd. Euro Bundesmittel für 2026",
+    "ELER-Mittel werden über Nationalen Strategieplan abgerufen"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

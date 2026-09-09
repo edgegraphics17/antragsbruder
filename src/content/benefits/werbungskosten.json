@@ -1,0 +1,199 @@
+{
+  "id": "werbungskosten",
+  "official_name": "Werbungskosten nach § 9 EStG",
+  "aliases": [
+    "Werbungskosten",
+    "Berufliche Auslagen",
+    "§ 9 EStG",
+    "Arbeitsauslagen"
+  ],
+  "former_names": [],
+  "type": "tax_benefit",
+  "status": "verified",
+  "category": "Steuern & Finanzen",
+  "subcategory": "Berufliche Auslagen",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium der Finanzen",
+    "authority": "Finanzamt",
+    "url": "https://www.bundesfinanzministerium.de",
+    "phone": ""
+  },
+  "target_groups": [
+    "Arbeitnehmer",
+    "Selbstständige",
+    "Beamte",
+    "Alle Berufstätigen"
+  ],
+  "life_situations": [
+    "arbeit_arbeitnehmer",
+    "arbeit_selbststaendig",
+    "pendeln"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "werbungskosten_beruflich",
+        "description": "Aufwendungen sind beruflich veranlasst (Zusammenhang mit dem Beruf)",
+        "condition": "work_related",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "werbungskosten_nachweis",
+        "description": "Aufwendungen sind nachweisbar (Rechnungen, Belege)",
+        "condition": "documented",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "werbungskosten_einkommen",
+        "description": "Einkünfte aus nichtselbständiger oder selbständiger Arbeit",
+        "condition": "has_income",
+        "required": true,
+        "category": "income"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Pauschbetrag 1.230 Euro (2026) wird automatisch gewährt",
+      "Reisekosten, Fortbildungskosten, Arbeitsmittel sind abziehbar",
+      "Doppelte Haushaltsführung: Zusätzliche Kosten abziehbar"
+    ]
+  },
+  "calculation": {
+    "method": "Werbungskosten werden als Betriebsausgaben abgezogen, Pauschbetrag 1.230 Euro",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Pauschbetrag für Werbungskosten",
+        "formula": "1.230 Euro (2026)",
+        "value": "1.230 Euro",
+        "note": "Wird automatisch gewährt"
+      },
+      {
+        "step": 2,
+        "description": "Zusätzliche Werbungskosten",
+        "formula": "Tatsächliche Kosten - Pauschbetrag",
+        "value": "Differenz",
+        "note": "Nur wenn tatsächliche Kosten höher sind"
+      },
+      {
+        "step": 3,
+        "description": "Entfernungspauschale",
+        "formula": "0,30 Euro pro km (bis 20 km), 0,38 Euro ab 21 km",
+        "value": "0,30/0,38 Euro",
+        "note": "Pro Arbeitstag"
+      }
+    ],
+    "min_amount": 1230,
+    "max_amount": null,
+    "typical_amount": "Pauschbetrag 1.230 Euro + tatsächliche Kosten",
+    "frequency": "yearly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Werbungskosten werden abgezogen, Pauschbetrag 1.230 Euro (2026)",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": 1230,
+    "depends_on": [
+      "Höhe der beruflichen Aufwendungen",
+      "Entfernung zur Arbeitsstelle",
+      "Steuertarif"
+    ]
+  },
+  "application": {
+    "method": "Steuererklärung (Anlage A, Feld Werbungskosten)",
+    "url": "https://www.elster.de",
+    "forms": [
+      "Anlage A"
+    ],
+    "required_documents": [
+      "Lohnsteuerbescheinigung",
+      "Rechnungen für Arbeitsmittel",
+      "Fahrtkostennachweise",
+      "Fortbildungsnachweise",
+      "Falls zutreffend: Nachweis über doppelte Haushaltsführung"
+    ],
+    "processing_time": "4-8 Wochen nach Abgabe der Steuererklärung",
+    "deadlines": {
+      "description": "Steuererklärung Frist",
+      "date": "31.07. des Folgejahres",
+      "note": "Werbungskosten werden bei Veranlagung automatisch berücksichtigt"
+    }
+  },
+  "legal_basis": [
+    "§ 9 EStG",
+    "§ 9a EStG (Pauschbetrag)"
+  ],
+  "compatible_with": [
+    "sonderausgaben",
+    "spendenabzug",
+    "kirchensteuer",
+    "steuerberatungskosten"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "steuerberatungskosten",
+    "sonderausgaben"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Werbungskosten sind beruflich veranlasste Aufwendungen, die von der Einkommensteuer abgezogen werden können. Ein Pauschbetrag von 1.230 Euro wird automatisch gewährt, zusätzliche Kosten können geltend gemacht werden.",
+    "for_whom": "Für alle Berufstätigen, die beruflich veranlasste Aufwendungen haben - ob Arbeitnehmer, Selbstständige oder Beamte.",
+    "requirements": "Sie haben beruflich veranlasste Aufwendungen (Fahrtkosten, Arbeitsmittel, Fortbildung, etc.) und können diese nachweisen.",
+    "how_much": "Pauschbetrag 1.230 Euro (2026) wird automatisch gewährt. Zusätzliche Werbungskosten können geltend gemacht werden, wenn sie den Pauschbetrag übersteigen.",
+    "how_calculated": "Die Werbungskosten werden als Betriebsausgaben abgezogen, was Ihre steuerpflichtigen Einkünfte reduziert. Die tatsächliche Steuerersparnis hängt vom Steuersatz ab.",
+    "documents_needed": "Lohnsteuerbescheinigung, Rechnungen für Arbeitsmittel, Fahrtkostennachweise, Fortbildungsnachweise.",
+    "where_to_apply": "Beim zuständigen Finanzamt über die Steuererklärung (Anlage A). Online über ELSTER.",
+    "deadlines": "Steuererklärung bis 31. Juli des Folgejahres.",
+    "faq": [
+      {
+        "question": "Was sind Werbungskosten?",
+        "answer": "Beruflich veranlasste Aufwendungen wie Fahrtkosten, Arbeitsmittel, Fortbildungskosten, Berufskleidung, Umzugskosten (beruflich) und mehr."
+      },
+      {
+        "question": "Wie hoch ist der Pauschbetrag?",
+        "answer": "Der Pauschbetrag beträgt 1.230 Euro (2026) und wird automatisch gewährt, ohne dass Sie Nachweise vorlegen müssen."
+      },
+      {
+        "question": "Kann ich die Entfernungspauschale geltend machen?",
+        "answer": "Ja, die Entfernungspauschale beträgt 0,30 Euro pro km (bis 20 km) und 0,38 Euro ab 21 km pro Arbeitstag."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/estg/__9.html",
+      "title": "EStG § 9 - Werbungskosten",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://lsth.bundesfinanzministerium.de/lsth/2026/A-Einkommensteuergesetz/II-Einkommen-2-24b/4-Ueberschuss-d-Einnahmen-ueber-die-Werbungsk-8-9a/Paragraf-9/inhalt.html",
+      "title": "LStH 2026 - § 9 - Werbungskosten",
+      "organization": "Bundesministerium der Finanzen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": "2026-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Pauschbetrag 1.230 Euro (2026)",
+    "Entfernungspauschale: 0,30/0,38 Euro pro km",
+    "Wird bei Veranlagung automatisch berücksichtigt"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,160 @@
+{
+  "id": "unterhalt",
+  "official_name": "Kindesunterhalt",
+  "aliases": ["Unterhalt", "Kindesunterhalt", "Trennungsunterhalt", "Nachehelicher Unterhalt"],
+  "former_names": [],
+  "type": "family_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Unterhalt",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Jugendamt / Familiengericht",
+    "authority": "Jugendamt des Wohnortes",
+    "url": "https://www.bmjv.de/DE/themen/gesellschaft_familie/kinder/kindesunterhalt/kindesunterhalt_node.html",
+    "phone": "030 18580-0"
+  },
+  "target_groups": ["Kinder", "Alleinerziehende Elternteile", "Betreuungseltern"],
+  "life_situations": ["alleinerziehend", "familie", "trennung"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "uh-001",
+        "description": "Kind hat Anspruch auf Unterhalt von beiden Elternteilen",
+        "condition": "Verwandtschaft in gerader Linie",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "uh-002",
+        "description": "Unterhaltsverpflichteter ist nicht im Haushalt",
+        "condition": "Elternteil lebt nicht im gemeinsamen Haushalt",
+        "required": true,
+        "category": "household"
+      },
+      {
+        "rule_id": "uh-003",
+        "description": "Kind ist minderjährig oder in Ausbildung",
+        "condition": "Kind ist unter 18 oder in Ausbildung",
+        "required": true,
+        "category": "personal"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Unterhaltsverpflichteter",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 1200,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Düsseldorfer Tabelle als Richtwert",
+      "Mindestunterhalt nach § 1603 Abs. 2 BGB",
+      "Kindergeld wird angerechnet (§ 1603 Abs. 2 BGB)",
+      "Unterhaltsvorschuss bei Alleinerziehenden möglich"
+    ]
+  },
+  "calculation": {
+    "method": "Nach Düsseldorfer Tabelle, abhängig vom Einkommen des Unterhaltsverpflichteten und Alter des Kindes",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Nettoeinkommen des Unterhaltsverpflichteten ermitteln",
+        "formula": "Nettoeinkommen - Freibetrag",
+        "value": "Individuell"
+      },
+      {
+        "step": 2,
+        "description": "Düsseldorfer Tabelle anwenden",
+        "formula": "Einkommensklasse → Unterhaltsbetrag nach Altersgruppe",
+        "value": "486-653 Euro (2026)"
+      },
+      {
+        "step": 3,
+        "description": "Kindergeld anrechnen (1/2 des Kindergeldes)",
+        "formula": "Unterhalt - (Kindergeld / 2)",
+        "value": "Netto-Unterhalt"
+      }
+    ],
+    "min_amount": 486,
+    "max_amount": null,
+    "typical_amount": "486-653 Euro pro Monat (je nach Einkommen und Alter)",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Nach Düsseldorfer Tabelle: 486 Euro (0-5 Jahre), 558 Euro (6-11 Jahre), 653 Euro (12-17 Jahre) - vor Anrechnung des Kindergeldes",
+    "min_monthly": 486,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Nettoeinkommen des Unterhaltsverpflichteten", "Alter des Kindes", "Anzahl Kinder"]
+  },
+  "application": {
+    "method": "Gerichtlich oder einvernehmlich",
+    "url": "https://www.bmjv.de/DE/themen/gesellschaft_familie/kinder/kindesunterhalt/kindesunterhalt_node.html",
+    "forms": ["Antrag auf Unterhalt beim Familiengericht"],
+    "required_documents": ["Geburtsurkunde", "Einkommensnachweise beider Eltern", "Kontoauszüge"],
+    "processing_time": "3-12 Monate (gerichtlich)",
+    "deadlines": {
+      "description": "Keine formelle Frist, aber möglichst schnell nach Trennung",
+      "note": "Rückwirkend nur ab Antragstellung"
+    }
+  },
+  "legal_basis": ["§§ 1601 ff. BGB (Bürgerliches Gesetzbuch)", "Düsseldorfer Tabelle"],
+  "compatible_with": ["kindergeld", "unterhaltsvorschuss"],
+  "incompatible_with": [],
+  "related_benefits": ["unterhaltsvorschuss", "kindergeld", "steuer_familie"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Unterhalt ist die finanzielle Verpflichtung eines Elternteils, für den Lebensunterhalt des Kindes zu sorgen.",
+    "for_whom": "Kinder, deren Elternteile getrennt leben oder geschieden sind",
+    "requirements": "Verwandtschaft, Bedürftigkeit des Kindes, Leistungsfähigkeit des anderen Elternteils",
+    "how_much": "Nach Düsseldorfer Tabelle: 486-653 Euro pro Monat (je nach Einkommen und Alter)",
+    "how_calculated": "Abhängig vom Nettoeinkommen des Unterhaltsverpflichteten und dem Alter des Kindes",
+    "documents_needed": "Geburtsurkunde, Einkommensnachweise, Kontoauszüge",
+    "where_to_apply": "Jugendamt (Vermittlung) oder Familiengericht (gerichtlich)",
+    "deadlines": "Keine formelle Frist, aber möglichst schnell nach Trennung",
+    "faq": [
+      {
+        "question": "Wie wird der Unterhalt berechnet?",
+        "answer": "Nach der Düsseldorfer Tabelle, abhängig vom Einkommen und dem Alter des Kindes"
+      },
+      {
+        "question": "Wird Kindergeld auf den Unterhalt angerechnet?",
+        "answer": "Ja, die Hälfte des Kindergeldes wird auf den Unterhalt angerechnet"
+      },
+      {
+        "question": "Was ist der Mindestunterhalt?",
+        "answer": "Der Mindestunterhalt beträgt 486 Euro für Kinder bis 5 Jahre (2026)"
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmjv.de/DE/themen/gesellschaft_familie/kinder/kindesunterhalt/kindesunterhalt_node.html",
+      "title": "Kindesunterhalt - BMJV",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.olg-duesseldorf.nrw.de/infos/Duesseldorfer_Tabelle/",
+      "title": "Düsseldorfer Tabelle - Oberlandesgericht Düsseldorf",
+      "organization": "Oberlandesgericht Düsseldorf",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Düsseldorfer Tabelle 2026: 486€ (0-5), 558€ (6-11), 653€ (12-17)", "Kindergeld wird je zur Hälfte angerechnet", "Unterhaltsvorschuss bei Alleinerziehenden über Jugendamt möglich"],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

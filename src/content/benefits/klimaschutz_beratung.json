@@ -1,0 +1,185 @@
+{
+  "id": "klimaschutz-beratung",
+  "official_name": "Klimaschutz-Beratung (Verbraucherzentrale)",
+  "aliases": [
+    "Energieberatung Verbraucherzentrale",
+    "Klimaberatung",
+    "Energieberatung",
+    "Förderung Energieberatung"
+  ],
+  "former_names": [
+    "Verbraucherberatung Energie",
+    "Energieberatung des BMWi"
+  ],
+  "type": "energy_subsidy",
+  "status": "verified",
+  "category": "Energie & Klima",
+  "subcategory": "Beratung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Verbraucherzentrale",
+    "authority": "Bundesministerium für Wirtschaft und Klimaschutz (BMWK)",
+    "url": "https://verbraucherzentrale-energieberatung.de/",
+    "phone": "0800 809 802 400"
+  },
+  "target_groups": [
+    "Verbraucher",
+    "Hauseigentümer",
+    "Mieter",
+    "Unternehmen",
+    "Kommunen"
+  ],
+  "life_situations": [
+    "klimaschutz",
+    "energiesanierung",
+    "energieberatung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "ks-001",
+        "description": "Jeder kann die Beratung in Anspruch nehmen",
+        "condition": "Keine besonderen Voraussetzungen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ks-002",
+        "description": "Beratung ist gefördert und günstig",
+        "condition": "Kosten max. 40 € oder kostenlos je nach Bundesland",
+        "required": false,
+        "category": "income"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Telefonberatung kostenlos",
+      "Online-Beratung max. 40 €",
+      "Vor-Ort-Beratung max. 160-524 €",
+      "Förderung durch BMWK bis zu 85%"
+    ]
+  },
+  "calculation": {
+    "method": "Kostenlose oder kostengünstige Beratung. Wert bis 524 €.",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Beratungsart wählen",
+        "formula": "Telefon, Online oder Vor-Ort",
+        "note": "Telefonberatung ist kostenlos"
+      },
+      {
+        "step": 2,
+        "description": "Kosten berechnen",
+        "formula": "Max. 40-524 € je nach Format",
+        "note": "Wird vom BMWK gefördert"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Kostenlose Beratung (Telefon) bis max. 524 € (Vor-Ort)",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Telefonberatung kostenlos. Online-Beratung max. 40 €. Vor-Ort-Beratung max. 524 € (gefördert).",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": 524,
+    "depends_on": [
+      "Art der Beratung",
+      "Bundesland",
+      "Beratungsfokus"
+    ]
+  },
+  "application": {
+    "method": "Online oder telefonisch anmelden",
+    "url": "https://verbraucherzentrale-energieberatung.de/",
+    "forms": [
+      "Online-Anmeldung"
+    ],
+    "required_documents": [
+      "Keine erforderlich",
+      "Optional: Energieauszug, Rechnungen"
+    ],
+    "processing_time": "1-2 Wochen",
+    "deadlines": {
+      "description": "Keine Fristen",
+      "note": "Beratung ist zeitlich ungedeckelt möglich"
+    }
+  },
+  "legal_basis": [
+    "Bundesministerium für Wirtschaft und Klimaschutz Förderung",
+    "Verbraucherzentrale Satzung",
+    "Richtlinie zur Förderung von Energieberatung"
+  ],
+  "compatible_with": [
+    "photovoltaik",
+    "energieeffizienz",
+    "gebaeude-daemmung",
+    "waermepumpe",
+    "elektromobilitaet"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "energieschuldenberatung"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Verbraucherzentrale bietet kostenlose oder kostengünstige Klimaschutz- und Energieberatung für alle.",
+    "for_whom": "Alle, die sich über Energieeffizienz, erneuerbare Energien oder Klimaschutz informieren möchten.",
+    "requirements": "Keine besonderen Voraussetzungen. Jeder kann die Beratung in Anspruch nehmen.",
+    "how_much": "Die Telefonberatung ist kostenlos. Die Online-Beratung kostet max. 40 €. Die Vor-Ort-Beratung max. 524 €.",
+    "how_calculated": "Die Kosten sind vom Bundesministerium gefördert. Sie zahlen nur einen kleinen Eigenanteil.",
+    "documents_needed": "Keine erforderlich. Optional: Energieauszüge, Rechnungen.",
+    "where_to_apply": "Online auf verbraucherzentrale-energieberatung.de oder telefonisch unter 0800 809 802 400.",
+    "deadlines": "Keine Fristen. Beratung ist jederzeit möglich.",
+    "faq": [
+      {
+        "question": "Ist die Beratung wirklich kostenlos?",
+        "answer": "Die Telefonberatung ist komplett kostenlos. Andere Formate werden gefördert und sind sehr günstig."
+      },
+      {
+        "question": "Kann ich die Beratung auch online machen?",
+        "answer": "Ja, es gibt Telefon-, Online- und Vor-Ort-Beratung."
+      },
+      {
+        "question": "Bekomme ich Hilfe bei der Beantragung von Förderungen?",
+        "answer": "Ja, die Berater helfen bei der Beantragung von BAFA- und KfW-Förderungen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://verbraucherzentrale-energieberatung.de/",
+      "title": "Energieberatung der Verbraucherzentrale",
+      "organization": "Verbraucherzentrale",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.verbraucherzentrale.de/energieberatung-der-verbraucherzentrale-27560",
+      "title": "Energieberatung der Verbraucherzentrale",
+      "organization": "Verbraucherzentrale",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Verbraucherzentrale Energieberatung wird vom BMWK gefördert.",
+    "Telefonhotline 0800 809 802 400 ist kostenlos.",
+    "Beratung ist qualitätsgesichert und neutral."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

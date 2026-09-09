@@ -1,0 +1,212 @@
+{
+  "id": "erneuerbare-energien-eeg",
+  "official_name": "Erneuerbare-Energien-Gesetz (EEG) – Einspeisevergütung",
+  "aliases": [
+    "EEG-Vergütung",
+    "Einspeisevergütung",
+    "EEG-Förderung",
+    "Erneuerbare Energien Förderung",
+    "Solarstromvergütung"
+  ],
+  "former_names": [
+    "Stromeinspeisungsgesetz",
+    "EEG 2014",
+    "EEG 2017",
+    "EEG 2021"
+  ],
+  "type": "energy_subsidy",
+  "status": "verified",
+  "category": "Energie & Klima",
+  "subcategory": "Erzeugung erneuerbarer Energien",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesnetzagentur / Übertragungsnetzbetreiber",
+    "authority": "Bundesministerium für Wirtschaft und Klimaschutz (BMWK)",
+    "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/ErneuerbareEnergien/EEG_Foerderung/start.html",
+    "phone": "030 218-0"
+  },
+  "target_groups": [
+    "Betreiber von Solaranlagen",
+    "Windkraftanlagen",
+    "Biomasseanlagen",
+    "Wasserkraftanlagen",
+    "Geothermieanlagen"
+  ],
+  "life_situations": [
+    "photovoltaik",
+    "klimaschutz",
+    "energiesanierung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "eeg-001",
+        "description": "Anlage nutzt erneuerbare Energien",
+        "condition": "Photovoltaik, Windkraft, Biomasse, Wasserkraft oder Geothermie",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "eeg-002",
+        "description": "Anlage wird ins Netz eingespeist",
+        "condition": "Strom wird ins öffentliche Netz eingespeist",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "eeg-003",
+        "description": "Anmeldung beim Netzbetreiber",
+        "condition": "Anlage wird beim zuständigen Netzbetreiber angemeldet",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "eeg-004",
+        "description": "Messtechnische Erfassung",
+        "condition": "Zweirichtungszähler oder intelligentes Messsystem vorhanden",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Einspeisevergütung für 20 Jahre garantiert",
+      "Vergütungssätze werden monatlich von der Bundesnetzagentur festgelegt",
+      "Solarspitzengesetz: Keine Vergütung bei negativen Börsenpreisen",
+      "Marktprämie als Alternative zur festen Einspeisevergütung"
+    ]
+  },
+  "calculation": {
+    "method": "Feste Vergütung pro eingespeister Kilowattstunde (kWh) für 20 Jahre. Sätze variieren je nach Anlagengröße und Inbetriebnahmedatum.",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Anlagengröße prüfen",
+        "formula": "Bis 10 kWp, 10-40 kWp, 40-750 kWp, über 750 kWp",
+        "note": "Je nach Größe unterschiedliche Vergütungssätze"
+      },
+      {
+        "step": 2,
+        "description": "Vergütungssatz ermitteln",
+        "formula": "Aktueller EEG-Satz der Bundesnetzagentur",
+        "note": "7,86 Cent/kWh für Anlagen bis 10 kWp (2025)"
+      },
+      {
+        "step": 3,
+        "description": "Monatliche Vergütung berechnen",
+        "formula": "Eingespeiste kWh × Vergütungssatz",
+        "note": "Auszahlung monatlich durch Netzbetreiber"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "7,36-7,86 Cent/kWh für Solaranlagen bis 10 kWp (2025)",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Einspeisevergütung von ca. 7,36-7,86 Cent pro kWh für Solaranlagen bis 10 kWp. Für 20 Jahre garantiert.",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": [
+      "Anlagengröße",
+      "Eingespeiste kWh",
+      "Inbetriebnahmedatum",
+      "Anlagenart"
+    ]
+  },
+  "application": {
+    "method": "Anmeldung beim Netzbetreiber, keine gesonderte Antragstellung",
+    "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/ErneuerbareEnergien/EEG_Foerderung/start.html",
+    "forms": [
+      "EEG-Anmeldung beim Netzbetreiber"
+    ],
+    "required_documents": [
+      "Anlagenbeschreibung",
+      "Baugenehmigung (falls erforderlich)",
+      "Zählerstand",
+      "Vertragsdaten"
+    ],
+    "processing_time": "2-4 Wochen nach Anmeldung",
+    "deadlines": {
+      "description": "Anmeldung vor Inbetriebnahme",
+      "note": "Vergütung beginnt mit Inbetriebnahme"
+    }
+  },
+  "legal_basis": [
+    "Erneuerbare-Energien-Gesetz (EEG) 2023",
+    "§ 19 EEG (Einspeisevergütung für Solaranlagen)",
+    "§ 20 EEG (Einspeisevergütung für Windkraft)",
+    "§ 21 EEG (Einspeisevergütung für Biomasse)",
+    "Solarspitzengesetz 2025"
+  ],
+  "compatible_with": [
+    "photovoltaik",
+    "energieeffizienz",
+    "gebaeude-daemmung"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "photovoltaik",
+    "energieschuldenberatung"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Das EEG garantiert Anlagenbetreibern eine feste Vergütung für jeden eingespeisten Kilowattstunde Strom aus erneuerbaren Energien – für 20 Jahre.",
+    "for_whom": "Betreiber von Solar-, Wind-, Biomasse- oder Wasserkraftanlagen.",
+    "requirements": "Die Anlage muss erneuerbare Energien nutzen und ins öffentliche Netz einspeisen. Eine Anmeldung beim Netzbetreiber ist erforderlich.",
+    "how_much": "Für Solaranlagen bis 10 kWp: ca. 7,36-7,86 Cent pro kWh (2025). Die Vergütung wird für 20 Jahre garantiert.",
+    "how_calculated": "Der Netzbetreiber zahlt monatlich die eingespeiste Strommenge multipliziert mit dem EEG-Vergütungssatz aus.",
+    "documents_needed": "Anlagenbeschreibung, Baugenehmigung, Zählerstand.",
+    "where_to_apply": "Anmeldung beim zuständigen Netzbetreiber (nicht bei der Bundesnetzagentur).",
+    "deadlines": "Anmeldung vor Inbetriebnahme. Die Vergütung beginnt mit der Inbetriebnahme.",
+    "faq": [
+      {
+        "question": "Wie lange läuft die EEG-Vergütung?",
+        "answer": "20 Jahre ab Inbetriebnahme der Anlage. Danach ist eine Direktvermarktung möglich."
+      },
+      {
+        "question": "Was passiert bei negativen Strompreisen?",
+        "answer": "Seit dem Solarspitzengesetz 2025 gibt es keine Vergütung mehr in Zeiten negativer Börsenpreise."
+      },
+      {
+        "question": "Kann ich die Vergütung mit einem KfW-Kredit kombinieren?",
+        "answer": "Ja, die EEG-Vergütung und KfW-Förderkredite sind kompatibel."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/ErneuerbareEnergien/EEG_Foerderung/start.html",
+      "title": "EEG-Förderung und -Fördersätze - Bundesnetzagentur",
+      "organization": "Bundesnetzagentur",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.bmwk.de/Redaktion/DE/Downloads/Energie/erneuerbare-energien-gesetz-eeg-2023.pdf",
+      "title": "Erneuerbare-Energien-Gesetz (EEG) 2023",
+      "organization": "BMWK",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2023-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "EEG-Vergütungssätze werden monatlich angepasst.",
+    "Solarspitzengesetz 2025: Keine Vergütung bei negativen Börsenpreisen.",
+    "Marktprämie als Alternative zur festen Einspeisevergütung möglich."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

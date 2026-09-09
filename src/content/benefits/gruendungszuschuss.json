@@ -1,0 +1,220 @@
+{
+  "id": "gruendungszuschuss",
+  "official_name": "Gründungszuschuss (Überbrückungsgeld)",
+  "aliases": [
+    "Gründerzuschuss",
+    "Existenzgründungszuschuss",
+    "Gründungsförderung",
+    "Starthilfe für Existenzgründer",
+    "Überbrückungsgeld"
+  ],
+  "former_names": [
+    "Überbrückungsgeld"
+  ],
+  "type": "business_subsidy",
+  "status": "verified",
+  "category": "Existenzgründung",
+  "subcategory": "Gründung aus Arbeitslosigkeit",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesagentur für Arbeit",
+    "authority": "Agentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/arbeitslosengeld/gruendungszuschuss-beantragen",
+    "phone": "0800 4 555500"
+  },
+  "target_groups": [
+    "Arbeitslose",
+    "Existenzgründer",
+    "Selbstständige",
+    "ALG-1-Empfänger"
+  ],
+  "life_situations": [
+    "arbeit_selbststaendig",
+    "gründung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "gz_01",
+        "description": "Mindestens 150 Tage Restanspruch auf Arbeitslosengeld",
+        "condition": "restanspruch_alg1 >= 150",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "gz_02",
+        "description": "Hauptberufliche Selbstständigkeit mit mindestens 15 Stunden/Woche",
+        "condition": "selbststaendig_vollzeit = true AND stunden_pro_woche >= 15",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "gz_03",
+        "description": "Persönliche Eignung für die Selbstständigkeit",
+        "condition": "persoenliche_eignung = true",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "gz_04",
+        "description": "Tragfähige Geschäftsidee mit Erfolgsaussichten",
+        "condition": "geschaeftsidee_tragfaehig = true",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "gz_05",
+        "description": "Fachkundige Stellungnahme einer anerkannten Stelle",
+        "condition": "fachkundige_stellungnahme = true",
+        "required": true,
+        "category": "personal"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Einkommen aus Nebentätigkeit",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Keine rechtsverbindlichen Anspruch – Ermessensleistung der Agentur für Arbeit",
+      "Menschen mit Behinderungen (§ 19 SGB III) auch ohne ALG-1-Anspruch möglich",
+      "Muss vor Aufnahme der Selbstständigkeit beantragt werden"
+    ]
+  },
+  "calculation": {
+    "method": "ALG-1-Höhe + 300 Euro Pauschale für 6 Monate, dann 300 Euro für weitere 9 Monate",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Monat 1-6: ALG-1-Höhe + 300 Euro monatlich",
+        "formula": "alg1 + 300",
+        "note": "Zur sozialen Absicherung"
+      },
+      {
+        "step": 2,
+        "description": "Monat 7-15: 300 Euro monatlich",
+        "value": "300 Euro",
+        "note": "Pauschalbetrag für Phase 2"
+      }
+    ],
+    "min_amount": 300,
+    "max_amount": 20000,
+    "typical_amount": "ca. 900-1.500 Euro/Monat (abhängig vom ALG-1)",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "ALG-1 + 300 Euro für 6 Monate, dann 300 Euro für 9 Monate. Max. 20.000 Euro.",
+    "min_monthly": 300,
+    "max_monthly": 1800,
+    "depends_on": [
+      "alg1_hoehe",
+      "restanspruch",
+      "familienstand"
+    ]
+  },
+  "application": {
+    "method": "Persönlich bei der Agentur für Arbeit nach Beratungsgespräch",
+    "url": "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/arbeitslosengeld/gruendungszuschuss-beantragen",
+    "forms": [
+      "Antrag auf Gründungszuschuss"
+    ],
+    "required_documents": [
+      "Lebenslauf",
+      "Geschäftsplan",
+      "Finanzplan",
+      "Kapitalbedarfsplan",
+      "Umsatz- und Rentabilitätsvorschau (3 Jahre)",
+      "Fachkundige Stellungnahme (IHK, Handwerkskammer, Beratungsstelle)",
+      "Arbeitszeugnisse",
+      "Nachweis ALG-1-Anspruch"
+    ],
+    "processing_time": "4-8 Wochen",
+    "deadlines": {
+      "description": "Vor Aufnahme der Selbstständigkeit",
+      "note": "Antrag muss VOR Gründungsbeginn gestellt werden"
+    }
+  },
+  "legal_basis": [
+    "§ 93 SGB III",
+    "§ 94 SGB III"
+  ],
+  "compatible_with": [
+    "gruendercoaching",
+    "kfw_gruenderkredit"
+  ],
+  "incompatible_with": [
+    "einstiegsgeld",
+    "arbeitslosengeld"
+  ],
+  "related_benefits": [
+    "einstiegsgeld",
+    "existenzgruenderkredit",
+    "gruendercoaching"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der Gründungszuschuss ist eine steuerfreie Starthilfe für Arbeitslose, die sich selbstständig machen wollen. Sie erhalten bis zu 15 Monate finanzielle Unterstützung.",
+    "for_whom": "Arbeitslose mit ALG-1-Anspruch (mind. 150 Tage Restanspruch), die eine tragfähige Geschäftsidee haben",
+    "requirements": "150 Tage ALG-1-Restanspruch, fachkundige Stellungnahme, Businessplan, mind. 15 Std./Woche, persönliche Eignung",
+    "how_much": "6 Monate: ALG-1 + 300 Euro, dann 9 Monate: 300 Euro. Gesamt bis zu 20.000 Euro möglich.",
+    "how_calculated": "Angelehnt an Ihr bisheriges ALG-1 plus 300 Euro Pauschale für soziale Absicherung",
+    "documents_needed": "Geschäftsplan, Finanzplan, Lebenslauf, fachkundige Stellungnahme, Arbeitszeugnisse, ALG-1-Nachweis",
+    "where_to_apply": "Bei Ihrer örtlichen Agentur für Arbeit",
+    "deadlines": "Antrag VOR Aufnahme der Selbstständigkeit stellen",
+    "faq": [
+      {
+        "question": "Muss ich den Gründungszuschuss zurückzahlen?",
+        "answer": "Nein, der Gründungszuschuss ist ein Zuschuss, der nicht zurückgezahlt werden muss."
+      },
+      {
+        "question": "Gibt es einen Rechtsanspruch?",
+        "answer": "Nein, es handelt sich um eine Ermessensleistung. Die Agentur für Arbeit entscheidet im Einzelfall."
+      },
+      {
+        "question": "Kann ich nebenbei weiterarbeiten?",
+        "answer": "Geringfügiges Nebeninkommen kann möglich sein, muss aber mit der Agentur abgestimmt werden."
+      },
+      {
+        "question": "Was ist die fachkundige Stellungnahme?",
+        "answer": "Ein Gutachten einer anerkannten Stelle (IHK, Handwerkskammer, Gründungsberatung), das Ihre Geschäftsidee als tragfähig bestätigt."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/arbeitslosengeld/gruendungszuschuss-beantragen",
+      "title": "Gründungszuschuss beantragen - Bundesagentur für Arbeit",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.arbeitsagentur.de/datei/dok_ba024940.pdf",
+      "title": "Fachliche Weisungen §§ 93, 94 SGB III - Gründungszuschuss",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2006-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Seit 2024: Budget für Gründungsförderung durch Agentur für Arbeit verdoppelt",
+    "Gründercoaching (AVGS) ist kompatibel und deckt bis zu 80% der Beratungskosten",
+    "Ermessensleistung – kein Rechtsanspruch"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,78 @@
+{
+  "state": "Brandenburg",
+  "state_code": "BB",
+  "benefits": [
+    {
+      "id": "bb-wohnraumfoerderung",
+      "official_name": "Wohnraumförderung Brandenburg",
+      "description": "Darlehen und Zuschüsse für die Schaffung von generationsgerechten Mietwohnungen zu sozial verträglichen Mieten. Umsetzung durch die Investitionsbank des Landes Brandenburg (ILB).",
+      "type": "housing_benefit",
+      "provider": "Ministerium für Infrastruktur und Landesentwicklung Brandenburg / ILB",
+      "url": "https://mil.brandenburg.de/mil/de/service/foerderprogramme/wohnen/foerderprogramme-der-wohnraumfoerderung/",
+      "status": "verified"
+    },
+    {
+      "id": "bb-gruenden-in-brandenburg",
+      "official_name": "Gründen in Brandenburg (GiB)",
+      "description": "Förderung von Existenzgründungen und Unternehmensnachfolgen im Land Brandenburg in der EU-Förderperiode 2021-2027.",
+      "type": "business_subsidy",
+      "provider": "Ministerium für Wirtschaft, Arbeit und Energie Brandenburg / ILB",
+      "url": "https://www.ilb.de/de/arbeit/uebersicht-der-foerderprogramme/gruenden-in-brandenburg-gib/",
+      "status": "verified"
+    },
+    {
+      "id": "bb-energieeffizienz",
+      "official_name": "Energieeffizienz Brandenburg",
+      "description": "Förderprogramm für kleine und mittlere Unternehmen (KMU) zur Steigerung der Energieeffizienz. Gefördert werden juristische Personen des privaten Rechts.",
+      "type": "energy_subsidy",
+      "provider": "Ministerium für Wirtschaft, Arbeit und Energie Brandenburg",
+      "url": "https://mweke.brandenburg.de/de/f%C3%B6rderung-im-energiebereich/bb1.c.608205.de",
+      "status": "verified"
+    },
+    {
+      "id": "bb-wasserstoff-speicher",
+      "official_name": "Wasserstoff/Speicher Brandenburg",
+      "description": "Förderung von Wasserstoffprojekten und Speichervorhaben. Zuwendungsfähige Ausgaben mindestens 200.000 Euro.",
+      "type": "energy_subsidy",
+      "provider": "Ministerium für Wirtschaft, Arbeit und Energie Brandenburg",
+      "url": "https://mweke.brandenburg.de/de/f%C3%B6rderung-im-energiebereich/bb1.c.608205.de",
+      "status": "verified"
+    },
+    {
+      "id": "bb-perspektive-job",
+      "official_name": "Perspektive Job – Jugend in Ausbildung und Arbeit",
+      "description": "Förderung der Arbeitsmarktintegration junger von Arbeitslosigkeit bedrohter oder betroffener Fach- und Arbeitskräfte im Land Brandenburg.",
+      "type": "employment_benefit",
+      "provider": "Ministerium für Wirtschaft, Arbeit und Energie Brandenburg / ILB",
+      "url": "https://www.ilb.de/de/arbeit/uebersicht-der-foerderprogramme/perspektive-job-jugend-in-ausbildung-und-arbeit-2023/",
+      "status": "verified"
+    },
+    {
+      "id": "bb-tueroeffner-zukunft-beruf",
+      "official_name": "Türöffner: Zukunft Beruf 2022",
+      "description": "Förderung von Lokalen Koordinierungsstellen an Oberstufenzentren zur Optimierung des Überganges von der Schule in den Beruf.",
+      "type": "education_benefit",
+      "provider": "Ministerium für Bildung, Jugend und Sport Brandenburg / ILB",
+      "url": "https://www.ilb.de/de/arbeit/uebersicht-der-foerderprogramme/tueroeffner-zukunft-beruf-2022/",
+      "status": "verified"
+    },
+    {
+      "id": "bb-willkommen-in-brandenburg",
+      "official_name": "Willkommen in Brandenburg",
+      "description": "Beratungsservice für Menschen mit Migrationsgeschichte. Förderung von Integrationsprojekten.",
+      "type": "integration_benefit",
+      "provider": "Ministerium für Wirtschaft, Arbeit und Energie Brandenburg / ILB",
+      "url": "https://www.ilb.de/de/arbeit/uebersicht-der-foerderprogramme/willkommen-in-brandenburg-2022/",
+      "status": "verified"
+    },
+    {
+      "id": "bb-kulturfoerderung",
+      "official_name": "Genrespezifische Kulturförderung Brandenburg",
+      "description": "Vielfältige genrespezifische Förderprogramme für Kultur in Brandenburg mit eigenen Fördergrundsätzen und Antragsformularen.",
+      "type": "social_benefit",
+      "provider": "Ministerium für Wissenschaft, Forschung und Kultur Brandenburg",
+      "url": "https://mwfk.brandenburg.de/mwfk/de/kultur/kultur-und-denkmalfoerderung/genrespezifische-kulturfoerderung/",
+      "status": "verified"
+    }
+  ]
+}

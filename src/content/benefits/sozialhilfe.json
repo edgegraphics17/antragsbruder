@@ -1,0 +1,196 @@
+{
+  "id": "sozialhilfe",
+  "official_name": "Sozialhilfe (SGB XII)",
+  "aliases": [
+    "Sozialhilfe",
+    "Hilfe zum Lebensunterhalt",
+    "Grundsicherung im Alter",
+    "Grundsicherung bei Erwerbsminderung"
+  ],
+  "former_names": [
+    "Sozialhilfe"
+  ],
+  "type": "social_benefit",
+  "status": "verified",
+  "category": "Soziale Sicherung",
+  "subcategory": "Existenzsicherung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Kommunale Sozialamt / Jobcenter",
+    "authority": "Sozialamt der jeweiligen Kommune",
+    "url": "https://www.bmas.de/DE/Soziales/Sozialhilfe/sozialhilfe.html",
+    "phone": ""
+  },
+  "target_groups": [
+    "Menschen im Rentenalter",
+    "Voll erwerbsgeminderte Menschen",
+    "Menschen in besonderen Notlagen"
+  ],
+  "life_situations": [
+    "kann_nicht_arbeiten",
+    "einkommen_nicht_genug",
+    "senior"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "sh-r1",
+        "description": "Hilfe zum Lebensunterhalt: Bedürftigkeit und Unfähigkeit, sich selbst zu helfen",
+        "condition": "beduerftig_unfaehig",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "sh-r2",
+        "description": "Grundsicherung im Alter: Altersgrenze erreicht (67 Jahre)",
+        "condition": "altersgrenze_erreicht",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "sh-r3",
+        "description": "Grundsicherung bei Erwerbsminderung: Volle dauerhafte Erwerbsminderung ab 18 Jahren",
+        "condition": "voll_erwerbsgemindert",
+        "required": true,
+        "category": "health"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Einkommen aus Erwerbstätigkeit",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 30,
+        "note": "30% Freibetrag, max. 50% der Regelbedarfsstufe 1",
+        "last_updated": "2024-01-01"
+      }
+    ],
+    "asset_rules": {
+      "threshold": 15000,
+      "exemptions": [
+        "Angemessene Altersvorsorge (100€ + 30% Zusatzvorsorge bis max. 50% RBS1)"
+      ],
+      "last_updated": "2024-01-01"
+    },
+    "special_conditions": [
+      "Nachrang: Andere Einkommen und Hilfen müssen zuerst ausgeschöpft werden"
+    ]
+  },
+  "calculation": {
+    "method": "Regelbedarf (Regelbedarfsstufen) + KdU - anrechenbares Einkommen",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Regelbedarfsstufe ermitteln",
+        "value": "RBS 1: 563€ (Einzelperson), RBS 2: 506€ (Partner), RBS 4-6 je nach Kinderalter"
+      },
+      {
+        "step": 2,
+        "description": "Hinzuzählen der tatsächlichen Wohnkosten wenn angemessen"
+      },
+      {
+        "step": 3,
+        "description": "Abzug des Einkommens nach Freibeträgen"
+      }
+    ],
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Regelbedarf abhängig von Personengruppe + Wohnkosten",
+    "min_monthly": 357,
+    "max_monthly": null,
+    "depends_on": [
+      "personen_im_haushalt",
+      "miete",
+      "einkommen",
+      "altersgruppe",
+      "kinder"
+    ]
+  },
+  "application": {
+    "method": "Persönlich beim Sozialamt oder Jobcenter",
+    "forms": [
+      "Antrag auf Sozialhilfe / Hilfe zum Lebensunterhalt",
+      "Antrag auf Grundsicherung im Alter / bei Erwerbsminderung"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Mietvertrag",
+      "Kontoauszüge",
+      "Einkommensnachweise",
+      "Vermögensnachweise",
+      "Altersnachweis",
+      "Ärztliche Gutachten bei Erwerbsminderung"
+    ],
+    "processing_time": "ca. 4-8 Wochen"
+  },
+  "legal_basis": [
+    "§§ 19-25 SGB XII (Hilfe zum Lebensunterhalt)",
+    "§§ 41-46b SGB XII (Grundsicherung im Alter)",
+    "§§ 27-29 SGB XII (Regelbedarfe)"
+  ],
+  "compatible_with": [
+    "bildungspaket",
+    "hilfe-zur-pflege"
+  ],
+  "incompatible_with": [
+    "buergergeld",
+    "arbeitslosengeld-i"
+  ],
+  "related_benefits": [
+    "buergergeld",
+    "hilfe-zur-pflege",
+    "grundsicherung-arbeitsuchende"
+  ],
+  "user_content": {
+    "short_explanation": "Die Sozialhilfe sichert die Existenzsicherung für Menschen, die nicht arbeiten können, im Alter sind oder in besonderen Lebenslagen stecken.",
+    "for_whom": "Für Menschen, die das Rentenalter erreicht haben, voll erwerbsgemindert sind oder in anderen Notlagen Hilfe benötigen.",
+    "requirements": "Bedürftigkeit plus entweder Erreichen der Altersgrenze (67 Jahre) oder volle dauerhafte Erwerbsminderung ab 18 Jahren.",
+    "how_much": "Gleiche Regelbedarfe wie beim Bürgergeld: 563€ für Alleinstehende plus Wohnkosten.",
+    "how_calculated": "Regelbedarf (gleiche Stufen wie SGB II) + Wohnkosten - anrechenbares Einkommen. Freibeträge: 30% bei Erwerbstätigkeit, 100€ bei Zusatzvorsorge.",
+    "documents_needed": "Personalausweis, Rentenbescheid oder ärztliches Gutachten, Mietvertrag, Kontoauszüge, Vermögensnachweise",
+    "where_to_apply": "Beim Sozialamt der Kommune oder beim Jobcenter",
+    "deadlines": "Keine spezifischen Fristen, aber Antrag schnellzeitig stellen.",
+    "faq": [
+      {
+        "question": "Was ist der Unterschied zwischen Sozialhilfe und Bürgergeld?",
+        "answer": "Sozialhilfe (SGB XII) ist für Menschen, die nicht erwerbsfähig sind (z.B. Rentner, Erwerbsgeminderte). Bürgergeld (SGB II) ist für erwerbsfähige Arbeitsuchende."
+      },
+      {
+        "question": "Muss ich mein Vermögen verkaufen?",
+        "answer": "Grundsätzlich ja, aber es gibt Freibeträge (z.B. 15.000€ Vermögensfreibetrag)."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmas.de/DE/Soziales/Sozialhilfe/sozialhilfe.html",
+      "title": "Sozialhilfe",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_12/",
+      "title": "Sozialgesetzbuch (SGB) Zwölftes Buch (XII) - Sozialhilfe",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-09-08",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Gleiche Regelbedarfe wie SGB II (563€/506€/451€/471€/390€/357€)",
+    "Nachrangprinzip: andere Hilfen zuerst"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,78 @@
+{
+  "state": "Thüringen",
+  "state_code": "TH",
+  "benefits": [
+    {
+      "id": "th-tab-wohnungsbaufoerderung",
+      "official_name": "Thüringer Wohnungsbauförderung 2026-2030",
+      "description": "Förderung des bezahlbaren Mietwohnraums im Freistaat Thüringen für die Programmjahre 2026 bis 2030. Neubau, Umbau, Ausbau, Erweiterung, Modernisierung und Sanierung.",
+      "type": "housing_benefit",
+      "provider": "Thüringer Aufbaubank (TAB)",
+      "url": "https://www.aufbaubank.de/foerderprogramme/thueringer-wohnungsbaufoerderung-2026-2030",
+      "status": "verified"
+    },
+    {
+      "id": "th-tab-thueringerkredit",
+      "official_name": "ThüringenKredit",
+      "description": "16,5 Millionen Euro für Investitionen von Thüringer Unternehmen. Seit Programmstart 15 Kredite bewilligt.",
+      "type": "business_subsidy",
+      "provider": "Thüringer Aufbaubank (TAB)",
+      "url": "https://www.aufbaubank.de/",
+      "status": "verified"
+    },
+    {
+      "id": "th-tab-kommunales-investitionsprogramm",
+      "official_name": "Kommunales Investitionsprogramm 2026-2029",
+      "description": "Unterstützung der Öffentlichen Hand in Thüringen mit Förderprogrammen für kommunale Investitionen.",
+      "type": "business_subsidy",
+      "provider": "Thüringer Aufbaubank (TAB)",
+      "url": "https://www.aufbaubank.de/foerderprogramme/kommunales-investitionsprogramm-2026-2029",
+      "status": "verified"
+    },
+    {
+      "id": "th-tab-sanierung",
+      "official_name": "TAB Sanierungsförderung Thüringen",
+      "description": "Grundförderung von 15 Prozent für Maßnahmen an der Gebäudehülle und Anlagentechnik. Individueller Sanierungsfahrplan möglich.",
+      "type": "energy_subsidy",
+      "provider": "Thüringer Aufbaubank (TAB)",
+      "url": "https://www.ee-experten.com/wissen/aktuelles/thueringen-foerderung-und-sanierung-ueberblick-foerderprogramme-2026-fuer-immobilien-eigentuemer.html",
+      "status": "verified"
+    },
+    {
+      "id": "th-startchancen-programm",
+      "official_name": "Startchancen-Programm Thüringen",
+      "description": "Förderung von rund 100 Thüringer Schulen für mehr Chancengerechtigkeit. Gemeinschaftsprogramm von Bund und Land.",
+      "type": "education_benefit",
+      "provider": "Thüringer Ministerium für Bildung, Wissenschaft und Kultur",
+      "url": "https://bildung.thueringen.de/schule/startchancen-programm",
+      "status": "verified"
+    },
+    {
+      "id": "th-dorfentwicklung",
+      "official_name": "Dorfentwicklung Thüringen",
+      "description": "Jährlich rund 30 Millionen Euro für anerkannte Förderschwerpunkte der Dorfentwicklung. Anerkennung der Förderschwerpunkte 2026-2030.",
+      "type": "social_benefit",
+      "provider": "Thüringer Ministerium für Digitales, Infrastruktur und Landesentwicklung",
+      "url": "https://wirtschaft.thueringen.de/laendlicher-raum/dorfentwicklung/anerkennung-der-foerderschwerpunkte-2025-2029",
+      "status": "verified"
+    },
+    {
+      "id": "th-ehrenamt-foerderung",
+      "official_name": "Ehrenamtsförderung Thüringen",
+      "description": "Mit dem Doppelhaushalt 2026/2027 stehen jährlich 18,5 Millionen Euro zur Verfügung. Für die Ehrenamtsstiftung 9 Millionen Euro pro Jahr.",
+      "type": "social_benefit",
+      "provider": "Thüringer Ministerium für Familie, Arbeit und Soziales",
+      "url": "https://thueringen.de/ehrenamt/foerderung",
+      "status": "verified"
+    },
+    {
+      "id": "th-demografieprojekte",
+      "official_name": "Förderung Thüringer Demografieprojekte",
+      "description": "Förderung von Projekten zur Bewältigung demografischer Herausforderungen. Anträge für 2026 bis 30. September 2025.",
+      "type": "social_benefit",
+      "provider": "Thüringer Ministerium für Digitales, Infrastruktur und Landesentwicklung",
+      "url": "https://digitales-infrastruktur.thueringen.de/medienservice/medieninformationen/detailseite/foerderung-von-thueringer-demografieprojekten-bis-30092025-beantragen-ausschreibung-bietet-chance-und-finanzielle-unstuetzung-fuer-engagierte-im-freistaat-jede-gute-idee-zaehlt",
+      "status": "verified"
+    }
+  ]
+}

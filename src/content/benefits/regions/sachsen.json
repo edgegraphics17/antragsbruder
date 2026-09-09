@@ -1,0 +1,78 @@
+{
+  "state": "Sachsen",
+  "state_code": "SN",
+  "benefits": [
+    {
+      "id": "sn-sab-familienwohnen",
+      "official_name": "SAB Familienwohnen Sachsen",
+      "description": "Unterstützung von Familien bei der Finanzierung von Wohneigentum oder Teilnahme an gemeinschaftlichen Bau- und Wohnprojekten. Zinssenkung um 0,5 %.",
+      "type": "housing_benefit",
+      "provider": "Sächsische Aufbaubank (SAB)",
+      "url": "https://sab.sachsen.de/familienwohnen",
+      "status": "verified"
+    },
+    {
+      "id": "sn-sab-eigentumsfoerderung",
+      "official_name": "Eigentumsförderung Sachsen",
+      "description": "Förderung von Wohneigentum: Gemeinschaftliche Bau- und Wohnprojekte mit 1,35 % Zins (0,70 %). Zwischenfinanzierung Grundstückserwerb.",
+      "type": "housing_benefit",
+      "provider": "Sächsische Aufbaubank (SAB)",
+      "url": "https://www.bauen-wohnen.sachsen.de/eigentumsfoerderung-5978.html",
+      "status": "verified"
+    },
+    {
+      "id": "sn-sab-investitionen-teilhabe",
+      "official_name": "SAB Investitionen Teilhabe Sachsen",
+      "description": "Bis zu 80 % Zuschuss für Baumaßnahmen zur barierfreien Gestaltung von Gebäuden und Einrichtungen.",
+      "type": "disability_benefit",
+      "provider": "Sächsische Aufbaubank (SAB)",
+      "url": "https://sab.sachsen.de/investitionen-teilhabe",
+      "status": "verified"
+    },
+    {
+      "id": "sn-sab-innovationskapital",
+      "official_name": "Innovationskapital Sachsen",
+      "description": "Eigenkapitalförderung für innovative Unternehmen in Sachsen. Umsetzung über die Sächsische Beteiligungsgesellschaft (SBG).",
+      "type": "business_subsidy",
+      "provider": "Sächsische Aufbaubank (SAB) / SBG",
+      "url": "https://sbg.sachsen.de/innovation.html",
+      "status": "verified"
+    },
+    {
+      "id": "sn-sab-schulinfrastruktur",
+      "official_name": "Sachsenfonds Schulinfrastruktur",
+      "description": "Sondervermögen zur Stärkung der Schulinfrastruktur in Sachsen. Gefördert werden Investitionen in Schulgebäude.",
+      "type": "education_benefit",
+      "provider": "Sächsische Aufbaubank (SAB)",
+      "url": "https://sab.sachsen.de/schulinfrastruktur-sonderverm%C3%B6gen-kominvst%C3%A4rkvo",
+      "status": "verified"
+    },
+    {
+      "id": "sn-sab-modernisieren-sanieren",
+      "official_name": "SAB Modernisieren und Sanieren",
+      "description": "Förderung von Modernisierungs- und Sanierungsmaßnahmen an Wohngebäuden. Kombination mit BEG-Wohngebäude-Kredit möglich.",
+      "type": "housing_benefit",
+      "provider": "Sächsische Aufbaubank (SAB)",
+      "url": "https://sab.sachsen.de/modernisieren-und-sanieren",
+      "status": "verified"
+    },
+    {
+      "id": "sn-sab-wohnraumanpassung",
+      "official_name": "SAB Wohnraumanpassung für mobilitätseingeschränkte Personen",
+      "description": "Förderung der Anpassung von Wohnraum für mobilitätseingeschränkte Personen in Sachsen.",
+      "type": "disability_benefit",
+      "provider": "Sächsische Aufbaubank (SAB)",
+      "url": "https://sab.sachsen.de/wohnraumanpassung",
+      "status": "verified"
+    },
+    {
+      "id": "sn-sab-balkonkraftwerke",
+      "official_name": "SAB Balkonkraftwerke (Stecker-PV-Anlagen)",
+      "description": "Förderung der Anschaffung und Installation von netzgekoppelten steckerfertigen Photovoltaikkleinanlagen. Programm derzeit ausgelaufen.",
+      "type": "energy_subsidy",
+      "provider": "Sächsische Aufbaubank (SAB)",
+      "url": "https://sab.sachsen.de/balkonkraftwerke-stecker-pv-anlagen",
+      "status": "archived"
+    }
+  ]
+}

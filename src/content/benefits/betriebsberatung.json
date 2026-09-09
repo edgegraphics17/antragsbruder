@@ -1,0 +1,197 @@
+{
+  "id": "betriebsberatung-landwirtschaft",
+  "official_name": "Förderung der einzelbetrieblichen Beratung",
+  "aliases": [
+    "Betriebsberatung Landwirtschaft",
+    "Landwirtschaftliche Beratung",
+    "Förderberatung",
+    "Einzelbetriebliche Beratung",
+    "Beratung landwirtschaftlicher Betriebe"
+  ],
+  "former_names": [],
+  "type": "agriculture_subsidy",
+  "status": "verified",
+  "category": "Landwirtschaft & Ländlicher Raum",
+  "subcategory": "Beratung & Qualifizierung",
+  "level": "state",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Landwirtschaftskammern",
+    "authority": "Landwirtschaftskammern der Bundesländer",
+    "url": "https://www.landwirtschaftskammer.de/foerderung/laendlicherraum/beratungsorganisationen/index.htm",
+    "phone": "Variiert je nach Bundesland"
+  },
+  "target_groups": [
+    "Landwirte und Landwirtinnen",
+    "Junglandwirte",
+    "Betriebe in Umstellung",
+    "Betriebe mit Nachhaltigkeitszielen",
+    "Betriebe mit Biodiversitätszielen"
+  ],
+  "life_situations": [
+    "landwirtschaft",
+    "ländlicher_raum"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "bb-001",
+        "description": "Landwirtschaftlicher Betrieb",
+        "condition": "Antragsteller muss einen landwirtschaftlichen Betrieb führen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bb-002",
+        "description": "Förderfähiges Beratungsthema",
+        "condition": "Beratung muss zu den förderfällen Themen gehören",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bb-003",
+        "description": "Zertifizierter Berater",
+        "condition": "Beratung muss von einem zugelassenen Berater durchgeführt werden",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Beratungskosten",
+        "threshold": 0,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "region": "all",
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Fördersatz von 70 % der Beratungskosten",
+      "Förderhöchstbetrag: 1.500 Euro pro Beratungsmodul",
+      "Obergrenze von 3.000 Euro pro Betrieb und Jahr"
+    ]
+  },
+  "calculation": {
+    "method": "Prozentsatz der Beratungskosten als Zuschuss",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Ermittlung der förderfähigen Beratungskosten",
+        "formula": "Förderfähige Kosten = tatsächliche Beratungskosten",
+        "note": "Nur zugelassene Berater"
+      },
+      {
+        "step": 2,
+        "description": "Berechnung des Zuschusses",
+        "formula": "Zuschuss = Förderfähige Kosten × 70 %",
+        "note": "Maximal 1.500 Euro pro Modul"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": 3000,
+    "typical_amount": "70 % der Beratungskosten, max. 1.500 Euro/Modul",
+    "frequency": "once",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Zuschuss von 70 % der Beratungskosten, maximal 1.500 Euro pro Beratungsmodul, Obergrenze 3.000 Euro/Jahr",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": 3000,
+    "depends_on": [
+      "Höhe der Beratungskosten",
+      "Anzahl der Beratungsmodule"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich bei der Landwirtschaftskammer",
+    "url": "https://www.landwirtschaftskammer.de/foerderung/laendlicherraum/beratungsorganisationen/index.htm",
+    "forms": [
+      "Beratungsantrag",
+      "Kostenübernahmeantrag"
+    ],
+    "required_documents": [
+      "Vollständig ausgefüllter Antrag",
+      "Beratungskonzept",
+      "Kostenvoranschlag des Beraters",
+      "Nachweis der Berater-Zulassung",
+      "Falls zutreffend: Berichtsabnahme"
+    ],
+    "processing_time": "2-4 Wochen",
+    "deadlines": {
+      "description": "Antrag vor Beratungsbeginn stellen",
+      "date": "Vor Beginn der Beratung",
+      "note": "Antrag muss vor Beratungsbeginn eingereicht werden"
+    }
+  },
+  "legal_basis": [
+    "Verordnung (EU) Nr. 1305/2013 (ELER)",
+    "GAP-Strategieplan Deutschland 2023-2027",
+    "Landesförderrichtlinien der Bundesländer"
+  ],
+  "compatible_with": [
+    "landwirtschaft-investitionen",
+    "junglandwirte-einkommensstuetzung",
+    "biologischer-bau-foerderung",
+    "umweltprogramme-fakt",
+    "tierhaltung-umbau"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "landwirtschaft-investitionen",
+    "junglandwirte",
+    "biologischer-bau"
+  ],
+  "user_content": {
+    "short_explanation": "Die Förderung der Betriebsberatung unterstützt Landwirte bei der fachlichen Beratung – von der Betriebsführung bis zum Umweltschutz.",
+    "for_whom": "Landwirte, die sich fachlich beraten lassen möchten – besonders Junglandwirte und Betriebe in Umstellung.",
+    "requirements": "Landwirtschaftlicher Betrieb, förderfähiges Beratungsthema, zugelassener Berater.",
+    "how_much": "70 % der Beratungskosten als Zuschuss, maximal 1.500 Euro pro Beratungsmodul.",
+    "how_calculated": "Der Zuschuss beträgt 70 % der Kosten, maximal 1.500 Euro pro Modul und 3.000 Euro pro Jahr.",
+    "documents_needed": "Antrag, Beratungskonzept, Kostenvoranschlag, Berater-Nachweis.",
+    "where_to_apply": "Bei der zuständigen Landwirtschaftskammer.",
+    "deadlines": "Antrag muss vor Beratungsbeginn eingereicht werden.",
+    "faq": [
+      {
+        "question": "Welche Themen werden gefördert?",
+        "answer": "Biodiversität, Nachhaltigkeit, Umweltschutz, Tierschutz, Digitalisierung, Betriebsführung und mehr."
+      },
+      {
+        "question": "Kann ich jeden Berater wählen?",
+        "answer": "Nein, der Berater muss zugelassen sein. Die Landwirtschaftskammer gibt Auskunft über zugelassene Berater."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.landwirtschaftskammer.de/foerderung/laendlicherraum/beratungsorganisationen/index.htm",
+      "title": "Förderung der einzelbetrieblichen Beratung",
+      "organization": "Landwirtschaftskammer",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    },
+    {
+      "url": "https://foerderung.landwirtschaft-bw.de/,Lde/Startseite/Foerderwegweiser/Beratung+landwirtschaftlicher+Betriebe",
+      "title": "Beratung landwirtschaftlicher Betriebe - Baden-Württemberg",
+      "organization": "Landwirtschaft Baden-Württemberg",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2023-01-01",
+  "valid_until": "2027-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Fördersatz von 70 % der Beratungskosten",
+    "Förderhöchstbetrag: 1.500 Euro pro Beratungsmodul",
+    "Obergrenze von 3.000 Euro pro Betrieb und Jahr"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

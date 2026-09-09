@@ -1,0 +1,151 @@
+{
+  "id": "mutschutz",
+  "official_name": "Mutterschutz",
+  "aliases": ["Mutterschutzfristen", "Mutterschutzlohn", "Schutzfristen", "Mutterschaftsleistungen"],
+  "former_names": [],
+  "type": "family_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Mutterschutz",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Arbeitgeber / Krankenkasse",
+    "authority": "Bundesministerium für Familie, Senioren, Frauen und Jugend (BMFSFJ)",
+    "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/mutterschaftsleistungen/mutterschutz-und-mutterschaftsleistungen-73754",
+    "phone": "030 20179165"
+  },
+  "target_groups": ["Schwangere", "Stillende", "Berufstätige Frauen"],
+  "life_situations": ["schwanger", "kind_bekommen", "familie"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "ms-001",
+        "description": "Frau ist schwanger oder stillt",
+        "condition": "Schwangerschaft oder Stillzeit",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "ms-002",
+        "description": "Arbeitsverhältnis besteht",
+        "condition": "Arbeitnehmerin oder Arbeitnehmerin in Ausbildung",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ms-003",
+        "description": "Arbeitgeber wurde über Schwangerschaft informiert",
+        "condition": "Mitteilung an Arbeitgeber",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Schutzfrist vor Geburt: 6 Wochen (bei Frühgeburt: 8 Wochen)",
+      "Schutzfrist nach Geburt: 8 Wochen (bei Frühgeburt/Mehrlingsgeburt: 12 Wochen)",
+      "Verbot der Arbeit während der Schutzfristen",
+      "Mutterschutzlohn: Differenzbetrag vom Arbeitgeber",
+      "Kündigungsschutz ab Beginn der Schwangerschaft"
+    ]
+  },
+  "calculation": {
+    "method": "Mutterschutzlohn = Differenz zwischen durchschnittlichem Nettoeinkommen und Krankenkassenzuschuss (max. 13 Euro/Tag)",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Krankenkasse zahlt max. 13 Euro pro Kalendertag",
+        "value": "13 Euro/Tag"
+      },
+      {
+        "step": 2,
+        "description": "Arbeitgeber zahlt Differenzbetrag",
+        "formula": "Nettoeinkommen - 13 Euro",
+        "value": "Mutterschutzlohn"
+      },
+      {
+        "step": 3,
+        "description": "Gesamtleistung entspricht durchschnittlichem Nettoeinkommen",
+        "value": "100% des Nettoeinkommens"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": null,
+    "typical_amount": "100% des durchschnittlichen Nettoeinkommens",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "100% des durchschnittlichen Nettoeinkommens (Krankenkasse: max. 13 Euro/Tag, Arbeitgeber: Differenz)",
+    "min_monthly": 0,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Nettoeinkommen", "Krankenkasse"]
+  },
+  "application": {
+    "method": "Meldung an Arbeitgeber und Krankenkasse",
+    "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/mutterschaftsleistungen/mutterschutz-und-mutterschaftsleistungen-73754",
+    "forms": ["Meldung der Schwangerschaft", "Antrag auf Mutterschaftsgeld"],
+    "required_documents": ["Mutterpass", "Arztbescheinigung", "Geburtsanzeige"],
+    "processing_time": "2-4 Wochen",
+    "deadlines": {
+      "description": "Meldung an Arbeitgeber sobald Schwangerschaft bekannt",
+      "note": "Schutzfristen beginnen automatisch"
+    }
+  },
+  "legal_basis": ["Mutterschutzgesetz (MuSchG)", "§§ 3-7 MuSchG (Schutzfristen)", "§ 13 MuSchG (Entgeltfortzahlung)"],
+  "compatible_with": ["mutterschaftsgeld", "elterngeld", "elternzeit"],
+  "incompatible_with": ["arbeitslosengeld-i"],
+  "related_benefits": ["mutterschaftsgeld", "elterngeld", "elternzeit", "schangerschaftsleistungen"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der Mutterschutz schützt schwangere und stillende Frauen vor Arbeit und finanziellen Einbußen.",
+    "for_whom": "Schwangere und stillende berufstätige Frauen",
+    "requirements": "Schwangerschaft, Arbeitsverhältnis, Mitteilung an Arbeitgeber",
+    "how_much": "100% des durchschnittlichen Nettoeinkommens (Krankenkasse + Arbeitgeber)",
+    "how_calculated": "Krankenkasse zahlt max. 13 Euro/Tag, Arbeitgeber den Differenzbetrag",
+    "documents_needed": "Mutterpass, Arztbescheinigung, Geburtsanzeige",
+    "where_to_apply": "Meldung an Arbeitgeber und Krankenkasse",
+    "deadlines": "Meldung sobald Schwangerschaft bekannt",
+    "faq": [
+      {
+        "question": "Wie lange dauert der Mutterschutz?",
+        "answer": "6 Wochen vor und 8 Wochen nach der Geburt (bei Frühgeburt/Mehrlingsgeburt: 12 Wochen)"
+      },
+      {
+        "question": "Wie hoch ist der Mutterschutzlohn?",
+        "answer": "100% des durchschnittlichen Nettoeinkommens - Krankenkasse zahlt max. 13 Euro/Tag, Arbeitgeber den Rest"
+      },
+      {
+        "question": "Darf ich während der Schutzfristen arbeiten?",
+        "answer": "Nein, während der Schutzfristen ist Arbeitsverbot"
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/mutterschaftsleistungen/mutterschutz-und-mutterschaftsleistungen-73754",
+      "title": "Mutterschutz und Mutterschaftsleistungen - BMBFSFJ",
+      "organization": "Bundesministerium für Familie, Senioren, Frauen und Jugend",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.bundesamtsozialesicherung.de/de/mutterschaftsgeld/ueberblick/",
+      "title": "Mutterschaftsgeldstelle - Bundesamt für Soziale Sicherung",
+      "organization": "Bundesamt für Soziale Sicherung",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Schutzfristen: 6 Wochen vor, 8 Wochen nach Geburt", "Mutterschaftsgeld: max. 13 Euro/Tag von Krankenkasse", "Arbeitgeber zahlt Differenzbetrag", "Kündigungsschutz ab Beginn der Schwangerschaft"],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

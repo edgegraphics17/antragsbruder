@@ -1,0 +1,156 @@
+{
+  "id": "bildungspaket",
+  "official_name": "Leistungen für Bildung und Teilhabe (Bildungspaket)",
+  "aliases": [
+    "Bildungspaket",
+    "Bildungs- und Teilhabeleistungen",
+    "BuT"
+  ],
+  "former_names": [],
+  "type": "education_benefit",
+  "status": "verified",
+  "category": "Bildung & Teilhabe",
+  "subcategory": "Schulbedarf",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Jobcenter / Sozialamt / Wohngeldbehörde",
+    "authority": "Zuständige Stelle je nach Leistungsträger",
+    "url": "https://www.bmas.de/DE/Arbeit/Grundsicherung-fuer-Arbeitsuchende/Bildungspaket/bildungspaket.html",
+    "phone": ""
+  },
+  "target_groups": [
+    "Kinder und Jugendliche aus bedürftigen Familien",
+    "Schülerinnen und Schüler"
+  ],
+  "life_situations": [
+    "familie",
+    "einkommen_nicht_genug",
+    "student"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "bp-r1",
+        "description": "Eltern beziehen Bürgergeld, Sozialhilfe, Kinderzuschlag oder Wohngeld",
+        "condition": "transferleistungen",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "bp-r2",
+        "description": "Kind/Jugendlicher geht zur Schule oder macht Ausbildung",
+        "condition": "schulausbildung",
+        "required": true,
+        "category": "status"
+      }
+    ]
+  },
+  "calculation": {
+    "method": "Pauschale Beträge für verschiedene Bedarfe",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Schulbedarf: 110€ pro Schuljahr (1. Halbjahr) + 55€ (2. Halbjahr)"
+      },
+      {
+        "step": 2,
+        "description": "Lernförderung: bis zu 150€ pro Monat"
+      },
+      {
+        "step": 3,
+        "description": "Teilhabe: 15€ pro Monat für Vereine, Kultur etc."
+      }
+    ],
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Verschiedene Pauschalen je nach Bedarf",
+    "depends_on": [
+      "art_des_bedarfs",
+      "schuljahr",
+      "alter"
+    ]
+  },
+  "application": {
+    "method": "Persönlich bei der zuständigen Stelle (Jobcenter, Sozialamt, Wohngeldbehörde)",
+    "url": "https://www.bmas.de/DE/Arbeit/Grundsicherung-fuer-Arbeitsuchende/Bildungspaket/bildungspaket.html",
+    "forms": [
+      "Antrag auf Leistungen für Bildung und Teilhabe"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Schulbescheinigung",
+      "Kostenvoranschläge bei Lernförderung"
+    ],
+    "processing_time": "ca. 2-4 Wochen"
+  },
+  "legal_basis": [
+    "§ 23 SGB II (Bildungspaket im SGB II)",
+    "§ 34a SGB XII (Bildungspaket im SGB XII)",
+    "§ 28 Abs. 3 SGB II (Schulbedarf)"
+  ],
+  "compatible_with": [
+    "buergergeld",
+    "sozialhilfe",
+    "kinderzuschlag",
+    "wohngeld"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "buergergeld",
+    "sozialhilfe",
+    "kinderzuschlag"
+  ],
+  "user_content": {
+    "short_explanation": "Das Bildungspaket hilft bedürftigen Familien bei den Kosten für Schulsachen, Lernförderung und Freizeitaktivitäten.",
+    "for_whom": "Für Kinder und Jugendliche aus Familien, die Bürgergeld, Sozialhilfe, Kinderzuschlag oder Wohngeld beziehen.",
+    "requirements": "Die Eltern müssen eine Transferleistung beziehen und das Kind muss zur Schule gehen.",
+    "how_much": "Schulbedarf: 110€/Jahr, Lernförderung: bis 150€/Monat, Teilhabe: 15€/Monat, Schülerbeförderung: nach Kosten.",
+    "how_calculated": "Pauschale Beträge, keine individuelle Berechnung.",
+    "documents_needed": "Schulbescheinigung, ggf. Kostenvoranschläge für Lernförderung",
+    "where_to_apply": "Beim Jobcenter, Sozialamt oder der Wohngeldbehörde",
+    "deadlines": "Antrag vor Beginn des Schuljahres oder vor Ausgaben stellen.",
+    "faq": [
+      {
+        "question": "Was ist mit Schulbedarf gemeint?",
+        "answer": "Schulbücher, Schreibmaterialien, Sportzeug und andere Schulsachen. Pauschale: 110€ pro Schuljahr."
+      },
+      {
+        "question": "Kann ich auch Fahrtkosten beantragen?",
+        "answer": "Ja, wenn das Kind eine bestimmte Entfernung zur Schule hat, können Fahrtkosten übernommen werden."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmas.de/DE/Arbeit/Grundsicherung-fuer-Arbeitsuchende/Bildungspaket/bildungspaket.html",
+      "title": "Bildungspaket",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.bmas.de/DE/Arbeit/Grundsicherung-Buergergeld/Bildungspaket/Leistungen/leistungen-bildungspaket_art.html",
+      "title": "Die Leistungen des Bildungspakets",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-09-08",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Schulbedarf: 110€/Jahr (2024/2025)",
+    "Teilhabe: 15€/Monat",
+    "Lernförderung: bis 150€/Monat"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

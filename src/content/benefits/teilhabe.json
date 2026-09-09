@@ -1,0 +1,182 @@
+{
+  "id": "teilhabe",
+  "official_name": "Teilhabeleistungen",
+  "aliases": [
+    "Leistungen zur Teilhabe",
+    "Teilhabe SGB IX",
+    "Werkstätten für behinderte Menschen (WfbM)",
+    "Wohnheime für behinderte Menschen",
+    "Eingliederungshilfe"
+  ],
+  "former_names": [],
+  "type": "disability_benefit",
+  "status": "verified",
+  "category": "Behinderung",
+  "subcategory": "Teilhabe am Arbeitsleben und Wohnen",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Integrationsamt / Sozialhilfeträger",
+    "authority": "Integrationsamt des Landes oder Sozialamt",
+    "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Leistungen-nach-dem-SGB-IX/leistungen-nach-dem-sgb-ix-art.html",
+    "phone": "Kontakt über Integrationsamt oder Sozialamt"
+  },
+  "target_groups": [
+    "Menschen mit Behinderung",
+    "Menschen, die Unterstützung bei der Teilhabe am Arbeitsleben benötigen",
+    "Menschen, die in einem Wohnheim für behinderte Menschen leben"
+  ],
+  "life_situations": [
+    "behinderung",
+    "kann_nicht_arbeiten"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "elg-th-01",
+        "description": "Behinderung",
+        "condition": "Körperliche, geistige, seelische oder mehrfache Beeinträchtigungen",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-th-02",
+        "description": "Bedürftigkeit der Teilhabe",
+        "condition": "Die Teilhabe ist erforderlich, um am Arbeitsleben oder in der Gesellschaft teilzuhaben",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-th-03",
+        "description": "Keine andere Leistung möglich",
+        "condition": "Keine andere Leistung kann die Teilhabe übernehmen",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Leistungen der Pflegeversicherung gehen vor (Subsidiarität)",
+      "Werkstätten für behinderte Menschen: Arbeitsförderungsgeld vom Rehabilitationsträger",
+      "Wohnheime: Bedürftigkeitsprüfung entfällt"
+    ]
+  },
+  "calculation": {
+    "method": "Kostenerstattung für benötigte Teilhabeleistungen nach individuellem Bedarf",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Bedarf an Teilhabe ermitteln",
+        "value": "Individuelle Bedarfsermittlung"
+      },
+      {
+        "step": 2,
+        "description": "Kosten der Teilhabe ermitteln",
+        "value": "Personal- und Sachkosten"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Abhängig vom individuellen Bedarf",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Kostenerstattung für benötigte Teilhabeleistungen",
+    "depends_on": [
+      "Individueller Bedarf",
+      "Kosten der Teilhabe"
+    ]
+  },
+  "application": {
+    "method": "Antrag beim Integrationsamt oder Sozialamt",
+    "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Leistungen-nach-dem-SGB-IX/leistungen-nach-dem-sgb-ix-art.html",
+    "forms": [
+      "Antrag auf Teilhabeleistungen"
+    ],
+    "required_documents": [
+      "Antrag auf Teilhabeleistungen",
+      "Ärztliche Gutachten",
+      "Kostenplan der Teilhabe",
+      "Einkommensnachweise"
+    ],
+    "processing_time": "3-6 Monate",
+    "deadlines": {
+      "description": "Antrag vor Beginn der Teilhabe stellen",
+      "note": "Keine feste Frist, aber rückwirkend maximal 1 Monat vor Antragstellung"
+    }
+  },
+  "legal_basis": [
+    "§§ 53-60 SGB IX (Leistungen zur Teilhabe)",
+    "§ 219 SGB IX (Werkstatt für behinderte Menschen)",
+    "§§ 113-116 SGB IX (Leistungen zur sozialen Teilhabe)"
+  ],
+  "compatible_with": [
+    "schwerbehinderung",
+    "assistenz",
+    "hilfsmittel"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "schwerbehinderung",
+    "assistenz",
+    "hilfsmittel",
+    "rehabilitation"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Teilhabeleistungen unterstützen Menschen mit Behinderung bei der Teilhabe am Arbeitsleben und in der Gesellschaft, z.B. in Werkstätten für behinderte Menschen oder Wohnheimen.",
+    "for_whom": "Menschen mit Behinderung, die Unterstützung bei der Teilhabe am Arbeitsleben oder in der Gesellschaft benötigen.",
+    "requirements": "Behinderung, Bedürfnis nach Teilhabe, keine andere Leistung kann die Teilhabe übernehmen.",
+    "how_much": "Abhängig vom individuellen Bedarf an Teilhabe.",
+    "how_calculated": "Kostenerstattung für benötigte Teilhabeleistungen.",
+    "documents_needed": "Antrag auf Teilhabeleistungen, ärztliche Gutachten, Kostenplan, Einkommensnachweise.",
+    "where_to_apply": "Beim Integrationsamt des Landes oder beim Sozialamt.",
+    "deadlines": "Keine feste Frist. Antrag vor Beginn der Teilhabe stellen.",
+    "faq": [
+      {
+        "question": "Was sind Werkstätten für behinderte Menschen?",
+        "answer": "Werkstätten für behinderte Menschen (WfbM) sind Einrichtungen, in denen Menschen mit Behinderung unter besonderen Bedingungen arbeiten können."
+      },
+      {
+        "question": "Bekomme ich in einer WfbM ein Gehalt?",
+        "answer": "In einer WfbM erhalten Sie ein Arbeitsförderungsgeld vom zuständigen Rehabilitationsträger."
+      },
+      {
+        "question": "Kann ich auch in einem Wohnheim für behinderte Menschen leben?",
+        "answer": "Ja, es gibt Wohnheime für behinderte Menschen, die von den Teilhabeleistungen finanziert werden können."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_9_2018/__53.html",
+      "title": "§ 53 SGB IX - Dauer von Leistungen",
+      "organization": "Gesetze im Internet",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Leistungen-nach-dem-SGB-IX/leistungen-nach-dem-sgb-ix-art.html",
+      "title": "Leistungen nach dem SGB IX - BMAS",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Leistungen der Pflegeversicherung gehen vor (Subsidiarität)",
+    "Werkstätten für behinderte Menschen: Arbeitsförderungsgeld vom Rehabilitationsträger",
+    "Wohnheime: Bedürftigkeitsprüfung entfällt"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

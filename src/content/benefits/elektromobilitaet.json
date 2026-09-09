@@ -1,0 +1,221 @@
+{
+  "id": "elektromobilitaet-foerderung",
+  "official_name": "E-Auto-Förderung 2026 (BAFA)",
+  "aliases": [
+    "Elektroauto-Förderung",
+    "E-Mobilität Förderung",
+    "Umweltbonus",
+    "Elektromobilitätsförderung",
+    "BAFA E-Auto"
+  ],
+  "former_names": [
+    "Umweltbonus",
+    "Elektroauto-Prämie",
+    "Innovationsprämie"
+  ],
+  "type": "energy_subsidy",
+  "status": "verified",
+  "category": "Energie & Klima",
+  "subcategory": "Nachhaltige Mobilität",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA)",
+    "authority": "Bundesministerium für Wirtschaft und Klimaschutz (BMWK)",
+    "url": "https://www.bafa.de/DE/Energie/Energieeffizienz/E-Auto_Foerderung_2026/E-Auto-Foerderung_im_Ueberblick/Foerderung_im_Ueberblick_node.html",
+    "phone": "06196 908-1009"
+  },
+  "target_groups": [
+    "Privatpersonen",
+    "Unternehmen",
+    "Gemeinden",
+    "gemeinnützige Organisationen"
+  ],
+  "life_situations": [
+    "elektromobilitaet",
+    "klimaschutz",
+    "nachhaltige-mobilitaet"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "em-001",
+        "description": "Neuwagen mit Elektroantrieb",
+        "condition": "Fahrzeug ist ein reines Elektrofahrzeug (BEV) oder Plug-in-Hybrid (PHEV) mit Reichweitenverlängerer",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "em-002",
+        "description": "Listenpreis des Fahrzeugs unter 45.000 €",
+        "condition": "Bruttopreis inkl. Mehrwertsteuer maximal 45.000 €",
+        "required": true,
+        "category": "asset"
+      },
+      {
+        "rule_id": "em-003",
+        "description": "Erstzulassung ab 1. Januar 2026",
+        "condition": "Fahrzeug wird erstmals ab dem 1. Januar 2026 zugelassen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "em-004",
+        "description": "Soziale Staffelung nach Einkommen",
+        "condition": "Einkommensgrenzen: bis 75.000 € (Single) oder 150.000 € (Ehepaare)",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "em-005",
+        "description": "Mindesthaltefrist von 6 Monaten",
+        "condition": "Haltezeit des Fahrzeugs mindestens 6 Monate",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Antragsteller",
+        "threshold": 75000,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "region": "all",
+        "last_updated": "2026-01-01"
+      }
+    ],
+    "asset_rules": null,
+    "special_conditions": [
+      "Förderung bis zu 6.000 € je nach Einkommen",
+      "Sozial gestaffelt: Höhere Förderung bei niedrigerem Einkommen",
+      "Keine Förderung für Fahrzeuge über 45.000 € Listenpreis",
+      "Plug-in-Hybride nur mit Reichweitenverlängerer (z.B. Range Extender)"
+    ]
+  },
+  "calculation": {
+    "method": "Sozial gestaffelte Förderung: Höhere Zuschüsse bei niedrigerem Einkommen. Maximal 6.000 €.",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Einkommensprüfung",
+        "formula": "Einkommen < 75.000 € (Single) oder < 150.000 € (Ehepaare)",
+        "note": "Entscheidend für Höhe der Förderung"
+      },
+      {
+        "step": 2,
+        "description": "Förderhöhe ermitteln",
+        "formula": "Bis zu 6.000 € je nach Einkommensgruppe",
+        "note": "Niedrigeres Einkommen = höhere Förderung"
+      },
+      {
+        "step": 3,
+        "description": "Fahrzeugpreis prüfen",
+        "formula": "Max. 45.000 € Bruttopreis",
+        "note": "Obergrenze für förderfähige Fahrzeuge"
+      }
+    ],
+    "min_amount": 500,
+    "max_amount": 6000,
+    "typical_amount": "Bis zu 6.000 € Zuschuss",
+    "frequency": "once",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Zuschuss bis zu 6.000 € für ein neues Elektroauto. Sozial gestaffelt nach Einkommen.",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": 6000,
+    "depends_on": [
+      "Einkommen",
+      "Fahrzeugpreis",
+      "Fahrzeugtyp (BEV/PHEV)"
+    ]
+  },
+  "application": {
+    "method": "Online-Antrag über BAFA-Portal",
+    "url": "https://www.bafa.de/DE/Energie/Energieeffizienz/E-Auto_Foerderung_2026/E-Auto-Foerderung_im_Ueberblick/Foerderung_im_Ueberblick_node.html",
+    "forms": [
+      "Online-Antrag im BAFA-Portal"
+    ],
+    "required_documents": [
+      "Kaufvertrag/Rechnung",
+      "Fahrzeugschein (Teil II)",
+      "Einkommensnachweise (Steuerbescheid)",
+      "Personalausweis",
+      "Nachweis über Erstzulassung ab 1.1.2026"
+    ],
+    "processing_time": "4-6 Wochen",
+    "deadlines": {
+      "description": "Antrag innerhalb von 6 Monaten nach Erstzulassung stellen",
+      "note": "Rückwirkende Anträge möglich"
+    }
+  },
+  "legal_basis": [
+    "Richtlinie zur sozial gestaffelten Förderung der Anschaffung von elektrisch betriebenen Fahrzeugen (E-Auto-Förderung) vom 19. Mai 2026",
+    "BAnz AT 19.06.2026 B3"
+  ],
+  "compatible_with": [
+    "photovoltaik",
+    "klimaschutz-beratung"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "energieschuldenberatung"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der Staat fördert den Kauf eines neuen Elektroautos mit einem Zuschuss von bis zu 6.000 € – je nach Einkommen.",
+    "for_whom": "Privatpersonen und Unternehmen, die ein neues Elektroauto kaufen möchten.",
+    "requirements": "Das Fahrzeug muss ein reines Elektroauto oder Plug-in-Hybrid mit Reichweitenverlängerer sein. Der Listenpreis darf 45.000 € nicht überschreiten. Es gelten Einkommensgrenzen.",
+    "how_much": "Bis zu 6.000 € Zuschuss, sozial gestaffelt nach Einkommen.",
+    "how_calculated": "Die Förderhöhe richtet sich nach Ihrem Einkommen. Je niedriger das Einkommen, desto höher der Zuschuss.",
+    "documents_needed": "Kaufvertrag, Fahrzeugschein, Einkommensnachweise, Personalausweis.",
+    "where_to_apply": "Online im BAFA-Portal.",
+    "deadlines": "Antrag innerhalb von 6 Monaten nach Erstzulassung stellen.",
+    "faq": [
+      {
+        "question": "Welche Fahrzeuge sind förderfähig?",
+        "answer": "Reine Elektroautos (BEV) und Plug-in-Hybride mit Reichweitenverlängerer. Der Listenpreis darf maximal 45.000 € betragen."
+      },
+      {
+        "question": "Gibt es eine Einkommensgrenze?",
+        "answer": "Ja, die Förderung ist sozial gestaffelt. Bei einem Einkommen über 75.000 € (Single) oder 150.000 € (Ehepaare) entfällt die Förderung."
+      },
+      {
+        "question": "Kann ich die Förderung auch für ein Gebrauchtfahrzeug bekommen?",
+        "answer": "Nein, die Förderung gilt nur für Neuwagen mit Erstzulassung ab dem 1. Januar 2026."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bafa.de/DE/Energie/Energieeffizienz/E-Auto_Foerderung_2026/E-Auto-Foerderung_im_Ueberblick/Foerderung_im_Ueberblick_node.html",
+      "title": "E-Auto-Förderung 2026 - BAFA",
+      "organization": "BAFA",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    },
+    {
+      "url": "https://www.bafa.de/SharedDocs/Downloads/DE/Energie/Energieeffizienz/E-Auto_Foerderung_2026/Richtline_E-Auto.pdf",
+      "title": "Richtlinie E-Auto-Förderung 2026",
+      "organization": "BAFA",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": "2026-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "E-Auto-Förderung 2026 wurde im Mai 2026 reformiert.",
+    "Soziale Staffelung: Höhere Förderung bei niedrigerem Einkommen.",
+    "Digitale Antragstellung seit Mai 2026 möglich."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

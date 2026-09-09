@@ -1,0 +1,181 @@
+{
+  "id": "arbeitsmarktzugang",
+  "official_name": "Arbeitsmarktzugang für Migranten",
+  "aliases": ["Arbeitserlaubnis", "Beschäftigung Ausländer", "Zustimmung Bundesagentur für Arbeit", "Arbeitsgenehmigung"],
+  "former_names": [],
+  "type": "employment_benefit",
+  "status": "verified",
+  "category": "Integration & Aufenthalt",
+  "subcategory": "Arbeitsmarktzugang",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesagentur für Arbeit (BA)",
+    "authority": "Bundesagentur für Arbeit – Ausländerstelle / Zentrale Auslandsvermittlung",
+    "url": "https://www.arbeitsagentur.de/vor-ort/auslaenderstelle",
+    "phone": "0800 4 555500"
+  },
+  "target_groups": [
+    "Ausländer mit Aufenthaltstitel zur Erwerbstätigkeit",
+    "Asylbewerber nach 3 Monaten",
+    "Geduldete nach 3 Monaten",
+    "Fachkräfte nach FEG",
+    "Studierende (Nebentätigkeit)"
+  ],
+  "life_situations": ["neu_in_deutschland", "migration", "asyl", "eu_bürger"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "amz-001",
+        "description": "Aufenthaltstitel mit Arbeitserlaubnis",
+        "condition": "Aufenthaltstitel, der Erwerbstätigkeit erlaubt (§ 4a AufenthG)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "amz-002",
+        "description": "Asylbewerber: 3 Monate Wartezeit",
+        "condition": "Asylbewerber nach 3 Monaten Aufenthalt: Arbeitserlaubnis möglich",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "amz-003",
+        "description": "Geduldete: 3 Monate Wartezeit",
+        "condition": "Geduldete nach 3 Monaten: Arbeitserlaubnis möglich",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "amz-004",
+        "description": "Fachkräfteeinwanderungsgesetz (FEG)",
+        "condition": "Fachkräfte mit anerkannter Qualifikation: erleichterter Zugang",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Alle",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Vorrangprüfung: Deutscher/EU-Bürger bevorzugt (§ 39 Abs. 3 AufenthG)",
+      "Fachkräfte: Keine Vorrangprüfung bei Mangelberufen",
+      "Studierende: 120 Tage/Vollzeit oder 240 Tage/Teilzeit pro Jahr",
+      "Saisonarbeit: Bis 6 Monate/Jahr mit Zustimmung"
+    ]
+  },
+  "calculation": {
+    "method": "Kein Geldbetrag; Erlaubnis zur Arbeitsaufnahme",
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Keine Zahlung; Verwaltungsverfahren",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Erlaubnis zur Arbeitsaufnahme; keine regelmäßige Zahlung",
+    "depends_on": ["Aufenthaltsstatus", "Berufsgruppe", "Dauer des Aufenthalts"]
+  },
+  "application": {
+    "method": "Persönlich bei der Ausländerstelle der Arbeitsagentur",
+    "url": "https://www.arbeitsagentur.de/vor-ort/auslaenderstelle",
+    "forms": ["Antrag auf Erteilung/Erweiterung der Arbeitserlaubnis"],
+    "required_documents": [
+      "Aufenthaltstitel",
+      "Arbeitsvertrag oder Jobangebot",
+      "Lebenslauf",
+      "Qualifikationsnachweise",
+      "ggf. Anerkennung ausländischer Abschlüsse"
+    ],
+    "processing_time": "2-8 Wochen",
+    "deadlines": {
+      "description": "Vor Arbeitsbeginn beantragen",
+      "note": "Asylbewerber: frühestens nach 3 Monaten"
+    }
+  },
+  "legal_basis": [
+    "§ 39 AufenthG – Zustimmung zur Beschäftigung",
+    "§ 4a AufenthG – Erwerbstätigkeit",
+    "§ 18 AufenthG – Grundsatz der Fachkräfteeinwanderung",
+    "Beschäftigungsverordnung (BeschV)",
+    "Fachkräfteeinwanderungsgesetz (FEG)"
+  ],
+  "compatible_with": [
+    "anerkennung_abschluss",
+    "aufenthaltstitel_arbeit",
+    "integrationskurs",
+    "deutschkurs"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "aufenthaltstitel_arbeit",
+    "anerkennung_abschluss"
+  ],
+  "user_content": {
+    "short_explanation": "Der Arbeitsmarktzugang regelt, ob und unter welchen Bedingungen Sie in Deutschland arbeiten dürfen. Die Erlaubnis hängt von Ihrem Aufenthaltstitel ab.",
+    "for_whom": "Für Ausländer mit Aufenthaltstitel, Asylbewerber (nach 3 Monaten), Geduldete (nach 3 Monaten) und Fachkräfte.",
+    "requirements": "Aufenthaltstitel, der Erwerbstätigkeit erlaubt; ggf. konkretes Arbeitsplatzangebot; Zustimmung der Bundesagentur für Arbeit.",
+    "how_much": "Keine regelmäßige Zahlung. Das Verfahren ist kostenpflichtig (ca. 50-100€).",
+    "how_calculed": "Die Arbeitsagentur prüft, ob ein Deutscher/EU-Bürger verfügbar ist (Vorrangprüfung) und ob die Arbeitsbedingungen angemessen sind.",
+    "documents_needed": "Aufenthaltstitel, Arbeitsvertrag, Lebenslauf, Qualifikationsnachweise, ggf. Anerkennung.",
+    "where_to_apply": "Ausländerstelle der Bundesagentur für Arbeit (arbeitsagentur.de/vor-ort/auslaenderstelle).",
+    "deadlines": "Vor Arbeitsbeginn beantragen. Asylbewerber: frühestens nach 3 Monaten Aufenthalt.",
+    "faq": [
+      {
+        "question": "Darf ich als Asylbewerber arbeiten?",
+        "answer": "Ja, nach 3 Monaten Aufenthalt können Sie eine Arbeitserlaubnis beantragen. Vorher ist es nur in Ausnahmefällen möglich."
+      },
+      {
+        "question": "Was ist die Vorrangprüfung?",
+        "answer": "Die Arbeitsagentur prüft, ob ein deutscher oder EU-Arbeiter verfügbar ist. Bei Fachkräften entfällt diese oft."
+      },
+      {
+        "question": "Kann ich als Geduldete arbeiten?",
+        "answer": "Ja, nach 3 Monaten Aufenthalt können Sie eine Arbeitserlaubnis beantragen, sofern keine Ausschlussgründe vorliegen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/vor-ort/auslaenderstelle",
+      "title": "Ausländerstelle – Bundesagentur für Arbeit",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__39.html",
+      "title": "§ 39 AufenthG – Zustimmung zur Beschäftigung",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/beschv_2013/BJNR149910013.html",
+      "title": "Beschäftigungsverordnung (BeschV)",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2020-03-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Fachkräfteeinwanderungsgesetz (FEG) seit 1. März 2020 in Kraft",
+    "Erleichterungen für Fachkräfte mit anerkannter Qualifikation",
+    "Vorrangprüfung entfällt bei Mangelberufen und Fachkräften",
+    "Asylbewerber: Arbeitserlaubnis frühestens nach 3 Monaten"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,208 @@
+{
+  "id": "heizungstausch-foerderung",
+  "official_name": "Heizungstausch-Förderung (BAFA & KfW)",
+  "aliases": [
+    "Heizungswechsel",
+    "Austausch Heizung",
+    "Förderung Heizung",
+    "Heizungsgesetz",
+    "GModG"
+  ],
+  "former_names": [
+    "Heizungsoptimierung",
+    "Austauschpflicht Gasheizung"
+  ],
+  "type": "energy_subsidy",
+  "status": "verified",
+  "category": "Energie & Klima",
+  "subcategory": "Heizung und Wärme",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA) / KfW",
+    "authority": "Bundesministerium für Wirtschaft und Klimaschutz (BMWK)",
+    "url": "https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/Sanierung_Wohngebaeude/Anlagen_zur_Waermeerzeugung/anlagen_zur_waermeerzeugung_node.html",
+    "phone": "06196 908-0"
+  },
+  "target_groups": [
+    "Hauseigentümer",
+    "Wohnungseigentümer",
+    "Mieter (mit Zustimmung)"
+  ],
+  "life_situations": [
+    "energiesanierung",
+    "heizungsmodernisierung",
+    "klimaschutz"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "ht-001",
+        "description": "Austausch einer alten Heizung",
+        "condition": "Alte Heizung wird gegen umweltfreundliche Alternative ersetzt",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ht-002",
+        "description": "Neue Heizung nutzt erneuerbare Energien",
+        "condition": "Wärmepumpe, Biomasse, Solarthermie, Wasserstoff-Gas oder Nahwärme",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ht-003",
+        "description": "Alte Gasheizung ist mindestens 20 Jahre alt",
+        "condition": "Alter der alten Gasheizung: mindestens 20 Jahre für Klimabonus",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "ht-004",
+        "description": "Gebäude befindet sich in Deutschland",
+        "condition": "Das Gebäude liegt in Deutschland",
+        "required": true,
+        "category": "location"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Basiszuschuss: 30% der förderfähigen Kosten",
+      "Effizienzbonus: bis 20%",
+      "Klimageschwindigkeitsbonus: 20% (Austausch vor 2029)",
+      "Maximaler Zuschuss: 70% der Kosten",
+      "Maximalbetrag: 21.000 € (bei 30% Förderung)"
+    ]
+  },
+  "calculation": {
+    "method": "Zuschuss in Prozent der förderfähigen Kosten, plus Boni. Maximal 70%.",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Basiszuschuss berechnen",
+        "formula": "30% der förderfähigen Kosten",
+        "note": "Für Wärmepumpe, Biomasse etc."
+      },
+      {
+        "step": 2,
+        "description": "Effizienzbonus hinzufügen",
+        "formula": "bis zu 20% extra",
+        "note": "Bei sehr effizienter Anlage"
+      },
+      {
+        "step": 3,
+        "description": "Klimabonus berücksichtigen",
+        "formula": "20% bei Austausch vor 2029",
+        "note": "Steigt bei alten Gasheizungen"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": 21000,
+    "typical_amount": "Bis zu 70% der förderfähigen Kosten (max. 21.000 €)",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Zuschuss bis zu 70% der förderfähigen Kosten. Maximal 21.000 €.",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": 21000,
+    "depends_on": [
+      "Art der neuen Heizung",
+      "Alter der alten Heizung",
+      "Investitionskosten"
+    ]
+  },
+  "application": {
+    "method": "Online-Antrag über BAFA-Portal",
+    "url": "https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/Sanierung_Wohngebaeude/Anlagen_zur_Waermeerzeugung/anlagen_zur_waermeerzeugung_node.html",
+    "forms": [
+      "Online-Antrag im BAFA-Portal"
+    ],
+    "required_documents": [
+      "Rechnungen über Material und Arbeitsleistung",
+      "Nachweis über Art der neuen Heizung",
+      "Antrag auf Förderung vor Baubeginn",
+      "Kopie der Anlagenliste (bei Wärmepumpe)",
+      "Nachweis über Entsorgung der alten Heizung"
+    ],
+    "processing_time": "4-8 Wochen",
+    "deadlines": {
+      "description": "Antrag vor Baubeginn stellen",
+      "note": "Baubeginn spätestens 6 Monate nach Antragstellung"
+    }
+  },
+  "legal_basis": [
+    "Richtlinie zur Förderung von Maßnahmen zur Nutzung erneuerbaren Energien im Wärmebereich (BMWi)",
+    "§ 35c EStG (Steuerbonus)",
+    "Gebäude-Modernisierungsgesetz (GModG)",
+    "KfW-Programm 458 (Heizungsförderung)"
+  ],
+  "compatible_with": [
+    "gebaeude-daemmung",
+    "photovoltaik",
+    "waermepumpe",
+    "energieeffizienz"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "energieschuldenberatung"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der Staat fördert den Tausch Ihrer alten Heizung gegen eine umweltfreundliche Alternative – wie eine Wärmepumpe oder Biomasse.",
+    "for_whom": "Hauseigentümer, die ihre alte Heizung austauschen möchten.",
+    "requirements": "Die neue Heizung muss erneuerbare Energien nutzen. Bei Austausch einer alten Gasheizung (mind. 20 Jahre) gibt es Boni.",
+    "how_much": "Basiszuschuss 30% der Kosten. Mit Effizienz- und Klimabonus bis zu 70%.",
+    "how_calculated": "Der Zuschuss wird auf Basis der förderfähigen Kosten berechnet. Der Klimabonus gilt bei Austausch vor 2029.",
+    "documents_needed": "Rechnungen, Anlagenlisteneintrag, Nachweis über Entsorgung der alten Heizung.",
+    "where_to_apply": "Online im BAFA-Portal.",
+    "deadlines": "Antrag vor Baubeginn. Bau beginnt spätestens 6 Monate nach Antragstellung.",
+    "faq": [
+      {
+        "question": "Welche Heizungen werden gefördert?",
+        "answer": "Wärmepumpen, Biomasseheizungen, Solarthermie, Wasserstoff-Gasheizungen und Nahwärmeanschluss."
+      },
+      {
+        "question": "Gibt es eine Austauschpflicht?",
+        "answer": "Die frühere 30-Jahre-Austauschpflicht wurde gestrichen. Ein Austausch ist nur nötig, wenn die Anlage nicht mehr repariert werden kann."
+      },
+      {
+        "question": "Kann ich eine neue Gasheizung fördern lassen?",
+        "answer": "Nur wenn sie wasserstofffähig ist oder eine Hybridheizung mit Wärmepumpe bildet."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/Sanierung_Wohngebaeude/Anlagen_zur_Waermeerzeugung/anlagen_zur_waermeerzeugung_node.html",
+      "title": "Anlagen zur Wärmeerzeugung (Heizungstechnik) - BAFA",
+      "organization": "BAFA",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    },
+    {
+      "url": "https://www.kfw.de/inlandsfoerderung/Heizungsf%C3%B6rderung/",
+      "title": "Heizungsförderung - KfW",
+      "organization": "KfW",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Heizungstausch-Förderung ist Teil der BEG-EM (Einzelmaßnahmen).",
+    "Klimageschwindigkeitsbonus 20% gilt für Austausch vor 2029.",
+    "KfW-Programm 458 für Heizungstausch in Wohngebäuden."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

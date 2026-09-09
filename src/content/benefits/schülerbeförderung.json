@@ -1,0 +1,165 @@
+{
+  "id": "schuelerbefoerderung",
+  "official_name": "Schülerbeförderung (Schülerverkehr)",
+  "aliases": ["Schülerbeförderung", "Schülerverkehr", "Fahrtkostenerstattung", "Schulbus", "ÖPNV-Förderung"],
+  "former_names": [],
+  "type": "education_benefit",
+  "status": "verified",
+  "category": "Studium & Bildung",
+  "subcategory": "Beförderung von Schülern",
+  "level": "state",
+  "regions": ["BW", "BY", "BE", "BB", "HB", "HH", "HE", "MV", "NI", "NW", "RP", "SL", "SN", "ST", "SH", "TH"],
+  "provider": {
+    "name": "Landesregierungen / Kommunen",
+    "authority": "Landesministerium für Verkehr / Kommunale Nahverkehrsbehörde",
+    "url": "https://www.bmbf.de/bmbf/de/bildung/bildung-foerdern/schuelerbefoerderung/schuelerbefoerderung_node.html",
+    "phone": ""
+  },
+  "target_groups": ["Schüler aller Schularten", "Schüler mit Behinderung", "Schüler in ländlichen Regionen"],
+  "life_situations": ["schueler", "ausbildung"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "schuelerbef_schüler",
+        "description": "Schüler einer öffentlichen oder staatlich anerkannten Schule",
+        "condition": "schueler_an_anerkannter_schule",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "schuelerbef_entfernung",
+        "description": "Entfernung zwischen Wohnort und Schule überschreitet Mindestweg (meist 2-5 km)",
+        "condition": "entfernung >= mindestweg_nach_landesrecht",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "schuelerbef_alter",
+        "description": "Keine Altersgrenze, normalerweise bis zum Schulabschluss",
+        "condition": "keine_altersgrenze",
+        "required": false,
+        "category": "personal"
+      },
+      {
+        "rule_id": "schuelerbef_mittelbar",
+        "description": "Öffentliche Verkehrsmittel müssen verfügbar sein",
+        "condition": "oeffentliche_verkehrsmittel_verfuegbar",
+        "required": false,
+        "category": "location"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Einkommen der Eltern",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2025-01-01"
+      }
+    ],
+    "asset_rules": {
+      "threshold": 0,
+      "exemptions": [],
+      "last_updated": "2025-01-01"
+    },
+    "special_conditions": [
+      "Schülerbeförderung ist Ländersache (Landesrecht)",
+      "Kostenübernahme durch Land/Kommunen",
+      "Mensakosten und Fahrtkosten können gefördert werden"
+    ]
+  },
+  "calculation": {
+    "method": "Kostenübernahme für Fahrtkosten zur Schule",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Fahrtkosten berechnen",
+        "value": "Tatsächliche Kosten für ÖPNV oder Schülerbeförderung",
+        "note": "Hängt vom Bundesland ab"
+      },
+      {
+        "step": 2,
+        "description": "Erstattung",
+        "value": "100% der Kosten (in der Regel)",
+        "note": "Manchmal nur bestimmte Verkehrsmittel"
+      }
+    ],
+    "min_amount": 1,
+    "max_amount": 1000,
+    "typical_amount": "50€-200€ monatlich",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Schülerbeförderung: 100% der Fahrtkosten zur Schule (je nach Bundesland)",
+    "min_monthly": 1,
+    "max_monthly": 1000,
+    "one_time": 0,
+    "depends_on": ["Entfernung zur Schule", "Verkehrsmittel", "Bundesland"]
+  },
+  "application": {
+    "method": "Schriftlich bei der zuständigen Behörde (Landkreis, Stadt, Kommune)",
+    "url": "",
+    "forms": ["Antrag auf Schülerbeförderung"],
+    "required_documents": ["Antrag", "Schulbescheinigung", "Wohnsitznachweis", "Nachweis der Entfernung"],
+    "processing_time": "4-6 Wochen",
+    "deadlines": {
+      "description": "Antrag zu Beginn des Schuljahres stellen",
+      "note": "Rückwirkend nur 1 Monat möglich"
+    }
+  },
+  "legal_basis": ["Landesrecht (je nach Bundesland)", "Schulgesetze der Länder", "ÖPNV-Gesetze"],
+  "compatible_with": ["bafoeg", "berufsausbildungsbeihilfe_bab", "bildungspaket"],
+  "incompatible_with": [],
+  "related_benefits": ["bafoeg", "berufsausbildungsbeihilfe_bab", "bildungspaket"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Schülerbeförderung übernimmt die Kosten für den Weg zur Schule. Sie ist Ländersache und wird von den Bundesländern und Kommunen organisiert.",
+    "for_whom": "Schüler aller Schularten, die eine bestimmte Entfernung zur Schule zurücklegen müssen (meist 2-5 km).",
+    "requirements": "Schüler einer öffentlichen oder staatlich anerkannten Schule, Entfernung zur Schule überschreitet Mindestweg, öffentliche Verkehrsmittel verfügbar.",
+    "how_much": "100% der Fahrtkosten zur Schule werden übernommen. Die Höhe hängt vom Verkehrsmittel und der Entfernung ab.",
+    "how_calculated": "Die tatsächlichen Kosten für ÖPNV oder Schülerbeförderung werden erstattet. Die Berechnung richtet sich nach dem jeweiligen Landesrecht.",
+    "documents_needed": "Antrag, Schulbescheinigung, Wohnsitznachweis, Nachweis der Entfernung zur Schule.",
+    "where_to_apply": "Zuständige Behörde (Landkreis, Stadt, Kommune) im jeweiligen Bundesland.",
+    "deadlines": "Antrag zu Beginn des Schuljahres stellen. Rückwirkend nur 1 Monat möglich.",
+    "faq": [
+      {
+        "question": "Wer bezahlt die Schülerbeförderung?",
+        "answer": "Die Schülerbeförderung wird von den Bundesländern und Kommunen finanziert. Die genauen Regelungen unterscheiden sich je nach Bundesland."
+      },
+      {
+        "question": "Gibt es Schülerbeförderung auch für Privatschulen?",
+        "answer": "Ja, auch Schüler von staatlich anerkannten Privatschulen können Schülerbeförderung erhalten, wenn die Voraussetzungen erfüllt sind."
+      },
+      {
+        "question": "Kann ich auch das Fahrrad nutzen?",
+        "answer": "In einigen Bundesländern können auch Fahrtkosten für das Fahrrad erstattet werden. Informieren Sie sich bei der zuständigen Behörde."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmbf.de/bmbf/de/bildung/bildung-foerdern/schuelerbefoerderung/schuelerbefoerderung_node.html",
+      "title": "Schülerbeförderung - BMBF",
+      "organization": "BMBF",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.schulministerium.nrw/",
+      "title": "Ministerium für Schule und Bildung NRW",
+      "organization": "Land NRW",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": null,
+  "confidence": "medium",
+  "verification_status": "partially_verified",
+  "notes": ["Schülerbeförderung ist Ländersache. Die genauen Regelungen unterscheichen sich je nach Bundesland. In einigen Bundesländern gibt es auch Schülerbeförderung für Privatschulen."],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

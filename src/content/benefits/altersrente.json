@@ -1,0 +1,179 @@
+{
+  "id": "altersrente",
+  "official_name": "Regelaltersrente",
+  "aliases": [
+    "Altersrente",
+    "Rente mit 67",
+    "Regelaltersrente der Deutschen Rentenversicherung"
+  ],
+  "former_names": [],
+  "type": "social_benefit",
+  "status": "verified",
+  "category": "Rente & Vorsorge",
+  "subcategory": "Altersrente",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Deutsche Rentenversicherung",
+    "authority": "Deutsche Rentenversicherung Bund",
+    "url": "https://www.deutsche-rentenversicherung.de",
+    "phone": "0800 1000 4800"
+  },
+  "target_groups": [
+    "Versicherte ab 67 Jahren",
+    "Langjährig Versicherte"
+  ],
+  "life_situations": [
+    "rente",
+    "altersvorsorge"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "arz-r1",
+        "description": "Erreichen des Regelrentenalters (67 Jahre für Geburtsjahrgang 1964 und später)",
+        "condition": "regelrentenalter_erreicht",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "arz-r2",
+        "description": "Erfüllung der allgemeinen Wartezeit von mindestens 5 Jahren (60 Monate Pflichtbeiträge)",
+        "condition": "mindestens_5_versicherungsjahre",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "arz-r3",
+        "description": "Antrag auf Altersrente muss gestellt werden",
+        "condition": "antrag_gestellt",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "special_conditions": [
+      "Altersrente für langjährig Versicherte ab 63 Jahren mit 35 Versicherungsjahren (mit Abschlägen)",
+      "Altersrente für besonders langjährig Versicherte ab 63 Jahren mit 45 Versicherungsjahren (ohne Abschläge)",
+      "Abschläge: 0,3% pro Monat vorzeitigem Rentenbeginn"
+    ]
+  },
+  "calculation": {
+    "method": "Persönliche Entgeltpunkte × aktueller Rentenwert × Rentenartfaktor (1,0) × Zugangsfaktor",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Ermittlung der persönlichen Entgeltpunkte aus Versicherungszeiten",
+        "formula": "Summe aller Entgeltpunkte (Beitragszeiten + Beitragsfreie Zeiten + Kindererziehungszeiten)"
+      },
+      {
+        "step": 2,
+        "description": "Multiplikation mit dem aktuellen Rentenwert",
+        "formula": "Entgeltpunkte × 41,02 Euro (Rentenwert West 2026)"
+      },
+      {
+        "step": 3,
+        "description": "Anwendung des Zugangsfaktors bei vorzeitigem Rentenbeginn",
+        "formula": "Zugangsfaktor = 1 - (0,3% × Monate vor Regelrentenalter)"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "ca. 40-50% des letzten Nettoeinkommens (je nach Versicherungsdauer)",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Hängt von den persönlichen Entgeltpunkten und dem aktuellen Rentenwert ab",
+    "depends_on": [
+      "entgeltpunkte",
+      "versicherungsjahre",
+      "kindererziehungszeiten",
+      "beitragsfreie_zeiten"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich oder online bei der Deutschen Rentenversicherung",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Kurz-vor-der-Rente/Wie-beantrage-ich-meine-Rente/Wie-beantrage-ich-meine-Rente_detailseite",
+    "forms": [
+      "Antrag auf Altersrente"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Versicherungsnummer",
+      "Geburtsurkunde",
+      "Kontoauszug (IBAN)",
+      "ggf. Nachweise über Kindererziehungszeiten",
+      "ggf. Nachweise über Zeiten der Kindererziehung"
+    ],
+    "processing_time": "ca. 2-3 Monate",
+    "deadlines": {
+      "description": "Antrag spätestens 3 Monate vor Rentenbeginn stellen",
+      "note": "Rente wird ab dem Folgemonat nach Antragstellung gezahlt"
+    }
+  },
+  "legal_basis": [
+    "§ 35 SGB VI",
+    "§§ 43-48 SGB VI",
+    "§ 157 SGB VI (Altersrenten)"
+  ],
+  "compatible_with": [
+    "kindererziehungszeiten"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "erwerbsminderungsrente",
+    "hinterbliebenenrente",
+    "kindererziehungszeiten"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Regelaltersrente ist die reguläre Altersversicherung der gesetzlichen Rentenversicherung. Sie erhalten sie ab 67 Jahren nach mindestens 5 Jahren Versicherungszeit.",
+    "for_whom": "Für alle Versicherten, die das Regelrentenalter erreicht haben und mindestens 5 Jahre in die Rentenversicherung eingezahlt haben.",
+    "requirements": "Sie müssen 67 Jahre alt sein (für Geburtsjahrgang 1964+) und mindestens 5 Jahre Pflichtbeiträge gezahlt haben.",
+    "how_mind": "Die Höhe hängt von Ihren Versicherungszeiten ab. Durchschnittlich liegt die Rente bei ca. 40-50% des letzten Nettoeinkommens.",
+    "how_calculated": "Ihre Entgeltpunkte (aus Beitragszeiten) werden mit dem aktuellen Rentenwert (2026: 41,02 Euro) multipliziert. Bei vorzeitigem Rentenbeginn gibt es Abschläge von 0,3% pro Monat.",
+    "documents_needed": "Personalausweis, Versicherungsnummer, Geburtsurkunde, Kontoauszug, ggf. Nachweise über Kindererziehung",
+    "where_to_apply": "Bei der Deutschen Rentenversicherung (online, schriftlich oder persönlich)",
+    "deadlines": "Antrag spätestens 3 Monate vor gewünschtem Rentenbeginn stellen.",
+    "faq": [
+      {
+        "question": "Wann ist das Regelrentenalter?",
+        "answer": "Für Geburtsjahrgang 1964 und später einheitlich 67 Jahre. Für frühere Jahrgänge gilt eine gestaffelte Altersgrenze."
+      },
+      {
+        "question": "Kann ich früher in Rente gehen?",
+        "answer": "Ja, mit 63 Jahren bei 35 Versicherungsjahren (mit Abschlägen) oder bei 45 Versicherungsjahren ohne Abschläge."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Altersrente-fuer-langjaehrig-Versicherte/Altersrente_fuer_langjaehrig_Versicherte",
+      "title": "Altersrenten für langjährig und besonders langjährig Versicherte",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    },
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Ueber-uns-und-Presse/Presse/Pressemitteilungen/Pressemitteilungen-archiv/2025/2025-12-18-rv-aenderungen-2026",
+      "title": "Die Änderungen in der gesetzlichen Rentenversicherung zum 1. Januar 2026",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-09",
+  "valid_from": "2026-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Rentenwert 2026: 41,02 Euro (West), 39,32 Euro (Ost)",
+    "Regelrentenalter 67 Jahre für Jahrgang 1964+",
+    "Allgemeine Wartezeit: 5 Jahre (60 Monate)"
+  ],
+  "created_at": "2026-09-09",
+  "updated_at": "2026-09-09"
+}

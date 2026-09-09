@@ -1,0 +1,169 @@
+{
+  "id": "berufsunfähigkeitsversicherung_staat",
+  "official_name": "Staatliche Leistungen bei Berufsunfähigkeit (Erwerbsminderungsrente)",
+  "aliases": ["Erwerbsminderungsrente", "Berufsunfähigkeitsrente", "Rente wegen Erwerbsminderung", "BU-Rente"],
+  "former_names": [],
+  "type": "health_benefit",
+  "status": "partially_verified",
+  "category": "Arbeit & Beschäftigung",
+  "subcategory": "Berufsunfähigkeit",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Deutsche Rentenversicherung",
+    "authority": "Deutsche Rentenversicherung",
+    "url": "https://www.deutsche-rentenversicherung.de/SharedDocs/Glossareintraege/DE/B/berufsunfaehigkeit",
+    "phone": "0800 1000 4800"
+  },
+  "target_groups": ["Versicherte mit verminderter Erwerbsfähigkeit", "Berufsunfähige Personen", "Versicherte vor dem 2. Januar 1961 mit Berufsunfähigkeit"],
+  "life_situations": ["arbeit_arbeitnehmer"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "buv-001",
+        "description": "Verminderte Erwerbsfähigkeit wegen Krankheit oder Behinderung",
+        "condition": "Die Erwerbsfähigkeit ist auf weniger als 6 Stunden täglich gesunken",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "buv-002",
+        "description": "Wartezeit von 5 Jahren erfüllt",
+        "condition": "Sie haben in den letzten 5 Jahren mindestens 3 Jahre Beiträge zur gesetzlichen Rentenversicherung gezahlt",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "buv-003",
+        "description": "Nach dem 1. Januar 1961 geboren",
+        "condition": "Berufsunfähigkeit nach dem 1. Januar 1961: Anspruch auf Rente wegen teilweiser Erwerbsminderung, wenn die Erwerbsfähigkeit auf weniger als 6 Stunden gesunken ist",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "buv-004",
+        "description": "Vor dem 2. Januar 1961 geboren: Berufsunfähigkeitsrente möglich",
+        "condition": "Versicherte, die vor dem 2. Januar 1961 geboren wurden, haben Anspruch auf Rente wegen Berufsunfähigkeit, wenn sie berufsunfähig sind (Erwerbsfähigkeit unter 6 Stunden)",
+        "required": false,
+        "category": "personal"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Rente wegen voller Erwerbsminderung: Erwerbsfähigkeit unter 3 Stunden",
+      "Rente wegen teilweiser Erwerbsminderung: Erwerbsfähigkeit 3-6 Stunden",
+      "Berufsunfähigkeitsrente: nur für vor dem 2. Januar 1961 geborene Versicherte",
+      "Leistungen zur Teilhabe am Arbeitsleben können als ergänzende Leistung beantragt werden"
+    ]
+  },
+  "calculation": {
+    "method": "Rentenberechnung nach den Regeln der gesetzlichen Rentenversicherung",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Feststellung der Erwerbsminderung",
+        "note": "Ärztliches Gutachten der Rentenversicherung"
+      },
+      {
+        "step": 2,
+        "description": "Berechnung der Wartezeit",
+        "note": "Mindestens 3 Beitragsjahre in den letzten 5 Jahren"
+      },
+      {
+        "step": 3,
+        "description": "Rentenberechnung",
+        "note": "Orientiert sich an der Höhe der Regelaltersrente"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Durchschnittlich ca. 1.041 Euro (2024), hängt von Beitragsdauer und Höhe der Beiträge ab",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Rente wegen Erwerbsminderung, orientiert an der Höhe der Regelaltersrente",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Beitragsdauer", "Höhe der Beiträge", "Zeitpunkt der Erwerbsminderung"]
+  },
+  "application": {
+    "method": "Antrag bei der Deutschen Rentenversicherung",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Online-Dienste/online-dienste.html",
+    "forms": ["Antrag auf Rente wegen Erwerbsminderung"],
+    "required_documents": [
+      "Personalausweis",
+      "Versicherungsnummer",
+      "Ärztliche Befunde und Gutachten",
+      "Berufsbeschreibung",
+      "Angaben zur Arbeitsunfähigkeit"
+    ],
+    "processing_time": "Ca. 4-8 Wochen nach Antragstellung",
+    "deadlines": {
+      "description": "Keine festen Fristen, aber frühe Antragstellung empfohlen",
+      "note": "Die Rente wird ab dem Tag des Antragsbeginns gezahlt"
+    }
+  },
+  "legal_basis": [
+    "§ 240 SGB VI (Rente wegen teilweiser Erwerbsminderung bei Berufsunfähigkeit)",
+    "§ 43 SGB VI (Rente wegen voller Erwerbsminderung)",
+    "§ 44 SGB VI (Rente wegen teilweiser Erwerbsminderung)",
+    "§ 66 SGB VI (Berufsunfähigkeit)",
+    "§ 97 SGB VI (Wartezeit)"
+  ],
+  "compatible_with": ["berufliche_reha"],
+  "incompatible_with": [],
+  "related_benefits": ["berufliche_reha", "berufseinstieg"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die staatliche Erwerbsminderungsrente sichert Ihr Einkommen ab, wenn Sie aus gesundheitlichen Gründen Ihren Beruf nicht mehr ausüben können.",
+    "for_whom": "Versicherte, deren Erwerbsfähigkeit auf weniger als 6 Stunden täglich gesunken ist.",
+    "requirements": "Ihre Erwerbsfähigkeit muss wegen Krankheit oder Behinderung auf weniger als 6 Stunden täglich gesunken sein. Sie müssen mindestens 3 Beitragsjahre in den letzten 5 Jahren nachweisen.",
+    "how_much": "Durchschnittlich ca. 1.041 Euro (2024), hängt von Beitragsdauer und Höhe der Beiträge ab.",
+    "how_calculated": "Die Rentenversicherung berechnet die Rente nach den Regeln der gesetzlichen Rentenversicherung.",
+    "documents_needed": "Personalausweis, Versicherungsnummer, ärztliche Befunde, Berufsbeschreibung.",
+    "where_to_apply": "Antrag bei der Deutschen Rentenversicherung (online, schriftlich oder persönlich).",
+    "deadlines": "Keine festen Fristen, aber frühe Antragstellung empfohlen.",
+    "faq": [
+      {
+        "question": "Was passiert, wenn ich wieder arbeitsfähig werde?",
+        "answer": "Die Erwerbsminderungsrente wird eingestellt, wenn die Erwerbsfähigkeit wiederhergestellt ist. Es gibt eine Wiedereingliederungsphase."
+      },
+      {
+        "question": "Kann ich neben der Erwerbsminderungsrente arbeiten?",
+        "answer": "Ja, unter bestimmten Voraussetzungen können Sie neben der Rente arbeiten. Es gibt Freibeträge, die nicht angerechnet werden."
+      },
+      {
+        "question": "Was ist der Unterschied zwischen Berufsunfähigkeit und Erwerbsminderung?",
+        "answer": "Berufsunfähigkeit bedeutet, dass Sie Ihren erlernten Beruf nicht mehr ausüben können. Erwerbsminderung bedeutet, dass Sie keine zumutbare Arbeit mehr mindestens 6 Stunden täglich ausüben können."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/SharedDocs/Glossareintraege/DE/B/berufsunfaehigkeit",
+      "title": "Rentenlexikon | Berufsunfähigkeit - Deutsche Rentenversicherung",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_6/__240.html",
+      "title": "§ 240 SGB 6 - Rente wegen teilweiser Erwerbsminderung bei Berufsunfähigkeit",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "medium",
+  "verification_status": "partially_verified",
+  "notes": ["Die genaue Höhe der Erwerbsminderungsrente hängt stark von den individuellen Beitragszeiten ab."],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

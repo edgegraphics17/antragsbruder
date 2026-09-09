@@ -1,0 +1,213 @@
+{
+  "id": "energieeffizienz-foerderung",
+  "official_name": "Bundesförderung für effiziente Gebäude (BEG) – Energieeffizienz",
+  "aliases": [
+    "Energieeffizienz-Förderung",
+    "BAFA Energieeffizienz",
+    "KfW Energieeffizienz",
+    "BEG Zuschuss",
+    "Energieeffizienz in der Wirtschaft"
+  ],
+  "former_names": [
+    "CO₂-Gebäudesanierungsprogramm",
+    "Energieeinsparverordnung Förderung"
+  ],
+  "type": "energy_subsidy",
+  "status": "verified",
+  "category": "Energie & Klima",
+  "subcategory": "Energieeffizienz und Sanierung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA) / KfW",
+    "authority": "Bundesministerium für Wirtschaft und Klimaschutz (BMWK)",
+    "url": "https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html",
+    "phone": "06196 908-0"
+  },
+  "target_groups": [
+    "Hauseigentümer",
+    "Wohnungseigentümergemeinschaften",
+    "Unternehmen (Mittelstand)",
+    "Kommunen",
+    "gewerbliche Gebäudeeigentümer"
+  ],
+  "life_situations": [
+    "energiesanierung",
+    "klimaschutz",
+    "gebäude-sanierung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "ee-001",
+        "description": "Gebäude befindet sich in Deutschland",
+        "condition": "Das zu sanierende Gebäude liegt in Deutschland",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "ee-002",
+        "description": "Maßnahmen müssen Energie einsparen",
+        "condition": "Sanierungsmaßnahmen reduzieren den Endenergieverbrauch messbar",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ee-003",
+        "description": "Fachbetriebliche Ausführung",
+        "condition": "Durchführung durch qualifizierten Fachbetrieb",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ee-004",
+        "description": "Energieberatung vor Sanierung empfohlen",
+        "condition": "Geförderte Energieberatung vor Baubeginn (zuschusserhöhend)",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "BEG EM (Einzelmaßnahmen) über BAFA: bis zu 50% Zuschuss",
+      "BEG WG (Wohngebäude) über KfW: Kredite mit Tilgungszuschuss",
+      "BEG NWG (Nichtwohngebäude) über BAFA: Zuschuss bis 50%",
+      "BEG WG (Wohngebäude) auch als Förderkredit über KfW"
+    ]
+  },
+  "calculation": {
+    "method": "Zuschussförderung: Prozentsatz der förderfähigen Kosten. Kreditförderung: Tilgungszuschuss auf KfW-Förderkredit.",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Förderfähige Kosten ermitteln",
+        "formula": "Material- und Arbeitskosten der Energieeffizienzmaßnahmen",
+        "note": "Nur Kosten, die unmittelbar zur Energieeffizienz beitragen"
+      },
+      {
+        "step": 2,
+        "description": "Fördersatz anwenden",
+        "formula": "30-50% der förderfähigen Kosten (je nach Maßnahme)",
+        "note": "Basis 30%, Effizienzbonus bis 20%, Klimageschwindigkeitsbonus 20%"
+      },
+      {
+        "step": 3,
+        "description": "Maximalbetrag prüfen",
+        "formula": "Je nach Gebäudetyp und Maßnahme unterschiedlich",
+        "note": "Max. 60.000 € für Einfamilienhaus, höher für Mehrfamilienhäuser"
+      }
+    ],
+    "min_amount": 300,
+    "max_amount": 210000,
+    "typical_amount": "30-50% der förderfähigen Kosten; max. 210.000 € pro Haus",
+    "frequency": "once",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Zuschuss bis 50% der förderfähigen Kosten. Maximal 210.000 € für Wohngebäude (Mehrfamilienhaus).",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": 210000,
+    "depends_on": [
+      "Gebäudetyp",
+      "Art der Maßnahmen",
+      "Energieeinsparung",
+      "Investitionsvolumen"
+    ]
+  },
+  "application": {
+    "method": "Online-Portal des BAFA oder über Hausbank bei KfW-Krediten",
+    "url": "https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html",
+    "forms": [
+      "BAFA-Antrag über Online-Portal",
+      "KfW-Antrag über Hausbank"
+    ],
+    "required_documents": [
+      "Energieberatungsnachweis (geforderte Beratung oder verbraucherzentrale)",
+      "Angebote/Kostenvoranschläge",
+      "Baupläne",
+      "Energieausweis vor Sanierung",
+      "Baubeginn-Frist: 6 Monate nach Antragstellung"
+    ],
+    "processing_time": "4-6 Wochen bei BAFA, 6-8 Wochen bei KfW",
+    "deadlines": {
+      "description": "Antrag muss vor Baubeginn gestellt werden",
+      "note": "Baubeginn spätestens 6 Monate nach Antragstellung"
+    }
+  },
+  "legal_basis": [
+    "Bundesförderung für effiziente Gebäude (BEG) – Richtlinie",
+    "§ 35c EStG (Steuerliche Förderung energetischer Sanierung)",
+    "KfW-Programm 261/262 (Wohngebäude Kredit)",
+    "EnEG, EnEV, GEG"
+  ],
+  "compatible_with": [
+    "gebaeude-daemmung",
+    "photovoltaik",
+    "waermepumpe",
+    "heizungstausch",
+    "solarthermie"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "energieschuldenberatung",
+    "klimaschutz-beratung"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der Staat fördert Maßnahmen, die den Energieverbrauch Ihres Gebäudes dauerhaft senken – durch Dämmung, neue Heizung, Lüftung oder Fenster.",
+    "for_whom": "Hauseigentümer und Unternehmen, die ihr Gebäude energetisch sanieren möchten.",
+    "requirements": "Die Maßnahmen müssen den Energieverbrauch messbar senken. Ein geförderte Energieberatung vor Baubeginn erhöht den Zuschuss.",
+    "how_much": "Bis zu 50% der förderfähigen Kosten als Zuschuss (BAFA) oder als Tilgungszuschuss auf KfW-Kredite.",
+    "how_calculated": "Der Zuschuss wird auf Basis der tatsächlichen Kosten berechnet. Es gibt einen Basisfördersatz von 30%, den Bonus für besondere Effizienz (bis 20%) und einen Klimabonus (20%).",
+    "documents_needed": "Energieberatungsnachweis, Angebote, Energieausweis, Baupläse.",
+    "where_to_apply": "Online bei BAFA oder über Ihre Hausbank bei KfW-Krediten.",
+    "deadlines": "Stellen Sie den Antrag vor Baubeginn. Beginnen Sie spätestens 6 Monate nach Antragstellung mit der Baumaßnahme.",
+    "faq": [
+      {
+        "question": "Muss ich vorher eine Energieberatung machen?",
+        "answer": "Nicht zwingend, aber sie wird mit bis zu 850 € gefördert und erhöht den Zuschuss um 10-15%."
+      },
+      {
+        "question": "Kann ich BAFA-Zuschuss und KfW-Kredit kombinieren?",
+        "answer": "Ja, für verschiedene Maßnahmen ist eine Kombination möglich."
+      },
+      {
+        "question": "Wie lange dauert es bis zur Auszahlung?",
+        "answer": "Nach Abnahme der Maßnahme und Vorlage der Verwendungsnachweise dauert es ca. 4-6 Wochen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html",
+      "title": "Bundesförderung für effiziente Gebäude (BEG) - BAFA",
+      "organization": "BAFA",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    },
+    {
+      "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/Energieeffizient-sanieren/",
+      "title": "Energieeffizient sanieren mit staatlicher Förderung - KfW",
+      "organization": "KfW",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": "2026-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "BEG wurde 2024 reformiert. Neue Fördersätze gelten seit Juli 2024.",
+    "BAFA-Förderkompass 2026 digital verfügbar.",
+    "Tilgungszuschuss bei KfW-Krediten abhängig vom erreichten Effizienzhaus-Standard."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

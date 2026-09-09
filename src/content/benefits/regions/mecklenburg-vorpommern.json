@@ -1,0 +1,69 @@
+{
+  "state": "Mecklenburg-Vorpommern",
+  "state_code": "MV",
+  "benefits": [
+    {
+      "id": "mv-lfi-investitionsfoerderung",
+      "official_name": "LFI M-V Investitionsförderung",
+      "description": "Zinsgünstige Darlehen für Investitionsvorhaben der gewerblichen Wirtschaft in Mecklenburg-Vorpommern. Neues Förderportal startet am 5. August 2026.",
+      "type": "business_subsidy",
+      "provider": "Landesförderinstitut Mecklenburg-Vorpommern (LFI M-V)",
+      "url": "https://www.lfi-mv.de/",
+      "status": "verified"
+    },
+    {
+      "id": "mv-lfi-sanierung",
+      "official_name": "LFI M-V Sanierungsdarlehen",
+      "description": "Zinsfreies Darlehen für Modernisierung und Sanierung von Wohnraum. Nach Fertigstellung 25 % Teilerlass. Eines der attraktivsten Landesförderangebote Deutschlands.",
+      "type": "housing_benefit",
+      "provider": "Landesförderinstitut Mecklenburg-Vorpommern (LFI M-V)",
+      "url": "https://www.foerderdatenbank.de/FDB/Content/DE/Foerderprogramm/Land/Mecklenburg-Vorpommern/modernisierung-und-instandsetzung-von-miet-und-ge.html",
+      "status": "verified"
+    },
+    {
+      "id": "mv-startchancen-programm",
+      "official_name": "Startchancen-Programm Mecklenburg-Vorpommern",
+      "description": "Stärkung von 72 Schulen, die unter besonders herausfordernden Bedingungen arbeiten. Förderung von Chancengerechtigkeit im Bildungssystem.",
+      "type": "education_benefit",
+      "provider": "Ministerium für Bildung, Jugend und Sport Mecklenburg-Vorpommern",
+      "url": "http://www.mv-regierung.de/",
+      "status": "verified"
+    },
+    {
+      "id": "mv-esf-plus",
+      "official_name": "ESF+ Förderung Mecklenburg-Vorpommern",
+      "description": "Förderung aus dem Europäischen Sozialfonds Plus. Unterstützung von Strukturentwicklungsmaßnahmen und Beschäftigungsförderung.",
+      "type": "employment_benefit",
+      "provider": "Landesamt für Gesundheit und Soziales (LAGuS) Mecklenburg-Vorpommern",
+      "url": "https://www.lagus.mv-regierung.de/Foerderungen/ESF/",
+      "status": "verified"
+    },
+    {
+      "id": "mv-fruehe-hilfen",
+      "official_name": "Frühe Hilfen Mecklenburg-Vorpommern",
+      "description": "Förderung von Beratungs- und Hilfenetzen für Familien in besonderen Lebenslagen. Antragsunterlagen ab 2026 verfügbar.",
+      "type": "family_benefit",
+      "provider": "Landesamt für Gesundheit und Soziales (LAGuS) Mecklenburg-Vorpommern",
+      "url": "https://www.lagus.mv-regierung.de/Foerderungen/MV/",
+      "status": "verified"
+    },
+    {
+      "id": "mv-kita-foerderung",
+      "official_name": "Kita-Förderung Mecklenburg-Vorpommern",
+      "description": "Förderung von Kindertagesbetreuung: Landesweite Projekte, Modellvorhaben und gezielte individuelle Förderungen nach KiföG M-V.",
+      "type": "family_benefit",
+      "provider": "Landesamt für Gesundheit und Soziales (LAGuS) Mecklenburg-Vorpommern",
+      "url": "https://www.lagus.mv-regierung.de/Foerderungen/MV/",
+      "status": "verified"
+    },
+    {
+      "id": "mv-grw-foerderung",
+      "official_name": "GRW-Förderung Mecklenburg-Vorpommern",
+      "description": "Gemeinschaftsaufgabe Verbesserung der regionalen Wirtschaftsstruktur. Förderung von Investitionen in der gewerblichen Wirtschaft mit bis zu 50 %.",
+      "type": "business_subsidy",
+      "provider": "Landesförderinstitut Mecklenburg-Vorpommern (LFI M-V)",
+      "url": "https://www.investorenportal-mv.de/de/standortvorteil-mv/foerderung-von-investitionen/index.html",
+      "status": "verified"
+    }
+  ]
+}

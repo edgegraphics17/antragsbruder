@@ -1,0 +1,182 @@
+{
+  "id": "weiterbildung",
+  "official_name": "Förderung der beruflichen Weiterbildung (Weiterbildungsförderung)",
+  "aliases": ["Bildungsgutschein", "Weiterbildungsgeld", "Förderung beruflicher Weiterbildung", "FbW", "Weiterbildungsstipendium"],
+  "former_names": [],
+  "type": "employment_benefit",
+  "status": "verified",
+  "category": "Arbeit & Beschäftigung",
+  "subcategory": "Berufliche Weiterbildung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesagentur für Arbeit",
+    "authority": "Agentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de/karriere-und-weiterbildung/foerderung-berufliche-weiterbildung",
+    "phone": "0800 4 555500"
+  },
+  "target_groups": ["Arbeitslose Arbeitnehmer", "Von Arbeitslosigkeit bedrohte Beschäftigte", "Geringqualifizierte ohne Berufsabschluss", "Beschäftigte im Rechtskreis SGB III"],
+  "life_situations": ["job_lost", "arbeit_arbeitnehmer", "weiterbildung"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "wb-001",
+        "description": "Weiterbildung notwendig zur beruflichen Eingliederung oder Abwendung von Arbeitslosigkeit",
+        "condition": "Die Weiterbildung muss erforderlich sein, um Arbeitslosigkeit abzuwenden oder eine berufliche Eingliederung zu ermöglichen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "wb-002",
+        "description": "Beratungsgespräch bei der Agentur für Arbeit",
+        "condition": "Vor Beginn der Maßnahme muss ein Beratungsgespräch bei der Agentur für Arbeit stattgefunden haben",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "wb-003",
+        "description": "Zugelassener Bildungsträger",
+        "condition": "Der Weiterbildungsträger muss nach SGB III zugelassen sein",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "wb-004",
+        "description": "Kein Anspruch auf andere Förderungen",
+        "condition": "Kein Anspruch auf Aufstiegs-BAföG oder vergleichbare Leistungen",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Weiterbildungsgeld (150 Euro monatlich) bei abschlussorientierten Maßnahmen mit mindestens 2-jähriger Ausbildungsdauer",
+      "Förderung von Umschulungen und Teilqualifikationen möglich",
+      "Beschäftigte können nach § 82 SGB III gefördert werden"
+    ]
+  },
+  "calculation": {
+    "method": "Übernahme der Weiterbildungskosten durch Bildungsgutschein; ggf. Zuschüsse zu Lebenshaltungskosten",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Beratung und Bedarfsfeststellung",
+        "note": "Agentur für Arbeit prüft Förderfähigkeit"
+      },
+      {
+        "step": 2,
+        "description": "Ausstellung des Bildungsgutscheins",
+        "note": "Gültigkeit in der Regel 3 Monate"
+      },
+      {
+        "step": 3,
+        "description": "Kostenübernahme",
+        "note": "Lehrgangskosten, Fahrtkosten, ggf. Kinderbetreuungskosten"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "100% der Lehrgangskosten (bei arbeitslosen Personen); ggf. Zuschüsse zu Lebenshaltungskosten",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Übernahme der vollständigen Weiterbildungskosten; bei Bedarf Zuschüsse zu Lebenshaltungskosten und Fahrtkosten",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Art der Weiterbildung", "Lehrgangskosten", "Persönliche Situation"]
+  },
+  "application": {
+    "method": "Persönliche Beratung bei der Agentur für Arbeit, Ausstellung des Bildungsgutscheins",
+    "url": "https://www.arbeitsagentur.de/karriere-und-weiterbildung/bildungsgutschein",
+    "forms": ["Bildungsgutschein", "Fragebogen zur Förderung der Teilnahme an einer beruflichen Weiterbildungsmaßnahme"],
+    "required_documents": [
+      "Personalausweis",
+      "Lebenslauf",
+      "Nachweise über Qualifikationen",
+      "Bildungsgutschein",
+      "Kostenangebot des Bildungsträgers"
+    ],
+    "processing_time": "Ca. 2-4 Wochen nach Beratungsgespräch",
+    "deadlines": {
+      "description": "Bildungsgutschein muss vor Beginn der Maßnahme vorliegen",
+      "note": "Keine nachträgliche Förderung für bereits begonnene Maßnahmen"
+    }
+  },
+  "legal_basis": [
+    "§ 81 SGB III (Grundsatz)",
+    "§ 82 SGB III (Förderung beschäftigter Arbeitnehmer)",
+    "§ 82a SGB III (Qualifizierungsgeld)",
+    "§ 87a SGB III (Weiterbildungsprämie und Weiterbildungsgeld)",
+    "§ 115 SGB III (Umschulung)"
+  ],
+  "compatible_with": ["arbeitslosengeld-i", "berufseinstieg"],
+  "incompatible_with": ["arbeitnehmerförderung"],
+  "related_benefits": ["kurzarbeitergeld", "qualifizierungschancengesetz", "umschulung", "arbeitnehmerförderung"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Agentur für Arbeit fördert Ihre berufliche Weiterbildung mit einem Bildungsgutschein – die Kosten für Lehrgänge, Prüfungen und Fahrt werden übernommen.",
+    "for_whom": "Arbeitslose, von Arbeitslosigkeit bedrohte Beschäftigte und Geringqualifizierte ohne Berufsabschluss.",
+    "requirements": "Die Weiterbildung muss notwendig sein, um Arbeitslosigkeit abzuwenden oder eine berufliche Eingliederung zu ermöglichen. Ein Beratungsgespräch bei der Agentur für Arbeit ist Pflicht.",
+    "how_much": "In der Regel 100% der Lehrgangskosten. Bei Bedarf zusätzlich Zuschüsse zu Fahrtkosten und Kinderbetreuung.",
+    "how_calculated": "Die Agentur für Arbeit stellt einen Bildungsgutschein aus, der die Kosten direkt an den Bildungsträger abgibt.",
+    "documents_needed": "Personalausweis, Lebenslauf, Nachweise über Qualifikationen, Kostenangebot des Bildungsträgers.",
+    "where_to_apply": "Beratungsgespräch bei der Agentur für Arbeit vor Ort oder online vereinbaren.",
+    "deadlines": "Der Bildungsgutschein muss vor Beginn der Weiterbildung ausgestellt sein. Keine nachträgliche Förderung.",
+    "faq": [
+      {
+        "question": "Kann ich mir den Bildungsgutschein aussuchen, wo ich die Weiterbildung mache?",
+        "answer": "Ja, aber der Bildungsträger muss nach SGB III zugelassen sein und das Bildungsziel muss mit dem Gutschein übereinstimmen."
+      },
+      {
+        "question": "Gibt es auch Förderung für Beschäftigte?",
+        "answer": "Ja, nach § 82 SGB III können auch Beschäftigte gefördert werden, wenn die Weiterbildung notwendig ist."
+      },
+      {
+        "question": "Wie hoch ist das Weiterbildungsgeld?",
+        "answer": "150 Euro monatlich bei abschlussorientierten Maßnahmen mit mindestens 2-jähriger Ausbildungsdauer."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/karriere-und-weiterbildung/foerderung-berufliche-weiterbildung",
+      "title": "Förderung der beruflichen Weiterbildung",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.arbeitsagentur.de/karriere-und-weiterbildung/bildungsgutschein",
+      "title": "Bildungsgutschein für berufliche Weiterbildung",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.bmas.de/DE/Arbeit/Aus-und-Weiterbildung/Berufliche-Weiterbildung/Foerderung-der-beruflichen-Weiterbildung/foerderung-der-beruflichen-weiterbildung-artikel.html",
+      "title": "Ihr Weg zur Förderung der beruflichen Weiterbildung",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.sozialgesetzbuch-sgb.de/sgbiii/81.html",
+      "title": "§ 81 SGB III Grundsatz",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

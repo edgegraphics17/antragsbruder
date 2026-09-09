@@ -1,0 +1,147 @@
+{
+  "id": "barrierefrei_umbauen",
+  "official_name": "Barrierefreier Umbau (KfW und Pflegekassen)",
+  "aliases": [
+    "Altersgerecht umbauen",
+    "Barrierereduzierung",
+    "KfW 455",
+    "KfW 159"
+  ],
+  "former_names": [],
+  "type": "care_benefit",
+  "status": "verified",
+  "category": "Wohnen & Immobilien",
+  "subcategory": "Barrierefreiheit",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "KfW Bankengruppe / Pflegekassen / Krankenkassen",
+    "authority": "KfW und Hausbank / Pflegeversicherung",
+    "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/Barrierereduzierung/"
+  },
+  "target_groups": [
+    "Ältere Menschen",
+    "Menschen mit Behinderung",
+    "Pflegebedürftige",
+    "Rollstuhlfahrer"
+  ],
+  "life_situations": [
+    "barrierefrei",
+    "pflege",
+    "alter",
+    "behinderung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "barrierefrei_need",
+        "description": "Bedürfnis nach Barrierefreiheit",
+        "condition": "Umbau muss der Barrierereduzierung dienen",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "barrierefrei_owner",
+        "description": "Eigentümer",
+        "condition": "Antragsteller muss Eigentümer sein",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "barrierefrei_existing",
+        "description": "Bestandsgebäude",
+        "condition": "Gebäude muss mindestens 10 Jahre alt sein (KfW 455)",
+        "required": true,
+        "category": "status"
+      }
+    ]
+  },
+  "calculation": {
+    "method": "Investitionszuschuss oder Förderkredit",
+    "min_amount": 0,
+    "max_amount": 50000,
+    "typical_amount": "Zuschuss bis 50% der Kosten, max. 6.250 Euro (Krankenkassen)",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "KfW 455: Zuschuss bis 50% der Kosten. Krankenkassen: bis 6.250 Euro. Pflegekassen: bis 4.000 Euro.",
+    "one_time": 50000,
+    "depends_on": [
+      "Maßnahme",
+      "Kosten",
+      "Versicherung"
+    ]
+  },
+  "application": {
+    "method": "Über Hausbank (KfW) oder bei Krankenkasse/Pflegekasse",
+    "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/Barrierereduzierung/",
+    "forms": [
+      "KfW-Antrag",
+      "Antrag bei Krankenkasse"
+    ],
+    "required_documents": [
+      "Kostenvoranschlag",
+      "Gutachten über Barrierefreiheit",
+      "Pflegegrad-Bescheinigung (falls zutreffend)",
+      "Baugenehmigung"
+    ],
+    "processing_time": "4-8 Wochen"
+  },
+  "legal_basis": [
+    "KfW-Programm 455 (Zuschuss)",
+    "KfW-Programm 159 (Kredit)",
+    "§ 45 SGB XI (Pflegekassen)",
+    "§ 20 SGB V (Krankenkassen)"
+  ],
+  "compatible_with": [
+    "sanierung_zuschuss",
+    "energiesanierung"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "pflegegeld",
+    "sanierung_zuschuss"
+  ],
+  "user_content": {
+    "short_explanation": "Barrierefreier Umbau wird durch KfW-Zuschüsse, Pflege- und Krankenkassen unterstützt.",
+    "for_whom": "Ältere Menschen, Pflegebedürftige und Menschen mit Behinderung, die ihre Wohnung umbauen.",
+    "requirements": "Umbau muss der Barrierereduzierung dienen. Gebäude sollte mindestens 10 Jahre alt sein.",
+    "how_much": "KfW: bis 50% Zuschuss. Krankenkassen: bis 6.250 Euro. Pflegekassen: bis 4.000 Euro.",
+    "how_calculations": "Die Förderung richtet sich nach den förderfähigen Kosten.",
+    "documents_needed": "Kostenvoranschlag, Gutachten, Pflegegrad-Bescheinigung.",
+    "where_to_apply": "KfW über Hausbank, Krankenkasse direkt.",
+    "deadlines": "Antrag vor Baubeginn stellen.",
+    "faq": [
+      {
+        "question": "Kann ich KfW und Krankenkasse kombinieren?",
+        "answer": "Ja, verschiedene Förderungen können kombiniert werden."
+      },
+      {
+        "question": "Brauche ich einen Pflegegrad?",
+        "answer": "Für KfW nicht zwingend, für Pflegekassen schon."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/Barrierereduzierung/",
+      "title": "Barrieren reduzieren mit Förderung - KfW",
+      "organization": "KfW Bankengruppe",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "KfW 455 Fördermittel sind aktuell ausgeschöpft (hohe Nachfrage)."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

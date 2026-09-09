@@ -1,0 +1,204 @@
+{
+  "id": "staatsbuergerschaft",
+  "official_name": "Einbürgerung (Erwerb der deutschen Staatsangehörigkeit)",
+  "aliases": ["Einbürgerung", "Staatsangehörigkeit", "Staatsbürgerschaft", "§ 10 StAG", "Beibehaltungsgenehmigung", "Optionsmodell"],
+  "former_names": [],
+  "type": "integration_benefit",
+  "status": "verified",
+  "category": "Integration & Aufenthalt",
+  "subcategory": "Einbürgerung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Staatsangehörigkeitsbehörden der Länder / Bundesverwaltungsamt",
+    "authority": "Landesbehörden für Einbürgerung / Bundesverwaltungsamt (für Auslandsdeutsche)",
+    "url": "https://www.bva.bund.de/DE/Services/Buerger/Ausweis-Dokumente-Recht/Staatsangehoerigkeit/Einbuergerung/Einbuergerung_node.html",
+    "phone": "0228 99358-0"
+  },
+  "target_groups": [
+    "Ausländer mit rechtmäßigem Aufenthalt seit 5-8 Jahren",
+    "Ehegatten deutscher Staatsangehöriger",
+    "Kinder deutscher Eltern",
+    "Ehemalige Deutsche (§ 13 StAG)",
+    "NS-Verfolgte und ihre Abkömmlinge (§ 15 StAG)",
+    "Personen mit integrationsrechtlichen Voraussetzungen"
+  ],
+  "life_situations": ["neu_in_deutschland", "migration", "eu_bürger"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "sb-001",
+        "description": "Regel Einbürgerung (§ 10 StAG)",
+        "condition": "Rechtmäßiger Aufenthalt seit mindestens 5 Jahren (vorher 8 Jahre); Identität und Staatsangehörigkeit geklärt; Wohnsitz in Deutschland",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "sb-002",
+        "description": "Sprachkenntnisse",
+        "condition": "Deutschkenntnisse auf Niveau B1 (GER)",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "sb-003",
+        "description": "Kenntnisse der Rechts- und Gesellschaftsordnung",
+        "condition": "Einbürgerungstest bestanden (33 Fragen, 17 richtig)",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "sb-004",
+        "description": "Selbstversorgung",
+        "condition": "Kein Bezug von SGB II-Leistungen oder Sozialhilfe (Ausnahmen möglich)",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "sb-005",
+        "description": "Verzicht auf frühere Staatsangehörigkeit",
+        "condition": "Verzicht auf frühere Staatsangehörigkeit (Ausnahmen: EU, Schweiz, humanitäre Gründe)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "sb-006",
+        "description": "Strafregister",
+        "condition": "Keine schweren strafrechtlichen Vorstrafen",
+        "required": true,
+        "category": "personal"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Alle",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Seit 2024: Einbürgerung nach 5 Jahren (vorher 8 Jahre)",
+      "Seit 2024: Mehrstaatigkeit grundsätzlich erlaubt (Optionsmodell abgeschafft)",
+      "Kinder: Einbürgerung möglich, wenn ein Elternteil seit 5 Jahren rechtmäßig aufhältig ist",
+      "Ehegatten: Einbürgerung nach 3 Jahren Ehedauer und 2 Jahren Aufenthalt",
+      "Gebühr: 255€ (Erwachsene), 51€ (minderjährige Kinder)"
+    ]
+  },
+  "calculation": {
+    "method": "Kein Geldbetrag; Erwerb der deutschen Staatsangehörigkeit",
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Keine Zahlung; Gebühr 255€",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Erwerb der deutschen Staatsangehörigkeit; keine regelmäßige Zahlung",
+    "one_time": 255,
+    "depends_on": ["Alter", "Familienstand", "Aufenthaltsdauer"]
+  },
+  "application": {
+    "method": "Persönlich bei der zuständigen Staatsangehörigkeitsbehörde",
+    "url": "https://www.bva.bund.de/DE/Services/Buerger/Ausweis-Dokumente-Recht/Staatsangehoerigkeit/Einbuergerung/Einbuergerung_node.html",
+    "forms": ["Antrag auf Einbürgerung"],
+    "required_documents": [
+      "Reisepass",
+      "Aufenthaltstitel",
+      "Geburtsurkunde",
+      "Eheurkunde (falls verheiratet)",
+      "Sprachzertifikat B1",
+      "Einbürgerungstest-Bescheinigung",
+      "Lebenslauf",
+      "Einkommensnachweise",
+      "Strafregisterauszug",
+      "Mietvertrag oder Wohnraumnachweis"
+    ],
+    "processing_time": "6-24 Monate",
+    "deadlines": {
+      "description": "Keine gesetzliche Frist, aber möglichst frühzeitig nach Erfüllung der Voraussetzungen",
+      "note": "Einbürgerung ist ein Rechtsanspruch, wenn alle Voraussetzungen erfüllt sind"
+    }
+  },
+  "legal_basis": [
+    "§ 10 StAG – Regel Einbürgerung",
+    "§ 8 StAG – Erleichterte Einbürgerung",
+    "§ 9 StAG – Einbürgerung von Ehegatten und Kindern",
+    "§ 13 StAG – Einbürgerung ehemaliger Deutscher",
+    "§ 15 StAG – Einbürgerung von NS-Verfolgten",
+    "§ 25 StAG – Wiedererwerb der deutschen Staatsangehörigkeit",
+    "Staatsangehörigkeitsgesetz (StAG)"
+  ],
+  "compatible_with": [
+    "integrationskurs",
+    "deutschkurs",
+    "beratung_migranten"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "beratung_migranten",
+    "integrationskurs"
+  ],
+  "user_content": {
+    "short_explanation": "Die Einbürgerung macht Sie zum deutschen Staatsbürger. Sie erhalten alle Rechte und Pflichten eines Deutschen, einschließlich des deutschen Passes und des Wahlrechts.",
+    "for_whom": "Für Ausländer, die seit mindestens 5 Jahren rechtmäßig in Deutschland leben und die Voraussetzungen erfüllen (Sprache, Kenntnisse, Selbstversorgung).",
+    "requirements": "Rechtmäßiger Aufenthalt seit 5 Jahren; Deutschkenntnisse B1; Einbürgerungstest; Selbstversorgung; Verzicht auf frühere Staatsangehörigkeit (Ausnahmen).",
+    "how_much": "Keine regelmäßige Zahlung. Gebühr: 255€ (Erwachsene), 51€ (Kinder).",
+    "how_calculed": "Die Staatsangehörigkeitsbehörde prüft die Voraussetzungen. Bei Erfüllung aller Voraussetzungen haben Sie einen Rechtsanspruch auf Einbürgerung.",
+    "documents_needed": "Reisepass, Aufenthaltstitel, Geburtsurkunde, Sprachzertifikat B1, Einbürgerungstest-Bescheinigung, Lebenslauf, Einkommensnachweise, Strafregisterauszug.",
+    "where_to_apply": "Staatsangehörigkeitsbehörde Ihres Bundeslandes (in Deutschland) oder Bundesverwaltungsamt (im Ausland).",
+    "deadlines": "Keine gesetzliche Frist. Einbürgerung ist ein Rechtsanspruch, wenn alle Voraussetzungen erfüllt sind.",
+    "faq": [
+      {
+        "question": "Wann kann ich mich einbürgern lassen?",
+        "answer": "Nach 5 Jahren rechtmäßigem Aufenthalt (vorher 8 Jahre). Als Ehegatter nach 3 Jahren Ehedauer und 2 Jahren Aufenthalt."
+      },
+      {
+        "question": "Muss ich meine alte Staatsangehörigkeit aufgeben?",
+        "answer": "Seit 2024 ist die Mehrstaatigkeit grundsätzlich erlaubt. Sie müssen Ihre alte Staatsangehörigkeit nicht mehr aufgeben."
+      },
+      {
+        "question": "Was ist der Einbürgerungstest?",
+        "answer": "Ein Test mit 33 Fragen über die deutsche Rechts- und Gesellschaftsordnung. Sie müssen mindestens 17 Fragen richtig beantworten."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bva.bund.de/DE/Services/Buerger/Ausweis-Dokumente-Recht/Staatsangehoerigkeit/Einbuergerung/Einbuergerung_node.html",
+      "title": "Einbürgerung – Bundesverwaltungsamt",
+      "organization": "Bundesverwaltungsamt (BVA)",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/stag/__10.html",
+      "title": "§ 10 StAG – Regel Einbürgerung",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.auswaertiges-amt.de/de/service/fragenkatalog-node/606796-606796",
+      "title": "Staatsangehörigkeitsrecht – Auswärtiges Amt",
+      "organization": "Auswärtiges Amt",
+      "last_verified": "2026-09-08",
+      "type": "federal_ministry"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-06-27",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Seit 27. Juni 2024: Einbürgerung nach 5 Jahren (vorher 8 Jahre)",
+    "Seit 27. Juni 2024: Mehrstaatigkeit grundsätzlich erlaubt",
+    "Optionsmodell für Kinder abgeschafft",
+    "Gebühr: 255€ (Erwachsene), 51€ (minderjährige Kinder)"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

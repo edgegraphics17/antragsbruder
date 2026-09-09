@@ -1,0 +1,215 @@
+{
+  "id": "waermepumpe-foerderung",
+  "official_name": "Förderung Wärmepumpe (BAFA & KfW)",
+  "aliases": [
+    "Wärmepumpenförderung",
+    "Förderung Wärmepumpen",
+    "Heizungsförderung",
+    "BAFA Heizen mit Erneuerbaren Energien"
+  ],
+  "former_names": [
+    "Marktanreizprogramm Wärmepumpe",
+    "BMU-Förderung Wärme"
+  ],
+  "type": "energy_subsidy",
+  "status": "verified",
+  "category": "Energie & Klima",
+  "subcategory": "Erneuerbare Wärme",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA)",
+    "authority": "Bundesministerium für Wirtschaft und Klimaschutz (BMWK)",
+    "url": "https://www.bafa.de/DE/Energie/Heizen_mit_Erneuerbaren_Energien/Foerderprogramm_im_Ueberblick/foerderprogramm_im_ueberblick_node.html",
+    "phone": "06196 908-0"
+  },
+  "target_groups": [
+    "Hauseigentümer",
+    "Wohnungseigentümer",
+    "Mieter (mit Zustimmung)",
+    "Unternehmen",
+    "Kommunen"
+  ],
+  "life_situations": [
+    "energiesanierung",
+    "heizungsmodernisierung",
+    "klimaschutz"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "wp-001",
+        "description": "Neue Wärmepumpe ersetzt alte Heizung oder ist Neubau",
+        "condition": "Einbau einer neuen Wärmepumpe (Wasser-Wasser, Wasser-Luft, Luft-Luft, Sole-Wasser)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "wp-002",
+        "description": "Gebäude befindet sich in Deutschland",
+        "condition": "Wärmepumpe wird in einem Gebäude in Deutschland installiert",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "wp-003",
+        "description": "Wärmepumpe muss Mindesteffizienz erfüllen",
+        "condition": "Jahresarbeitszahl von mindestens 2,5 (bei Luft-Wasser) oder entsprechend höher",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "wp-004",
+        "description": "Austausch einer fossilen Heizung",
+        "condition": "Alte Heizung wird durch Wärmepumpe ersetzt (Bonus 5-10%)",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "wp-005",
+        "description": "Verfügbarkeit des Wärmenetzanschlusses",
+        "condition": "Gebäude ist an ein Wärmenetz angeschlossen",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Mindestinvestitionsvolumen: 300 Euro brutto",
+      "Wärmepumpe muss in der förderfähigen Anlagenliste des BAFA geführt werden",
+      "Bonus bei Austausch einer mindestens 20 Jahre alten Gasheizung (20%)",
+      "Klimageschwindigkeitsbonus: 20% bei Austausch vor 2029"
+    ]
+  },
+  "calculation": {
+    "method": "Zuschuss in Prozent der förderfähigen Kosten, plus Boni für Austausch alter Heizungen und Nachweis von Effizienz.",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Basiszuschuss berechnen",
+        "formula": "30% der förderfähigen Kosten",
+        "note": "Basisfördersatz für Wärmepumpe"
+      },
+      {
+        "step": 2,
+        "description": "Effizienzbonus hinzufügen",
+        "formula": "bis zu 20% extra",
+        "note": "Bei sehr effizienter Anlage (Jahresarbeitszahl > 3,5)"
+      },
+      {
+        "step": 3,
+        "description": "Klimabonus berücksichtigen",
+        "formula": "20% bei Austausch vor 2029",
+        "note": "Steigt bei alten Gasheizungen"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Bis zu 70% der förderfähigen Kosten (mit allen Boni)",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Zuschuss bis zu 70% der förderfähigen Kosten. Basis 30%, Effizienzbonus bis 20%, Klimabonus 20%.",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": [
+      "Art der Wärmepumpe",
+      "Investitionskosten",
+      "Austausch alter Heizung",
+      "Erreichte Effizienz"
+    ]
+  },
+  "application": {
+    "method": "Online-Antrag über BAFA-Portal",
+    "url": "https://www.bafa.de/DE/Energie/Heizen_mit_Erneuerbaren_Energien/Foerderprogramm_im_Ueberblick/foerderprogramm_im_ueberblick_node.html",
+    "forms": [
+      "Online-Antrag im BAFA-Portal"
+    ],
+    "required_documents": [
+      "Rechnungen über Material und Arbeitsleistung",
+      "Prüf- und Effizienznachweis der Wärmepumpe",
+      "Antrag auf Förderung vor Baubeginn",
+      "Kopie der Wärmepumpen-Anlagenliste",
+      "Nachweis über Entsorgung der alten Heizung"
+    ],
+    "processing_time": "4-8 Wochen",
+    "deadlines": {
+      "description": "Antrag vor Baubeginn stellen",
+      "note": "Baubeginn spätestens 6 Monate nach Antragstellung"
+    }
+  },
+  "legal_basis": [
+    "Richtlinie zur Förderung von Maßnahmen zur Nutzung erneuerbaren Energien im Wärmebereich (BMWi)",
+    "§ 35c EStG (Steuerbonus)",
+    "Gesetz zur Förderung der Energieeffizienz (EnEfG)"
+  ],
+  "compatible_with": [
+    "gebaeude-daemmung",
+    "photovoltaik",
+    "heizungstausch",
+    "energieeffizienz"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "energieschuldenberatung"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der Staat fördert die Installation einer Wärmepumpe, die Wärme aus Luft, Wasser oder Erde gewinnt – ein zentraler Baustein der Wärmewende.",
+    "for_whom": "Hauseigentümer und Mieter, die auf erneuerbare Wärme umsteigen möchten.",
+    "requirements": "Die Wärmepumpe muss in der BAFA-Anlagenliste stehen. Sie muss eine bestimmte Effizienz erreichen. Bei Austausch einer alten Gasheizung gibt es Boni.",
+    "how_much": "Basiszuschuss 30% der Kosten. Mit Effizienz- und Klimabonus bis zu 70%.",
+    "how_calculated": "Der Zuschuss wird auf Basis der förderfähigen Kosten berechnet. Der Klimabonus gilt bei Austausch vor 2029.",
+    "documents_needed": "Rechnungen, Effizienznachweis, Anlagenlisteneintrag.",
+    "where_to_apply": "Online im BAFA-Portal.",
+    "deadlines": "Antrag vor Baubeginn. Bau beginnt spätestens 6 Monate nach Antragstellung.",
+    "faq": [
+      {
+        "question": "Welche Wärmepumpen sind förderfähig?",
+        "answer": "Nur Anlagen, die in der BAFA-Anlagenliste geführt werden. Diese umfasst Wasser-Wasser, Wasser-Luft, Luft-Luft und Sole-Wasser-Pumpen."
+      },
+      {
+        "question": "Gibt es einen Bonus für Mieter?",
+        "answer": "Mieter können die Förderung mit Zustimmung des Vermieters beantragen. Es gibt keinen speziellen Mieterbonus."
+      },
+      {
+        "question": "Kann ich die Wärmepumpe später nachrüsten lassen?",
+        "answer": "Ja, auch eine nachträgliche Installation ist förderfähig, wenn die Mindestvoraussetzungen erfüllt sind."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bafa.de/DE/Energie/Heizen_mit_Erneuerbaren_Energien/Foerderprogramm_im_Ueberblick/foerderprogramm_im_ueberblick_node.html",
+      "title": "Förderprogramm im Überblick - BAFA",
+      "organization": "BAFA",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    },
+    {
+      "url": "https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/Sanierung_Wohngebaeude/Anlagen_zur_Waermeerzeugung/anlagen_zur_waermeerzeugung_node.html",
+      "title": "Anlagen zur Wärmeerzeugung (Heizungstechnik) - BAFA",
+      "organization": "BAFA",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "BAFA-Förderung Wärmepumpe mit Boni bis 70% der förderfähigen Kosten.",
+    "Klimageschwindigkeitsbonus 20% gilt für Austausch vor 2029.",
+    "Wärmepumpen-Anlagenliste regelmäßig aktualisiert."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

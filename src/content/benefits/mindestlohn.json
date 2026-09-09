@@ -1,0 +1,166 @@
+{
+  "id": "mindestlohn",
+  "official_name": "Mindestlohngesetz (MiLoG) und Arbeitnehmer-Entsendegesetz (AEntG)",
+  "aliases": ["Mindestlohn", "MiLoG", "AEntG", "Entsendegesetz", "Leiharbeit", "Zeitarbeit", "Lohnuntergrenze"],
+  "former_names": [],
+  "type": "employment_benefit",
+  "status": "verified",
+  "category": "Arbeit & Beschäftigung",
+  "subcategory": "Arbeitsrecht",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesministerium für Arbeit und Soziales (BMAS)",
+    "authority": "BMAS / Zoll (Kontrolle)",
+    "url": "https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Mindestlohn/mindestlohn-artikel.html",
+    "phone": "030 18681 0"
+  },
+  "target_groups": ["Arbeitnehmerinnen und Arbeitnehmer", "Entsandte Arbeitnehmer", "Leiharbeitnehmer"],
+  "life_situations": ["arbeit_arbeitnehmer"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "ml-001",
+        "description": "Arbeitnehmerstatus",
+        "condition": "Sie müssen Arbeitnehmerin oder Arbeitnehmer sein (keine Selbstständigen)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ml-002",
+        "description": "Arbeit im Inland",
+        "condition": "Die Arbeit muss in Deutschland geleistet werden",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "ml-003",
+        "description": "Keine Ausnahmen (z.B. Praktikanten, Jugendliche unter 18)",
+        "condition": "Bestimmte Ausnahmen gelten für Praktikanten, Jugendliche unter 18 Jahre und Langzeitarbeitslose in den ersten 6 Monaten",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "AEntG: Branchenspezifische Mindestlöhne für entsandte Arbeitnehmer",
+      "Leiharbeit: Lohnuntergrenze nach AÜG",
+      "Kontrolle durch den Zoll (Finanzkontrolle Schwarzarbeit)"
+    ]
+  },
+  "calculation": {
+    "method": "Gesetzlicher Mindestlohn pro Stunde; branchenspezifische Mindestlöhne nach AEntG",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Prüfung des anwendbaren Mindestlohns",
+        "note": "Gesetzlicher Mindestlohn oder branchenspezifischer Mindestlohn nach AEntG"
+      },
+      {
+        "step": 2,
+        "description": "Berechnung des Mindestlohns",
+        "note": "Mindestlohn × Arbeitszeit = Mindestlohnanspruch"
+      },
+      {
+        "step": 3,
+        "description": "Durchsetzung des Anspruchs",
+        "note": "Bei Verletzung: Klage auf Zahlung des Differenzbetrags"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Gesetzlicher Mindestlohn: 12,41 Euro pro Stunde (seit 1. Januar 2025)",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Gesetzlicher Mindestlohn: 12,41 Euro pro Stunde (seit 1. Januar 2025); branchenspezifische Mindestlöhne nach AEntG",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Arbeitszeit", "Branche", "Anwendbarer Mindestlohn"]
+  },
+  "application": {
+    "method": "Kein Antrag erforderlich – Anspruch ergibt sich aus dem Gesetz",
+    "url": "https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Mindestlohn/mindestlohn-artikel.html",
+    "forms": [],
+    "required_documents": [
+      "Lohnabrechnungen",
+      "Arbeitszeitnachweise"
+    ],
+    "processing_time": null,
+    "deadlines": {
+      "description": "Keine Antragsfrist – Anspruch besteht automatisch",
+      "note": "Verjährungsfrist: 3 Jahre"
+    }
+  },
+  "legal_basis": [
+    "Mindestlohngesetz (MiLoG)",
+    "Arbeitnehmer-Entsendegesetz (AEntG)",
+    "Arbeitnehmerüberlassungsgesetz (AÜG)",
+    "§ 1 MiLoG (Mindestlohn)",
+    "§ 2 MiLoG (Höhe des Mindestlohns)",
+    "§ 1 AEntG (Anwendungsbereich)"
+  ],
+  "compatible_with": [],
+  "incompatible_with": [],
+  "related_benefits": ["kurzarbeitergeld", "beschaeftigungsförderung"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Das Mindestlohngesetz sichert Ihnen einen Mindestlohn von 12,41 Euro pro Stunde zu – unabhängig von Ihrer Branche.",
+    "for_whom": "Alle Arbeitnehmerinnen und Arbeitnehmer in Deutschland.",
+    "requirements": "Sie müssen Arbeitnehmerin oder Arbeitnehmer sein und in Deutschland arbeiten.",
+    "how_mindestlohn": "12,41 Euro pro Stunde (seit 1. Januar 2025). In manchen Branchen gelten höhere Mindestlöhne nach dem Arbeitnehmer-Entsendegesetz.",
+    "how_calculated": "Mindestlohn × Arbeitszeit = Ihr Mindestlohnanspruch.",
+    "documents_needed": "Lohnabrechnungen, Arbeitszeitnachweise.",
+    "where_to_apply": "Kein Antrag erforderlich. Bei Verletzung können Sie den Anspruch gerichtlich durchsetzen.",
+    "deadlines": "Keine Antragsfrist. Verjährungsfrist: 3 Jahre.",
+    "faq": [
+      {
+        "question": "Gilt der Mindestlohn auch für Praktikanten?",
+        "answer": "Ja, Praktikanten haben Anspruch auf den Mindestlohn, es sei denn, es handelt sich um ein verpflichtendes Praktikum im Rahmen eines Studiums oder einer Ausbildung."
+      },
+      {
+        "question": "Was passiert, wenn mein Arbeitgeber den Mindestlohn nicht zahlt?",
+        "answer": "Sie können den Differenzbetrag gerichtlich einfordern. Der Zoll kontrolliert die Einhaltung des Mindestlohns."
+      },
+      {
+        "question": "Gibt es höhere Mindestlöhne in bestimmten Branchen?",
+        "answer": "Ja, nach dem Arbeitnehmer-Entsendegesetz gibt es branchenspezifische Mindestlöhne, die höher sein können als der gesetzliche Mindestlohn."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmas.de/DE/Arbeit/Arbeitsrecht/Mindestlohn/mindestlohn-artikel.html",
+      "title": "Mindestlohn - BMAS",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/milog/",
+      "title": "Mindestlohngesetz (MiLoG)",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/aentg/",
+      "title": "Arbeitnehmer-Entsendegesetz (AEntG)",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Der gesetzliche Mindestlohn wird regelmäßig angepasst. Aktueller Stand: 12,41 Euro/h seit 1. Januar 2025."],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

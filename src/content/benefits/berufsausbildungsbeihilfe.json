@@ -1,0 +1,176 @@
+{
+  "id": "berufsausbildungsbeihilfe_bab",
+  "official_name": "Berufsausbildungsbeihilfe (BAB)",
+  "aliases": ["BAB", "Ausbildungsbeihilbe", "Berufsausbildungszuschuss", "BAB-Förderung"],
+  "former_names": [],
+  "type": "education_benefit",
+  "status": "verified",
+  "category": "Studium & Bildung",
+  "subcategory": "Förderung beruflicher Ausbildung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesagentur für Arbeit",
+    "authority": "Agentur für Arbeit (örtlich zuständig)",
+    "url": "https://www.arbeitsagentur.de/bildung/ausbildung/berufsausbildungsbeihilfe-bab",
+    "phone": "0800-4-555500"
+  },
+  "target_groups": ["Auszubildende in betrieblicher Ausbildung", "Teilnehmende an berufsvorbereitenden Bildungsmaßnahmen", "Auszubildende in außerbetrieblicher Ausbildung"],
+  "life_situations": ["ausbildung", "arbeit_arbeitnehmer"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "bab_ausbildung_betrieblich",
+        "description": "Betriebliche Berufsausbildung mit Anspruch auf Arbeitslosengeld vor Ausbildungsbeginn",
+        "condition": "arbeitslosengeld_anspruch_vor_ausbildungsbeginn",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "bab_ausbildung_auswaerts",
+        "description": "Ausbildung außerhalb des Elternhauses (Nicht bei Eltern wohnend)",
+        "condition": "nicht_bei_eltern_wohnend",
+        "required": true,
+        "category": "household"
+      },
+      {
+        "rule_id": "bab_ausbildung_foerderungsfaehig",
+        "description": "Förderungsfähige Berufsausbildung (mindestens 2 Jahre, anerkannter Beruf)",
+        "condition": "anerkannter_beruf AND dauer >= 2_jahre",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bab_kein_bafoeg",
+        "description": "Kein Anspruch auf BAföG (BAB ist Nachfolgeleistung)",
+        "condition": "kein_bafoeg_anspruch",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bab_einkommen",
+        "description": "Einkommensprüfung: Einkommen der Eltern/Auszubildenden wird angerechnet",
+        "condition": "einkommen <= bedarfssatz_plus_freibetraege",
+        "required": false,
+        "category": "income"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Elterneinkommen",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2025-01-01"
+      }
+    ],
+    "asset_rules": {
+      "threshold": 0,
+      "exemptions": [],
+      "last_updated": "2025-01-01"
+    },
+    "special_conditions": [
+      "Ausbildung im Ausland möglich (bestimmte Voraussetzungen)",
+      "Ausbildung in überbetrieblichen Bildungsstätten",
+      "Ausbildung bei öffentlichen Trägern"
+    ]
+  },
+  "calculation": {
+    "method": "Bedarfssatz minus anrechenbare Einkommen",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Bedarfssatz bestimmen",
+        "value": "380€ (bei Eltern) bis 822€ (nicht bei Eltern) + Fahrtkosten bis 476€",
+        "note": "Bedarfssätze variieren je nach Schulart und Wohnsituation"
+      },
+      {
+        "step": 2,
+        "description": "Einkommen anrechnen",
+        "value": "Einkommen der Eltern und des Auszubildenden wird angerechnet"
+      },
+      {
+        "step": 3,
+        "description": "Fahrtkosten hinzufügen",
+        "value": "Bis zu 476€ für Fahrtkosten zur Ausbildungsstätte"
+      }
+    ],
+    "min_amount": 1,
+    "max_amount": 822,
+    "typical_amount": "300€-600€ pro Monat",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "BAB-Höchstsatz: 822€ monatlich (nicht bei Eltern wohnend) + Fahrtkosten bis 476€",
+    "min_monthly": 1,
+    "max_monthly": 822,
+    "one_time": 0,
+    "depends_on": ["Einkommen der Eltern", "Eigenes Einkommen", "Wohnsituation", "Fahrtkosten"]
+  },
+  "application": {
+    "method": "Persönlich oder schriftlich bei der Agentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de/bildung/ausbildung/berufsausbildungsbeihilfe-bab",
+    "forms": ["Antrag auf Berufsausbildungsbeihilfe (BAB)"],
+    "required_documents": ["Antragsformular", "Ausbildungsvertrag", "Schulzeugnis", "Mietvertrag", "Einkommensnachweise", "Krankenversicherungsnachweis"],
+    "processing_time": "4-6 Wochen",
+    "deadlines": {
+      "description": "Antrag vor Ausbildungsbeginn stellen",
+      "note": "Rückwirkend nur 1 Monat möglich"
+    }
+  },
+  "legal_basis": ["§ 56 SGB III", "§§ 74-75 SGB III", "Berufsausbildungsbeihilferichtlinie"],
+  "compatible_with": ["wohngeld", "kindergeld", "kinderzuschlag"],
+  "incompatible_with": ["bafoeg", "aufstiegsbafoeg"],
+  "related_benefits": ["bafoeg", "aufstiegsbafoeg", "bildungsgutschein"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Berufsausbildungsbeihilfe (BAB) unterstützt Auszubildende finanziell, wenn sie nicht bei den Eltern wohnen und keinen BAföG-Anspruch haben.",
+    "for_whom": "Auszubildende in einer betrieblichen oder außerbetrieblichen Berufsausbildung, die nicht bei ihren Eltern wohnen und keine BAföG-Förderung erhalten.",
+    "requirements": "Förderungsfähige Berufsausbildung (mindestens 2 Jahre), nicht bei Eltern wohnend, kein BAföG-Anspruch, Einkommen überschreitet Bedarf nicht.",
+    "how_much": "Bis zu 822€ pro Monat (nicht bei Eltern wohnend). Bei Eltern wohnend bis zu 380€. Zusätzlich können Fahrtkosten bis zu 476€ erstattet werden.",
+    "how_calculated": "Der Bedarf (Bedarfssatz) minus das anrechenbare Einkommen der Eltern und des Auszubildenden. Die Höhe hängt von der Wohnsituation und den Fahrtkosten ab.",
+    "documents_needed": "Antragsformular, Ausbildungsvertrag, Schulzeugnis, Mietvertrag, Einkommensnachweise der Eltern, Krankenversicherungsnachweis.",
+    "where_to_apply": "Agentur für Arbeit am Wohnort oder am Ausbildungsort.",
+    "deadlines": "Antrag vor Ausbildungsbeginn stellen. Rückwirkend nur 1 Monat möglich.",
+    "faq": [
+      {
+        "question": "Kann ich BAB und BAföG kombinieren?",
+        "answer": "Nein, BAB und BAföG schließen sich gegenseitig aus. BAB ist eine Nachfolgeleistung für Auszubildende ohne BAföG-Anspruch."
+      },
+      {
+        "question": "Gibt es BAB auch für Ausbildung im Ausland?",
+        "answer": "Ja, unter bestimmten Voraussetzungen. Die Ausbildung muss in einem EU/EWR-Staat oder der Schweiz stattfinden und anerkannt sein."
+      },
+      {
+        "question": "Wie lange wird BAB gezahlt?",
+        "answer": "Für die Dauer der Berufsausbildung, maximal 3 Jahre (bei Verlängerung der Ausbildungszeit entsprechend)."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/bildung/ausbildung/berufsausbildungsbeihilfe-bab",
+      "title": "Berufsausbildungsbeihilfe (BAB) - Bundesagentur für Arbeit",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_3/__56.html",
+      "title": "§ 56 SGB III - Berufsausbildungsbeihilfe",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["BAB ist eine Leistung der Arbeitsförderung (SGB III). Sie richtet sich an Auszubildende ohne BAföG-Anspruch. Die Bedarfssätze werden regelmäßig angepasst."],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,184 @@
+{
+  "id": "kindererziehungszeiten",
+  "official_name": "Kindererziehungszeiten in der gesetzlichen Rentenversicherung",
+  "aliases": [
+    "Kindererziehungszeit",
+    "KEZ",
+    "Mütterrente",
+    "Erziehungszeiten"
+  ],
+  "former_names": [],
+  "type": "social_benefit",
+  "status": "verified",
+  "category": "Rente & Vorsorge",
+  "subcategory": "Kindererziehung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Deutsche Rentenversicherung",
+    "authority": "Deutsche Rentenversicherung Bund",
+    "url": "https://www.deutsche-rentenversicherung.de",
+    "phone": "0800 1000 4800"
+  },
+  "target_groups": [
+    "Eltern",
+    "Erziehende",
+    "Mütter",
+    "Väter"
+  ],
+  "life_situations": [
+    "kindererziehung",
+    "familie",
+    "rente"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "kez-r1",
+        "description": "Geburt eines Kindes und Erziehung in Deutschland",
+        "condition": "kind_geboren_erzogen",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "kez-r2",
+        "description": "Kind ist vor 1992 geboren: bis zu 30 Monate (Mütterrente III: bis zu 36 Monate)",
+        "condition": "kind_vor_1992",
+        "required": false,
+        "category": "personal"
+      },
+      {
+        "rule_id": "kez-r3",
+        "description": "Kind ist ab 1992 geboren: bis zu 36 Monate",
+        "condition": "kind_ab_1992",
+        "required": false,
+        "category": "personal"
+      },
+      {
+        "rule_id": "kez-r4",
+        "description": "Eltern können die Zeiten untereinander aufteilen",
+        "condition": "aufteilung_eltern",
+        "required": false,
+        "category": "personal"
+      }
+    ],
+    "special_conditions": [
+      "Mütterrente III: Für vor 1992 geborene Kinder zusätzlich 6 Monate (ab 2028 automatisch)",
+      "Mehrfacherziehung: Verlängerung bei Zwillingen/Drillingen",
+      "1 Jahr KEZ = ca. 42,52 Euro Rente pro Monat (2026)"
+    ]
+  },
+  "calculation": {
+    "method": "Anrechnung als Pflichtbeitragszeiten mit durchschnittlichem Entgeltansatz",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Festlegung der anzurechnenden Monate (max. 30/36 Monate pro Kind)",
+        "formula": "Bis zu 30 Monate (vor 1992) oder 36 Monate (ab 1992)"
+      },
+      {
+        "step": 2,
+        "description": "Berechnung der Entgeltpunkte für die Erziehungszeit",
+        "formula": "Durchschnittsentgelt × 0,75 / Durchschnittsentgelt = ca. 0,75 Entgeltpunkte pro Jahr"
+      },
+      {
+        "step": 3,
+        "description": "Umrechnung in monatliche Rentenhöhe",
+        "formula": "1 Jahr KEZ × 0,75 EP × 41,02 Euro = ca. 42,52 Euro/Monat"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "ca. 42,52 Euro pro Monat pro Jahr Kindererziehungszeit",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "ca. 42,52 Euro monatlich pro Jahr Kindererziehungszeit (2026)",
+    "depends_on": [
+      "anzahl_kinder",
+      "geburtsjahr_kinder",
+      "aufteilung_eltern"
+    ]
+  },
+  "application": {
+    "method": "Automatische Anrechnung bei Rentenantrag, ggf. gesonderte Beantragung",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Familie-und-Kinder/Kindererziehung",
+    "forms": [
+      "Antrag auf Berücksichtigung von Kindererziehungszeiten"
+    ],
+    "required_documents": [
+      "Geburtsurkunden der Kinder",
+      "Personalausweis",
+      "Versicherungsnummer"
+    ],
+    "processing_time": "Automatisch bei Rentenantrag",
+    "deadlines": {
+      "description": "Keine gesonderte Frist - wird bei Rentenantrag geprüft",
+      "note": "Mütterrente III: Automatische Prüfung im Jahr 2028"
+    }
+  },
+  "legal_basis": [
+    "§ 56 SGB VI (Kindererziehungszeiten)",
+    "§ 57 SGB VI (Mütterrente III)"
+  ],
+  "compatible_with": [
+    "altersrente"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "altersrente",
+    "mutterschaftsgeld"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Kindererziehungszeiten werden in der gesetzlichen Rentenversicherung als Pflichtbeitragszeiten angerechnet und erhöhen Ihre spätere Rente.",
+    "for_whom": "Für alle Eltern, die ein Kind erziehen - unabhängig davon, ob sie erwerbstätig sind.",
+    "requirements": "Sie müssen ein Kind erziehen. Die Zeiten werden automatisch bei der Rentenberechnung berücksichtigt.",
+    "how_mind": "Ein Jahr Kindererziehungszeit bringt ca. 42,52 Euro Rente pro Monat (2026).",
+    "how_calculated": "Die Erziehungszeit wird mit 75% des Durchschnittsentgeltes bewertet. Pro Jahr entstehen ca. 0,75 Entgeltpunkte, die mit dem Rentenwert multipliziert werden.",
+    "documents_needed": "Geburtsurkunden der Kinder, Personalausweis, Versicherungsnummer",
+    "where_to_apply": "Automatisch bei Rentenantrag, ggf. gesondert bei der Deutschen Rentenversicherung",
+    "deadlines": "Keine gesonderte Frist. Mütterrente III wird 2028 automatisch geprüft.",
+    "faq": [
+      {
+        "question": "Wie viele Monate werden angerechnet?",
+        "answer": "Für Kinder ab 1992: bis zu 36 Monate. Für Kinder vor 1992: bis zu 30 Monate (Mütterrente III: bis zu 36 Monate)."
+      },
+      {
+        "question": "Kann der Vater auch Kindererziehungszeiten erhalten?",
+        "answer": "Ja, Eltern können die Zeiten untereinander aufteilen. Die Zuordnung kann bei der Rentenberechnung geändert werden."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Familie-und-Kinder/Kindererziehung",
+      "title": "Kindererziehung: Ihr Plus für die Rente",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    },
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Wissenswertes-zur-Rente/FAQs/Rente/Muetterrente_KEZ/KEZ_Muetterrente-III",
+      "title": "Mütterrente III",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-09",
+  "valid_from": "2026-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "1 Jahr KEZ = ca. 42,52 Euro Rente/Monat (2026)",
+    "Mütterrente III: +6 Monate für vor 1992 geborene Kinder (ab 2028)",
+    "Automatische Anrechnung bei Rentenantrag"
+  ],
+  "created_at": "2026-09-09",
+  "updated_at": "2026-09-09"
+}

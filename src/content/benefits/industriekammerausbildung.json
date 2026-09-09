@@ -1,0 +1,179 @@
+{
+  "id": "industriekammerausbildung",
+  "official_name": "IHK-Ausbildung / Handwerkskammer-Ausbildung (Industrie- und Handelskammer / Handwerkskammer)",
+  "aliases": ["IHK-Ausbildung", "Handwerkskammer-Ausbildung", "HWK-Ausbildung", "Kammerausbildung", "Berufsausbildung", "Duale Ausbildung"],
+  "former_names": [],
+  "type": "education_benefit",
+  "status": "verified",
+  "category": "Studium & Bildung",
+  "subcategory": "Berufsausbildung und Kammerorganisation",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Industrie- und Handelskammer (IHK) / Handwerkskammer (HWK)",
+    "authority": "IHK / HWK (örtlich zuständig)",
+    "url": "https://www.dihk.de/",
+    "phone": ""
+  },
+  "target_groups": ["Auszubildende", "Betriebe", "Berufsrückkehrer", "Umschulungsteilnehmer"],
+  "life_situations": ["ausbildung", "arbeit_arbeitnehmer"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "ihk_ausbildungsvertrag",
+        "description": "Ausbildungsvertrag mit einem anerkannten Ausbildungsbetrieb",
+        "condition": "ausbildungsvertrag_vorhanden",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ihk_schulabschluss",
+        "description": "Mindestens Hauptschulabschluss (je nach Beruf)",
+        "condition": "schulabschluss >= hauptschule",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ihk_berufsaushilfe",
+        "description": "Berufsaushilfe oder Volljährigkeit",
+        "condition": "volljaehrig OR berufsaushilfe",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "ihk_eignung",
+        "description": "Eignung für den angestrebten Beruf (körperlich, geistig, sprachlich)",
+        "condition": "eignung_nach_pruefung",
+        "required": false,
+        "category": "health"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Ausbildungsvergütung",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2025-01-01"
+      }
+    ],
+    "asset_rules": {
+      "threshold": 0,
+      "exemptions": [],
+      "last_updated": "2025-01-01"
+    },
+    "special_conditions": [
+      "Ausbildung in überbetrieblichen Bildungsstätten (ÜBS)",
+      "Ausbildung in außerbetrieblichen Einrichtungen",
+      "Umschulung für Berufsrückkehrer",
+      "Internationale Berufsausbildung"
+    ]
+  },
+  "calculation": {
+    "method": "Keine direkte Förderung, aber Beratung und Prüfungsorganisation",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Beratung und Vermittlung",
+        "value": "Kostenlose Beratung für Auszubildende und Betriebe",
+        "note": "IHK/HWK vermittelt Ausbildungsplätze"
+      },
+      {
+        "step": 2,
+        "description": "Prüfungsorganisation",
+        "value": "Abschlussprüfungen (Zwischen- und Abschlussprüfung)",
+        "note": "Prüfungsgebühren variieren je nach Beruf"
+      },
+      {
+        "step": 3,
+        "description": "Ausbildungsvergütung",
+        "value": "Tarifliche oder betriebliche Ausbildungsvergütung",
+        "note": "Keine Förderung durch IHK/HWK"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Keine direkte Förderung",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "IHK/HWK-Ausbildung: Keine direkte Förderung, aber Beratung und Prüfungsorganisation. Ausbildungsvergütung durch Betrieb.",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": 0,
+    "depends_on": ["Betrieb", "Beruf", "Tarif"]
+  },
+  "application": {
+    "method": "Bewerbung bei Betrieben, Beratung bei IHK/HWK",
+    "url": "https://www.dihk.de/",
+    "forms": ["Bewerbungsformular", "Ausbildungsvertrag"],
+    "required_documents": ["Lebenslauf", "Schulzeugnisse", "Praktikumsnachweise", "Ausbildungsvertrag"],
+    "processing_time": "Variiert",
+    "deadlines": {
+      "description": "Bewerbungsfristen variieren je nach Betrieb und Beruf",
+      "note": "Ausbildungsbeginn meist im August/September"
+    }
+  },
+  "legal_basis": ["Berufsbildungsgesetz (BBiG)", "Handwerksordnung (HwO)", "IHK-Gesetz"],
+  "compatible_with": ["berufsausbildungsbeihilfe_bab", "bafoeg", "weiterbildungsfoerderung"],
+  "incompatible_with": [],
+  "related_benefits": ["berufsausbildungsbeihilfe_bab", "bafoeg", "weiterbildungsfoerderung"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die IHK und HWK organisieren und überwachen die Berufsausbildung in Deutschland. Sie bieten Beratung, vermitteln Ausbildungsplätze und organisieren Abschlussprüfungen.",
+    "for_whom": "Auszubildende in kaufmännischen (IHK) und handwerklichen (HWK) Berufen. Auch Betriebe und Berufsrückkehrer werden beraten.",
+    "requirements": "Ausbildungsvertrag mit einem anerkannten Ausbildungsbetrieb, mindestens Hauptschulabschluss, Volljährigkeit oder Berufsaushilfe.",
+    "how_much": "Keine direkte Förderung durch IHK/HWK. Die Ausbildungsvergütung wird vom Betrieb gezahlt. IHK/HWK bieten kostenlose Beratung.",
+    "how_calculated": "Die Ausbildungsvergütung richtet sich nach Tarifverträgen oder betrieblichen Regelungen. IHK/HWK bieten keine finanzielle Förderung.",
+    "documents_needed": "Lebenslauf, Schulzeugnisse, Praktikumsnachweise, Ausbildungsvertrag.",
+    "where_to_apply": "Bewerbung bei Betrieben. Beratung bei der zuständigen IHK oder HWK.",
+    "deadlines": "Bewerbungsfristen variieren je nach Betrieb und Beruf. Ausbildungsbeginn meist im August/September.",
+    "faq": [
+      {
+        "question": "Was ist der Unterschied zwischen IHK und HWK?",
+        "answer": "Die IHK ist für kaufmännische Berufe zuständig (z.B. Kaufmann/Kauffrau für Büromanagement). Die HWK ist für handwerkliche Berufe zuständig (z.B. Elektriker, Schreiner)."
+      },
+      {
+        "question": "Kann ich mich bei der IHK/HWK bewerben?",
+        "answer": "Nein, Sie bewerben sich direkt bei Betrieben. Die IHK/HWK bietet Beratung und vermittelt Ausbildungsplätze."
+      },
+      {
+        "question": "Was kostet die Ausbildung?",
+        "answer": "Die Ausbildung selbst kostet nichts. Sie erhalten eine Ausbildungsvergütung vom Betrieb. Prüfungsgebühren fallen an."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.dihk.de/",
+      "title": "Deutsche Industrie- und Handelskammer (DIHK)",
+      "organization": "DIHK",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.hwk-stuttgart.de/",
+      "title": "Handwerkskammer",
+      "organization": "HWK",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/bbig/",
+      "title": "Berufsbildungsgesetz (BBiG)",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Die IHK und HWK sind öffentlich-rechtliche Körperschaften. Sie organisieren und überwachen die Berufsausbildung. Sie bieten keine direkte finanzielle Förderung, aber kostenlose Beratung und Prüfungsorganisation."],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

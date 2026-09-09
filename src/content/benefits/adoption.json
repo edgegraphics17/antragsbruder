@@ -1,0 +1,156 @@
+{
+  "id": "adoption",
+  "official_name": "Adoptionsvermittlung",
+  "aliases": ["Adoption", "Kindesadoption", "Adoptionsverfahren", "Annahme an Kindes Statt"],
+  "former_names": [],
+  "type": "family_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Adoption",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Jugendamt / Adoptionsvermittlungsstelle",
+    "authority": "Jugendamt des Wohnortes",
+    "url": "https://www.gesetze-im-internet.de/advermig_1976/",
+    "phone": "030 18580-0"
+  },
+  "target_groups": ["Adoptiveltern", "Adoptivkinder", "Waisenkinder"],
+  "life_situations": ["adoption", "kinderlos", "familie"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "ad-001",
+        "description": "Adoptiveltern müssen geeignet sein (Eignungsprüfung)",
+        "condition": "Eignungsprüfung durch Jugendamt",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "ad-002",
+        "description": "Mindestalter der Adoptiveltern",
+        "condition": "In der Regel mindestens 25 Jahre alt",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "ad-003",
+        "description": "Kind muss adoptierbar sein",
+        "condition": "Eltern haben zugestimmt oder Sorgerecht entzogen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ad-004",
+        "description": "Adoption dient dem Wohl des Kindes",
+        "condition": "Kindeswohl muss gewährleistet sein",
+        "required": true,
+        "category": "personal"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Adoptionsvermittlung ist Aufgabe des Jugendamtes",
+      "Eignungsprüfung umfasst persönliche, familiäre und gesundheitliche Umstände",
+      "Adoption wird durch Familiengericht ausgesprochen",
+      "Inlands- und Auslandsadoption möglich"
+    ]
+  },
+  "calculation": {
+    "method": "Keine finanzielle Leistung - Vermittlungsleistung des Jugendamtes",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Eignungsprüfung durch Jugendamt",
+        "value": "Beratung und Prüfung"
+      },
+      {
+        "step": 2,
+        "description": "Vermittlung eines Kindes",
+        "value": "Wartezeit: 1-5 Jahre"
+      },
+      {
+        "step": 3,
+        "description": "Gerichtliche Aussprache der Adoption",
+        "value": "Familiengericht"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Keine finanzielle Leistung",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Keine finanzielle Leistung - Vermittlungsleistung durch Jugendamt",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": null,
+    "depends_on": []
+  },
+  "application": {
+    "method": "Schriftlich beim Jugendamt",
+    "url": "https://www.gesetze-im-internet.de/advermig_1976/",
+    "forms": ["Antrag auf Adoptionsvermittlung"],
+    "required_documents": ["Personalausweise", "Einkommensnachweise", "Ärztliches Attest", "Führungszeugnis"],
+    "processing_time": "1-5 Jahre (Vermittlung)",
+    "deadlines": {
+      "description": "Keine formelle Frist",
+      "note": "Wartezeiten können mehrere Jahre betragen"
+    }
+  },
+  "legal_basis": ["Adoptionsvermittlungsgesetz (AdVermiG)", "§§ 1741 ff. BGB (Bürgerliches Gesetzbuch)"],
+  "compatible_with": ["elterngeld", "elternzeit", "kindergeld"],
+  "incompatible_with": [],
+  "related_benefits": ["vormundschaft", "elterngeld", "kindergeld"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Adoption ist die rechtliche Aufnahme eines Kindes als eigenes Kind durch das Familiengericht.",
+    "for_whom": "Paare und Singles, die ein Kind adoptieren möchten",
+    "requirements": "Eignungsprüfung, Mindestalter, geeignete Lebensverhältnisse",
+    "how_much": "Keine finanzielle Leistung - Vermittlungsleistung durch Jugendamt",
+    "how_calculated": "Eignungsprüfung, Vermittlung, gerichtliche Aussprache",
+    "documents_needed": "Personalausweise, Einkommensnachweise, ärztliches Attest, Führungszeugnis",
+    "where_to_apply": "Jugendamt (Adoptionsvermittlungsstelle)",
+    "deadlines": "Keine formelle Frist, Wartezeiten 1-5 Jahre",
+    "faq": [
+      {
+        "question": "Wie lange dauert eine Adoption?",
+        "answer": "Die Wartezeit beträgt in der Regel 1-5 Jahre, je nach Art der Adoption"
+      },
+      {
+        "question": "Kann ich nach der Adoption Elterngeld bekommen?",
+        "answer": "Ja, Adoptiveltern haben Anspruch auf Elterngeld und Elternzeit"
+      },
+      {
+        "question": "Was ist der Unterschied zwischen Inlands- und Auslandsadoption?",
+        "answer": "Inlandsadoption: Kind aus Deutschland, Auslandsadoption: Kind aus dem Ausland (zusätzliche Voraussetzungen)"
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/advermig_1976/",
+      "title": "Adoptionsvermittlungsgesetz (AdVermiG)",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bundesjustizamt.de/EN/Topics/FamilyMattersInternational/IntercountryAdoption/Information/Information_node.html",
+      "title": "Information on Intercountry adoption - BfJ",
+      "organization": "Bundesamt für Justiz",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Adoptionsvermittlung ist Aufgabe des Jugendamtes", "Eignungsprüfung nach § 7 AdVermiG", "Wartezeiten können mehrere Jahre betragen"],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

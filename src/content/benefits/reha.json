@@ -1,0 +1,174 @@
+{
+  "id": "reha",
+  "official_name": "Medizinische und berufliche Rehabilitation (Reha)",
+  "aliases": [
+    "Reha",
+    "Rehabilitation",
+    "Leistungen zur Teilhabe",
+    "Medizinische Reha",
+    "Berufliche Reha"
+  ],
+  "former_names": [],
+  "type": "health_benefit",
+  "status": "verified",
+  "category": "Gesundheit & Rehabilitation",
+  "subcategory": "Rehabilitation",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Deutsche Rentenversicherung / Agentur für Arbeit / Krankenkassen",
+    "authority": "Zuständiger Rehabilitationsträger",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Reha/Medizinische-Reha/medizinische-reha_node",
+    "phone": "0800 1000 4800"
+  },
+  "target_groups": [
+    "Versicherte mit gesundheitlichen Einschränkungen",
+    "Menschen mit Behinderung",
+    "Arbeitsunfallopfer"
+  ],
+  "life_situations": [
+    "gesundheit",
+    "kann_nicht_arbeiten",
+    "behinderung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "reha-r1",
+        "description": "Arbeitsfähigkeit ist gefährdet oder gemindert",
+        "condition": "arbeitsfaehigkeit_gefaehrdet",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "reha-r2",
+        "description": "Mindestversicherungszeit: 15 Jahre Wartezeit oder 6 Monate Pflichtbeiträge in letzten 2 Jahren",
+        "condition": "wartezeit_erfuellt",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "reha-r3",
+        "description": "Letzte Reha mindestens 4 Jahre her (Ausnahmen möglich)",
+        "condition": "letzte_reha_4_jahre",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "reha-r4",
+        "description": "Kein Ausschlussgrund (z.B. Beamte auf Lebenszeit bei RV)",
+        "condition": "kein_ausschlussgrund",
+        "required": true,
+        "category": "status"
+      }
+    ]
+  },
+  "calculation": {
+    "method": "Kostenübernahme für Leistungen zur medizinischen und beruflichen Rehabilitation",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Medizinische Reha: Vollstationär oder ambulant, Dauer ca. 3 Wochen"
+      },
+      {
+        "step": 2,
+        "description": "Berufliche Reha: Umschulung, Einarbeitung, Weiterbildung"
+      },
+      {
+        "step": 3,
+        "description": "Leistungen zur Teilhabe am Arbeitsleben: Hilfsmittel, Fahrtkosten"
+      }
+    ],
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Kostenübernahme für Reha-Maßnahmen",
+    "depends_on": [
+      "art_der_reha",
+      "dauer",
+      "kosten"
+    ]
+  },
+  "application": {
+    "method": "Online oder schriftlich bei der Deutschen Rentenversicherung oder Agentur für Arbeit",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Reha/Medizinische-Reha/medizinische-reha_node",
+    "forms": [
+      "Antrag auf Leistungen zur medizinischen Rehabilitation",
+      "Antrag auf Leistungen zur Teilhabe am Arbeitsleben"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Ärztliche Befunde",
+      "Arbeitsunfähigkeitsbescheinigungen",
+      "Rentenversicherungsnummer"
+    ],
+    "processing_time": "ca. 4-8 Wochen"
+  },
+  "legal_basis": [
+    "§§ 15-20 SGB VI (Medizinische Reha)",
+    "§§ 42-58 SGB IX (Teilhabe am Arbeitsleben)",
+    "§§ 32-39 SGB III (Berufliche Reha)"
+  ],
+  "compatible_with": [
+    "sozialversicherung",
+    "erwerbsminderung",
+    "sozialhilfe"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "sozialversicherung",
+    "erwerbsminderung",
+    "krankengeld"
+  ],
+  "user_content": {
+    "short_explanation": "Reha-Leistungen helfen Ihnen, Ihre Arbeitsfähigkeit zu erhalten oder wiederherzustellen, oder Sie in einen neuen Beruf einzuarbeiten.",
+    "for_whom": "Für Versicherte, deren Arbeitsfähigkeit gefährdet ist oder die eine Behinderung haben.",
+    "requirements": "Ihre Arbeitsfähigkeit muss gefährdet oder gemindert sein, Sie müssen die Wartezeit erfüllt haben und die letzte Reha muss mindestens 4 Jahre her sein.",
+    "how_much": "Kostenübernahme für die Reha-Maßnahme (ca. 3 Wochen stationär). Zusätzlich Übergangsgeld (68% der letzten Rente).",
+    "how_calculated": "Keine individuelle Berechnung, Kosten werden direkt übernommen. Übergangsgeld: 68% des letzten Bruttoentgelts.",
+    "documents_needed": "Ärztliche Befunde, Arbeitsunfähigkeitsbescheinigungen, Rentenversicherungsnummer",
+    "where_to_apply": "Bei der Deutschen Rentenversicherung (medizinische Reha) oder Agentur für Arbeit (berufliche Reha)",
+    "deadlines": "Antrag vor Beginn der Reha stellen. Frist: 4 Jahre seit letzter Reha.",
+    "faq": [
+      {
+        "question": "Was ist der Unterschied zwischen medizinischer und beruflicher Reha?",
+        "answer": "Medizinische Reha: Wiederherstellung der Gesundheit. Berufliche Reha: Einarbeitung in neuen Beruf oder Umschulung."
+      },
+      {
+        "question": "Bekomme ich während der Reha mein Gehalt?",
+        "answer": "Nein, aber Sie erhalten Übergangsgeld (68% des letzten Bruttoentgelts) von der Rentenversicherung."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Reha/Medizinische-Reha/medizinische-reha_node",
+      "title": "Medizinische Reha",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.arbeitsagentur.de/menschen-mit-behinderungen/berufliche-rehabilitation",
+      "title": "Berufliche Rehabilitation",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-09-08",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Medizinische Reha: Wartezeit 15 Jahre oder 6 Monate in 2 Jahren",
+    "Berufliche Reha: Zuständigkeit Agentur für Arbeit oder RV",
+    "Übergangsgeld: 68% des Bruttoentgelts"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

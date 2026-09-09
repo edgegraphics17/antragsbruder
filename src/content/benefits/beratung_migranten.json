@@ -1,0 +1,174 @@
+{
+  "id": "beratung_migranten",
+  "official_name": "Migrationsberatung für erwachsene Zugewanderte (MBE) und Jugendmigrationsdienst (JMD)",
+  "aliases": ["Migrationsberatung", "Jugendmigrationsdienst", "JMD", "MBE", "Erwachsenenmigrationsdienst", "Sozialberatung Migranten"],
+  "former_names": [],
+  "type": "integration_benefit",
+  "status": "verified",
+  "category": "Integration & Aufenthalt",
+  "subcategory": "Migrationsberatung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "BAMF / Jugendämter / Träger der freien Wohlfahrtspflege",
+    "authority": "Bundesamt für Migration und Flüchtlinge (BAMF) / Kommunale Jugendämter",
+    "url": "https://www.bamf.de/DE/Themen/Integration/Migrationsberatung/migrationsberatung-node.html",
+    "phone": "030 1815-1111"
+  },
+  "target_groups": [
+    "Erwachsene Zugewanderte (MBE)",
+    "Jugendliche und junge Erwachsene mit Migrationshintergrund (JMD)",
+    "Asylbewerber und Geduldete",
+    "Rückkehrer",
+    "EU-Bürger mit Integrationsbedarf"
+  ],
+  "life_situations": ["neu_in_deutschland", "migration", "asyl", "eu_bürger"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "bm-001",
+        "description": "Migrationsberatung für Erwachsene (MBE)",
+        "condition": "Erwachsene Ausländer mit Aufenthaltstitel oder Duldung; innerhalb von 5 Jahren nach Einreise",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "bm-002",
+        "description": "Jugendmigrationsdienst (JMD)",
+        "condition": "Jugendliche und junge Erwachsene (12-27 Jahre) mit Migrationshintergrund",
+        "required": false,
+        "category": "personal"
+      },
+      {
+        "rule_id": "bm-003",
+        "description": "Asylbewerber und Geduldete",
+        "condition": "Asylbewerber und Geduldete haben Anspruch auf MBE",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Alle",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Kostenlose Beratung",
+      "Vertraulich und unverbindlich",
+      "Beratung auf Deutsch und oft in Herkunftssprache",
+      "Träger: Caritas, Diakonie, AWO, ZWst, Paritätischer etc.",
+      "JMD: Beratung in Schulen, Jugendzentren, online"
+    ]
+  },
+  "calculation": {
+    "method": "Kein Geldbetrag; kostenlose Beratungsleistung",
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Kostenlos",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Kostenlose Migrationsberatung; keine regelmäßige Zahlung",
+    "depends_on": ["Art der Beratung", "Träger", "Zielgruppe"]
+  },
+  "application": {
+    "method": "Persönlich, telefonisch oder online bei Beratungsstellen",
+    "url": "https://www.bamf.de/DE/Themen/Integration/Migrationsberatung/migrationsberatung-node.html",
+    "forms": ["Keine; direkte Kontaktaufnahme"],
+    "required_documents": [
+      "Keine Pflichtunterlagen",
+      "ggf. Aufenthaltstitel oder Duldung"
+    ],
+    "processing_time": "Sofort oder innerhalb weniger Tage",
+    "deadlines": {
+      "description": "Keine Frist; Beratung bei Bedarf",
+      "note": "MBE: innerhalb von 5 Jahren nach Einreise förderfähig"
+    }
+  },
+  "legal_basis": [
+    "§ 45 AufenthG – Beratung für Ausländer",
+    "Förderrichtlinie zur Durchführung einer Migrationsberatung für erwachsene Zugewanderte (MBE)",
+    "§ 13 SGB VIII – Jugendmigrationsdienst",
+    "§ 27 SGB VIII – Hilfen zur Erziehung"
+  ],
+  "compatible_with": [
+    "integrationskurs",
+    "deutschkurs",
+    "arbeitsmarktzugang",
+    "anerkennung_abschluss",
+    "schutzsuchende"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "integrationskurs",
+    "deutschkurs",
+    "arbeitsmarktzugang"
+  ],
+  "user_content": {
+    "short_explanation": "Die Migrationsberatung hilft Ihnen bei allen Fragen zur Integration in Deutschland: Sprachkurse, Arbeit, Ausbildung, Behördengänge, Wohnen und mehr. Die Beratung ist kostenlos und vertraulich.",
+    "for_whom": "Für alle Migranten, Asylbewerber, Geduldete und junge Menschen mit Migrationshintergrund, die Unterstützung bei der Integration brauchen.",
+    "requirements": "Keine besonderen Voraussetzungen. Die Beratung ist für alle zugänglich.",
+    "how_much": "Kostenlos. Die Beratung wird vom BAMF und den Jugendämtern finanziert.",
+    "how_calculed": "Die Beratung ist eine kostenlose Sozialleistung. Sie müsse nichts bezahlen.",
+    "documents_needed": "Keine Pflichtunterlagen. Bringen Sie am besten Ihre Aufenthaltspapiere mit.",
+    "where_to_apply": "Beratungsstellen von Caritas, Diakonie, AWO, ZWst, Paritätischer etc. Jugendämter für JMD. Infos: bamf.de/migrationsberatung.",
+    "deadlines": "Keine Frist. Beratung bei Bedarf. MBE: innerhalb von 5 Jahren nach Einreise förderfähig.",
+    "faq": [
+      {
+        "question": "Ist die Beratung wirklich kostenlos?",
+        "answer": "Ja, die Migrationsberatung ist komplett kostenlos und vertraulich. Sie müsse nichts bezahlen."
+      },
+      {
+        "question": "Brauche ich einen Termin?",
+        "answer": "Manche Stellen bieten Sprechstunden ohne Termin an. Es ist aber besser, vorher anzurufen."
+      },
+      {
+        "question": "Kann ich die Beratung auf Arabisch/Türkisch/Englisch bekommen?",
+        "answer": "Ja, viele Beratungsstellen bieten Beratung in verschiedenen Spragen an. Fragen Sie nach."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bamf.de/DE/Themen/Integration/Migrationsberatung/migrationsberatung-node.html",
+      "title": "Migrationsberatung – BAMF",
+      "organization": "Bundesamt für Migration und Flüchtlinge (BAMF)",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.bmi.bund.de/DE/themen/demokratie-gesellschaft/integration/migrationsberatung/migrationsberatung-node.html",
+      "title": "Migrationsberatung für erwachsene Zugewanderte – BMI",
+      "organization": "Bundesministerium des Innern (BMI)",
+      "last_verified": "2026-09-08",
+      "type": "federal_ministry"
+    },
+    {
+      "url": "https://www.verwaltungsvorschriften-im-internet.de/bsvwvbund_26052023_HI321008258.htm",
+      "title": "Förderrichtlinie zur Durchführung einer Migrationsberatung für erwachsene Zugewanderte (MBE)",
+      "organization": "Verwaltungsvorschriften im Internet",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2005-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "MBE: Migrationsberatung für erwachsene Zugewanderte (ab 27 Jahren)",
+    "JMD: Jugendmigrationsdienst (12-27 Jahre)",
+    "Beide Leistungen sind kostenlos und vertraulich",
+    "Träger: Caritas, Diakonie, AWO, ZWst, Paritätischer etc.",
+    "Förderrichtlinie MBE seit 2023 aktualisiert"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

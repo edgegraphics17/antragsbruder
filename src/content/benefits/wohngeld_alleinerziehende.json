@@ -1,0 +1,190 @@
+{
+  "id": "wohngeld_alleinerziehende",
+  "official_name": "Wohngeld für Alleinerziehende",
+  "aliases": [
+    "Wohngeld Alleinerziehende",
+    "Alleinerziehende Wohngeld",
+    "Wohngeld mit Kindern"
+  ],
+  "former_names": [],
+  "type": "housing_benefit",
+  "status": "verified",
+  "category": "Wohnen & Immobilien",
+  "subcategory": "Wohngeld für Alleinerziehende",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Wohngeldbehörde",
+    "authority": "Wohngeldbehörde der Gemeinde / Stadt",
+    "url": "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld-plus/wohngeld-plus_node.html"
+  },
+  "target_groups": [
+    "Alleinerziehende Eltern",
+    "Alleinerziehende mit Kindern unter 18"
+  ],
+  "life_situations": [
+    "alleinerziehend",
+    "wohnkosten_hoch",
+    "familie"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "alleinerziehend_single_parent",
+        "description": "Alleinerziehend",
+        "condition": "Antragsteller ist allein erziehend (lebt allein mit Kindern)",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "alleinerziehend_child_age",
+        "description": "Kind unter 18",
+        "condition": "Mindestens ein Kind unter 18 Jahren im Haushalt",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "alleinerziehend_income",
+        "description": "Einkommensgrenze",
+        "condition": "Einkommen unter der Grenze für Haushaltsgröße und Mietstufe",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "alleinerziehend_bedarfsgemeinschaft",
+        "description": "Bedarfsgemeinschaft",
+        "condition": "Alleinerziehende und Kinder bilden eine Bedarfsgemeinschaft",
+        "required": true,
+        "category": "household"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Alleinerziehende mit 1 Kind, Mietstufe 4",
+        "threshold": 1541,
+        "threshold_type": "monthly",
+        "free_allowance": 110,
+        "last_updated": "2026-01-01"
+      }
+    ],
+    "special_conditions": [
+      "Freibetrag für Alleinerziehende: 1.320 Euro/Jahr",
+      "Kinder zählen als Haushaltsmitglieder für höhere Einkommensgrenzen",
+      "Bedarfsgemeinschaft umfasst alleinerziehendes Elternteil und Kinder"
+    ]
+  },
+  "calculation": {
+    "method": "Wie normales Wohngeld, aber mit Freibetrag für Alleinerziehende",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Gesamteinkommen ermitteln"
+      },
+      {
+        "step": 2,
+        "description": "Freibetrag für Alleinerziehende abziehen",
+        "note": "1.320 Euro/Jahr = 110 Euro/Monat"
+      },
+      {
+        "step": 3,
+        "description": "Wohngeld wie normal berechnen"
+      }
+    ],
+    "min_amount": 10,
+    "max_amount": 1566,
+    "typical_amount": "ca. 350-450 Euro monatlich",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Wohgeld für Alleinerziehende mit Freibetrag. Höhere Einkommensgrenzen durch Kinder.",
+    "min_monthly": 10,
+    "max_monthly": 1566,
+    "depends_on": [
+      "Haushaltsgröße",
+      "Mietstufe",
+      "Bruttoeinkommen",
+      "Anzahl Kinder"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich bei der Wohngeldbehörde",
+    "forms": [
+      "Wohngeldantrag"
+    ],
+    "required_documents": [
+      "Mietvertrag",
+      "Einkommensnachweise",
+      "Geburtsurkunden der Kinder",
+      "Sorgerechtsnachweis",
+      "Personalausweis"
+    ],
+    "processing_time": "4-8 Wochen"
+  },
+  "legal_basis": [
+    "§§ 1-46 Wohngeldgesetz (WoGG)",
+    "§ 17 WoGG (Freibeträge)"
+  ],
+  "compatible_with": [
+    "kindergeld",
+    "unterhaltsvorschuss",
+    "bafoeg"
+  ],
+  "incompatible_with": [
+    "buergergeld",
+    "grundsicherung"
+  ],
+  "related_benefits": [
+    "wohngeld",
+    "lastenzuschuss",
+    "kindergeld"
+  ],
+  "user_content": {
+    "short_explanation": "Alleinerziehende erhalten Wohgeld mit einem Freibetrag von 1.320 Euro/Jahr und höheren Einkommensgrenzen.",
+    "for_whom": "Alleinerziehende Eltern, die ihre Wohnkosten kaum noch allein tragen können.",
+    "requirements": "Sie müssen allein erziehend sein (mit Kind unter 18) und ein geringes Einkommen haben.",
+    "how_much": "Im Durchschnitt ca. 350-450 Euro pro Monat, je nach Anzahl der Kinder.",
+    "how_calculations": "Zusätzlich zum normalen Wohgeld gibt es einen Freibetrag von 1.320 Euro/Jahr.",
+    "documents_needed": "Mietvertrag, Einkommensnachweise, Geburtsurkunden, Sorgerechtsnachweis.",
+    "where_to_apply": "Bei der Wohngeldbehörde Ihrer Stadt.",
+    "deadlines": "Wird ab Monat der Antragstellung gewährt.",
+    "faq": [
+      {
+        "question": "Was ist der Freibetrag für Alleinerziehende?",
+        "answer": "1.320 Euro/Jahr werden vom Einkommen abgezogen, bevor das Wohgeld berechnet wird."
+      },
+      {
+        "question": "Zählt mein Partner zur Bedarfsgemeinschaft?",
+        "answer": "Nur wenn er im Haushalt lebt. Bei Trennung zählen nur Sie und Ihre Kinder."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld-plus/wohngeld-plus_node.html",
+      "title": "BMWSB Wohngeld für Mieter",
+      "organization": "Bundesministerium für Wohnen, Stadtentwicklung und Bauwesen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/wogg/",
+      "title": "Wohngeldgesetz (WoGG)",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Alleinerziehende haben Anspruch auf Freibetrag nach § 17 WoGG."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

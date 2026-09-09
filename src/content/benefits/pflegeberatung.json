@@ -1,0 +1,147 @@
+{
+  "id": "pflegeberatung",
+  "official_name": "Pflegeberatung nach § 37.3 SGB XI",
+  "aliases": [
+    "Pflegeberatung",
+    "Beratungseinsatz",
+    "Pflegeberatungseinsatz"
+  ],
+  "former_names": [],
+  "type": "care_benefit",
+  "status": "verified",
+  "category": "Pflege",
+  "subcategory": "Beratung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Pflegekasse",
+    "authority": "Gesetzliche Pflegeversicherung",
+    "url": "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/pflegeberatung",
+    "phone": ""
+  },
+  "target_groups": [
+    "Pflegebedürstige",
+    "Angehörige",
+    "Pflegende"
+  ],
+  "life_situations": [
+    "pflege",
+    "beratung",
+    "angehoerige_pflegen"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "pbr-r1",
+        "description": "Pflegebedürftigkeit oder drohende Pflegebedürftigkeit",
+        "condition": "pflegebeduerftig_oder_drohend",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "pbr-r2",
+        "description": "Beratung im häuslichen Umfeld oder in der Pflegeeinrichtung",
+        "condition": "beratung_haeuslich_oder_einrichtung",
+        "required": true,
+        "category": "location"
+      }
+    ],
+    "special_conditions": [
+      "Kostenlos für Versicherte und Angehörige",
+      "Beratung durch geschulte Pflegeberater",
+      "Kann mehrfach in Anspruch genommen werden"
+    ]
+  },
+  "calculation": {
+    "method": "Kostenlose Beratungsleistung, keine finanzielle Leistung",
+    "steps": [],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Kostenlos",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Kostenlose Beratungsleistung, keine finanzielle Leistung"
+  },
+  "application": {
+    "method": "Telefonisch, online oder persönlich bei der Pflegekasse",
+    "url": "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/pflegeberatung",
+    "forms": [],
+    "required_documents": [
+      "Personalausweis",
+      "ggf. Pflegegrad-Bescheid"
+    ],
+    "processing_time": "Termin innerhalb weniger Tage",
+    "deadlines": {
+      "description": "Keine Frist - Beratung jederzeit möglich",
+      "note": "Vor Beginn der Pflege sollte Beratung eingeholt werden"
+    }
+  },
+  "legal_basis": [
+    "§ 37.3 SGB XI (Pflegeberatung)",
+    "§ 47 SGB XI (Beratung und Information)"
+  ],
+  "compatible_with": [
+    "pflegegeld",
+    "kurzzeitpflege",
+    "verhinderungspflege"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "pflegegeld",
+    "kurzzeitpflege",
+    "verhinderungspflege"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Pflegeberatung ist ein kostenloser Service der Pflegekassen, der Ihnen bei Fragen zur Pflege hilft - ob zu Hause oder in einer Einrichtung.",
+    "for_whom": "Für alle Pflegebedürftigen, Angehörigen und Pflegenden, die Unterstützung bei der Pflegeorganisation brauchen.",
+    "requirements": "Keine besonderen Voraussetzungen - jeder Versicherte hat Anspruch auf kostenlose Pflegeberatung.",
+    "how_mind": "Die Beratung ist komplett kostenlos.",
+    "how_calculated": "Es handelt sich um eine Beratungsleistung, nicht um eine finanzielle Leistung.",
+    "documents_needed": "Personalausweis, ggf. Pflegegrad-Bescheid",
+    "where_to_apply": "Bei Ihrer gesetzlichen Pflegekasse (telefonisch, online oder persönlich)",
+    "deadlines": "Keine Frist. Vor Beginn der Pflege sollte Beratung eingeholt werden.",
+    "faq": [
+      {
+        "question": "Kostet die Pflegeberatung etwas?",
+        "answer": "Nein, die Beratung ist komplett kostenlos für alle Versicherten und Angehörigen."
+      },
+      {
+        "question": "Wie oft kann ich die Pflegeberatung nutzen?",
+        "answer": "Es gibt keine Begrenzung - Sie können die Beratung so oft in Anspruch nehmen, wie Sie benötigen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/pflegeberatung",
+      "title": "Pflegeberatung | BMG",
+      "organization": "Bundesministerium für Gesundheit",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    },
+    {
+      "url": "https://www.caritas.de/glossare/pflegeberatung",
+      "title": "Pflegeberatung - Caritas",
+      "organization": "Caritas",
+      "last_verified": "2026-09-09",
+      "type": "secondary"
+    }
+  ],
+  "last_verified": "2026-09-09",
+  "valid_from": "2026-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Kostenlose Beratung für alle Versicherten",
+    "Beratung durch geschulte Pflegeberater",
+    "Kann mehrfach in Anspruch genommen werden"
+  ],
+  "created_at": "2026-09-09",
+  "updated_at": "2026-09-09"
+}

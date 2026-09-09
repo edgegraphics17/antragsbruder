@@ -1,0 +1,151 @@
+{
+  "id": "elternzeit",
+  "official_name": "Elternzeit",
+  "aliases": ["Elternurlaub", "Babyzeit", "Erziehungsurlaub"],
+  "former_names": ["Erziehungsurlaub"],
+  "type": "family_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Elternzeit",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Arbeitgeber",
+    "authority": "Bundesministerium für Familie, Senioren, Frauen und Jugend (BMFSFJ)",
+    "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/elternzeit",
+    "phone": "030 20179165"
+  },
+  "target_groups": ["Arbeitnehmer", "Arbeitnehmerinnen", "Alleinerziehende"],
+  "life_situations": ["kind_bekommen", "familie", "alleinerziehend"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "ez-001",
+        "description": "Anspruch auf Elternzeit bis zum 3. Lebensjahr des Kindes",
+        "condition": "Kind ist unter 3 Jahre alt",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "ez-002",
+        "description": "Arbeitsverhältnis besteht",
+        "condition": "Arbeitnehmer oder Arbeitnehmerin",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ez-003",
+        "description": "Anmeldung beim Arbeitgeber 7 Wochen vorher",
+        "condition": "Schriftliche Anmeldung 7 Wochen vor Beginn",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ez-004",
+        "description": "Bis zu 24 Monate können zwischen 3. und 8. Lebensjahr verschoben werden",
+        "condition": "Anteil von bis zu 24 Monaten kann bis zum 8. Lebensjahr verschoben werden",
+        "required": false,
+        "category": "personal"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Elternzeit ist unbezahlt",
+      "Kündigungsschutz ab Anmeldung",
+      "Teilzeitarbeit bis 30 Stunden/Woche möglich",
+      "Jeder Elternteil hat eigenen Anspruch"
+    ]
+  },
+  "calculation": {
+    "method": "Keine finanzielle Leistung - Freistellung von der Arbeit",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Gesamtdauer: bis 3 Jahre pro Elternteil",
+        "value": "36 Monate"
+      },
+      {
+        "step": 2,
+        "description": "Verschiebezeitraum: bis 24 Monate bis zum 8. Lebensjahr",
+        "value": "24 Monate"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Unbezahlte Freistellung von der Arbeit",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Keine finanzielle Leistung - Freistellung von der Arbeit für bis zu 3 Jahre",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": null,
+    "depends_on": []
+  },
+  "application": {
+    "method": "Schriftlich beim Arbeitgeber",
+    "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/elternzeit",
+    "forms": ["Schriftliche Anmeldung der Elternzeit"],
+    "required_documents": ["Schriftliche Anmeldung", "Geburtsurkunde (ggf.)"],
+    "processing_time": "Sofort nach Anmeldung",
+    "deadlines": {
+      "description": "7 Wochen vor Beginn der Elternzeit anmelden",
+      "note": "Für Verschiebezeitraum (3-8 Jahre): 13 Wochen vorher"
+    }
+  },
+  "legal_basis": ["§§ 15 ff. BEEG (Bundeselterngeld- und Elternzeitgesetz)"],
+  "compatible_with": ["elterngeld", "kindergeld", "teilzeitarbeit"],
+  "incompatible_with": ["arbeitslosengeld-i"],
+  "related_benefits": ["elterngeld", "kindergeld", "familienpflegezeit"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Elternzeit ist ein Anspruch auf unbezahlte Freistellung von der Arbeit für bis zu 3 Jahre nach der Geburt.",
+    "for_whom": "Arbeitnehmer und Arbeitnehmerinnen mit Kindern unter 3 Jahren",
+    "requirements": "Arbeitsverhältnis, Anmeldung 7 Wochen vorher, Kind unter 3 Jahre",
+    "how_much": "Keine finanzielle Leistung - Freistellung von der Arbeit",
+    "how_calculated": "Bis 3 Jahre pro Elternteil, davon bis 24 Monate bis zum 8. Lebensjahr verschiebbar",
+    "documents_needed": "Schriftliche Anmeldung beim Arbeitgeber, ggf. Geburtsurkunde",
+    "where_to_apply": "Beim eigenen Arbeitgeber",
+    "deadlines": "7 Wochen vor Beginn der Elternzeit anmelden",
+    "faq": [
+      {
+        "question": "Wird die Elternzeit bezahlt?",
+        "answer": "Nein, die Elternzeit ist unbezahlt. Parallel kann Elterngeld beantragt werden"
+      },
+      {
+        "question": "Kann ich während der Elternzeit arbeiten?",
+        "answer": "Ja, Teilzeitarbeit bis 30 Stunden pro Woche ist möglich"
+      },
+      {
+        "question": "Gibt es Kündigungsschutz?",
+        "answer": "Ja, ab der Anmeldung der Elternzeit besteht besonderer Kündigungsschutz"
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/elternzeit",
+      "title": "Elternzeit - BMBFSFJ",
+      "organization": "Bundesministerium für Familie, Senioren, Frauen und Jugend",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/beeg/__15.html",
+      "title": "§ 15 BEEG - Anspruch auf Elternzeit",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Elternzeit ist unbezahlt - parallel Elterngeld möglich", "Kündigungsschutz ab Anmeldung", "Bis 24 Monate bis zum 8. Lebensjahr verschiebbar"],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,173 @@
+{
+  "id": "arbeitnehmerförderung",
+  "official_name": "Allgemeine Arbeitnehmerförderung (Aufstiegsfortbildung, Meister-BAföG, Aufstiegsstipendium)",
+  "aliases": ["Aufstiegs-BAföG", "Meister-BAföG", "Aufstiegsstipendium", "Aufstiegsfortbildungsförderung", "AFBG"],
+  "former_names": ["Meister-BAföG"],
+  "type": "education_benefit",
+  "status": "verified",
+  "category": "Arbeit & Beschäftigung",
+  "subcategory": "Aufstiegsfortbildung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesministerium für Bildung und Forschung (BMBF)",
+    "authority": "BMBF / Aufstiegs-BAföG-Stellen",
+    "url": "https://www.aufstiegs-bafoeg.de/",
+    "phone": "030 181065801"
+  },
+  "target_groups": ["Beschäftigte mit abgeschlossener Berufsausbildung", "Fachkräfte ohne Abitur", "Meisterkandidaten", "Technikerkandidaten"],
+  "life_situations": ["arbeit_arbeitnehmer", "weiterbildung"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "anf-001",
+        "description": "Abgeschlossene Berufsausbildung",
+        "condition": "Sie müssen eine abgeschlossene Berufsausbildung oder eine gleichwertige Qualifikation haben",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "anf-002",
+        "description": "Weiterbildung zu einem höheren Qualifikationsniveau",
+        "condition": "Die Weiterbildung muss zu einem höheren Qualifikationsniveau führen (z.B. Meister, Techniker, Fachwirt)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "anf-003",
+        "description": "Kein Anspruch auf andere Förderungen",
+        "condition": "Kein Anspruch auf Bildungsgutschein oder vergleichbare Leistungen nach SGB III",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "anf-004",
+        "description": "Aufstiegsstipendium: ohne Abitur, aber mit Fachhochschulreife",
+        "condition": "Für das Aufstiegsstipendium: Sie haben keine allgemeine Hochschulzugangsberechtigung, aber eine Fachhochschulreife",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Aufstiegs-BAföG: Zuschuss und Darlehen, unabhängig von Alter, Einkommen und Vermögen",
+      "Aufstiegsstipendium: für Fachkräfte ohne Abitur, die erst nach der Ausbildung eine Hochschulzugangsberechtigung erworben haben",
+      "Meister-BAföG: Förderung von Meisterausbildungen und vergleichbaren Weiterbildungen"
+    ]
+  },
+  "calculation": {
+    "method": "Zuschuss und Darlehen nach Aufstiegsfortbildungsförderungsgesetz (AFBG)",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Antrag bei der zuständigen Stelle",
+        "note": "Aufstiegs-BAföG-Stelle in Ihrem Bundesland"
+      },
+      {
+        "step": 2,
+        "description": "Prüfung der Förderfähigkeit",
+        "note": "Zuständige Stelle prüft Voraussetzungen"
+      },
+      {
+        "step": 3,
+        "description": "Bewilligung und Zahlung",
+        "note": "Zuschuss wird direkt an den Bildungsträger gezahlt"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Zuschuss bis zu 75% der Lehrgangskosten; Darlehen für den Rest",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Zuschuss und Darlehen nach Aufstiegsfortbildungsförderungsgesetz (AFBG)",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Art der Weiterbildung", "Lehrgangskosten", "Persönliche Situation"]
+  },
+  "application": {
+    "method": "Antrag bei der zuständigen Aufstiegs-BAföG-Stelle",
+    "url": "https://www.aufstiegs-bafoeg.de/",
+    "forms": ["Antrag auf Aufstiegs-BAföG"],
+    "required_documents": [
+      "Personalausweis",
+      "Lebenslauf",
+      "Nachweise über Qualifikationen",
+      "Zulassungsbescheinigung des Bildungsträgers",
+      "Kostenangebot des Bildungsträgers"
+    ],
+    "processing_time": "Ca. 4-6 Wochen nach Antragstellung",
+    "deadlines": {
+      "description": "Antrag sollte vor Beginn der Weiterbildung gestellt werden",
+      "note": "Keine nachträgliche Förderung"
+    }
+  },
+  "legal_basis": [
+    "Aufstiegsfortbildungsförderungsgesetz (AFBG)",
+    "§ 81 SGB III (Grundsatz)",
+    "§ 82 SGB III (Förderung beschäftigter Arbeitnehmer)"
+  ],
+  "compatible_with": ["weiterbildung"],
+  "incompatible_with": ["bildungsgutschein"],
+  "related_benefits": ["weiterbildung", "qualifizierungschancengesetz"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Das Aufstiegs-BAföG (ehemals Meister-BAföG) fördert Ihre Weiterbildung zu Meister, Techniker oder Fachwirt – mit Zuschuss und Darlehen.",
+    "for_whom": "Beschäftigte mit abgeschlossener Berufsausbildung, die sich weiterqualifizieren wollen.",
+    "requirements": "Sie müssen eine abgeschlossene Berufsausbildung haben. Die Weiterbildung muss zu einem höheren Qualifikationsniveau führen.",
+    "how_much": "Zuschuss bis zu 75% der Lehrgangskosten. Für den Rest können Sie ein zinsgünstiges Darlehen erhalten.",
+    "how_calculated": "Die zuständige Stelle prüft Ihre Förderfähigkeit und gewährt einen Zuschuss und ggf. ein Darlehen.",
+    "documents_needed": "Personalausweis, Lebenslauf, Nachweise über Qualifikationen, Zulassungsbescheinigung, Kostenangebot.",
+    "where_to_apply": "Antrag bei der zuständigen Aufstiegs-BAföG-Stelle in Ihrem Bundesland.",
+    "deadlines": "Antrag sollte vor Beginn der Weiterbildung gestellt werden.",
+    "faq": [
+      {
+        "question": "Ist das Aufstiegs-BAföG unabhängig vom Einkommen?",
+        "answer": "Ja, das Aufstiegs-BAföG ist unabhängig von Ihrem Alter, Einkommen und Vermögen."
+      },
+      {
+        "question": "Kann ich das Aufstiegs-BAföG auch für eine Teilzeit-Weiterbildung bekommen?",
+        "answer": "Ja, auch für Teilzeit-Weiterbildungen kann das Aufstiegs-BAföG beantragt werden."
+      },
+      {
+        "question": "Was ist der Unterschied zwischen Aufstiegs-BAföG und Bildungsgutschein?",
+        "answer": "Das Aufstiegs-BAföG richtet sich an Beschäftigte mit abgeschlossener Berufsausbildung. Der Bildungsgutschein richtet sich an Arbeitslose oder von Arbeitslosigkeit bedrohte Personen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.aufstiegs-bafoeg.de/",
+      "title": "Startseite - BMBFSFJ Aufstiegs-BAföG",
+      "organization": "Bundesministerium für Bildung und Forschung",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.bmas.de/DE/Arbeit/Aus-und-Weiterbildung/Berufliche-Weiterbildung/Foerderung-der-beruflichen-Weiterbildung/foerderung-der-beruflichen-weiterbildung-artikel.html",
+      "title": "Ihr Weg zur Förderung der beruflichen Weiterbildung - BMAS",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/afbg/",
+      "title": "Aufstiegsfortbildungsförderungsgesetz (AFBG)",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

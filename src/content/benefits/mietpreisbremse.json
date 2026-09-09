@@ -1,0 +1,131 @@
+{
+  "id": "mietpreisbremse",
+  "official_name": "Mietpreisbremse (§ 556d BGB)",
+  "aliases": [
+    "Mietpreisbegrenzung",
+    "Mietpreisbremse Gesetz",
+    "Mietpreisbegrenzungsverordnung"
+  ],
+  "former_names": [],
+  "type": "housing_benefit",
+  "status": "verified",
+  "category": "Wohnen & Immobilien",
+  "subcategory": "Mietpreisregulierung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Landesregierungen / Kommunen",
+    "authority": "Zuständige Landesbehörde",
+    "url": "https://www.gesetze-im-internet.de/bgb/__556d.html"
+  },
+  "target_groups": [
+    "Mieter in Gebieten mit angespanntem Wohnungsmarkt",
+    "Neumieter"
+  ],
+  "life_situations": [
+    "wohnkosten_hoch",
+    "mieterhoehung",
+    "angespannten_wohnungsmarkt"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "mietpreisbremse_area",
+        "description": "Gebiet mit angespanntem Wohnungsmarkt",
+        "condition": "Wohnort muss von der Landesregierung als Gebiet mit angespanntem Wohnungsmarkt definiert sein",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "mietpreisbremse_new_contract",
+        "description": "Neuer Mietvertrag",
+        "condition": "Mietpreisbremse gilt bei Abschluss eines neuen Mietvertrages",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "mietpreisbremse_local_rent",
+        "description": "Ortsübliche Vergleichsmiete",
+        "condition": "Miete darf die ortsübliche Vergleichsmiete um nicht mehr als 10% übersteigen",
+        "required": true,
+        "category": "income"
+      }
+    ]
+  },
+  "calculation": {
+    "method": "Miete darf max. 10% über der ortsüblichen Vergleichsmiete liegen",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Die Mietpreisbremse begrenzt die Miete auf max. 10% über der ortsüblichen Vergleichsmiete.",
+    "depends_on": [
+      "Ort",
+      "Wohnungsgröße",
+      "Ausstattung"
+    ]
+  },
+  "application": {
+    "method": "Kein Antrag - Gesetz gilt automatisch",
+    "forms": [],
+    "required_documents": [
+      "Mietvertrag",
+      "Vergleichsmieten-Nachweis (falls erforderlich)"
+    ],
+    "processing_time": "Keine Bearbeitungszeit - Gesetzliche Regelung"
+  },
+  "legal_basis": [
+    "§ 556d BGB",
+    "Landesrechtliche Mietpreisbegrenzungsverordnungen"
+  ],
+  "compatible_with": [
+    "wohngeld",
+    "wohnberechtigungsschein"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "wohngeld",
+    "wohnraumfoerderung"
+  ],
+  "user_content": {
+    "short_explanation": "Die Mietpreisbremse begrenzt die Miete bei Neuvermietungen in Gebieten mit angespanntem Wohnungsmarkt.",
+    "for_whom": "Mieter, die eine neue Wohnung in einem Gebiet mit angespanntem Wohnungsmarkt mieten.",
+    "requirements": "Der Wohnort muss als Gebiet mit angespanntem Wohnungsmarkt definiert sein.",
+    "how_much": "Die Miete darf max. 10% über der ortsüblichen Vergleichsmiete liegen.",
+    "how_calculations": "Die ortsübliche Vergleichsmiete wird aus Mietspiegeln ermittelt.",
+    "documents_needed": "Mietvertrag, ggf. Mietspiegel.",
+    "where_to_apply": "Kein Antrag nötig - Gesetz gilt automatisch.",
+    "deadlines": "Mietpreisbremse gilt bei Neuvermietung.",
+    "faq": [
+      {
+        "question": "Gilt die Mietpreisbremse überall?",
+        "answer": "Nur in Gebieten, die von der Landesregierung als angespannt definiert wurden."
+      },
+      {
+        "question": "Was ist die ortsübliche Vergleichsmiete?",
+        "answer": "Die Durchschnittsmiete vergleichbarer Wohnungen in der Umgebung."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/bgb/__556d.html",
+      "title": "§ 556d BGB - Mietpreisbremse",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2015-06-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Mietpreisbremse wurde bis 31.12.2029 verlängert. Landesrechtliche Verordnungen erforderlich."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

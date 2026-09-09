@@ -1,0 +1,162 @@
+{
+  "id": "wirtschaftliche_rehabilitation",
+  "official_name": "Leistungen zur Teilhabe am Arbeitsleben (LTA) / Wirtschaftliche Rehabilitation",
+  "aliases": [
+    "Berufliche Rehabilitation",
+    "Gründungszuschuss der Rentenversicherung",
+    "DRV-Gründungszuschuss"
+  ],
+  "former_names": [],
+  "type": "business_subsidy",
+  "status": "verified",
+  "category": "Rehabilitation",
+  "subcategory": "Berufliche Rehabilitation für Versicherte",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Deutsche Rentenversicherung",
+    "authority": "DRV",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Reha/Berufliche-Reha/berufliche-reha_node",
+    "phone": "0800 10004800"
+  },
+  "target_groups": [
+    "Versicherte der DRV",
+    "Menschen mit Erwerbsminderung",
+    "Reha-Bedürftige"
+  ],
+  "life_situations": [
+    "arbeit_selbststaendig",
+    "gründung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "wr_01",
+        "description": "Versicherung bei der Deutschen Rentenversicherung",
+        "condition": "versichert_drv = true",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "wr_02",
+        "description": "Durch Aufnahme einer selbständigen Tätigkeit kann die Erwerbsminderung überwunden werden",
+        "condition": "erwerbsminderung_ueberwindbar = true",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "wr_03",
+        "description": "Fachkundige Stellungnahme der DRV",
+        "condition": "stellungnahme_drv = true",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "special_conditions": [
+      "Vorrangprinzip: Reha vor Rente",
+      "Auch für Selbstständige möglich",
+      "Antragstellung vor Beginn der Selbstständigkeit"
+    ]
+  },
+  "calculation": {
+    "method": "Individuelle Förderung je nach Rehabedarf",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Beratungsgespräch mit der DRV",
+        "note": "Erstberatung und Bedarfsermittlung"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Individuell",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Individuelle Förderung je nach Rehabedarf und Gründungsvorhaben",
+    "depends_on": [
+      "rehabedarf",
+      "gründungsvorhaben",
+      "versicherungsstatus"
+    ]
+  },
+  "application": {
+    "method": "Bei der zuständigen DRV-Regionalstelle",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Reha/Berufliche-Reha/berufliche-reha_node",
+    "forms": [
+      "Formularpaket Leistungen zur Teilhabe am Arbeitsleben"
+    ],
+    "required_documents": [
+      "Antrag auf Gründungszuschuss",
+      "Geschäftsplan",
+      "Finanzplan",
+      "Fachkundige Stellungnahme",
+      "Ärztliche Unterlagen (bei Erwerbsminderung)"
+    ],
+    "processing_time": "8-12 Wochen",
+    "deadlines": {
+      "description": "Vor Beginn der Selbstständigkeit",
+      "note": "Antrag vor Gründungsbeginn stellen"
+    }
+  },
+  "legal_basis": [
+    "§ 3 SGB VI",
+    "§ 97 SGB VI",
+    "Leistungen zur Teilhabe am Arbeitsleben"
+  ],
+  "compatible_with": [
+    "existenzgruenderkredit",
+    "gruendercoaching"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "gruendungszuschuss",
+    "existenzgruenderkredit"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Deutsche Rentenversicherung fördert die Aufnahme einer selbständigen Tätigkeit, wenn dadurch Erwerbsminderung überwunden werden kann.",
+    "for_whom": "Versicherte der DRV, die durch Selbstständigkeit ihre Erwerbsminderung überwinden können",
+    "requirements": "Versicherung bei DRV, Rehabedarf, tragfähige Geschäftsidee",
+    "how_much": "Individuell je nach Rehabedarf",
+    "how_calculated": "Abhängig vom Rehabedarf und dem Gründungsvorhaben",
+    "documents_needed": "Antrag, Geschäftsplan, Finanzplan, ärztliche Unterlagen",
+    "where_to_apply": "Bei der DRV-Regionalstelle",
+    "deadlines": "Antrag vor Gründungsbeginn stellen",
+    "faq": [
+      {
+        "question": "Brauche ich eine Erwerbsminderung?",
+        "answer": "Ja, die Förderung setzt voraus, dass durch die Selbstständigkeit eine Erwerbsminderung überwunden werden kann."
+      },
+      {
+        "question": "Kann ich die Förderung mit dem Gründungszuschuss kombinieren?",
+        "answer": "Ja, beide Förderungen lassen sich kombinieren."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Reha/Berufliche-Reha/berufliche-reha_node",
+      "title": "Berufliche Rehabilitation - DRV",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2001-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Vorrangprinzip: Reha vor Rente",
+    "Auch für Selbstständige möglich",
+    "Antrag vor Gründungsbeginn erforderlich"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

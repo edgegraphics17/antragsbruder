@@ -1,0 +1,153 @@
+{
+  "id": "eigentumsfoerderung",
+  "official_name": "Eigentumsförderung (KfW und Landesprogramme)",
+  "aliases": [
+    "Wohneigentumsförderung",
+    "KfW Wohneigentum",
+    "Förderkredit Eigenheim"
+  ],
+  "former_names": [],
+  "type": "housing_benefit",
+  "status": "verified",
+  "category": "Wohnen & Immobilien",
+  "subcategory": "Wohneigentum",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "KfW Bankengruppe / Landesförderinstitute",
+    "authority": "KfW und Hausbank",
+    "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/"
+  },
+  "target_groups": [
+    "Familien mit Kindern",
+    "Alleinerziehende",
+    "Erstbezieher von Wohneigentum",
+    "Kauf von Bestandserwerb"
+  ],
+  "life_situations": [
+    "neubau",
+    "eigentum",
+    "familie"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "eigentum_income",
+        "description": "Einkommensgrenze",
+        "condition": "Haushaltseinkommen max. 90.000 Euro + 10.000 Euro pro weiteres Kind",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "eigentum_self_use",
+        "description": "Selbstnutzung",
+        "condition": "Immobilie muss als einzige Wohnimmobilie in Deutschland selbst genutzt werden",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "eigentum_first_time",
+        "description": "Erstbezieher",
+        "condition": "In der Regel nur für Erstbezieher von Wohneigentum",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Familien mit 1 Kind (Kredit 300)",
+        "threshold": 90000,
+        "threshold_type": "yearly",
+        "free_allowance": 10000,
+        "last_updated": "2026-01-01"
+      }
+    ]
+  },
+  "calculation": {
+    "method": "Förderkredit mit günstigen Zinsen und Tilgungszuschuss",
+    "min_amount": 0,
+    "max_amount": 270000,
+    "typical_amount": "Kredit bis 100.000 Euro, Zins ab 0,01%",
+    "frequency": "once",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "KfW-Kredit 300 (Familien): bis 270.000 Euro. Kredit 124: bis 100.000 Euro. Tilgungszuschuss bis 20%.",
+    "one_time": 270000,
+    "depends_on": [
+      "Anzahl Kinder",
+      "Einkommen",
+      "Energiestandard"
+    ]
+  },
+  "application": {
+    "method": "Über Hausbank oder direkt bei KfW",
+    "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/Förderprodukte/Wohneigentum-für-Familien-(300)/",
+    "forms": [
+      "KfW-Antrag über Hausbank"
+    ],
+    "required_documents": [
+      "Kaufvertrag",
+      "Einkommensnachweise",
+      "Finanzierungsplan",
+      "Energieausweis"
+    ],
+    "processing_time": "4-6 Wochen"
+  },
+  "legal_basis": [
+    "KfW-Programme 124, 300, 308",
+    "Landesförderprogramme"
+  ],
+  "compatible_with": [
+    "neubau_zuschuss",
+    "energiesanierung",
+    "wohngeld"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "neubau_zuschuss",
+    "lastenzuschuss",
+    "sanierung_zuschuss"
+  ],
+  "user_content": {
+    "short_explanation": "Die Eigentumsförderung unterstützt Familien beim Kauf oder Bau von Wohneigentum durch günstige Kredite.",
+    "for_whom": "Familien und Alleinerziehende, die ihr erstes Eigenheim kaufen oder bauen wollen.",
+    "requirements": "Einkommen unter 90.000 Euro (+10.000 pro Kind), Selbstnutzung, in der Regel Erstbezieher.",
+    "how_much": "Kredit bis 270.000 Euro mit Zinsen ab 0,01% und Tilgungszuschuss.",
+    "how_calculations": "Die KfW vergibt über die Hausbank günstige Förderkredite.",
+    "documents_needed": "Kaufvertrag, Einkommensnachweise, Finanzierungsplan.",
+    "where_to_apply": "Bei Ihrer Hausbank (Sparkasse, Volksbank etc.).",
+    "deadlines": "Antrag vor Abschluss des Kaufvertrags stellen.",
+    "faq": [
+      {
+        "question": "Kann ich die Förderung auch für Bestandserwerb nutzen?",
+        "answer": "Ja, es gibt Programme für Neubau (300) und Bestandserwerb (308, 124)."
+      },
+      {
+        "question": "Gibt es auch Zuschüsse statt Kredite?",
+        "answer": "Nein, die KfW vergibt Kredite. Einige Bundesländer bieten zusätzliche Zuschüsse an."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/",
+      "title": "KfW Förderung für Neubau",
+      "organization": "KfW Bankengruppe",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "KfW-Programm 300 für Familien, 124 für alle, 308 für Bestandserwerb."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,187 @@
+{
+  "id": "hilfsmittel",
+  "official_name": "Hilfsmittel",
+  "aliases": [
+    "Hilfsmittelversorgung",
+    "Hilfsmittel SGB V",
+    "Hilfsmittel SGB IX",
+    "Rehantleistungen",
+    "Körperersatzstücke",
+    "Orthopädische Hilfsmittel"
+  ],
+  "former_names": [],
+  "type": "health_benefit",
+  "status": "verified",
+  "category": "Gesundheit",
+  "subcategory": "Hilfsmittel",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Krankenkasse",
+    "authority": "Gesetzliche Krankenkasse oder private Krankenversicherung",
+    "url": "https://www.gesetze-im-internet.de/sgb_5/__33.html",
+    "phone": "Kontakt über Krankenkasse"
+  },
+  "target_groups": [
+    "Versicherte mit gesundheitlichen Beeinträchtigungen",
+    "Menschen mit Behinderung",
+    "Pflegebedürftige"
+  ],
+  "life_situations": [
+    "behinderung",
+    "gesundheit",
+    "kann_nicht_arbeiten",
+    "senior"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "elg-hm-01",
+        "description": "Versicherung bei Krankenkasse",
+        "condition": "Die Person ist gesetzlich oder privat krankenversichert",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "elg-hm-02",
+        "description": "Medizinische Notwendigkeit",
+        "condition": "Das Hilfsmittel ist im Einzelfall erforderlich, um die Gesundheit zu erhalten oder zu verbessern",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-hm-03",
+        "description": "Wirtschaftlichkeit",
+        "condition": "Das Hilfsmittel ist wirtschaftlich und angemessen",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Hilfsmittel müssen in der Hilfsmittelliste des G-BA aufgenommen sein",
+      "Eigenanteile können anfallen",
+      "Zuständigkeit: Krankenkasse (SGB V) oder Integrationsamt (SGB IX)"
+    ]
+  },
+  "calculation": {
+    "method": "Kostenerstattung für benötigte Hilfsmittel nach ärztlicher Verordnung",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Ärztliche Verordnung",
+        "value": "Arzt stellt Hilfsmittel fest"
+      },
+      {
+        "step": 2,
+        "description": "Antrag bei Krankenkasse",
+        "value": "Kostenvoranschlag einholen"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Abhängig vom Hilfsmittel",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Kostenerstattung für benötigte Hilfsmittel",
+    "depends_on": [
+      "Art des Hilfsmittels",
+      "Krankenkasse"
+    ]
+  },
+  "application": {
+    "method": "Antrag bei der Krankenkasse mit ärztlicher Verordnung",
+    "url": "https://www.gesetze-im-internet.de/sgb_5/__33.html",
+    "forms": [
+      "Antrag auf Hilfsmittel"
+    ],
+    "required_documents": [
+      "Antrag auf Hilfsmittel",
+      "Ärztliche Verordnung",
+      "Kostenvoranschlag des Hilfsmittelherstellers"
+    ],
+    "processing_time": "2-4 Wochen",
+    "deadlines": {
+      "description": "Antrag vor Beschaffung des Hilfsmittels stellen",
+      "note": "Keine feste Frist, aber rückwirkend maximal 1 Monat vor Antragstellung"
+    }
+  },
+  "legal_basis": [
+    "§ 33 SGB V (Hilfsmittel)",
+    "§ 34 SGB V (Hilfsmittel bei Krankheiten)",
+    "§ 40 SGB XI (Pflegehilfsmittel)"
+  ],
+  "compatible_with": [
+    "pflegegeld",
+    "pflegesachleistungen",
+    "schwerbehinderung",
+    "assistenz",
+    "teilhabe"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "pflegegeld",
+    "pflegesachleistungen",
+    "schwerbehinderung",
+    "assistenz",
+    "teilhabe"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Hilfsmittel sind Gegenstände, die zur Erhaltung oder Verbesserung der Gesundheit dienen, z.B. Rollstühle, Hörgeräte, Prothesen, Orthesen.",
+    "for_whom": "Versicherte mit gesundheitlichen Beeinträchtigungen, die ein Hilfsmittel benötigen.",
+    "requirements": "Versicherung bei Krankenkasse, medizinische Notwendigkeit, Wirtschaftlichkeit.",
+    "how_much": "Abhängig vom Hilfsmittel.",
+    "how_calculated": "Kostenerstattung für benötigte Hilfsmittel nach ärztlicher Verordnung.",
+    "documents_needed": "Antrag auf Hilfsmittel, ärztliche Verordnung, Kostenvoranschlag.",
+    "where_to_apply": "Bei Ihrer Krankenkasse.",
+    "deadlines": "Keine feste Frist. Antrag vor Beschaffung des Hilfsmittels stellen.",
+    "faq": [
+      {
+        "question": "Welche Hilfsmittel werden von der Krankenkasse bezahlt?",
+        "answer": "Hilfsmittel, die in der Hilfsmittelliste des G-BA aufgenommen sind und medizinisch notwendig sind."
+      },
+      {
+        "question": "Muss ich einen Eigenanteil zahlen?",
+        "answer": "Ja, für einige Hilfsmittel können Eigenanteile anfallen. Die Höhe hängt von der Krankenkasse ab."
+      },
+      {
+        "question": "Kann ich auch Hilfsmittel für die Pflege bekommen?",
+        "answer": "Ja, Pflegehilfsmittel (z.B. Pflegebett, Rollstuhl) können über die Pflegeversicherung beantragt werden."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_5/__33.html",
+      "title": "§ 33 SGB V - Hilfsmittel",
+      "organization": "Gesetze im Internet",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.g-ba.de/",
+      "title": "Gemeinsamer Bundesausschuss (G-BA)",
+      "organization": "G-BA",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Hilfsmittel müssen in der Hilfsmittelliste des G-BA aufgenommen sein",
+    "Eigenanteile können anfallen",
+    "Zuständigkeit: Krankenkasse (SGB V) oder Integrationsamt (SGB IX)"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

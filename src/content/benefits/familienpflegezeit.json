@@ -1,0 +1,156 @@
+{
+  "id": "familienpflegezeit",
+  "official_name": "Familienpflegezeit",
+  "aliases": ["Familienpflegezeitgesetz", "FPfZG", "Pflegezeit", "Familienpflege"],
+  "former_names": [],
+  "type": "care_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Familienpflegezeit",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Arbeitgeber",
+    "authority": "Bundesministerium für Arbeit und Soziales (BMAS)",
+    "url": "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/leistungen-der-pflegeversicherung/leistungen-im-ueberblick/wie-wird-die-vereinbarkeit-von-pflege-und-beruf-gefoerdert",
+    "phone": "030 18580-0"
+  },
+  "target_groups": ["Arbeitnehmer", "Arbeitnehmerinnen", "Beschäftigte mit pflegebedürftigen Angehörigen"],
+  "life_situations": ["pflege", "familie", "angehoerige_pflegen"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "fp-001",
+        "description": "Anspruch auf Familienpflegezeit für bis zu 24 Monate",
+        "condition": "Pflegebedürftiger naher Angehöriger in häuslicher Umgebung",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "fp-002",
+        "description": "Betrieb mit mehr als 25 Beschäftigten",
+        "condition": "Rechtsanspruch nur in Betrieben mit >25 MA",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "fp-003",
+        "description": "Mindestarbeitszeit von 15 Wochenstunden während der Familienpflegezeit",
+        "condition": "Arbeitszeit muss wöchentlich mindestens 15 Stunden betragen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "fp-004",
+        "description": "Ankündigung 8 Wochen vor Beginn",
+        "condition": "Schriftliche Ankündigung 8 Wochen vorher",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Familienpflegezeit und Pflegezeit zusammen maximal 24 Monate",
+      "Zinsloses Darlehen möglich",
+      "Kündigungsschutz ab Anmeldung",
+      "In Betrieben mit ≤25 MA: freiwillige Vereinbarung möglich"
+    ]
+  },
+  "calculation": {
+    "method": "Keine finanzielle Leistung - Teilzeitfreistellung von der Arbeit",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Höchstdauer: 24 Monate",
+        "value": "24 Monate"
+      },
+      {
+        "step": 2,
+        "description": "Mindestarbeitszeit: 15 Stunden/Woche",
+        "value": "15 Stunden"
+      },
+      {
+        "step": 3,
+        "description": "Gesamtdauer mit Pflegezeit: max. 24 Monate",
+        "value": "24 Monate"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Keine finanzielle Leistung - Teilzeitfreistellung",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Keine finanzielle Leistung - Teilzeitfreistellung von der Arbeit für bis zu 24 Monate",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": null,
+    "depends_on": []
+  },
+  "application": {
+    "method": "Schriftlich beim Arbeitgeber",
+    "url": "https://www.gesetze-im-internet.de/fpfzg/",
+    "forms": ["Schriftliche Ankündigung der Familienpflegezeit"],
+    "required_documents": ["Schriftliche Ankündigung", "Nachweis der Pflegebedürftigkeit", "Arztbescheinigung"],
+    "processing_time": "4 Wochen (Arbeitgeber muss antworten)",
+    "deadlines": {
+      "description": "8 Wochen vor Beginn der Familienpflegezeit anmelden",
+      "note": "Arbeitgeber muss innerhalb von 4 Wochen antworten"
+    }
+  },
+  "legal_basis": ["Familienpflegezeitgesetz (FPfZG)", "Pflegezeitgesetz (PflegeZG)"],
+  "compatible_with": ["pflegezeit", "elternzeit", "teilzeitarbeit"],
+  "incompatible_with": ["arbeitslosengeld-i"],
+  "related_benefits": ["pflegezeit", "elternzeit", "pflegegeld"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Familienpflegezeit erlaubt es Arbeitnehmern, ihre Arbeitszeit für bis zu 24 Monate zu reduzieren, um nahe Angehörige zu pflegen.",
+    "for_whom": "Arbeitnehmer mit pflegebedürftigen nahen Angehörigen",
+    "requirements": "Betrieb mit >25 Beschäftigten, pflegebedürftiger Angehöriger, Ankündigung 8 Wochen vorher",
+    "how_much": "Keine finanzielle Leistung - Teilzeitfreistellung (mind. 15 Std./Woche)",
+    "how_calculating": "Bis 24 Monate Teilzeitfreistellung, zinsloses Darlehen möglich",
+    "documents_needed": "Schriftliche Ankündigung, Nachweis der Pflegebedürftigkeit, Arztbescheinigung",
+    "where_to_apply": "Beim eigenen Arbeitgeber",
+    "deadlines": "8 Wochen vor Beginn anmelden",
+    "faq": [
+      {
+        "question": "Wird die Familienpflegezeit bezahlt?",
+        "answer": "Nein, es wird das Gehalt für die reduzierte Arbeitszeit gezahlt. Ein zinsloses Darlehen kann beantragt werden"
+      },
+      {
+        "question": "Was ist der Unterschied zwischen Familienpflegezeit und Pflegezeit?",
+        "answer": "Familienpflegezeit: bis 24 Monate Teilzeit (mind. 15 Std.), Pflegezeit: bis 6 Monate vollständige Freistellung"
+      },
+      {
+        "question": "Gibt es Kündigungsschutz?",
+        "answer": "Ja, ab der Anmeldung der Familienpflegezeit besteht Kündigungsschutz"
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/fpfzg/",
+      "title": "Familienpflegezeitgesetz (FPfZG)",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bundesgesundheitsministerium.de/themen/pflege/online-ratgeber-pflege/leistungen-der-pflegeversicherung/leistungen-im-ueberblick/wie-wird-die-vereinbarkeit-von-pflege-und-beruf-gefoerdert",
+      "title": "Wie wird die Vereinbarkeit von Pflege und Beruf gefördert?",
+      "organization": "Bundesministerium für Gesundheit",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Familienpflegezeit: bis 24 Monate, mind. 15 Std./Woche", "Pflegezeit: bis 6 Monate vollständige Freistellung", "Gesamtdauer beider zusammen: max. 24 Monate", "Zinsloses Darlehen möglich"],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

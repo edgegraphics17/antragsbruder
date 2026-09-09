@@ -1,0 +1,168 @@
+{
+  "id": "arbeitsmedizinische_vorsorge",
+  "official_name": "Arbeitsmedizinische Vorsorge",
+  "aliases": [
+    "Arbeitsmedizinische Untersuchungen",
+    "Betriebsärztliche Vorsorge",
+    "Arbeitsschutz Vorsorge",
+    "ArbMedVV"
+  ],
+  "former_names": [],
+  "type": "health_benefit",
+  "status": "verified",
+  "category": "Gesundheit",
+  "subcategory": "Arbeitsmedizinische Vorsorge",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Betriebsarzt",
+    "authority": "Arbeitgeber (beauftragt Betriebsarzt)",
+    "url": "https://www.baua.de/DE/Arbeitsschutz/Arbeitsmedizin/Arbeitsmedizin.html",
+    "phone": "Kontakt über Arbeitgeber oder Betriebsarzt"
+  },
+  "target_groups": [
+    "Beschäftigte",
+    "Arbeitnehmerinnen und Arbeitnehmer",
+    "Personen mit gesundheitlichen Beeinträchtigungen am Arbeitsplatz"
+  ],
+  "life_situations": [
+    "gesundheit",
+    "kann_nicht_arbeiten"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "elg-av-01",
+        "description": "Beschäftigung",
+        "condition": "Die Person ist beschäftigt (Arbeitnehmerin oder Arbeitnehmer)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "elg-av-02",
+        "description": "Gesundheitliche Gefährdung am Arbeitsplatz",
+        "condition": "Am Arbeitsplatz besteht eine gesundheitliche Gefährdung",
+        "required": false,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-av-03",
+        "description": "Arbeitsmedizinische Vorsorge ist vorgeschrieben",
+        "condition": "Die arbeitsmedizinische Vorsorge ist nach ASiG oder ArbMedVV vorgeschrieben",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Pflichtvorsorge: bei bestimmten Gefährdungen",
+      "Angebotsvorsorge: bei Verdacht auf arbeitsbedingte Erkrankung",
+      "Wunschvorsorge: auf Wunsch des Beschäftigten"
+    ]
+  },
+  "calculation": {
+    "method": "Kostenlose arbeitsmedizinische Untersuchungen durch Betriebsarzt",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Arbeitsmedizinische Vorsorge vereinbaren",
+        "value": "Termin beim Betriebsarzt"
+      },
+      {
+        "step": 2,
+        "description": "Untersuchung durchführen",
+        "value": "Arbeitsmedizinische Untersuchung"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Kostenlos für Beschäftigte",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Kostenlose arbeitsmedizinische Untersuchungen",
+    "depends_on": [
+      "Art der Untersuchung"
+    ]
+  },
+  "application": {
+    "method": "Termin beim Betriebsarzt vereinbaren",
+    "url": "https://www.baua.de/DE/Arbeitsschutz/Arbeitsmedizin/Arbeitsmedizin.html",
+    "forms": [],
+    "required_documents": [
+      "Keine Unterlagen erforderlich"
+    ],
+    "processing_time": "Innerhalb von 4 Wochen",
+    "deadlines": {
+      "description": "Keine Frist",
+      "note": "Untersuchungen sollten regelmäßig durchgeführt werden"
+    }
+  },
+  "legal_basis": [
+    "ASiG (Gesetz über Betriebsärzte, Sicherheitsingenieure und andere Fachkräfte für Arbeitssicherheit)",
+    "ArbMedVV (Verordnung zur arbeitsmedizinischen Vorsorge)"
+  ],
+  "compatible_with": [],
+  "incompatible_with": [],
+  "related_benefits": [
+    "rehabilitation",
+    "mutterschaftsvorsorge"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Arbeitsmedizinische Vorsorge umfasst kostenlose Untersuchungen durch den Betriebsarzt, um arbeitsbedingte gesundheitliche Gefährdungen zu erkennen und zu vermeiden.",
+    "for_whom": "Beschäftigte, insbesondere bei gesundheitlichen Gefährdungen am Arbeitsplatz.",
+    "requirements": "Beschäftigung, ggf. gesundheitliche Gefährdung am Arbeitsplatz.",
+    "how_much": "Kostenlos für Beschäftigte.",
+    "how_calculated": "Kostenlose Untersuchungen durch den Betriebsarzt.",
+    "documents_needed": "Keine Unterlagen erforderlich.",
+    "where_to_apply": "Beim Betriebsarzt des Arbeitgebers.",
+    "deadlines": "Keine Frist. Untersuchungen sollten regelmäßig durchgeführt werden.",
+    "faq": [
+      {
+        "question": "Was ist arbeitsmedizinische Vorsorge?",
+        "answer": "Arbeitsmedizinische Vorsorge umfasst Untersuchungen durch den Betriebsarzt, um arbeitsbedingte gesundheitliche Gefährdungen zu erkennen und zu vermeiden."
+      },
+      {
+        "question": "Muss ich die Untersuchung machen lassen?",
+        "answer": "Pflichtvorsorgen sind gesetzlich vorgeschrieben. Angebotsvorsorgen werden bei Verdacht auf arbeitsbedingte Erkrankung angeboten. Wunschvorsorgen können Sie selbst beantragen."
+      },
+      {
+        "question": "Kostet die Untersuchung etwas?",
+        "answer": "Nein, die Untersuchungen sind für Beschäftigte kostenlos."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/asig/",
+      "title": "ASiG - Gesetz über Betriebsärzte, Sicherheitsingenieure und andere Fachkräfte für Arbeitssicherheit",
+      "organization": "Gesetze im Internet",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.baua.de/DE/Arbeitsschutz/Arbeitsmedizin/Arbeitsmedizin.html",
+      "title": "Arbeitsmedizin - BAuA",
+      "organization": "Bundesanstalt für Arbeitsschutz und Arbeitsmedizin",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Pflichtvorsorge: bei bestimmten Gefährdungen",
+    "Angebotsvorsorge: bei Verdacht auf arbeitsbedingte Erkrankung",
+    "Wunschvorsorge: auf Wunsch des Beschäftigten"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

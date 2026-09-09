@@ -1,0 +1,214 @@
+{
+  "id": "existenzgruendung-landwirtschaft",
+  "official_name": "Existenzgründungsförderung für Junglandwirte",
+  "aliases": [
+    "Existenzgründung Landwirtschaft",
+    "Junglandwirte-Exzellenz",
+    "Hofnachfolge-Förderung",
+    "Niederlassungsförderung",
+    "RL Existenzförderung"
+  ],
+  "former_names": [],
+  "type": "agriculture_subsidy",
+  "status": "verified",
+  "category": "Landwirtschaft & Ländlicher Raum",
+  "subcategory": "Existenzgründung & Hofnachfolge",
+  "level": "state",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Landesministerien für Landwirtschaft",
+    "authority": "Landwirtschaftskammern / Landesämter",
+    "url": "https://www.ml.niedersachsen.de/startseite/themen/landwirtschaft/agrarforderung/niedersachsen-fordert-existenzgrundungen-auf-hofen-245378.html",
+    "phone": "Variiert je nach Bundesland"
+  },
+  "target_groups": [
+    "Junglandwirte und Junglandwirtinnen",
+    "Hofnachfolger",
+    "Außerfamiliäre Betriebsgründer",
+    "Landwirte unter 40 Jahren",
+    "Erstmalig niedergelassene Landwirte"
+  ],
+  "life_situations": [
+    "landwirtschaft",
+    "ländlicher_raum"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "eg-001",
+        "description": "Altersgrenze",
+        "condition": "Höchstens 40 Jahre alt zum Zeitpunkt der Antragstellung",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "eg-002",
+        "description": "Erstmalige Niederlassung",
+        "condition": "Erstmalige Niederlassung mit einem landwirtschaftlichen Unternehmen innerhalb der letzten 24 Monate",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "eg-003",
+        "description": "Fachliches Können",
+        "condition": "Nachweis einer landwirtschaftlichen Berufsausbildung und Abschluss einer Fachschule oder höherwertiger Abschluss",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "eg-004",
+        "description": "Geschäftsplan",
+        "condition": "Mehrjähriger Geschäftsplan (5 Jahre) muss vorgelegt werden",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "eg-005",
+        "description": "Betriebsart",
+        "condition": "Außerfamiliäre Betriebsgründung oder Hofnachfolge in der Familie",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Existenzgründung",
+        "threshold": 0,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "region": "all",
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Niedersachsen: bis zu 100.000 Euro bei außerfamiliärer Gründung",
+      "Niedersachsen: bis zu 70.000 Euro bei Hofübernahme in der Familie",
+      "Sachsen: 60.000 Euro in drei Raten (35.000 + 25.000 + 10.000)"
+    ]
+  },
+  "calculation": {
+    "method": "Pauschale Zuschüsse je nach Bundesland und Art der Gründung",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Identifikation des Förderprogramms",
+        "formula": "Programm je nach Bundesland wählen",
+        "note": "Niedersachsen, Sachsen, Saarland etc."
+      },
+      {
+        "step": 2,
+        "description": "Berechnung des Zuschusses",
+        "formula": "Zuschuss = Pauschale je nach Programm",
+        "note": "Variiert je nach Bundesland"
+      }
+    ],
+    "min_amount": 10000,
+    "max_amount": 100000,
+    "typical_amount": "35.000-100.000 Euro je nach Bundesland",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Pauschale Zuschüsse von 35.000 bis 100.000 Euro je nach Bundesland und Art der Gründung",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": 100000,
+    "depends_on": [
+      "Bundesland",
+      "Art der Gründung (familiär/außerfamiliär)"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich bei der zuständigen Landesbehörde",
+    "url": "https://www.ml.niedersachsen.de/startseite/themen/landwirtschaft/agrarforderung/niedersachsen-fordert-existenzgrundungen-auf-hofen-245378.html",
+    "forms": [
+      "Antrag auf Existenzgründungsbeihilfe",
+      "Geschäftsplan",
+      "Finanzierungsplan"
+    ],
+    "required_documents": [
+      "Vollständig ausgefüllter Antrag",
+      "Fünfjähriger Geschäftsplan",
+      "Finanzierungsplan",
+      "Nachweis der Berufsausbildung",
+      "Altsnachweis",
+      "Nachweis der Niederlassung",
+      "Falls zutreffend: Hofnachfolgevertrag"
+    ],
+    "processing_time": "3-6 Monate",
+    "deadlines": {
+      "description": "Antragsfristen je nach Bundesland",
+      "date": "Variiert",
+      "note": "Bei der zuständigen Landesbehörde erfragen"
+    }
+  },
+  "legal_basis": [
+    "Verordnung (EU) Nr. 1305/2013 (ELER)",
+    "GAP-Strategieplan Deutschland 2023-2027",
+    "Landesförderrichtlinien der Bundesländer",
+    "Richtlinie über die Gewährung von Existenzgründungsbeihilfen für Junglandwirtinnen und Junglandwirte"
+  ],
+  "compatible_with": [
+    "junglandwirte-einkommensstuetzung",
+    "landwirtschaft-investitionen",
+    "biologischer-bau-foerderung",
+    "betriebsberatung"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "junglandwirte",
+    "landwirtschaft-investitionen",
+    "betriebsberatung"
+  ],
+  "user_content": {
+    "short_explanation": "Die Existenzgründungsförderung unterstützt Junglandwirte bei der Niederlassung – mit Zuschüssen von bis zu 100.000 Euro.",
+    "for_whom": "Junge Landwirte unter 40 Jahren, die sich erstmals niederlassen oder einen Hof übernehmen.",
+    "requirements": "Maximal 40 Jahre alt, landwirtschaftliche Berufsausbildung, Geschäftsplan, erstmalige Niederlassung.",
+    "how_much": "35.000-100.000 Euro je nach Bundesland – Niedersachsen zahlt bis zu 100.000 Euro bei außerfamiliärer Gründung.",
+    "how_calculated": "Pauschale je nach Bundesland und Art der Gründung. In Sachsen in drei Raten ausgezahlt.",
+    "documents_needed": "Antrag, Geschäftsplan, Finanzierungsplan, Berufsausbildungsnachweis, Altsnachweis.",
+    "where_to_apply": "Bei der zuständigen Landesbehörde (Landwirtschaftsministerium).",
+    "deadlines": "Jährliche Antragsfristen je nach Bundesland.",
+    "faq": [
+      {
+        "question": "Kann ich die Existenzgründungsförderung mit der Junglandwirte-Prämie kombinieren?",
+        "answer": "Ja, beide Förderungen sind kombinierbar. Die Existenzgründungsförderung ist ein Zuschuss, die Junglandwirte-Prämie eine jährliche Flächenprämie."
+      },
+      {
+        "question": "Gibt es die Förderung in jedem Bundesland?",
+        "answer": "Ja, aber die Höhe und Bedingungen variieren. Niedersachsen, Sachsen und Saarland haben eigene Programme."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.ml.niedersachsen.de/startseite/themen/landwirtschaft/agrarforderung/niedersachsen-fordert-existenzgrundungen-auf-hofen-245378.html",
+      "title": "Niedersachsen fördert Existenzgründungen auf Höfen",
+      "organization": "Niedersächsisches Landwirtschaftsministerium",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.smul-foerderung.sachsen.de/teil-c-ii-existenzgruendungen-und-hofnachfolge-13810.html",
+      "title": "Teil C II. Existenzgründungen und Hofnachfolge - Sachsen",
+      "organization": "Sächsisches Landesamt für Umwelt, Landwirtschaft und Geologie",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2023-01-01",
+  "valid_until": "2027-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Niedersachsen: bis zu 100.000 Euro bei außerfamiliärer Gründung, 70.000 Euro bei Hofübernahme",
+    "Sachsen: 60.000 Euro in drei Raten (35.000 + 25.000 + 10.000)",
+    "Kombination mit Junglandwirte-Einkommensstützung möglich"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

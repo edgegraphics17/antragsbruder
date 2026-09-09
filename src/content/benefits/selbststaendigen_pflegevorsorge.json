@@ -1,0 +1,151 @@
+{
+  "id": "selbststaendigen_pflegevorsorge",
+  "official_name": "Pflegezusatzversicherung (Förderung für Selbstständige)",
+  "aliases": [
+    "Pflege-Bahr",
+    "Pflegezusatzversicherung",
+    "Private Pflegevorsorge",
+    "Pflegevorsorge-Förderung"
+  ],
+  "former_names": [],
+  "type": "tax_benefit",
+  "status": "partially_verified",
+  "category": "Vorsorge",
+  "subcategory": "Pflegevorsorge für Selbstständige",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Private Versicherungen",
+    "authority": "Bundesministerium der Finanzen",
+    "url": "https://www.bundesfinanzministerium.de/",
+    "phone": "030 186820"
+  },
+  "target_groups": [
+    "Selbstständige",
+    "Freiberufler",
+    "Unternehmer"
+  ],
+  "life_situations": [
+    "arbeit_selbststaendig",
+    "unternehmen"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "spv_01",
+        "description": "Selbstständige Tätigkeit",
+        "condition": "selbststaendig = true",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "spv_02",
+        "description": "Abschluss einer förderfähigen Pflegezusatzversicherung",
+        "condition": "pflegezusatzversicherung = true",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "special_conditions": [
+      "Einkommensunabhängiger Bonus vom Staat",
+      "Steuerliche Absetzbarkeit als Sonderausgaben möglich",
+      "Selbstständige können bis zu 2.800 Euro geltend machen"
+    ]
+  },
+  "calculation": {
+    "method": "Einkommensunabhängiger Bonus + steuerliche Absetzbarkeit",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Staatlicher Bonus auf Beiträge",
+        "note": "Einkommensunabhängig"
+      },
+      {
+        "step": 2,
+        "description": "Steuerliche Absetzbarkeit",
+        "note": "Bis zu 2.800 Euro für Selbstständige"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 2800,
+    "typical_amount": "Individuell",
+    "frequency": "yearly",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Staatlicher Bonus + steuerliche Absetzbarkeit bis 2.800 Euro",
+    "depends_on": [
+      "beitragshoehe",
+      "steuertarif"
+    ]
+  },
+  "application": {
+    "method": "Beim Versicherer und in der Steuererklärung",
+    "url": "https://www.bundesfinanzministerium.de/",
+    "forms": [
+      "Antrag bei Versicherer",
+      "Steuererklärung (Anlage Vorsorgeaufwand)"
+    ],
+    "required_documents": [
+      "Versicherungsvertrag",
+      "Beitragsnachweise"
+    ],
+    "processing_time": "Verschieden",
+    "deadlines": {
+      "description": "Jahresfrist für Steuererklärung",
+      "note": "Steuererklärung bis 31.07. des Folgejahres"
+    }
+  },
+  "legal_basis": [
+    "§ 10 EStG",
+    "Pflegeversicherungsgesetz"
+  ],
+  "compatible_with": [],
+  "incompatible_with": [],
+  "related_benefits": [],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Selbstständige können eine private Pflegezusatzversicherung abschließen und vom Staat gefördert werden.",
+    "for_whom": "Selbstständige und Freiberufler, die sich privat gegen Pflegekosten absichern",
+    "requirements": "Selbstständige Tätigkeit, förderfähige Pflegezusatzversicherung",
+    "how_much": "Staatlicher Bonus + steuerliche Absetzbarkeit bis 2.800 Euro",
+    "how_calculated": "Einkommensunabhängiger Bonus + steuerliche Absetzbarkeit",
+    "documents_needed": "Versicherungsvertrag, Beitragsnachweise",
+    "where_to_apply": "Beim Versicherer und in der Steuererklärung",
+    "deadlines": "Steuererklärung bis 31.07. des Folgejahres",
+    "faq": [
+      {
+        "question": "Bin ich als Selbstständiger in der gesetzlichen Pflegeversicherung?",
+        "answer": "Nein, Selbstständige sind nicht automatisch in der gesetzlichen Pflegeversicherung versichert. Sie müssen sich privat versichern."
+      },
+      {
+        "question": "Wie hoch ist die Förderung?",
+        "answer": "Es gibt einen einkommensunabhängigen Bonus vom Staat und die Möglichkeit der steuerlichen Absetzbarkeit bis 2.800 Euro."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bundesfinanzministerium.de/",
+      "title": "Bundesministerium der Finanzen",
+      "organization": "BMF",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2013-01-01",
+  "valid_until": null,
+  "confidence": "medium",
+  "verification_status": "partially_verified",
+  "notes": [
+    "Selbstständige sind nicht in der gesetzlichen Pflegeversicherung versichert",
+    "Private Pflegezusatzversicherung wird gefördert",
+    "Steuerliche Absetzbarkeit bis 2.800 Euro"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,171 @@
+{
+  "id": "qualifizierungschancengesetz",
+  "official_name": "Qualifizierungschancengesetz (QCG)",
+  "aliases": ["QCG", "Qualifizierungschancengesetz", "Weiterbildung für Beschäftigte", "Qualifizierungsgeld"],
+  "former_names": [],
+  "type": "employment_benefit",
+  "status": "verified",
+  "category": "Arbeit & Beschäftigung",
+  "subcategory": "Weiterbildung Beschäftigte",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesagentur für Arbeit",
+    "authority": "Agentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de/unternehmen/finanziell/foerderung-von-weiterbildung",
+    "phone": "0800 4 555500"
+  },
+  "target_groups": ["Beschäftigte in Betrieben mit Strukturwandel", "Beschäftigte ohne Berufsabschluss", "Beschäftigte in kleinen und mittleren Unternehmen"],
+  "life_situations": ["arbeit_arbeitnehmer", "weiterbildung"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "qcg-001",
+        "description": "Strukturwandelbedingter Qualifizierungsbedarf im Betrieb",
+        "condition": "Mindestens 20% der Beschäftigten innerhalb von 3 Jahren sind von Strukturwandel betroffen (bei Betrieben mit weniger als 250 Beschäftigten: 10%)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "qcg-002",
+        "description": "Betriebsvereinbarung oder Tarifvertrag",
+        "condition": "Es muss eine Betriebsvereinbarung, ein betriebsbezogener Tarifvertrag oder eine Erklärung des Arbeitgebers vorliegen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "qcg-003",
+        "description": "Weiterbildung im Rahmen eines bestehenden Arbeitsverhältnisses",
+        "condition": "Die Weiterbildung muss während des bestehenden Arbeitsverhältnisses durchgeführt werden",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "qcg-004",
+        "description": "Trägerzertifizierung erforderlich",
+        "condition": "Der Bildungsträger muss zertifiziert sein (keine Zertifizierung der Maßnahme erforderlich)",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Förderhöhe nach Betriebsgröße: bis 100% (Kleine Betriebe) bis 50% (große Betriebe)",
+      "Qualifizierungsgeld: 60% oder 67% des Nettoentgelts, das auf die Weiterbildungszeit entfällt",
+      "Ermessensleistung, kein Rechtsanspruch"
+    ]
+  },
+  "calculation": {
+    "method": "Zuschüsse zu Lehrgangskosten und Qualifizierungsgeld als Entgeltersatz",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Antrag des Arbeitgebers bei der Agentur für Arbeit",
+        "note": "Vor Beginn der Weiterbildung"
+      },
+      {
+        "step": 2,
+        "description": "Prüfung der Förderfähigkeit",
+        "note": "Agentur für Arbeit prüft Voraussetzungen"
+      },
+      {
+        "step": 3,
+        "description": "Bewilligung und Zahlung",
+        "note": "Zuschüsse werden an den Arbeitgeber gezahlt"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Bis 100% der Lehrgangskosten (kleine Betriebe); Qualifizierungsgeld: 60-67% des Nettoentgelts",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Zuschüsse zu Lehrgangskosten (bis 100% bei kleinen Betrieben) und Qualifizierungsgeld (60-67% des Nettoentgelts)",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Betriebsgröße", "Lehrgangskosten", "Nettoentgelt", "Strukturwandel"]
+  },
+  "application": {
+    "method": "Arbeitgeber stellt Antrag bei der Agentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de/unternehmen/finanziell/foerderung-von-weiterbildung",
+    "forms": ["Antrag auf Förderung nach dem Qualifizierungschancengesetz"],
+    "required_documents": [
+      "Betriebsvereinbarung oder Tarifvertrag",
+      "Nachweis über Strukturwandelbedarfe",
+      "Kostenangebot des Bildungsträgers",
+      "Trägerzertifizierung"
+    ],
+    "processing_time": "Ca. 4-6 Wochen nach Antragstellung",
+    "deadlines": {
+      "description": "Antrag muss vor Beginn der Weiterbildung gestellt werden",
+      "note": "Keine nachträgliche Förderung"
+    }
+  },
+  "legal_basis": [
+    "§ 82 SGB III (Förderung beschäftigter Arbeitnehmer)",
+    "§ 82a SGB III (Qualifizierungsgeld)"
+  ],
+  "compatible_with": ["weiterbildung"],
+  "incompatible_with": [],
+  "related_benefits": ["kurzarbeitergeld", "weiterbildung", "beschaeftigungsförderung"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Das Qualifizierungschancengesetz fördert die Weiterbildung von Beschäftigten in Betrieben, die vom Strukturwandel betroffen sind.",
+    "for_whom": "Beschäftigte in Betrieben mit strukturwandelbedingten Qualifizierungsbedarfen.",
+    "requirements": "Ihr Betrieb muss vom Strukturwandel betroffen sein. Es muss eine Betriebsvereinbarung oder ein Tarifvertrag vorliegen. Die Weiterbildung muss während des Arbeitsverhältnisses stattfinden.",
+    "how_much": "Bis 100% der Lehrgangskosten (bei kleinen Betrieben). Zusätzlich Qualifizierungsgeld: 60% (mit Kind 67%) Ihres Nettoentgelts für die Weiterbildungszeit.",
+    "how_calculated": "Die Agentur für Arbeit prüft die Förderfähigkeit und gewährt Zuschüsse an den Arbeitgeber.",
+    "documents_needed": "Betriebsvereinbarung, Nachweis über Strukturwandel, Kostenangebot, Trägerzertifizierung.",
+    "where_to_apply": "Ihr Arbeitgeber stellt den Antrag bei der Agentur für Arbeit.",
+    "deadlines": "Antrag muss vor Beginn der Weiterbildung gestellt werden.",
+    "faq": [
+      {
+        "question": "Kann ich als Beschäftigter direkt einen Antrag stellen?",
+        "answer": "Nein, der Antrag muss von Ihrem Arbeitgeber gestellt werden."
+      },
+      {
+        "question": "Gibt es einen Rechtsanspruch auf Förderung?",
+        "answer": "Nein, die Förderung ist eine Ermessensleistung der Agentur für Arbeit."
+      },
+      {
+        "question": "Wie hoch ist die Förderung bei großen Betrieben?",
+        "answer": "Bei Betrieben mit 250 oder mehr Beschäftigten beträgt die Förderung bis 50% der Lehrgangskosten."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/unternehmen/finanziell/foerderung-von-weiterbildung",
+      "title": "Förderung von Weiterbildung - Bundesagentur für Arbeit",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.bmas.de/DE/Arbeit/Aus-und-Weiterbildung/Berufliche-Weiterbildung/Foerderung-der-beruflichen-Weiterbildung/foerderung-der-beruflichen-weiterbildung-artikel.html",
+      "title": "Ihr Weg zur Förderung der beruflichen Weiterbildung - BMAS",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.sozialgesetzbuch-sgb.de/sgbiii/82.html",
+      "title": "§ 82 SGB III Förderung beschäftigter Arbeitnehmer",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

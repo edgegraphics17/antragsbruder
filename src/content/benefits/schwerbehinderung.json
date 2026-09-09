@@ -1,0 +1,185 @@
+{
+  "id": "schwerbehinderung",
+  "official_name": "Schwerbehinderung",
+  "aliases": [
+    "Schwerbehindertenausweis",
+    "Grad der Behinderung (GdB)",
+    "Schwerbehindertenanteil",
+    "Schwerbehindertenausweis SGB IX"
+  ],
+  "former_names": [],
+  "type": "disability_benefit",
+  "status": "verified",
+  "category": "Behinderung",
+  "subcategory": "Ausweis und Rechte",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Versorgungsamt",
+    "authority": "Zuständiges Versorgungsamt des Landes",
+    "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Schwerbehindertenrecht/schwerbehindertenrecht.html",
+    "phone": "Kontakt über örtliches Versorgungsamt"
+  },
+  "target_groups": [
+    "Menschen mit Behinderung (körperlich, geistig, seelisch)",
+    "Menschen mit Grad der Behinderung ab 50"
+  ],
+  "life_situations": [
+    "behinderung",
+    "gesundheit",
+    "kann_nicht_arbeiten"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "elg-sb-01",
+        "description": "Behinderung",
+        "condition": "Körperliche, geistige, seelische oder mehrfache Beeinträchtigungen, die länger als 6 Monate andauern",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-sb-02",
+        "description": "Grad der Behinderung ab 50",
+        "condition": "Der Grad der Behinderung (GdB) beträgt mindestens 50",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-sb-03",
+        "description": "Wohnsitz in Deutschland",
+        "condition": "Die Person hat ihren Wohnsitz oder gewöhnlichen Aufenthalt in Deutschland",
+        "required": true,
+        "category": "location"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "GdB 30-49: Gleichstellung mit schwerbehinderten Menschen möglich",
+      "GdB 20-29: Bei besonderen Umständen Gleichstellung möglich",
+      "Schwerbehinderung ist keine Sozialleistung, sondern ein Rechtsstatus"
+    ]
+  },
+  "calculation": {
+    "method": "Feststellung des Grades der Behinderung durch ärztliche Gutachten",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Antrag auf Feststellung der Behinderung stellen",
+        "value": "Beim Versorgungsamt"
+      },
+      {
+        "step": 2,
+        "description": "Ärztliche Begutachtung",
+        "value": "GdB wird festgestellt"
+      },
+      {
+        "step": 3,
+        "description": "Ausstellung des Ausweises",
+        "value": "Schwerbehindertenausweis"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Keine direkte Geldleistung, sondern Rechte und Vergünstigungen",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Keine direkte Geldleistung. Rechte: Steuerfreie Zuschläge, erweiterter Kündigungsschutz, Mehrurlaub, Befreiung der Rundfunkgebühr etc.",
+    "depends_on": [
+      "Grad der Behinderung"
+    ]
+  },
+  "application": {
+    "method": "Antrag beim Versorgungsamt des Landes",
+    "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Schwerbehindertenrecht/schwerbehindertenrecht.html",
+    "forms": [
+      "Antrag auf Feststellung der Behinderung"
+    ],
+    "required_documents": [
+      "Antrag auf Feststellung der Behinderung",
+      "Ärztliche Unterlagen",
+      "Nachweise über die Behinderung"
+    ],
+    "processing_time": "3-6 Monate",
+    "deadlines": {
+      "description": "Antrag jederzeit stellen",
+      "note": "Keine Frist, aber der Ausweis wird ab dem Monat der Antragstellung ausgestellt"
+    }
+  },
+  "legal_basis": [
+    "§ 152 SGB IX (Feststellung der Behinderung, Ausweise)",
+    "§ 2 SGB IX (Schwerbehindertenbegriff)",
+    "§§ 154-164 SGB IX (Schwerbehindertenrecht)"
+  ],
+  "compatible_with": [
+    "assistenz",
+    "hilfsmittel",
+    "teilhabe",
+    "rehabilitation"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "assistenz",
+    "hilfsmittel",
+    "teilhabe",
+    "rehabilitation"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Schwerbehinderung ist ein Rechtsstatus, der Menschen mit einem Grad der Behinderung (GdB) von mindestens 50 verliehen wird. Sie berechtigt zu verschiedenen Rechten und Vergünstigungen.",
+    "for_whom": "Menschen mit Behinderung ab GdB 50.",
+    "requirements": "Behinderung (körperlich, geistig, seelisch), GdB ab 50, Wohnsitz in Deutschland.",
+    "how_much": "Keine direkte Geldleistung, sondern Rechte und Vergünstigungen.",
+    "how_calculated": "Ärztliche Begutachtung durch das Versorgungsamt.",
+    "documents_needed": "Antrag, ärztliche Unterlagen, Nachweise über die Behinderung.",
+    "where_to_apply": "Beim zuständigen Versorgungsamt des Landes.",
+    "deadlines": "Keine Frist. Antrag jederzeit stellen.",
+    "faq": [
+      {
+        "question": "Was bedeutet GdB 50?",
+        "answer": "Der Grad der Behinderung (GdB) 50 bedeutet, dass die Beeinträchtigungen als schwer eingestuft werden. Der GdB wird in Stufen von 10 bis 100 bemessen."
+      },
+      {
+        "question": "Welche Rechte habe ich als schwerbehinderter Mensch?",
+        "answer": "Steuerfreie Zuschläge, erweiterter Kündigungsschutz, Mehrurlaub (5 Tage), Befreiung der Rundfunkgebühr, unentgeltliche Beförderung im ÖPNV (ab GdB 80 oder Merkzeichen 'aG' oder 'BI' oder 'H' oder 'RF')."
+      },
+      {
+        "question": "Kann ich auch mit GdB 30 als schwerbehindert gelten?",
+        "answer": "Ja, unter bestimmten Voraussetzungen können auch Menschen mit GdB 30-49 gleichgestellt werden."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_9_2018/__152.html",
+      "title": "§ 152 SGB IX - Feststellung der Behinderung, Ausweise",
+      "organization": "Gesetze im Internet",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Schwerbehindertenrecht/schwerbehindertenrecht.html",
+      "title": "Schwerbehindertenrecht - BMAS",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Schwerbehinderung ist ein Rechtsstatus, keine Sozialleistung",
+    "Rechte: Steuerfreie Zuschläge, erweiterter Kündigungsschutz, Mehrurlaub, Befreiung der Rundfunkgebühr",
+    "Befreiung der Rundfunkgebühr ab GdB 80 oder bestimmten Merkzeichen"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

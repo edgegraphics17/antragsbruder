@@ -1,0 +1,180 @@
+{
+  "id": "berufseinstieg",
+  "official_name": "Berufseinstiegsbegleitung und Einstiegsqualifizierung",
+  "aliases": ["Berufseinstiegsbegleitung", "Einstiegsqualifizierung", "EQ", "Berufsorientierungspraktikum", "Potenzialanalyse"],
+  "former_names": [],
+  "type": "employment_benefit",
+  "status": "verified",
+  "category": "Arbeit & Beschäftigung",
+  "subcategory": "Berufseinstieg",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesagentur für Arbeit",
+    "authority": "Agentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de/bildung/ausbildung/einstiegsqualifizierung",
+    "phone": "0800 4 555500"
+  },
+  "target_groups": ["Junge Menschen mit Vermittlungshemmnissen", "Schulabgänger ohne Ausbildungsplatz", "Ausbildungsbewerber mit eingeschränkten Vermittlungsperspektiven"],
+  "life_situations": ["ausbildung", "berufseinstieg"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "bei-001",
+        "description": "Junge Person mit Vermittlungshemmnissen",
+        "condition": "Die oder der Ausbildungsbewerber ist bei der Agentur für Arbeit gemeldet und hat aus individuellen Gründen eingeschränkte Vermittlungsperspektiven",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bei-002",
+        "description": "Kein Ausbildungsplatz trotz bundesweiter Nachvermittlungsaktionen",
+        "condition": "Auch nach den bundesweiten Nachvermittlungsaktionen wurde keine Ausbildungsstelle gefunden",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bei-003",
+        "description": "Beratungsgespräch bei der Agentur für Arbeit",
+        "condition": "Vor Beginn der Maßnahme muss ein Beratungsgespräch stattgefunden haben",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bei-004",
+        "description": "Alter: in der Regel unter 25 Jahre",
+        "condition": "Die Maßnahme richtet sich an junge Menschen, in der Regel unter 25 Jahren",
+        "required": false,
+        "category": "personal"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Einstiegsqualifizierung: Zuschuss an Arbeitgeber in Höhe der Vergütung zuzüglich Sozialversicherungspauschale",
+      "Berufseinstiegsbegleitung: individuelle Begleitung vom Schulabschluss bis zum Ausbildungsstart",
+      "Förderdauer EQ: 4 bis 12 Monate"
+    ]
+  },
+  "calculation": {
+    "method": "Zuschuss an Arbeitgeber bei EQ; individuelle Begleitung bei Berufseinstiegsbegleitung",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Beratung und Bedarfsfeststellung",
+        "note": "Agentur für Arbeit prüft Förderfähigkeit"
+      },
+      {
+        "step": 2,
+        "description": "Vermittlung an Arbeitgeber (EQ) oder Zuweisung eines Beraters (Berufseinstiegsbegleitung)",
+        "note": "Bei EQ: Praktikumsvertrag zwischen Arbeitgeber und Teilnehmer"
+      },
+      {
+        "step": 3,
+        "description": "Zahlung des Zuschusses (EQ)",
+        "note": "Monatlicher Zuschuss an Arbeitgeber"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Zuschuss an Arbeitgeber: Vergütung zuzüglich Sozialversicherungspauschale",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Zuschuss an Arbeitgeber in Höhe der vereinbarten Vergütung zuzüglich des pauschalierten Anteils am durchschnittlichen Gesamtsozialversicherungsbeitrag",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Vereinbarte Vergütung", "Dauer der Maßnahme"]
+  },
+  "application": {
+    "method": "Persönliche Beratung bei der Agentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de/bildung/ausbildung/einstiegsqualifizierung",
+    "forms": ["Antrag auf Förderung einer Einstiegsqualifizierung"],
+    "required_documents": [
+      "Personalausweis",
+      "Lebenslauf",
+      "Zeugnisse",
+      "Nachweis der Meldung bei der Agentur für Arbeit"
+    ],
+    "processing_time": "Ca. 2-4 Wochen nach Beratungsgespräch",
+    "deadlines": {
+      "description": "Antrag muss vor Beginn der EQ bei der Agentur für Arbeit gestellt werden",
+      "note": "Keine nachträgliche Förderung für bereits begonnene Maßnahmen"
+    }
+  },
+  "legal_basis": [
+    "§ 48 SGB III (Berufsorientierungsmaßnahmen)",
+    "§ 48a SGB III (Berufsorientierungspraktikum)",
+    "§ 49 SGB III (Berufseinstiegsbegleitung)",
+    "§ 54a SGB III (Einstiegsqualifizierung)"
+  ],
+  "compatible_with": ["ausbildungsförderung", "berufliche_reha"],
+  "incompatible_with": [],
+  "related_benefits": ["weiterbildung", "umschulung", "beschaeftigungsförderung"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Berufseinstiegsbegleitung und Einstiegsqualifizierung helfen Ihnen beim Start in die Berufswelt – mit Praktikum, Begleitung und Zuschüssen.",
+    "for_whom": "Junge Menschen mit Vermittlungshemmnissen, die keinen Ausbildungsplatz finden.",
+    "requirements": "Sie müssen bei der Agentur für Arbeit gemeldet sein und aus individuellen Gründen eingeschränkte Vermittlungsperspektiven haben.",
+    "how_much": "Bei EQ: Zuschuss an den Arbeitgeber in Höhe Ihrer Vergütung zuzüglich Sozialversicherungspauschale.",
+    "how_calculated": "Agentur für Arbeit prüft Ihre Situation und vermittelt Sie an einen Arbeitgeber oder einen Berater.",
+    "documents_needed": "Personalausweis, Lebenslauf, Zeugnisse, Nachweis der Meldung bei der Agentur für Arbeit.",
+    "where_to_apply": "Beratungsgespräch bei der Agentur für Arbeit vor Ort oder online vereinbaren.",
+    "deadlines": "Antrag muss vor Beginn der Maßnahme gestellt werden. Keine nachträgliche Förderung.",
+    "faq": [
+      {
+        "question": "Was ist der Unterschied zwischen EQ und Berufseinstiegsbegleitung?",
+        "answer": "EQ ist ein Langzeitpraktikum bei einem Arbeitgeber (4-12 Monate). Berufseinstiegsbegleitung ist eine individuelle Begleitung vom Schulabschluss bis zum Ausbildungsstart."
+      },
+      {
+        "question": "Kann ich EQ auch machen, wenn ich schon über 25 bin?",
+        "answer": "In der Regel richtet sich die Maßnahme an junge Menschen unter 25 Jahren. In Ausnahmefällen kann eine Förderung auch für ältere Personen möglich sein."
+      },
+      {
+        "question": "Wie lange dauert die Förderung?",
+        "answer": "EQ: 4 bis 12 Monate. Berufseinstiegsbegleitung: in der Regel ein halbes Jahr nach dem Schulabschluss."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/bildung/ausbildung/einstiegsqualifizierung",
+      "title": "Einstiegsqualifizierung (EQ) - Bundesagentur für Arbeit",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.arbeitsagentur.de/unternehmen/ausbilden/einstiegsqualifizierung-arbeitgeber",
+      "title": "Einstiegsqualifizierung - Informationen für Arbeitgeber",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.sozialgesetzbuch-sgb.de/sgbiii/54a.html",
+      "title": "§ 54a SGB III Einstiegsqualifizierung",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.sozialgesetzbuch-sgb.de/sgbiii/49.html",
+      "title": "§ 49 SGB III Berufseinstiegsbegleitung",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

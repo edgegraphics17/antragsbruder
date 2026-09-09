@@ -1,0 +1,207 @@
+{
+  "id": "familienleistungen_steuer",
+  "official_name": "Steuerliche Familienleistungen - Zusammenfassung",
+  "aliases": [
+    "Familienleistungen Steuer",
+    "Steuerliche Familienleistungen",
+    "Familiensteuer"
+  ],
+  "former_names": [],
+  "type": "tax_benefit",
+  "status": "verified",
+  "category": "Steuern & Finanzen",
+  "subcategory": "Familienleistungen",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium der Finanzen",
+    "authority": "Finanzamt",
+    "url": "https://www.bundesfinanzministerium.de",
+    "phone": ""
+  },
+  "target_groups": [
+    "Familien",
+    "Eltern",
+    "Alleinerziehende",
+    "Kinder"
+  ],
+  "life_situations": [
+    "family_children",
+    "alleinerziehend",
+    "married_with_children"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "familienleistungen_kind",
+        "description": "Vorhandensein von Kindern im Haushalt",
+        "condition": "has_children",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "familienleistungen_einkommen",
+        "description": "Einkünfte aus nichtselbständiger oder selbständiger Arbeit",
+        "condition": "has_income",
+        "required": true,
+        "category": "income"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Kinderfreibetrag und Kindergeld können kombiniert werden (Günstigerprüfung)",
+      "Alleinerziehende erhalten zusätzlichen Entlastungsbetrag",
+      "Alle Leistungen werden bei der Steuerveranlagung berücksichtigt"
+    ]
+  },
+  "calculation": {
+    "method": "Zusammenfassung aller steuerlicher Familienleistungen",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Kinderfreibetrag (2026)",
+        "formula": "9.756 Euro pro Kind",
+        "value": "9.756 Euro",
+        "note": "Pro Kind, bei zwei Elternteilen"
+      },
+      {
+        "step": 2,
+        "description": "Kindergeld (2026)",
+        "formula": "259 Euro pro Kind und Monat",
+        "value": "259 Euro",
+        "note": "Pro Kind, monatlich"
+      },
+      {
+        "step": 3,
+        "description": "Entlastungsbetrag Alleinerziehende (2026)",
+        "formula": "4.260 Euro (1 Kind) + 240 Euro pro weiteres Kind",
+        "value": "4.260-4.500 Euro",
+        "note": "Pro Jahr"
+      },
+      {
+        "step": 4,
+        "description": "Günstigerprüfung",
+        "formula": "Kinderfreibetrag vs. Kindergeld",
+        "value": "Automatisch",
+        "note": "Das Finanzamt prüft, was günstiger ist"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": null,
+    "typical_amount": "Kinderfreibetrag 9.756 Euro + Kindergeld 3.108 Euro pro Jahr",
+    "frequency": "yearly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Zusammenfassung: Kinderfreibetrag, Kindergeld, Entlastungsbetrag Alleinerziehende",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": null,
+    "depends_on": [
+      "Anzahl der Kinder",
+      "Einkommen",
+      "Familienstand"
+    ]
+  },
+  "application": {
+    "method": "Steuererklärung (Anlage Kind, Anlage A)",
+    "url": "https://www.elster.de",
+    "forms": [
+      "Anlage Kind",
+      "Anlage A"
+    ],
+    "required_documents": [
+      "Geburtsurkunden der Kinder",
+      "Einkommensnachweise",
+      "Falls Alleinerziehend: Nachweis über alleinstehenden Status"
+    ],
+    "processing_time": "4-8 Wochen nach Abgabe der Steuererklärung",
+    "deadlines": {
+      "description": "Steuererklärung Frist",
+      "date": "31.07. des Folgejahres",
+      "note": "Alle Leistungen werden bei Veranlagung automatisch berücksichtigt"
+    }
+  },
+  "legal_basis": [
+    "§ 32 EStG",
+    "§ 24b EStG",
+    "§ 31 EStG",
+    "Kindergeldgesetz (BKGG)"
+  ],
+  "compatible_with": [
+    "kinderfreibetrag",
+    "alleinerziehendenentlastungsbetrag",
+    "kindergeld"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "kinderfreibetrag",
+    "alleinerziehendenentlastungsbetrag",
+    "kindergeld"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die steuerlichen Familienleistungen umfassen den Kinderfreibetrag, das Kindergeld und den Entlastungsbetrag für Alleinerziehende. Das Finanzamt prüft automatisch, welche Kombination für Sie am günstigsten ist.",
+    "for_whom": "Für alle Familien mit Kindern - ob verheiratet, ledig, geschieden oder verwitwet.",
+    "requirements": "Sie haben Kinder, die bei Ihnen leben oder für die Sie Unterhalt zahlen, und Sie haben Einkünfte.",
+    "how_much": "Kinderfreibetrag: 9.756 Euro pro Kind (2026). Kindergeld: 259 Euro pro Kind und Monat. Entlastungsbetrag Alleinerziehende: 4.260 Euro pro Jahr.",
+    "how_calculated": "Das Finanzamt prüft automatisch (Günstigerprüfung), ob der Kinderfreibetrag oder das Kindergeld günstiger ist. Der Unterschied wird vergütet. Alleinerziehende erhalten zusätzlich den Entlastungsbetrag.",
+    "documents_needed": "Geburtsurkunden der Kinder, Einkommensnachweise, ggf. Nachweis über alleinstehenden Status.",
+    "where_to_apply": "Beim zuständigen Finanzamt über die Steuererklärung. Online über ELSTER.",
+    "deadlines": "Steuererklärung bis 31. Juli des Folgejahres.",
+    "faq": [
+      {
+        "question": "Was ist besser: Kinderfreibetrag oder Kindergeld?",
+        "answer": "Das Finanzamt prüft automatisch, was für Sie günstiger ist. Bei höheren Einkommen ist der Kinderfreibetrag oft vorteilhafter."
+      },
+      {
+        "question": "Kann ich alle Leistungen kombinieren?",
+        "answer": "Ja, Kinderfreibetrag/Kindergeld und Entlastungsbetrag Alleinerziehende können kombiniert werden."
+      },
+      {
+        "question": "Wie wird die Günstigerprüfung durchgeführt?",
+        "answer": "Das Finanzamt vergleicht automatisch die Steuerersparnis durch den Kinderfreibetrag mit dem Kindergeld. Der günstigere Weg wird gewählt."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/estg/__32.html",
+      "title": "EStG § 32 - Kinder, Freibeträge für Kinder",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/estg/__24b.html",
+      "title": "EStG § 24b - Entlastungsbetrag für Alleinerziehende",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+      "title": "Die wichtigsten steuerlichen Änderungen 2026",
+      "organization": "Bundesministerium der Finanzen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": "2026-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Zusammenfassung aller steuerlicher Familienleistungen",
+    "Kinderfreibetrag 2026: 9.756 Euro pro Kind",
+    "Kindergeld 2026: 259 Euro pro Kind und Monat",
+    "Entlastungsbetrag Alleinerziehende: 4.260 Euro"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

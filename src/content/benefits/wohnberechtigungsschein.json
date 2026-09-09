@@ -1,0 +1,176 @@
+{
+  "id": "wohnberechtigungsschein",
+  "official_name": "Wohnberechtigungsschein (WBS)",
+  "aliases": [
+    "WBS",
+    "Paragraf-5-Schein",
+    "Wohnungsberechtigungsschein",
+    "Sozialwohnung Schein"
+  ],
+  "former_names": [],
+  "type": "housing_benefit",
+  "status": "verified",
+  "category": "Wohnen & Immobilien",
+  "subcategory": "Sozialer Wohnungsbau",
+  "level": "state",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Wohnungsamt / Wohngeldbehörde",
+    "authority": "Wohnungsamt der Gemeinde / Stadt",
+    "url": "https://www.berlin.de/sen/wohnen/wissen-fuer-mieter/berliner-mietratgeber/wohnberechtigungsschein/"
+  },
+  "target_groups": [
+    "Mieter mit geringem Einkommen",
+    "Familien",
+    "Alleinerziehende",
+    "Rentner",
+    "Behinderte"
+  ],
+  "life_situations": [
+    "wohnraum_benoetigt",
+    "sozialer_wohnungsbau",
+    "alleinerziehend"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "wbs_age",
+        "description": "Volljährigkeit",
+        "condition": "Antragsteller muss volljährig sein",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "wbs_residence",
+        "description": "Aufenthalt in Deutschland",
+        "condition": "Dauerhafter Aufenthalt in Deutschland",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "wbs_income",
+        "description": "Einkommensgrenze",
+        "condition": "Einkommen unter der Grenze für Haushaltsgröße",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "wbs_local_residence",
+        "description": "Mindestaufenthalt",
+        "condition": "In vielen Kommunen: mindestens 2 Jahre gemeldet",
+        "required": false,
+        "category": "location"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "1-Personen-Haushalt",
+        "threshold": 28000,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "last_updated": "2026-01-01"
+      },
+      {
+        "applies_to": "2-Personen-Haushalt",
+        "threshold": 35000,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "last_updated": "2026-01-01"
+      },
+      {
+        "applies_to": "4-Personen-Haushalt",
+        "threshold": 43130,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "last_updated": "2026-01-01"
+      }
+    ]
+  },
+  "calculation": {
+    "method": "WBS wird bei Einkommen unter der Grenze ausgestellt",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Der WBS ist eine Bescheinigung, kein Geldbetrag. Ermöglicht Bezug von Sozialwohnungen.",
+    "depends_on": [
+      "Haushaltsgröße",
+      "Einkommen"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich beim Wohnungsamt",
+    "forms": [
+      "Antrag auf Wohnberechtigungsschein"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Einkommensnachweise",
+      "Mietvertrag (falls vorhanden)",
+      "Meldebescheinigung"
+    ],
+    "processing_time": "2-4 Wochen"
+  },
+  "legal_basis": [
+    "§ 27 WoFG (Wohnberechtigungsschein)",
+    "§ 5 WoBindG (Zweckbindung Sozialwohnungen)"
+  ],
+  "compatible_with": [
+    "wohngeld",
+    "wohnraumfoerderung"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "wohngeld",
+    "wohnraumfoerderung",
+    "mietzuschuss"
+  ],
+  "user_content": {
+    "short_explanation": "Der Wohnberechtigungsschein (WBS) ist eine Bescheinigung, die den Bezug einer geförderten Sozialwohnung ermöglicht.",
+    "for_whom": "Menschen mit geringem Einkommen, die eine günstige Sozialwohnung suchen.",
+    "requirements": "Volljährig, dauerhafter Aufenthalt in Deutschland, Einkommen unter der Grenze.",
+    "how_much": "Der WBS selbst ist kein Geld, sondern ermöglicht den Bezug von Sozialwohnungen zu Fördermieten.",
+    "how_calculations": "Die Einkommensgrenze richtet sich nach der Haushaltsgröße.",
+    "documents_needed": "Personalausweis, Einkommensnachweise, Meldebescheinigung.",
+    "where_to_apply": "Beim Wohnungsamt oder Wohngeldbehörde Ihrer Stadt.",
+    "deadlines": "WBS gilt in der Regel für 1 Jahr, dann Verlängerung.",
+    "faq": [
+      {
+        "question": "Wie lange gilt der WBS?",
+        "answer": "In der Regel für 1 Jahr, dann muss er verlängert werden."
+      },
+      {
+        "question": "Gibt es verschiedene WBS-Typen?",
+        "answer": "Ja, WBS A (mit Vermittlung) und WBS B (ohne Vermittlung)."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/wofg/",
+      "title": "Wohnraumförderungsgesetz (WoFG)",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.berlin.de/sen/wohnen/wissen-fuer-mieter/berliner-mietratgeber/wohnberechtigungsschein/",
+      "title": "Wohnberechtigungsschein (WBS) - Berlin.de",
+      "organization": "Senatsverwaltung für Wohnen, Berlin",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Einkommensgrenzen variieren je nach Bundesland."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

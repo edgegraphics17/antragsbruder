@@ -1,0 +1,78 @@
+{
+  "state": "Sachsen-Anhalt",
+  "state_code": "ST",
+  "benefits": [
+    {
+      "id": "st-ib-investiert",
+      "official_name": "Sachsen-Anhalt INVESTIERT",
+      "description": "Förderung von KMU für nachhaltige Investitionen. Zuschüsse bis 300.000 Euro (35 %). 4. Förderaufruf: 20 Mio. Euro, 04.05.-15.05.2026.",
+      "type": "business_subsidy",
+      "provider": "Investitionsbank Sachsen-Anhalt (IB)",
+      "url": "https://www.ib-sachsen-anhalt.de/de/unternehmen/investieren-finanzieren/investiert",
+      "status": "verified"
+    },
+    {
+      "id": "st-ib-energie",
+      "official_name": "Sachsen-Anhalt ENERGIE",
+      "description": "Förderung von Energieeffizienz und Reduzierung von Treibhausgasemissionen. 33 Mio. Euro für Unternehmen.",
+      "type": "energy_subsidy",
+      "provider": "Investitionsbank Sachsen-Anhalt (IB)",
+      "url": "https://www.ib-sachsen-anhalt.de/unternehmen/umwelt-schuetzen/sachsen-anhalt-energie",
+      "status": "verified"
+    },
+    {
+      "id": "st-ib-zukunftsenergien",
+      "official_name": "Sachsen-Anhalt Zukunftsenergien",
+      "description": "Förderung von intelligenten Energiesystemen, Netzen und Speichern. 50 Mio. Euro für private und öffentliche Unternehmen.",
+      "type": "energy_subsidy",
+      "provider": "Investitionsbank Sachsen-Anhalt (IB)",
+      "url": "https://www.ib-sachsen-anhalt.de/unternehmen/umwelt-schuetzen/sachsen-anhalt-zukunftsenergien",
+      "status": "verified"
+    },
+    {
+      "id": "st-ib-bau-modernisierung",
+      "official_name": "IB-Bau- und Modernisierungsdarlehen Sachsen-Anhalt",
+      "description": "Förderung von Errichtungsinvestitionen, Umbaumaßnahmen und Modernisierung. 0,90 % Sollzins, bis 175.000 Euro.",
+      "type": "housing_benefit",
+      "provider": "Investitionsbank Sachsen-Anhalt (IB)",
+      "url": "https://www.co2online.de/foerdermittel/details/55575180/",
+      "status": "verified"
+    },
+    {
+      "id": "st-ib-weiterbildung",
+      "official_name": "Sachsen-Anhalt WEITERBILDUNG",
+      "description": "Förderung individueller beruflicher Weiterbildungen und Zusatzqualifikationen.",
+      "type": "education_benefit",
+      "provider": "Investitionsbank Sachsen-Anhalt (IB)",
+      "url": "https://www.foerderdatenbank.de/FDB/Content/DE/Kontakt/_Uebergeordnet/I/ib-magdeburg-st.html",
+      "status": "verified"
+    },
+    {
+      "id": "st-leader-clld",
+      "official_name": "LEADER und CLLD Sachsen-Anhalt",
+      "description": "Förderung ländlicher Entwicklung durch lokale Aktionsgruppen in der EU-Förderperiode 2021-2027.",
+      "type": "business_subsidy",
+      "provider": "Ministerium für Landwirtschaft, Umwelt und Raumordnung Sachsen-Anhalt",
+      "url": "https://leader.sachsen-anhalt.de/",
+      "status": "verified"
+    },
+    {
+      "id": "st-regio-aktiv",
+      "official_name": "REGIO AKTIV Sachsen-Anhalt",
+      "description": "Masterplan Zukunftsgeneration zur Bekämpfung der Jugendarbeitslosigkeit. Förderung regionaler Projekte.",
+      "type": "employment_benefit",
+      "provider": "Landesregierung Sachsen-Anhalt",
+      "url": "https://regioaktiv.sachsen-anhalt.de/",
+      "status": "verified"
+    },
+    {
+      "id": "st-engagiert-action",
+      "official_name": "action! Förderung Sachsen-Anhalt",
+      "description": "Förderprogramm für Bildungsaktionen. Läuft bis Ende 2027, neue Förderphase für 2026 startet am 3. November 2025.",
+      "type": "education_benefit",
+      "provider": "Engagiert in Sachsen-Anhalt",
+      "url": "https://engagiert.sachsen-anhalt.de/foerderungen/foerderprogramme",
+      "status": "verified"
+    }
+  ]
+}

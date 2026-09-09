@@ -1,0 +1,181 @@
+{
+  "id": "kirchensteuer",
+  "official_name": "Kirchensteuer als Sonderausgabe nach § 10 Abs. 1 Nr. 3 EStG",
+  "aliases": [
+    "Kirchensteuer",
+    "Kirchensteuerabzug",
+    "§ 10 EStG"
+  ],
+  "former_names": [],
+  "type": "tax_benefit",
+  "status": "verified",
+  "category": "Steuern & Finanzen",
+  "subcategory": "Sonderausgaben",
+  "level": "state",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Kirchensteuerämter der Länder",
+    "authority": "Landesfinanzamt / Kirchensteueramt",
+    "url": "https://www.bundesfinanzministerium.de",
+    "phone": ""
+  },
+  "target_groups": [
+    "Mitglieder steuerpflichtiger Religionsgemeinschaften"
+  ],
+  "life_situations": [
+    "religious_member"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "kirchensteuer_mitglied",
+        "description": "Mitglied einer steuererhebenden Religionsgemeinschaft",
+        "condition": "religious_membership",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "kirchensteuer_einkommen",
+        "description": "Einkünfte aus nichtselbständiger oder selbständiger Arbeit",
+        "condition": "has_income",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "kirchensteuer_erhoben",
+        "description": "Kirchensteuer wird vom Arbeitgeber einbehalten oder vom Land erhoben",
+        "condition": "church_tax_levied",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Kirchensteuer ist als Sonderausgabe abziehbar (§ 10 Abs. 1 Nr. 3 EStG)",
+      "Gilt für alle in Deutschland steuererhebenden Religionsgemeinschaften",
+      "Die Kirchensteuersätze variieren je nach Bundesland (8% oder 9%)"
+    ]
+  },
+  "calculation": {
+    "method": "Gezahlte Kirchensteuer wird als Sonderausgabe abgezogen",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Berechnung der Kirchensteuer",
+        "formula": "8% oder 9% der Einkommensteuer (je nach Bundesland)",
+        "value": "8% oder 9%",
+        "note": "Pro Kalenderjahr"
+      },
+      {
+        "step": 2,
+        "description": "Abzug als Sonderausgabe",
+        "formula": "Gezahlte Kirchensteuer vollständig",
+        "value": "100%",
+        "note": "Reduziert steuerpflichtige Einkünfte"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": null,
+    "typical_amount": "8% oder 9% der Einkommensteuer",
+    "frequency": "yearly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Gezahlte Kirchensteuer wird als Sonderausgabe abgezogen",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": null,
+    "depends_on": [
+      "Höhe der Einkommensteuer",
+      "Kirchensteuersatz des Bundeslandes"
+    ]
+  },
+  "application": {
+    "method": "Steuererklärung (Anlage A, Feld Sonderausgaben)",
+    "url": "https://www.elster.de",
+    "forms": [
+      "Anlage A"
+    ],
+    "required_documents": [
+      "Lohnsteuerbescheinigung (enthält einbehaltene Kirchensteuer)",
+      "Falls zutreffend: Bescheid über veranlagte Kirchensteuer"
+    ],
+    "processing_time": "4-8 Wochen nach Abgabe der Steuererklärung",
+    "deadlines": {
+      "description": "Steuererklärung Frist",
+      "date": "31.07. des Folgejahres",
+      "note": "Gezahlte Kirchensteuer wird automatisch bei Veranlagung berücksichtigt"
+    }
+  },
+  "legal_basis": [
+    "§ 10 Abs. 1 Nr. 3 EStG",
+    "Kirchengesetze der Länder"
+  ],
+  "compatible_with": [
+    "spendenabzug",
+    "sonderausgaben",
+    "werbungskosten"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "spendenabzug",
+    "sonderausgaben"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Kirchensteuer wird als Sonderausgabe von der Einkommensteuer abgezogen. Das bedeutet, dass die gezahlte Kirchensteuer Ihre steuerpflichtigen Einkünfte reduziert und Sie weniger Einkommensteuer zahlen.",
+    "for_whom": "Für Mitglieder steuererhebender Religionsgemeinschaften, die Einkommen erzielen und Kirchensteuer zahlen.",
+    "requirements": "Sie sind Mitglied einer steuererhebenden Religionsgemeinschaft, zahlen Kirchensteuer (einbehalten oder veranlagt), und haben Einkünfte.",
+    "how_much": "Die gesamte gezahlte Kirchensteuer wird als Sonderausgabe abgezogen. Die Kirchensteuer beträgt 8% oder 9% der Einkommensteuer (je nach Bundesland).",
+    "how_calculated": "Die gezahlte Kirchensteuer wird als Sonderausgabe abgezogen, was Ihre steuerpflichtigen Einkünfte reduziert. Die tatsächliche Steuerersparnis hängt vom Steuersatz ab (bis ca. 45% des Kirchensteuerbetrags).",
+    "documents_needed": "Lohnsteuerbescheinigung (enthält einbehaltene Kirchensteuer), ggf. Bescheid über veranlagte Kirchensteuer.",
+    "where_to_apply": "Beim zuständigen Finanzamt über die Steuererklärung (Anlage A). Online über ELSTER.",
+    "deadlines": "Steuererklärung bis 31. Juli des Folgejahres.",
+    "faq": [
+      {
+        "question": "Muss ich Mitglied einer Kirche sein?",
+        "answer": "Ja, die Kirchensteuerabzugsmöglichkeit gilt nur für Mitglieder steuererhebender Religionsgemeinschaften."
+      },
+      {
+        "question": "Wie hoch ist die Kirchensteuer?",
+        "answer": "Die Kirchensteuer beträgt 8% oder 9% der Einkommensteuer, je nach Bundesland. Bayern und Baden-Württemberg haben 8%, die anderen Länder 9%."
+      },
+      {
+        "question": "Kann ich die Kirchensteuer auch ohne Steuererklärung abziehen?",
+        "answer": "Die Kirchensteuer wird automatisch bei der Lohnsteuerabzug berücksichtigt. Bei der Steuererklärung wird sie als Sonderausgabe abgezogen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/estg/__10.html",
+      "title": "EStG § 10 - Sonderausgaben",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://esth.bundesfinanzministerium.de/esth/2025/A-Einkommensteuergesetz/II-Einkommen-2-24b/5-Sonderausgaben-10-10g/Paragraf-10/inhalt.html",
+      "title": "EStH 2025 - § 10 - Sonderausgaben",
+      "organization": "Bundesministerium der Finanzen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": "2026-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Kirchensteuer ist als Sonderausgabe abziehbar",
+    "Satz: 8% oder 9% der Einkommensteuer",
+    "Gilt für alle steuererhebenden Religionsgemeinschaften"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

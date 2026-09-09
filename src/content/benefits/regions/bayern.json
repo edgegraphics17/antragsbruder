@@ -1,0 +1,78 @@
+{
+  "state": "Bayern",
+  "state_code": "BY",
+  "benefits": [
+    {
+      "id": "by-bayernlabo-eigenwohnraum",
+      "official_name": "BayernLabo Eigenwohnraumförderung",
+      "description": "Zinsverbilligtes Darlehen bis 100.000 Euro für Familien mit niedrigem bis durchschnittlichem Einkommen beim Bau oder Kauf eines eigenen Eigenheims. Zusätzlich Bayerische Eigenheimzulage: 10.000 Euro + 3.000 Euro pro Kind.",
+      "type": "housing_benefit",
+      "provider": "BayernLabo / L-Bank Bayern",
+      "url": "https://bayernlabo.de/eigenwohnraum/eigenheimfinanzierung",
+      "status": "verified"
+    },
+    {
+      "id": "by-zinsverbilligungsprogramm",
+      "official_name": "Bayerisches Zinsverbilligungsprogramm",
+      "description": "Unterstützung für Familien mit niedrigen bis durchschnittlichen Einkommen beim Bau und Erwerb von Wohneigentum. Kinderzuschuss von 5.000 Euro je Kind.",
+      "type": "housing_benefit",
+      "provider": "Bayerisches Staatsministerium für Wohnen, Bau und Verkehr",
+      "url": "https://www.stmb.bayern.de/wohnen/foerderung/wohneigentum/index.php",
+      "status": "verified"
+    },
+    {
+      "id": "by-digitalbonus",
+      "official_name": "Digitalbonus Bayern",
+      "description": "Förderprogramm für kleine Unternehmen der gewerblichen Wirtschaft zur Bewältigung der digitalen Transformation. Zuschüsse für Digitalisierungsvorhaben.",
+      "type": "business_subsidy",
+      "provider": "Bayerisches Staatsministerium für Wirtschaft, Landesentwicklung und Energie",
+      "url": "https://www.digitalbonus.bayern.de/",
+      "status": "verified"
+    },
+    {
+      "id": "by-wohnraumfoerderung",
+      "official_name": "Wohnraumförderung Bayern",
+      "description": "Landesförderung für bezahlbaren Wohnraum. Gefördert werden Mietwohnungsbau, Städtebauförderung und generationengerechter Wohnungsbau.",
+      "type": "housing_benefit",
+      "provider": "Bayerisches Staatsministerium für Wohnen, Bau und Verkehr",
+      "url": "https://www.stmb.bayern.de/wohnen/foerderung/index.php",
+      "status": "verified"
+    },
+    {
+      "id": "by-eif-agrar",
+      "official_name": "EIF – Agrarinvestitionsförderprogramm Bayern",
+      "description": "Einzelbetriebliche Investitionsförderung für landwirtschaftliche Unternehmen in Bayern. Gefördert werden nur Investitionen in Bayern.",
+      "type": "agriculture_subsidy",
+      "provider": "Bayerisches Staatsministerium für Ernährung, Landwirtschaft und Forsten",
+      "url": "https://www.stmelf.bayern.de/foerderung/einzelbetriebliche-investitionsfoerderung-eif-teil-a",
+      "status": "verified"
+    },
+    {
+      "id": "by-startchancen-programm",
+      "official_name": "Startchancen-Programm Bayern",
+      "description": "Förderung von 100 Grund- und Mittelschulen in Bayern mit besonders herausfordernden Bedingungen. Startjahre 2024/2025 und 2025/2026.",
+      "type": "education_benefit",
+      "provider": "Bayerisches Staatsministerium für Bildung und Kultus",
+      "url": "https://www.km.bayern.de/gestalten/foerderprogramme/startchancen-programm",
+      "status": "verified"
+    },
+    {
+      "id": "by-schwimmfoerderung",
+      "official_name": "Schwimmförderung für Kinder Bayern",
+      "description": "Gutschein in Höhe von 50 Euro für einen Schwimmkurs zum Erwerb des Seepferdchens für Vorschulkinder der Jahrgänge 2021/2022 bis 2025/2026.",
+      "type": "education_benefit",
+      "provider": "Bayerisches Staatsministerium für Familie, Arbeit und Soziales",
+      "url": "https://www.stmi.bayern.de/kampagnen-und-aktionen/mach-mit-schwimmfoerderung/",
+      "status": "verified"
+    },
+    {
+      "id": "by-mobilfunkfoerderung",
+      "official_name": "Mobilfunkförderprogramm Bayern",
+      "description": "Bayern hat 2018 das europaweit erste Mobilfunkförderprogramm geschaffen. Förderung von 4G/5G-Ausbau in unterversorgten Gebieten.",
+      "type": "business_subsidy",
+      "provider": "Bayerisches Staatsministerium für Wirtschaft, Landesentwicklung und Energie",
+      "url": "https://mobilfunk.bayern.de/",
+      "status": "verified"
+    }
+  ]
+}

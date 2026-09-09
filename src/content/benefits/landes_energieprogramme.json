@@ -1,0 +1,213 @@
+{
+  "id": "landes-energieprogramme",
+  "official_name": "Landes-Energieprogramme der 16 Bundesländer",
+  "aliases": [
+    "Landesförderung Energie",
+    "Landesprogramme Klimaschutz",
+    "Regionale Energieförderung",
+    "Landeszuschuss"
+  ],
+  "former_names": [
+    "Landesförderprogramme",
+    "Regionale Sanierungsförderung"
+  ],
+  "type": "energy_subsidy",
+  "status": "partially_verified",
+  "category": "Energie & Klima",
+  "subcategory": "Landesförderprogramme",
+  "level": "state",
+  "regions": [
+    "DE-BW",
+    "DE-BY",
+    "DE-BE",
+    "DE-BB",
+    "DE-HB",
+    "DE-HH",
+    "DE-HE",
+    "DE-MV",
+    "DE-NI",
+    "DE-NW",
+    "DE-RP",
+    "DE-SL",
+    "DE-SN",
+    "DE-ST",
+    "DE-SH",
+    "DE-TH"
+  ],
+  "provider": {
+    "name": "Landesministerien und Landesförderbanken",
+    "authority": "Landesministerium für Umwelt/Energie der jeweiligen Bundesländer",
+    "url": "https://www.ee-experten.com/wissen/aktuelles/foerderungen-2026-fuer-energetische-sanierung-bundesweit-und-in-jedem-bundesland-die-neue-serienuebersicht.html",
+    "phone": "variiert je nach Bundesland"
+  },
+  "target_groups": [
+    "Hauseigentümer",
+    "Wohnungseigentümer",
+    "Unternehmen",
+    "Kommunen",
+    "Landwirte"
+  ],
+  "life_situations": [
+    "energiesanierung",
+    "photovoltaik",
+    "elektromobilitaet",
+    "klimaschutz"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "land-001",
+        "description": "Wohnsitz oder Immobilie im Bundesland",
+        "condition": "Antragsteller wohnt oder besitzt Immobilie im fördernden Bundesland",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "land-002",
+        "description": "Maßnahme wird im Bundesland durchgeführt",
+        "condition": "Die energetische Maßnahme wird im Gebiet des Bundeslandes umgesetzt",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "land-003",
+        "description": "Einhaltung der Landesförder-Richtlinie",
+        "condition": "Einhaltung der spezifischen Förderrichtlinien des Bundeslandes",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Bayern: BayernLabo-Darlehen, FKG München bis 60%",
+      "Baden-Württemberg: Klimaschutz-Plus für Kommunen, Energieagenturförderung",
+      "Nordrhein-Westfalen: NRW-Förderung für Sanierung",
+      "Hessen: Energieförderung für Kommunen",
+      "Niedersachsen: Klimaschutz- und Energieagentur"
+    ]
+  },
+  "calculation": {
+    "method": "Landesförderung variiert stark. Oft als Zuschuss, Kredit oder Garantie.",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Landesförderung prüfen",
+        "formula": "Variiert je nach Bundesland",
+        "note": "Oft über Landesförderbanken"
+      },
+      {
+        "step": 2,
+        "description": "Kombination mit Bundesförderung",
+        "formula": "Landes + BAFA + KfW möglich",
+        "note": "Oft bis zu 100% der Kosten förderbar"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Variiert stark: 1.000 € bis 50.000 € je nach Bundesland",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Landesförderung variiert stark je nach Bundesland und Maßnahme. Oft 1.000 € bis 50.000 €.",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": [
+      "Bundesland",
+      "Art der Maßnahme",
+      "Gebäudetyp"
+    ]
+  },
+  "application": {
+    "method": "Je nach Bundesland: Online, schriftlich oder persönlich",
+    "url": "https://www.ee-experten.com/wissen/aktuelles/foerderungen-2026-fuer-energetische-sanierung-bundesweit-und-in-jedem-bundesland-die-neue-serienuebersicht.html",
+    "forms": [
+      "Landes-Antragsformulare"
+    ],
+    "required_documents": [
+      "Variiert je nach Bundesland",
+      "Oft: Nachweis über Wohnsitz/Eigentum",
+      "Kostenangebote",
+      "Energieberatungsnachweis"
+    ],
+    "processing_time": "4-12 Wochen",
+    "deadlines": {
+      "description": "Fristen variieren je nach Bundesland",
+      "note": "Vor Baubeginn klären"
+    }
+  },
+  "legal_basis": [
+    "Landes-Gesetze zur Förderung erneuerbarer Energien",
+    "Landes-Klimaschutzprogramme",
+    "Landesförder-Richtlinien",
+    "Landeshaushaltsgesetze"
+  ],
+  "compatible_with": [
+    "photovoltaik",
+    "energieeffizienz",
+    "gebaeude-daemmung",
+    "waermepumpe",
+    "elektromobilitaet"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "energieschuldenberatung",
+    "klimaschutz-beratung"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Jedes Bundesland hat eigene Förderprogramme für Energieeffizienz, erneuerbare Energien und Klimaschutz – oft zusätzlich zu den Bundesförderungen.",
+    "for_whom": "Hauseigentümer und Unternehmen mit Immobilie im fördernden Bundesland.",
+    "requirements": "Die Voraussetzungen variieren stark je nach Bundesland. Oft reicht die Immobilie im Bundesland.",
+    "how_much": "Die Fördersumme variiert stark: von 1.000 € bis 50.000 € je nach Bundesland.",
+    "how_calculated": "Die Berechnung erfolgt nach den Landesförder-Richtlinien. Oft als Zuschuss oder zinsgünstiger Kredit.",
+    "documents_needed": "Wohnsnachweis, Kostenangebote, Energieberatungsnachweis.",
+    "where_to_apply": "Bei der jeweiligen Landesförderbank oder dem Landesministerium.",
+    "deadlines": "Fristen variieren je nach Bundesland. Vor Baubeginn klären.",
+    "faq": [
+      {
+        "question": "Welches Bundesland fördert am meisten?",
+        "answer": "Bayern und Baden-Württemberg haben traditionell hohe Landesförderungen. Informieren Sie sich bei Ihrer Landesförderbank."
+      },
+      {
+        "question": "Kann ich Landes- und Bundesförderung kombinieren?",
+        "answer": "Ja, in vielen Fällen ist eine Kombination möglich. Klären Sie dies vorab."
+      },
+      {
+        "question": "Wo finde ich die Förderung meines Bundeslandes?",
+        "answer": "Informieren Sie sich bei Ihrer Landesförderbank, dem Landesministerium oder der Energieagentur Ihres Bundeslandes."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.ee-experten.com/wissen/aktuelles/foerderungen-2026-fuer-energetische-sanierung-bundesweit-und-in-jedem-bundesland-die-neue-serienuebersicht.html",
+      "title": "Förderung energetische Sanierung 2026: Bundesweit & pro Bundesland",
+      "organization": "EE-Experten",
+      "last_verified": "2026-09-08",
+      "type": "secondary"
+    },
+    {
+      "url": "https://www.subventa.de/foerderprogramme-baden-wuerttemberg/",
+      "title": "Förderprogramme Baden-Württemberg",
+      "organization": "Subventa",
+      "last_verified": "2026-09-08",
+      "type": "secondary"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": null,
+  "confidence": "medium",
+  "verification_status": "partially_verified",
+  "notes": [
+    "Landesförderungen variieren stark je nach Bundesland.",
+    "Keine zentrale Datenbank – Recherche bei der jeweiligen Landesförderbank erforderlich.",
+    "Oft Kombination mit BAFA und KfW möglich."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

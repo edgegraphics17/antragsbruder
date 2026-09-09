@@ -1,0 +1,144 @@
+{
+  "id": "neubau_zuschuss",
+  "official_name": "Zuschüsse für Neubau (KfW Effizienzhaus)",
+  "aliases": [
+    "KfW Neubau",
+    "Effizienzhaus 40",
+    "Klimafreundlicher Neubau",
+    "KfW 297 298"
+  ],
+  "former_names": [],
+  "type": "housing_benefit",
+  "status": "verified",
+  "category": "Wohnen & Immobilien",
+  "subcategory": "Neubau Förderung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "KfW Bankengruppe",
+    "authority": "KfW und Hausbank",
+    "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/Förderprodukte/Klimafreundlicher-Neubau-Wohngebäude-(297-298)/"
+  },
+  "target_groups": [
+    "Bauherren",
+    "Familien",
+    "Alleinerziehende",
+    "Private Investoren"
+  ],
+  "life_situations": [
+    "neubau",
+    "eigentum",
+    "klimaschutz"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "neubau_energy_standard",
+        "description": "Energiestandard erfüllt",
+        "condition": "Gebäude muss Effizienzhaus 40 oder 55 Standard erreichen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "neubau_self_use",
+        "description": "Selbstnutzung oder Vermietung",
+        "condition": "Selbstnutzung oder als Vermietung",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "neubau_income",
+        "description": "Einkommensgrenze (bei Familien)",
+        "condition": "Haushaltseinkommen max. 90.000 Euro + 10.000 Euro pro Kind",
+        "required": false,
+        "category": "income"
+      }
+    ]
+  },
+  "calculation": {
+    "method": "Förderkredit mit Tilgungszuschuss je nach Energiestandard",
+    "min_amount": 0,
+    "max_amount": 150000,
+    "typical_amount": "Kredit bis 150.000 Euro je Wohneinheit, Tilgungszuschuss bis 20%",
+    "frequency": "once",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Kredit 297/298: bis 150.000 Euro je Wohneinheit. Tilgungszuschuss 15-20%.",
+    "one_time": 150000,
+    "depends_on": [
+      "Energiestandard",
+      "Wohneinheiten",
+      "Einkommen"
+    ]
+  },
+  "application": {
+    "method": "Über Hausbank",
+    "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/",
+    "forms": [
+      "KfW-Antrag über Hausbank"
+    ],
+    "required_documents": [
+      "Bauantrag",
+      "Energieausweis / Nachweis Energiestandard",
+      "Finanzierungsplan",
+      "Kaufvertrag / Grundstücksnachweis"
+    ],
+    "processing_time": "4-8 Wochen"
+  },
+  "legal_basis": [
+    "KfW-Programme 297, 298, 296, 300",
+    "Bundesförderung für effiziente Gebäude (BEG)"
+  ],
+  "compatible_with": [
+    "eigentumsfoerderung",
+    "energiesanierung"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "eigentumsfoerderung",
+    "energiesanierung",
+    "sanierung_zuschuss"
+  ],
+  "user_content": {
+    "short_explanation": "Der Zuschuss für Neubau unterstützt den Bau energieeffizienter Gebäude durch günstige Kredite.",
+    "for_whom": "Bauherren, die ein neues Haus mit hohem Energiestandard bauen oder kaufen.",
+    "requirements": "Das Gebäude muss den Effizienzhaus 40 oder 55 Standard erreichen.",
+    "how_much": "Kredit bis 150.000 Euro je Wohneinheit mit Tilgungszuschuss.",
+    "how_calculations": "Die Förderung richtet sich nach dem erreichten Energiestandard.",
+    "documents_needed": "Bauantrag, Energieausweis, Finanzierungsplan.",
+    "where_to_apply": "Bei Ihrer Hausbank.",
+    "deadlines": "Antrag vor Baubeginn stellen.",
+    "faq": [
+      {
+        "question": "Was ist ein Effizienzhaus 40?",
+        "answer": "Ein Gebäude, das nur 40% des Referenzenergiebrauchs benötigt."
+      },
+      {
+        "question": "Kann ich mehrere Kombinationen nutzen?",
+        "answer": "Ja, Kredit 124 und 297/298 sind kombinierbar."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/",
+      "title": "KfW Förderung für Neubau",
+      "organization": "KfW Bankengruppe",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Förderzeitraum für Effizienzhaus 55 verlängert bis 31.12.2026."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

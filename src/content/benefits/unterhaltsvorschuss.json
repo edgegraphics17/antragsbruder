@@ -1,0 +1,162 @@
+{
+  "id": "unterhaltsvorschuss",
+  "official_name": "Unterhaltsvorschuss (UhVorschG)",
+  "aliases": [
+    "Unterhaltsvorschuss",
+    "UV",
+    "Unterhaltsvorschussgesetz"
+  ],
+  "former_names": [],
+  "type": "family_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Unterhaltssicherung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Jugendamt",
+    "authority": "Unterhaltsvorschusskasse des Jugendamts",
+    "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/unterhaltsvorschuss",
+    "phone": ""
+  },
+  "target_groups": [
+    "Alleinerziehende",
+    "Kinder unter 12 Jahren (bis 18 in Ausnahmefällen)"
+  ],
+  "life_situations": [
+    "alleinerziehend",
+    "familie"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "uv-r1",
+        "description": "Alleinerziehend (Mutter oder Vater)",
+        "condition": "alleinerziehend",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "uv-r2",
+        "description": "Kind unter 12 Jahre (bis 18 bei Eheschließung vor 2017)",
+        "condition": "kind_unter_12",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "uv-r3",
+        "description": "Kind lebt im Haushalt",
+        "condition": "kind_im_haushalt",
+        "required": true,
+        "category": "household"
+      },
+      {
+        "rule_id": "uv-r4",
+        "description": "Anderer Elternteil zahlt nicht oder nicht ausreichend",
+        "condition": "unterhalt_fehlt",
+        "required": true,
+        "category": "income"
+      }
+    ]
+  },
+  "calculation": {
+    "method": "Pauschale Beträge je nach Alter des Kindes",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Altersgruppe des Kindes ermitteln"
+      },
+      {
+        "step": 2,
+        "description": "Pauschale je nach Alter anwenden"
+      }
+    ],
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Pauschale je nach Alter des Kindes (2025)",
+    "min_monthly": 227,
+    "max_monthly": 372,
+    "depends_on": [
+      "alter_des_kindes"
+    ]
+  },
+  "application": {
+    "method": "Persönlich beim Jugendamt",
+    "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/unterhaltsvorschuss",
+    "forms": [
+      "Antrag auf Unterhaltsvorschuss"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Geburtsurkunde des Kindes",
+      "Nachweis der Alleinerziehenden-Stellung",
+      "Kontoauszüge",
+      "Unterhaltsnachweise"
+    ],
+    "processing_time": "ca. 4-6 Wochen"
+  },
+  "legal_basis": [
+    "Unterhaltsvorschussgesetz (UhVorschG)"
+  ],
+  "compatible_with": [
+    "kindergeld",
+    "kinderzuschlag",
+    "wohngeld"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "kindergeld",
+    "kinderzuschlag"
+  ],
+  "user_content": {
+    "short_explanation": "Der Unterhaltsvorschuss sichert den Unterhalt für Kinder alleinerziehender Eltern, wenn der andere Elternteil nicht zahlt.",
+    "for_whom": "Für alleinerziehende Mütter oder Väter mit Kindern unter 12 Jahren (bis 18 in bestimmten Fällen).",
+    "requirements": "Sie sind alleinerziehend, Ihr Kind ist unter 12 Jahre alt und lebt bei Ihnen, der andere Elternteil zahlt keinen oder nicht ausreichend Unterhalt.",
+    "how_much": "227€ (0-5 Jahre), 299€ (6-11 Jahre), 372€ (12-17 Jahre) pro Monat (2025).",
+    "how_calculated": "Pauschale Beträge je nach Alter des Kindes, keine individuelle Berechnung.",
+    "documents_needed": "Personalausweis, Geburtsurkunde, Nachweis der Alleinerziehenden-Stellung, Kontoauszüge",
+    "where_to_apply": "Beim Jugendamt Ihrer Kommune",
+    "deadlines": "Keine spezifischen Fristen. Leistungen ab dem Antragsmonat.",
+    "faq": [
+      {
+        "question": "Muss ich den Unterhalt des anderen Elternteils eintreiben?",
+        "answer": "Nein, der Staat zahlt den Vorschuss und kümmert sich um die Eintreibung."
+      },
+      {
+        "question": "Bis wann bekomme ich Unterhaltsvorschuss?",
+        "answer": "Bis zum 12. Geburtstag des Kindes, in bestimmten Fällen bis zum 18. Geburtstag."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/unterhaltsvorschuss",
+      "title": "Unterhaltsvorschuss",
+      "organization": "Bundesministerium für Familie, Senioren, Frauen und Jugend",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/uhvorschg/BJNR011840979.html",
+      "title": "Unterhaltsvorschussgesetz (UhVorschG)",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-09-08",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Beträge seit 1. Januar 2025: 227€/299€/372€",
+    "ca. 855.000 Kinder erhalten UV (2024)"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

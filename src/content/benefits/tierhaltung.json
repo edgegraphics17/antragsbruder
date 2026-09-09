@@ -1,0 +1,211 @@
+{
+  "id": "tierhaltung-umbau",
+  "official_name": "Bundesprogramm zur Förderung des Umbaus der landwirtschaftlichen Tierhaltung (BUT)",
+  "aliases": [
+    "Bundesprogramm Umbau Tierhaltung",
+    "Tierwohl-Förderung",
+    "Stallumbau-Förderung",
+    "Tierhaltungsförderung",
+    "BUT"
+  ],
+  "former_names": [],
+  "type": "agriculture_subsidy",
+  "status": "verified",
+  "category": "Landwirtschaft & Ländlicher Raum",
+  "subcategory": "Tierhaltung & Tierwohl",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium für Landwirtschaft, Ernährung und Heimat (BMLEH)",
+    "authority": "Bundesanstalt für Landwirtschaft und Ernährung (BLE)",
+    "url": "https://www.ble.de/DE/Projektfoerderung/Foerderungen-Auftraege/Bundesprogramm_Umbau_Tierhaltung/BUT_node.html",
+    "phone": "0228 6845-2298"
+  },
+  "target_groups": [
+    "Landwirte in der Tierhaltung",
+    "Schweinehalter",
+    "Rinderhalter",
+    "Geflügelhalter",
+    "Betriebe mit Tierumbau"
+  ],
+  "life_situations": [
+    "landwirtschaft",
+    "ländlicher_raum"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "th-001",
+        "description": "Landwirtschaftlicher Betrieb mit Tierhaltung",
+        "condition": "Betrieb muss Tiere halten und eine Tierhaltung betreiben",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "th-002",
+        "description": "Investition in Tierwohl",
+        "condition": "Investition in besonders tier- und umweltgerechte Tierhaltung",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "th-003",
+        "description": "Mindestinvestition",
+        "condition": "Förderfähige Ausgaben müssen den Mindestbetragen entsprechen",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "th-004",
+        "description": "Tierwohlstufen",
+        "condition": "Erreichung höherer Tierwohlstufen (Stufe 3-5 bei Mastschweinen)",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Förderfähige Ausgaben",
+        "threshold": 2000000,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "region": "all",
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Förderung laufender Mehrkosten möglich (bis zu 70 %)",
+      "Mengengestaffelte Förderung bei Mastschweinen",
+      "EU-Kommission hat Milliardenhilfe genehmigt"
+    ]
+  },
+  "calculation": {
+    "method": "Gestaffelter Zuschussatz je nach Investitionshöhe",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Bis 500.000 Euro förderfähige Ausgaben",
+        "formula": "Zuschuss = Förderfähige Ausgaben × 60 %",
+        "note": "Maximal 300.000 Euro Zuschuss"
+      },
+      {
+        "step": 2,
+        "description": "500.001 bis 2.000.000 Euro förderfähige Ausgaben",
+        "formula": "Zuschuss = 300.000 + (Ausgaben - 500.000) × 50 %",
+        "note": "Maximal 1.050.000 Euro Zuschuss"
+      },
+      {
+        "step": 3,
+        "description": "Laufende Mehrkosten",
+        "formula": "Zuschuss = Laufende Mehrkosten × bis zu 70 %",
+        "note": "Pro Tier, gestaffelt nach Tierwohlstufe"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": 1050000,
+    "typical_amount": "60 % bis 50.000 Euro, 50 % darüber",
+    "frequency": "once",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Zuschuss von bis zu 60 % der förderfähigen Ausgaben (bis 500.000 Euro), 50 % darüber",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": 1050000,
+    "depends_on": [
+      "Höhe der Investition",
+      "Art der Tierhaltung",
+      "Tierwohlstufe"
+    ]
+  },
+  "application": {
+    "method": "Online über BLE-Portal",
+    "url": "https://www.ble.de/DE/Projektfoerderung/Foerderungen-Auftraege/Bundesprogramm_Umbau_Tierhaltung/Investive_Foerderung/investiv_node.html",
+    "forms": [
+      "BUT-Antrag (investiv)",
+      "BUT-Antrag (laufende Mehrkosten)"
+    ],
+    "required_documents": [
+      "Vollständig ausgefüllter Antrag",
+      "Bauantrag / Baugenehmigung",
+      "Kostenvoranschäge / Angebote",
+      "Tierhaltungskonzept",
+      "Nachweis der Tierwohlstufen",
+      "Falls zutreffend: Bauplan"
+    ],
+    "processing_time": "3-6 Monate",
+    "deadlines": {
+      "description": "Antragsfrist für investive Förderung verlängert",
+      "date": "2026-08-31",
+      "note": "Fristende am 31. August 2026"
+    }
+  },
+  "legal_basis": [
+    "Bundesprogramm Umbau der Tierhaltung (BMLEH)",
+    "Verordnung (EU) Nr. 1305/2013 (ELER)",
+    "Tierschutzgesetz (TierSchG)",
+    "Tierhaltungsverordnung"
+  ],
+  "compatible_with": [
+    "landwirtschaft-investitionen",
+    "junglandwirte-einkommensstuetzung",
+    "umweltprogramme-fakt"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "landwirtschaft-investitionen",
+    "umweltprogramme",
+    "biologischer-bau"
+  ],
+  "user_content": {
+    "short_explanation": "Das Bundesprogramm fördert den Umbau von Tierhaltungsanlagen mit bis zu 60 % Zuschuss – für mehr Tierwohl und Umweltschutz.",
+    "for_whom": "Landwirte, die ihre Tierhaltung umbauen oder neu aufbauen möchten – besonders Schweine-, Rinder- und Geflügelhalter.",
+    "requirements": "Investition in tier- und umweltgerechte Tierhaltung, Baugenehmigung, Tierhaltungskonzept.",
+    "how_much": "Bis zu 60 % Zuschuss (bis 500.000 Euro Investition), 50 % darüber, maximal 1.050.000 Euro.",
+    "how_calculated": "Gestaffelt: 60 % auf die ersten 500.000 Euro, 50 % auf weitere 1.500.000 Euro.",
+    "documents_needed": "Antrag, Baugenehmigung, Kostenvoranschäge, Tierhaltungskonzept.",
+    "where_to_apply": "Online bei der BLE (Bundesanstalt für Landwirtschaft und Ernährung).",
+    "deadlines": "Antragsfrist verlängert bis 31. August 2026.",
+    "faq": [
+      {
+        "question": "Wird auch der laufende Betrieb gefördert?",
+        "answer": "Ja, laufende Mehrkosten durch höhere Tierwohlstufen können mit bis zu 70 % gefördert werden."
+      },
+      {
+        "question": "Gibt es eine Förderung für alle Tierarten?",
+        "answer": "Das Programm fördert Investitionen in verschiedene Tierarten, mit Schwerpunkt auf Schweinehaltung."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.ble.de/DE/Projektfoerderung/Foerderungen-Auftraege/Bundesprogramm_Umbau_Tierhaltung/BUT_node.html",
+      "title": "Bundesprogramm Umbau Tierhaltung - BLE",
+      "organization": "Bundesanstalt für Landwirtschaft und Ernährung",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    },
+    {
+      "url": "https://www.bmleh.de/DE/themen/tiere/umbau-tierhaltung/bundesprogramm-foerderung-umbau-tierhaltung.html",
+      "title": "Bundesprogramm zur Förderung des Umbaus der Tierhaltung",
+      "organization": "BMLEH",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-03-01",
+  "valid_until": "2030-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "EU-Kommission hat deutsche Milliardenhilfe für Tierwohl genehmigt",
+    "Antragsfrist für investive Förderung verlängert bis 31.08.2026",
+    "Förderung laufender Mehrkosten parallel möglich"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

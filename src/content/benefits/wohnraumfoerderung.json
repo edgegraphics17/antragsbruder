@@ -1,0 +1,174 @@
+{
+  "id": "wohnraumfoerderung",
+  "official_name": "Wohnraumförderung (Landeswohnraumförderprogramme)",
+  "aliases": [
+    "Sozialer Wohnungsbau",
+    "Landesförderprogramm Wohnen",
+    "Wohnraumförderungsgesetz"
+  ],
+  "former_names": [
+    "Sozialer Wohnungsbau (traditionell)"
+  ],
+  "type": "housing_benefit",
+  "status": "verified",
+  "category": "Wohnen & Immobilien",
+  "subcategory": "Wohnraumförderung",
+  "level": "state",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Landeswohnraumförderprogramm",
+    "authority": "Landesministerium für Wohnen / Bauamt",
+    "url": "https://www.bmwsb.bund.de/DE/wohnen/foerderprogramme-bmwsb/foerderprogramme-wohnen/sozialer-wohnungsbau/sozialer-wohnungsbau_node.html"
+  },
+  "target_groups": [
+    "Kommunen",
+    "Wohnungsunternehmen",
+    "Private Bauherren",
+    "Genossenschaften"
+  ],
+  "life_situations": [
+    "neubau",
+    "wohnraum_benoetigt",
+    "staedtebau"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "wohnraumfoerderung_purpose",
+        "description": "Förderung des Wohnungsbaus",
+        "condition": "Bau, Erwerb oder Modernisierung von Wohnraum für einkommensschwache Haushalte",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "wohnraumfoerderung_income",
+        "description": "Einkommensgrenzen für Mieter",
+        "condition": "Mieter dürfen bestimmte Einkommensgrenzen nicht überschreiten",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "wohnraumfoerderung_binding",
+        "description": "Bindungsfrist",
+        "condition": "Wohnungen müssen für bestimmte Zeit als Sozialwohnungen vermietet werden",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "1-Personen-Haushalt (WoFG)",
+        "threshold": 28000,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "last_updated": "2026-01-01"
+      },
+      {
+        "applies_to": "2-Personen-Haushalt (WoFG)",
+        "threshold": 35000,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "last_updated": "2026-01-01"
+      }
+    ],
+    "special_conditions": [
+      "Fördermieten sind unter dem marktüblichen Niveau",
+      "Belegungsrecht der Kommunen",
+      "Bund stellt 2022-2026 insgesamt 14,5 Mrd Euro bereit"
+    ]
+  },
+  "calculation": {
+    "method": "Förderung als Zinszuschuss, Annuitätendarlehen oder Zuschuss je Quadratmeter",
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Fördermiete ca. 5-7 Euro/m²",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Die Förderung variiert je nach Bundesland und Programm. Fördermieten liegen typischerweise bei 5-7 Euro/m².",
+    "depends_on": [
+      "Bundesland",
+      "Haushaltsgröße",
+      "Einkommen",
+      "Wohnfläche"
+    ]
+  },
+  "application": {
+    "method": "Über das jeweilige Landesprogramme / Förderbank",
+    "forms": [
+      "Antrag auf Förderzusage nach WoFG"
+    ],
+    "required_documents": [
+      "Bauantrag",
+      "Finanzierungsplan",
+      "Einkommensnachweise",
+      "Grundriss",
+      "Kostenvoranschlag"
+    ],
+    "processing_time": "3-6 Monate"
+  },
+  "legal_basis": [
+    "§§ 1-27 Wohnraumförderungsgesetz (WoFG)",
+    "Landeswohnraumförderprogramme"
+  ],
+  "compatible_with": [
+    "wohngeld",
+    "wohnberechtigungsschein",
+    "kfw_foerderung"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "wohnberechtigungsschein",
+    "mietpreisbremse",
+    "neubau_zuschuss"
+  ],
+  "user_content": {
+    "short_explanation": "Die Wohnraumförderung unterstützt den Bau und Erhalt bezahlbarer Mietwohnungen durch Zuschüsse an Bauherren und Kommunen.",
+    "for_whom": "Kommunen, Wohnungsbaugenossenschaften und private Bauherren, die Sozialwohnungen bauen oder modernisieren.",
+    "requirements": "Die Wohnungen müssen für einkommensschwache Haushalte bestimmt sein und Fördermieten werden vereinbart.",
+    "how_much": "Förderung als günstige Kredite oder Zuschüsse. Fördermieten liegen bei ca. 5-7 Euro/m².",
+    "how_calculations": "Die Höhe richtet sich nach Bundesland, Wohnfläche und energetischem Standard.",
+    "documents_needed": "Bauantrag, Finanzierungsplan, Kostenvoranschlag, Grundrisse.",
+    "where_to_apply": "Bei der zuständigen Landesförderbank oder dem Bauamt Ihres Bundeslandes.",
+    "deadlines": "Förderzusage muss vor Baubeginn erteilt werden.",
+    "faq": [
+      {
+        "question": "Wie viele Sozialwohnungen werden gefördert?",
+        "answer": "2025 wurden 27.283 neue Sozialwohnungen gefördert."
+      },
+      {
+        "question": "Was ist der Unterschied zum Wohngeld?",
+        "answer": "Wohngeld ist eine direkte Mieterhilfe, die Wohnraumförderung unterstützt den Bau neuer bezahlbarer Wohnungen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmwsb.bund.de/DE/wohnen/foerderprogramme-bmwsb/foerderprogramme-wohnen/sozialer-wohnungsbau/sozialer-wohnungsbau_node.html",
+      "title": "Sozialer Wohnungsbau - BMWSB",
+      "organization": "Bundesministerium für Wohnen, Stadtentwicklung und Bauwesen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/wofg/",
+      "title": "Wohnraumförderungsgesetz (WoFG)",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2022-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Bund stellt 2022-2026 insgesamt 14,5 Mrd Euro für Wohnraumförderung bereit."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

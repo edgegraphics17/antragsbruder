@@ -1,0 +1,147 @@
+{
+  "id": "stoerfallfonds",
+  "official_name": "KfW-Sonderprogramm / Überbrückungshilfe (Corona-Hilfen)",
+  "aliases": [
+    "KfW-Sonderprogramm",
+    "Überbrückungshilfe",
+    "Corona-Hilfen",
+    "KfW-Schnellkredit"
+  ],
+  "former_names": [
+    "KfW-Schnellkredit 2020",
+    "KfW-Sonderprogramm 2020"
+  ],
+  "type": "business_subsidy",
+  "status": "partially_verified",
+  "category": "Krisenhilfe",
+  "subcategory": "Corona-Pandemie",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "KfW Bankengruppe",
+    "authority": "Bundesministerium für Wirtschaft und Energie",
+    "url": "https://www.kfw.de/%C3%9Cber-die-KfW/Berichtsportal/KfW-Corona-Hilfe/",
+    "phone": "0800 5399001"
+  },
+  "target_groups": [
+    "Unternehmen",
+    "Selbstständige",
+    "Freiberufler"
+  ],
+  "life_situations": [
+    "unternehmen",
+    "arbeit_selbststaendig"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "sf_01",
+        "description": "Coronabedingte Umsatzeinbußen",
+        "condition": "umsatzeinbruch_corona = true",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "sf_02",
+        "description": "Unternehmen bestand vor dem 01.03.2020",
+        "condition": "unternehmen_vor_2020 = true",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "special_conditions": [
+      "Programme wurden während der Corona-Pandemie bereitgestellt",
+      "Laufende Evaluation der KfW-Corona-Hilfen durch ZEW"
+    ]
+  },
+  "calculation": {
+    "method": "Verschiedene Programme mit unterschiedlichen Konditionen",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Individuelle Prüfung des Anspruchs",
+        "note": "Je nach Programm und Unternehmensgröße"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Individuell",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Verschiedene Programme während der Corona-Pandemie",
+    "depends_on": [
+      "programm",
+      "unternehmensgroesse",
+      "umsatzeinbruch"
+    ]
+  },
+  "application": {
+    "method": "Über Hausbank oder online",
+    "url": "https://www.kfw.de/%C3%9Cber-die-KfW/Berichtsportal/KfW-Corona-Hilfe/",
+    "forms": [
+      "Je nach Programm"
+    ],
+    "required_documents": [
+      "Umsatzzahlen 2019/2020",
+      "Bilanzen",
+      "Finanzplan"
+    ],
+    "processing_time": "Variiert",
+    "deadlines": {
+      "description": "Programme teilweise abgelaufen",
+      "note": "Aktuelle Informationen auf der KfW-Website"
+    }
+  },
+  "legal_basis": [
+    "Corona-Hilfegesetze",
+    "KfW-Sonderprogramme"
+  ],
+  "compatible_with": [],
+  "incompatible_with": [],
+  "related_benefits": [
+    "existenzgruenderkredit"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die KfW-Corona-Hilfen unterstützten Unternehmen während der Pandemie mit zinsgünstigen Krediten und Zuschüssen.",
+    "for_whom": "Unternehmen, die coronabedingte Umsatzeinbußen erlitten",
+    "requirements": "Coronabedingte Umsatzeinbrüche, Unternehmen bestand vor März 2020",
+    "how_much": "Individuell je nach Programm",
+    "how_calculated": "Abhängig vom Programm und der Unternehmensgröße",
+    "documents_needed": "Umsatzzahlen, Bilanzen, Finanzplan",
+    "where_to_apply": "Über Hausbank oder KfW",
+    "deadlines": "Einige Programme sind abgelaufen",
+    "faq": [
+      {
+        "question": "Gibt es die Corona-Hilfen noch?",
+        "answer": "Die meisten Programme sind beendet, aber es gibt Nachfolgeprogramme. Aktuelle Informationen finden Sie auf der KfW-Website."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.kfw.de/%C3%9Cber-die-KfW/Berichtsportal/KfW-Corona-Hilfe/",
+      "title": "KfW-Corona-Hilfe",
+      "organization": "KfW",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2020-03-01",
+  "valid_until": "2022-12-31",
+  "confidence": "medium",
+  "verification_status": "partially_verified",
+  "notes": [
+    "Wurde während der Corona-Pandemie bereitgestellt",
+    "Evaluation durch ZEW und partner läuft",
+    "Einige Programme sind abgelaufen"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,205 @@
+{
+  "id": "photovoltaik-foerderung",
+  "official_name": "Photovoltaik-Förderung (KfW & EEG)",
+  "aliases": [
+    "Solarförderung",
+    "PV-Förderung",
+    "Photovoltaik-Kredit",
+    "Solaranlage Förderung",
+    "EEG-Vergütung Solar"
+  ],
+  "former_names": [
+    "Solarenergie",
+    "100.000-Dächer-Programm"
+  ],
+  "type": "energy_subsidy",
+  "status": "verified",
+  "category": "Energie & Klima",
+  "subcategory": "Erzeugung erneuerbarer Energien",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "KfW Bankengruppe / Bundesnetzagentur",
+    "authority": "Bundesministerium für Wirtschaft und Klimaschutz (BMWK)",
+    "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestandsimmobilie/Energieeffizient-Sanieren/Photovoltaik/",
+    "phone": "0800 539 9002"
+  },
+  "target_groups": [
+    "Hauseigentümer",
+    "Wohnungseigentümer",
+    "Mieter (mit Zustimmung)",
+    "Unternehmen",
+    "Landwirte"
+  ],
+  "life_situations": [
+    "photovoltaik",
+    "energiesanierung",
+    "klimaschutz"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "pv-001",
+        "description": "Photovoltaikanlage auf oder am Gebäude",
+        "condition": "PV-Anlage wird auf Dach, Fassade oder Freifläche installiert",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "pv-002",
+        "description": "Zusätzlicher Batteriespeicher förderfähig",
+        "condition": "Speicher muss mit der PV-Anlage gekoppelt sein",
+        "required": false,
+        "category": "asset"
+      },
+      {
+        "rule_id": "pv-003",
+        "description": "Fachbetriebliche Installation",
+        "condition": "Installation durch zertifizierten Elektrofachbetrieb",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "pv-004",
+        "description": "EEG-Einspeisevergütung bei Inbetriebnahme",
+        "condition": "Anlage wird beim Netzbetreiber angemeldet; Einspeisevergütung wird für 20 Jahre garantiert",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "KfW-Kredit Nr. 270 für Erneuerbare Energien (Standard)",
+      "KfW-Kredit Nr. 275 für Erneuerbare Energien (Speicher)",
+      "Eigenbau-Kredite sind nicht förderfähig",
+      "Keine Förderung für reine Freiflächenanlagen über 1 MW über KfW"
+    ]
+  },
+  "calculation": {
+    "method": "Kreditförderung: KfW übernimmt einen Teil der Finanzierung zu günstigen Zinskonditionen. EEG-Vergütung: Festgelegter Satz pro eingespeister kWh.",
+    "steps": [
+      {
+        "step": 1,
+        "description": "KfW-Kreditbetrag ermitteln",
+        "formula": "Bis zu 100% der förderfähigen Kosten",
+        "note": "Maximale Kreditgrenze je nach Programm"
+      },
+      {
+        "step": 2,
+        "description": "EEG-Einspeisevergütung berechnen",
+        "formula": "Einspeisevergütung × eingespeiste kWh",
+        "note": "7,86 Cent/kWh für Anlagen bis 10 kWp (2025)"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Kredit: bis zu 100% der Investitionskosten; EEG: ca. 7,36-7,86 Cent/kWh je nach Anlagengröße",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "KfW-Kredit für Photovoltaikanlage (günstige Zinskonditionen). EEG-Einspeisevergütung von ca. 7,36-7,86 Cent pro kWh für Anlagen bis 10 kWp (2025).",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": [
+      "Anlagengröße in kWp",
+      "Stromertrag",
+      "Selbstverbrauch",
+      "Investitionskosten"
+    ]
+  },
+  "application": {
+    "method": "Online bei KfW (über Hausbank) für Kredit; Einspeisevergütung über Netzbetreiber",
+    "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestandsimmobilie/Energieeffizient-Sanieren/Photovoltaik/",
+    "forms": [
+      "KfW-Antrag über Hausbank",
+      "EEG-Anmeldung beim Netzbetreiber"
+    ],
+    "required_documents": [
+      "Angebote von Fachbetrieben",
+      "Baugenehmigung (falls erforderlich)",
+      "Grundriss und Dachplan",
+      "Personalausweis",
+      "Einkommensnachweise (für Tilgungszuschuss)"
+    ],
+    "processing_time": "4-8 Wochen (KfW-Kredit), EEG-Anmeldung sofort nach Prüfung",
+    "deadlines": {
+      "description": "Antrag vor Beginn der Maßnahme stellen",
+      "note": "Rückwirkende Förderung nicht möglich"
+    }
+  },
+  "legal_basis": [
+    "Erneuerbare-Energien-Gesetz (EEG) 2023",
+    "§ 19 EEG (Einspeisevergütung für Solaranlagen)",
+    "KfW-Programm 270 (Erneuerbare Energien - Standard)",
+    "KfW-Programm 275 (Erneuerbare Energien - Speicher)"
+  ],
+  "compatible_with": [
+    "gebaeude-daemmung",
+    "energieeffizienz",
+    "waermepumpe",
+    "solarthermie"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "erneuerbare-energien",
+    "energieschuldenberatung"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Mit einer Photovoltaikanlage erzeugen Sie eigenen Solarstrom. Der Staat fördert die Finanzierung über günstige Kredite (KfW) und garantiert eine Einspeisevergütung für überschüssigen Strom.",
+    "for_whom": "Hauseigentümer und Mieter, die eine Solaranlage installieren möchten.",
+    "requirements": "Sie benötigen ein geeignetes Dach oder eine Freifläche. Die Installation muss durch einen Fachbetrieb erfolgen. Für den KfW-Kredit wird eine Bonitätsprüfung erforderlich.",
+    "how_much": "Der KfW-Kredit deckt bis zu 100% der Investitionskosten. Die EEG-Vergütung liegt bei ca. 7,36-7,86 Cent pro eingespeister Kilowattstunde (je nach Anlagengröße).",
+    "how_calculated": "Der Kreditbetrag richtet sich nach den tatsächlichen Kosten. Die EEG-Vergütung wird vom Netzbetreiber auf Basis der eingespeisten kWh monatlich gezahlt.",
+    "documents_needed": "Kostenangebote, Dachdaten, Personalausweis, Einkommensnachweise.",
+    "where_to_apply": "KfW-Kredit über Ihre Hausbank oder direkt beim Netzbetreiber für die EEG-Anmeldung.",
+    "deadlines": "Stellen Sie den KfW-Antrag vor Beginn der Installation. Bei EEG-Anmeldung ist eine Frist zur Vergütungsstufe zu beachten.",
+    "faq": [
+      {
+        "question": "Wie lange läuft die EEG-Vergütung?",
+        "answer": "20 Jahre ab Inbetriebnahme der Anlage, danach Direktvermarktung möglich."
+      },
+      {
+        "question": "Kann ich PV ohne Speicher fördern lassen?",
+        "answer": "Ja, eine PV-Anlage ohne Speicher ist ebenfalls förderfähig. Ein Speicher erhöht aber den Eigenanteil."
+      },
+      {
+        "question": "Gibt es einen Zuschuss statt Kredit?",
+        "answer": "Über die KfW gibt es derzeit (2025/2026) überwiegend Kredite. Ein Tilgungszuschuss ist bei Einzelmaßnahmen über BAFA möglich."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestandsimmobilie/Energieeffizient-Sanieren/Photovoltaik/",
+      "title": "Photovoltaik einbauen mit staatlicher Förderung - KfW",
+      "organization": "KfW Bankengruppe",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    },
+    {
+      "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/ErneuerbareEnergien/EEG_Foerderung/start.html",
+      "title": "EEG-Förderung und -Fördersätze - Bundesnetzagentur",
+      "organization": "Bundesnetzagentur",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "EEG-Vergütungssätze ändern sich monatlich. Aktuelle Werte: Bundesnetzagentur.",
+    "Solarspitzengesetz 2025: Keine Vergütung bei negativen Börsenpreisen."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,185 @@
+{
+  "id": "erwerbsminderung",
+  "official_name": "Erwerbsminderungsrente",
+  "aliases": [
+    "EM-Rente",
+    "Rente wegen Erwerbsminderung",
+    "Berufsunfähigkeitsrente"
+  ],
+  "former_names": [],
+  "type": "disability_benefit",
+  "status": "verified",
+  "category": "Rente & Vorsorge",
+  "subcategory": "Erwerbsminderung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Deutsche Rentenversicherung",
+    "authority": "Deutsche Rentenversicherung Bund",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Erwerbsminderungsrente/Erwerbsminderungsrente",
+    "phone": "0800 1000 4800"
+  },
+  "target_groups": [
+    "Versicherte mit verminderter Erwerbsfähigkeit",
+    "Menschen die nicht mehr voll arbeiten können"
+  ],
+  "life_situations": [
+    "kann_nicht_arbeiten",
+    "gesundheit",
+    "behinderung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "em-r1",
+        "description": "Voll erwerbsgemindert: weniger als 3 Stunden täglich in irgendeiner Tätigkeit arbeitsfähig",
+        "condition": "voll_erwerbsgemindert",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "em-r2",
+        "description": "Teilweise erwerbsgemindert: 3-6 Stunden täglich arbeitsfähig",
+        "condition": "teilweise_erwerbsgemindert",
+        "required": false,
+        "category": "health"
+      },
+      {
+        "rule_id": "em-r3",
+        "description": "Wartezeit von 5 Jahren erfüllt (mindestens 36 Monate Pflichtbeiträge in letzten 5 Jahren)",
+        "condition": "wartezeit_5_jahre",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "em-r4",
+        "description": "Erwerbsminderung ist voraussichtlich dauerhaft",
+        "condition": "dauerhaft",
+        "required": true,
+        "category": "health"
+      }
+    ],
+    "special_conditions": [
+      "Zuschlag seit Juli 2024 für EM-Renten die 2001-2018 begonnen haben (7,5% oder 4,5% ab Dez 2025)"
+    ]
+  },
+  "calculation": {
+    "method": "Wie Altersrente, aber mit Zurechnungszeit bis zum 65. Lebensjahr",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Persönliche Entgeltpunkte ermitteln"
+      },
+      {
+        "step": 2,
+        "description": "Zurechnungszeit bis 65. Lebensjahr hinzufügen"
+      },
+      {
+        "step": 3,
+        "description": "Rentenartfaktor (1,0 für volle EM, 0,5 für teilweise EM)"
+      },
+      {
+        "step": 4,
+        "description": "Abschlag von 0,3% pro Monat vor 65. Lebensjahr (max 10,8%)"
+      },
+      {
+        "step": 5,
+        "description": "Zuschlag ab Dezember 2025: 7,5% oder 4,5% der Entgeltpunkte"
+      }
+    ],
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Abhängig von Entgeltpunkten, Versicherungsdauer und Zurechnungszeit",
+    "depends_on": [
+      "entgeltpunkte",
+      "versicherungsjahre",
+      "alter",
+      "art_der_minderung"
+    ]
+  },
+  "application": {
+    "method": "Online oder schriftlich bei der Deutschen Rentenversicherung",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Erwerbsminderungsrente/Erwerbsminderungsrente",
+    "forms": [
+      "Antrag auf Rente wegen voller Erwerbsminderung",
+      "Antrag auf Rente wegen teilweiser Erwerbsminderung"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Rentenversicherungsnummer",
+      "Ärztliche Befunde",
+      "Arbeitsunfähigkeitsbescheinigungen",
+      "Angaben zur Berufstätigkeit"
+    ],
+    "processing_time": "ca. 3-6 Monate"
+  },
+  "legal_basis": [
+    "§§ 43-63 SGB VI",
+    "§ 307j SGB VI (Zuschlag)",
+    "§ 253a SGB VI (Zurechnungszeit)"
+  ],
+  "compatible_with": [
+    "sozialhilfe",
+    "hinterbliebenenleistungen"
+  ],
+  "incompatible_with": [
+    "arbeitslosengeld-i"
+  ],
+  "related_benefits": [
+    "sozialversicherung",
+    "sozialhilfe",
+    "reha"
+  ],
+  "user_content": {
+    "short_explanation": "Die Erwerbsminderungsrente wird gezahlt, wenn Sie aufgrund von Krankheit nicht mehr voll oder teilweise arbeiten können.",
+    "for_whom": "Für Versicherte, die aufgrund gesundheitlicher Probleme nicht mehr in der Lage sind, mindestens 3 Stunden (voll) oder 6 Stunden (teilweise) täglich zu arbeiten.",
+    "requirements": "Sie müssen die Wartezeit von 5 Jahren erfüllt haben, voll oder teilweise erwerbsgemindert sein und die Minderung muss voraussichtlich dauerhaft sein.",
+    "how_much": "Hängt von Ihren Entgeltpunkten und der Versicherungsdauer ab. Durch die Zurechnungszeit bis 65 wird die Rente höher. Zuschlag seit 2024.",
+    "how_calculated": "Wie die Altersrente, aber mit Zurechnungszeit bis zum 65. Lebensjahr. Abschlag von 0,3% pro Monat vor 65 (max 10,8%).",
+    "documents_needed": "Ärztliche Befunde, Arbeitsunfähigkeitsbescheinigungen, Rentenversicherungsnummer",
+    "where_to_apply": "Bei der Deutschen Rentenversicherung (online oder schriftlich)",
+    "deadlines": "Keine spezifischen Fristen, aber Antrag schnellzeitig stellen.",
+    "faq": [
+      {
+        "question": "Was ist der Unterschied zwischen voller und teilweiser EM?",
+        "answer": "Voll: weniger als 3 Stunden arbeitsfähig. Teilweise: 3-6 Stunden arbeitsfähig. Volle EM = volle Rente, teilweise EM = halbe Rente."
+      },
+      {
+        "question": "Gibt es einen Zuschlag?",
+        "answer": "Ja, seit Juli 2024 erhalten EM-Renten, die 2001-2018 begonnen haben, einen Zuschlag. Ab Dezember 2025 wird dieser in die Rente integriert."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informations/Rentenarten-und-Leistungen/Erwerbsminderungsrente/Erwerbsminderungsrente",
+      "title": "Erwerbsminderungsrenten",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/EM-Rente-Verbesserung/em-verbesserungsgesetz_node",
+      "title": "EM-Rente Verbesserungsgesetz",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-09-08",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Zuschlag seit Juli 2024 (7,5% oder 4,5% ab Dez 2025)",
+    "Zurechnungszeit bis 65. Lebensjahr",
+    "Abschlag max 10,8%"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,165 @@
+{
+  "id": "digitalbonus",
+  "official_name": "Digitalbonus Bayern",
+  "aliases": [
+    "Digitalbonus",
+    "Digitalisierungsförderung Bayern",
+    "Digitalbonus Standard",
+    "Digitalbonus Plus"
+  ],
+  "former_names": [],
+  "type": "business_subsidy",
+  "status": "verified",
+  "category": "Digitalisierung",
+  "subcategory": "Förderung digitaler Investitionen",
+  "level": "state",
+  "regions": [
+    "BY"
+  ],
+  "provider": {
+    "name": "Bayerisches Staatsministerium für Wirtschaft",
+    "authority": "StMWI Bayern",
+    "url": "https://www.digitalbonus.bayern/",
+    "phone": "089 143430"
+  },
+  "target_groups": [
+    "KMU",
+    "Unternehmen mit < 250 Mitarbeitern",
+    "Selbstständige",
+    "Freiberufler"
+  ],
+  "life_situations": [
+    "unternehmen",
+    "arbeit_selbststaendig"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "db_01",
+        "description": "Unternehmen mit weniger als 250 Beschäftigten",
+        "condition": "mitarbeiter < 250",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "db_02",
+        "description": "Sitz des Unternehmens in Bayern",
+        "condition": "unternehmenssitz = 'BY'",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "db_03",
+        "description": "Digitalisierungsvorhaben",
+        "condition": "digitalisierungsvorhaben = true",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "special_conditions": [
+      "Drei Varianten: Standard, Plus und Kredit",
+      "Nur für Unternehmen in Bayern"
+    ]
+  },
+  "calculation": {
+    "method": "Zuschuss je nach Variante (Standard, Plus, Kredit)",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Standard: Zuschuss für Basis-Digitalisierung",
+        "note": "Bis zu 3.000 Euro"
+      },
+      {
+        "step": 2,
+        "description": "Plus: Zuschuss für umfangreichere Digitalisierung",
+        "note": "Bis zu 10.000 Euro"
+      },
+      {
+        "step": 3,
+        "description": "Kredit: Zinsgünstiger Kredit für Digitalisierung",
+        "note": "Über KfW"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 10000,
+    "typical_amount": "3.000 - 10.000 Euro",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Standard bis 3.000 Euro, Plus bis 10.000 Euro, Kredit über KfW",
+    "one_time": 10000,
+    "depends_on": [
+      "variante",
+      "investitionsvolumen"
+    ]
+  },
+  "application": {
+    "method": "Online bei Digitalbonus Bayern",
+    "url": "https://www.digitalbonus.bayern/",
+    "forms": [
+      "Antrag Digitalbonus"
+    ],
+    "required_documents": [
+      "Angebote/Rechnungen",
+      "Nachweis Unternehmenssitz Bayern",
+      "Beschreibung des Digitalisierungsvorhabens"
+    ],
+    "processing_time": "4-8 Wochen",
+    "deadlines": {
+      "description": "Keine feste Frist",
+      "note": "Antrag vor Investitionsbeginn stellen"
+    }
+  },
+  "legal_basis": [
+    "Landesförderung Bayern",
+    "Bayern Digital"
+  ],
+  "compatible_with": [
+    "existenzgruenderkredit",
+    "gruendercoaching"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "existenzgruenderkredit",
+    "gruendercoaching"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der Digitalbonus Bayern fördert Investitionen in die Digitalisierung für kleine und mittlere Unternehmen in Bayern.",
+    "for_whom": "KMU mit weniger als 250 Mitarbeitern und Sitz in Bayern",
+    "requirements": "Unternehmenssitz Bayern, Digitalisierungsvorhaben, weniger als 250 Mitarbeiter",
+    "how_much": "Standard bis 3.000 Euro, Plus bis 10.000 Euro",
+    "how_calculated": "Zuschuss je nach Variante und Investitionsvolumen",
+    "documents_needed": "Angebote, Nachweis Unternehmenssitz, Projektbeschreibung",
+    "where_to_apply": "Online bei digitalbonus.bayern",
+    "deadlines": "Antrag vor Investitionsbeginn stellen",
+    "faq": [
+      {
+        "question": "Gibt es den Digitalbonus auch in anderen Bundesländern?",
+        "answer": "Nein, der Digitalbonus ist ein Programm des Freistaats Bayern. Andere Bundesländer haben jedoch ähnliche Förderungen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.digitalbonus.bayern/",
+      "title": "Digitalbonus Bayern",
+      "organization": "StMWI Bayern",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2020-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Nur für Unternehmen in Bayern",
+    "Drei Varianten: Standard, Plus, Kredit"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

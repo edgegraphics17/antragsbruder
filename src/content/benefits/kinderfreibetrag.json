@@ -1,0 +1,201 @@
+{
+  "id": "kinderfreibetrag",
+  "official_name": "Kinderfreibetrag nach § 32 EStG",
+  "aliases": [
+    "Kinderfreibetrag",
+    "Freibetrag für Kinder",
+    "Kinderfreibeträge"
+  ],
+  "former_names": [],
+  "type": "tax_benefit",
+  "status": "verified",
+  "category": "Steuern & Finanzen",
+  "subcategory": "Familienleistungen",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium der Finanzen",
+    "authority": "Finanzamt",
+    "url": "https://www.bundesfinanzministerium.de",
+    "phone": ""
+  },
+  "target_groups": [
+    "Eltern",
+    "Erziehungsberechtigte",
+    "Familien mit Kindern"
+  ],
+  "life_situations": [
+    "family_children",
+    "alleinerziehend"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "kinderfreibetrag_kind",
+        "description": "Kind im Sinne des § 32 Abs. 1-4 EStG (leibliche Kind, Stiefkind, Pflegekind, Enkelkind)",
+        "condition": "kind_exists",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "kinderfreibetrag_einkommen",
+        "description": "Einkünfte aus nichtselbständiger oder selbständiger Arbeit des Elternteils",
+        "condition": "parent_has_income",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "kinderfreibetrag_unterhalt",
+        "description": "Kind erhält keinen Unterhalt oder der Unterhalt ist nicht abziehbar",
+        "condition": "no_deductible_alimony",
+        "required": false,
+        "category": "income"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Kinderfreibetrag wird nur bei Veranlagung berücksichtigt (nicht automatisch)",
+      "Gleichzeitig mit Kindergeld möglich (Günstigerprüfung)",
+      "Pro Elternteil die Hälfte des Kinderfreibetrags"
+    ]
+  },
+  "calculation": {
+    "method": "Kinderfreibetrag pro Kind = sächliches Existenzminimum + Betreuungs-/Erziehungsbedarf",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Sächliches Existenzminimum des Kindes",
+        "formula": "3.414 Euro (2026)",
+        "value": "3.414 Euro",
+        "note": "Pro Elternteil"
+      },
+      {
+        "step": 2,
+        "description": "Freibetrag für Betreuungs- und Erziehungs- oder Ausbildungsbedarf",
+        "formula": "1.464 Euro (2026)",
+        "value": "1.464 Euro",
+        "note": "Pro Elternteil"
+      },
+      {
+        "step": 3,
+        "description": "Gesamter Kinderfreibetrag pro Elternteil",
+        "formula": "3.414 + 1.464 = 4.878 Euro",
+        "value": "4.878 Euro",
+        "note": "Pro Elternteil"
+      },
+      {
+        "step": 4,
+        "description": "Gesamter Kinderfreibetrag pro Kind (beide Elternteile)",
+        "formula": "4.878 × 2 = 9.756 Euro",
+        "value": "9.756 Euro",
+        "note": "Pro Kind"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 9756,
+    "typical_amount": "9.756 Euro pro Kind (2026)",
+    "frequency": "yearly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Kinderfreibetrag 2026: 9.756 Euro pro Kind (4.878 Euro pro Elternteil)",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": 9756,
+    "depends_on": [
+      "Anzahl der Kinder",
+      "Einkommen der Elternteile",
+      "Steuertarif"
+    ]
+  },
+  "application": {
+    "method": "Steuererklärung (Anlage Kind)",
+    "url": "https://www.elster.de",
+    "forms": [
+      "Anlage Kind"
+    ],
+    "required_documents": [
+      "Geburtsurkunde des Kindes",
+      "Nachweis über Einkünfte",
+      "Falls zutreffend: Unterhaltsnachweise"
+    ],
+    "processing_time": "4-8 Wochen nach Abgabe der Steuererklärung",
+    "deadlines": {
+      "description": "Steuererklärung Frist",
+      "date": "31.07. des Folgejahres (bei Berater: 28.02. des übernächsten Jahres)",
+      "note": "Kinderfreibetrag wird bei Veranlagung automatisch geprüft"
+    }
+  },
+  "legal_basis": [
+    "§ 32 EStG",
+    "§ 31 EStG (Familienleistungsausgleich)"
+  ],
+  "compatible_with": [
+    "kindergeld",
+    "unterhaltsfreibetrag",
+    "alleinerziehendenentlastungsbetrag"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "kindergeld",
+    "unterhaltsfreibetrag",
+    "bafoeg"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der Kinderfreibetrag ist ein steuerlicher Freibetrag für Eltern, der das Existenzminimum des Kindes vor der Einkommensteuer schützt. Er wird bei der Steuerveranlagung berücksichtigt und ist eine Alternative zum Kindergeld.",
+    "for_whom": "Für Eltern oder Erziehungsberechtigte, die Einkommen erzielen und ein Kind haben, das noch in Ausbildung ist oder behindert ist.",
+    "requirements": "Sie haben ein Kind (bis 18 Jahre, bei Ausbildung/Behinderung länger), das bei Ihnen lebt oder Sie erhalten kein abziehbares Kindergeld. Sie müssen eine Steuererklärung abgeben.",
+    "how_much": "2026: 9.756 Euro pro Kind (4.878 Euro pro Elternteil). Das entspricht einer Steuerersparnis von ca. 1.000-4.000 Euro pro Jahr, je nach Steuertarif.",
+    "how_calculated": "Der Kinderfreibetrag setzt sich zusammen aus dem sächlichen Existenzminimum (3.414 Euro) und dem Betreuungs-/Erziehungsbedarf (1.464 Euro) pro Elternteil. Bei zwei Elternteilen ergibt sich der doppelte Betrag.",
+    "documents_needed": "Geburtsurkunde des Kindes, Einkommensnachweise, ggf. Nachweis über Ausbildung oder Behinderung.",
+    "where_to_apply": "Beim zuständigen Finanzamt über die Steuererklärung (Anlage Kind). Online über ELSTER oder mit Steuerberater.",
+    "deadlines": "Steuererklärung bis 31. Juli des Folgejahres (ohne Berater), mit Steuerberater bis 28. Februar des übernächsten Jahres.",
+    "faq": [
+      {
+        "question": "Kinderfreibetrag oder Kindergeld - was ist besser?",
+        "answer": "Das Finanzamt prüft automatisch, was für Sie günstiger ist (Günstigerprüfung). Bei höheren Einkommen ist der Kinderfreibetrag oft vorteilhafter."
+      },
+      {
+        "question": "Kann ich beides bekommen?",
+        "answer": "Ja, Sie erhalten Kindergeld automatisch. Bei der Steuererklärung wird geprüft, ob der Kinderfreibetrag günstiger ist. Der Unterschied wird dann vergütet."
+      },
+      {
+        "question": "Bis wann gilt der Kinderfreibetrag?",
+        "answer": "Bis zum 18. Lebensjahr, bei Ausbildung oder Behinderung bis 25 Jahre oder länger."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/estg/__32.html",
+      "title": "EStG § 32 - Kinder, Freibeträge für Kinder",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Steuern/das-aendert-sich-2026.html",
+      "title": "Die wichtigsten steuerlichen Änderungen 2026",
+      "organization": "Bundesministerium der Finanzen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": "2026-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Kinderfreibetrag 2026: 9.756 Euro pro Kind",
+    "Gilt pro Elternteil die Hälfte",
+    "Wird bei Veranlagung automatisch geprüft"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,193 @@
+{
+  "id": "existenzgruenderkredit",
+  "official_name": "ERP-Gründerkredit – StartGeld (KfW 067)",
+  "aliases": [
+    "KfW-Gründerkredit",
+    "ERP-Gründerkredit",
+    "StartGeld",
+    "Gründerkredit KfW",
+    "KfW StartGeld"
+  ],
+  "former_names": [],
+  "type": "business_subsidy",
+  "status": "verified",
+  "category": "Existenzgründung",
+  "subcategory": "Förderkredit für Gründer",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "KfW Bankengruppe",
+    "authority": "KfW",
+    "url": "https://www.kfw.de/inlandsfoerderung/Unternehmen/Gr%C3%BCnden-Nachfolgen/F%C3%B6rderprodukte/ERP-Gr%C3%BCnderkredit-Startgeld-(067)/",
+    "phone": "0800 5399001"
+  },
+  "target_groups": [
+    "Existenzgründer",
+    "Freiberufler",
+    "Junge Unternehmen (< 5 Jahre)",
+    "Unternehmensnachfolger"
+  ],
+  "life_situations": [
+    "arbeit_selbststaendig",
+    "gründung",
+    "unternehmen"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "egk_01",
+        "description": "Existenzgründung oder Unternehmen mit weniger als 5 Jahren Marktaktivität",
+        "condition": "unternehmen_alt < 5_years OR existenzgruender = true",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "egk_02",
+        "description": "Tragfähiges Geschäftskonzept",
+        "condition": "geschaeftskonzept_tragfaehig = true",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "egk_03",
+        "description": "Eigenkapitalanteil erforderlich (ca. 10-15%)",
+        "condition": "eigenkapital >= 0.10",
+        "required": true,
+        "category": "asset"
+      },
+      {
+        "rule_id": "egk_04",
+        "description": "Kreditübernahme durch Hausbank",
+        "condition": "hausbank_kredit = true",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "special_conditions": [
+      "KfW übernimmt 80% des Kreditrisikos (Haftungsfreistellung)",
+      "Zinsvergünstigung aus ERP-Sondervermögen",
+      "Max. 200.000 Euro (seit Dezember 2025)",
+      "Bis zu 80.000 Euro für Betriebsmittel"
+    ]
+  },
+  "calculation": {
+    "method": "Zinsorientierung am Kapitalmarkt, individuell festgelegt bei Zusage",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Antrag bei Hausbank stellen",
+        "note": "KfW-Kredite werden über Finanzierungspartner vergeben"
+      },
+      {
+        "step": 2,
+        "description": "Zinssatz wird am Tag der Zusage festgesetzt",
+        "note": "Maximalzinssätze unter www.kfw.de/konditionen"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 200000,
+    "typical_amount": "50.000 - 150.000 Euro",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Bis zu 200.000 Euro, davon bis zu 80.000 Euro für Betriebsmittel",
+    "one_time": 200000,
+    "depends_on": [
+      "fremdfinanzierungsbedarf",
+      "unternehmen_alt",
+      "geschaeftskonzept"
+    ]
+  },
+  "application": {
+    "method": "Über Hausbank (Finanzierungspartner)",
+    "url": "https://www.kfw.de/inlandsfoerderung/Unternehmen/Gr%C3%BCnden-Nachfolgen/F%C3%B6rderprodukte/ERP-Gr%C3%BCnderkredit-Startgeld-(067)/",
+    "forms": [
+      "KfW-Antrag über Hausbank"
+    ],
+    "required_documents": [
+      "Geschäftsplan",
+      "Finanzplan",
+      "Kapitalbedarfsplan",
+      "Bilanzen/Vorstjahresbilanz (falls vorhanden)",
+      "Handelsregisterauszug",
+      "Steuererklärungen"
+    ],
+    "processing_time": "4-8 Wochen (über Hausbank)",
+    "deadlines": {
+      "description": "Keine feste Frist",
+      "note": "Antrag vor Beginn der Investition stellen"
+    }
+  },
+  "legal_basis": [
+    "ERP-Wirtschaftsplangesetz",
+    "KfW-Satzung"
+  ],
+  "compatible_with": [
+    "gruendungszuschuss",
+    "gruendercoaching",
+    "digitalbonus"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "gruendungszuschuss",
+    "gruendercoaching",
+    "digitalbonus"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der ERP-Gründerkredit StartGeld ist ein zinsgünstiger Förderkredit der KfW für Existenzgründer und junge Unternehmen.",
+    "for_whom": "Existenzgründer, Freiberufler und Unternehmen, die weniger als 5 Jahre am Markt sind",
+    "requirements": "Tragfähiges Geschäftskonzept, Eigenkapital, Kreditübernahme durch Hausbank",
+    "how_much": "Bis zu 200.000 Euro (davon max. 80.000 Euro für Betriebsmittel)",
+    "how_calculated": "Zinssatz orientiert sich am Kapitalmarkt und wird bei Zusage festgesetzt",
+    "documents_needed": "Geschäftsplan, Finanzplan, Handelsregisterauszug, Steuererklärungen",
+    "where_to_apply": "Bei Ihrer Hausbank (Sparkasse, Volksbank etc.)",
+    "deadlines": "Keine feste Frist, aber vor Investitionsbeginn beantragen",
+    "faq": [
+      {
+        "question": "Wie hoch ist der Zinssatz?",
+        "answer": "Der Zinssatz orientiert sich am Kapitalmarkt und wird am Tag der Zusage festgesetzt. Aktuelle Maximalzinssätze finden Sie unter www.kfw.de/konditionen."
+      },
+      {
+        "question": "Wie viel Eigenkapital brauche ich?",
+        "answer": "In der Regel mindestens 10-15% des Finanzierungsbedarfs."
+      },
+      {
+        "question": "Kann ich den Kredit mit anderen Förderungen kombinieren?",
+        "answer": "Ja, der Gründerkredit lässt sich mit dem Gründungszuschuss und Gründercoaching kombinieren."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.kfw.de/inlandsfoerderung/Unternehmen/Gr%C3%BCnden-Nachfolgen/F%C3%B6rderprodukte/ERP-Gr%C3%BCnderkredit-Startgeld-(067)/",
+      "title": "ERP-Gründerkredit – StartGeld (067) - KfW",
+      "organization": "KfW Bankengruppe",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.kfw.de/PDF/Download-Center/F%C3%B6rderprogramme-(Inlandsf%C3%B6rderung)/PDF-Dokumente/6000002258_M_067_StartGeld.pdf",
+      "title": "Merkblatt: ERP-Gründerkredit StartGeld",
+      "organization": "KfW Bankengruppe",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2020-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Seit Dezember 2025: Erhöhung auf bis zu 200.000 Euro",
+    "KfW übernimmt 80% des Kreditrisikos",
+    "Zinsvergünstigung aus ERP-Sondervermögen"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

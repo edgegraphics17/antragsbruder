@@ -1,0 +1,169 @@
+{
+  "id": "zarbeitnehmer_in_vorstand",
+  "official_name": "Aufsichtsratsvergütungen und Mitbestimmung",
+  "aliases": ["Aufsichtsrat", "Mitbestimmung", "Aufsichtsratsvergütung", "Aufsichtsratstätigkeit", "Betriebsrat", "Personalvertretung"],
+  "former_names": [],
+  "type": "employment_benefit",
+  "status": "partially_verified",
+  "category": "Arbeit & Beschäftigung",
+  "subcategory": "Mitbestimmung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesministerium für Arbeit und Soziales (BMAS)",
+    "authority": "BMAS / Arbeitgeber",
+    "url": "https://www.bmas.de/DE/Arbeit/Mitbestimmung/mitbestimmung-artikel.html",
+    "phone": "030 18681 0"
+  },
+  "target_groups": ["Aufsichtsratsmitglieder", "Arbeitnehmervertreter", "Betriebsräte", "Personalräte"],
+  "life_situations": ["arbeit_arbeitnehmer"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "zv-001",
+        "description": "Mitglied im Aufsichtsrat einer Aktiengesellschaft, GmbH oder anderen Kapitalgesellschaft",
+        "condition": "Sie müssen als Arbeitnehmervertreter oder Aufsichtsratsmitglied tätig sein",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "zv-002",
+        "description": "Unternehmen mit mehr als 500 Arbeitnehmern (DrittelbG) oder mehr als 2.000 (MitbestG)",
+        "condition": "Das Unternehmen muss unter das Mitbestimmungsgesetz oder Drittelbeteiligungsgesetz fallen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "zv-003",
+        "description": "Wahl zum Aufsichtsratsmitglied oder Wahl durch Arbeitnehmer",
+        "condition": "Die Wahl muss nach den Regeln des Aktiengesellses oder Mitbestimmungsgesetzes erfolgen",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Aufsichtsratsvergütungen unterliegen der Lohnsteuer und Sozialversicherung (sofern angestellt)",
+      "Pauschale für nichtständige Tätigkeiten möglich (3.000 Euro jährlich steuerfrei)",
+      "Mitbestimmungsgesetz (MitbestG) für Unternehmen mit mehr als 2.000 Arbeitnehmern",
+      "Drittelbeteiligungsgesetz (DrittelbG) für Unternehmen mit 500-2.000 Arbeitnehmern"
+    ]
+  },
+  "calculation": {
+    "method": "Individuelle Vergütung nach Satzung oder Hauptversammlungsbeschluss; Pauschale für gelegentliche Tätigkeiten",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Feststellung der Vergütungshöhe",
+        "note": "Vergütung wird durch die Satzung oder die Hauptversammlung festgelegt"
+      },
+      {
+        "step": 2,
+        "description": "Prüfung der Steuer- und Sozialversicherungspflicht",
+        "note": "Abhängig vom Umfang der Tätigkeit"
+      },
+      {
+        "step": 3,
+        "description": "Auszahlung und ggf. Steuerabzug",
+        "note": "Lohnsteuerabzug bei regelmäßiger Tätigkeit"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Variiert je nach Unternehmen; Pauschale: 3.000 Euro jährlich steuerfrei (bei gelegentlicher Tätigkeit)",
+    "frequency": "yearly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Vergütung nach Satzung oder Hauptversammlungsbeschluss; Pauschale für gelegentliche Tätigkeiten: bis 3.000 Euro steuerfrei",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Unternehmensgröße", "Art der Tätigkeit", "Satzung"]
+  },
+  "application": {
+    "method": "Kein Antrag erforderlich – Anspruch ergibt sich aus der Wahl und der Satzung",
+    "url": "https://www.bmas.de/DE/Arbeit/Mitbestimmung/mitbestimmung-artikel.html",
+    "forms": [],
+    "required_documents": [
+      "Wahl zum Aufsichtsratsmitglied",
+      "Satzung der Gesellschaft",
+      "Hauptversammlungsbeschluss über die Vergütung"
+    ],
+    "processing_time": null,
+    "deadlines": {
+      "description": "Keine Antragsfrist",
+      "note": "Vergütung wird nach Wahl und Beschluss gezahlt"
+    }
+  },
+  "legal_basis": [
+    "§ 96 Aktiengesetz (Zusammensetzung des Aufsichtsrats)",
+    "§ 101 Aktiengesetz (Bestellung der Aufsichtsratsmitglieder)",
+    "§ 112 Aktiengesetz (Vergütung der Aufsichtsratsmitglieder)",
+    "§ 52 GmbHG (Aufsichtsrat der GmbH)",
+    "Mitbestimmungsgesetz (MitbestG)",
+    "Drittelbeteiligungsgesetz (DrittelbG)",
+    "§ 87 AktG (Beschlussfassung in der Hauptversammlung)"
+  ],
+  "compatible_with": [],
+  "incompatible_with": [],
+  "related_benefits": ["beschaeftigungsförderung"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Aufsichtsratsvergütungen sind Vergütungen für Ihre Tätigkeit als Aufsichtsratsmitglied. Sie unterliegen der Lohnsteuer und Sozialversicherung, es sei denn, es handelt sich um eine gelegentliche Tätigkeit (Pauschale bis 3.000 Euro steuerfrei).",
+    "for_whom": "Aufsichtsratsmitglieder, Betriebsräte und Personalräte in Unternehmen mit Mitbestimmung.",
+    "requirements": "Sie müssen als Aufsichtsratsmitglied gewählt sein. Das Unternehmen muss unter das Mitbestimmungsgesetz oder Drittelbeteiligungsgesetz fallen.",
+    "how_much": "Variiert je nach Unternehmen. Pauschale für gelegentliche Tätigkeiten: bis 3.000 Euro jährlich steuerfrei.",
+    "how_calculated": "Die Vergütung wird durch die Satzung oder die Hauptversammlung festgelegt. Bei gelegentlicher Tätigkeit kann eine steuerfreie Pauschale in Anspruch genommen werden.",
+    "documents_needed": "Wahl zum Aufsichtsratsmitglied, Satzung, Hauptversammlungsbeschluss.",
+    "where_to_apply": "Kein Antrag erforderlich. Die Vergütung wird nach Wahl und Beschluss gezahlt.",
+    "deadlines": "Keine Antragsfrist.",
+    "faq": [
+      {
+        "question": "Sind Aufsichtsratsvergütungen steuerpflichtig?",
+        "answer": "Ja, Aufsichtsratsvergütungen unterliegen der Lohnsteuer. Bei gelegentlicher Tätigkeit (weniger als einmal monatlich) kann eine Pauschale von bis zu 3.000 Euro jährlich steuerfrei in Anspruch genommen werden."
+      },
+      {
+        "question": "Muss ich Aufsichtsratsvergütungen in der Steuererklärung angeben?",
+        "answer": "Ja, Aufsichtsratsvergütungen müssen in der Anlage STEU der Steuererklärung angegeben werden."
+      },
+      {
+        "question": "Was ist der Unterschied zwischen MitbestG und DrittelbG?",
+        "answer": "Das Mitbestimmungsgesetz gilt für Unternehmen mit mehr als 2.000 Arbeitnehmern (paritätische Besetzung). Das Drittelbeteiligungsgesetz gilt für Unternehmen mit 500-2.000 Arbeitnehmern (1/3 Arbeitnehmervertreter)."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmas.de/DE/Arbeit/Mitbestimmung/mitbestimmung-artikel.html",
+      "title": "Mitbestimmung - BMAS",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/aktg/__96.html",
+      "title": "§ 96 Aktiengesetz - Zusammensetzung des Aufsichtsrats",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/aktg/__112.html",
+      "title": "§ 112 Aktiengesetz - Vergütung der Aufsichtsratsmitglieder",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "medium",
+  "verification_status": "partially_verified",
+  "notes": ["Die Höhe der Aufsichtsratsvergütung variiert stark je nach Unternehmen und Branche."],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

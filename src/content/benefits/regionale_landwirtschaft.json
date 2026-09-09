@@ -1,0 +1,203 @@
+{
+  "id": "regional-agrarfoerderung",
+  "official_name": "Regionale Agrarförderprogramme der Bundesländer",
+  "aliases": [
+    "Landesagrarförderung",
+    "ELER-Landesprogramme",
+    "Regionale Förderung Landwirtschaft",
+    "Bundesländer-Förderung"
+  ],
+  "former_names": [],
+  "type": "agriculture_subsidy",
+  "status": "partially_verified",
+  "category": "Landwirtschaft & Ländlicher Raum",
+  "subcategory": "Regionale Förderung",
+  "level": "state",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Landesministerien für Landwirtschaft",
+    "authority": "Landwirtschaftskammern der Bundesländer",
+    "url": "https://www.dvs-gap-netzwerk.de/foerderung/gemeinsame-agrarpolitik-der-eu-2023-2027/umsetzung-der-eu-agrarfoerderung-in-den-laendern/",
+    "phone": "Variiert je nach Bundesland"
+  },
+  "target_groups": [
+    "Landwirte und Landwirtinnen",
+    "Ländliche Unternehmen",
+    "Junglandwirte",
+    "Forstbetriebe",
+    "Gemeinden im ländlichen Raum"
+  ],
+  "life_situations": [
+    "landwirtschaft",
+    "forstwirtschaft",
+    "ländlicher_raum"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "rl-001",
+        "description": "Tätigkeit im jeweiligen Bundesland",
+        "condition": "Betrieb muss in dem fördernden Bundesland ansässig sein",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "rl-002",
+        "description": "Förderfähige Maßnahme",
+        "condition": "Vorhaben muss zu den Landes-Förderprogrammen passen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "rl-003",
+        "description": "Einhaltung der Landesvorgaben",
+        "condition": "Einhaltung der jeweiligen Landesförderrichtlinien",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Regionale Förderung",
+        "threshold": 0,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "region": "all",
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "16 Bundesländer mit eigenen Programmen",
+      "ELER-Mittel werden über Nationalen Strategieplan abgerufen",
+      "Kofinanzierung durch Landesmittel erforderlich"
+    ]
+  },
+  "calculation": {
+    "method": "Je nach Bundesland und Programm unterschiedlich",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Identifikation des zuständigen Landes",
+        "formula": "Bundesland des Betriebsstandorts",
+        "note": "16 Bundesländer mit eigenen Programmen"
+      },
+      {
+        "step": 2,
+        "description": "Auswahl des Förderprogramms",
+        "formula": "Programm je nach Bedarf wählen",
+        "note": "Investitionen, Beratung, Umwelt, Junglandwirte"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Variiert je nach Bundesland und Programm",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Förderung variiert je nach Bundesland und Programm",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": [
+      "Bundesland",
+      "Art des Programms",
+      "Maßnahme"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich bei der zuständigen Landesbehörde",
+    "url": "https://www.dvs-gap-netzwerk.de/foerderung/gemeinsame-agrarpolitik-der-eu-2023-2027/umsetzung-der-eu-agrarfoerderung-in-den-laendern/",
+    "forms": [
+      "Landesantrag",
+      "Projektbeschreibung",
+      "Finanzierungsplan"
+    ],
+    "required_documents": [
+      "Vollständig ausgefüllter Antrag",
+      "Projektbeschreibung",
+      "Finanzierungsplan",
+      "Kostenvoranschäge",
+      "Nachweis des Standorts im Bundesland"
+    ],
+    "processing_time": "3-12 Monate je nach Programm",
+    "deadlines": {
+      "description": "Jährliche Antragsfristen je nach Bundesland",
+      "date": "Variiert",
+      "note": "Bei der zuständigen Landesbehörde erfragen"
+    }
+  },
+  "legal_basis": [
+    "Verordnung (EU) Nr. 1305/2013 (ELER)",
+    "Nationaler Strategieplan GAP 2023-2027",
+    "Landesförderrichtlinien der 16 Bundesländer",
+    "GAK-Rahmenplan 2025-2028"
+  ],
+  "compatible_with": [
+    "landwirtschaft-investitionen",
+    "junglandwirte-einkommensstuetzung",
+    "tierhaltung-umbau",
+    "umweltprogramme-fakt",
+    "biologischer-bau",
+    "betriebsberatung"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "agrarförderung",
+    "landwirtschaft-investitionen",
+    "junglandwirte",
+    "biologischer-bau"
+  ],
+  "user_content": {
+    "short_explanation": "Jedes Bundesland hat eigene Agrarförderprogramme – von Investitionszuschüssen über Junglandwirte-Förderung bis zu Umweltprogrammen.",
+    "for_whom": "Landwirte, Junglandwirte, ländliche Unternehmen – je nach Bundesland unterschiedliche Programme.",
+    "requirements": "Standort im jeweiligen Bundesland, Einhaltung der Landesförderrichtlinien.",
+    "how_much": "Variiert stark je nach Bundesland und Programm.",
+    "how_calculated": "Je nach Bundesland unterschiedlich – bei der Landwirtschaftskammer informieren.",
+    "documents_needed": "Antrag, Projektbeschreibung, Finanzierungsplan, Kostenvoranschäge.",
+    "where_to_apply": "Bei der zuständigen Landesbehörde oder Landwirtschaftskammer.",
+    "deadlines": "Jährliche Antragsfristen je nach Bundesland.",
+    "faq": [
+      {
+        "question": "Gibt es in jedem Bundesland eigene Programme?",
+        "answer": "Ja, alle 16 Bundesländer haben eigene Agrarförderprogramme, die über den Nationalen Strategieplan abgewickelt werden."
+      },
+      {
+        "question": "Kann ich Förderungen aus mehreren Bundesländern kombinieren?",
+        "answer": "Nein, Sie können nur Förderungen des Bundeslandes erhalten, in dem Ihr Betrieb ansässig ist."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.dvs-gap-netzwerk.de/foerderung/gemeinsame-agrarpolitik-der-eu-2023-2027/umsetzung-der-eu-agrarfoerderung-in-den-laendern/",
+      "title": "Umsetzung der EU-Agrarförderung in den Ländern",
+      "organization": "Deutsche Vernetzungsstelle Ländliche Räume",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://agriculture.ec.europa.eu/cap-my-country/rural-development/country_de",
+      "title": "Programme zur Entwicklung des ländlichen Raums nach Land",
+      "organization": "Europäische Kommission",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2023-01-01",
+  "valid_until": "2027-12-31",
+  "confidence": "medium",
+  "verification_status": "partially_verified",
+  "notes": [
+    "16 Bundesländer mit eigenen Programmen",
+    "ELER-Mittel werden über Nationalen Strategieplan abgerufen",
+    "Kofinanzierung durch Landesmittel erforderlich",
+    "Details je Bundesland bei der Landwirtschaftskammer erfragen"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

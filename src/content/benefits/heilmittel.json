@@ -1,0 +1,192 @@
+{
+  "id": "heilmittel",
+  "official_name": "Heilmittel-Versorgung nach § 32 SGB V",
+  "aliases": [
+    "Heilmittel",
+    "Heilmittelverordnung",
+    "Physiotherapie",
+    "Ergotherapie",
+    "Logopädie"
+  ],
+  "former_names": [],
+  "type": "health_benefit",
+  "status": "verified",
+  "category": "Gesundheit",
+  "subcategory": "Heilmittel",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Gesetzliche Krankenkasse",
+    "authority": "Kassenärztliche Vereinigung / Heilmittelerbringer",
+    "url": "https://www.kbv.de/praxis/verordnungen/heilmittel",
+    "phone": ""
+  },
+  "target_groups": [
+    "Versicherte mit Heilmittelbedarf",
+    "Kinder, Jugendliche und Erwachsene"
+  ],
+  "life_situations": [
+    "heilmittel",
+    "therapie",
+    "reha",
+    "gesundheit"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "hm-r1",
+        "description": "Gesetzlich krankenversichert",
+        "condition": "gesetzlich_versichert",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "hm-r2",
+        "description": "Ärztliche Verordnung von Heilmitteln",
+        "condition": "aerztliche_verordnung",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "hm-r3",
+        "description": "Heilmittelbedarf ist medizinisch notwendig",
+        "condition": "medizinische_notwendigkeit",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "hm-r4",
+        "description": "Durchführung durch zugelassenen Heilmittelerbringer",
+        "condition": "zugelassener_anbieter",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "special_conditions": [
+      "Maximal 3 Heilmittel gleichzeitig verordnbar",
+      "Blankoverordnung für Physio/Ergo möglich (ohne Festlegung des Verordnungsumfangs)",
+      "Zuzahlung: 10% der Kosten + 10 Euro pro Verordnung (Kinder unter 18 befreit)",
+      "Belastungsgrenze: 2% des Bruttoeinkommens (1% bei chronisch Kranken)"
+    ]
+  },
+  "calculation": {
+    "method": "Vergütung nach Heilmittelverträgen (§ 125 SGB V)",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Ärztliche Verordnung mit Diagnose und Heilmittelangabe",
+        "formula": "Verordnung mit ICD-10-Code, Heilmittelpositionsnummer, Anzahl Einheiten"
+      },
+      {
+        "step": 2,
+        "description": "Durchführung durch zugelassenen Heilmittelerbringer",
+        "formula": "Abrechnung über Kassenärztliche Vereinigung oder Heilmittelerbringer-Verband"
+      },
+      {
+        "step": 3,
+        "description": "Zuzahlung des Versicherten",
+        "formula": "10% der Behandlungskosten + 10 Euro pro Verordnung (min. 5 Euro, max. 10 Euro pro Verordnung)"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": null,
+    "typical_amount": "Kostenübernahme abzgl. Zuzahlung (10% + 10 Euro/Verordnung)",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Kostenübernahme abzgl. Zuzahlung (10% + 10 Euro/Verordnung)",
+    "depends_on": [
+      "art_heilmittel",
+      "anzahl_einheiten",
+      "dauer_einheit"
+    ]
+  },
+  "application": {
+    "method": "Über Arztverordnung bei zugelassenem Heilmittelerbringer",
+    "url": "https://www.kbv.de/praxis/verordnungen/heilmittel",
+    "forms": [
+      "Heilmittelverordnung (Muster 16)",
+      "Blankoverordnung"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Krankenkassenkarte",
+      "Heilmittelverordnung vom Arzt"
+    ],
+    "processing_time": "Sofort (Verordnung gültig 28 Tage)",
+    "deadlines": {
+      "description": "Verordnung innerhalb von 28 Tagen einlösen",
+      "note": "Verordnung verfällt nach 28 Tagen"
+    }
+  },
+  "legal_basis": [
+    "§ 32 SGB V (Heilmittel)",
+    "§ 33 SGB V (Art und Umfang der Heilmittel)",
+    "§ 125 SGB V (Heilmittelverträge)",
+    "§ 125a SGB V (Blankoverordnung)",
+    "§ 60 SGB V (Zuzahlungen)"
+  ],
+  "compatible_with": [
+    "psychotherapie",
+    "arzneimittel"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "psychotherapie",
+    "arzneimittel",
+    "hilfsmittel"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Krankenkasse übernimmt die Kosten für Heilmittel (Physiotherapie, Ergotherapie, Logopädie etc.), wenn diese ärztlich verordnet sind.",
+    "for_whom": "Für alle Versicherten, die aus medizinischen Gründen Heilmittel benötigen.",
+    "requirements": "Sie müssen gesetzlich versichert sein und eine ärztliche Verordnung für die Heilmittel haben.",
+    "how_mind": "Die Krankenkasse übernimmt die Kosten abzüglich einer Zuzahlung (10% + 10 Euro pro Verordnung).",
+    "how_calculated": "Die Abrechnung erfolgt zwischen Heilmittelerbringer und Krankenkasse. Sie zahlen nur die Zuzahlung direkt beim Therapeuten.",
+    "documents_needed": "Personalausweis, Krankenkassenkarte, Heilmittelverordnung vom Arzt",
+    "where_to_apply": "Bei einem zugelassenen Heilmittelerbringer (Physiotherapeut, Ergotherapeut, Logopäde etc.)",
+    "deadlines": "Verordnung innerhalb von 28 Tagen einlösen.",
+    "faq": [
+      {
+        "question": "Wie viele Heilmittel kann ich gleichzeitig bekommen?",
+        "answer": "Maximal 3 Heilmittel können gleichzeitig verordnet werden, davon maximal 1 ergänzendes Heilmittel."
+      },
+      {
+        "question": "Was kostet das für mich?",
+        "answer": "Sie zahlen 10% der Behandlungskosten plus 10 Euro pro Verordnung als Zuzahlung. Kinder unter 18 Jahren sind befreit."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.kbv.de/praxis/verordnungen/heilmittel",
+      "title": "Heilmittel - KBV",
+      "organization": "Kassenärztliche Bundesvereinigung",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gkv-heilmittel.de/fuer_heilmittelerbringer/vertraege/vertraege.jsp",
+      "title": "Verträge nach § 125 - GKV-Heilmittel",
+      "organization": "GKV-Spitzenverband",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-09",
+  "valid_from": "2026-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Zuzahlung: 10% + 10 Euro/Verordnung",
+    "Kinder unter 18 befreit",
+    "Belastungsgrenze 2% (chronisch kranke 1%)",
+    "Blankoverordnung für Physio/Ergo möglich"
+  ],
+  "created_at": "2026-09-09",
+  "updated_at": "2026-09-09"
+}

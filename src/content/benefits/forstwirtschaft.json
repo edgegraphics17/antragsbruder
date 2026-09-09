@@ -1,0 +1,214 @@
+{
+  "id": "forstwirtschaft-foerderung",
+  "official_name": "Förderung der Forstwirtschaft",
+  "aliases": [
+    "Forstliche Förderung",
+    "Waldbauliche Förderung",
+    "Forstwirtschaftsförderung",
+    "Waldumbau-Förderung",
+    "Erstaufforstung"
+  ],
+  "former_names": [],
+  "type": "agriculture_subsidy",
+  "status": "verified",
+  "category": "Landwirtschaft & Ländlicher Raum",
+  "subcategory": "Forstwirtschaft",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium für Landwirtschaft, Ernährung und Heimat (BMLEH)",
+    "authority": "Landesforstverwaltungen / Rentenbank",
+    "url": "https://www.bmleh.de/DE/themen/wald/wald-in-deutschland/forst-foerderung.html",
+    "phone": "0228 6845-0"
+  },
+  "target_groups": [
+    "Private Waldbesitzer",
+    "Kommunale Waldbesitzer",
+    "Forstbetriebe",
+    "Forstwirte",
+    "Junge Forstwirte"
+  ],
+  "life_situations": [
+    "forstwirtschaft",
+    "ländlicher_raum"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "fw-001",
+        "description": "Waldbesitz",
+        "condition": "Antragsteller muss Waldbesitzer sein oder Forstbetrieb führen",
+        "required": true,
+        "category": "asset"
+      },
+      {
+        "rule_id": "fw-002",
+        "description": "Förderfähige Maßnahme",
+        "condition": "Maßnahme muss zu den förderfähigen Vorhaben gehören",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "fw-003",
+        "description": "Genehmigungspflicht",
+        "condition": "Erstaufforstung bedarf der Genehmigung der nach Landesrecht zuständigen Behörde",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "fw-004",
+        "description": "Nachhaltige Waldbewirtschaftung",
+        "condition": "Einhaltung der Grundsätze der nachhaltigen Waldbewirtschaftung",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Forstwirtschaft",
+        "threshold": 0,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "region": "all",
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Förderung bis 2030 befristet",
+      "Naturnahe Waldbewirtschaftung wird bevorzugt",
+      "Klima- und standortangepasster Waldumbau"
+    ]
+  },
+  "calculation": {
+    "method": "Zuschuss für förderfähige forstliche Maßnahmen",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Identifikation der förderfähigen Maßnahme",
+        "formula": "Maßnahme aus Katalog wählen",
+        "note": "Waldumbau, Erstaufforstung, Vorarbeiten"
+      },
+      {
+        "step": 2,
+        "description": "Berechnung des Zuschusses",
+        "formula": "Zuschuss = Förderfähige Ausgaben × Fördersatz",
+        "note": "Je nach Maßnahme unterschiedlich"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Variiert je nach Maßnahme",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Zuschuss für förderfähige forstliche Maßnahmen, Höhe je nach Art der Maßnahme",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": [
+      "Art der Maßnahme",
+      "Fläche",
+      "Bundesland"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich bei der zuständigen Landesforstbehörde",
+    "url": "https://www.bmleh.de/DE/themen/wald/wald-in-deutschland/forst-foerderung.html",
+    "forms": [
+      "Forstantrag",
+      "Forstliches Gutachten",
+      "Waldbaulicher Plan"
+    ],
+    "required_documents": [
+      "Vollständig ausgefüllter Antrag",
+      "Nachweis des Waldbesitzes",
+      "Forstliches Gutachten / Standortgutachten",
+      "Waldbaulicher Plan",
+      "Kostenvoranschäge",
+      "Falls zutreffend: Genehmigung"
+    ],
+    "processing_time": "3-6 Monate",
+    "deadlines": {
+      "description": "Jährliche Antragsfristen je nach Bundesland",
+      "date": "Variiert",
+      "note": "Bei der zuständigen Landesforstbehörde erfragen"
+    }
+  },
+  "legal_basis": [
+    "Bundeswaldgesetz (BWaldG)",
+    "Gesetz zur Erhaltung des Waldes und zur Förderung der Forstwirtschaft",
+    "Verordnung (EU) Nr. 1305/2013 (ELER)",
+    "Richtlinie über die Förderung der Forstwirtschaft (Rentenbank)",
+    "Landesforstgesetze der Bundesländer"
+  ],
+  "compatible_with": [
+    "agrarförderung-gak",
+    "umweltprogramme-fakt",
+    "biologischer-bau-foerderung"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "agrarförderung",
+    "umweltprogramme",
+    "landwirtschaft-investitionen"
+  ],
+  "user_content": {
+    "short_explanation": "Die Forstwirtschaftsförderung unterstützt Waldbesitzer bei Waldumbau, Erstaufforstung und naturnaher Bewirtschaftung.",
+    "for_whom": "Private und kommunale Waldbesitzer, Forstbetriebe, die in nachhaltige Waldbewirtschaftung investieren.",
+    "requirements": "Waldbesitz, förderfähige Maßnahme, Einhaltung des Forstgesetzes, ggf. Genehmigung.",
+    "how_much": "Zuschuss je nach Maßnahme – für Waldumbau, Erstaufforstung und Vorarbeiten.",
+    "how_calculated": "Der Zuschuss wird pro Maßnahme berechnet. Die Rentenbank fördert bis 2030.",
+    "documents_needed": "Antrag, Waldbesitznachweis, forstliches Gutachten, waldbaulicher Plan.",
+    "where_to_apply": "Bei der zuständigen Landesforstbehörde oder der Landwirtschaftlichen Rentenbank.",
+    "deadlines": "Jährliche Antragsfristen je nach Bundesland.",
+    "faq": [
+      {
+        "question": "Kann ich auch für Erstaufforstung eine Förderung erhalten?",
+        "answer": "Ja, Erstaufforstung wird gefördert, bedarf aber der Genehmigung der zuständigen Behörde."
+      },
+      {
+        "question": "Gibt es eine Förderung für Waldumbau?",
+        "answer": "Ja, der klima- und standortangepasste Waldumbau wird gefördert, besonders für standortangepasste Mischwälder."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmleh.de/DE/themen/wald/wald-in-deutschland/forst-foerderung.html",
+      "title": "Förderung - Wald in Deutschland - BMLEH",
+      "organization": "BMLEH",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.rentenbank.de/foerderkredite/land-forstwirtschaft/",
+      "title": "Land- & Forstwirtschaft - Rentenbank",
+      "organization": "Landwirtschaftliche Rentenbank",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/bwaldg/BJNR010370975.html",
+      "title": "Bundeswaldgesetz (BWaldG)",
+      "organization": "Bundesregierung",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": "2030-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Rentenbank fördert forstliche Investitionen bis 31.12.2030",
+    "Förderung für Waldumbau, Erstaufforstung und Vorarbeiten",
+    "Landesforstgesetze regeln Details je Bundesland"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

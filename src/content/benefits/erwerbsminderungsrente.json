@@ -1,0 +1,203 @@
+{
+  "id": "erwerbsminderungsrente",
+  "official_name": "Erwerbsminderungsrente",
+  "aliases": [
+    "Rente wegen Erwerbsminderung",
+    "EM-Rente",
+    "Berufsunfähigkeitsrente (veraltet)"
+  ],
+  "former_names": [
+    "Berufsunfähigkeitsrente",
+    "Invalidenrente"
+  ],
+  "type": "social_benefit",
+  "status": "verified",
+  "category": "Rente & Vorsorge",
+  "subcategory": "Erwerbsminderung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Deutsche Rentenversicherung",
+    "authority": "Deutsche Rentenversicherung Bund",
+    "url": "https://www.deutsche-rentenversicherung.de",
+    "phone": "0800 1000 4800"
+  },
+  "target_groups": [
+    "Gesundheitlich eingeschränkte Versicherte",
+    "Voll oder teilweise Erwerbsgeminderte"
+  ],
+  "life_situations": [
+    "erwerbsminderung",
+    "gesundheit_eingeschraenkt"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "emr-r1",
+        "description": "Vollständige oder teilweise Erwerbsminderung wegen Krankheit oder Behinderung",
+        "condition": "erwerbsmindert",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "emr-r2",
+        "description": "Allgemeine Wartezeit von mindestens 5 Jahren (60 Monate) erfüllt",
+        "condition": "mindestens_5_versicherungsjahre",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "emr-r3",
+        "description": "In den letzten 5 Jahren vor Eintritt mindestens 3 Jahre Pflichtbeiträge gezahlt",
+        "condition": "3_jahre_pflichtbeitraege_in_5_jahren",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "emr-r4",
+        "description": "Regelaltersgrenze noch nicht erreicht",
+        "condition": "regelaltersgrenze_nicht_erreicht",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "emr-r5",
+        "description": "Keine Wiederherstellung der Erwerbsfähigkeit durch Reha möglich",
+        "condition": "reha_ausgeschöpft",
+        "required": true,
+        "category": "health"
+      }
+    ],
+    "special_conditions": [
+      "Voll Erwerbsminderung: weniger als 3 Stunden täglich arbeitsfähig",
+      "Teilweise Erwerbsminderung: 3-6 Stunden täglich arbeitsfähig",
+      "Zuschlag ab Juli 2024 für Bestandsrentner mit Rentenbeginn vor 2019",
+      "Hinzuverdienstgrenze 2026: 20.763,75 Euro (voll), 41.527,50 Euro (teilweise)"
+    ]
+  },
+  "calculation": {
+    "method": "Persönliche Entgeltpunkte × Rentenwert × Rentenartfaktor (1,0 voll / 0,5 teilweise) × Zugangsfaktor",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Ermittlung der persönlichen Entgeltpunkte",
+        "formula": "Summe aller Entgeltpunkte bis zum Eintritt der Erwerbsminderung"
+      },
+      {
+        "step": 2,
+        "description": "Anrechnung fiktiver Entgeltpunkte bis zum Regelrentenalter",
+        "formula": "Durchschnittsentgelt der letzten 4 Jahre × 60% bis zum 65. Lebensjahr"
+      },
+      {
+        "step": 3,
+        "description": "Multiplikation mit Rentenwert und Rentenartfaktor",
+        "formula": "Entgeltpunkte × 41,02 Euro × 1,0 (voll) oder 0,5 (teilweise)"
+      },
+      {
+        "step": 4,
+        "description": "Abschläge bei vorzeitigem Rentenbeginn (bis zu 10,8%)",
+        "formula": "Zugangsfaktor = 1 - (0,3% × Monate vor Regelrentenalter)"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "ca. 40-50% des letzten Nettoeinkommens (voll), ca. 20-25% (teilweise)",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Hängt von Entgeltpunkten, Art der Erwerbsminderung und Versicherungsdauer ab",
+    "depends_on": [
+      "entgeltpunkte",
+      "art_erwerbsminderung",
+      "versicherungsjahre",
+      "hinzuverdienst"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich oder online bei der Deutschen Rentenversicherung",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Erwerbsminderungsrente/Erwerbsminderungsrente",
+    "forms": [
+      "Antrag auf Erwerbsminderungsrente"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Versicherungsnummer",
+      "Ärztliche Unterlagen/Befunde",
+      "Arbeitsunfähigkeitsbescheinigungen",
+      "Reha-Berichte",
+      "Kontoauszug (IBAN)"
+    ],
+    "processing_time": "ca. 3-6 Monate (ärztliche Gutachten erforderlich)",
+    "deadlines": {
+      "description": "Antrag sobald Erwerbsminderung festgestellt",
+      "note": "Reha geht vor Rente - zunächst Reha-Leistungen prüfen"
+    }
+  },
+  "legal_basis": [
+    "§§ 43-48 SGB VI",
+    "§ 241 SGB VI (Erwerbsminderungsrenten)",
+    "§ 242 SGB VI (Zuschlag)"
+  ],
+  "compatible_with": [
+    "hinzuverdienst"
+  ],
+  "incompatible_with": [
+    "altersrente"
+  ],
+  "related_benefits": [
+    "altersrente",
+    "berufliche_reha"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Erwerbsminderungsrente ersetzt Ihr Einkommen, wenn Sie aus gesundheitlichen Gründen nicht mehr (voll) arbeiten können.",
+    "for_whom": "Für Versicherte, die wegen Krankheit oder Behinderung weniger als 6 Stunden täglich arbeiten können.",
+    "requirements": "Sie müssen mindestens 5 Jahre versichert sein, davon 3 Jahre in den letzten 5 Jahren Pflichtbeiträge gezahlt haben, und die Regelaltersgrenze noch nicht erreicht haben.",
+    "how_mind": "Bei voller Erwerbsminderung ca. 40-50% des letzten Nettoeinkommens, bei teilweiser die Hälfte davon.",
+    "how_calculated": "Ihre Entgeltpunkte werden mit dem Rentenwert multipliziert. Bei voller Erwerbsminderung mit Faktor 1,0, bei teilweiser mit 0,5. Es werden auch fiktive Zeiten bis zum Regelrentenalter angerechnet.",
+    "documents_needed": "Personalausweis, Versicherungsnummer, ärztliche Unterlagen, Arbeitsunfähigkeitsbescheinigungen, Reha-Berichte",
+    "where_to_apply": "Bei der Deutschen Rentenversicherung (online, schriftlich oder persönlich)",
+    "deadlines": "Antrag sobald Erwerbsminderung festgestellt. Reha geht vor Rente.",
+    "faq": [
+      {
+        "question": "Was ist der Unterschied zwischen voller und teilweiser Erwerbsminderung?",
+        "answer": "Voll: weniger als 3 Stunden täglich arbeitsfähig. Teilweise: 3-6 Stunden täglich arbeitsfähig. Die Rente bei teilweiser Erwerbsminderung ist halb so hoch."
+      },
+      {
+        "question": "Kann ich hinzuverdienen?",
+        "answer": "Ja, 2026 bis 20.763,75 Euro (voll) bzw. 41.527,50 Euro (teilweise) jährlich. Darüber hinaus wird die Rente gekürzt."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Erwerbsminderungsrente/Erwerbsminderungsrente",
+      "title": "Erwerbsminderungsrenten",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    },
+    {
+      "url": "https://www.verdi.de/politik-gesellschaft/rente-deutschland/erwerbsminderungsrente-anspruch-antrag-hoehe-einfach-erklaert",
+      "title": "Erwerbsminderungsrente: Anspruch, Antrag & Höhe einfach erklärt",
+      "organization": "ver.di",
+      "last_verified": "2026-09-09",
+      "type": "secondary"
+    }
+  ],
+  "last_verified": "2026-09-09",
+  "valid_from": "2026-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Hinzuverdienstgrenzen 2026: voll 20.763,75 Euro, teilweise 41.527,50 Euro",
+    "Zuschlag ab Juli 2024 für Bestandsrentner mit Rentenbeginn vor 2019",
+    "Reha geht vor Rente - § 9 SGB VI"
+  ],
+  "created_at": "2026-09-09",
+  "updated_at": "2026-09-09"
+}

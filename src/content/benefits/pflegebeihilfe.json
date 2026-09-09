@@ -1,0 +1,189 @@
+{
+  "id": "pflegebeihilfe",
+  "official_name": "Pflegebeihilfe",
+  "aliases": [
+    "Hilfe zur Pflege SGB XII",
+    "Sozialhilfe Pflege",
+    "Beihilfe zur Pflege",
+    "Hilfe zur Pflege Sozialamt"
+  ],
+  "former_names": [],
+  "type": "care_benefit",
+  "status": "verified",
+  "category": "Pflege",
+  "subcategory": "Sozialhilfe - Pflege",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Sozialhilfeträger",
+    "authority": "Sozialamt / Stadt-, Kreis-, or Landesverwaltung",
+    "url": "https://www.bmas.de/DE/Soziales/Sozialhilfe/sozialhilfe.html",
+    "phone": "Kontakt über örtliches Sozialamt"
+  },
+  "target_groups": [
+    "Pflegebedürftige mit Pflegegrad 1 bis 5",
+    "Personen, die nicht gesetzlich pflegeversichert sind oder deren Ansprüche ausgeschöpft sind"
+  ],
+  "life_situations": [
+    "pflege_angehoeriger",
+    "kann_nicht_arbeiten",
+    "senior"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "elg-pb-01",
+        "description": "Pflegebedürftigkeit mit Pflegegrad",
+        "condition": "Feststellung der Pflegebedürftigkeit mit Pflegegrad 1 bis 5",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-pb-02",
+        "description": "Bedürftigkeit",
+        "condition": "Die pflegebedürftige Person ist bedürftig (Einkommen und Vermögen reichen nicht aus)",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "elg-pb-03",
+        "description": "Kein oder unzureichender Anspruch aus der Pflegeversicherung",
+        "condition": "Die Pflegeversicherung kommt nicht oder nicht vollständig für die Kosten auf",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Alle pflegebedürftigen Personen",
+        "threshold": 1500,
+        "threshold_type": "monthly",
+        "free_allowance": 400,
+        "region": "all",
+        "last_updated": "2025-01-01"
+      }
+    ],
+    "special_conditions": [
+      "Leistungen der Pflegeversicherung gehen vor",
+      "Einkommens- und Vermögensprüfung erforderlich",
+      "Kein Rechtsanspruch auf Pflegebeihilfe - Ermessensleistung"
+    ]
+  },
+  "calculation": {
+    "method": "Differenz zwischen Bedarf und verfügbarem Einkommen nach Bedarfsermittlung",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Pflegegrad ermitteln lassen",
+        "value": "Pflegegrad 1 bis 5"
+      },
+      {
+        "step": 2,
+        "description": "Bedürftigkeit prüfen",
+        "value": "Einkommen und Vermögen ermitteln"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Abhängig vom Pflegegrad und persönlichen Verhältnissen",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Differenz zwischen Bedarf und verfügbarem Einkommen",
+    "min_monthly": null,
+    "max_monthly": null,
+    "depends_on": [
+      "Pflegegrad",
+      "Einkommen",
+      "Vermögen",
+      "Wohnsituation"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich oder persönlich beim Sozialamt",
+    "url": "https://www.bmas.de/DE/Soziales/Sozialhilfe/sozialhilfe.html",
+    "forms": [
+      "Antrag auf Hilfe zur Pflege"
+    ],
+    "required_documents": [
+      "Antrag auf Hilfe zur Pflege",
+      "Ärztliches Attest / Gutachten zum Pflegegrad",
+      "Einkommensnachweise",
+      "Vermögensnachweise",
+      "Mietvertrag / Nachweis über Wohnkosten"
+    ],
+    "processing_time": "Innerhalb von 4 Wochen nach Antragstellung",
+    "deadlines": {
+      "description": "Antrag vor Beginn der Pflege stellen",
+      "note": "Keine feste Frist, aber rückwirkend maximal 1 Monat vor Antragstellung"
+    }
+  },
+  "legal_basis": [
+    "§§ 61 ff. SGB XII (Hilfe zur Pflege)",
+    "§ 63 SGB XII (Leistungen für Pflegebedürftige)"
+  ],
+  "compatible_with": [],
+  "incompatible_with": [],
+  "related_benefits": [
+    "pflegegeld",
+    "pflegesachleistungen",
+    "vollstationäre_pflege"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Pflegebeihilfe ist eine Sozialhilfeleistung für pflegebedürftige Menschen, die nicht ausreichend durch die Pflegeversicherung abgesichert sind.",
+    "for_whom": "Pflegebedürftige mit Pflegegrad 1 bis 5, die bedürftig sind.",
+    "requirements": "Pflegebedürftigkeit, Bedürftigkeit, kein oder unzureichender Anspruch aus der Pflegeversicherung.",
+    "how_much": "Abhängig vom Pflegegrad und persönlichen Verhältnissen.",
+    "how_calculated": "Differenz zwischen Bedarf und verfügbarem Einkommen.",
+    "documents_needed": "Antrag auf Hilfe zur Pflege, ärztliches Gutachten zum Pflegegrad, Einkommensnachweise, Vermögensnachweise.",
+    "where_to_apply": "Beim örtlichen Sozialamt.",
+    "deadlines": "Keine feste Frist. Antrag vor Beginn der Pflege stellen.",
+    "faq": [
+      {
+        "question": "Bekomme ich Pflegebeihilfe bei Pflegegrad 1?",
+        "answer": "Ja, Pflegebeihilfe ist bei allen Pflegegraden möglich."
+      },
+      {
+        "question": "Was ist der Unterschied zwischen Pflegebeihilfe und Pflegeversicherung?",
+        "answer": "Die Pflegeversicherung ist eine Versicherung mit Rechtsanspruch, Pflegebeihilfe ist eine Sozialhilfe, die bei Bedürftigkeit gewährt wird."
+      },
+      {
+        "question": "Muss ich mein Vermögen einsetzen?",
+        "answer": "Ja, bei Pflegebeihilfe müssen Sie Ihr Vermögen grundsätzlich einsetzen, es sei denn, es handelt sich um Schonvermögen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_12/__63.html",
+      "title": "§ 63 SGB XII - Leistungen für Pflegebedürftige",
+      "organization": "Gesetze im Internet",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bmas.de/DE/Soziales/Sozialhilfe/sozialhilfe.html",
+      "title": "Sozialhilfe - BMAS",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Leistungen der Pflegeversicherung gehen vor",
+    "Einkommens- und Vermögensprüfung erforderlich",
+    "Kein Rechtsanspruch auf Pflegebeihilfe - Ermessensleistung"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

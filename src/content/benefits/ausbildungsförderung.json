@@ -1,0 +1,192 @@
+{
+  "id": "ausbildungsförderung",
+  "official_name": "Berufsausbildungsbeihilfe (BAB)",
+  "aliases": ["BAB", "Ausbildungsbeihilfe", "Berufsausbildungsbeihilfe", "Zuschuss zur Berufsausbildung"],
+  "former_names": [],
+  "type": "education_benefit",
+  "status": "verified",
+  "category": "Arbeit & Beschäftigung",
+  "subcategory": "Berufsausbildung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesagentur für Arbeit",
+    "authority": "Agentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de/bildung/ausbildung/berufsausbildungsbeihilfe-bab",
+    "phone": "0800 4 555500"
+  },
+  "target_groups": ["Auszubildende in betrieblicher oder außerbetrieblicher Berufsausbildung", "Auszubildende, die nicht bei den Eltern wohnen können"],
+  "life_situations": ["ausbildung"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "bab-001",
+        "description": "Anerkannter Ausbildungsberuf nach BBiG oder HwO",
+        "condition": "Die Ausbildung muss in einem nach Berufsbildungsgesetz (BBiG) oder Handwerksordnung (HwO) anerkannten Ausbildungsberuf erfolgen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bab-002",
+        "description": "Nicht-beim-Eltern-Wohnen oder besondere Lebenssituation",
+        "condition": "Auszubildende müssen entweder nicht beim Elternhaus wohnen (Ausbildungsbetrieb zu weit entfernt) oder über 18 Jahre alt/verheiratet/Lebenspartnerschaft/Kind sein",
+        "required": true,
+        "category": "household"
+      },
+      {
+        "rule_id": "bab-003",
+        "description": "Einkommensgrenzen müssen eingehalten sein",
+        "condition": "Elterneinkommen liegt unter den festgelegten Grenzen (abhängig von Kinderzahl und Bundesland)",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "bab-004",
+        "description": "Erstausbildung oder erneute Ausbildung unter bestimmten Voraussetzungen",
+        "condition": "Haben Sie bereits eine Ausbildung oder ein Studium abgeschlossen, ist BAB nur unter bestimmten Voraussetzungen möglich",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Eltern",
+        "threshold": 27500,
+        "threshold_type": "yearly",
+        "free_allowance": 21600,
+        "region": null,
+        "last_updated": "2025-01-01"
+      }
+    ],
+    "asset_rules": null,
+    "special_conditions": [
+      "BAB wird als Zuschuss (nicht rückzahlbar) gezahlt",
+      "Keine BAB bei Bundesfreiwilligendienst, Berufsvorbereitungsjahr oder Voluntariat",
+      "Ausbildungsvergütung wird angerechnen"
+    ]
+  },
+  "calculation": {
+    "method": "Monatlicher Zuschuss zu Ausbildungsgehalt und Lebenshaltungskosten, nach Elterneinkommen gestaffelt",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Ermittlung des Ausbildungsgehalts",
+        "note": "Durchschnittliche Ausbildungsvergütung nach Abzug von Steuern und Sozialversicherung"
+      },
+      {
+        "step": 2,
+        "description": "Anrechnung des Elterneinkommens",
+        "note": "Übersteigt das Elterneinkommen die Freibeträge, wird der Unterschied angerechnet"
+      },
+      {
+        "step": 3,
+        "description": "Berechnung des BAB-Zuschusses",
+        "note": "Regelbedarf minus Ausbildungsgehalt minus angerechnetes Elterneinkommen"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Beträge je nach Situation, zwischen ca. 200 und 700 Euro monatlich (2025)",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Monatlicher Zuschuss, abhängig von Ausbildungsgehalt, Elterneinkommen und Wohnsituation",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Ausbildungsvergütung", "Elterneinkommen", "Wohnsituation", "Kinderzahl"]
+  },
+  "application": {
+    "method": "Online oder schriftlich bei der Agentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de/bildung/ausbildung/berufsausbildungsbeihilfe-bab",
+    "forms": ["Antrag auf Berufsausbildungsbeihilfe"],
+    "required_documents": [
+      "Personalausweis",
+      "Ausbildungsvertrag",
+      "Letzte Lohnabrechnungen der Auszubildenden",
+      "Einkommensnachweise der Eltern (letzte 12 Monate)",
+      "Mietvertrag (falls nicht beim Elternhaus wohnhaft)",
+      "Bankverbindungsnachweis"
+    ],
+    "processing_time": "Ca. 4-6 Wochen nach Antragstellung",
+    "deadlines": {
+      "description": "Antrag sollte spätestens 3 Monate vor Beginn der Ausbildung gestellt werden",
+      "note": "Auch während der Ausbildung noch möglich, aber nicht rückwirkend für mehr als 6 Monate"
+    }
+  },
+  "legal_basis": [
+    "§ 5 Berufsausbildungsgesetz (BBiG)",
+    "§ 34 Einkommensteuergesetz (Anrechnung)",
+    "§ 74 SGB III (Berufsausbildungsbeihilfe)",
+    "§ 2 BAföG (freiwillige Leistungsarten)",
+    "Verordnung über die Berufsausbildungsbeihilfe (BAB-V)"
+  ],
+  "compatible_with": ["bildungsgutschein", "ausbildungspraemie"],
+  "incompatible_with": ["bafoeg"],
+  "related_benefits": ["berufseinstieg", "einstiegsqualifizierung"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Berufsausbildungsbeihilfe (BAB) ist ein monatlicher Zuschuss, der Ihnen während Ihrer Berufsausbildung hilft, wenn Sie nicht bei Ihren Eltern wohnen können.",
+    "for_whom": "Auszubildende in einer anerkannten Berufsausbildung, deren Eltern ein geringeres Einkommen haben.",
+    "requirements": "Sie müssen in einem anerkannten Ausbildungsberuf lernen. Das Einkommen Ihrer Eltern darf bestimmte Freibeträge nicht überschreiten. Sie dürfen nicht beim Elternhaus wohnen oder über 18 Jahre/verheiratet/Kind sein.",
+    "how_much": "Je nach Elterneinkommen, Ausbildungsgehalt und Wohnsituation – meist zwischen 200 und 700 Euro monatlich.",
+    "how_calculated": "Agentur für Arbeit berechnet aus dem Regelbedarf minus Ausbildungsgehalt minus Elterneinkommen. Das Ergebnis ist Ihr monatlicher BAB-Zuschuss.",
+    "documents_needed": "Personalausweis, Ausbildungsvertrag, Lohnabrechnungen, Einkommensnachweise der Eltern, Mietvertrag.",
+    "where_to_apply": "Online, schriftlich oder persönlich bei der Agentur für Arbeit.",
+    "deadlines": "Antrag spätestens 3 Monate vor Ausbildungsbeginn. Auch während der Ausbildung möglich, aber maximal 6 Monate rückwirkend.",
+    "faq": [
+      {
+        "question": "BAB bei Ausbildung im Ausland?",
+        "answer": "Ja, unter bestimmten Voraussetzungen (z.B. EU-Ausbildung, spezielle Programme). Sprechen Sie mit der Agentur für Arbeit."
+      },
+      {
+        "question": "Gibt es BAB auch bei zweiter Ausbildung?",
+        "answer": "In der Regel nein. Nach Abschluss einer Ausbildung oder eines Studiums ist BAB nur unter ganz bestimmten Voraussetzungen möglich."
+      },
+      {
+        "question": "Muss das BAB zurückgezahlt werden?",
+        "answer": "Nein, BAB ist ein Zuschuss und muss nicht zurückgezahlt werden."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/bildung/ausbildung/berufsausbildungsbeihilfe-bab",
+      "title": "Berufsausbildungsbeihilfe (BAB) - Bundesagentur für Arbeit",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.babrechner.arbeitsagentur.de/",
+      "title": "BAB-Rechner der Bundesagentur für Arbeit",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.arbeitsagentur.de/datei/merkblatt-bab_ba030750.pdf",
+      "title": "Berufsausbildungsbeihilfe - Merkblatt",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/bbig_2005/__5.html",
+      "title": "§ 5 Berufsausbildungsgesetz (BBiG)",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

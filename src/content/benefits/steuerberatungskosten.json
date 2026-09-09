@@ -1,0 +1,187 @@
+{
+  "id": "steuerberatungskosten",
+  "official_name": "Steuerberatungskosten als Werbungskosten nach § 9 EStG",
+  "aliases": [
+    "Steuerberatungskosten",
+    "Steuerberaterkosten",
+    "§ 9 EStG",
+    "Beratungskosten"
+  ],
+  "former_names": [],
+  "type": "tax_benefit",
+  "status": "verified",
+  "category": "Steuern & Finanzen",
+  "subcategory": "Berufliche Auslagen",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium der Finanzen",
+    "authority": "Finanzamt",
+    "url": "https://www.bundesfinanzministerium.de",
+    "phone": ""
+  },
+  "target_groups": [
+    "Steuerberatungskunden",
+    "Selbstständige",
+    "Arbeitnehmer mit Steuerberater"
+  ],
+  "life_situations": [
+    "arbeit_arbeitnehmer",
+    "arbeit_selbststaendig",
+    "tax_consulting"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "steuerberatung_beruflich",
+        "description": "Steuerberatungskosten sind beruflich veranlasst",
+        "condition": "work_related",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "steuerberatung_nachweis",
+        "description": "Rechnung des Steuerberaters oder Beraters",
+        "condition": "documented",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "steuerberatung_einkommen",
+        "description": "Einkünfte aus nichtselbständiger oder selbständiger Arbeit",
+        "condition": "has_income",
+        "required": true,
+        "category": "income"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Steuerberatungskosten sind Werbungskosten (nicht Sonderausgaben)",
+      "Kosten für die Steuererklärung sind abziehbar",
+      "Kosten für Steuerstreitigkeiten sind abziehbar",
+      "Private Beratungskosten sind nicht abziehbar"
+    ]
+  },
+  "calculation": {
+    "method": "Steuerberatungskosten werden als Werbungskosten abgezogen",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Berechnung der abziehbaren Kosten",
+        "formula": "Tatsächliche Kosten",
+        "value": "100%",
+        "note": "Nur beruflich veranlasste Kosten"
+      },
+      {
+        "step": 2,
+        "description": "Abzug als Werbungskosten",
+        "formula": "Kosten werden von den Einkünften abgezogen",
+        "value": "100%",
+        "note": "Reduziert steuerpflichtige Einkünfte"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": null,
+    "typical_amount": "Tatsächliche Kosten des Steuerberaters",
+    "frequency": "yearly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Steuerberatungskosten werden als Werbungskosten abgezogen",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": null,
+    "depends_on": [
+      "Höhe der Beratungskosten",
+      "Steuertarif"
+    ]
+  },
+  "application": {
+    "method": "Steuererklärung (Anlage A, Feld Werbungskosten)",
+    "url": "https://www.elster.de",
+    "forms": [
+      "Anlage A"
+    ],
+    "required_documents": [
+      "Rechnung des Steuerberaters",
+      "Zahlungsnachweise",
+      "Falls zutreffend: Vertrag über die Beratung"
+    ],
+    "processing_time": "4-8 Wochen nach Abgabe der Steuererklärung",
+    "deadlines": {
+      "description": "Steuererklärung Frist",
+      "date": "31.07. des Folgejahres",
+      "note": "Kosten müssen im Kalenderjahr angefallen sein"
+    }
+  },
+  "legal_basis": [
+    "§ 9 EStG"
+  ],
+  "compatible_with": [
+    "werbungskosten",
+    "sonderausgaben",
+    "spendenabzug"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "werbungskosten",
+    "sonderausgaben"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Steuerberatungskosten sind als Werbungskosten von der Einkommensteuer abziehbar. Das gilt für die Erstellung der Steuererklärung, Steuerberatung und Steuerstreitigkeiten.",
+    "for_whom": "Für alle, die einen Steuerberater oder Steuerberaterin engagieren - ob für die Steuererklärung, Steuerberatung oder Steuerstreitigkeiten.",
+    "requirements": "Sie haben Steuerberatungskosten, die beruflich veranlasst sind (nicht privat), und können diese nachweisen.",
+    "how_much": "Die gesamten beruflich veranlassten Steuerberatungskosten werden als Werbungskosten abgezogen. Die tatsächliche Steuerersparnis hängt vom Steuersatz ab.",
+    "how_calculated": "Die Steuerberatungskosten werden als Werbungskosten abgezogen, was Ihre steuerpflichtigen Einkünfte reduziert. Die tatsächliche Steuerersparnis hängt vom Steuersatz ab (bis ca. 45%).",
+    "documents_needed": "Rechnung des Steuerberaters, Kontoauszüge als Zahlungsnachweise.",
+    "where_to_apply": "Beim zuständigen Finanzamt über die Steuererklärung (Anlage A). Online über ELSTER.",
+    "deadlines": "Steuererklärung bis 31. Juli des Folgejahres.",
+    "faq": [
+      {
+        "question": "Sind Steuerberatungskosten wirklich abziehbar?",
+        "answer": "Ja, Steuerberatungskosten sind als Werbungskosten abziehbar, wenn sie beruflich veranlasst sind."
+      },
+      {
+        "question": "Gilt das auch für private Beratung?",
+        "answer": "Nein, nur beruflich veranlasste Beratungskosten sind abziehbar. Private Beratung (z.B. für private Investitionen) ist nicht abziehbar."
+      },
+      {
+        "question": "Kann ich die Kosten für Steuerstreitigkeiten abziehen?",
+        "answer": "Ja, Kosten für Steuerstreitigkeiten (Anwalt, Steuerberater) sind als Werbungskosten abziehbar."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/estg/__9.html",
+      "title": "EStG § 9 - Werbungskosten",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://esth.bundesfinanzministerium.de/esth/2024/C-Anhaenge/Anhang-16/XIII/anhang-16-XIII.html",
+      "title": "EStH 2024 - Zuordnung der Steuerberatungskosten zu den Betriebsausgaben, Werbungskosten oder Kosten der Lebensführung",
+      "organization": "Bundesministerium der Finanzen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": "2026-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Steuerberatungskosten sind Werbungskosten",
+    "Nur beruflich veranlasste Kosten abziehbar",
+    "Private Beratungskosten sind nicht abziehbar"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,173 @@
+{
+  "id": "kinderfrühförderung",
+  "official_name": "Kinderfrühförderung",
+  "aliases": [
+    "Früherkennung und Frühförderung behinderter Kinder",
+    "Frühförderung SGB IX",
+    "Interdisziplinäre Frühförderung",
+    "Frühförderung für behinderte Kinder"
+  ],
+  "former_names": [],
+  "type": "health_benefit",
+  "status": "verified",
+  "category": "Gesundheit",
+  "subcategory": "Kinderfrühförderung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Krankenkasse / Integrationsamt",
+    "authority": "Krankenkasse (bei medizinischer Verordnung) oder Integrationsamt",
+    "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Leistungen-nach-dem-SGB-IX/leistungen-nach-dem-sgb-ix-art.html",
+    "phone": "Kontakt über Krankenkasse oder Integrationsamt"
+  },
+  "target_groups": [
+    "Kinder mit Behinderung",
+    "Kinder, die von Behinderung bedroht sind",
+    "Kinder im Alter von 0 bis 6 Jahren"
+  ],
+  "life_situations": [
+    "behinderung",
+    "gesundheit"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "elg-kf-01",
+        "description": "Behinderung oder drohende Behinderung",
+        "condition": "Das Kind hat eine Behinderung oder ist von Behinderung bedroht",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-kf-02",
+        "description": "Alter des Kindes",
+        "condition": "Das Kind ist zwischen 0 und 6 Jahre alt",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "elg-kf-03",
+        "description": "Medizinische Verordnung",
+        "condition": "Die Frühförderung wurde von einem Kinderarzt verordnet",
+        "required": true,
+        "category": "health"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Kostenlos bei medizinischer Verordnung",
+      "Interdisziplinäre Frühförderung: Ärzte, Therapeuten, Pädagogen",
+      "Zuständigkeit: Krankenkasse oder Integrationsamt"
+    ]
+  },
+  "calculation": {
+    "method": "Kostenlose Frühförderung bei medizinischer Verordnung",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Verordnung durch Kinderarzt",
+        "value": "Kinderarzt verordnet Frühförderung"
+      },
+      {
+        "step": 2,
+        "description": "Antrag bei Krankenkasse",
+        "value": "Kostenübernahme beantragen"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Kostenlos bei medizinischer Verordnung",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Kostenlose Frühförderung bei medizinischer Verordnung",
+    "depends_on": [
+      "Art der Förderung"
+    ]
+  },
+  "application": {
+    "method": "Verordnung durch Kinderarzt, dann Antrag bei Krankenkasse",
+    "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Leistungen-nach-dem-SGB-IX/leistungen-nach-dem-sgb-ix-art.html",
+    "forms": [
+      "Antrag auf Frühförderung"
+    ],
+    "required_documents": [
+      "Verordnung durch Kinderarzt",
+      "Antrag auf Frühförderung"
+    ],
+    "processing_time": "2-4 Wochen",
+    "deadlines": {
+      "description": "Keine Frist",
+      "note": "Frühförderung sollte so früh wie möglich beginnen"
+    }
+  },
+  "legal_basis": [
+    "§ 46 SGB IX (Früherkennung und Frühförderung behinderter Kinder)",
+    "§ 46a SGB IX (Frühförderung in Einrichtungen)"
+  ],
+  "compatible_with": [],
+  "incompatible_with": [],
+  "related_benefits": [
+    "mutterschaftsvorsorge",
+    "assistenz",
+    "hilfsmittel",
+    "teilhabe"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Kinderfrühförderung ist eine Leistung für behinderte oder von Behinderung bedrohte Kinder im Alter von 0 bis 6 Jahren, um ihre Entwicklung zu fördern.",
+    "for_whom": "Kinder mit Behinderung oder drohender Behinderung im Alter von 0 bis 6 Jahren.",
+    "requirements": "Behinderung oder drohende Behinderung, Alter 0-6 Jahre, medizinische Verordnung.",
+    "how_much": "Kostenlos bei medizinischer Verordnung.",
+    "how_calculated": "Kostenlose Frühförderung bei medizinischer Verordnung.",
+    "documents_needed": "Verordnung durch Kinderarzt, Antrag auf Frühförderung.",
+    "where_to_apply": "Bei der Krankenkasse (nach Verordnung durch Kinderarzt).",
+    "deadlines": "Keine Frist. Frühförderung sollte so früh wie möglich beginnen.",
+    "faq": [
+      {
+        "question": "Was ist Kinderfrühförderung?",
+        "answer": "Kinderfrühförderung ist eine Leistung für behinderte oder von Behinderung bedrohte Kinder im Alter von 0 bis 6 Jahren, um ihre Entwicklung zu fördern."
+      },
+      {
+        "question": "Wie bekomme ich Kinderfrühförderung?",
+        "answer": "Die Frühförderung muss von einem Kinderarzt verordnet werden. Dann stellen Sie einen Antrag bei Ihrer Krankenkasse."
+      },
+      {
+        "question": "Kostet die Frühförderung etwas?",
+        "answer": "Nein, bei medizinischer Verordnung ist die Frühförderung kostenlos."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_9_2018/__46.html",
+      "title": "§ 46 SGB IX - Früherkennung und Frühförderung behinderter Kinder",
+      "organization": "Gesetze im Internet",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Leistungen-nach-dem-SGB-IX/leistungen-nach-dem-sgb-ix-art.html",
+      "title": "Leistungen nach dem SGB IX - BMAS",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Kostenlos bei medizinischer Verordnung",
+    "Interdisziplinäre Frühförderung: Ärzte, Therapeuten, Pädagogen",
+    "Zuständigkeit: Krankenkasse oder Integrationsamt"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

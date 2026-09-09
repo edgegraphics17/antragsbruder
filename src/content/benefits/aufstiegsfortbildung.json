@@ -1,0 +1,160 @@
+{
+  "id": "aufstiegsfortbildung",
+  "official_name": "Aufstiegsfortbildung (Aufstiegs-BAföG)",
+  "aliases": [
+    "Aufstiegs-BAföG",
+    "AFBG",
+    "Meister-BAföG",
+    "Berufsaufstiegsförderung"
+  ],
+  "former_names": [
+    "Meister-BAföG"
+  ],
+  "type": "education_benefit",
+  "status": "verified",
+  "category": "Weiterbildung",
+  "subcategory": "Berufliche Aufstiegsfortbildung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesverwaltungsamt",
+    "authority": "BMBF",
+    "url": "https://www.aufstiegs-bafoeg.de/",
+    "phone": "0228 993280"
+  },
+  "target_groups": [
+    "Berufstätige",
+    "Auszubildende",
+    "Handwerksmeister",
+    "Fachwirte",
+    "Weiterbildungsteilnehmer"
+  ],
+  "life_situations": [
+    "arbeit_selbststaendig",
+    "gründung",
+    "unternehmen"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "afb_01",
+        "description": "Förderfähige Aufstiegsfortbildung (DQR 4-7)",
+        "condition": "fortbildung_foerderfaehig = true",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "afb_02",
+        "description": "Erfolgreiche Teilnahme an der Fortbildung",
+        "condition": "teilnahme_bestanden = true",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "afb_03",
+        "description": "Deutscher Wohnsitz oder berechtigter Ausländer",
+        "condition": "wohnsitz_deutschland = true",
+        "required": true,
+        "category": "location"
+      }
+    ],
+    "special_conditions": [
+      "Darlehen und Zuschüsse möglich",
+      "Förderung in zwei Raten: während und nach der Fortbildung",
+      "Max. 15.000 Euro Förderung"
+    ]
+  },
+  "calculation": {
+    "method": "Zuschuss/Darlehen je nach Einkommen und Fortbildungskosten",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Förderung in zwei Raten",
+        "note": "Während und nach der Fortbildung"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 15000,
+    "typical_amount": "Bis zu 15.000 Euro",
+    "frequency": "yearly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Bis zu 15.000 Euro (Zuschuss/Darlehen)",
+    "depends_on": [
+      "einkommen",
+      "fortbildungskosten",
+      "familienstand"
+    ]
+  },
+  "application": {
+    "method": "Online beim Bundesverwaltungsamt",
+    "url": "https://www.aufstiegs-bafoeg.de/",
+    "forms": [
+      "Antrag Aufstiegs-BAföG"
+    ],
+    "required_documents": [
+      "Zulassung zur Fortbildung",
+      "Einkommensnachweise",
+      "Kostennachweis der Fortbildung"
+    ],
+    "processing_time": "6-10 Wochen",
+    "deadlines": {
+      "description": "Antrag vor Beginn der Fortbildung",
+      "note": "Keine nachträgliche Förderung"
+    }
+  },
+  "legal_basis": [
+    "Aufstiegsfortbildungsförderungsgesetz (AFBG)"
+  ],
+  "compatible_with": [],
+  "incompatible_with": [],
+  "related_benefits": [
+    "gruenderpraemie"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Das Aufstiegs-BAföG fördert berufliche Aufstiegsfortbildungen wie Meister-, Fachwirt- oder Betriebswirteausbildungen.",
+    "for_whom": "Berufstätige, die eine qualifizierte Weiterbildung absolvieren",
+    "requirements": "Förderfähige Fortbildung, erfolgreiche Teilnahme, deutscher Wohnsitz",
+    "how_much": "Bis zu 15.000 Euro (Zuschuss/Darlehen)",
+    "how_calculated": "Abhängig vom Einkommen und den Fortbildungskosten",
+    "documents_needed": "Zulassung, Einkommensnachweise, Kostennachweis",
+    "where_to_apply": "Online beim Bundesverwaltungsamt",
+    "deadlines": "Antrag vor Fortbildungsbeginn stellen",
+    "faq": [
+      {
+        "question": "Ist das Aufstiegs-BAföG ein Darlehen oder Zuschuss?",
+        "answer": "Es besteht aus einem zinsgünstigen Darlehen und einem Zuschuss, der nicht zurückgezahlt werden muss."
+      },
+      {
+        "question": "Welche Fortbildungen werden gefördert?",
+        "answer": "Meister-, Fachwirt-, Betriebswirt- und andere Aufstiegsfortbildungen (DQR 4-7)."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.aufstiegs-bafoeg.de/",
+      "title": "Aufstiegs-BAföG - BMBFSFJ",
+      "organization": "Bundesverwaltungsamt",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2020-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Ersatz für das frühere Meister-BAföG",
+    "Förderung in zwei Raten möglich",
+    "Zuschussanteil muss nicht zurückgezahlt werden"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

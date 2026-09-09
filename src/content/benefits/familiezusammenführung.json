@@ -1,0 +1,186 @@
+{
+  "id": "familiezusammenführung",
+  "official_name": "Familienzusammenführung",
+  "aliases": ["Familiennachzug", "Ehegattennachzug", "Kindernachzug", "Elternnachzug", "§§ 27-36 AufenthG"],
+  "former_names": [],
+  "type": "family_benefit",
+  "status": "verified",
+  "category": "Integration & Aufenthalt",
+  "subcategory": "Familienzusammenführung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Auswärtiges Amt / Auslandsvertretungen / Ausländerbehörden",
+    "authority": "Auswärtiges Amt (Visumverfahren) / Ausländerbehörden (Inland)",
+    "url": "https://www.auswaertiges-amt.de/de/service/fragenkatalog-node/familiennachzug",
+    "phone": "030 1815-0"
+  },
+  "target_groups": [
+    "Ehegatten von Ausländern mit Aufenthaltstitel",
+    "Minderjährige Kinder von Ausländern mit Aufenthaltstitel",
+    "Eltern von minderjährigen Ausländern",
+    "Subsidiär Schutzberechtigte (§ 36a AufenthG)"
+  ],
+  "life_situations": ["neu_in_deutschland", "migration", "asyl"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "fz-001",
+        "description": "Ehegattennachzug (§ 28 AufenthG)",
+        "condition": "Ehepartner mit Aufenthaltstitel in Deutschland; Ehe muss seit mindestens 1 Jahr bestehen (seit 2024: 2 Jahre); Deutschkenntnisse A1",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "fz-002",
+        "description": "Kindernachzug (§ 32 AufenthG)",
+        "condition": "Minderjährige, unverheiratete Kinder; Kindeswohl; ein Elternteil hat Sorgerecht",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "fz-003",
+        "description": "Elternnachzug (§ 36 AufenthG)",
+        "condition": "Eltern eines minderjährigen, ledigen Ausländers; Kindeswohl",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "fz-004",
+        "description": "Nachzug zu subsidiär Schutzberechtigten (§ 36a AufenthG)",
+        "condition": "Subsidiär Schutzberechtigter mit Aufenthaltstitel; Nachzug innerhalb von 3 Monaten nach Anerkennung",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Ehegattennachzug",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Ehegattennachzug: Deutschkenntnisse A1 erforderlich (seit 2024)",
+      "Ehegattennachzug: Ehe muss seit mindestens 2 Jahren bestehen (seit 2024)",
+      "Nachweis ausreichenden Wohnraums und Krankenversicherung",
+      "Kein Bezug zu Sozialleistungen (für Ehegattennachzug)",
+      "Subsidiär Schutzberechtigte: Nachzug innerhalb von 3 Monaten"
+    ]
+  },
+  "calculation": {
+    "method": "Kein Geldbetrag; Visumerteilung für Familienangehörige",
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Keine Zahlung; Visumgebühr ca. 75€",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Visum zur Familienzusammenführung; keine regelmäßige Zahlung",
+    "one_time": 75,
+    "depends_on": ["Art der Familienbeziehung", "Aufenthaltsstatus des Stamminhabers"]
+  },
+  "application": {
+    "method": "Persönlich bei der deutschen Auslandsvertretung im Heimatland",
+    "url": "https://www.auswaertiges-amt.de/de/service/fragenkatalog-node/familiennachzug",
+    "forms": ["Visumantrag (nationales Visum)"],
+    "required_documents": [
+      "Reisepass",
+      "Eheurkunde (beglaubigt + Übersetzung)",
+      "Geburtsurkunde der Kinder (beglaubigt + Übersetzung)",
+      "Deutschkenntnisse A1 (für Ehegattennachzug)",
+      "Nachweis über ausreichenden Wohnraum",
+      "Krankenversicherungsnachweis",
+      "Aufenthaltstitel des Stamminhabers",
+      "ggf. Nachweis über Ehedauer"
+    ],
+    "processing_time": "3-12 Monate",
+    "deadlines": {
+      "description": "Subsidiär Schutzberechtigte: Nachzug innerhalb von 3 Monaten nach Anerkennung",
+      "note": "Sonst keine gesetzliche Frist, aber möglichst frühzeitig beantragen"
+    }
+  },
+  "legal_basis": [
+    "§ 27 AufenthG – Grundsatz des Familiennachzugs",
+    "§ 28 AufenthG – Ehegattennachzug",
+    "§ 29 AufenthG – Nachzug von Familienangehörigen",
+    "§ 30 AufenthG – Nachzug von Kindern",
+    "§ 32 AufenthG – Kindernachzug",
+    "§ 36 AufenthG – Elternnachzug",
+    "§ 36a AufenthG – Familiennachzug zu subsidiär Schutzberechtigten"
+  ],
+  "compatible_with": [
+    "integrationskurs",
+    "deutschkurs",
+    "beratung_migranten"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "aufenthaltstitel_arbeit",
+    "beratung_migranten"
+  ],
+  "user_content": {
+    "short_explanation": "Die Familienzusammenführung ermöglicht es Ihrem Ehepartner und Ihren Kindern, nach Deutschland zu ziehen, wenn Sie hier einen Aufenthaltstitel haben.",
+    "for_whom": "Für Ausländer mit Aufenthaltstitel, die ihre Familie nach Deutschland holen möchten (Ehepartner, Kinder, ggf. Eltern).",
+    "requirements": "Aufenthaltstitel in Deutschland; Ehegattennachzug: Deutschkenntnisse A1, Ehe seit mindestens 2 Jahren; Nachweis von Wohnraum und Krankenversicherung.",
+    "how_much": "Keine regelmäßige Zahlung. Visumgebühr: ca. 75€.",
+    "how_calculed": "Die Auslandsvertretung prüft die Voraussetzungen und erteilt ein nationales Visum für die Familienangehörigen.",
+    "documents_needed": "Reisepass, Eheurkunde, Geburtsurkunden, Deutschkenntnisse A1, Nachweis über Wohnraum und Krankenversicherung.",
+    "where_to_apply": "Deutsche Auslandsvertretung (Botschaft/Konsulat) im Heimatland der Familienangehörigen.",
+    "deadlines": "Subsidiär Schutzberechtigte: Nachzug innerhalb von 3 Monaten nach Anerkennung. Sonst: möglichst frühzeitig.",
+    "faq": [
+      {
+        "question": "Wie lange muss die Ehe bestehen?",
+        "answer": "Seit 2024 muss die Ehe seit mindestens 2 Jahren bestehen (vorher 1 Jahr). Ausnahmen sind möglig."
+      },
+      {
+        "question": "Brauche ich Deutschkenntnisse?",
+        "answer": "Für den Ehegattennachzug sind Deutschkenntnisse auf Niveau A1 erforderlich. Für den Kindernachzug nicht."
+      },
+      {
+        "question": "Kann ich meine Eltern nachholen?",
+        "answer": "Ja, wenn Sie minderjährig, ledig und deutscher Staatsangehöriger oder einen Aufenthaltstitel haben. Der Elternnachzug ist aber eingeschränkt."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.auswaertiges-amt.de/de/service/fragenkatalog-node/familiennachzug",
+      "title": "Familiennachzug – Auswärtiges Amt",
+      "organization": "Auswärtiges Amt",
+      "last_verified": "2026-09-08",
+      "type": "federal_ministry"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__27.html",
+      "title": "§ 27 AufenthG – Grundsatz des Familiennachzugs",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__28.html",
+      "title": "§ 28 AufenthG – Ehegattennachzug",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2005-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Seit 2024: Ehegattennachzug erst nach 2 Jahren Ehedauer (vorher 1 Jahr)",
+    "Seit 2024: Deutschkenntnisse A1 erforderlich für Ehegattennachzug",
+    "Subsidiär Schutzberechtigte: Nachzug innerhalb von 3 Monaten nach Anerkennung",
+    "Visumverfahren bei der Auslandsvertretung im Heimatland"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

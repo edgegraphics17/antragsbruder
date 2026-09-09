@@ -1,0 +1,151 @@
+{
+  "id": "geburt",
+  "official_name": "Hilfen bei Geburt",
+  "aliases": ["Mutterschaftsgeld", "Geburtskosten", "Wochenbettbetreuung", "Hebammenhilfe", "Geburtsvorbereitung"],
+  "former_names": [],
+  "type": "family_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Hilfen bei Geburt",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Krankenkasse / Hebamme",
+    "authority": "Bundesministerium für Gesundheit (BMG)",
+    "url": "https://familienportal.de/familienportal/familienleistungen/mutterschaftsleistungen",
+    "phone": "030 18580-0"
+  },
+  "target_groups": ["Gebärende", "Wöchnerinnen", "Stillende"],
+  "life_situations": ["kind_bekommen", "schwanger", "familie"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "gb-001",
+        "description": "Frau hat entbunden oder stillt",
+        "condition": "Geburt oder Stillzeit",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "gb-002",
+        "description": "Gesetzlich krankenversichert",
+        "condition": "Mitgliedschaft in gesetzlicher Krankenkasse",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "gb-003",
+        "description": "Hebammenbetreuung wird in Anspruch genommen",
+        "condition": "Betreuung durch Hebamme",
+        "required": false,
+        "category": "health"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Mutterschaftsgeld: max. 13 Euro/Tag von Krankenkasse",
+      "Arbeitgeberzuschuss: Differenz zum durchschnittlichen Nettoeinkommen",
+      "Hebammenhilfe: bis zu 10 Besuche im Wochenbett",
+      "Geburtskosten: vollständige Übernahme durch Krankenkasse",
+      "Stillberatung: kostenlos"
+    ]
+  },
+  "calculation": {
+    "method": "Mutterschaftsgeld = Krankenkassenzuschuss (max. 13 Euro/Tag) + Arbeitgeberzuschuss",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Krankenkasse zahlt Mutterschaftsgeld",
+        "value": "Max. 13 Euro/Tag"
+      },
+      {
+        "step": 2,
+        "description": "Arbeitgeber zahlt Differenzbetrag",
+        "formula": "Nettoeinkommen - 13 Euro",
+        "value": "Arbeitgeberzuschuss"
+      },
+      {
+        "step": 3,
+        "description": "Hebammenhilfe wird separat vergütet",
+        "value": "Kostenlos über Krankenkasse"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": null,
+    "typical_amount": "100% des durchschnittlichen Nettoeinkommens + kostenlose Hebammenhilfe",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Mutterschaftsgeld: max. 13 Euro/Tag (Krankenkasse) + Arbeitgeberzuschuss + kostenlose Hebammenhilfe",
+    "min_monthly": 0,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Nettoeinkommen", "Krankenkasse", "Hebammenbetreuung"]
+  },
+  "application": {
+    "method": "Über Krankenkasse und Arbeitgeber",
+    "url": "https://familienportal.de/familienportal/familienleistungen/mutterschaftsleistungen",
+    "forms": ["Antrag auf Mutterschaftsgeld", "Hebammenantrag"],
+    "required_documents": ["Geburtsurkunde", "Krankenkassenkarte", "Einkommensnachweise"],
+    "processing_time": "2-4 Wochen",
+    "deadlines": {
+      "description": "Antrag auf Mutterschaftsgeld nach Geburt stellen",
+      "note": "Hebammenhilfe: möglichst früh nach Geburt beantragen"
+    }
+  },
+  "legal_basis": ["§ 24d SGB V (Hebammenhilfe)", "§ 4 Mutterschaftsrichtlinie", "§ 13 MuSchG (Entgeltfortzahlung)"],
+  "compatible_with": ["mutschutz", "elterngeld", "elternzeit", "schangerschaftsleistungen"],
+  "incompatible_with": ["arbeitslosengeld-i"],
+  "related_benefits": ["mutschutz", "elterngeld", "schangerschaftsleistungen"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Nach der Geburt haben Frauen Anspruch auf Mutterschaftsgeld und kostenlose Hebammenhilfe.",
+    "for_whom": "Gebärende und stillende Frauen",
+    "requirements": "Geburt, Krankenversicherung, ggf. Arbeitgeberzuschuss",
+    "how_much": "Mutterschaftsgeld: max. 13 Euro/Tag + Arbeitgeberzuschuss + kostenlose Hebammenhilfe",
+    "how_calculated": "Krankenkasse zahlt max. 13 Euro/Tag, Arbeitgeber den Differenzbetrag",
+    "documents_needed": "Geburtsurkunde, Krankenkassenkarte, Einkommensnachweise",
+    "where_to_apply": "Krankenkasse (Mutterschaftsgeld), Hebamme (Wochenbettbetreuung)",
+    "deadlines": "Antrag auf Mutterschaftsgeld nach Geburt, Hebammenhilfe möglichst früh",
+    "faq": [
+      {
+        "question": "Wie viel Mutterschaftsgeld bekomme ich?",
+        "answer": "Max. 13 Euro pro Kalendertag von der Krankenkasse. Der Arbeitgeber zahlt den Differenzbetrag zum durchschnittlichen Nettoeinkommen"
+      },
+      {
+        "question": "Wie viele Hebammenbesuche sind kostenlos?",
+        "answer": "Bis zu 10 Hausbesuche innerhalb der ersten 56 Tage nach der Geburt sind kostenlos"
+      },
+      {
+        "question": "Wer zahlt die Geburtskosten?",
+        "answer": "Die Krankenkasse übernimmt vollständig die Geburtskosten (Klinik, Anästhesie, etc.)"
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://familienportal.de/familienportal/familienleistungen/mutterschaftsleistungen",
+      "title": "Mutterschaftsleistungen | Familienportal des Bundes",
+      "organization": "Familienportal des Bundes",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/mutterschaftsleistungen",
+      "title": "Mutterschutz und Mutterschaftsleistungen - BMBFSFJ",
+      "organization": "Bundesministerium für Familie, Senioren, Frauen und Jugend",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Mutterschaftsgeld: max. 13 Euro/Tag von Krankenkasse", "Arbeitgeberzuschuss: Differenz zum Nettoeinkommen", "Hebammenhilfe: bis zu 10 Besuche im Wochenbett", "Geburtskosten: vollständige Übernahme durch Krankenkasse"],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

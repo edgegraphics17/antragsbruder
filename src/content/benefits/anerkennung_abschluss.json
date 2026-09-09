@@ -1,0 +1,174 @@
+{
+  "id": "anerkennung_abschluss",
+  "official_name": "Anerkennung ausländischer Abschlüsse",
+  "aliases": ["Anerkennung von Berufsqualifikationen", "Gleichwertigkeitsprüfung", "ZAB-Anerkennung", "anabin", "Berufsanerkennung"],
+  "former_names": [],
+  "type": "employment_benefit",
+  "status": "verified",
+  "category": "Integration & Aufenthalt",
+  "subcategory": "Berufsanerkennung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Zentralstelle für ausländisches Bildungswesen (ZAB) / zuständige Stelle je nach Beruf",
+    "authority": "Kultusministerkonferenz (KMK) / Bundesministerium für Bildung und Forschung (BMBF)",
+    "url": "https://www.kmk.org/zab",
+    "phone": "0228 3821-0"
+  },
+  "target_groups": [
+    "Migranten mit ausländischen Berufsabschlüssen",
+    "Geflüchtete mit Berufsqualifikationen",
+    "EU-Bürger mit ausländischen Abschlüssen",
+    "Personen mit ausländischen Hochschulabschlüssen"
+  ],
+  "life_situations": ["neu_in_deutschland", "migration", "eu_bürger"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "ab-001",
+        "description": "Ausländischer Berufs- oder Hochschulabschluss",
+        "condition": "Nachweis eines ausländischen Bildungsabschlusses (Berufsausbildung oder Studium)",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "ab-002",
+        "description": "Aufenthaltstitel oder Duldung",
+        "condition": "Aufenthaltstitel oder Duldung in Deutschland (für manche Verfahren)",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "ab-003",
+        "description": "Antrag auf Anerkennung",
+        "condition": "Formloser oder formgebundener Antrag bei der zuständigen Stelle",
+        "required": true,
+        "category": "personal"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Alle Antragsteller",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Anerkennungsgesetz (BQFG) regelt Verfahren seit 2012",
+      "EU-Bürger: Erleichterte Verfahren nach EU-Richtlinie 2005/36/EG",
+      "Kosten: 25-600€ je nach Verfahren und Bundesland",
+      "Berufe mit Zuständigkeit: IHK (Industrie/Handwerk), Ärztekammer, Apothekerkammer etc."
+    ]
+  },
+  "calculation": {
+    "method": "Kein Geldbetrag; Verfahren zur Feststellung der Gleichwertigkeit",
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Keine regelmäßige Zahlung; einmalige Gebühr 25-600€",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Verfahren zur Anerkennung; keine regelmäßige Zahlung. Gebühren: 25-600€ je nach Verfahren.",
+    "one_time": 200,
+    "depends_on": ["Art des Abschlusses", "Bundesland", "Berufsgruppe"]
+  },
+  "application": {
+    "method": "Schriftlich oder online bei der zuständigen Stelle",
+    "url": "https://www.kmk.org/anabin.html",
+    "forms": ["Antrag je nach zuständiger Stelle (IHK, Ärztekammer etc.)"],
+    "required_documents": [
+      "Ausländischer Abschluss (beglaubigte Kopie)",
+      "Übersetzung ins Deutsche (beglaubigt)",
+      "Lebenslauf",
+      "Aufenthaltstitel oder Duldung",
+      "ggf. Berufserfahrungsnachweise"
+    ],
+    "processing_time": "2-6 Monate",
+    "deadlines": {
+      "description": "Keine gesetzliche Frist, aber möglichst frühzeitig beantragen",
+      "note": "Für manche Berufe (z.B. Arzt) ist Anerkennung vor Arbeitsaufnahme erforderlich"
+    }
+  },
+  "legal_basis": [
+    "Anerkennungsgesetz (BQFG) – Gesetz über die Anerkennung im Ausland erworbener Berufsqualifikationen",
+    "§ 17a AufenthG – Aufenthalt zur Anerkennung ausländischer Qualifikationen",
+    "EU-Richtlinie 2005/36/EG über die Anerkennung von Berufsqualifikationen",
+    "Landesgesetze zur Berufsanerkennung"
+  ],
+  "compatible_with": [
+    "arbeitsmarktzugang",
+    "aufenthaltstitel_arbeit",
+    "integrationskurs",
+    "deutschkurs"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "arbeitsmarktzugang",
+    "aufenthaltstitel_arbeit",
+    "beratung_migranten"
+  ],
+  "user_content": {
+    "short_explanation": "Die Anerkennung ausländischer Abschlüsse prüft, ob Ihr im Ausland erworbener Berufs- oder Hochschulabschluss in Deutschland gleichwertig ist. Das ist wichtig für die Arbeitsplatzsuche.",
+    "for_whom": "Für Migranten, Geflüchtete und EU-Bürger mit ausländischen Berufs- oder Hochschulabschlüssen, die in Deutschland arbeiten möchten.",
+    "requirements": "Ausländischer Abschluss, Aufenthaltstitel oder Duldung (je nach Verfahren), Antrag bei der zuständigen Stelle.",
+    "how_much": "Keine regelmäßige Zahlung. Das Verfahren kostet 25-600€. Bei Bedürftigkeit können Gebühren erlassen werden.",
+    "how_calculed": "Die zuständige Stelle vergleicht Ihren Abschluss mit deutschen Standards und entscheidet über die Gleichwertigkeit.",
+    "documents_needed": "Abschlusszeugnis (beglaubigt + Übersetzung), Lebenslauf, Aufenthaltstitel, ggf. Berufserfahrungsnachweise.",
+    "where_to_apply": "Zuständige Stelle je Beruf: IHK (Industrie/Handwerk), Ärztekammer (Gesundheit), Apothekerkammer, zuständige Landesbehörde. Infos: kmk.org/anabin.",
+    "deadlines": "Keine gesetzliche Frist. Je nach Beruf: Anerkennung vor Arbeitsbeginn erforderlich (z.B. Ärzte).",
+    "faq": [
+      {
+        "question": "Wo finde ich die zuständige Stelle?",
+        "answer": "Auf anabin.kmk.org oder über die Hotline 0228 3821-0 können Sie die zuständige Stelle für Ihren Beruf finden."
+      },
+      {
+        "question": "Was passiert bei fehlender Gleichwertigkeit?",
+        "answer": "Sie erhalten eine Defizienzbeschreibung. Dann können Sie Anpassungsmaßnahmen (z.B. Kenntnisprüfung, Anpassungslehrgang) durchführen."
+      },
+      {
+        "question": "Kann ich während des Verfahrens arbeiten?",
+        "answer": "Das hängt von Ihrem Aufenthaltstitel und Beruf ab. Für reglementierte Berufe (Arzt, Lehrer) ist die Anerkennung vor Arbeitsbeginn erforderlich."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.kmk.org/anabin.html",
+      "title": "anabin – Informationsportal zur Anerkennung ausländischer Abschlüsse",
+      "organization": "Kultusministerkonferenz (KMK) / ZAB",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.bmbf.de/bmbf/de/home/home_node.html",
+      "title": "Berufsanerkennung – BMBF",
+      "organization": "Bundesministerium für Bildung und Forschung",
+      "last_verified": "2026-09-08",
+      "type": "federal_ministry"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/bqfg/",
+      "title": "Anerkennungsgesetz (BQFG)",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2012-04-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Anerkennungsgesetz (BQFG) seit 2012 bundesweit einheitlich",
+    "anabin-Datenbank der ZAB ist zentrale Informationsquelle",
+    "EU-Bürger profitieren von erleichterten Verfahren nach EU-Richtlinie",
+    "Seit 2020: Erleichterungen durch Fachkräfteeinwanderungsgesetz"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

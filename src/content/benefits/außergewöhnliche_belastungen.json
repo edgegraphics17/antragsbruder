@@ -1,0 +1,215 @@
+{
+  "id": "außergewöhnliche_belastungen",
+  "official_name": "Außergewöhnliche Belastungen nach § 33 EStG",
+  "aliases": [
+    "Außergewöhnliche Belastungen",
+    "§ 33 EStG",
+    "Krankheitskosten",
+    "Behindertenpauschbetrag"
+  ],
+  "former_names": [],
+  "type": "tax_benefit",
+  "status": "verified",
+  "category": "Steuern & Finanzen",
+  "subcategory": "Außergewöhnliche Belastungen",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium der Finanzen",
+    "authority": "Finanzamt",
+    "url": "https://www.bundesfinanzministerium.de",
+    "phone": ""
+  },
+  "target_groups": [
+    "Kranke",
+    "Behinderte",
+    "Pflegebedürftige",
+    "Eltern behinderter Kinder"
+  ],
+  "life_situations": [
+    "krankheit",
+    "behinderung",
+    "pflege_angehoeriger"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "außer_belastung_zwangsläufig",
+        "description": "Aufwendungen sind zwangsläufig (medizinisch notwendig)",
+        "condition": "necessary_expenses",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "außer_belastung_nachweis",
+        "description": "Nachweis der Aufwendungen (Rechnungen, Verordnungen)",
+        "condition": "documented",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "außer_belastung_belastungsgrenze",
+        "description": "Aufwendungen übersteigen die zumutbare Belastung",
+        "condition": "exceeds_threshold",
+        "required": true,
+        "category": "income"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Gesamtbetrag der Einkünfte",
+        "threshold": 0,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "last_updated": "2026-01-01"
+      }
+    ],
+    "asset_rules": null,
+    "special_conditions": [
+      "Zumutbare Belastung hängt vom Einkommen und Familienstand ab",
+      "Pauschbeträge für Behinderte nach § 33b EStG",
+      "Krankheitskosten, Pflegekosten, Fahrtkosten sind abziehbar"
+    ]
+  },
+  "calculation": {
+    "method": "Außergewöhnliche Belastungen über der zumutbaren Belastung werden abgezogen",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Ermittlung der zumutbaren Belastung",
+        "formula": "Hängt vom Einkommen, Familienstand und Anzahl der Kinder ab",
+        "value": "Prozentwert",
+        "note": "Wird vom Finanzamt berechnet"
+      },
+      {
+        "step": 2,
+        "description": "Abzugsfähige Aufwendungen",
+        "formula": "Tatsächliche Kosten - zumutbare Belastung",
+        "value": "Differenz",
+        "note": "Nur wenn Kosten höher sind"
+      },
+      {
+        "step": 3,
+        "description": "Pauschbetrag für Behinderte",
+        "formula": "§ 33b EStG: 620-3.700 Euro je nach Grad der Behinderung",
+        "value": "620-3.700 Euro",
+        "note": "Pro Kalenderjahr"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": null,
+    "typical_amount": "Abhängig von Einkommen und Höhe der Kosten",
+    "frequency": "yearly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Außergewöhnliche Belastungen über der zumutbaren Belastung werden abgezogen",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": null,
+    "depends_on": [
+      "Höhe der Aufwendungen",
+      "Einkommen",
+      "Familienstand",
+      "Anzahl der Kinder"
+    ]
+  },
+  "application": {
+    "method": "Steuererklärung (Anlage A, Feld Außergewöhnliche Belastungen)",
+    "url": "https://www.elster.de",
+    "forms": [
+      "Anlage A"
+    ],
+    "required_documents": [
+      "Rechnungen für medizinische Behandlungen",
+      "Arztverordnungen und Rezepte",
+      "Krankenhausrechnungen",
+      "Fahrtkostennachweise",
+      "Falls Behinderung: Behindertenausweis oder Bescheid"
+    ],
+    "processing_time": "4-8 Wochen nach Abgabe der Steuererklärung",
+    "deadlines": {
+      "description": "Steuererklärung Frist",
+      "date": "31.07. des Folgejahres",
+      "note": "Aufwendungen müssen im Kalenderjahr angefallen sein"
+    }
+  },
+  "legal_basis": [
+    "§ 33 EStG",
+    "§ 33a EStG",
+    "§ 33b EStG"
+  ],
+  "compatible_with": [
+    "sonderausgaben",
+    "werbungskosten",
+    "spendenabzug"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "sonderausgaben",
+    "werbungskosten"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Außergewöhnliche Belastungen sind hohe Aufwendungen, die Sie finanziell überproportional belasten (z.B. Krankheitskosten, Pflegekosten). Diese können über der zumutbaren Belastung von der Einkommensteuer abgezogen werden.",
+    "for_whom": "Für alle, die hohe medizinische oder Pflegekosten haben, die über das Normalmaß hinausgehen - ob selbst betroffen oder als Angehöriger.",
+    "requirements": "Sie haben zwangsläufige Aufwendungen (medizinisch notwendig), die Ihre zumutbare Belastung übersteigen. Die Aufwendungen müssen nachgewiesen werden.",
+    "how_much": "Die Aufwendungen über der zumutbaren Belastung werden abgezogen. Die zumutbare Belastung hängt vom Einkommen, Familienstand und Anzahl der Kinder ab.",
+    "how_calculated": "Das Finanzamt berechnet die zumutbare Belastung basierend auf Ihrem Einkommen. Alles darüber hinaus wird als außergewöhnliche Belastung abgezogen.",
+    "documents_needed": "Rechnungen für medizinische Behandlungen, Arztverordnungen, Krankenhausrechnungen, Fahrtkostennachweise, Behindertenausweis (falls zutreffend).",
+    "where_to_apply": "Beim zuständigen Finanzamt über die Steuererklärung (Anlage A). Online über ELSTER.",
+    "deadlines": "Steuererklärung bis 31. Juli des Folgejahres.",
+    "faq": [
+      {
+        "question": "Was sind außergewöhnliche Belastungen?",
+        "answer": "Hohe Aufwendungen, die Sie finanziell überproportional belasten: Krankheitskosten, Pflegekosten, Fahrtkosten zur Behandlung, Kosten für behinderte Kinder."
+      },
+      {
+        "question": "Was ist die zumutbare Belastung?",
+        "answer": "Der Betrag, den Sie aus eigener Kraft tragen können/sollen. Hängt vom Einkommen, Familienstand und Anzahl der Kinder ab."
+      },
+      {
+        "question": "Gibt es Pauschbeträge für Behinderte?",
+        "answer": "Ja, nach § 33b EStG gibt es Pauschbeträge von 620 Euro bis 3.700 Euro je nach Grad der Behinderung (GdB)."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/estg/__33.html",
+      "title": "EStG § 33 - Außergewöhnliche Belastungen",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/estg/__33b.html",
+      "title": "EStG § 33b - Pauschbeträge für Menschen mit Behinderungen",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://esth.bundesfinanzministerium.de/esth/2025/A-Einkommensteuergesetz/IV-Tarif-31-34b/Paragraf-33/inhalt.html",
+      "title": "EStH 2025 - § 33 - Außergewöhnliche Belastungen",
+      "organization": "Bundesministerium der Finanzen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": "2026-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Zumutbare Belastung hängt vom Einkommen ab",
+    "Pauschbeträge für Behinderte: 620-3.700 Euro",
+    "Krankheitskosten, Pflegekosten, Fahrtkosten abziehbar"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,78 @@
+{
+  "state": "Hessen",
+  "state_code": "HE",
+  "benefits": [
+    {
+      "id": "he-wibank-gruendung",
+      "official_name": "WIBank Gründungsförderung Hessen",
+      "description": "Darlehen der WIBank zur Gründung für Existenzgründer, Freiberufliche sowie kleine und mittlere Unternehmen in Hessen bis 3 Jahre nach Beginn der Selbstständigkeit.",
+      "type": "business_subsidy",
+      "provider": "WIBank (Wirtschafts- und Infrastrukturbank Hessen)",
+      "url": "https://www.wibank.de/",
+      "status": "verified"
+    },
+    {
+      "id": "he-wibank-hessenfonds",
+      "official_name": "HessenFonds Kleindarlehen",
+      "description": "Direktdarlehen der WIBank von 35.000 Euro bis 300.000 Euro auch für Kunden mit höherem Risikoprofil. Zinsvergünstigung bis 2%-Punkte möglich.",
+      "type": "business_subsidy",
+      "provider": "WIBank (Wirtschafts- und Infrastrukturbank Hessen)",
+      "url": "https://wirtschaft.hessen.de/wirtschaft/foerderung",
+      "status": "verified"
+    },
+    {
+      "id": "he-wibank-wohneigentum",
+      "official_name": "WIBank Hessen-Darlehen Bestandserwerb",
+      "description": "Förderung für den Kauf eines vorhandenen Ein- oder Zweifamilienhauses. Zinsgünstiges Darlehen für Familien in Hessen.",
+      "type": "housing_benefit",
+      "provider": "WIBank (Wirtschafts- und Infrastrukturbank Hessen)",
+      "url": "https://www.foerderdatenbank.de/FDB/Content/DE/Foerderprogramm/Land/Hessen/hessen-darlehen-bestandserwerb.html",
+      "status": "verified"
+    },
+    {
+      "id": "he-starkes-dorf",
+      "official_name": "Förderprogramm STARKES DORF+ Hessen",
+      "description": "Unterstützung engagierter Initiativen in ländlichen Räumen. Förderung von 1.000 Euro bis 7.500 Euro pro Projekt. Neue Förderperiode startet am 1. Januar 2026.",
+      "type": "social_benefit",
+      "provider": "Hessische Staatskanzlei",
+      "url": "https://staatskanzlei.hessen.de/unsere-themen/laendliche-raeume/starkes-dorf",
+      "status": "verified"
+    },
+    {
+      "id": "he-familienzentren",
+      "official_name": "Familienzentren in Hessen",
+      "description": "Strukturelle, quantitative und nachhaltige Sicherung familienbezogener Angebote. Förderung bis zu 18.000 Euro pro Einrichtung und Jahr.",
+      "type": "family_benefit",
+      "provider": "Hessisches Ministerium für Soziales und Integration",
+      "url": "https://rp-kassel.hessen.de/soziales/familienzentren",
+      "status": "verified"
+    },
+    {
+      "id": "he-starke-teams-kitas",
+      "official_name": "Starke Teams, starke Kitas II",
+      "description": "Förderprogramm für Kitas in Hessen bis zum 31.12.2026. Unterstützung der pädagogischen Arbeit in Kindertageseinrichtungen.",
+      "type": "family_benefit",
+      "provider": "Hessisches Ministerium für Soziales und Integration",
+      "url": "https://rp-kassel.hessen.de/soziales/kindertagesbetreuung/starke-teams-starke-kitas",
+      "status": "verified"
+    },
+    {
+      "id": "he-efre-2021-2027",
+      "official_name": "EFRE-Förderperiode 2021-2027 Hessen",
+      "description": "Europäischer Fonds für regionale Entwicklung in Hessen. Förderung von Innovation, Umweltfreundlichkeit und regionaler Entwicklung.",
+      "type": "business_subsidy",
+      "provider": "Hessisches Ministerium für Wirtschaft, Energie, Verkehr und Wohnen",
+      "url": "https://wirtschaft.hessen.de/wirtschaft/efre-europaeischer-strukturfonds/foerderung-2021-2027",
+      "status": "verified"
+    },
+    {
+      "id": "he-agrar-investitionsfoerderung",
+      "official_name": "Einzelbetriebliche Investitionsförderung Hessen",
+      "description": "Förderung von Investitionen in landwirtschaftlichen Unternehmen in Hessen. Anträge voraussichtlich ab 29. Kalenderwoche 2026.",
+      "type": "agriculture_subsidy",
+      "provider": "Hessisches Ministerium für Landwirtschaft und Umwelt",
+      "url": "https://landwirtschaft.hessen.de/landwirtschaft/foerderung/einzelbetriebliche-investitionsfoerderung",
+      "status": "verified"
+    }
+  ]
+}

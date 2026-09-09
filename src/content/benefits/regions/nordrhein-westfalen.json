@@ -1,0 +1,78 @@
+{
+  "state": "Nordrhein-Westfalen",
+  "state_code": "NW",
+  "benefits": [
+    {
+      "id": "nrw-nrwbank-gruendung-wachstum",
+      "official_name": "NRW.BANK.Gründung und Wachstum",
+      "description": "Förderdarlehen für Investitionen, Betriebsmittel, Warenlager, Übernahme und Beteiligungen. Für Gründer, junge und etablierte KMU in NRW.",
+      "type": "business_subsidy",
+      "provider": "NRW.BANK",
+      "url": "https://www.nrwbank.de/de/foerderung/foerderprodukte/60100/nrwbank-gruendung-und-wachstum.html",
+      "status": "verified"
+    },
+    {
+      "id": "nrw-nrwbank-mikrodarlehen",
+      "official_name": "NRW.Mikrodarlehen",
+      "description": "Kleines Förderdarlehen für Investitionsvorhaben mit geringerem Volumen. Für KMU in Nordrhein-Westfalen.",
+      "type": "business_subsidy",
+      "provider": "NRW.BANK",
+      "url": "https://www.nrwbank.de/de/foerderung/foerderprodukte/15262/nrwmikrodarlehen.html",
+      "status": "verified"
+    },
+    {
+      "id": "nrw-nrwseedbridge",
+      "official_name": "NRW.SeedBridge",
+      "description": "Eigenkapitalförderung für junge, innovative Unternehmen. Überbrückung bis zur nächsten Finanzierungsrunde.",
+      "type": "business_subsidy",
+      "provider": "NRW.BANK",
+      "url": "https://www.nrwbank.de/de/foerderung/foerderprodukte/60227/nrwseedbridge.html",
+      "status": "verified"
+    },
+    {
+      "id": "nrw-ressource-nrw",
+      "official_name": "Förderprogramm Ressource.NRW",
+      "description": "Förderung von Investitionen in Ressourceneffizienz und Kreislaufwirtschaft. Rund 8 Millionen Euro für 2025-2026.",
+      "type": "energy_subsidy",
+      "provider": "Ministerium für Wirtschaft, Industrie, Klimaschutz und Energie NRW",
+      "url": "https://www.umweltwirtschaft.nrw.de/aktuelles/meldungen/details/foerderprogramm-ressourcenrw-2025-2026-startet/",
+      "status": "verified"
+    },
+    {
+      "id": "nrw-efre-jtf-2021-2027",
+      "official_name": "EFRE/JTF-Programm NRW 2021-2027",
+      "description": "Förderung von Projekten aus den Themenfeldern Innovation und Forschung, Gründung und Digitalisierung, Klimaschutz und Klimaanpassung.",
+      "type": "business_subsidy",
+      "provider": "Ministerium für Wirtschaft, Industrie, Klimaschutz und Energie NRW",
+      "url": "https://www.efre.nrw.de/",
+      "status": "verified"
+    },
+    {
+      "id": "nrw-grw-foerderung",
+      "official_name": "GRW-Förderung Nordrhein-Westfalen",
+      "description": "Gemeinschaftsaufgabe Verbesserung der regionalen Wirtschaftsstruktur. 2025: 114,1 Millionen Euro an Fördermitteln für Unternehmensinvestitionen.",
+      "type": "business_subsidy",
+      "provider": "NRW.BANK",
+      "url": "https://www.nrwbank.de/de/foerderung/foerderprodukte/15354/-gemeinschaftsaufgabe-verbesserung-der-regionalen-wirtschaftsstruktur-grw---gewerblich.html",
+      "status": "verified"
+    },
+    {
+      "id": "nrw-invest-zukunft",
+      "official_name": "NRW.BANK.Invest Zukunft",
+      "description": "Förderung von Investitionen in Zukunftstechnologien. Bis zu 2 Prozent niedrigerer Zinssatz und Tilgungsnachlässe von bis zu 20 Prozent.",
+      "type": "business_subsidy",
+      "provider": "NRW.BANK",
+      "url": "https://www.ihk.de/duesseldorf/existenzgruendung/foerderprogramme/nrw-bank-invest-zukunft-6546496",
+      "status": "verified"
+    },
+    {
+      "id": "nrw-klimaanpassung-kommunen",
+      "official_name": "Klimaanpassung.Kommunen.NRW",
+      "description": "Förderung von Anpassungs- und Präventionsmaßnahmen für Kommunen in NRW zur Bewältigung der Klimafolgen.",
+      "type": "energy_subsidy",
+      "provider": "Ministerium für Umwelt, Naturschutz und Verkehr NRW",
+      "url": "https://www.efre.nrw.de/wege-zur-foerderung/foerderungen-in-2021-2027/klimaanpassation/",
+      "status": "verified"
+    }
+  ]
+}

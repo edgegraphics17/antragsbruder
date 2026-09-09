@@ -1,0 +1,209 @@
+{
+  "id": "bafoeg",
+  "official_name": "Bundesausbildungsförderungsgesetz (BAföG)",
+  "aliases": ["BAföG", "Ausbildungsförderung", "Studienförderung", "Schülerförderung", "BAföG-Förderung"],
+  "former_names": ["Ausbildungsfoerderungsgesetz (AfoG)"],
+  "type": "education_benefit",
+  "status": "verified",
+  "category": "Studium & Bildung",
+  "subcategory": "Ausbildungsförderung für Schüler und Studierende",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesministerium für Bildung und Forschung (BMBF)",
+    "authority": "Amt für Ausbildungsförderung (Landesamt)",
+    "url": "https://www.xn--bafg-7qa.de/",
+    "phone": "0800-2236340"
+  },
+  "target_groups": ["Studierende", "Schüler an weiterführenden Schulen", "Auszubildende an Fachschulen", "Berufsfachschüler"],
+  "life_situations": ["student", "ausbildung", "schueler"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "bafog_personal_staatsangehoerigkeit",
+        "description": "Staatsangehörigkeit (Deutschland, EU-EWR, Flüchtlich oder bestimmte Aufenthaltstitel)",
+        "condition": "deutsch OR eu_ewr OR (auslaender AND (niederlassungserlaubnis OR langfristig_aufenthaltsrecht OR subsidiaer_schutz))",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "bafog_personal_alter",
+        "description": "Altersgrenze: Normalerweise Beginn der Ausbildung vor Vollendung des 30. Lebensjahres (45. bei Master)",
+        "condition": "unter_30_jahre_am_beginn OR (master AND unter_45)",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "bafog_personal_ausbildung",
+        "description": "Förderungsfähige Ausbildungsstätte (staatlich anerkannt oder staatlich zugelassen)",
+        "condition": "staatlich_anerkannte_schule OR staatlich_anerkannte_hochschule",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bafog_personal_eignung",
+        "description": "Eignung für die beabsichtigte Ausbildung (Schulzeugnis, Immatrikulation)",
+        "condition": "schulabschluss_erreicht OR immatrikuliert",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bafog_einkommen",
+        "description": "Einkommen der Eltern muss Freibetrag überschreiten (verheiratet: 2.540€ monatlich, allein: 1.690€)",
+        "condition": "eltern_einkommen > freibetrag",
+        "required": false,
+        "category": "income"
+      },
+      {
+        "rule_id": "bafog_vermoegen",
+        "description": "Vermögensfreibetrag: 15.000€ bis 29 Jahre, dann steigend",
+        "condition": "vermoegen <= freibetrag_nach_alter",
+        "required": false,
+        "category": "asset"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Eltern (verheiratet)",
+        "threshold": 2540,
+        "threshold_type": "monthly",
+        "free_allowance": 2540,
+        "last_updated": "2025-08-01"
+      },
+      {
+        "applies_to": "Eltern (alleinstehend)",
+        "threshold": 1690,
+        "threshold_type": "monthly",
+        "free_allowance": 1690,
+        "last_updated": "2025-08-01"
+      },
+      {
+        "applies_to": "Ehegatte/Lebenspartner",
+        "threshold": 1690,
+        "threshold_type": "monthly",
+        "free_allowance": 1690,
+        "last_updated": "2025-08-01"
+      },
+      {
+        "applies_to": "Eigenes Einkommen (Nebenjob)",
+        "threshold": 389,
+        "threshold_type": "monthly",
+        "free_allowance": 389,
+        "last_updated": "2026-01-01"
+      }
+    ],
+    "asset_rules": {
+      "threshold": 15000,
+      "exemptions": ["Eigenes Haus/Wohnung bei Nutzung", "Sparvermögen bis Freibetrag nach Alter"],
+      "last_updated": "2024-08-01"
+    },
+    "special_conditions": [
+      "Studienstarthilfe: 1.000€ einmalig unabhängig vom BAföG-Anspruch",
+      "Kinderbetreuungszuschlag: 160€/Monat bei Kindern unter 14 Jahren",
+      "Familienversicherung für Studierende bis 30 Jahre"
+    ]
+  },
+  "calculation": {
+    "method": "Bedarfssatz minus anrechenbare Einkommen (Eltern und eigenes)",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Bedarfssatz bestimmen",
+        "value": "Studierende: 440€ (Wohnen bei Eltern) bis 934€ (Nicht bei Eltern); Schüler: 599€-803€",
+        "note": "Inklusive Krankenversicherungszuschlag (102€) und Pflegeversicherungszuschlag (35€)"
+      },
+      {
+        "step": 2,
+        "description": "Einkommen der Eltern anrechnen (nach Freibeträgen)",
+        "value": "50% des übersteigenden Einkommens wird abgezogen"
+      },
+      {
+        "step": 3,
+        "description": "Eigenes Einkommen anrechnen (abzgl. Freibetrag 389€)",
+        "value": "25% des übersteigenden Einkommens wird abgezogen"
+      },
+      {
+        "step": 4,
+        "description": "Vermögen über Freibetrag abziehen (1/60 pro Monat)",
+        "note": "10€ pro 1.000€ Vermögen über Freibetrag"
+      }
+    ],
+    "min_amount": 1,
+    "max_amount": 934,
+    "typical_amount": "400€-700€ pro Monat",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "BAföG-Höchsatz 2026: Studierende 934€ (auswärts), 440€ (bei Eltern); Schüler 599€-959€",
+    "min_monthly": 1,
+    "max_monthly": 934,
+    "one_time": 1000,
+    "depends_on": ["Einkommen der Eltern", "Eigenes Einkommen", "Vermögen", "Wohnsituation", "Versicherungsstatus"]
+  },
+  "application": {
+    "method": "Online (bafoeg-digital.de) oder schriftlich (Formblatt 01)",
+    "url": "https://bafoeg-digital.de/",
+    "forms": ["Formblatt 01 - Antrag auf Ausbildungsförderung", "Formblatt 02 - Bescheinigung Ausbildungsstätte", "Formblatt 04 - Kinder", "Formblatt 09 - Folgeantrag (Studierende)"],
+    "required_documents": ["Antragsformular", "Immatrikulationsbescheinigung", "Mietvertrag", "Einkommensnachweise der Eltern", "Vermögensnachweise", "Krankenversicherungsnachweis"],
+    "processing_time": "6-8 Wochen",
+    "deadlines": {
+      "description": "Antrag spätestens Monatsbeginn der Aufnahme der Ausbildung, Folgeantrag 2 Monate vor Ablauf",
+      "note": "Rückwirkend nur 1 Monat möglich"
+    }
+  },
+  "legal_basis": ["§§ 1-68 BAföG", "Bundesausbildungsförderungsgesetz"],
+  "compatible_with": ["kindergeld", "kinderzuschlag", "wohngeld", "steuererstattung", "bildungskredit_kfw"],
+  "incompatible_with": ["berufsausbildungsbeihilfe_bab", "aufstiegsbafoeg"],
+  "related_benefits": ["berufsausbildungsbeihilfe_bab", "aufstiegsbafoeg", "bildungskredit_kfw", "deutschlandstipendium"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "BAföG ist die staatliche Ausbildungsförderung in Deutschland. Sie hilft Schülern und Studierenden, ihre Ausbildung finanzieren zu können, wenn die Familie nicht genug Geld dafür hat.",
+    "for_whom": "Schüler ab Klasse 10 an weiterführenden Schulen, Studierende an Hochschulen und Fachschulen, die bei ihren Eltern oder allein wohnen.",
+    "requirements": "Deutsch- oder EU-Staatsangehörigkeit, anerkannte Schule/Hochschule, Elternvermögen/Einkommen überschreitet Freibetrag nicht, Alter unter 30 (45 bei Master).",
+    "how_much": "Bis zu 934€ pro Monat (Studierende auswärts wohnend). Im Durchschnitt erhalten Studierende 682€. Schüler können bis zu 959€ erhalten. Zusätzlich gibt es eine Studienstarthilfe von 1.000€.",
+    "how_calculated": "Der Bedarf (Bedarfssatz) minus das anrechenbare Einkommen der Eltern und des Auszubildenden. Die Hälfte des Einkommens der Eltern über den Freibeträgen wird angerechnet.",
+    "documents_needed": "Antragsformular, Schulzeugnis, Immatrikulationsbescheinigung, Einkommensnachweise der Eltern (Steuerbescheide), Mietvertrag, Krankenversicherungsnachweis.",
+    "where_to_apply": "Amt für Ausbildungsförderung (Landesamt) des Bundeslandes, in dem die Schule/Hochschule liegt. Auch online über bafoeg-digital.de.",
+    "deadlines": "Antrag so früh wie möglich, spätestens Monatsbeginn der Aufnahme. Folgeanträge 2 Monate vor Ablauf des Bewilligungszeitraums.",
+    "faq": [
+      {
+        "question": "Kann ich BAföG und Nebenjob kombinieren?",
+        "answer": "Ja, BAföG und Nebenjob schließen sich nicht aus. 2026 gibt es einen Freibetrag von 389€ monatlich für eigenes Einkommen."
+      },
+      {
+        "question": "Wie lange dauert die BAföG-Förderung?",
+        "answer": "Für Studierende bis zum Abschluss des Studiums (in der Regel maximal 10-12 Semester). Für Schüler bis zum Abschluss der Schulbildung."
+      },
+      {
+        "question": "Wann muss BAföG zurückgezahlt werden?",
+        "answer": "Darlehensanteil muss nach Abschluss zurückgezahlt werden (ab 5 Jahre nach Ende der Förderung). Maximal 10.000€ Rückzahlungsbetrag (für Darlehensanteil ab 2010)."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/baf_g/",
+      "title": "BAföG - Bundesausbildungsförderungsgesetz",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.xn--bafg-7qa.de/",
+      "title": "Offizielle BAföG-Website des BMBF",
+      "organization": "BMBF",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-08-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["BAföG wurde 2022 und 2024 reformiert. Freibeträge und Bedarfssätze wurden erhöht. Studienstarthilfe von 1.000€ neu eingeführt. 30. BAföG-Reform plant Dynamisierung der Freibeträge."],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

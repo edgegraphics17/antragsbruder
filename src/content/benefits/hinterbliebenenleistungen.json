@@ -1,0 +1,173 @@
+{
+  "id": "hinterbliebenenleistungen",
+  "official_name": "Hinterbliebenenrente (Witwen-, Witwer- und Waisenrente)",
+  "aliases": [
+    "Hinterbliebenenrente",
+    "Witwenrente",
+    "Witwerrente",
+    "Waisenrente",
+    "Erziehungsrente"
+  ],
+  "former_names": [],
+  "type": "social_benefit",
+  "status": "verified",
+  "category": "Rente & Vorsorge",
+  "subcategory": "Hinterbliebenenversorgung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Deutsche Rentenversicherung",
+    "authority": "Deutsche Rentenversicherung Bund",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Renten-an-Hinterbliebene/renten-an-hinterbliebene_node",
+    "phone": "0800 1000 4800"
+  },
+  "target_groups": [
+    "Hinterbliebene Ehepartner",
+    "Hinterbliebene eingetragene Lebenspartner",
+    "Waisen"
+  ],
+  "life_situations": [
+    "familie",
+    "senior"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "hb-r1",
+        "description": "Verstorbener war versichert und hat Wartezeit von 5 Jahren erfüllt",
+        "condition": "verstorben_versichert",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "hb-r2",
+        "description": "Ehepartner / eingetragener Lebenspartner",
+        "condition": "ehepartner_lebenspartner",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "hb-r3",
+        "description": "Große Witwenrente: mindestens ein Kind, oder 45+ Jahre alt, oder erwerbsgemindert",
+        "condition": "grosse_witwenrente_voraussetzung",
+        "required": false,
+        "category": "personal"
+      },
+      {
+        "rule_id": "hb-r4",
+        "description": "Waisenrente: Kind unter 18 (bis 27 bei Ausbildung)",
+        "condition": "kind_unter_18_27",
+        "required": true,
+        "category": "personal"
+      }
+    ]
+  },
+  "calculation": {
+    "method": "Prozentsatz der Versichertenrente des Verstorbenen",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Große Witwenrente: 55% (neues Recht) oder 60% (altes Recht) der Rente des Verstorbenen"
+      },
+      {
+        "step": 2,
+        "description": "Kleine Witwenrente: 25% der Rente, befristet auf 24 Monate"
+      },
+      {
+        "step": 3,
+        "description": "Waisenrente: 10% (Halbwaisen) oder 20% (Vollwaisen) der Rente"
+      },
+      {
+        "step": 4,
+        "description": "Einkommensanrechnung: Freibetrag, dann 40% Anrechnung"
+      }
+    ],
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Prozentsatz der Rente des Verstorbenen",
+    "depends_on": [
+      "rente_des_verstorbenen",
+      "art_der_rente",
+      "einkommen_des_hinterbliebenen"
+    ]
+  },
+  "application": {
+    "method": "Online oder schriftlich bei der Deutschen Rentenversicherung",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Renten-an-Hinterbliebene/renten-an-hinterbliebene_node",
+    "forms": [
+      "Antrag auf Hinterbliebenenrente"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Sterbeurkunde",
+      "Heiratsurkunde",
+      "Rentenversicherungsnummer des Verstorbenen",
+      "Geburtsurkunden der Kinder"
+    ],
+    "processing_time": "ca. 2-4 Monate"
+  },
+  "legal_basis": [
+    "§§ 46-76 SGB VI"
+  ],
+  "compatible_with": [
+    "erwerbsminderung",
+    "sozialhilfe"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "sozialversicherung",
+    "erwerbsminderung"
+  ],
+  "user_content": {
+    "short_explanation": "Hinterbliebenenrenten unterstützen Sie finanziell, wenn Ihr Ehepartner, Lebenspartner oder Elternteil verstorben ist.",
+    "for_whom": "Für Witwen, Witwer, eingetragene Lebenspartner und Waisen eines verstorbenen Versicherten.",
+    "requirements": "Der Verstorbene muss die Mindestversicherungszeit von 5 Jahren erfüllt haben. Für große Witwenrente: mindestens ein Kind, 45+ Jahre alt oder erwerbsgemindert.",
+    "how_much": "Große Witwenrente: 55% der Rente des Verstorbenen. Kleine: 25% für 2 Jahre. Waisenrente: 10% (Halbwaisen) oder 20% (Vollwaisen).",
+    "how_calculated": "Prozentsatz der Versichertenrente des Verstorbenen. Einkommen wird über einem Freibetrag zu 40% angerechnet.",
+    "documents_needed": "Sterbeurkunde, Heiratsurkunde, Personalausweis, Renteninformation des Verstorbenen",
+    "where_to_apply": "Bei der Deutschen Rentenversicherung (online oder schriftlich)",
+    "deadlines": "Keine spezifischen Fristen, aber Antrag schnellzeitig stellen.",
+    "faq": [
+      {
+        "question": "Was ist der Unterschied zwischen großer und kleiner Witwenrente?",
+        "answer": "Große: 55% der Rente, dauerhaft. Kleine: 25% der Rente, nur für 2 Jahre. Große wenn: Kind vorhanden, 45+ Jahre alt oder erwerbsgemindert."
+      },
+      {
+        "question": "Wird eigenes Einkommen angerechnet?",
+        "answer": "Ja, über einem Freibetrag wird eigenes Einkommen zu 40% auf die Hinterbliebenenrente angerechnet."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Renten-an-Hinterbliebene/renten-an-hinterbliebene_node",
+      "title": "Renten für Hinterbliebene",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Ueber-uns-und-Presse/Presse/Meldungen/2025/250702-hinzuverdienstgrenze-hinterbliebene",
+      "title": "Hinterbliebenenrente: Mehr Hinzuverdienst ab Juli",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-09-08",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Große Witwenrente: 55% (neues Recht) / 60% (altes Recht)",
+    "Kleine: 25% für 24 Monate",
+    "Einkommensanrechnung: 40% über Freibetrag"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

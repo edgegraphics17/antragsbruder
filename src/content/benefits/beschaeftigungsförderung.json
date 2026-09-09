@@ -1,0 +1,167 @@
+{
+  "id": "beschaeftigungsförderung",
+  "official_name": "Beschäftigungsförderung (Eingliederungszuschüsse und Einarbeitungszuschüsse)",
+  "aliases": ["Eingliederungszuschuss", "EGZ", "Einarbeitungszuschuss", "Lohnkostenzuschuss", "Beschäftigungsförderung"],
+  "former_names": [],
+  "type": "employment_benefit",
+  "status": "verified",
+  "category": "Arbeit & Beschäftigung",
+  "subcategory": "Beschäftigungsförderung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesagentur für Arbeit / Jobcenter",
+    "authority": "Agentur für Arbeit / Jobcenter",
+    "url": "https://www.arbeitsagentur.de/unternehmen/finanziell/eingliederungszuschuss-zur-foerderung-arbeitsaufnahme",
+    "phone": "0800 4 555500"
+  },
+  "target_groups": ["Arbeitslose Arbeitnehmer", "Arbeitsuchende", "Menschen mit Vermittlungshemmnissen", "Betriebe, die schwervermittelbare Personen einstellen"],
+  "life_situations": ["job_lost", "arbeit_arbeitnehmer"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "bf-001",
+        "description": "Arbeitslos oder arbeitsuchend gemeldet",
+        "condition": "Die Person muss bei der Agentur für Arbeit oder dem Jobcenter als arbeitslos oder arbeitsuchend gemeldet sein",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bf-002",
+        "description": "Vermittlungshemmnisse",
+        "condition": "Die Person muss Vermittlungshemmnisse aufweisen (z.B. längere Arbeitslosigkeit, gesundheitliche Einschränkungen, Alter über 50 Jahre)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bf-003",
+        "description": "Längere Einarbeitungszeit als üblich notwendig",
+        "condition": "Für die Einarbeitung in die neue Tätigkeit ist eine längere Einarbeitungszeit als üblich erforderlich",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bf-004",
+        "description": "Antrag vor Arbeitsvertragsabschluss",
+        "condition": "Der Antrag muss vor Abschluss des Arbeitsvertrags gestellt werden",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Förderdauer: maximal 12 Monate (in besonderen Fällen länger)",
+      "Förderhöhe: maximal 50% des Arbeitsentgelts",
+      "Verringerung nach 12 Monaten um 10 Prozentpunkte",
+      "Weiterbeschäftigung nach Ende der Förderung erforderlich"
+    ]
+  },
+  "calculation": {
+    "method": "Zuschuss zum Arbeitsentgelt, gestaffelt nach Dauer und Personengruppe",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Antrag des Arbeitgebers bei der Agentur für Arbeit",
+        "note": "Vor Abschluss des Arbeitsvertrags"
+      },
+      {
+        "step": 2,
+        "description": "Prüfung der Förderfähigkeit",
+        "note": "Agentur für Arbeit prüft Voraussetzungen"
+      },
+      {
+        "step": 3,
+        "description": "Bewilligung und monatliche Zahlung",
+        "note": "Zuschuss wird monatlich an den Arbeitgeber gezahlt"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Bis 50% des Bruttolohns, maximal 12 Monate",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Monatlicher Zuschuss bis zu 50% des Arbeitsentgelts, maximal für 12 Monate",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Bruttolohn", "Dauer der Förderung", "Personengruppe"]
+  },
+  "application": {
+    "method": "Arbeitgeber stellt Antrag bei der Agentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de/unternehmen/finanziell/eingliederungszuschuss-zur-foerderung-arbeitsaufnahme",
+    "forms": ["Antrag auf Eingliederungszuschuss"],
+    "required_documents": [
+      "Antrag auf Eingliederungszuschuss",
+      "Arbeitsvertrag oder vorläufige Vereinbarung",
+      "Angaben zur Person der eingestellten Arbeitskraft",
+      "Begründung der Vermittlungshemmnisse"
+    ],
+    "processing_time": "Ca. 2-4 Wochen nach Antragstellung",
+    "deadlines": {
+      "description": "Antrag muss vor Abschluss des Arbeitsvertrags gestellt werden",
+      "note": "Keine nachträgliche Förderung"
+    }
+  },
+  "legal_basis": [
+    "§§ 88-92 SGB III (Eingliederungszuschüsse)",
+    "§ 88 SGB III (Voraussetzungen)",
+    "§ 89 SGB III (Höhe und Dauer)",
+    "§ 90 SGB III (Einarbeitungszuschüsse)"
+  ],
+  "compatible_with": ["berufseinstieg", "berufliche_reha"],
+  "incompatible_with": [],
+  "related_benefits": ["kurzarbeitergeld", "qualifizierungschancengesetz", "berufseinstieg"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der Eingliederungszuschuss hilft Arbeitgebern, arbeitslose oder schwervermittelbare Personen einzustellen – mit einem Zuschuss zum Lohn.",
+    "for_whom": "Arbeitgeber, die arbeitslose oder schwervermittelbare Personen einstellen.",
+    "requirements": "Die eingestellte Person muss arbeitslos oder arbeitsuchend sein und Vermittlungshemmnisse aufweisen. Der Antrag muss vor Arbeitsvertragsabschluss gestellt werden.",
+    "how_much": "Bis 50% des Bruttolohns, maximal für 12 Monate.",
+    "how_calculated": "Agentur für Arbeit prüft die Förderfähigkeit und gewährt einen Zuschuss an den Arbeitgeber.",
+    "documents_needed": "Antrag, Arbeitsvertrag, Angaben zur Person, Begründung der Vermittlungshemmnisse.",
+    "where_to_apply": "Arbeitgeber stellt den Antrag bei der Agentur für Arbeit.",
+    "deadlines": "Antrag muss vor Abschluss des Arbeitsvertrags gestellt werden.",
+    "faq": [
+      {
+        "question": "Kann ich als Arbeitnehmer direkt einen Antrag stellen?",
+        "answer": "Nein, der Antrag muss von Ihrem Arbeitgeber gestellt werden."
+      },
+      {
+        "question": "Muss der Arbeitgeber die Person nach Ende der Förderung weiterbeschäftigen?",
+        "answer": "Ja, eine Weiterbeschäftigung nach Ende der Förderung ist erforderlich."
+      },
+      {
+        "question": "Gibt es auch Förderung für Teilzeitbeschäftigung?",
+        "answer": "Ja, die Förderung ist auch bei sozialversicherungspflichtiger Teilzeitbeschäftigung möglich."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/unternehmen/finanziell/eingliederungszuschuss-zur-foerderung-arbeitsaufnahme",
+      "title": "Eingliederungszuschuss beantragen - Bundesagentur für Arbeit",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.sozialgesetzbuch-sgb.de/sgbiii/88.html",
+      "title": "§ 88 SGB III Eingliederungszuschüsse",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

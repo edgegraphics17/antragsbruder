@@ -1,0 +1,163 @@
+{
+  "id": "deutschkurs",
+  "official_name": "Sprachförderung (Deutschkurse)",
+  "aliases": ["Deutschkurs", "VHS-Kurs", "Sprachförderung", "Berufssprachkurs", "Alfakurs", "Alphabetisierungskurs"],
+  "former_names": [],
+  "type": "integration_benefit",
+  "status": "verified",
+  "category": "Integration & Aufenthalt",
+  "subcategory": "Sprachförderung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "BAMF und lokale Träger (VHS, Sprachschule, IHK)",
+    "authority": "Bundesamt für Migration und Flüchtlinge (BAMF) / Kultusministerien der Länder",
+    "url": "https://www.bamf.de/DE/Themen/Integration/Sprachfoerderung/sprachfoerderung-node.html",
+    "phone": "030 1815-1111"
+  },
+  "target_groups": [
+    "Migranten mit Sprachbedarf",
+    "Asylbewerber und Geduldete",
+    "EU-Bürger",
+    "Deutsche mit Sprachförderbedarf"
+  ],
+  "life_situations": ["neu_in_deutschland", "migration", "asyl"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "dk-001",
+        "description": "Allgemeine Sprachförderung (Einstieg Deutsche Sprache)",
+        "condition": "Personen ohne ausreichende Deutschkenntnisse, die nicht am BAMF-Integrationskurs teilnehmen",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "dk-002",
+        "description": "Berufsbezogene Deutschsprachförderung",
+        "condition": "Teilnahme am Integrationskurs abgeschlossen oder Arbeitssuchende mit Sprachbedarf",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "dk-003",
+        "description": "Volkshochschulkurse (VHS)",
+        "condition": "Jeder kann teilnehmen, Kosten je nach Kurs",
+        "required": false,
+        "category": "personal"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Asylbewerber, SGB-II-Empfänger",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "BAMF-förderfähige Kurse für berechtigte Teilnehmer (AsylbLG, SGB II)",
+      "VHS-Kurse: Kosten je nach Kursart (ca. 50-300€ pro Kurs)",
+      "Berufssprachkurse: Förderung durch Jobcenter oder BAMF möglich"
+    ]
+  },
+  "calculation": {
+    "method": "Kein Geldbetrag; Leistung besteht in Kursdurchführung",
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Kostenlos bei Bedürftigkeit, sonst 50-300€ pro Kurs",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Kostenlose oder vergünstigte Teilnahme an Deutschkursen (VHS, Sprachschulen, BAMF)",
+    "depends_on": ["Kursart", "Träger", "Bedürftigkeit"]
+  },
+  "application": {
+    "method": "Persönlich oder online bei Kursanbietern (VHS, Sprachschulen)",
+    "url": "https://www.vhs.de/",
+    "forms": ["Kursanmeldung je nach Träger"],
+    "required_documents": [
+      "Personalausweis oder Aufenthaltstitel",
+      "Anmeldeformular",
+      "ggf. Bedürftigkeitsnachweis"
+    ],
+    "processing_time": "1-2 Wochen",
+    "deadlines": {
+      "description": "Kursbeginn je nach Angebot; Anmeldung meist 2-4 Wochen vorher",
+      "note": "BAMF-Kurse: Zulassung erforderlich"
+    }
+  },
+  "legal_basis": [
+    "§ 43 Abs. 3 AufenthG – Durchführung von Integrationskursen",
+    "Verordnung über die berufsbezogene Deutschsprachförderung (DEuF-V)",
+    "§ 17 SGB III – Berufliche Weiterbildung",
+    "Landesbildungsgesetze der Bundesländer"
+  ],
+  "compatible_with": [
+    "integrationskurs",
+    "arbeitsmarktzugang",
+    "beratung_migranten"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "integrationskurs",
+    "beratung_migranten"
+  ],
+  "user_content": {
+    "short_explanation": "Deutschkurse helfen Ihnen, die deutsche Sprache zu lernen. Es gibt verschiedene Angebote: Integrationskurse (BAMF), Volkshochschulkurse (VHS) und berufsspezifische Sprachkurse.",
+    "for_whom": "Für alle, die Deutsch lernen möchten – Migranten, Asylbewerber, EU-Bürger und Deutsche mit Sprachförderbedarf.",
+    "requirements": "Keine besonderen Voraussetzungen. Für BAMF-förderfähige Kurse: Aufenthaltstitel oder Duldung und Bedürftigkeit.",
+    "how_much": "Kostenlos für Empfänger von Asylbewerberleistungen oder SGB II-Leistungen. Volkshochschulkurse kosten ca. 50-300€ pro Kurs.",
+    "how_calculed": "Die Kosten hängen vom Kursanbieter und Ihrer Bedürftigkeit ab. Bei Bedürftigkeit übernimmt die zuständige Stelle die Kosten.",
+    "documents_needed": "Aufenthaltstitel oder Personalausweis, Anmeldeformular, ggf. Nachweis über Leistungsbezug.",
+    "where_to_apply": "Volkshochschulen (vhs.de), Sprachschulen, BAMF (für Integrationskurse), Jobcenter (für berufliche Sprachförderung).",
+    "deadlines": "Kurse beginnen ganzjährig. Für BAMF-Integrationskurse: Zulassung erforderlich.",
+    "faq": [
+      {
+        "question": "Was ist der Unterschied zwischen Integrationskurs und VHS-Kurs?",
+        "answer": "Der Integrationskurs (BAMF) ist speziell für Migranten konzipiert und endet mit dem DTZ. VHS-Kurse sind allgemeine Sprachkurse ohne speziellen Fokus auf Integration."
+      },
+      {
+        "question": "Kann ich mehrere Kurse gleichzeitig besuchen?",
+        "answer": "Ja, aber die Förderung durch BAMF oder Jobcenter ist auf bestimmte Kursarten begrenzt."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bamf.de/DE/Themen/Integration/Sprachfoerderung/sprachfoerderung-node.html",
+      "title": "Sprachförderung – BAMF",
+      "organization": "Bundesamt für Migration und Flüchtlinge (BAMF)",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/deuf_v/BJNR612500016.html",
+      "title": "Verordnung über die berufsbezogene Deutschsprachförderung (DEuF-V)",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.vhs.de/",
+      "title": "Volkshochschulen – VHS",
+      "organization": "Deutscher Volkshochschul-Verband",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2005-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Berufsbezogene Deutschsprachförderung (DEuF) seit 2016 bundesweit verfügbar",
+    "VHS-Kurse sind offen für alle, unabhängig vom Aufenthaltsstatus",
+    "BAMF-Integrationskurse sind speziell für Neuzugewanderte konzipiert"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

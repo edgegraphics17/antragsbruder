@@ -1,0 +1,210 @@
+{
+  "id": "gebaeude-daemmung-foerderung",
+  "official_name": "Förderung Gebäudedämmung (KfW & BAFA)",
+  "aliases": [
+    "Dämmung Förderung",
+    "Fassadendämmung",
+    "Dachdämmung",
+    "Gebäudehülle Sanierung",
+    "Wärmedämmung"
+  ],
+  "former_names": [
+    "CO₂-Dämmprogramm",
+    "Energetische Gebäudesanierung"
+  ],
+  "type": "energy_subsidy",
+  "status": "verified",
+  "category": "Energie & Klima",
+  "subcategory": "Gebäudehülle und Dämmung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "KfW Bankengruppe / BAFA",
+    "authority": "Bundesministerium für Wirtschaft und Klimaschutz (BMWK)",
+    "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestandsimmobilie/Energieeffizient-Sanieren/",
+    "phone": "0800 539 9002"
+  },
+  "target_groups": [
+    "Hauseigentümer",
+    "Wohnungseigentümer",
+    "Eigentümergemeinschaften",
+    "gewerbliche Gebäudeeigentümer"
+  ],
+  "life_situations": [
+    "energiesanierung",
+    "klimaschutz",
+    "gebäude-sanierung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "gd-001",
+        "description": "Gebäude befindet sich in Deutschland",
+        "condition": "Das Gebäude liegt in Deutschland",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "gd-002",
+        "description": "Dämmmaßnahme an der Gebäudehülle",
+        "condition": "Fassade, Dach, Kellerdecke oder Fenster werden gedämmt",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "gd-003",
+        "description": "Einhaltung der Mindestdämmwerte",
+        "condition": "Dämmstoffe und -stärken entsprechen den Vorgaben der GEG/EnEV",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "gd-004",
+        "description": "Fachbetriebliche Ausführung",
+        "condition": "Durchführung durch qualifizierten Fachbetrieb",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "KfW-Kredit Nr. 261/262 für Wohngebäude",
+      "BAFA-Zuschuss für Einzelmaßnahmen (BEG EM)",
+      "Tilgungszuschuss bei Erreichen von Effizienzhaus-Standards",
+      "Kombination mit anderen Sanierungsmaßnahmen möglich"
+    ]
+  },
+  "calculation": {
+    "method": "Kredit mit Tilgungszuschuss oder direkter Zuschuss über BAFA. Höhe abhängig vom erreichten Effizienzstandard.",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Förderfähige Kosten ermitteln",
+        "formula": "Material- und Arbeitskosten der Dämmmaßnahmen",
+        "note": "Nur Kosten für Dämmung, nicht für Kosmetik"
+      },
+      {
+        "step": 2,
+        "description": "Fördersatz anwenden",
+        "formula": "30-50% der förderfähigen Kosten",
+        "note": "Basis 30%, Effizienzbonus bis 20%"
+      },
+      {
+        "step": 3,
+        "description": "Tilgungszuschuss bei KfW-Kredit",
+        "formula": "5-20% des Kreditbetrags",
+        "note": "Abhängig vom Effizienzhaus-Standard"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": 150000,
+    "typical_amount": "Kredit bis 150.000 € je Wohneinheit; Zuschuss bis 50% der Kosten",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "KfW-Kredit bis 150.000 € je Wohneinheit. BAFA-Zuschuss bis 50% der förderfähigen Kosten.",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": 150000,
+    "depends_on": [
+      "Art der Dämmung",
+      "Gebäudetyp",
+      "Investitionskosten",
+      "Erreichter Effizienzstandard"
+    ]
+  },
+  "application": {
+    "method": "Online bei BAFA oder über Hausbank bei KfW",
+    "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestandsimmobilie/Energieeffizient-Sanieren/Fassadendaemmung/",
+    "forms": [
+      "BAFA-Antrag",
+      "KfW-Antrag über Hausbank"
+    ],
+    "required_documents": [
+      "Angebote/Kostenvoranschläge",
+      "Baupläne und Dachzeichnungen",
+      "Energieausweis vor Sanierung",
+      "Nachweis über Dämmstoffe und -stärken",
+      "Verwendungsnachweis nach Abschluss"
+    ],
+    "processing_time": "4-8 Wochen",
+    "deadlines": {
+      "description": "Antrag vor Baubeginn stellen",
+      "note": "Baubeginn spätestens 6 Monate nach Antragstellung"
+    }
+  },
+  "legal_basis": [
+    "Bundesförderung für effiziente Gebäude (BEG)",
+    "KfW-Programm 261/262 (Wohngebäude Kredit)",
+    "Gebäudeenergiegesetz (GEG)",
+    "§ 35c EStG (Steuerliche Förderung)"
+  ],
+  "compatible_with": [
+    "photovoltaik",
+    "waermepumpe",
+    "heizungstausch",
+    "energieeffizienz"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "energieschuldenberatung"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der Staat fördert die Dämmung Ihrer Gebäudehülle – Fassade, Dach, Kellerdecke – um Wärmeverluste zu reduzieren und Energiekosten zu senken.",
+    "for_whom": "Hauseigentümer, die ihr Gebäude energetisch sanieren möchten.",
+    "requirements": "Die Dämmung muss den Mindestwärmedaufgaben entsprechen. Die Ausführung muss durch einen Fachbetrieb erfolgen.",
+    "how_much": "Bis zu 50% der förderfähigen Kosten als Zuschuss oder als Tilgungszuschuss auf KfW-Kredite.",
+    "how_calculated": "Der Zuschuss wird auf Basis der tatsächlichen Kosten berechnet. Der Tilgungszuschuss hängt vom erreichten Effizienzhaus-Standard ab.",
+    "documents_needed": "Angebote, Baupläne, Energieausweis, Nachweis über Dämmstoffe.",
+    "where_to_apply": "Online bei BAFA oder über Ihre Hausbank bei KfW.",
+    "deadlines": "Antrag vor Baubeginn. Bau beginnt spätestens 6 Monate nach Antragstellung.",
+    "faq": [
+      {
+        "question": "Welche Dämmungen werden gefördert?",
+        "answer": "Fassadendämmung, Dachdämmung, Kellerdecke und Fenster. Auch Innendämmung ist unter bestimmten Bedingungen förderfähig."
+      },
+      {
+        "question": "Gibt es einen Unterschied zwischen BAFA und KfW?",
+        "answer": "BAFA gewährt Zuschüsse direkt. KfW bietet günstige Kredite mit Tilgungszuschuss. Beide können kombiniert werden."
+      },
+      {
+        "question": "Wie hoch ist der Tilgungszuschuss?",
+        "answer": "Er liegt zwischen 5% und 20% des Kreditbetrags, je nach erreichtem Effizienzhaus-Standard."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestandsimmobilie/Energieeffizient-Sanieren/Fassadendaemmung/",
+      "title": "Fassade dämmen mit staatlicher Förderung - KfW",
+      "organization": "KfW",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    },
+    {
+      "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestandsimmobilie/Energieeffizient-Sanieren/Dachdaemmung/",
+      "title": "Dach dämmen mit staatlicher Förderung - KfW",
+      "organization": "KfW",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "KfW-Kredit 261/262 für Wohngebäude mit Tilgungszuschuss.",
+    "BAFA-Zuschuss für Einzelmaßnahmen (BEG EM) bis 50%.",
+    "Tilgungszuschuss hängt vom Effizienzhaus-Standard ab."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

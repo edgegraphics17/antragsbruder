@@ -1,0 +1,170 @@
+{
+  "id": "integrationskurs",
+  "official_name": "Integrationskurs",
+  "aliases": ["Integrationskurse", "Deutschkurs mit Orientierungskurs", "BAMF-Kurs", "§ 44 AufenthG"],
+  "former_names": [],
+  "type": "integration_benefit",
+  "status": "verified",
+  "category": "Integration & Aufenthalt",
+  "subcategory": "Integrationskurse",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesamt für Migration und Flüchtlinge (BAMF)",
+    "authority": "BAMF – Bundesamt für Migration und Flüchtlinge",
+    "url": "https://www.bamf.de/DE/Themen/Integration/Integrationskurse/integrationskurse-node.html",
+    "phone": "030 1815-1111"
+  },
+  "target_groups": [
+    "Neuzugewanderte Ausländer",
+    "Ausländer mit Aufenthaltserlaubnis nach § 44 Abs. 4 AufenthG",
+    "Asylberechtigte und Flüchtlinge",
+    "Geduldete",
+    "Deutsche mit Migrationshintergrund bei Berechtigung"
+  ],
+  "life_situations": ["neu_in_deutschland", "asyl", "migration"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "ik-001",
+        "description": "Berechtigung zur Teilnahme nach § 44 Abs. 4 AufenthG",
+        "condition": "Aufenthaltserlaubnis vor erstem Aufenthaltstitel gem. § 44 Abs. 4 Nr. 1-4 oder Duldung nach § 60a Abs. 2 Satz 3",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "ik-002",
+        "description": "Verpflichtung zur Teilnahme nach § 44a AufenthG",
+        "condition": "Besonderer Integrationsbedarf, Bezug von SGB II-Leistungen mit Verpflichtung, oder auffordernde Ausländerbehörde",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "ik-003",
+        "description": "Kursplatzverfügbarkeit",
+        "condition": "Verfügbarkeit eines freien Kursplatzes in der Region",
+        "required": true,
+        "category": "location"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Asylbewerber, Geduldete (nach AsylbLG)",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Kostenlos für Empfänger von Asylbewerberleistungen oder SGB II-Leistungen",
+      "Kostenbeitrag ca. 2,20€ pro Unterrichtsstunde für Selbstzahler",
+      "Abschluss mit Zertifikat Integrationskurs (Zertifikat DTZ)"
+    ]
+  },
+  "calculation": {
+    "method": "Kein Geldbetrag; Leistung besteht in kostenloser Kursdurchführung",
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Kostenlos bei Bedürftigkeit, sonst 2,20€/UE",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Kostenlose oder vergünstigte Teilnahme an Integrationskursen (600 UE Sprachkurs + 100 UE Orientierungskurs)",
+    "depends_on": ["Teilnehmerstatus", "Bedürftigkeit", "Kursplatzverfügbarkeit"]
+  },
+  "application": {
+    "method": "Schriftlich beim BAMF oder bei zuständiger Beratungsstelle",
+    "url": "https://www.bamf.de/SharedDocs/Anlagen/DE/Integration/Integrationskurse/Kursteilnehmer/AntraegeAlle/630-007_antrag-zulassung-integrationskurs-ausl_pdf.html",
+    "forms": ["Antrag auf Zulassung zu einem Integrationskurs (630-007)"],
+    "required_documents": [
+      "Aufenthaltstitel oder Duldung",
+      "Antragsformular",
+      "Nachweis über Bedürftigkeit (falls kostenlos)"
+    ],
+    "processing_time": "2-4 Wochen (abhängig von Kursplatzverfügbarkeit)",
+    "deadlines": {
+      "description": "Zulassung innerhalb von 5 Jahren nach Erteilung der ersten Aufenthaltserlaubnis möglich",
+      "note": "Nach 5 Jahren nur noch bei Verpflichtung oder gutem Grund möglich"
+    }
+  },
+  "legal_basis": [
+    "§ 44 AufenthG – Berechtigung zur Teilnahme an einem Integrationskurs",
+    "§ 44a AufenthG – Verpflichtung zur Teilnahme an einem Integrationskurs",
+    "§ 43 AufenthG – Durchführung von Integrationskursen",
+    "Integrationskursverordnung (IntV)"
+  ],
+  "compatible_with": [
+    "deutschkurs",
+    "arbeitsmarktzugang",
+    "beratung_migranten",
+    "schutzsuchende"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "deutschkurs",
+    "anerkennung_abschluss",
+    "beratung_migranten"
+  ],
+  "user_content": {
+    "short_explanation": "Der Integrationskurs ist ein staatlicher Kurs des BAMF, der aus einem Deutschkurs (600 Stunden) und einem Orientierungskurs (100 Stunden) besteht und Migranten bei der Integration in Deutschland unterstützt.",
+    "for_whom": "Für neu Zugewanderte, Asylberechtigte, Geduldete und Deutsche mit Migrationshintergrund, die noch nicht ausreichende Deutschkenntnisse haben.",
+    "requirements": "Aufenthaltstitel oder Duldung in Deutschland; Bedürftigkeit für kostenlose Teilnahme; Verfügbarkeit eines Kursplatzes.",
+    "how_much": "Kostenlos für Empfänger von Asylbewerberleistungen oder SGB II-Leistungen; für andere ca. 2,20€ pro Unterrichtsstunde (ca. 1.540€ insgesamt).",
+    "how_calculed": "Die Teilnahme ist eine Sachleistung (Kursplatz). Bei Bedürftigkeit übernimmt das BAMF die Kosten.",
+    "documents_needed": "Aufenthaltstitel/Duldung, Antragsformular (630-007), ggf. Nachweis über Leistungsbezug (AsylbLG/SGB II).",
+    "where_to_apply": "Bundesamt für Migration und Flüchtlinge (BAMF), Zentrale Integrationskurse, Frankfurter Str. 95, 90411 Nürnberg oder online über bamf.de.",
+    "deadlines": "Innerhalb von 5 Jahren nach Ersterteilung der Aufenthaltserlaubnis sollte der Kurs abgeschlossen werden. Eine Verpflichtung kann aber jederzeit erfolgen.",
+    "faq": [
+      {
+        "question": "Muss ich den Integrationskurs machen?",
+        "answer": "Nur wenn Sie dazu verpflichtet werden (z.B. durch die Ausländerbehörde bei besonderem Integrationsbedarf oder durch das Jobcenter). Andernfalls ist die Teilnahme freiwillig."
+      },
+      {
+        "question": "Wie lange dauert der Integrationskurs?",
+        "answer": "Der allgemeine Integrationskurs umfasst 700 Unterrichtsstunden (600 UE Sprachkurs + 100 UE Orientierungskurs). Intensivkurse sind kürzer möglich."
+      },
+      {
+        "question": "Was ist der DTZ?",
+        "answer": "Der Deutsch-Test für Zuwanderer (DTZ) ist die Abschlussprüfung. Mit dem Zertifikat Integrationskurs können Sie Sprachkenntnisse auf Niveau B1 nachweisen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bamf.de/DE/Themen/Integration/Integrationskurse/integrationskurse-node.html",
+      "title": "Integrationskurse – BAMF",
+      "organization": "Bundesamt für Migration und Flüchtlinge (BAMF)",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__44.html",
+      "title": "§ 44 AufenthG – Berechtigung zur Teilnahme an einem Integrationskurs",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__43.html",
+      "title": "§ 43 AufenthG – Durchführung von Integrationskursen",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2005-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "§ 44 Abs. 4 AufenthG: Berechtigung für Neuzugewanderte mit Aufenthaltstitel",
+    "Kostenbeitrag wurde 2019 auf 2,20€/UE angehoben (vorher 1,55€)",
+    "Seit 2024: Teilnahmeberechtigung auch für bestimmte EU-Bürger mit Bezug zu Deutschland"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

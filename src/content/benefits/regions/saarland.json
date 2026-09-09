@@ -1,0 +1,69 @@
+{
+  "state": "Saarland",
+  "state_code": "SL",
+  "benefits": [
+    {
+      "id": "sl-digitalinvest-kmu",
+      "official_name": "DigitalInvest KMU Saarland",
+      "description": "Förderung von KMU bei der Anpassung von Geschäfts- und Produktionsmodellen an die Digitalisierung. Basis-Förderung bis 26.000 Euro, Plus-Förderung bis 80.000 Euro.",
+      "type": "business_subsidy",
+      "provider": "Ministerium für Wirtschaft, Innovation, Digitalisierung und Energie Saarland",
+      "url": "https://www.saarland.de/mwide/DE/portale/digitalisierung/digitalisierung-wirtschaft/digitalinvest/digitalinvest",
+      "status": "verified"
+    },
+    {
+      "id": "sl-innovationsfoerderung",
+      "official_name": "Innovationsförderung Saarland",
+      "description": "Förderung von Innovation und Technologie im Saarland. Antragstellung über das Förderportal Saar.",
+      "type": "business_subsidy",
+      "provider": "Ministerium für Wirtschaft, Innovation, Digitalisierung und Energie Saarland",
+      "url": "https://www.saarland.de/mwide/DE/portale/innovationsstrategie/innovationsfoerderung",
+      "status": "verified"
+    },
+    {
+      "id": "sl-landesforschungsfoerderung",
+      "official_name": "Landesforschungsförderprogramm (LFFP) Saarland",
+      "description": "Förderung der Forschung im Saarland ab dem 01.01.2025. Formulare LFFP-Projekte 2026 verfügbar.",
+      "type": "education_benefit",
+      "provider": "Ministerium für Wissenschaft, Innovation und Digitalisierung Saarland",
+      "url": "https://www.saarland.de/mfw/DE/portale/wissenschaft/informationen/foerderung/landesforschungsfoerderung",
+      "status": "verified"
+    },
+    {
+      "id": "sl-schulbauprogramm-baustein",
+      "official_name": "Schulbauprogramm BAUSTEIN Saarland",
+      "description": "Größtes Förderprogramm in der Geschichte des Saarlandes. Bundes-, Landes- und EU-Förderungen mit einem Volumen von mind. 129.262 Euro.",
+      "type": "education_benefit",
+      "provider": "Ministerium für Bildung und Kultur Saarland",
+      "url": "https://www.saarland.de/mibs/DE/portale/kommunales/informationen/schulbauprogrammbaustein/richtlinie/richtlinie",
+      "status": "verified"
+    },
+    {
+      "id": "sl-games-foerderung",
+      "official_name": "Games-Förderung Saarland",
+      "description": "Förderung projektbezogener Entwicklungsausgaben für Entwicklerstudios im Saarland.",
+      "type": "business_subsidy",
+      "provider": "Ministerium für Wirtschaft, Innovation, Digitalisierung und Energie Saarland",
+      "url": "https://www.saarland.de/mwide/DE/portale/digitalisierung/digitalisierung-wirtschaft/games-foerderung/games-foerderung",
+      "status": "verified"
+    },
+    {
+      "id": "sl-saarland-zum-selbermachen",
+      "official_name": "Saarland zum Selbermachen",
+      "description": "Förderung von Projekten im Saarland. 27. Förderrunde im Mai 2026: 37 Projekte mit insgesamt 67.370 Euro.",
+      "type": "social_benefit",
+      "provider": "Staatskanzlei Saarland",
+      "url": "https://www.saarland.de/stk/DE/aktuelles/medieninfos/medieninfo/2026/Q2/pm_2026-6-26-Saarland-zum-selbermachen",
+      "status": "verified"
+    },
+    {
+      "id": "sl-pflegepersonal",
+      "official_name": "Förderung von Pflegediensten Saarland",
+      "description": "Gezielte Unterstützung ambulanter Pflegedienste und Pflegeeinrichtungen bei der Anwerbung von Pflegepersonal.",
+      "type": "care_benefit",
+      "provider": "Ministerium für Soziales, Gesundheit, Frauen und Familie Saarland",
+      "url": "https://www.saarland.de/masfg/DE/portale/sozialesleben/leistungensoziales/pflege/kapflege/foerderrichtlinien",
+      "status": "verified"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "id": "psychotherapie",
+  "official_name": "Kostenübernahme von Psychotherapie durch die gesetzliche Krankenkasse",
+  "aliases": [
+    "Psychotherapie",
+    "Psychotherapeutische Behandlung",
+    "Kassenpsychotherapie"
+  ],
+  "former_names": [],
+  "type": "health_benefit",
+  "status": "verified",
+  "category": "Gesundheit",
+  "subcategory": "Psychotherapie",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Gesetzliche Krankenkasse",
+    "authority": "Kassenärztliche Vereinigung",
+    "url": "https://www.kbv.de/psychotherapie",
+    "phone": ""
+  },
+  "target_groups": [
+    "Versicherte mit psychischen Erkrankungen",
+    "Kinder, Jugendliche und Erwachsene"
+  ],
+  "life_situations": [
+    "psychische_erkrankung",
+    "therapie",
+    "gesundheit"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "psy-r1",
+        "description": "Gesetzlich krankenversichert",
+        "condition": "gesetzlich_versichert",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "psy-r2",
+        "description": "Medizinische Notwendigkeit der Psychotherapie (ärztliche Verordnung)",
+        "condition": "aerztliche_verordnung",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "psy-r3",
+        "description": "Psychotherapie bei einem zugelassenen Psychotherapeuten oder Klinik",
+        "condition": "zugelassener_therapeut",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "psy-r4",
+        "description": "Probatorische Sitzungen vor Antragstellung (mind. 2 Sitzungen)",
+        "condition": "probatorische_sitzungen",
+        "required": true,
+        "category": "health"
+      }
+    ],
+    "special_conditions": [
+      "Akutbehandlung: bis zu 12 Sitzungen ohne Antrag",
+      "Probatorische Sitzungen: 2-6 Sitzungen zur Therapieplanung",
+      "Kurzzeittherapie: bis zu 24 Sitzungen (Verhaltenstherapie)",
+      "Langzeittherapie: mehr als 36 Sitzungen (Antrag erforderlich)",
+      "Bei Kindern und Jugendlichen: Erstgespräch mit Eltern möglich"
+    ]
+  },
+  "calculation": {
+    "method": "Vergütung nach Psychotherapie-Vereinbarung (Einzelleistungsvergütung)",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Probatorische Sitzungen zur Feststellung der Notwendigkeit",
+        "formula": "Bis zu 6 Sitzungen à 60-90 Minuten"
+      },
+      {
+        "step": 2,
+        "description": "Antrag bei der Krankenkasse (nach 1. probatorischer Sitzung möglich)",
+        "formula": "PTV-1 Formular (3-fach Ausfertigung)"
+      },
+      {
+        "step": 3,
+        "description": "Genehmigung durch die Krankenkasse",
+        "formula": "Bewilligung: Kurzzeittherapie bis 24 Sitzungen, Langzeittherapie ab 36 Sitzungen"
+      },
+      {
+        "step": 4,
+        "description": "Abrechnung mit der Krankenkasse über die Kassenärztliche Vereinigung",
+        "formula": "Einzelleistungsvergütung nach Psychotherapie-Vereinbarung"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": null,
+    "typical_amount": "Kostenübernahme je nach Therapieverfahren (Verhaltenstherapie, Tiefenpsychotherapie, Psychoanalyse)",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Kostenübernahme je nach Therapieverfahren und Dauer",
+    "depends_on": [
+      "art_therapie",
+      "anzahl_sitzungen",
+      "dauer_sitzungen"
+    ]
+  },
+  "application": {
+    "method": "Über Psychotherapeuten bei der Krankenkasse",
+    "url": "https://www.kbv.de/psychotherapie",
+    "forms": [
+      "PTV-1 (Antrag auf Psychotherapie)",
+      "PTV-12 (Anzeige Akutbehandlung)"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Krankenkassenkarte",
+      "PTV-1 Formular (vom Therapeuten ausgefüllt)"
+    ],
+    "processing_time": "ca. 2-4 Wochen für Genehmigung",
+    "deadlines": {
+      "description": "Antrag möglichst während der probatorischen Sitzungen stellen",
+      "note": "Akutbehandlung kann ohne Antrag beginnen (bis zu 12 Sitzungen)"
+    }
+  },
+  "legal_basis": [
+    "§ 28 SGB V (Ärztliche Versorgung)",
+    "§ 29 SGB V (Psychotherapie)",
+    "Psychotherapie-Richtlinie des Gemeinsamen Ausschusses",
+    "Psychotherapie-Vereinbarung nach § 125 Abs. 1 SGB V"
+  ],
+  "compatible_with": [
+    "heilmittel"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "heilmittel",
+    "arztbehandlung"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die gesetzliche Krankenkasse übernimmt die Kosten für Psychotherapie, wenn diese medizinisch notwendig ist und von einem zugelassenen Therapeuten durchgeführt wird.",
+    "for_whom": "Für alle Versicherten mit psychischen Erkrankungen, die eine Psychotherapie benötigen - Kinder, Jugendliche und Erwachsene.",
+    "requirements": "Sie müssen gesetzlich versichert sein, eine ärztliche Verordnung haben und die Therapie bei einem zugelassenen Psychotherapeuten oder in einer Klinik durchführen lassen.",
+    "how_mind": "Die Krankenkasse übernimmt die vollständigen Kosten der Psychotherapie nach Genehmigung.",
+    "how_calculated": "Es gibt keine direkte Zahlung an Sie. Die Abrechnung erfolgt zwischen Therapeut/Klinik und Krankenkasse über die Kassenärztliche Vereinigung.",
+    "documents_needed": "Personalausweis, Krankenkassenkarte, PTV-1 Formular (wird vom Therapeuten erstellt)",
+    "where_to_apply": "Bei einem zugelassenen Psychotherapeuten oder einer psychotherapeutischen Praxis/Klinik",
+    "deadlines": "Antrag während der probatorischen Sitzungen stellen. Akutbehandlung kann ohne Antrag beginnen.",
+    "faq": [
+      {
+        "question": "Wie viele Sitzungen bekomme ich?",
+        "answer": "Das hängt vom Therapieverfahren ab. Kurzzeittherapie: bis zu 24 Sitzungen. Langzeittherapie: mehr als 36 Sitzungen (gesonderter Antrag erforderlich)."
+      },
+      {
+        "question": "Kann ich sofort mit der Therapie beginnen?",
+        "answer": "Akutbehandlung: ja, bis zu 12 Sitzungen ohne Antrag. Für Richtlinientherapie müssen zuerst probatorische Sitzungen stattfinden und ein Antrag gestellt werden."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.kbv.de/psychotherapie",
+      "title": "Psychotherapie - Ambulante psychotherapeutische Versorgung",
+      "organization": "Kassenärztliche Bundesvereinigung",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-09",
+  "valid_from": "2026-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Akutbehandlung: bis zu 12 Sitzungen ohne Antrag",
+    "Probatorische Sitzungen: 2-6 Sitzungen",
+    "PTV-1 Formular bei KBV erhältlich",
+    "GKV-Spitzenverband Reformen 2026 beachten"
+  ],
+  "created_at": "2026-09-09",
+  "updated_at": "2026-09-09"
+}

@@ -1,0 +1,60 @@
+{
+  "state": "Bremen",
+  "state_code": "HB",
+  "benefits": [
+    {
+      "id": "hb-wohnraumfoerderung",
+      "official_name": "Wohnraumförderung Bremen",
+      "description": "Förderprodukte des Wohnraumförderungsprogramms ab Programmjahr 2026. Umsetzung durch die Bremer Aufbau-Bank.",
+      "type": "housing_benefit",
+      "provider": "Senatorin für Bau, Mobilität und Stadtentwicklung Bremen",
+      "url": "https://bau.bremen.de/bau/wohnen-und-foerdern/wohnraumfoerderung-3566",
+      "status": "verified"
+    },
+    {
+      "id": "hb-startup-efre",
+      "official_name": "EFRE-Start-up-Förderprogramm Bremen",
+      "description": "Förderung für Start-ups im Land Bremen im Rahmen der EFRE-Programme 2021-2027. Laufzeit 2023-2025 mit Restauszahlungen in 2026.",
+      "type": "business_subsidy",
+      "provider": "Senatorin für Wirtschaft, Arbeit und Europa Bremen",
+      "url": "https://www.rathaus.bremen.de/sixcms/media.php/13/top%2B17_20230131_EFRE_Start_up_Foerderprogramm.pdf",
+      "status": "verified"
+    },
+    {
+      "id": "hb-esf-plus",
+      "official_name": "Europäischer Sozialfonds Plus (ESF+) Bremen",
+      "description": "Förderung von Projekten zur Beschäftigungsförderung und Qualifizierung langzeitarbeitsloser Menschen.",
+      "type": "employment_benefit",
+      "provider": "Senatorin für Arbeit, Soziales, Jugend und Integration Bremen",
+      "url": "https://www.esfplus.bremen.de/startseite-1459",
+      "status": "verified"
+    },
+    {
+      "id": "hb-jugend-gutschein",
+      "official_name": "Jugend-Guthabenkarte Bremen",
+      "description": "Das Land Bremen schenkt allen Kindern und Jugendlichen mit erstem Wohnsitz in Bremen und Bremerhaven eine Guthabenkarte mit 60 Euro für 2025.",
+      "type": "family_benefit",
+      "provider": "Senatorin für Arbeit, Soziales, Jugend und Integration Bremen",
+      "url": "https://www.service.bremen.de/lebenslage/finanzierung-und-foerderung-182674",
+      "status": "verified"
+    },
+    {
+      "id": "hb-integrationsprojektfoerderung",
+      "official_name": "Integrations-Projektförderung Bremen",
+      "description": "Fördermöglichkeiten von Kommune und Land Bremen für Migrant*innenorganisationen. Stand Februar 2026.",
+      "type": "integration_benefit",
+      "provider": "Senatorin für Arbeit, Soziales, Jugend und Integration Bremen",
+      "url": "https://www.soziales.bremen.de/integration/projektfoerderung-129384",
+      "status": "verified"
+    },
+    {
+      "id": "hb-kultur-projektmittel",
+      "official_name": "Kultur-Projektmittel Bremen",
+      "description": "Projektmittel für freischaffende Künstler:innen für das Jahr 2026 in Höhe von 829.371,50 Euro.",
+      "type": "social_benefit",
+      "provider": "Senator für Kultur Bremen",
+      "url": "https://www.kultur.bremen.de/projektmittel/projektmittelverfahren-2026-24636",
+      "status": "verified"
+    }
+  ]
+}

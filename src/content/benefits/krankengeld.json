@@ -1,0 +1,158 @@
+{
+  "id": "krankengeld",
+  "official_name": "Krankengeld (SGB V)",
+  "aliases": [
+    "Krankengeld",
+    "KG",
+    "Krankengeld der Krankenkasse"
+  ],
+  "former_names": [],
+  "type": "health_benefit",
+  "status": "verified",
+  "category": "Gesundheit & Krankheit",
+  "subcategory": "Lohnersatzleistung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Gesetzliche Krankenkasse",
+    "authority": "Krankenkasse des Versicherten",
+    "url": "https://www.bmas.de/DE/Soziales/Krankenversicherung/krankengeld.html",
+    "phone": ""
+  },
+  "target_groups": [
+    "Versicherte Arbeitnehmer",
+    "Arbeitsunfähige Versicherte"
+  ],
+  "life_situations": [
+    "gesundheit",
+    "kann_nicht_arbeiten",
+    "arbeit_arbeitnehmer"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "kg-r1",
+        "description": "Arbeitsunfähigkeit ärztlich bescheinigt",
+        "condition": "arbeitsunfaehigkeit_aerztlich",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "kg-r2",
+        "description": "Mindestens 4 Wochen ununterbrochen bei derselben Krankenkasse versichert",
+        "condition": "4_wochen_versichert",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "kg-r3",
+        "description": "Arbeitsunfähigkeit dauert länger als 6 Wochen (Lohnfortzahlung)",
+        "condition": "arbeitsunfaehigkeit_6_wochen",
+        "required": true,
+        "category": "health"
+      }
+    ]
+  },
+  "calculation": {
+    "method": "70% des Bruttogehalts, maximal 90% des Nettogehalts, Höchstbetrag 70% der BBG KV",
+    "steps": [
+      {
+        "step": 1,
+        "description": "70% des durchschnittlichen Bruttoarbeitsentgelts der letzten 12 Monate"
+      },
+      {
+        "step": 2,
+        "description": "Deckelung auf 90% des Nettogehalts"
+      },
+      {
+        "step": 3,
+        "description": "Höchstbetrag: 70% der Beitragsbemessungsgrenze KV (2025: 128,63€/Tag = 3.858,90€/Monat)"
+      }
+    ],
+    "max_amount": 3858.9,
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "70% des Bruttogehalts, max. 90% des Nettogehalts, max. 3.858,90€/Monat (2025)",
+    "max_monthly": 3858.9,
+    "depends_on": [
+      "bruttoentgelt_12_monate",
+      "nettogehalt"
+    ]
+  },
+  "application": {
+    "method": "Automatisch nach 6 Wochen Arbeitsunfähigkeit (Arbeitgeber meldet an Krankenkasse)",
+    "url": "https://www.bmas.de/DE/Soziales/Krankenversicherung/krankengeld.html",
+    "required_documents": [
+      "Arbeitsunfähigkeitsbescheinigung (AU)",
+      "Gehaltsnachweise"
+    ],
+    "processing_time": "Automatisch ab Woche 7"
+  },
+  "legal_basis": [
+    "§§ 44-52 SGB V"
+  ],
+  "compatible_with": [
+    "sozialversicherung",
+    "reha"
+  ],
+  "incompatible_with": [
+    "arbeitslosengeld-i"
+  ],
+  "related_benefits": [
+    "sozialversicherung",
+    "reha",
+    "erwerbsminderung"
+  ],
+  "user_content": {
+    "short_explanation": "Das Krankengeld ersetzt Ihr Gehalt, wenn Sie länger als 6 Wochen krankgeschrieben sind.",
+    "for_whom": "Für versicherte Arbeitnehmer, die aufgrund von Krankheit nicht arbeiten können.",
+    "requirements": "Sie müssen mindestens 4 Wochen ununterbrochen bei derselben Krankenkasse versichert sein und länger als 6 Wochen arbeitsunfähig sein.",
+    "how_much": "70% Ihres Bruttogehalts, aber maximal 90% Ihres Nettogehalts. Höchstbetrag: 3.858,90€ pro Monat (2025).",
+    "how_calculated": "70% des durchschnittlichen Bruttoentgelts der letzten 12 Monate, gedeckelt auf 90% des Nettogehalts.",
+    "documents_needed": "Arbeitsunfähigkeitsbescheinigung (AU) vom Arzt",
+    "where_to_apply": "Automatisch - der Arbeitgeber meldet die Arbeitsunfähigkeit an die Krankenkasse.",
+    "deadlines": "Keine, automatisch nach 6 Wochen Lohnfortzahlung.",
+    "faq": [
+      {
+        "question": "Wann bekomme ich Krankengeld?",
+        "answer": "Ab der 7. Woche der Arbeitsunfähigkeit (nach 6 Wochen Lohnfortzahlung durch den Arbeitgeber)."
+      },
+      {
+        "question": "Wie lange bekomme ich Krankengeld?",
+        "answer": "Maximal 78 Wochen (3 Jahre) innerhalb von 7 Jahren für dieselbe Krankheit."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmas.de/DE/Soziales/Krankenversicherung/krankengeld.html",
+      "title": "Krankengeld",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.vdek.com/vertragspartner/leistungen/krankengeld.html",
+      "title": "Krankengeld - Berechnung, Höhe und Dauer",
+      "organization": "VDEK",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-09-08",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Höchstbetrag 2025: 128,63€/Tag = 3.858,90€/Monat",
+    "Dauer: max. 78 Wochen",
+    "70% Brutto, max 90% Netto"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

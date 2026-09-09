@@ -1,0 +1,154 @@
+{
+  "id": "energiesanierung",
+  "official_name": "Energetische Sanierung (BAFA BEG und KfW)",
+  "aliases": [
+    "Energieeffiziente Sanierung",
+    "Dämmung",
+    "Heizungstausch",
+    "BEG",
+    "KfW 261 262"
+  ],
+  "former_names": [],
+  "type": "energy_subsidy",
+  "status": "verified",
+  "category": "Wohnen & Immobilien",
+  "subcategory": "Energetische Sanierung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "BAFA / KfW Bankengruppe",
+    "authority": "BAFA / KfW und Hausbank",
+    "url": "https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html"
+  },
+  "target_groups": [
+    "Eigentümer",
+    "Vermieter",
+    "Bauherren"
+  ],
+  "life_situations": [
+    "sanierung",
+    "energiekosten_sparen",
+    "klimaschutz",
+    "heizung_tauschen"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "energy_owner",
+        "description": "Eigentümer",
+        "condition": "Antragsteller muss Eigentümer der Immobilie sein",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "energy_existing",
+        "description": "Bestandsgebäude",
+        "condition": "Gebäude muss bestehen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "energy_measures",
+        "description": "Förderfähige Maßnahmen",
+        "condition": "Maßnahmen müssen zu Energieeinsparung führen",
+        "required": true,
+        "category": "status"
+      }
+    ]
+  },
+  "calculation": {
+    "method": "Investitionszuschuss (BAFA) oder Förderkredit mit Tilgungszuschuss (KfW)",
+    "min_amount": 0,
+    "max_amount": 150000,
+    "typical_amount": "BAFA: 15-30% Zuschuss. KfW: bis 150.000 Euro Kredit + Tilgungszuschuss.",
+    "frequency": "once",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "BAFA: bis 30.000 Euro Zuschuss je Wohneinheit. KfW: bis 150.000 Euro Kredit + Tilgungszuschuss.",
+    "one_time": 150000,
+    "depends_on": [
+      "Maßnahme",
+      "Kosten",
+      "Energieeinsparung"
+    ]
+  },
+  "application": {
+    "method": "Online bei BAFA oder über Hausbank bei KfW",
+    "url": "https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html",
+    "forms": [
+      "BAFA-Antrag",
+      "KfW-Antrag über Hausbank"
+    ],
+    "required_documents": [
+      "Energieberatung / Energieausweis",
+      "Kostenvoranschläge",
+      "Fachfirmen-Angebote",
+      "Baugenehmigung (falls erforderlich)"
+    ],
+    "processing_time": "4-8 Wochen"
+  },
+  "legal_basis": [
+    "Bundesförderung für effiziente Gebäude (BEG)",
+    "KfW-Programme 261, 262, 461",
+    "Energieeinsparverordnung (EnEV)"
+  ],
+  "compatible_with": [
+    "sanierung_zuschuss",
+    "neubau_zuschuss",
+    "barrierefrei_umbauen"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "sanierung_zuschuss",
+    "neubau_zuschuss"
+  ],
+  "user_content": {
+    "short_explanation": "Energetische Sanierung wird durch BAFA-Zuschüsse und KfW-Förderkredite unterstützt.",
+    "for_whom": "Eigentümer, die ihr Haus energetisch sanieren, dämmen oder die Heizung tauschen.",
+    "requirements": "Das Gebäude muss bestehen. Maßnahmen müssen Energie einsparen.",
+    "how_much": "BAFA: bis 30.000 Euro Zuschuss. KfW: bis 150.000 Euro Kredit + Tilgungszuschuss.",
+    "how_calculations": "Die Förderung richtet sich nach den eingesparten Energiekosten.",
+    "documents_needed": "Energieberatung, Kostenvoranschläge, Fachfirmen-Angebote.",
+    "where_to_apply": "BAFA online, KfW über Hausbank.",
+    "deadlines": "Antrag vor Baubeginn stellen.",
+    "faq": [
+      {
+        "question": "Welche Maßnahmen werden gefördert?",
+        "answer": "Dämmung, Heizungstausch, Fenster, Lüftung, Solarthermie und mehr."
+      },
+      {
+        "question": "Kann ich BAFA und KfW kombinieren?",
+        "answer": "Ja, für verschiedene Maßnahmen können beide Förderungen genutzt werden."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html",
+      "title": "Bundesförderung für effiziente Gebäude (BEG)",
+      "organization": "Bundesamt für Wirtschaft und Ausfuhrkontrolle",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Neubau/",
+      "title": "KfW Förderung für Neubau",
+      "organization": "KfW Bankengruppe",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "BEG wurde 2024/2025 reformiert. Heizungsförderung ab 2027 geändert."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

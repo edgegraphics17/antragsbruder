@@ -1,0 +1,60 @@
+{
+  "state": "Hamburg",
+  "state_code": "HH",
+  "benefits": [
+    {
+      "id": "hh-ifb-wohnraumfoerderung",
+      "official_name": "IFB Hamburg Wohnraumförderung 2025-2026",
+      "description": "Förderungen in Höhe von 1,774 Milliarden Euro für bedarfsgerechte bezahlbare Wohnungen. Umsetzung durch die Hamburgische Investitions- und Förderbank (IFB Hamburg).",
+      "type": "housing_benefit",
+      "provider": "IFB Hamburg / Behörde für Stadtentwicklung und Wohnen",
+      "url": "https://www.hamburg.de/politik-und-verwaltung/behoerden/behoerde-fuer-stadtentwicklung-und-wohnen/aktuelles/pressemeldungen/ifb-foerderung-wohnraumfoerderprogramm-2025-2026-1013514",
+      "status": "verified"
+    },
+    {
+      "id": "hh-ifb-erneuerbare-waerme",
+      "official_name": "IFB Hamburg Erneuerbare Wärme",
+      "description": "Zuschüsse für erneuerbare Wärme, Wärmepumpen, Wärmenetzanschlüsse und Quartiersuntersuchungen. Zuschuss für Wärmepumpen pauschal 20 % bis 9.000 Euro.",
+      "type": "energy_subsidy",
+      "provider": "IFB Hamburg / Behörde für Umwelt, Energie und Klimaschutz",
+      "url": "https://www.hamburg.de/politik-und-verwaltung/behoerden/bukea/themen/energie/energielotsen/erneuerbare-waerme-290718",
+      "status": "verified"
+    },
+    {
+      "id": "hh-ifb-modernisierungsdarlehen",
+      "official_name": "IFB-Modernisierungsdarlehen Hamburg",
+      "description": "Förderung der Modernisierung von selbstgenutzten und vermieteten Wohnimmobilien in Hamburg durch die IFB Hamburg.",
+      "type": "housing_benefit",
+      "provider": "IFB Hamburg",
+      "url": "https://www.foerderdatenbank.de/FDB/Content/DE/Foerderprogramm/Land/Hamburg/ifb-modernisierungsdarlehen.html",
+      "status": "verified"
+    },
+    {
+      "id": "hh-ifb-mietwohnungen-bauen",
+      "official_name": "IFB Hamburg Mietwohnungen bauen",
+      "description": "Attraktive Förderung für den Bau von Mietwohnungen mit günstigen Mieten und moderner Ausstattung.",
+      "type": "housing_benefit",
+      "provider": "IFB Hamburg",
+      "url": "https://www.ifbhh.de/programme/immobilienwirtschaft/mietwohnungen-bauen/mietwohnungen-bauen",
+      "status": "verified"
+    },
+    {
+      "id": "hh-kulturfoerderung",
+      "official_name": "Hamburger Kulturförderung",
+      "description": "Förderung internationaler Kulturaustausch, interkultureller Projekte und vielfältiger kultureller Vorhaben in Hamburg.",
+      "type": "social_benefit",
+      "provider": "Behörde für Kultur und Medien Hamburg",
+      "url": "https://www.hamburg.de/politik-und-verwaltung/behoerden/behoerde-fuer-kultur-und-medien/themen/kulturfoerderung/kulturaustausch/foerderungen-internationaler-kulturaustausch-2026-1-halbjahr-1126818",
+      "status": "verified"
+    },
+    {
+      "id": "hh-efre",
+      "official_name": "EFRE Hamburg",
+      "description": "Europäischer Fonds für regionale Entwicklung in Hamburg. Förderung von Beschäftigung, sozialer Teilhabe, Bildung und Kompetenzerwerb.",
+      "type": "business_subsidy",
+      "provider": "Behörde für Wirtschaft, Arbeit und Innovation Hamburg",
+      "url": "https://www.hamburg.de/politik-und-verwaltung/behoerden/bwai/efre",
+      "status": "verified"
+    }
+  ]
+}

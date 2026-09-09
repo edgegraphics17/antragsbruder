@@ -1,0 +1,200 @@
+{
+  "id": "alleinerziehendenentlastungsbetrag",
+  "official_name": "Entlastungsbetrag für Alleinerziehende nach § 24b EStG",
+  "aliases": [
+    "Entlastungsbetrag Alleinerziehende",
+    "Alleinerziehendenentlastung",
+    "§ 24b EStG"
+  ],
+  "former_names": [],
+  "type": "tax_benefit",
+  "status": "verified",
+  "category": "Steuern & Finanzen",
+  "subcategory": "Familienleistungen",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium der Finanzen",
+    "authority": "Finanzamt",
+    "url": "https://www.bundesfinanzministerium.de",
+    "phone": ""
+  },
+  "target_groups": [
+    "Alleinerziehende",
+    "Single-Eltern",
+    "Getrenntlebende mit Kind im Haushalt"
+  ],
+  "life_situations": [
+    "alleinerziehend",
+    "divorced_parent"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "alleinerziehend_alleinstehend",
+        "description": "Steuerpflichtiger ist allein stehend (ledig, geschieden, verwitwet, dauernd getrennt lebend)",
+        "condition": "single_status",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "alleinerziehend_kind_im_haushalt",
+        "description": "Zum Haushalt gehört ein Kind im Sinne des § 32 Abs. 1 oder 4 EStG",
+        "condition": "child_in_household",
+        "required": true,
+        "category": "household"
+      },
+      {
+        "rule_id": "alleinerziehend_kein_partner",
+        "description": "Kein weiteres erwachsenes Familienmitglied lebt im Haushalt",
+        "condition": "no_other_adult",
+        "required": true,
+        "category": "household"
+      },
+      {
+        "rule_id": "alleinerziehend_einkommen",
+        "description": "Einkünfte aus nichtselbständiger oder selbständiger Arbeit",
+        "condition": "has_income",
+        "required": true,
+        "category": "income"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Kind muss nicht zwingend das eigene Kind sein (Stiefkind, Pflegekind möglich)",
+      "Bei getrenntlebenden Eltern nur einmal pro Haushalt",
+      "Wird bei Veranlagung automatisch berücksichtigt"
+    ]
+  },
+  "calculation": {
+    "method": "Grundbetrag + Erhöhungsbetrag für jedes weitere Kind",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Grundbetrag für allein stehenden Steuerpflichtigen mit einem Kind",
+        "formula": "4.260 Euro (2026)",
+        "value": "4.260 Euro",
+        "note": "Pro Kalenderjahr"
+      },
+      {
+        "step": 2,
+        "description": "Erhöhungsbetrag für jedes weitere Kind im Haushalt",
+        "formula": "240 Euro pro weiteres Kind",
+        "value": "240 Euro",
+        "note": "Pro Kind"
+      },
+      {
+        "step": 3,
+        "description": "Gesamtbetrag bei zwei Kindern",
+        "formula": "4.260 + 240 = 4.500 Euro",
+        "value": "4.500 Euro",
+        "note": "Beispiel"
+      }
+    ],
+    "min_amount": 4260,
+    "max_amount": 4500,
+    "typical_amount": "4.260 Euro (1 Kind), 4.500 Euro (2 Kinde)",
+    "frequency": "yearly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Entlastungsbetrag 2026: 4.260 Euro (1 Kind), +240 Euro pro weiteres Kind",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": 4260,
+    "depends_on": [
+      "Anzahl der Kinder im Haushalt",
+      "Steuertarif"
+    ]
+  },
+  "application": {
+    "method": "Steuererklärung (Anlage A)",
+    "url": "https://www.elster.de",
+    "forms": [
+      "Anlage A",
+      "Hauptvordruck"
+    ],
+    "required_documents": [
+      "Nachweis über alleinstehenden Status (Personalausweis, Meldebescheinigung)",
+      "Geburtsurkunde des Kindes",
+      "Falls zutreffend: Sorgerechtsnachweis"
+    ],
+    "processing_time": "4-8 Wochen nach Abgabe der Steuererklärung",
+    "deadlines": {
+      "description": "Steuererklärung Frist",
+      "date": "31.07. des Folgejahres",
+      "note": "Wird bei Veranlagung automatisch berücksichtigt"
+    }
+  },
+  "legal_basis": [
+    "§ 24b EStG"
+  ],
+  "compatible_with": [
+    "kinderfreibetrag",
+    "kindergeld",
+    "unterhaltsfreibetrag"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "kinderfreibetrag",
+    "kindergeld",
+    "unterhaltsfreibetrag"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der Entlastungsbetrag für Alleinerziehende ist ein steuerlicher Freibetrag, der allein erziehende Eltern finanziell entlastet. Er wird automatisch bei der Steuerveranlagung berücksichtigt.",
+    "for_whom": "Für allein stehende Eltern (ledig, geschieden, verwitwet oder dauernd getrennt lebend), die mit einem Kind zusammenleben und Einkommen erzielen.",
+    "requirements": "Sie leben allein mit einem Kind zusammen (kein weiterer Erwachsener im Haushalt), das Kind ist Ihr leibliches Kind, Stiefkind oder Pflegekind, und Sie haben Einkünfte.",
+    "how_much": "2026: 4.260 Euro pro Jahr für das erste Kind, plus 240 Euro für jedes weitere Kind. Bei zwei Kindern also 4.500 Euro.",
+    "how_calculated": "Der Betrag wird pauschal gewährt und bei der Steuerveranlagung automatisch berücksichtigt. Die tatsächliche Steuerersparnis hängt vom individuellen Steuersatz ab.",
+    "documents_needed": "Personalausweis, Meldebescheinigung, Geburtsurkunde des Kindes, ggf. Sorgerechtsnachweis.",
+    "where_to_apply": "Beim zuständigen Finanzamt über die Steuererklärung. Online über ELSTER oder mit Steuerberater.",
+    "deadlines": "Steuererklärung bis 31. Juli des Folgejahres (ohne Berater).",
+    "faq": [
+      {
+        "question": "Kann ich den Entlastungsbetrag mit dem Kinderfreibetrag kombinieren?",
+        "answer": "Ja, der Entlastungsbetrag ist unabhängig vom Kinderfreibetrag und wird zusätzlich gewährt."
+      },
+      {
+        "question": "Was gilt als 'allein stehend'?",
+        "answer": "Ledige, geschiedene, verwitwete oder dauernd getrennt lebende Personen. Wichtig: Es darf kein weiterer Erwachsener im Haushalt leben."
+      },
+      {
+        "question": "Gilt das auch für Stiefkinder?",
+        "answer": "Ja, auch Stiefkinder und Pflegekinder kommen in Betracht, wenn sie zum Haushalt gehören."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/estg/__24b.html",
+      "title": "EStG § 24b - Entlastungsbetrag für Alleinerziehende",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://lsth.bundesfinanzministerium.de/lsth/2026/A-Einkommensteuergesetz/II-Einkommen-2-24b/8-Die-einzelnen-Einkunftsarten-13-24b/h-Gemeinsame-Vorschriften-24-24b/Paragraf-24b/inhalt.html",
+      "title": "LStH 2026 - § 24b - Entlastungsbetrag für Alleinerziehende",
+      "organization": "Bundesministerium der Finanzen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": "2026-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Entlastungsbetrag 2026: 4.260 Euro (1 Kind)",
+    "Erhöhung um 240 Euro pro weiteres Kind",
+    "Wird bei Veranlagung automatisch berücksichtigt"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

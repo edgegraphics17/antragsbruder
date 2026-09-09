@@ -1,0 +1,178 @@
+{
+  "id": "stipendien",
+  "official_name": "Stipendien (Deutschlandstipendium, Begabtenförderungswerke)",
+  "aliases": ["Deutschlandstipendium", "Friedrich-Ebert-Stipendium", "Konrad-Adenauer-Stipendium", "Heinrich-Böll-Stipendium", "Rosa-Luxemburg-Stipendium", "Stipendium", "Begabtenförderung"],
+  "former_names": [],
+  "type": "education_benefit",
+  "status": "verified",
+  "category": "Studium & Bildung",
+  "subcategory": "Stipendien für Studierende und Promovierende",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesministerium für Bildung und Forschung (BMBF) / Begabtenförderungswerke",
+    "authority": "Hochschule (Deutschlandstipendium) / Begabtenförderungswerke",
+    "url": "https://www.bmbf.de/stipendien",
+    "phone": ""
+  },
+  "target_groups": ["Studierende an Hochschulen", "Promovierende", "Auszubildende (in der Pilotphase)"],
+  "life_situations": ["student", "weiterbildung"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "stipendium_immatrikulation",
+        "description": "Immatrikulation an einer deutschen Hochschule (staatlich anerkannt)",
+        "condition": "immatrikuliert_an_anerkannter_hochschule",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "stipendium_leistung",
+        "description": "Überdurchschnittliche Leistungen (Noten, Engagement, soziale Verantwortung)",
+        "condition": "ueberdurchschnittliche_leistungen OR herausragendes_engagement",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "stipendium_einkommen",
+        "description": "Einkommensunabhängig bei Deutschlandstipendium und Begabtenförderungswerken",
+        "condition": "einkommen_unabhaengig",
+        "required": false,
+        "category": "income"
+      },
+      {
+        "rule_id": "stipendium_alter",
+        "description": "Keine Altersgrenze (außer Weiterbildungsstipendium: unter 25)",
+        "condition": "keine_altersgrenze",
+        "required": false,
+        "category": "personal"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Deutschlandstipendium",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2025-01-01"
+      }
+    ],
+    "asset_rules": {
+      "threshold": 0,
+      "exemptions": ["Einkommen und Vermögen werden nicht geprüft (Deutschlandstipendium)"],
+      "last_updated": "2025-01-01"
+    },
+    "special_conditions": [
+      "Deutschlandstipendium: 300€/Monat (150€ Bund, 150€ private Förderer)",
+      "Begabtenförderungswerke: Einkommensabhängig nach BAföG + 300€ Studienkostenpauschale",
+      "Promotionsstipendium: 1.650€/Monat (ab WS 2025/26)"
+    ]
+  },
+  "calculation": {
+    "method": "Festbetrag (Deutschlandstipendium) oder einkommensabhängig (Begabtenförderungswerke)",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Deutschlandstipendium",
+        "value": "300€ monatlich (150€ Bund, 150€ private Förderer)",
+        "note": "Einkommensunabhängig, für mindestens 2 Semester"
+      },
+      {
+        "step": 2,
+        "description": "Begabtenförderungswerke",
+        "value": "Bis zu 735€ monatlich (abhängig vom BAföG) + 300€ Studienkostenpauschale",
+        "note": "Einkommensabhängig nach BAföG-Prinzip"
+      },
+      {
+        "step": 3,
+        "description": "Promotionsstipendium",
+        "value": "1.650€ monatlich (ab WS 2025/26)",
+        "note": "Für Promovierende an Hochschulen"
+      }
+    ],
+    "min_amount": 300,
+    "max_amount": 1650,
+    "typical_amount": "300€-1.000€ monatlich",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Stipendien: Deutschlandstipendium 300€/Monat, Begabtenförderungswerke bis 735€ + 300€ Pauschale, Promotionsstipendium 1.650€",
+    "min_monthly": 300,
+    "max_monthly": 1650,
+    "one_time": 0,
+    "depends_on": ["Art des Stipendiums", "Einkommen (Begabtenförderungswerke)", "Leistung", "Engagement"]
+  },
+  "application": {
+    "method": "Bewerbung bei der Hochschule (Deutschlandstipendium) oder bei den Begabtenförderungswerken",
+    "url": "https://www.bmbf.de/stipendien",
+    "forms": ["Bewerbungsformular (je nach Stipendium)"],
+    "required_documents": ["Lebenslauf", "Motivationsschreiben", "Zeugnisse", "Empfehlungsschreiben", "Nachweis sozialen Engagements"],
+    "processing_time": "3-6 Monate",
+    "deadlines": {
+      "description": "Bewerbungsfristen variieren je nach Stipendium (meist im Frühjahr für Wintersemester)",
+      "note": "Bei Begabtenförderungswerken: 6-12 Monate vor Förderbeginn bewerben"
+    }
+  },
+  "legal_basis": ["§§ 1-19 StipG", "Stipendienprogrammgesetz"],
+  "compatible_with": ["bafoeg", "kindergeld", "kinderzuschlag"],
+  "incompatible_with": ["berufsausbildungsbeihilfe_bab"],
+  "related_benefits": ["bafoeg", "aufstiegsbafoeg", "bildungskredit_kfw"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Stipendien sind Leistungen für Studierende und Promovierende mit überdurchschnittlichen Leistungen. Sie müssen nicht zurückgezahlt werden und bieten ideelle Förderung.",
+    "for_whom": "Studierende an Hochschulen mit guten Noten und/oder herausragendem Engagement (sozial, politisch, sportlich). Auch Promovierende können sich bewerben.",
+    "requirements": "Immatrikulation an einer deutschen Hochschule, überdurchschnittliche Leistungen, Motivation und Engagement. Keine Altersgrenze bei den meisten Stipendien.",
+    "how_much": "Deutschlandstipendium: 300€/Monat. Begabtenförderungswerke: Bis zu 735€ + 300€ Studienkostenpauschale. Promotionsstipendium: 1.650€/Monat.",
+    "how_calculated": "Deutschlandstipendium ist einkommensunabhängig. Begabtenförderungswerke prüfen das Einkommen nach BAföG-Prinzip. Die Vergabe erfolgt nach Leistung und Engagement.",
+    "documents_needed": "Lebenslauf, Motivationsschreiben, Zeugnisse (Abitur, Bachelor, Master), Empfehlungsschreiben, Nachweis sozialen Engagements.",
+    "where_to_apply": "Deutschlandstipendium: Bei der Hochschule. Begabtenförderungswerke: Direkt bei den jeweiligen Stiftungen. Promotionsstipendium: Bei den Begabtenförderungswerken.",
+    "deadlines": "Bewerbungsfristen variieren. Bei Begabtenförderungswerken 6-12 Monate vor Förderbeginn bewerben. Deutschlandstipendium: Fristen der Hochschule beachten.",
+    "faq": [
+      {
+        "question": "Kann ich Stipendium und BAföG kombinieren?",
+        "answer": "Ja, Stipendium und BAföG sind kombinierbar. Das Deutschlandstipendium wird nicht auf BAföG angerechnet. Bei Begabtenförderungswerken wird BAföG berücksichtigt."
+      },
+      {
+        "question": "Muss ich das Stipendium zurückzahlen?",
+        "answer": "Nein, Stipendien müssen nicht zurückgezahlt werden. Sie sind eine Förderung, keine Darlehen."
+      },
+      {
+        "question": "Wie finde ich das richtige Stipendium?",
+        "answer": "Informieren Sie sich über die verschiedenen Stipendiengeber (Begabtenförderungswerke, Deutschlandstipendium). Beratung bieten die Studienberatung und die Stipendiengeber an."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmbf.de/stipendien",
+      "title": "Stipendien - BMBF",
+      "organization": "BMBF",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.bmbf.de/begabtenfoerderungswerke",
+      "title": "Die Begabtenförderungswerke - BMBF",
+      "organization": "BMBF",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.deutschlandstipendium.de/",
+      "title": "Deutschlandstipendium",
+      "organization": "BMFTR",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["13 Begabtenförderungswerke gibt es in Deutschland: FES, KAS, HSS, FdH, AvE, Stiftung der Deutschen Wirtschaft, Friedrich Naumann, Rosa Luxemburg, Heinrich Böll, Cusanus, KAAD, Ernst Ludwig Ehrlich, Hans Böckler. Promotionsstipendium wurde 2025 auf 1.650€ erhöht."],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

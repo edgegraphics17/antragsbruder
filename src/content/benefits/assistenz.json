@@ -1,0 +1,180 @@
+{
+  "id": "assistenz",
+  "official_name": "Assistenzleistungen",
+  "aliases": [
+    "Assistenz nach §78 SGB IX",
+    "Persönliche Assistenz",
+    "Integrationsassistenz",
+    "Alltagsassistenz",
+    "Lebenshilfe"
+  ],
+  "former_names": [],
+  "type": "disability_benefit",
+  "status": "verified",
+  "category": "Behinderung",
+  "subcategory": "Assistenz",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Leistungsberechtigter wählt Träger",
+    "authority": "Verschiedene (Pflegekasse, Integrationsamt, Rentenversicherung, Sozialhilfeträger)",
+    "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Leistungen-nach-dem-SGB-IX/leistungen-nach-dem-sgb-ix-art.html",
+    "phone": "Kontakt über zuständigen Leistungsträger"
+  },
+  "target_groups": [
+    "Menschen mit Behinderung",
+    "Menschen, die Unterstützung bei der Alltagsbewältigung benötigen",
+    "Eltern mit Behinderung bei der Versorgung und Betreuung ihrer Kinder"
+  ],
+  "life_situations": [
+    "behinderung",
+    "kann_nicht_arbeiten"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "elg-as-01",
+        "description": "Behinderung",
+        "condition": "Körperliche, geistige, seelische oder mehrfache Beeinträchtigungen",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-as-02",
+        "description": "Bedürftigkeit der Assistenz",
+        "condition": "Die Assistenz ist erforderlich, um den Alltag selbstbestimmt bewältigen zu können",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-as-03",
+        "description": "Keine andere Leistung möglich",
+        "condition": "Keine andere Leistung (z.B. Pflegeversicherung) kann die Assistenz übernehmen",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Leistungen der Pflegeversicherung gehen vor (Subsidiarität)",
+      "Eltern mit Behinderung: auch für Versorgung und Betreuung der Kinder möglich",
+      "Fahrkosten und weitere Aufwendungen werden als ergänzende Leistungen erbracht"
+    ]
+  },
+  "calculation": {
+    "method": "Kostenerstattung für benötigte Assistenz nach individuellem Bedarf",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Bedarf an Assistenz ermitteln",
+        "value": "Individuelle Bedarfsermittlung"
+      },
+      {
+        "step": 2,
+        "description": "Kosten der Assistenz ermitteln",
+        "value": "Personal- und Sachkosten"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Abhängig vom individuellen Bedarf",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Kostenerstattung für benötigte Assistenz",
+    "depends_on": [
+      "Individueller Bedarf",
+      "Kosten der Assistenz"
+    ]
+  },
+  "application": {
+    "method": "Antrag beim zuständigen Leistungsträger",
+    "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Leistungen-nach-dem-SGB-IX/leistungen-nach-dem-sgb-ix-art.html",
+    "forms": [
+      "Antrag auf Assistenzleistungen"
+    ],
+    "required_documents": [
+      "Antrag auf Assistenzleistungen",
+      "Ärztliche Gutachten",
+      "Kostenplan der Assistenz",
+      "Einkommensnachweise"
+    ],
+    "processing_time": "3-6 Monate",
+    "deadlines": {
+      "description": "Antrag vor Beginn der Assistenz stellen",
+      "note": "Keine feste Frist, aber rückwirkend maximal 1 Monat vor Antragstellung"
+    }
+  },
+  "legal_basis": [
+    "§ 78 SGB IX (Assistenzleistungen)"
+  ],
+  "compatible_with": [
+    "schwerbehinderung",
+    "hilfsmittel",
+    "teilhabe"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "schwerbehinderung",
+    "hilfsmittel",
+    "teilhabe",
+    "rehabilitation"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Assistenzleistungen unterstützen Menschen mit Behinderung bei der selbstbestimmten Bewältigung des Alltags, z.B. bei Haushaltsführung, sozialen Beziehungen, Lebensplanung, Freizeitgestaltung.",
+    "for_whom": "Menschen mit Behinderung, die Unterstützung bei der Alltagsbewältigung benötigen.",
+    "requirements": "Behinderung, Bedürfnis nach Assistenz, keine andere Leistung kann die Assistenz übernehmen.",
+    "how_much": "Abhängig vom individuellen Bedarf an Assistenz.",
+    "how_calculated": "Kostenerstattung für benötigte Assistenz.",
+    "documents_needed": "Antrag auf Assistenzleistungen, ärztliche Gutachten, Kostenplan, Einkommensnachweise.",
+    "where_to_apply": "Beim zuständigen Leistungsträger (Pflegekasse, Integrationsamt, Rentenversicherung, Sozialhilfeträger).",
+    "deadlines": "Keine feste Frist. Antrag vor Beginn der Assistenz stellen.",
+    "faq": [
+      {
+        "question": "Welche Arten von Assistenz gibt es?",
+        "answer": "Allgemeine Assistenz (Alltagsbewältigung), qualifizierte Assistenz (Fachkräfte) und Assistenz für Eltern mit Behinderung bei der Kinderversorgung."
+      },
+      {
+        "question": "Wie wird die Assistenz finanziert?",
+        "answer": "Die Assistenz wird über die Kostenerstattung finanziert. Der Leistungsträger erstattet die Kosten der benötigten Assistenz."
+      },
+      {
+        "question": "Kann ich auch Assistenz für die Kinderversorgung bekommen?",
+        "answer": "Ja, Mütter und Väter mit Behinderung können Assistenz für die Versorgung und Betreuung ihrer Kinder erhalten."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.sozialgesetzbuch-sgb.de/sgbix/78.html",
+      "title": "§ 78 SGB IX - Assistenzleistungen",
+      "organization": "Sozialgesetzbuch-SGB",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Leistungen-nach-dem-SGB-IX/leistungen-nach-dem-sgb-ix-art.html",
+      "title": "Leistungen nach dem SGB IX - BMAS",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Leistungen der Pflegeversicherung gehen vor (Subsidiarität)",
+    "Assistenz für Eltern mit Behinderung: auch für Kinderversorgung möglich",
+    "Zuständigkeit: Leistungsträger der Rehabilitation (§ 13 SGB IX)"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

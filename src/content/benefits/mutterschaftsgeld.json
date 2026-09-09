@@ -1,0 +1,188 @@
+{
+  "id": "mutterschaftsgeld",
+  "official_name": "Mutterschaftsgeld",
+  "aliases": [
+    "Mutterschaftsgeld der Krankenkasse",
+    "Mutterschaftsgeld (KV)",
+    "Maternity Benefit"
+  ],
+  "former_names": [],
+  "type": "social_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Schwangerschaft & Geburt",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Krankenkasse (Gesetzliche Krankenversicherung)",
+    "authority": "Örtlich zuständige Krankenkasse (AOK, TK, Barmer, etc.)",
+    "url": "https://www.gesetsze-im-internet.de/muschg/__20.html",
+    "phone": ""
+  },
+  "target_groups": [
+    "Schwangere",
+    "Mütter",
+    "Arbeitnehmerinnen",
+    "Selbstständige (freiwillig KV)",
+    "Studentinnen (freiwillig KV)"
+  ],
+  "life_situations": [
+    "schwanger",
+    "schwangerschaft",
+    "mutterschaft",
+    "gebur"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "mutterschaftsgeld_1",
+        "description": "Versicherungspflicht in der gesetzlichen Krankenversicherung (GKV) oder freiwillige Versicherung in der GKV",
+        "condition": "Versicherungspflichtige Mitgliedschaft in der GKV zum Zeitpunkt der Geburt",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "mutterschaftsgeld_2",
+        "description": "Beschäftigungsverhältnis mit Entgelt (Arbeitnehmerin, Selbstständige)",
+        "condition": "Entgeltarbeit in der Zeit vor der Entbindung (mindestens 12 Wochen vor dem Geburtstermin angestellt gewesen)",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "mutterschaftsgeld_3",
+        "description": "Mutterschaftsfristen: 6 Wochen vor dem errechneten Entbindungstermin und 8 Wochen nach der Entbindung (bei Frühgeburten/Mehrlingsgeburten 12 Wochen)",
+        "condition": "Gültige Mutterschaftsfristen nach § 3 MuSchG",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": null,
+    "asset_rules": null,
+    "special_conditions": [
+      "Keine Voraussetzungen zu Einkommen oder Vermögen; Anspruch besteht unabhängig vom Einkommen"
+    ]
+  },
+  "calculation": {
+    "method": "Differenzbetrag zwischen dem durchschnittlichen Entgelt der Mutter und dem Krankengeld bei Krankenhausaufenthalt (max. 13 Euro/Tag); Arbeitgeber zahlt Zuschuss",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Durchschnittliches Entgelt berechnen",
+        "formula": "Durchschnittliches Nettoentgelt in den letzten 3 abgerechneten Monaten vor dem Beginn des Mutterschaftsurlaubs",
+        "value": "",
+        "note": ""
+      },
+      {
+        "step": 2,
+        "description": "Krankenkassen-Leistung berechnen",
+        "formula": "Differenz zwischen Durchschnittsentgelt und Krankengeld (max. 13 Euro/Tag)",
+        "value": "max. 13 Euro/Tag",
+        "note": ""
+      },
+      {
+        "step": 3,
+        "description": "Arbeitgeber-Zuschuss berechnen",
+        "formula": "Differenz zwischen Durchschnittsentgelt und Krankenkassen-Leistung (max. 13 Euro)",
+        "value": "max. 13 Euro/Tag",
+        "note": ""
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": null,
+    "typical_amount": "Durchschnittlich ca. 7-13 Euro/Tag von der Krankenkasse + Zuschuss des Arbeitgebers auf das volle Nettoentgelt",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Die Krankenkasse zahlt den Unterschied zwischen dem durchschnittlichen Entgelt und dem Krankengeld bei Krankenhausaufenthalt (max. 13 Euro/Tag). Der Arbeitgeber zahlt einen Zuschuss auf den vollen Nettolohn. Insgesamt wird das volle Nettoentgelt während der Mutterschaftsfristen ausgezahlt.",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": [
+      "Entgelt der Mutter",
+      "Krankenkassen-Leistung",
+      "Arbeitgeber-Zuschuss"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich bei der Krankenkasse (Formular); Arbeitgeber muss informiert werden",
+    "url": "https://www.gesetze-im-internet.de/muschg/",
+    "forms": [
+      "Antrag auf Mutterschaftsgeld (Krankenkasse)",
+      "Arbeitgeber-Bescheinigung über Entgelt"
+    ],
+    "required_documents": [
+      "Mutterpass (Bescheinigung des errechneten Entbindungstermins)",
+      "Bescheinigung des Arbeitgebers über das durchschnittliche Entgelt",
+      "Kopie der Versichertenkarte",
+      "Geburtsurkunde (nachträglich)"
+    ],
+    "processing_time": "Innerhalb von 4 Wochen nach Antragstellung",
+    "deadlines": {
+      "description": "Antrag muss gestellt werden innerhalb von 7 Wochen nach der Entbindung",
+      "date": "",
+      "note": "Bei verspäteter Antragstellung kann der Anspruch teilweise verfallen"
+    }
+  },
+  "legal_basis": [
+    "Mutterschutzgesetz (MuSchG) § 20 — Mutterschaftsgeld",
+    "Mutterschutzgesetz (MuSchG) § 13 — Mutterschaftsfristen",
+    "Fünftes Sozialgesetzbuch (SGB V) — Leistungen bei Mutterschaft",
+    "Mutterschafts-Richtlinien des Gemeinsamen Bundesausschusses (G-BA)"
+  ],
+  "compatible_with": [
+    "kindergeld",
+    "elterngeld",
+    "elternzeit",
+    "pflegegeld",
+    "bildungspaket"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "kindergeld",
+    "elterngeld",
+    "elternzeit",
+    "bildungspaket",
+    "mutterschaftsrichtlinien"
+  ],
+  "reduces": [],
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/muschg/__20.html",
+      "title": "Mutterschutzgesetz § 20 — Mutterschaftsgeld",
+      "organization": "Bundesministerium der Justiz (gesetze-im-internet.de)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bmg.bund.de/themen/krankenversicherung/leistungen/leistungen-bei-mutterschaft.html",
+      "title": "Leistungen bei Mutterschaft — GKV",
+      "organization": "Bundesministerium für Gesundheit (BMG)",
+      "last_verified": "2026-09-08",
+      "type": "federal_ministry"
+    },
+    {
+      "url": "https://www.die-gkv.de/leistungen/leistungen-bei-mutterschaft/leistungen-bei-mutterschaft.html",
+      "title": "Mutterschaftsgeld der gesetzlichen Krankenversicherung",
+      "organization": "Spitzenverband Bund der Krankenkassen (GKV)",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": "2026-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Das Mutterschaftsgeld ist eine Leistung der gesetzlichen Krankenversicherung (nicht des Staates direkt, sondern einer Selbstverwaltungskörperschaft)",
+    "Der Arbeitgeber zahlt einen Zuschuss auf den vollen Nettolohn — wird oft als Teil des Mutterschaftsgelds betrachtet",
+    "Privatversicherte erhalten keine Leistungen nach dem MuSchG, sondern nach ihren Versicherungsbedingungen",
+    "Studentinnen und Selbstständige in der freiwilligen GKV haben unter bestimmten Bedingungen ebenfalls Anspruch"
+  ],
+  "created_at": "2026-09-09",
+  "updated_at": "2026-09-09"
+}

@@ -1,0 +1,189 @@
+{
+  "id": "aufstiegsbafoeg",
+  "official_name": "Aufstiegs-BAföG (Meister-BAföG)",
+  "aliases": ["Aufstiegs-BAföG", "Meister-BAföG", "AFBG", "Aufstiegsfortbildungsförderungsgesetz", "Förderung beruflicher Aufstiegsfortbildung"],
+  "former_names": ["Meisterförderung"],
+  "type": "education_benefit",
+  "status": "verified",
+  "category": "Studium & Bildung",
+  "subcategory": "Förderung beruflicher Aufstiegsfortbildung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesministerium für Bildung und Forschung (BMBF)",
+    "authority": "Amt für Ausbildungsförderung (Zuschuss) / KfW (Darlehen)",
+    "url": "https://www.aufstiegs-bafoeg.de/",
+    "phone": "0800-2236340"
+  },
+  "target_groups": ["Teilnehmende an Aufstiegsfortbildungen (Meister, Fachwirt, Betriebswirt)", "Berufstätige mit abgeschlossener Berufsausbildung", "Personen in Vollzeit- oder Teilzeitfortbildungen"],
+  "life_situations": ["weiterbildung", "arbeit_arbeitnehmer"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "afb_qualifikation",
+        "description": "Abgeschlossene Berufsausbildung oder gleichwertige Qualifikation",
+        "condition": "berufsausbildung_abgeschlossen OR gleichwertige_qualifikation",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "afb_foerderungsfaehige_massnahme",
+        "description": "Förderungsfähige Aufstiegsfortbildung (staatlich anerkannter Abschluss)",
+        "condition": "anerkannter_fortbildungsabschluss",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "afb_kein_bafoeg",
+        "description": "Kein Anspruch auf BAföG für die Fortbildung",
+        "condition": "kein_bafoeg_anspruch_fuer_massnahme",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "afb_einkommen_unabhaengig",
+        "description": "Zuschuss ist einkommens- und vermögensunabhängig",
+        "condition": "zuschuss_einkommensunabhaengig",
+        "required": false,
+        "category": "income"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Ehegatte/Lebenspartner (bei Unterhaltsförderung)",
+        "threshold": 1690,
+        "threshold_type": "monthly",
+        "free_allowance": 1690,
+        "last_updated": "2025-01-01"
+      },
+      {
+        "applies_to": "Kinder (bei Unterhaltsförderung)",
+        "threshold": 770,
+        "threshold_type": "monthly",
+        "free_allowance": 770,
+        "last_updated": "2025-01-01"
+      }
+    ],
+    "asset_rules": {
+      "threshold": 0,
+      "exemptions": ["Zuschuss ist vermögensunabhängig"],
+      "last_updated": "2025-01-01"
+    },
+    "special_conditions": [
+      "Unterhaltsförderung nur bei Vollzeitmaßnahmen",
+      "Kinderbetreuungszuschlag: 235€ pro Kind",
+      "Materialkosten für Meisterprüfungsprojekt: bis zu 2.000€ (50% Zuschuss)"
+    ]
+  },
+  "calculation": {
+    "method": "Zuschuss (50%) + Darlehen (50%) der Lehrgangs- und Prüfungsgebühren; Unterhaltsförderung bei Vollzeit",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Lehrgangs- und Prüfungsgebühren fördern",
+        "value": "Bis zu 15.000€ (50% Zuschuss, 50% Darlehen KfW)",
+        "note": "Zuschuss ist einkommensunabhängig"
+      },
+      {
+        "step": 2,
+        "description": "Unterhaltsförderung bei Vollzeitmaßnahmen",
+        "value": "Bis zu 1.335€ monatlich (50% Zuschuss, 50% Darlehen)",
+        "note": "Bei Teilzeit anteilig"
+      },
+      {
+        "step": 3,
+        "description": "Materialkosten Meisterprüfungsprojekt",
+        "value": "Bis zu 2.000€ (50% Zuschuss, 50% Darlehen)"
+      },
+      {
+        "step": 4,
+        "description": "Kinderbetreuungszuschlag",
+        "value": "235€ pro Kind"
+      }
+    ],
+    "min_amount": 1,
+    "max_amount": 1335,
+    "typical_amount": "500€-1.000€ pro Monat (Unterhalt) + Gebührenförderung",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Aufstiegs-BAföG: Bis zu 15.000€ für Lehrgangs-/Prüfungsgebühren (50% Zuschuss), bis zu 1.335€/Monat Unterhalt (Vollzeit), bis zu 2.000€ Materialkosten",
+    "min_monthly": 1,
+    "max_monthly": 1335,
+    "one_time": 15000,
+    "depends_on": ["Art der Fortbildung", "Vollzeit/Teilzeit", "Einkommen (nur bei Unterhalt)", "Kinder"]
+  },
+  "application": {
+    "method": "Online oder schriftlich beim Amt für Ausbildungsförderung",
+    "url": "https://www.aufstiegs-bafoeg.de/aufstiegsbafoeg/de/ihr-weg-zur-foerderung/antragsformulare/antragsformulare_node.html",
+    "forms": ["Antrag auf Aufstiegs-BAföG", "Bescheinigung der Bildungsstätte"],
+    "required_documents": ["Antragsformular", "Nachweis Berufsausbildung", "Zulassung zur Fortbildung", "Kostenaufstellung", "Einkommensnachweise (bei Unterhaltsförderung)"],
+    "processing_time": "4-8 Wochen",
+    "deadlines": {
+      "description": "Antrag vor Beginn der Fortbildung stellen",
+      "note": "Rückwirkend nur 1 Monat möglich"
+    }
+  },
+  "legal_basis": ["§§ 1-95 AFBG", "Aufstiegsfortbildungsförderungsgesetz"],
+  "compatible_with": ["bafoeg", "weiterbildungsfoerderung", "bildungskredit_kfw"],
+  "incompatible_with": ["berufsausbildungsbeihilfe_bab"],
+  "related_benefits": ["bafoeg", "berufsausbildungsbeihilfe_bab", "bildungskredit_kfw", "weiterbildungsfoerderung"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Das Aufstiegs-BAföG (auch Meister-BAföG) fördert die berufliche Weiterbildung zum Meister, Fachwirt oder Betriebswirt. Es besteht aus Zuschuss und zinsgünstigem Darlehen.",
+    "for_whom": "Berufstätige mit abgeschlossener Berufsausbildung, die eine Aufstiegsfortbildung (z.B. Meister) absolvieren wollen.",
+    "requirements": "Abgeschlossene Berufsausbildung, förderungsfähige Fortbildung (staatlich anerkannt), kein BAföG-Anspruch für die Fortbildung.",
+    "how_much": "Bis zu 15.000€ für Lehrgangs- und Prüfungsgebühren (50% Zuschuss, 50% Darlehen). Bei Vollzeitmaßnahmen bis zu 1.335€/Monat Unterhalt. Materialkosten bis 2.000€.",
+    "how_calculated": "50% der Förderung sind Zuschuss (einkommensunabhängig), 50% sind zinsgünstiges Darlehen der KfW. Unterhaltsförderung nur bei Vollzeitmaßnahmen.",
+    "documents_needed": "Antragsformular, Nachweis der Berufsausbildung, Zulassung zur Fortbildung, Kostenaufstellung, Einkommensnachweise (bei Unterhaltsförderung).",
+    "where_to_apply": "Amt für Ausbildungsförderung (Zuschuss) und KfW (Darlehen). Online über aufstiegs-bafoeg.de.",
+    "deadlines": "Antrag vor Beginn der Fortbildung stellen. Rückwirkend nur 1 Monat möglich.",
+    "faq": [
+      {
+        "question": "Ist das Aufstiegs-BAföG einkommensabhängig?",
+        "answer": "Der Zuschussanteil ist einkommens- und vermögensunabhängig. Nur die Unterhaltsförderung bei Vollzeitmaßnahmen wird nach Einkommen bemessen."
+      },
+      {
+        "question": "Muss ich das Darlehen zurückzahlen?",
+        "answer": "Ja, der Darlehensanteil muss zurückgezahlt werden. Die KfW bietet zinsgünstige Konditionen an."
+      },
+      {
+        "question": "Kann ich Aufstiegs-BAföG und BAföG kombinieren?",
+        "answer": "Ja, Aufstiegs-BAföG und BAföG sind grundsätzlich kombinierbar, sofern die Voraussetzungen für beide Leistungen erfüllt sind."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.aufstiegs-bafoeg.de/",
+      "title": "Offizielle Aufstiegs-BAföG-Website des BMBF",
+      "organization": "BMBF",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/afbg/",
+      "title": "AFBG - Aufstiegsfortbildungsförderungsgesetz",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.kfw.de/inlandsfoerderung/Privatpersonen/Studieren-Qualifizieren/F%C3%B6rderprodukte/Aufstiegs-BAf%C3%B6G-(172)/",
+      "title": "Aufstiegs-BAföG (172) - KfW",
+      "organization": "KfW",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2023-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Das Aufstiegs-BAföG wurde 2023 grundlegend reformiert. Der Zuschussanteil wurde auf 50% erhöht. Die Förderung ist jetzt einfacher und attraktiver. Die KfW verwaltet den Darlehensanteil."],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

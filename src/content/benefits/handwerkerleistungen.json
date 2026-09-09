@@ -1,0 +1,191 @@
+{
+  "id": "handwerkerleistungen",
+  "official_name": "Steuerermäßigung bei Handwerkerleistungen nach § 35a Abs. 3 EStG",
+  "aliases": [
+    "Handwerker-Pauschbetrag",
+    "Handwerkerleistungen",
+    "§ 35a Abs. 3 EStG"
+  ],
+  "former_names": [],
+  "type": "tax_benefit",
+  "status": "verified",
+  "category": "Steuern & Finanzen",
+  "subcategory": "Haushaltsnahe Dienstleistungen",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium der Finanzen",
+    "authority": "Finanzamt",
+    "url": "https://www.bundesfinanzministerium.de",
+    "phone": ""
+  },
+  "target_groups": [
+    "Hauseigentümer",
+    "Wohnungseigentümer",
+    "Mieter mit Handwerkerkosten"
+  ],
+  "life_situations": [
+    "eigentuemer",
+    "sanierung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "handwerker_renovierung",
+        "description": "Handwerkerleistungen für Renovierungs-, Erhaltungs- und Modernisierungsmaßnahmen",
+        "condition": "renovation_work",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "handwerker_eigennutzung",
+        "description": "Maßnahmen an eigener Immobilie (Eigentümer oder Eigentümergemeinschaft)",
+        "condition": "owner_occupied",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "handwerker_rechnung",
+        "description": "Rechnung von einem Handwerker mit ausgewiesener Umsatzsteuer",
+        "condition": "proper_invoice",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Nur Renovierung, Erhaltung, Modernisierung (kein Neubau)",
+      "Rechnung muss Umsatzsteuer ausweisen",
+      "Keine Steuerermäßigung bei Materialkosten (nur Arbeitslohn)",
+      "Ab 2026/2028 geplant: Reduzierung auf 15% (max. 900 Euro)"
+    ]
+  },
+  "calculation": {
+    "method": "20% der Aufwendungen, Höchstbetrag 1.200 Euro",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Berechnung der Steuerermäßigung",
+        "formula": "20% × Handwerkerkosten (Arbeitslohn)",
+        "value": "20%",
+        "note": "Nur Arbeitslohn, nicht Material"
+      },
+      {
+        "step": 2,
+        "description": "Höchstbetrag",
+        "formula": "Max. 1.200 Euro",
+        "value": "1.200 Euro",
+        "note": "Pro Kalenderjahr"
+      },
+      {
+        "step": 3,
+        "description": "Mindestaufwendungen für volle Ermäßigung",
+        "formula": "1.200 / 0,20 = 6.000 Euro",
+        "value": "6.000 Euro",
+        "note": "Aufwendungen für vollen Pauschbetrag"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 1200,
+    "typical_amount": "Bis zu 1.200 Euro Steuerermäßigung pro Jahr",
+    "frequency": "yearly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Steuerermäßigung: 20% der Handwerkerkosten, max. 1.200 Euro pro Jahr",
+    "min_monthly": 0,
+    "max_monthly": 0,
+    "one_time": 1200,
+    "depends_on": [
+      "Höhe der Handwerkerkosten",
+      "Steuertarif"
+    ]
+  },
+  "application": {
+    "method": "Steuererklärung (Anlage A, Feld Handwerkerleistungen)",
+    "url": "https://www.elster.de",
+    "forms": [
+      "Anlage A"
+    ],
+    "required_documents": [
+      "Rechnungen des Handwerkers (mit Umsatzsteuer-Ausweis)",
+      "Zahlungsnachweise",
+      "Falls zutreffend: Genehmigungen oder Bescheinigungen"
+    ],
+    "processing_time": "4-8 Wochen nach Abgabe der Steuererklärung",
+    "deadlines": {
+      "description": "Steuererklärung Frist",
+      "date": "31.07. des Folgejahres",
+      "note": "Aufwendungen müssen im Kalenderjahr angefallen sein"
+    }
+  },
+  "legal_basis": [
+    "§ 35a Abs. 3 EStG"
+  ],
+  "compatible_with": [
+    "haushaltshilfe_pauschbetrag",
+    "haushaltsnahe_dienstleistungen"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "haushaltshilfe_pauschbetrag",
+    "haushaltsnahe_dienstleistungen"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Steuerermäßigung für Handwerkerleistungen reduziert Ihre Einkommensteuer, wenn Sie Renovierungs-, Erhaltungs- oder Modernisierungsmaßnahmen an Ihrer Immobilie durchführen lassen. Sie erhalten 20% der Arbeitskosten als Steuerermäßigung, bis zu 1.200 Euro pro Jahr.",
+    "for_whom": "Für Eigentümer von Immobilien, die Renovierungs-, Erhaltungs- oder Modernisierungsmaßnahmen durchführen lassen.",
+    "requirements": "Sie sind Eigentümer einer Immobilie, lassen Handwerkerleistungen durchführen (Renovierung, Erhaltung, Modernisierung), und haben entsprechende Rechnungen mit Umsatzsteuer-Ausweis.",
+    "how_much": "20% der Handwerkerkosten (Arbeitslohn) als Steuerermäßigung, maximal 1.200 Euro pro Jahr. Bei 6.000 Euro Handwerkerkosten erreichen Sie den Höchstbetrag.",
+    "how_calculated": "Der Steuerbetrag wird um 20% der Handwerkerkosten ermäßigt, maximal um 1.200 Euro. Materialkosten sind nicht enthalten. Bei einem Steuersatz von 42% entspricht das einer Ersparnis von bis zu 504 Euro.",
+    "documents_needed": "Rechnungen des Handwerkers mit Umsatzsteuer-Ausweis, Kontoauszüge als Zahlungsnachweise.",
+    "where_to_apply": "Beim zuständigen Finanzamt über die Steuererklärung (Anlage A). Online über ELSTER.",
+    "deadlines": "Steuererklärung bis 31. Juli des Folgejahres.",
+    "faq": [
+      {
+        "question": "Sind Materialkosten enthalten?",
+        "answer": "Nein, nur die Arbeitskosten des Handwerkers. Materialkosten können nicht geltend gemacht werden."
+      },
+      {
+        "question": "Gilt das auch für Mieter?",
+        "answer": "Grundsätzlich nur für Eigentümer. Mieter können Handwerkerleistungen nur geltend machen, wenn sie die Kosten tragen und es sich um ihre eigene Immobilie handelt."
+      },
+      {
+        "question": "Was ist mit Neubauten?",
+        "answer": "Neubauten sind ausgeschlossen. Nur Renovierung, Erhaltung und Modernisierung kommen in Betracht."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/estg/__35a.html",
+      "title": "EStG § 35a - Steuerermäßigung bei Aufwendungen für haushaltsnahe Beschäftigungsverhältnisse, haushaltsnahe Dienstleistungen und Handwerkerleistungen",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://lsth.bundesfinanzministerium.de/lsth/2025/A-Einkommensteuergesetz/V-Steuerermaessigungen-34c-35c/4-Steuerermaessigung-haushaltsnahe-Besch-35a/Paragraf-35a/inhalt.html",
+      "title": "LStH 2025 - § 35a - Amtliches Lohnsteuer-Handbuch",
+      "organization": "Bundesministerium der Finanzen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": "2026-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "20% der Handwerkerkosten, max. 1.200 Euro",
+    "Nur Arbeitslohn, nicht Material",
+    "Ab 2026/2028 geplant: Reduzierung auf 15% (max. 900 Euro)"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

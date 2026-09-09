@@ -1,0 +1,191 @@
+{
+  "id": "duldung",
+  "official_name": "Duldung (vorübergehende Aussetzung der Abschiebung)",
+  "aliases": ["Duldung", "§ 60a AufenthG", "Abschiebungsstopp", "Kann-Ausreisepflicht", "Duldung light"],
+  "former_names": [],
+  "type": "integration_benefit",
+  "status": "verified",
+  "category": "Integration & Aufenthalt",
+  "subcategory": "Duldung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Ausländerbehörden der Länder",
+    "authority": "Landesbehörden für Ausländerangelegenheiten",
+    "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__60a.html",
+    "phone": "030 18681-0"
+  },
+  "target_groups": [
+    "Vollziehbar ausreisepflichtige Ausländer",
+    "Personen mit Abschiebungshindernissen",
+    "Personen mit dringenden humanitären Gründen",
+    "Personen mit ungeklärter Identität (§ 60b AufenthG)",
+    "Auszubildende (§ 60c AufenthG – Ausbildungsduldung)",
+    "Beschäftigte (§ 60d AufenthG – Beschäftigungsduldung)"
+  ],
+  "life_situations": ["asyl", "migration"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "du-001",
+        "description": "Vollziehbar ausreisepflichtig",
+        "condition": "Ausländer ist vollziehbar ausreisepflichtig (kein Aufenthaltstitel)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "du-002",
+        "description": "Abschiebungshindernis",
+        "condition": "Abschiebung ist aus tatsächlichen oder rechtlichen Gründen unmöglich",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "du-003",
+        "description": "Dringende humanitäre oder persönliche Gründe",
+        "condition": "Dringende humanitäre oder persönliche Gründe erfordern vorübergehende Anwesenheit",
+        "required": false,
+        "category": "personal"
+      },
+      {
+        "rule_id": "du-004",
+        "description": "Ausbildungsduldung (§ 60c AufenthG)",
+        "condition": "Aufnahme einer qualifizierten Berufsausbildung; mindestens 3 Monate Duldung",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "du-005",
+        "description": "Beschäftigungsduldung (§ 60d AufenthG)",
+        "condition": "Seit mindestens 12 Monaten in Beschäftigung; seit 18.01.2019 in Deutschland; 12 Monate vorher Duldung",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Alle",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Duldung ist kein Aufenthaltstitel, sondern eine Bescheinigung über Aussetzung der Abschiebung",
+      "Duldung wird in der Regel für 3-6 Monate erteilt und verlängert",
+      "Arbeitserlaubnis: nach 3 Monaten möglich (§ 60a Abs. 6 AufenthG)",
+      "Ausbildungsduldung: 30 Monate, danach 6 Monate zur Arbeitsplatzsuche",
+      "Beschäftigungsduldung: 30 Monate"
+    ]
+  },
+  "calculation": {
+    "method": "Kein Geldbetrag; Bescheinigung über Aussetzung der Abschiebung",
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Keine Zahlung; Bescheinigung",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Bescheinigung über Aussetzung der Abschiebung; keine regelmäßige Zahlung",
+    "depends_on": ["Dauer der Duldung", "Art der Duldung", "Bundesland"]
+  },
+  "application": {
+    "method": "Persönlich bei der zuständigen Ausländerbehörde",
+    "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__60a.html",
+    "forms": ["Antrag auf Erteilung/Verlängerung der Duldung"],
+    "required_documents": [
+      "Identitätsdokumente (oder Kopien)",
+      "Nachweis über Abschiebungshindernis",
+      "ggf. Nachweis über Ausbildungsverhältnis (Ausbildungsduldung)",
+      "ggf. Nachweis über Beschäftigung (Beschäftigungsduldung)",
+      "Meldebescheinigung"
+    ],
+    "processing_time": "2-8 Wochen",
+    "deadlines": {
+      "description": "Vor Ablauf der bisherigen Duldung beantragen",
+      "note": "Keine gesetzliche Frist, aber rechtzeitige Verlängerung erforderlich"
+    }
+  },
+  "legal_basis": [
+    "§ 60a AufenthG – Vorübergehende Aussetzung der Abschiebung (Duldung)",
+    "§ 60b AufenthG – Duldung für Personen mit ungeklärter Identität",
+    "§ 60c AufenthG – Ausbildungsduldung",
+    "§ 60d AufenthG – Beschäftigungsduldung",
+    "§ 60 Abs. 5, 7 AufenthG – Abschiebungsverbot"
+  ],
+  "compatible_with": [
+    "arbeitsmarktzugang",
+    "integrationskurs",
+    "deutschkurs",
+    "beratung_migranten"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "arbeitsmarktzugang",
+    "schutzsuchende",
+    "beratung_migranten"
+  ],
+  "user_content": {
+    "short_explanation": "Die Duldung ist eine Bescheinigung, dass Ihre Abschiebung vorübergehend ausgesetzt ist. Sie sind weiterhin ausreisepflichtig, dürfen aber vorerst in Deutschland bleiben.",
+    "for_whom": "Für vollziehbar ausreisepflichtige Ausländer, bei denen die Abschiebung aus tatsächlichen oder rechtlichen Gründen unmöglich ist.",
+    "requirements": "Vollziehbare Ausreisepflicht; Abschiebungshindernis; ggf. dringende humanitäre Gründe.",
+    "how_much": "Keine regelmäßige Zahlung. Die Duldung ist eine Bescheinigung, kein Aufenthaltstitel.",
+    "how_calculed": "Die Ausländerbehörde prüft, ob die Abschiebung aus tatsächlichen oder rechtlichen Gründen unmöglich ist.",
+    "documents_needed": "Identitätsdokumente, Nachweis über Abschiebungshindernis, ggf. Ausbildungs- oder Bescheinigungsnachweise.",
+    "where_to_apply": "Zuständige Ausländerbehörde (Landesbehörde für Ausländerangelegenheiten).",
+    "deadlines": "Vor Ablauf der bisherigen Duldung beantragen. Keine gesetzliche Frist, aber rechtzeitige Verlängerung erforderlich.",
+    "faq": [
+      {
+        "question": "Ist die Duldung ein Aufenthaltstitel?",
+        "answer": "Nein, die Duldung ist nur eine Bescheinigung über die vorübergehende Aussetzung der Abschiebung. Sie sind weiterhin ausreisepflichtig."
+      },
+      {
+        "question": "Darf ich mit Duldung arbeiten?",
+        "answer": "Ja, nach 3 Monaten Aufenthalt können Sie eine Arbeitserlaubnis beantragen. Die Zustimmung der Bundesagentur für Arbeit ist erforderlich."
+      },
+      {
+        "question": "Was ist der Unterschied zwischen Ausbildungs- und Beschäftigungsduldung?",
+        "answer": "Die Ausbildungsduldung wird für eine qualifizierte Berufsausbildung erteilt (30 Monate). Die Beschäftigungsduldung wird erteilt, wenn Sie seit mindestens 12 Monaten in Beschäftigung sind."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__60a.html",
+      "title": "§ 60a AufenthG – Vorübergehende Aussetzung der Abschiebung (Duldung)",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__60c.html",
+      "title": "§ 60c AufenthG – Ausbildungsduldung",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__60d.html",
+      "title": "§ 60d AufenthG – Beschäftigungsduldung",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2005-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Duldung ist kein Aufenthaltstitel, sondern eine Bescheinigung",
+    "Ausbildungsduldung (§ 60c) und Beschäftigungsduldung (§ 60d) sind Sonderformen",
+    "Arbeitserlaubnis nach 3 Monaten möglich",
+    "Duldung wird in der Regel für 3-6 Monate erteilt und verlängert"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

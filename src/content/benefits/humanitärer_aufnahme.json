@@ -1,0 +1,172 @@
+{
+  "id": "humanitärer_aufnahme",
+  "official_name": "Humanitäre Aufnahme (Resettlement)",
+  "aliases": ["Resettlement", "Humanitäre Aufnahmeprogramme", "NesT-Programm", "UNHCR-Aufnahme"],
+  "former_names": [],
+  "type": "integration_benefit",
+  "status": "verified",
+  "category": "Integration & Aufenthalt",
+  "subcategory": "Humanitäre Aufnahme",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesamt für Migration und Flüchtlinge (BAMF) / UNHCR",
+    "authority": "BAMF – Bundesamt für Migration und Flüchtlinge",
+    "url": "https://www.bamf.de/DE/Themen/Asyl/Aufnahme/Resettlement/resettlement-node.html",
+    "phone": "030 1815-1111"
+  },
+  "target_groups": [
+    "Schutzbedürftige Flüchtlinge in Drittstaaten",
+    "Besonders schutzbedürftige Personen (Frauen, Kinder, Angehörige Minderheiten)",
+    "Medizinisch bedürftige Flüchtlinge",
+    "UNHCR-Registrierte Flüchtlinge"
+  ],
+  "life_situations": ["asyl", "migration"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "ha-001",
+        "description": "UNHCR-Registrierung als Flüchtling",
+        "condition": "Registrierung beim UNHCR im Erstaufnahmeland",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ha-002",
+        "description": "Besondere Schutzbedürftigkeit",
+        "condition": "Besondere Schutzbedürftigkeit nach UNHCR-Kriterien (z.B. Frauen, Kinder, medizinische Notfälle)",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "ha-003",
+        "description": "Auswahl durch deutsche Behörden",
+        "condition": "Auswahl durch deutsche Behörden im Rahmen der Aufnahmekontingente",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Alle",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Keine individuelle Bewerbung möglich",
+      "Auswahl durch UNHCR und deutsche Behörden",
+      "Kontingentierte Aufnahme (jährlich festgelegt)",
+      "Aufenthaltstitel nach § 25 Abs. 2 AufenthG (subsidiärer Schutz)",
+      "Integration in Deutschland nach Ankunft"
+    ]
+  },
+  "calculation": {
+    "method": "Kein Geldbetrag; Aufenthaltstitel und Integration",
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Keine Zahlung; Aufenthaltstitel wird erteilt",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Aufenthaltstitel und Integration; keine regelmäßige Zahlung",
+    "depends_on": ["UNHCR-Auswahl", "Kontingent", "Schutzbedürftigkeit"]
+  },
+  "application": {
+    "method": "Keine individuelle Bewerbung; Auswahl durch UNHCR",
+    "url": "https://www.bamf.de/DE/Themen/Asyl/Aufnahme/Resettlement/resettlement-node.html",
+    "forms": ["Keine; Auswahlverfahren durch UNHCR"],
+    "required_documents": [
+      "UNHCR-Registrierung",
+      "Identitätsdokumente",
+      "Nachweise über besondere Schutzbedürftigkeit"
+    ],
+    "processing_time": "6-24 Monate",
+    "deadlines": {
+      "description": "Keine individuelle Frist; Auswahl im Rahmen jährlicher Kontingente",
+      "note": "Deutschland nimmt jährlich mehrere tausend Resettlement-Flüchtlinge auf"
+    }
+  },
+  "legal_basis": [
+    "§ 25 Abs. 2 AufenthG – Aufenthalt aus humanitären Gründen",
+    "§ 24 AufenthG – Aufenthaltsgewährung zum vorübergehenden Schutz",
+    "Gemeinsame Erklärung der EU-Staaten zu Resettlement",
+    "UNHCR-Mandat für Flüchtlingsschutz"
+  ],
+  "compatible_with": [
+    "integrationskurs",
+    "deutschkurs",
+    "beratung_migranten",
+    "schutzsuchende"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "schutzsuchende",
+    "integrationskurs",
+    "beratung_migranten"
+  ],
+  "user_content": {
+    "short_explanation": "Resettlement ist ein Programm, durch das besonders schutzbedürftige Flüchtlinge aus Drittstaaten direkt nach Deutschland gebracht werden. Die Auswahl erfolgt durch den UNHCR.",
+    "for_whom": "Für besonders schutzbedürftige Flüchtlinge, die im Erstaufnahmeland keine dauerhafte Perspektive haben (Frauen, Kinder, medizinisch Bedürftige).",
+    "requirements": "UNHCR-Registrierung als Flüchtling; besondere Schutzbedürftigkeit; Auswahl durch deutsche Behörden.",
+    "how_much": "Keine regelmäßige Zahlung. Nach der Ankunft erhalten Sie einen Aufenthaltstitel und haben Anspruch auf Integrationsmaßnahmen.",
+    "how_calculed": "Die Auswahl erfolgt durch UNHCR und deutsche Behörden. Deutschland stellt jährlich Kontingente für die Aufnahme bereit.",
+    "documents_needed": "UNHCR-Registrierung, Identitätsdokumente, Nachweise über besondere Schutzbedürftigkeit.",
+    "where_to_apply": "Keine individuelle Bewerbung. Kontaktieren Sie UNHCR im Erstaufnahmeland.",
+    "deadlines": "Keine individuelle Frist. Auswahl im Rahmen jährlicher Kontingente.",
+    "faq": [
+      {
+        "question": "Kann ich mich direkt bewerben?",
+        "answer": "Nein, Resettlement ist kein individuelles Antragsverfahren. Die Auswahl erfolgt durch UNHCR und deutsche Behörden."
+      },
+      {
+        "question": "Wie lange dauert das Verfahren?",
+        "answer": "Das Verfahren kann 6-24 Monate dauern, je nach Kontingent und Auswahlprozess."
+      },
+      {
+        "question": "Welchen Status erhalte ich?",
+        "answer": "Nach der Ankunft erhalten Sie eine Aufenthaltserlaubnis nach § 25 Abs. 2 AufenthG (subsidiärer Schutz)."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bamf.de/DE/Themen/Asyl/Aufnahme/Resettlement/resettlement-node.html",
+      "title": "Resettlement und NesT-Programm – BAMF",
+      "organization": "Bundesamt für Migration und Flüchtlinge (BAMF)",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__25.html",
+      "title": "§ 25 AufenthG – Aufenthalt aus humanitären Gründen",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.unhcr.org/",
+      "title": "UNHCR – Der Flüchtlingshilfswerk der Vereinten Nationen",
+      "organization": "UNHCR",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2012-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Deutschland nimmt im Rahmen von Resettlement-Programmen jährlich mehrere tausend Flüchtlinge auf",
+    "NesT-Programm (Neustart im Targetland) für besonders schutzbedürftige Flüchtlinge",
+    "Keine individuelle Bewerbung möglich; Auswahl durch UNHCR",
+    "Aufenthaltstitel nach § 25 Abs. 2 AufenthG (subsidiärer Schutz)"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,185 @@
+{
+  "id": "schulgelbefreiung",
+  "official_name": "Schulgelbefreiung / Lernmittelfreiheit / Bildungspaket",
+  "aliases": ["Schulgelbefreiung", "Lernmittelfreiheit", "Bildungspaket", "Schulbuchhilfe", "Schülerbedarf", "Teilhabe am Bildungsleben"],
+  "former_names": ["Schulbuchaktion", "Lernmittelfreiheit"],
+  "type": "education_benefit",
+  "status": "verified",
+  "category": "Studium & Bildung",
+  "subcategory": "Schulgelbefreiung und Lernmittelfreiheit",
+  "level": "state",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesagentur für Arbeit / Jobcenter / Kommunen",
+    "authority": "Agentur für Arbeit / Jobcenter / Schule",
+    "url": "https://www.arbeitsagentur.de/familie-und-kinder/informationen-zum-bildungspaket",
+    "phone": "0800-4-555500"
+  },
+  "target_groups": ["Schüler aus bedürftigen Familien", "Schüler mit Behinderung", "Schüler in Einrichtungen (z.B. Heime, Internate)"],
+  "life_situations": ["schueler", "ausbildung"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "schulgeld_bedürftigkeit",
+        "description": "Bedürftigkeit (Bürgergeld, Sozialhilfe, Kinderzuschlag, Wohngeld, ALG II)",
+        "condition": "buergergeld OR sozialhilfe OR kinderzuschlag OR wohngeld OR alg_ii",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "schulgeld_schüler",
+        "description": "Schüler einer öffentlichen oder staatlich anerkannten Schule",
+        "condition": "schueler_an_anerkannter_schule",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "schulgeld_alter",
+        "description": "Alter unter 25 Jahre",
+        "condition": "unter_25_jahre",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "schulgeld_einrichtung",
+        "description": "Schüler in Einrichtungen (Heime, Internate) haben automatisch Anspruch",
+        "condition": "schueler_in_einrichtung",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Elterneinkommen",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2025-01-01"
+      }
+    ],
+    "asset_rules": {
+      "threshold": 0,
+      "exemptions": [],
+      "last_updated": "2025-01-01"
+    },
+    "special_conditions": [
+      "Persönlicher Schulbedarf: 195€ pro Jahr (65€ im Frühjahr, 130€ im Herbst 2026)",
+      "Lernförderung: Bei Bedarf (z.B. Nachhilfe)",
+      "Mittagsverpflegung: Bei Bedarf",
+      "Schulbedarf für Einrichtungen: 103€ pro Monat"
+    ]
+  },
+  "calculation": {
+    "method": "Pauschale für Schulbedarf + Lernförderung + Mittagsverpflegung",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Persönlicher Schulbedarf",
+        "value": "195€ pro Jahr (65€ im Frühjahr, 130€ im Herbst 2026)",
+        "note": "Für Schulbedarf (Schreibzeug, Hefte, etc.)"
+      },
+      {
+        "step": 2,
+        "description": "Lernförderung",
+        "value": "Bei Bedarf (z.B. Nachhilfe, Förderunterricht)",
+        "note": "Nur wenn keine vergleichbaren schulischen Angebote bestehen"
+      },
+      {
+        "step": 3,
+        "description": "Mittagsverpflegung",
+        "value": "Bei Bedarf (z.B. Mensa, Schulkiosk)",
+        "note": "Nur wenn keine vergleichbaren Angebote bestehen"
+      },
+      {
+        "step": 4,
+        "description": "Schulbedarf für Einrichtungen",
+        "value": "103€ pro Monat",
+        "note": "Für Schüler in Heimen, Internaten, etc."
+      }
+    ],
+    "min_amount": 1,
+    "max_amount": 195,
+    "typical_amount": "195€ pro Jahr (Schulbedarf) + Lernförderung + Mittagsverpflegung",
+    "frequency": "yearly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Bildungspaket: Persönlicher Schulbedarf 195€/Jahr, Lernförderung bei Bedarf, Mittagsverpflegung bei Bedarf, Einrichtungen 103€/Monat",
+    "min_monthly": 1,
+    "max_monthly": 103,
+    "one_time": 195,
+    "depends_on": ["Bedürftigkeit", "Art der Schule", "Einrichtung"]
+  },
+  "application": {
+    "method": "Schriftlich bei der Agentur für Arbeit / Jobcenter",
+    "url": "https://www.arbeitsagentur.de/familie-und-kinder/informationen-zum-bildungspaket",
+    "forms": ["Antrag auf Leistungen für Bildung und Teilhabe"],
+    "required_documents": ["Antrag", "Schulbescheinigung", "Nachweis der Bedürftigkeit (Bürgergeld, Sozialhilfe, etc.)"],
+    "processing_time": "4-6 Wochen",
+    "deadlines": {
+      "description": "Antrag zu Beginn des Schuljahres stellen",
+      "note": "Rückwirkend nur 1 Monat möglich"
+    }
+  },
+  "legal_basis": ["§§ 28-33 SGB II", "§ 6 SGB XII", "Bildungspaket-Gesetz"],
+  "compatible_with": ["bafoeg", "berufsausbildungsbeihilfe_bab", "schuelerbefoerderung"],
+  "incompatible_with": [],
+  "related_benefits": ["bafoeg", "berufsausbildungsbeihilfe_bab", "schuelerbefoerderung"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Das Bildungspaket unterstützt Schüler aus bedürftigen Familien bei den Kosten für Schulbedarf, Lernförderung und Mittagsverpflegung.",
+    "for_whom": "Schüler aus Familien mit Bürgergeld, Sozialhilfe, Kinderzuschlag oder Wohngeld. Auch Schüler in Einrichtungen (Heime, Internate) haben Anspruch.",
+    "requirements": "Bedürftigkeit (Bürgergeld, Sozialhilfe, Kinderzuschlag, Wohngeld), Schüler einer öffentlichen oder staatlich anerkannten Schule, Alter unter 25 Jahre.",
+    "how_much": "Persönlicher Schulbedarf: 195€ pro Jahr (65€ im Frühjahr, 130€ im Herbst 2026). Lernförderung und Mittagsverpflegung bei Bedarf. Für Einrichtungen: 103€ pro Monat.",
+    "how_calculated": "Der persönliche Schulbedarf wird als Pauschale gewährt. Lernförderung und Mittagsverpflegung werden bei Bedarf und nach Prüfung der Notwendigkeit bewilligt.",
+    "documents_needed": "Antrag, Schulbescheinigung, Nachweis der Bedürftigkeit (Bürgergeld, Sozialhilfe, Kinderzuschlag, Wohngeld).",
+    "where_to_apply": "Agentur für Arbeit oder Jobcenter (je nach Leistung).",
+    "deadlines": "Antrag zu Beginn des Schuljahres stellen. Rückwirkend nur 1 Monat möglich.",
+    "faq": [
+      {
+        "question": "Was ist das Bildungspaket?",
+        "answer": "Das Bildungspaket ist eine Leistung für Schüler aus bedürftigen Familien. Es umfasst persönlichen Schulbedarf, Lernförderung und Mittagsverpflegung."
+      },
+      {
+        "question": "Kann ich das Bildungspaket auch für Privatschulen beantragen?",
+        "answer": "Ja, auch Schüler von staatlich anerkannten Privatschulen können das Bildungspaket erhalten, wenn die Voraussetzungen erfüllt sind."
+      },
+      {
+        "question": "Wie oft muss ich den Antrag stellen?",
+        "answer": "Der Antrag muss einmal pro Schuljahres gestellt werden. Bei längerer Bedürftigkeit kann ein Folgeantrag erforderlich sein."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/familie-und-kinder/informationen-zum-bildungspaket",
+      "title": "Leistungen für Bildung und Teilhabe - Bundesagentur für Arbeit",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    },
+    {
+      "url": "https://www.bmas.de/DE/Arbeit/Grundsicherung-Buergergeld/Bildungspaket/Leistungen/leistungen-bildungspaket_art.html",
+      "title": "Die Leistungen des Bildungspaket - BMAS",
+      "organization": "BMAS",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_2/__28.html",
+      "title": "§ 28 SGB II - Leistungen für Bildung und Teilhabe",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Das Bildungspaket wurde 2019 reformiert. Die Pauschalen wurden angepasst. Persönlicher Schulbedarf: 195€ pro Jahr (2026). Lernförderung und Mittagsverpflegung werden bei Bedarf gewährt."],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

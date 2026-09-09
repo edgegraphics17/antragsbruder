@@ -1,0 +1,139 @@
+{
+  "id": "kindergeld",
+  "official_name": "Kindergeld",
+  "aliases": ["Familienkasse", "Kindergeldzahlung", "Familienleistung"],
+  "former_names": [],
+  "type": "family_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Kindergeld",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Familienkasse (Bundesagentur für Arbeit)",
+    "authority": "Bundesagentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer",
+    "phone": "0800 4 5555-00"
+  },
+  "target_groups": ["Eltern", "Sorgeberechtigte", "Alleinerziehende", "Pflegeeltern"],
+  "life_situations": ["kind_bekommen", "familie", "alleinerziehend"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "kg-001",
+        "description": "Anspruch für eigene, adoptierte oder Stiefkinder",
+        "condition": "Kind lebt im Haushalt und wird unterhalten",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "kg-002",
+        "description": "Kind ist unter 18 Jahre oder in Ausbildung bis 25 Jahre",
+        "condition": "Alter des Kindes unter 18 Jahren (bis 25 bei Ausbildung)",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "kg-003",
+        "description": "Keine Einkommensprüfung",
+        "condition": "Kindergeld ist einkommensunabhängig",
+        "required": false,
+        "category": "income"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Kinder bis 18 Jahre: uneingeschränkt",
+      "Kinder 18-25 Jahre: bei Ausbildung, Studium oder Behinderung",
+      "Kinder über 25 Jahre: nur bei schwerer Behinderung"
+    ]
+  },
+  "calculation": {
+    "method": "Festbetrag pro Kind, unabhängig vom Einkommen",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Anspruchsberechtigte Kinder zählen",
+        "formula": "Anzahl Kinder × 259 Euro",
+        "value": "259 Euro pro Kind"
+      }
+    ],
+    "min_amount": 259,
+    "max_amount": null,
+    "typical_amount": "259 Euro pro Kind und Monat",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "259 Euro pro Kind und Monat (seit Januar 2026)",
+    "min_monthly": 259,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Anzahl Kinder"]
+  },
+  "application": {
+    "method": "Schriftlich oder online",
+    "url": "https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer",
+    "forms": ["Antrag auf Kindergeld (KG 1)"],
+    "required_documents": ["Geburtsurkunde", "Aufenthaltstitel (falls zutreffend)", "Ausbildungsnachweis (bei Kindern 18-25)"],
+    "processing_time": "4-6 Wochen",
+    "deadlines": {
+      "description": "Antrag innerhalb von 6 Monaten nach Geburt stellen",
+      "note": "Rückwirkend nur 6 Monate möglich"
+    }
+  },
+  "legal_basis": ["§§ 1 ff. BKGG (Bundeskindergeldgesetz)"],
+  "compatible_with": ["elterngeld", "kinderzuschlag", "unterhalt", "steuer_familie"],
+  "incompatible_with": [],
+  "related_benefits": ["kinderzuschlag", "elterngeld", "steuer_familie"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Kindergeld ist eine monatliche Zahlung des Staates an Eltern zur finanziellen Entlastung bei der Kindererziehung.",
+    "for_whom": "Alle Eltern mit Kindern unter 18 Jahren (bis 25 bei Ausbildung/Behinderung)",
+    "requirements": "Kind lebt im Haushalt, wird unterhalten, unter 18 Jahre (bzw. 25 bei Ausbildung)",
+    "how_much": "259 Euro pro Kind und Monat (seit Januar 2026)",
+    "how_calculated": "Festbetrag pro Kind, unabhängig vom Einkommen der Eltern",
+    "documents_needed": "Geburtsurkunde, ggf. Ausbildungsnachweis, Aufenthaltstitel",
+    "where_to_apply": "Familienkasse (Bundesagentur für Arbeit) - schriftlich oder online",
+    "deadlines": "Innerhalb von 6 Monaten nach Geburt stellen (sonst nur 6 Monate rückwirkend)",
+    "faq": [
+      {
+        "question": "Wie viel Kindergeld bekomme ich für 2 Kinder?",
+        "answer": "518 Euro pro Monat (2 × 259 Euro)"
+      },
+      {
+        "question": "Muss ich Kindergeld versteuern?",
+        "answer": "Nein, Kindergeld ist steuerfrei"
+      },
+      {
+        "question": "Was passiert mit dem Kindergeld bei Trennung?",
+        "answer": "Kindergeld wird an den Elternteil gezahlt, bei dem das Kind lebt"
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/familie-und-kinder/infos-rund-um-kindergeld/kindergeld-anspruch-hoehe-dauer",
+      "title": "Kindergeld online beantragen | Bundesagentur für Arbeit",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/kindergeld",
+      "title": "Kindergeld - BMBFSFJ",
+      "organization": "Bundesministerium für Familie, Senioren, Frauen und Jugend",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Seit Januar 2026: 259 Euro pro Kind (vorher 255 Euro)", "Automatische Anpassung durch Familienkasse, kein neuer Antrag nötig"],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

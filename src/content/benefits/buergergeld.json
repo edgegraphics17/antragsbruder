@@ -1,0 +1,225 @@
+{
+  "id": "buergergeld",
+  "official_name": "Grundsicherung für Arbeitsuchende (Bürgergeld)",
+  "aliases": [
+    "Bürgergeld",
+    "SGB II Leistung",
+    "Grundsicherung"
+  ],
+  "former_names": [
+    "Arbeitslosengeld II",
+    "Hartz IV",
+    "ALG II"
+  ],
+  "type": "social_benefit",
+  "status": "verified",
+  "category": "Arbeit & Beschäftigung",
+  "subcategory": "Grundsicherung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Jobcenter",
+    "authority": "Bundesagentur für Arbeit (Jobcenter)",
+    "url": "https://www.arbeitsagentur.de/grundsicherung",
+    "phone": "0800 4 555500"
+  },
+  "target_groups": [
+    "Erwerbsfähige Arbeitsuchende",
+    "Bedarfsgemeinschaften",
+    "Geringverdiener mit Bedarf"
+  ],
+  "life_situations": [
+    "einkommen_nicht_genug",
+    "job_lost",
+    "arbeit_arbeitnehmer"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "bg-r1",
+        "description": "Erwerbsfähig (mindestens 3 Stunden täglich arbeitsfähig)",
+        "condition": "erwerbsfaehig",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "bg-r2",
+        "description": "Bedürftig (Einkommen/Vermögen nicht ausreichend)",
+        "condition": "beduerftig",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "bg-r3",
+        "description": "Arbeitsuchend",
+        "condition": "arbeitsuchend",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bg-r4",
+        "description": "Deutschland / EU-Aufenthaltstitel",
+        "condition": "aufenthaltsberechtigung",
+        "required": true,
+        "category": "location"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Erwerbseinkommen",
+        "threshold": 100,
+        "threshold_type": "monthly",
+        "free_allowance": 100,
+        "last_updated": "2024-01-01"
+      },
+      {
+        "applies_to": "Erwerbseinkommen 100-520€",
+        "threshold": 520,
+        "threshold_type": "monthly",
+        "free_allowance": 20,
+        "last_updated": "2024-01-01"
+      },
+      {
+        "applies_to": "Erwerbseinkommen 520-1000€",
+        "threshold": 1000,
+        "threshold_type": "monthly",
+        "free_allowance": 30,
+        "last_updated": "2024-01-01"
+      },
+      {
+        "applies_to": "Erwerbseinkommen 1000-1200€ (1500€ mit Kind)",
+        "threshold": 1200,
+        "threshold_type": "monthly",
+        "free_allowance": 10,
+        "last_updated": "2024-01-01"
+      }
+    ],
+    "asset_rules": {
+      "threshold": 40000,
+      "exemptions": [
+        "Angemessene Altersvorsorge",
+        "Kfz bis 7.500€",
+        "Haushaltsgegenstände"
+      ],
+      "last_updated": "2024-01-01"
+    },
+    "special_conditions": [
+      "Vermögensfreibetrag 40.000€ im 1. Jahr (Karenzzeit), danach 15.000€"
+    ]
+  },
+  "calculation": {
+    "method": "Regelbedarf + Kosten der Unterkunft + Heizkosten - anrechenbares Einkommen",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Regelbedarf nach Personengruppe",
+        "value": "563€ (Einzelperson), 506€ (Partner), 357-471€ je nach Kinderalter"
+      },
+      {
+        "step": 2,
+        "description": "Hinzuzählen der tatsächlichen Kosten der Unterkunft (KdU) wenn angemessen"
+      },
+      {
+        "step": 3,
+        "description": "Abzug des anrechenbaren Einkommens nach Freibeträgen"
+      }
+    ],
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Regelbedarf abhängig von Personengruppe + Wohnkosten",
+    "min_monthly": 357,
+    "max_monthly": null,
+    "depends_on": [
+      "personen_im_haushalt",
+      "miete",
+      "einkommen",
+      "kinder"
+    ]
+  },
+  "application": {
+    "method": "Persönlich beim Jobcenter, vorbereitend online möglich",
+    "url": "https://www.arbeitsagentur.de/grundsicherung",
+    "forms": [
+      "Antrag auf Leistungen der Grundsicherung für Arbeitsuchende"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Mietvertrag/Nebenkostenabrechnung",
+      "Kontoauszüge",
+      "Einkommensnachweise",
+      "Vermögensnachweise",
+      "Geburtsurkunden der Kinder"
+    ],
+    "processing_time": "ca. 4-6 Wochen"
+  },
+  "legal_basis": [
+    "§ 19 SGB II",
+    "§ 20-23 SGB II",
+    "§ 31-38 SGB II (Einkommen)"
+  ],
+  "compatible_with": [
+    "wohngeld",
+    "kinderzuschlag",
+    "bildungspaket"
+  ],
+  "incompatible_with": [
+    "arbeitslosengeld-i",
+    "sozialhilfe"
+  ],
+  "related_benefits": [
+    "arbeitslosengeld-i",
+    "sozialhilfe",
+    "bildungspaket"
+  ],
+  "user_content": {
+    "short_explanation": "Das Bürgergeld ist die Grundsicherung für Arbeitsuchende. Es deckt die Lebenshaltungskosten, wenn Sie nicht genug oder kein Einkommen haben.",
+    "for_whom": "Für arbeitsfähige Menschen, die Arbeit suchen und deren Einkommen oder Vermögen nicht ausreicht.",
+    "requirements": "Sie müssen erwerbsfähig sein, bedürftig, arbeitsuchend und Ihren gewöhnlichen Aufenthalt in Deutschland haben.",
+    "how_much": "563€ für Alleinstehende (Regelbedarf) plus tatsächliche Wohnkosten. Bei Kindern je nach Alter zwischen 357€ und 471€.",
+    "how_calculated": "Regelbedarf + Wohnkosten - Ihr anrechenbares Einkommen (nach Freibeträgen: erste 100€ brutto unangerechnet, dann 20%/30%/10% Staffelung).",
+    "documents_needed": "Personalausweis, Mietvertrag, Kontoauszüge, Gehaltsnachweise, Nachweise über Vermögen",
+    "where_to_apply": "Beim örtlich zuständigen Jobcenter (örtliche Agentur für Arbeit)",
+    "deadlines": "Antrag möglichst schnell stellen. Leistungen ab dem 1. des Antragsmonats.",
+    "faq": [
+      {
+        "question": "Kann ich neben Bürgergeld arbeiten?",
+        "answer": "Ja, die ersten 100€ Ihres Bruttoeinkommens werden nicht angerechnet. Darüber hinaus gibt es gestaffelte Freibeträge (20%, 30%, 10%)."
+      },
+      {
+        "question": "Wie lange bekomme ich Bürgergeld?",
+        "answer": "Solange die Voraussetzungen erfüllt sind. Es wird in 6-Monats-Zeiträume bewilligt."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/grundsicherung",
+      "title": "Grundsicherung für Arbeitsuchende",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.bmas.de/DE/Arbeit/Grundsicherung-fuer-Arbeitsuchende/Leistungen-und-Bedarfe-in-der-Grundsicherung-fuer-Arbeitsuchende/leistungen-und-bedarfe-in-der-grundsicherung-fuer-arbeitsuchende-art.html",
+      "title": "Leistungen und Bedarfe in der Grundsicherung",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-09-08",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Regelbedarfe 2024/2025/2026 unverändert (563€/506€/451€/471€/390€/357€)",
+    "Vermögensfreibetrag 40.000€ im 1. Jahr, dann 15.000€"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

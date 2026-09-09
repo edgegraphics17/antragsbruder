@@ -1,0 +1,175 @@
+{
+  "id": "vollstationäre_pflege",
+  "official_name": "Vollstationäre Pflege",
+  "aliases": [
+    "Pflegeheimpflege",
+    "Stationäre Pflege",
+    "Pflege in Pflegeheim",
+    "Vollstationäre Pflege SGB XI"
+  ],
+  "former_names": [],
+  "type": "care_benefit",
+  "status": "verified",
+  "category": "Pflege",
+  "subcategory": "Stationäre Pflege",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Pflegekasse",
+    "authority": "Zuständige Pflegekasse (bei gesetzlich Versicherten) oder privates Versicherungsunternehmen",
+    "url": "https://www.pflegeversicherung.de",
+    "phone": "Kontakt über Pflegekasse"
+  },
+  "target_groups": [
+    "Pflegebedürftige mit Pflegegrad 2 bis 5",
+    "Personen, die in einem Pflegeheim vollstationär gepflegt werden"
+  ],
+  "life_situations": [
+    "pflege_angehoeriger",
+    "kann_nicht_arbeiten",
+    "senior"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "elg-vs-01",
+        "description": "Pflegebedürftigkeit mit Pflegegrad 2 bis 5",
+        "condition": "Feststellung der Pflegebedürftigkeit durch den Medizinischen Dienst (MDK/MD) mit Zuordnung zu Pflegegrad 2, 3, 4 oder 5",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-vs-02",
+        "description": "Vollstationäre Pflege in einer Pflegeeinrichtung",
+        "condition": "Die Pflege wird in einer zugelassenen vollstationären Pflegeeinrichtung erbracht",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Pflegebedürftige des Pflegegrads 1 erhalten einen Zuschuss von 131 Euro monatlich",
+      "Die Pflegeversicherung zahlt Beiträge zur Kranken- und Pflegeversicherung für Pflegepersonen bei Pflegezeit",
+      "Eigenanteil am Pflegeheim muss getragen werden (vom Sozialhilfeträger oder privat)"
+    ]
+  },
+  "calculation": {
+    "method": "Pauschale Beiträge zur pflegerischen Versorgung nach Pflegegrad",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Pflegegrad ermitteln lassen",
+        "value": "Pflegegrad 2, 3, 4 oder 5"
+      },
+      {
+        "step": 2,
+        "description": "Einweisung in eine zugelassene Pflegeeinrichtung",
+        "value": "Pflegeheim"
+      }
+    ],
+    "min_amount": 805,
+    "max_amount": 2096,
+    "typical_amount": "805€ (PG2), 1.319€ (PG3), 1.855€ (PG4), 2.096€ (PG5) monatlich",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Monatliche Beiträge zur pflegerischen Versorgung nach Pflegegrad",
+    "min_monthly": 805,
+    "max_monthly": 2096,
+    "depends_on": [
+      "Pflegegrad"
+    ]
+  },
+  "application": {
+    "method": "Antrag bei der zuständigen Pflegekasse",
+    "url": "https://www.pflegeversicherung.de/leistungen/vollstationaere-pflege",
+    "forms": [
+      "Antrag auf vollstationäre Pflege"
+    ],
+    "required_documents": [
+      "Ärztliches Attest / Gutachten des MDK zum Pflegegrad",
+      "Antrag auf vollstationäre Pflege",
+      "Aufnahmevertrag mit Pflegeeinrichtung"
+    ],
+    "processing_time": "Innerhalb von 5 Wochen nach Antragstellung",
+    "deadlines": {
+      "description": "Antrag vor Aufnahme der vollstationären Pflege stellen",
+      "note": "Keine feste Frist, aber rückwirkend maximal 1 Monat vor Antragstellung"
+    }
+  },
+  "legal_basis": [
+    "§ 43 SGB XI",
+    "§ 30 Abs. 1 SGB XI"
+  ],
+  "compatible_with": [
+    "hilfsmittel"
+  ],
+  "incompatible_with": [
+    "pflegegeld",
+    "pflegesachleistungen",
+    "verhinderungspflege",
+    "entlastungsleistungen"
+  ],
+  "related_benefits": [
+    "pflegegeld",
+    "verhinderungspflege",
+    "entlastungsleistungen"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Vollstationäre Pflege ist eine Leistung der Pflegeversicherung für pflegebedürftige Menschen, die in einem Pflegeheim gepflegt werden.",
+    "for_whom": "Pflegebedürftige mit Pflegegrad 2 bis 5 in einem Pflegeheim.",
+    "requirements": "Pflegegrad 2 bis 5, Aufnahme in ein zugelassenes Pflegeheim.",
+    "how_much": "Zwischen 805 Euro (Pflegegrad 2) und 2.096 Euro (Pflegegrad 5) pro Monat (pflegerische Versorgung).",
+    "how_calculated": "Pauschale Beträge je nach Pflegegrad - keine Einkommensprüfung für den pflegerischen Teil.",
+    "documents_needed": "Antrag auf vollstationäre Pflege, ärztliches Gutachten zum Pflegegrad, Aufnahmevertrag mit Pflegeheim.",
+    "where_to_apply": "Bei Ihrer zuständigen Pflegekasse (bei gesetzlich Versicherten) oder privaten Pflegeversicherung.",
+    "deadlines": "Keine feste Frist. Antrag vor Aufnahme der vollstationären Pflege stellen.",
+    "faq": [
+      {
+        "question": "Bekomme ich auch vollstationäre Pflege bei Pflegegrad 1?",
+        "answer": "Für Pflegegrad 1 wird ein Zuschuss von 131 Euro monatlich gewährt."
+      },
+      {
+        "question": "Was ist mit den Unterkunfts- und Verpflegungskosten?",
+        "answer": "Die Pflegeversicherung trägt nur die pflegerischen Aufwendungen. Unterkunft und Verpflegung müssen getragen werden (privat oder über Sozialhilfe)."
+      },
+      {
+        "question": "Muss ich den Eigenanteil am Pflegeheim selbst tragen?",
+        "answer": "Ja, den Eigenanteil am Pflegeheim müssen Sie selbst tragen oder über die Sozialhilfe beantragen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_11/__43.html",
+      "title": "§ 43 SGB XI - Inhalt der Leistung",
+      "organization": "Gesetze im Internet",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3_Downloads/P/Pflegeversicherung_Leistungsbeitraege/Uebersicht_Leistungsbetraege_2025.pdf",
+      "title": "Leistungsansprüche der Versicherten im Jahr 2025",
+      "organization": "Bundesministerium für Gesundheit",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Leistungsbeträge ab 1.1.2025: PG2=805€, PG3=1.319€, PG4=1.855€, PG5=2.096€",
+    "Für Pflegegrad 1: Zuschuss von 131€ monatlich",
+    "Eigenanteil am Pflegeheim: Unterkunft und Verpflegung"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

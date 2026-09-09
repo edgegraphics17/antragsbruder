@@ -1,0 +1,144 @@
+{
+  "id": "betriebsleiter",
+  "official_name": "Betriebsleiter (Handelsgesetzbuch)",
+  "aliases": [
+    "Betriebsleiter-Kaufmann",
+    "Geschäftsführer",
+    "Prokurist",
+    "Handelsregister"
+  ],
+  "former_names": [],
+  "type": "business_subsidy",
+  "status": "partially_verified",
+  "category": "Unternehmensführung",
+  "subcategory": "Betriebsleiter und Handelsregister",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Industrie- und Handelskammer (IHK)",
+    "authority": "Handelsregister",
+    "url": "https://www.ihk.de/",
+    "phone": "030 203080"
+  },
+  "target_groups": [
+    "Unternehmer",
+    "Geschäftsführer",
+    "Betriebsleiter",
+    "Kaufleute"
+  ],
+  "life_situations": [
+    "unternehmen",
+    "arbeit_selbststaendig"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "bl_01",
+        "description": "Gewerbliche Tätigkeit mit Handelsregistereintragung",
+        "condition": "gewerblich = true AND handelsregister = true",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bl_02",
+        "description": "Keine Haftungsbeschränkung für Betriebsleiter",
+        "condition": "haftung_unbeschraenkt = true",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "special_conditions": [
+      "Betriebsleiter ist Kaufmann im Sinne des HGB",
+      "Eintragung ins Handelsregister erforderlich",
+      "IHK ist zuständige Stelle"
+    ]
+  },
+  "calculation": {
+    "method": "Keine direkte Förderung – rechtliche Einordnung",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Prüfung der Eintragungspflicht",
+        "note": "Abhängig von Umfang der gewerblichen Tätigkeit"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Keine direkte Förderung",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Keine direkte Förderung – rechtliche Einordnung als Kaufmann",
+    "depends_on": []
+  },
+  "application": {
+    "method": "Beim Handelsregister (Amtsgericht)",
+    "url": "https://www.handelsregister.de/",
+    "forms": [
+      "Anmeldung zum Handelsregister"
+    ],
+    "required_documents": [
+      "Gewerbeanmeldung",
+      "Gesellschaftsvertrag (bei GmbH etc.)",
+      "Personalausweis"
+    ],
+    "processing_time": "2-4 Wochen",
+    "deadlines": {
+      "description": "Bei Aufnahme der gewerblichen Tätigkeit",
+      "note": "Unverzügliche Anmeldung erforderlich"
+    }
+  },
+  "legal_basis": [
+    "Handelsgesetzbuch (HGB)",
+    "Handelsregisterverordnung"
+  ],
+  "compatible_with": [],
+  "incompatible_with": [],
+  "related_benefits": [],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Als Betriebsleiter sind Sie Kaufmann im Sinne des Handelsgesetzbuchs und müssen sich ins Handelsregister eintragen lassen.",
+    "for_whom": "Unternehmer und Betriebsleiter, die eine gewerbliche Tätigkeit ausüben",
+    "requirements": "Gewerbliche Tätigkeit, Eintragung ins Handelsregister",
+    "how_much": "Keine direkte Förderung",
+    "how_calculated": "Rechtliche Einordnung als Kaufmann",
+    "documents_needed": "Gewerbeanmeldung, Gesellschaftsvertrag, Personalausweis",
+    "where_to_apply": "Beim Handelsregister (Amtsgericht)",
+    "deadlines": "Unverzügliche Anmeldung bei Aufnahme der Tätigkeit",
+    "faq": [
+      {
+        "question": "Muss ich mich ins Handelsregister eintragen?",
+        "answer": "Ja, wenn Sie eine gewerbliche Tätigkeit ausüben, die einen kaufmännisch eingerichteten Betrieb erfordert."
+      },
+      {
+        "question": "Was passiert bei fehlender Eintragung?",
+        "answer": "Bei fehlender Eintragung drohen Bußgelder. Die Eintragung ist gesetzlich vorgeschrieben."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.handelsregister.de/",
+      "title": "Handelsregister",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "1897-01-01",
+  "valid_until": null,
+  "confidence": "medium",
+  "verification_status": "partially_verified",
+  "notes": [
+    "Keine direkte Förderung, sondern rechtliche Einordnung",
+    "Betriebsleiter ist Kaufmann im Sinne des HGB",
+    "Eintragung ins Handelsregister gesetzlich vorgeschrieben"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

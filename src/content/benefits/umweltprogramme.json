@@ -1,0 +1,208 @@
+{
+  "id": "umweltprogramme-fakt",
+  "official_name": "Förderprogramm für Agrarumwelt, Klimaschutz und Tierwohl (FAKT)",
+  "aliases": [
+    "Agrarumweltprogramme",
+    "FAKT II",
+    "Natura 2000-Prämie",
+    "Öko-Regelungen",
+    "Agrarumwelt- und Klimamaßnahmen (AUKM)"
+  ],
+  "former_names": [
+    "Agrarumweltmaßnahmen (AUM)",
+    "Verträgliche Förderung"
+  ],
+  "type": "agriculture_subsidy",
+  "status": "verified",
+  "category": "Landwirtschaft & Ländlicher Raum",
+  "subcategory": "Agrarumwelt & Naturschutz",
+  "level": "state",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium für Landwirtschaft, Ernährung und Heimat (BMLEH)",
+    "authority": "Landwirtschaftskammern / Landesministerien",
+    "url": "https://foerderung.landwirtschaft-bw.de/,Lde/Startseite/Foerderwegweiser/Agrarumwelt_+Klimaschutz+und+Tierwohl+_FAKT+II_",
+    "phone": "0228 6845-0"
+  },
+  "target_groups": [
+    "Landwirte und Landwirtinnen",
+    "Betriebe in Natura-2000-Gebieten",
+    "Ökologisch wirtschaftende Betriebe",
+    "Betriebe mit Grünland",
+    "Betriebe mit Dauerkulturen"
+  ],
+  "life_situations": [
+    "landwirtschaft",
+    "ländlicher_raum"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "up-001",
+        "description": "Landwirtschaftliche Nutzfläche",
+        "condition": "Betrieb muss landwirtschaftliche Flächen bewirtschaften",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "up-002",
+        "description": "Einhaltung der Maßnahmenvorgaben",
+        "condition": "Verpflichtung zur Einhaltung der jeweiligen Maßnahmenkriterien",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "up-003",
+        "description": "Natura-2000-Gebiet (für Natura-2000-Prämie)",
+        "condition": "Flächen müssen in Natura-2000-Gebieten liegen",
+        "required": false,
+        "category": "location"
+      },
+      {
+        "rule_id": "up-004",
+        "description": "Cross-Compliance",
+        "condition": "Einhaltung der Grundanforderungen an die Betriebsführung und der guten landwirtschaftlichen und ökologischen Zustand",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Förderfähige Fläche",
+        "threshold": 0,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "region": "all",
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Freiwillige Teilnahme für mindestens 5 Jahre",
+      "Flächenbezogene und tierbezogene Maßnahmen möglich",
+      "Natura-2000-Prämie: 90-170 Euro/ha je nach Gebiet"
+    ]
+  },
+  "calculation": {
+    "method": "Pauschaler Betrag pro Hektar je nach Maßnahme",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Auswahl der Maßnahme",
+        "formula": "Maßnahme aus Katalog wählen",
+        "note": "Verschiedene Maßnahmen mit unterschiedlichen Fördersätzen"
+      },
+      {
+        "step": 2,
+        "description": "Berechnung der Prämie",
+        "formula": "Prämie = Förderfähige Fläche × Fördersatz/ha",
+        "note": "Z.B. 70 Euro/ha für bestimmte Maßnahmen"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "70-250 Euro/ha je nach Maßnahme",
+    "frequency": "yearly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Jährliche Prämie pro Hektar, je nach Maßnahme zwischen 70 und 250 Euro/ha",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": [
+      "Art der Maßnahme",
+      "Förderfähige Fläche",
+      "Bundesland"
+    ]
+  },
+  "application": {
+    "method": "Über Flächenantrag bei der zuständigen Zahlstelle",
+    "url": "https://www.landwirtschaftskammer.de/foerderung/direktzahlungen/oekoregelungen.htm",
+    "forms": [
+      "Flächenantrag mit FAKT-Maßnahmen",
+      "Verpflichtungserklärung"
+    ],
+    "required_documents": [
+      "Flächenantrag mit FAKT-Maßnahmen",
+      "Verpflichtungserklärung für die Maßnahmen",
+      "Flächennachweise",
+      "Falls zutreffend: Natura-2000-Nachweis"
+    ],
+    "processing_time": "Innerhalb des laufenden Jahres",
+    "deadlines": {
+      "description": "Jährliche Antragsfrist",
+      "date": "15. Mai jedes Jahres",
+      "note": "Einreichung bei der zuständigen Zahlstelle"
+    }
+  },
+  "legal_basis": [
+    "Verordnung (EU) Nr. 1305/2013 (ELER)",
+    "Verordnung (EU) 2022/2105 über die GAP",
+    "Nationaler Strategieplan GAP 2023-2027",
+    "Bundesnaturschutzgesetz (BNatSchG)",
+    "FFH-Richtlinie (RL 92/43/EWG)"
+  ],
+  "compatible_with": [
+    "landwirtschaft-investitionen",
+    "junglandwirte-einkommensstuetzung",
+    "biologischer-bau-foerderung",
+    "tierhaltung-umbau"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "biologischer-bau",
+    "tierhaltung",
+    "agrarförderung"
+  ],
+  "user_content": {
+    "short_explanation": "Agrarumweltprogramme belohnen Landwirte für umweltfreundliche Praktiken wie Blühstreifen, extensive Bewirtschaftung und Naturschutz.",
+    "for_whom": "Landwirte, die freiwillig über die gesetzlichen Anforderungen hinaus Umwelt- und Klimaschutzmaßnahmen umsetzen.",
+    "requirements": "Landwirtschaftliche Flächen, Einhaltung der Maßnahmenvorgaben, Verpflichtung für mindestens 5 Jahre.",
+    "how_much": "70-250 Euro pro Hektar je nach Maßnahme, Natura-2000-Prämie bis 170 Euro/ha.",
+    "how_calculated": "Pauschal pro Hektar, abhängig von der gewählten Maßnahme.",
+    "documents_needed": "Flächenantrag, Verpflichtungserklärung, Flächennachweise.",
+    "where_to_apply": "Bei der zuständigen Zahlstelle im Rahmen der Flächenantragstellung.",
+    "deadlines": "Jährliche Antragsfrist: 15. Mai.",
+    "faq": [
+      {
+        "question": "Kann ich FAKT mit Ökolandbau kombinieren?",
+        "answer": "Ja, viele FAKT-Maßnahmen sind mit dem ökologischen Landbau kombinierbar und werden sogar bevorzugt gefördert."
+      },
+      {
+        "question": "Was passiert bei Nichteinhaltung?",
+        "answer": "Bei Nichteinhaltung der Maßnahmenvorgaben kann der Zuschuss gekürzt oder zurückgefordert werden."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmleh.de/DE/themen/landwirtschaft/eu-agrarpolitik-und-foerderung/direktzahlung/oeko-regelungen.html",
+      "title": "Öko-Regelungen - BMLEH",
+      "organization": "BMLEH",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.bfn.de/finanzierung",
+      "title": "Finanzierung - Bundesamt für Naturschutz",
+      "organization": "BfN",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2023-01-01",
+  "valid_until": "2027-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "FAKT II ist das Förderprogramm für Agrarumwelt, Klimaschutz und Tierwohl",
+    "Natura-2000-Prämie: 90 Euro/ha (bis 170 Euro/ha in Vogelschutzgebieten)",
+    "Freiwillige Teilnahme mit 5-jähriger Verpflichtung"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

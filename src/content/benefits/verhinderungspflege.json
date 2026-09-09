@@ -1,0 +1,183 @@
+{
+  "id": "verhinderungspflege",
+  "official_name": "Verhinderungspflege",
+  "aliases": [
+    "Verhinderungspflege SGB XI",
+    "Pflege bei Verhinderung der Pflegeperson",
+    "Ersatzpflege bei Ausfall des Pflegers"
+  ],
+  "former_names": [],
+  "type": "care_benefit",
+  "status": "verified",
+  "category": "Pflege",
+  "subcategory": "Häusliche Pflege - Entlastung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Pflegekasse",
+    "authority": "Zuständige Pflegekasse (bei gesetzlich Versicherten) oder privates Versicherungsunternehmen",
+    "url": "https://www.pflegeversicherung.de",
+    "phone": "Kontakt über Pflegekasse"
+  },
+  "target_groups": [
+    "Pflegebedürftige mit Pflegegrad 2 bis 5",
+    "Personen, deren Pflegeperson verhindert ist (z.B. Krankheit, Urlaub)"
+  ],
+  "life_situations": [
+    "pflege_angehoeriger",
+    "kann_nicht_arbeiten",
+    "senior"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "elg-vp-01",
+        "description": "Pflegebedürftigkeit mit Pflegegrad 2 bis 5",
+        "condition": "Feststellung der Pflegebedürftigkeit durch den Medizinischen Dienst (MDK/MD) mit Zuordnung zu Pflegegrad 2, 3, 4 oder 5",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-vp-02",
+        "description": "Verhinderung der Pflegeperson",
+        "condition": "Die Pflegeperson ist verhindert (z.B. durch Krankheit, Urlaub) und kann die Pflege nicht übernehmen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "elg-vp-03",
+        "description": "Häusliche Pflege",
+        "condition": "Die Pflege wird in der häuslichen Umgebung erbracht",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Für Pflegegrad 1 besteht kein Anspruch auf Verhinderungspflege",
+      "Gemeinsamer Jahresbetrag mit Kurzzeitpflege: bis zu 3.539 Euro pro Jahr",
+      "Maximal 8 Wochen pro Kalenderjahr"
+    ]
+  },
+  "calculation": {
+    "method": "Kostenerstattung für Ersatzpflege bei Verhinderung der Pflegeperson",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Pflegegrad ermitteln lassen",
+        "value": "Pflegegrad 2, 3, 4 oder 5"
+      },
+      {
+        "step": 2,
+        "description": "Verhinderung der Pflegeperson nachweisen",
+        "value": "Nachweis über Verhinderung"
+      }
+    ],
+    "min_amount": 694,
+    "max_amount": 1980,
+    "typical_amount": "694€ (PG2), 1.198€ (PG3), 1.600€ (PG4), 1.980€ (PG5) pro Jahr",
+    "frequency": "as_needed",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Jahresbetrag für Verhinderungspflege (gemeinsam mit Kurzzeitpflege)",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": 3539,
+    "depends_on": [
+      "Pflegegrad"
+    ]
+  },
+  "application": {
+    "method": "Antrag bei der zuständigen Pflegekasse",
+    "url": "https://www.pflegeversicherung.de/leistungen/verhinderungspflege",
+    "forms": [
+      "Antrag auf Verhinderungspflege"
+    ],
+    "required_documents": [
+      "Ärztliches Attest / Gutachten des MDK zum Pflegegrad",
+      "Antrag auf Verhinderungspflege",
+      "Nachweis über Verhinderung der Pflegeperson"
+    ],
+    "processing_time": "Innerhalb von 5 Wochen nach Antragstellung",
+    "deadlines": {
+      "description": "Antrag vor Beginn der Verhinderungspflege stellen",
+      "note": "Keine feste Frist, aber rückwirkend maximal 1 Monat vor Antragstellung"
+    }
+  },
+  "legal_basis": [
+    "§ 39 SGB XI",
+    "§ 42a SGB XI (Gemeinsamer Jahresbetrag)",
+    "§ 30 Abs. 1 SGB XI"
+  ],
+  "compatible_with": [
+    "pflegegeld",
+    "pflegesachleistungen",
+    "entlastungsleistungen",
+    "hilfsmittel"
+  ],
+  "incompatible_with": [
+    "vollstationäre_pflege"
+  ],
+  "related_benefits": [
+    "pflegegeld",
+    "entlastungsleistungen",
+    "vollstationäre_pflege"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Verhinderungspflege ist eine Leistung der Pflegeversicherung, wenn die pflegende Person verhindert ist (z.B. Krankheit, Urlaub) und die Pflege durch eine Ersatzperson übernommen werden muss.",
+    "for_whom": "Pflegebedürftige mit Pflegegrad 2 bis 5, deren Pflegeperson verhindert ist.",
+    "requirements": "Pflegegrad 2 bis 5, häusliche Pflege, Verhinderung der Pflegeperson.",
+    "how_much": "Bis zu 3.539 Euro pro Jahr (gemeinsam mit Kurzzeitpflege).",
+    "how_calculated": "Pauschale Beträge je nach Pflegegrad - keine Einkommensprüfung.",
+    "documents_needed": "Antrag auf Verhinderungspflege, ärztliches Gutachten zum Pflegegrad, Nachweis über Verhinderung der Pflegeperson.",
+    "where_to_apply": "Bei Ihrer zuständigen Pflegekasse (bei gesetzlich Versicherten) oder privaten Pflegeversicherung.",
+    "deadlines": "Keine feste Frist. Antrag vor Beginn der Verhinderungspflege stellen.",
+    "faq": [
+      {
+        "question": "Bekomme ich auch Verhinderungspflege bei Pflegegrad 1?",
+        "answer": "Nein, für Pflegegrad 1 wird keine Verhinderungspflege gewährt."
+      },
+      {
+        "question": "Kann ich Verhinderungspflege und Kurzzeitpflege kombinieren?",
+        "answer": "Ja, aber der Gesamtbetrag beider Leistungen ist auf 3.539 Euro pro Jahr begrenzt (Gemeinsamer Jahresbetrag)."
+      },
+      {
+        "question": "Wie lange kann ich Verhinderungspflege in Anspruch nehmen?",
+        "answer": "Maximal 8 Wochen pro Kalenderjahr."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_11/__39.html",
+      "title": "§ 39 SGB XI - Verhinderungspflege",
+      "organization": "Gesetze im Internet",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_11/__42a.html",
+      "title": "§ 42a SGB XI - Gemeinsamer Jahresbetrag",
+      "organization": "Gesetze im Internet",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Gemeinsamer Jahresbetrag mit Kurzzeitpflege: bis zu 3.539 Euro pro Jahr",
+    "Leistungsbeträge ab 1.1.2025: PG2=694€, PG3=1.198€, PG4=1.600€, PG5=1.980€ pro Jahr",
+    "Maximal 8 Wochen pro Kalenderjahr"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

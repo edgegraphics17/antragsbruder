@@ -1,0 +1,209 @@
+{
+  "id": "biologischer-bau-foerderung",
+  "official_name": "Förderung des ökologischen Landbaus",
+  "aliases": [
+    "Ökolandbau-Förderung",
+    "Bio-Förderung",
+    "BÖL - Bundesprogramm ökologischer Landbau",
+    "Umstellungsförderung",
+    "Beibehaltungsförderung"
+  ],
+  "former_names": [
+    "ZöL - Züchtung ökologischer Landbau"
+  ],
+  "type": "agriculture_subsidy",
+  "status": "verified",
+  "category": "Landwirtschaft & Ländlicher Raum",
+  "subcategory": "Biologischer Landbau",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium für Landwirtschaft, Ernährung und Heimat (BMLEH)",
+    "authority": "Landwirtschaftskammern / BÖL",
+    "url": "https://www.bmleh.de/DE/themen/landwirtschaft/oekologischer-landbau/oekologischer-landbau_node.html",
+    "phone": "0228 6845-0"
+  },
+  "target_groups": [
+    "Ökologisch wirtschaftende Betriebe",
+    "Betriebe in Umstellung auf Ökolandbau",
+    "Bio-Verbände (Bioland, Demeter, Naturland)",
+    "Betriebe mit Öko-Zertifizierung"
+  ],
+  "life_situations": [
+    "landwirtschaft",
+    "ländlicher_raum"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "bb-001",
+        "description": "Ökologische Bewirtschaftung",
+        "condition": "Betrieb muss nach EU-Öko-Verordnung oder Verbandsrichtlinien wirtschaften",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bb-002",
+        "description": "Zertifizierung",
+        "condition": "Gültige Öko-Zertifizierung (EU-Bio-Siegel oder Verbandszertifizierung)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bb-003",
+        "description": "Verpflichtungsdauer",
+        "condition": "Mindestens 5 Jahre Verpflichtung für Umstellung oder Beibehaltung",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "bb-004",
+        "description": "Flächennachweis",
+        "condition": "Nachweis der ökologisch bewirtschafteten Flächen",
+        "required": true,
+        "category": "asset"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Ökolandbau",
+        "threshold": 0,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "region": "all",
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Bio-Strategie 2030: 30 % Ökolandbauflächen bis 2030",
+      "BÖL-Etat 2024: 36 Millionen Euro",
+      "Umstellungsberatung mit bis zu 50 % gefördert (max. 4.000 Euro)"
+    ]
+  },
+  "calculation": {
+    "method": "Pauschale Prämien pro Hektar für Umstellung und Beibehaltung",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Ermittlung der ökologisch bewirtschafteten Fläche",
+        "formula": "Öko-Fläche = förderfähige Hektar",
+        "note": "Nachweis durch Zertifizierung"
+      },
+      {
+        "step": 2,
+        "description": "Berechnung der Prämie",
+        "formula": "Prämie = Öko-Fläche × Fördersatz/ha",
+        "note": "Verschiedene Sätze für Umstellung/Beibehaltung"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "100-300 Euro/ha je nach Kulturart und Bundesland",
+    "frequency": "yearly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Jährliche Prämie pro Hektar für ökologische Bewirtschaftung, 100-300 Euro/ha je nach Kulturart",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": [
+      "Kulturart",
+      "Fläche",
+      "Bundesland",
+      "Umstellung/Beibehaltung"
+    ]
+  },
+  "application": {
+    "method": "Über Flächenantrag bei der zuständigen Zahlstelle",
+    "url": "https://www.bmleh.de/DE/themen/landwirtschaft/oekologischer-landbau/oekologischer-landbau_node.html",
+    "forms": [
+      "Flächenantrag mit Öko-Maßnahmen",
+      "Verpflichtungserklärung"
+    ],
+    "required_documents": [
+      "Flächenantrag mit Öko-Maßnahmen",
+      "Verpflichtungserklärung",
+      "Öko-Zertifikat",
+      "Flächennachweise",
+      "Falls zutreffend: Umstellungsplan"
+    ],
+    "processing_time": "Innerhalb des laufenden Jahres",
+    "deadlines": {
+      "description": "Jährliche Antragsfrist",
+      "date": "15. Mai jedes Jahres",
+      "note": "Einreichung bei der zuständigen Zahlstelle"
+    }
+  },
+  "legal_basis": [
+    "Verordnung (EU) 2018/848 (EU-Öko-Verordnung)",
+    "Verordnung (EU) Nr. 1305/2013 (ELER)",
+    "GAP-Strategieplan Deutschland 2023-2027",
+    "Bio-Strategie 2030",
+    "Bundesprogramm ökologischer Landbau (BÖL)"
+  ],
+  "compatible_with": [
+    "landwirtschaft-investitionen",
+    "junglandwirte-einkommensstuetzung",
+    "umweltprogramme-fakt",
+    "tierhaltung-umbau",
+    "betriebsberatung"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "umweltprogramme",
+    "junglandwirte",
+    "betriebsberatung"
+  ],
+  "user_content": {
+    "short_explanation": "Die Förderung des ökologischen Landbaus unterstützt Betriebe bei der Umstellung und Beibehaltung von Bio-Bewirtschaftung.",
+    "for_whom": "Ökologisch wirtschaftende Betriebe, Betriebe in Umstellung, Bio-Verbände (Bioland, Demeter, Naturland).",
+    "requirements": "Öko-Zertifizierung, Verpflichtung für mindestens 5 Jahre, Flächennachweis.",
+    "how_much": "100-300 Euro pro Hektar je nach Kulturart und Bundesland.",
+    "how_calculated": "Pauschal pro Hektar, abhängig von der Kulturart und ob Umstellung oder Beibehaltung.",
+    "documents_needed": "Flächenantrag, Öko-Zertifikat, Verpflichtungserklärung, Flächennachweise.",
+    "where_to_apply": "Bei der zuständigen Zahlstelle im Rahmen der Flächenantragstellung.",
+    "deadlines": "Jährliche Antragsfrist: 15. Mai.",
+    "faq": [
+      {
+        "question": "Kann ich die Bio-Förderung mit anderen Programmen kombinieren?",
+        "answer": "Ja, die Bio-Förderung ist mit Investitionsförderung, Junglandwirte-Förderung und FAKT kombinierbar."
+      },
+      {
+        "question": "Gibt es eine Förderung für die Umstellung?",
+        "answer": "Ja, sowohl Umstellung als auch Beibehaltung des ökologischen Landbaus werden gefördert."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmleh.de/DE/themen/landwirtschaft/oekologischer-landbau/oekologischer-landbau_node.html",
+      "title": "Ökologischer Landbau - BMLEH",
+      "organization": "BMLEH",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.umweltbundesamt.de/themen/landwirtschaft/landwirtschaft-umweltfreundlich-gestalten/oekolandbau",
+      "title": "Ökolandbau - Umweltbundesamt",
+      "organization": "Umweltbundesamt",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2023-01-01",
+  "valid_until": "2027-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Bio-Strategie 2030: Ziel 30 % Ökolandbauflächen bis 2030",
+    "BÖL-Etat 2024: 36 Millionen Euro",
+    "Umstellungsberatung mit bis zu 50 % gefördert (max. 4.000 Euro)"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

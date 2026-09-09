@@ -1,0 +1,193 @@
+{
+  "id": "einstiegsgeld",
+  "official_name": "Einstiegsgeld für Selbstständigkeit",
+  "aliases": [
+    "Einstiegsgeld",
+    "Einstiegsgeld SGB II",
+    "Förderung in Selbstständigkeit"
+  ],
+  "former_names": [],
+  "type": "business_subsidy",
+  "status": "verified",
+  "category": "Existenzgründung",
+  "subcategory": "Gründung aus Grundsicherung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Jobcenter",
+    "authority": "Bundesagentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de/grundsicherung/arbeit-finden/einstiegsgeld-selbststaendigkeit",
+    "phone": "0800 4 555500"
+  },
+  "target_groups": [
+    "Grundsicherungsgeld-Bezieher",
+    "Langzeitarbeitslose",
+    "Existenzgründer",
+    "Selbstständige"
+  ],
+  "life_situations": [
+    "arbeit_selbststaendig",
+    "gründung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "esg_01",
+        "description": "Bezug von Grundsicherungsgeld (Bürgergeld)",
+        "condition": "gruendungsgeld_bezug = true",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "esg_02",
+        "description": "Noch nicht hauptberuflich selbstständig",
+        "condition": "hauptberuflich_selbststaendig = false",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "esg_03",
+        "description": "Hauptberufliche Selbstständigkeit mit mindestens 15 Stunden/Woche",
+        "condition": "selbststaendig_vollzeit = true AND stunden_pro_woche >= 15",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "esg_04",
+        "description": "Persönliche Eignung für die Selbstständigkeit",
+        "condition": "persoenliche_eignung = true",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "esg_05",
+        "description": "Gute Aussichten auf dauerhafte Selbstständigkeit",
+        "condition": "erfolgsaussichten = true",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "special_conditions": [
+      "Kein Rechtsanspruch – Ermessensleistung des Jobcenters",
+      "Wird monatlich und ohne Abzüge ausgezahlt",
+      "Höhe und Dauer werden individuell festgelegt"
+    ]
+  },
+  "calculation": {
+    "method": "Individuelle Festlegung durch Integrationsfachkraft, max. 24 Monate",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Beratungsgespräch vereinbaren",
+        "note": "Erstgespräch mit Integrationsfachkraft"
+      },
+      {
+        "step": 2,
+        "description": "Höhe und Dauer werden individuell festgelegt",
+        "note": "Abhängig von persönlichen Lebensumständen"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Individuell, abhängig von persönlichen Umständen",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Individuell festgelegt, max. 24 Monate",
+    "depends_on": [
+      "persoenliche_umstaende",
+      "dauer_arbeitslosigkeit",
+      "jobaussichten"
+    ]
+  },
+  "application": {
+    "method": "Online über Benutzerkonto oder persönlich im Jobcenter",
+    "url": "https://web.arbeitsagentur.de/sgb2esg/sgb2esg-ui/pd",
+    "forms": [
+      "Antrag auf Einstiegsgeld"
+    ],
+    "required_documents": [
+      "Lebenslauf",
+      "Geschäftsplan",
+      "Kapitalbedarfs- und Finanzierungsplan",
+      "Umsatz- und Rentabilitätsvorschau (3 Jahre)"
+    ],
+    "processing_time": "4-8 Wochen",
+    "deadlines": {
+      "description": "Vor Aufnahme der Selbstständigkeit",
+      "note": "Antrag muss vor Gründungsbeginn gestellt werden"
+    }
+  },
+  "legal_basis": [
+    "§ 16b SGB II",
+    "§ 16e SGB II"
+  ],
+  "compatible_with": [
+    "gruendercoaching"
+  ],
+  "incompatible_with": [
+    "gruendungszuschuss",
+    "buergergeld"
+  ],
+  "related_benefits": [
+    "gruendungszuschuss",
+    "existenzgruenderkredit"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Das Einstiegsgeld unterstützt Sie finanziell bei der Aufnahme einer selbständigen Tätigkeit, wenn Sie zuvor Grundsicherungsgeld bezogen haben.",
+    "for_whom": "Menschen, die Grundsicherungsgeld (Bürgergeld) beziehen und sich hauptberuflich selbstständig machen wollen",
+    "requirements": "Grundsicherungsgeld-Bezug, mind. 15 Std./Woche, persönliche Eignung, gute Erfolgsaussichten",
+    "how_much": "Individuell festgelegt, max. 24 Monate",
+    "how_calculated": "Die Höhe wird von Ihrer Integrationsfachkraft individuell festgelegt",
+    "documents_needed": "Geschäftsplan, Finanzplan, Lebenslauf, Umsatzvorschau",
+    "where_to_apply": "Im Jobcenter oder online über Ihr Benutzerkonto",
+    "deadlines": "Antrag vor Aufnahme der Selbstständigkeit stellen",
+    "faq": [
+      {
+        "question": "Habe ich einen Rechtsanspruch auf Einstiegsgeld?",
+        "answer": "Nein, das Einstiegsgeld ist eine Ermessensleistung. Das Jobcenter entscheidet im Einzelfall."
+      },
+      {
+        "question": "Wie lange erhalte ich Einstiegsgeld?",
+        "answer": "Maximal 24 Monate. Die genaue Dauer wird individuell festgelegt."
+      },
+      {
+        "question": "Kann ich Einstiegsgeld mit Gründungszuschuss kombinieren?",
+        "answer": "Nein, Einstiegsgeld und Gründungszuschuss schließen sich gegenseitig aus."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/grundsicherung/arbeit-finden/einstiegsgeld-selbststaendigkeit",
+      "title": "Einstiegsgeld für Selbstständigkeit - Bundesagentur für Arbeit",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.arbeitsagentur.de/datei/fw-sgb-ii-16b_ba034550.pdf",
+      "title": "Fachliche Weisungen § 16b SGB II - Einstiegsgeld",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2005-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Ermessensleistung – kein Rechtsanspruch",
+    "Wird monatlich und ohne Abzüge ausgezahlt",
+    "Höhe und Dauer individuell"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

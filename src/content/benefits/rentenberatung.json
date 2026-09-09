@@ -1,0 +1,141 @@
+{
+  "id": "rentenberatung",
+  "official_name": "Kostenlose Rentenberatung der Deutschen Rentenversicherung",
+  "aliases": [
+    "Rentenberatung",
+    "Versichertenberatung",
+    "DRV-Beratung"
+  ],
+  "former_names": [],
+  "type": "social_benefit",
+  "status": "verified",
+  "category": "Rente & Vorsorge",
+  "subcategory": "Beratung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Deutsche Rentenversicherung",
+    "authority": "Deutsche Rentenversicherung Bund",
+    "url": "https://www.deutsche-rentenversicherung.de",
+    "phone": "0800 1000 4800"
+  },
+  "target_groups": [
+    "Versicherte",
+    "Angehörige",
+    "Rentner"
+  ],
+  "life_situations": [
+    "rente",
+    "altersvorsorge",
+    "beratung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "rbr-r1",
+        "description": "Jeder Versicherte hat Anspruch auf kostenlose Beratung",
+        "condition": "versichert",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "special_conditions": [
+      "Beratung ist kostenlos",
+      "Möglich als Telefon-, Video- oder Präsenzberatung",
+      "Terminvereinbarung online oder telefonisch möglich"
+    ]
+  },
+  "calculation": {
+    "method": "Keine finanzielle Leistung - Beratungsleistung",
+    "steps": [],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Kostenlos",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Kostenlose Beratungsleistung, keine finanzielle Leistung"
+  },
+  "application": {
+    "method": "Telefonisch, online oder persönlich",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Beratung-und-Kontakt/Beratung-suchen-und-buchen",
+    "forms": [],
+    "required_documents": [
+      "Versicherungsnummer",
+      "Personalausweis"
+    ],
+    "processing_time": "Termin innerhalb weniger Tage bis Wochen",
+    "deadlines": {
+      "description": "Keine Frist - Beratung jederzeit möglich",
+      "note": "Vor Rentenbeginn sollte Beratung eingeholt werden"
+    }
+  },
+  "legal_basis": [
+    "§ 69 SGB VI (Beratung und Auskunft)",
+    "§ 14 SGB X (Sozialberatung)"
+  ],
+  "compatible_with": [
+    "altersrente",
+    "erwerbsminderungsrente",
+    "hinterbliebenenrente"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "altersrente",
+    "erwerbsminderungsrente",
+    "hinterbliebenenrente",
+    "kindererziehungszeiten"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Deutsche Rentenversicherung bietet kostenlose Beratung zu allen Fragen rund um die Rente - telefonisch, per Video oder persönlich.",
+    "for_whom": "Für alle Versicherten und Angehörigen, die Fragen zur Rente haben.",
+    "requirements": "Keine besonderen Voraussetzungen - jeder Versicherte hat Anspruch auf Beratung.",
+    "how_mind": "Die Beratung ist komplett kostenlos.",
+    "how_calculated": "Es handelt sich um eine Beratungsleistung, nicht um eine finanzielle Leistung.",
+    "documents_needed": "Versicherungsnummer, Personalausweis",
+    "where_to_apply": "Telefonisch (0800 1000 4800), online oder bei einer Beratungsstelle der DRV",
+    "deadlines": "Keine Frist. Vor Rentenbeginn sollte Beratung eingeholt werden.",
+    "faq": [
+      {
+        "question": "Kostet die Rentenberatung etwas?",
+        "answer": "Nein, die Beratung ist komplett kostenlos für alle Versicherten."
+      },
+      {
+        "question": "Wie kann ich einen Termin vereinbaren?",
+        "answer": "Telefonisch unter 0800 1000 4800, online über die DRV-Website oder persönlich in einer Beratungsstelle."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Beratung-und-Kontakt/Beratung-suchen-und-buchen",
+      "title": "Beratung - Deutsche Rentenversicherung",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    },
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Online-Services/beratungstermin_vereinbaren/beratungstermin_vereinbaren",
+      "title": "Beratungstermin vereinbaren",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-09",
+  "valid_from": "2026-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Kostenlose Beratung für alle Versicherten",
+    "Telefon: 0800 1000 4800 (Mo-Do 8-19 Uhr, Fr 8-15:30 Uhr)",
+    "Auch Videoberatung möglich"
+  ],
+  "created_at": "2026-09-09",
+  "updated_at": "2026-09-09"
+}

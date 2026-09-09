@@ -1,0 +1,188 @@
+{
+  "id": "kinderzuschlag",
+  "official_name": "Kinderzuschlag (KiZ)",
+  "aliases": [
+    "KiZ",
+    "Kinderzuschlag",
+    "Zuschlag zum Kindergeld"
+  ],
+  "former_names": [],
+  "type": "family_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Einkommenszuschuss",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Familienkasse",
+    "authority": "Bundesagentur für Arbeit - Familienkasse",
+    "url": "https://www.arbeitsagentur.de/familie-und-kinder/kinderzuschlag-verstehen",
+    "phone": "0800 4 555530"
+  },
+  "target_groups": [
+    "Geringverdienende Eltern",
+    "Alleinerziehende",
+    "Familien mit Kindern unter 25 Jahren"
+  ],
+  "life_situations": [
+    "familie",
+    "alleinerziehend",
+    "einkommen_nicht_genug"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "kz-r1",
+        "description": "Kind lebt im Haushalt, unverheiratet, unter 25 Jahre",
+        "condition": "kind_unter_25_im_haushalt",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "kz-r2",
+        "description": "Kindergeld wird bezogen",
+        "condition": "kindergeld_anspruch",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "kz-r3",
+        "description": "Mindesteinkommen: 600€ (Alleinerziehende) / 900€ (Paare) brutto",
+        "condition": "mindesteinkommen",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "kz-r4",
+        "description": "Einkommen deckt Bedarf nicht (Elternbedarf + Kinderbedarf)",
+        "condition": "bedarf_nicht_gedeckt",
+        "required": true,
+        "category": "income"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Mindesteinkommen Alleinerziehende",
+        "threshold": 600,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2025-01-01"
+      },
+      {
+        "applies_to": "Mindesteinkommen Paare",
+        "threshold": 900,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2025-01-01"
+      }
+    ]
+  },
+  "calculation": {
+    "method": "Höchstbetrag 297€ minus anrechenbares Einkommen über dem Elternbedarf",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Elternbedarf ermitteln (Regelbedarf + anteilige Miete)"
+      },
+      {
+        "step": 2,
+        "description": "Einkommen über Elternbedarf wird auf KiZ angerechnet"
+      },
+      {
+        "step": 3,
+        "description": "KiZ = 297€ - angerechnetes Einkommen (pro Kind)"
+      }
+    ],
+    "max_amount": 297,
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Bis zu 297€ pro Kind und Monat (inkl. 25€ Sofortzuschlag)",
+    "max_monthly": 297,
+    "depends_on": [
+      "einkommen",
+      "miete",
+      "personen_im_haushalt",
+      "kinder"
+    ]
+  },
+  "application": {
+    "method": "Online oder schriftlich bei der Familienkasse",
+    "url": "https://www.arbeitsagentur.de/familie-und-kinder/kinderzuschlag-verstehen/kinderzuschlag-anspruch-hoehe-dauer",
+    "forms": [
+      "Antrag auf Kinderzuschlag (KiZ 1)"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Einkommensnachweise (letzte 12 Monate)",
+      "Mietvertrag",
+      "Kindergeld-Nummer",
+      "Kontoauszüge"
+    ],
+    "processing_time": "ca. 4-8 Wochen"
+  },
+  "legal_basis": [
+    "§ 6a Bundeskindergeldgesetz (BKGG)"
+  ],
+  "compatible_with": [
+    "kindergeld",
+    "wohngeld",
+    "bildungspaket"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "kindergeld",
+    "wohngeld",
+    "bildungspaket"
+  ],
+  "user_content": {
+    "short_explanation": "Der Kinderzuschlag ist ein Zuschuss zum Kindergeld für Familien mit geringem Einkommen, das aber nicht ganz für den Lebensunterhalt reicht.",
+    "for_whom": "Für Eltern, die zwar arbeiten, aber deren Einkommen nicht für die ganze Familie reicht.",
+    "requirements": "Sie beziehen Kindergeld, Ihr Kind ist unter 25, Sie verdienen mindestens 600€ (alleinerziehend) bzw. 900€ (Paar) brutto.",
+    "how_much": "Bis zu 297€ pro Kind und Monat (inklusive 25€ Sofortzuschlag).",
+    "how_calculated": "297€ minus das Einkommen, das über Ihrem Elternbedarf liegt. Je mehr Sie verdienen, desto weniger KiZ.",
+    "documents_needed": "Einkommensnachweise der letzten 12 Monate, Mietvertrag, Kindergeld-Nummer",
+    "where_to_apply": "Bei der Familienkasse (online oder per Post)",
+    "deadlines": "Keine spezifischen Fristen. Bewilligung für 6 Monate.",
+    "faq": [
+      {
+        "question": "Muss ich den Kinderzuschlag separat beantragen?",
+        "answer": "Ja, der Kinderzuschlag muss gesondert bei der Familienkasse beantragt werden, nicht automatisch mit dem Kindergeld."
+      },
+      {
+        "question": "Wie lange bekomme ich den Kinderzuschlag?",
+        "answer": "Für 6 Monate, dann muss der Antrag verlängert werden."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/familie-und-kinder/kinderzuschlag-verstehen/kinderzuschlag-anspruch-hoehe-dauer",
+      "title": "Kinderzuschlag: Anspruch, Höhe, Dauer",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.arbeitsagentur.de/datei/kiz2-merkblattkinderzuschlag_ba034485.pdf",
+      "title": "Merkblatt Kinderzuschlag",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-09-08",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Höchstbetrag seit 1. Januar 2025: 297€ (inkl. 25€ Sofortzuschlag)",
+    "Mindesteinkommen: 600€/900€ brutto"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

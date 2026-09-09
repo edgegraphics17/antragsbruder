@@ -1,0 +1,184 @@
+{
+  "id": "kurzzeitpflege",
+  "official_name": "Kurzzeitpflege nach § 42 SGB XI",
+  "aliases": [
+    "Kurzzeitpflege",
+    "Übergangspflege",
+    "Tagespflege (stationär)"
+  ],
+  "former_names": [],
+  "type": "care_benefit",
+  "status": "verified",
+  "category": "Pflege",
+  "subcategory": "Kurzzeitpflege",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Pflegekasse",
+    "authority": "Gesetzliche Pflegeversicherung",
+    "url": "https://www.bundesgesundheitsministerium.de/verhinderungspflege",
+    "phone": ""
+  },
+  "target_groups": [
+    "Pflegebedürstige",
+    "Menschen mit Pflegegrad 1-5",
+    "Wohnungslose Pflegebedürstige"
+  ],
+  "life_situations": [
+    "pflege",
+    "pflegegrad",
+    "kurzzeitpflege"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "kzp-r1",
+        "description": "Vorübergehende stationäre Pflege in einer Einrichtung",
+        "condition": "stationaere_pflege_voruebergehend",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "kzp-r2",
+        "description": "Pflegebedürftigkeit mit Pflegegrad 1-5",
+        "condition": "pflegegrad_1_bis_5",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "kzp-r3",
+        "description": "Pflege ist vorübergehend (max. 8 Wochen pro Jahr)",
+        "condition": "max_8_wochen_pro_jahr",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "kzp-r4",
+        "description": "Zweck der Pflege: Entlastung der häuslichen Pflege oder Ersatz bei Verhinderung des Pflegers",
+        "condition": "ersatz_haeusliche_pflege",
+        "required": true,
+        "category": "health"
+      }
+    ],
+    "special_conditions": [
+      "Gemeinsamer Jahresbetrag mit Verhinderungspflege: 3.539 Euro (2026)",
+      "Maximal 8 Wochen Kurzzeitpflege pro Kalenderjahr",
+      "Pflegegrad muss vor Beginn festgestellt sein"
+    ]
+  },
+  "calculation": {
+    "method": "Kostenübernahme bis zum gemeinsamen Jahresbetrag mit Verhinderungspflege",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Prüfung des gemeinsamen Jahresbetrags",
+        "formula": "Verhinderungspflege + Kurzzeitpflege = max. 3.539 Euro (2026)"
+      },
+      {
+        "step": 2,
+        "description": "Übernahme der Pflegekosten bis zum Jahresbetrag",
+        "formula": "Tatsächliche Kosten bis max. 3.539 Euro"
+      },
+      {
+        "step": 3,
+        "description": "Einhaltung der Höchstdauer",
+        "formula": "Maximal 8 Wochen pro Kalenderjahr"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 3539,
+    "typical_amount": "Bis zu 3.539 Euro pro Jahr (gemeinsam mit Verhinderungspflege)",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Bis zu 3.539 Euro pro Jahr aus dem gemeinsamen Jahresbetrag (mit Verhinderungspflege)",
+    "depends_on": [
+      "pflegekosten",
+      "verhinderungspflege_nutzung"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich bei der Pflegekasse",
+    "url": "https://www.bundesgesundheitsministerium.de/verhinderungspflege",
+    "forms": [
+      "Antrag auf Kurzzeitpflege"
+    ],
+    "required_documents": [
+      "Personalausweis",
+      "Pflegegrad-Bescheid",
+      "Kostenvoranschlag der Pflegeeinrichtung",
+      "Ärztliche Verordnung (ggf.)"
+    ],
+    "processing_time": "ca. 2-4 Wochen",
+    "deadlines": {
+      "description": "Antrag vor Beginn der Kurzzeitpflege stellen",
+      "note": "Frist zur Kostenerstattung: 3 Jahre ab Ende des Kalenderjahres"
+    }
+  },
+  "legal_basis": [
+    "§ 42 SGB XI (Kurzzeitpflege)",
+    "§ 42a SGB XI (Gemeinsamer Jahresbetrag)"
+  ],
+  "compatible_with": [
+    "verhinderungspflege"
+  ],
+  "incompatible_with": [
+    "vollstationaere_pflege"
+  ],
+  "related_benefits": [
+    "verhinderungspflege",
+    "pflegegeld"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Kurzzeitpflege ist eine vorübergehende stationäre Pflege in einer Einrichtung, wenn die häusliche Pflege vorübergehend nicht möglich ist.",
+    "for_whom": "Für Pflegebedürftige, die vorübergehend stationär gepflegt werden müssen (z.B. nach einem Krankenhausaufenthalt oder bei Verhinderung des häuslichen Pflegenden).",
+    "requirements": "Sie müssen einen Pflegegrad haben und die Pflege muss vorübergehend sein (max. 8 Wochen pro Jahr).",
+    "how_mind": "Bis zu 3.539 Euro pro Jahr (gemeinsam mit Verhinderungspflege).",
+    "how_calculated": "Die Pflegekosten werden bis zum gemeinsamen Jahresbetrag übernommen. Verhinderungspflege und Kurzzeitpflege teilen sich einen gemeinsamen Betrag von 3.539 Euro.",
+    "documents_needed": "Personalausweis, Pflegegrad-Bescheid, Kostenvoranschlag der Einrichtung, ggf. ärztliche Verordnung",
+    "where_to_apply": "Bei Ihrer gesetzlichen Pflegekasse (schriftlich)",
+    "deadlines": "Antrag vor Beginn der Kurzzeitpflege stellen. Kostenerstattung bis 3 Jahre nach Ende des Jahres möglich.",
+    "faq": [
+      {
+        "question": "Wie lange kann ich Kurzzeitpflege in Anspruch nehmen?",
+        "answer": "Maximal 8 Wochen pro Kalenderjahr, begrenzt durch den gemeinsamen Jahresbetrag von 3.539 Euro."
+      },
+      {
+        "question": "Was ist der Unterschied zu Verhinderungspflege?",
+        "answer": "Verhinderungspflege ersetzt die häusliche Pflege bei Verhinderung des Pflegenden. Kurzzeitpflege ist eine vollständig stationäre Teilstationierung. Beide teilen sich den gemeinsamen Jahresbetrag."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bundesgesundheitsministerium.de/verhinderungspflege",
+      "title": "Urlaubsvertretung (Verhinderungspflege) | BMG",
+      "organization": "Bundesministerium für Gesundheit",
+      "last_verified": "2026-09-09",
+      "type": "official"
+    },
+    {
+      "url": "https://www.pflege.de/pflegekasse-pflegefinanzierung/pflegeleistungen/",
+      "title": "Pflegeleistungen im Überblick",
+      "organization": "Pflege.de",
+      "last_verified": "2026-09-09",
+      "type": "secondary"
+    }
+  ],
+  "last_verified": "2026-09-09",
+  "valid_from": "2026-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Gemeinsamer Jahresbetrag 2026: 3.539 Euro (mit Verhinderungspflege)",
+    "Maximal 8 Wochen pro Jahr",
+    "Seit 1. Juli 2025 gemeinsamer Jahresbetrag"
+  ],
+  "created_at": "2026-09-09",
+  "updated_at": "2026-09-09"
+}

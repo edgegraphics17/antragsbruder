@@ -1,0 +1,148 @@
+{
+  "id": "investitionszuschuss",
+  "official_name": "Bundesförderung für effiziente Gebäude (BEG) / BAFA-Förderung",
+  "aliases": [
+    "BAFA-Förderung",
+    "Investitionszuschuss Energie",
+    "Gebäudeförderung",
+    "Energieeffizienz-Förderung"
+  ],
+  "former_names": [],
+  "type": "business_subsidy",
+  "status": "verified",
+  "category": "Energie & Investition",
+  "subcategory": "Energieeffizienz und erneuerbare Energien",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA)",
+    "authority": "BAFA",
+    "url": "https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html",
+    "phone": "06196 9080"
+  },
+  "target_groups": [
+    "Unternehmen",
+    "Selbstständige",
+    "Immobilieneigentümer",
+    "KMU"
+  ],
+  "life_situations": [
+    "unternehmen",
+    "arbeit_selbststaendig"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "iz_01",
+        "description": "Förderfähige Investition in Energieeffizienz oder erneuerbare Energien",
+        "condition": "investition_foerderfaehig = true",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "iz_02",
+        "description": "Einhaltung der technischen Mindestanforderungen",
+        "condition": "technische_anforderungen = true",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "special_conditions": [
+      "Förderung bis zu 35% der förderfähigen Kosten",
+      "Verschiedene Module: Gebäudehülle, Heizung, Elektrifizierung"
+    ]
+  },
+  "calculation": {
+    "method": "Prozentualer Zuschuss auf förderfähige Investitionskosten",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Zuschussberechnung je nach Modul",
+        "note": "Bis zu 35% der förderfähigen Kosten"
+      }
+    ],
+    "min_amount": 2000,
+    "max_amount": 0,
+    "typical_amount": "Bis zu 35% der förderfähigen Kosten",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Bis zu 35% der förderfähigen Investitionskosten",
+    "depends_on": [
+      "modul",
+      "investitionskosten",
+      "massnahme"
+    ]
+  },
+  "application": {
+    "method": "Online bei BAFA",
+    "url": "https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html",
+    "forms": [
+      "BAFA-Antrag"
+    ],
+    "required_documents": [
+      "Angebote und Rechnungen",
+      "Fachgutachten (je nach Modul)",
+      "Nachweis Eigentum/Nutzung"
+    ],
+    "processing_time": "6-12 Wochen",
+    "deadlines": {
+      "description": "Antrag vor Maßnahmenbeginn",
+      "note": "Keine nachträgliche Förderung möglich"
+    }
+  },
+  "legal_basis": [
+    "Bundesförderung für effiziente Gebäude (BEG)",
+    "CO2-Gebäudesanierungsprogramm"
+  ],
+  "compatible_with": [
+    "existenzgruenderkredit",
+    "digitalbonus"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "existenzgruenderkredit",
+    "digitalbonus"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der BAFA-Investitionszuschuss fördert Investitionen in Energieeffizienz und erneuerbare Energien in Gebäuden.",
+    "for_whom": "Immobilieneigentümer, Unternehmen und Selbstständige, die in Energieeffizienz investieren",
+    "requirements": "Förderfähige Investition, Einhaltung technischer Mindestanforderungen",
+    "how_much": "Bis zu 35% der förderfähigen Kosten",
+    "how_calculated": "Prozentualer Zuschuss auf die förderfähigen Investitionskosten",
+    "documents_needed": "Angebote, Rechnungen, Fachgutachten",
+    "where_to_apply": "Online bei BAFA",
+    "deadlines": "Antrag VOR Maßnahmenbeginn stellen",
+    "faq": [
+      {
+        "question": "Kann ich den Zuschuss nachträglich beantragen?",
+        "answer": "Nein, der Antrag muss vor Beginn der Maßnahme gestellt werden."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/effiziente_gebaeude_node.html",
+      "title": "Bundesförderung für effiziente Gebäude (BEG) - BAFA",
+      "organization": "BAFA",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2021-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Verschiedene Module mit unterschiedlichen Förderquoten",
+    "Antrag muss vor Maßnahmenbeginn gestellt werden"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

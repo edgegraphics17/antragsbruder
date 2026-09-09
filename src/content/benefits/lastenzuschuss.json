@@ -1,0 +1,185 @@
+{
+  "id": "lastenzuschuss",
+  "official_name": "Lastenzuschuss (Wohngeld für Eigentümer)",
+  "aliases": [
+    "Wohngeld für Eigentümer",
+    "Wohngeld Lastenzuschuss",
+    "Eigentümer-Wohngeld"
+  ],
+  "former_names": [],
+  "type": "housing_benefit",
+  "status": "verified",
+  "category": "Wohnen & Immobilien",
+  "subcategory": "Wohnkostenzuschuss für Eigentümer",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Wohngeldbehörde",
+    "authority": "Wohngeldbehörde der Gemeinde / Stadt",
+    "url": "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld-plus/wohngeld-plus_node.html"
+  },
+  "target_groups": [
+    "Selbstnutzende Eigentümer",
+    "Wohnungseigentümer",
+    "Hauseigentümer mit hohen Belastungen"
+  ],
+  "life_situations": [
+    "wohnkosten_hoch",
+    "eigentuemer",
+    "kreditbelastung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "lastenzuschuss_owner",
+        "description": "Selbstnutzender Eigentümer",
+        "condition": "Eigentümer muss die Immobilie selbst nutzen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "lastenzuschuss_burden",
+        "description": "Überhöhte Wohnkosten",
+        "condition": "Wohnkosten (Tilgung + Zinsen) stehen in einem unverhältnismäßigen Verhältnis zum Einkommen",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "lastenzuschuss_income",
+        "description": "Einkommensgrenze",
+        "condition": "Einkommen unter der Grenze für Haushaltsgröße und Mietstufe",
+        "required": true,
+        "category": "income"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "1-Personen-Haushalt, Mietstufe 4",
+        "threshold": 1541,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-01-01"
+      }
+    ],
+    "special_conditions": [
+      "Keine Vermögensausstattung zum Aufbau von Wohneigentum",
+      "Belastung = Kreditraten (Tilgung + Zinsen) + Betriebskosten",
+      "Höchstbeträge gelten wie beim Mietzuschuss"
+    ]
+  },
+  "calculation": {
+    "method": "Wie Mietzuschuss, aber Belastung statt Miete",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Belastung ermitteln",
+        "note": "Kreditraten + Betriebskosten"
+      },
+      {
+        "step": 2,
+        "description": "Einkommen berechnen",
+        "note": "Wie beim Mietzuschuss"
+      },
+      {
+        "step": 3,
+        "description": "Wohngeld berechnen",
+        "note": "Gleiche Formel wie Mietzuschuss"
+      }
+    ],
+    "min_amount": 10,
+    "max_amount": 1566,
+    "typical_amount": "ca. 200-400 Euro monatlich",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Lastenzuschuss wird wie Mietzuschuss berechnet, basierend auf Kreditbelastung statt Miete.",
+    "min_monthly": 10,
+    "max_monthly": 1566,
+    "depends_on": [
+      "Haushaltsgröße",
+      "Mietstufe",
+      "Bruttoeinkommen",
+      "Kreditbelastung"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich bei der Wohngeldbehörde",
+    "forms": [
+      "Wohngeldantrag für Eigentümer"
+    ],
+    "required_documents": [
+      "Grundbuchauszug",
+      "Kreditvertrag / Finanzierungsplan",
+      "Einkommensnachweise",
+      "Betriebskostenabrechnung",
+      "Personalausweis"
+    ],
+    "processing_time": "4-8 Wochen"
+  },
+  "legal_basis": [
+    "§ 3 WoGG (Wohngeldberechtigung)",
+    "§§ 10-11 WoGG (Belastung)",
+    "§ 12 WoGG (Höchstbeträge)"
+  ],
+  "compatible_with": [
+    "kindergeld",
+    "unterhaltsvorschuss"
+  ],
+  "incompatible_with": [
+    "buergergeld",
+    "grundsicherung"
+  ],
+  "related_benefits": [
+    "wohngeld",
+    "eigentumsfoerderung"
+  ],
+  "user_content": {
+    "short_explanation": "Lastenzuschuss ist Wohngeld für selbstnutzende Eigentümer, deren Kreditbelastung zu hoch für ihr Einkommen ist.",
+    "for_whom": "Haus- oder Wohnungseigentümer, die ihre Kreditraten kaum noch bezahlen können.",
+    "requirements": "Sie müssen die Immobilie selbst nutzen, ein geringes Einkommen haben und eine hohe Kreditbelastung.",
+    "how_much": "Ähnlich wie Mietzuschuss - abhängig von Einkommen, Haushaltsgröße und Mietstufe.",
+    "how_calculations": "Die Kreditbelastung (Tilgung + Zinsen) wird wie eine Miete behandelt.",
+    "documents_needed": "Grundbuchauszug, Kreditvertrag, Einkommensnachweise, Betriebskostenabrechnung.",
+    "where_to_apply": "Bei der Wohngeldbehörde Ihrer Gemeinde oder Stadt.",
+    "deadlines": "Wird ab Monat der Antragstellung gewährt.",
+    "faq": [
+      {
+        "question": "Bekomme ich Lastenzuschuss auch bei schlechter Bonität?",
+        "answer": "Ja, die Bonität spielt keine Rolle. Nur Einkommen und Belastung sind relevant."
+      },
+      {
+        "question": "Wie wird die Belastung berechnet?",
+        "answer": "Kreditraten (Tilgung + Zinsen) plus Betriebskosten."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld-plus/wohngeld-plus_node.html",
+      "title": "BMWSB Wohngeld für Mieter",
+      "organization": "Bundesministerium für Wohnen, Stadtentwicklung und Bauwesen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/wogg/",
+      "title": "Wohngeldgesetz (WoGG)",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Lastenzuschuss ist rechtlich identisch mit Mietzuschuss, nur für Eigentümer."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

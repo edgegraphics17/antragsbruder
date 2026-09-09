@@ -1,0 +1,174 @@
+{
+  "id": "berufliche_reha",
+  "official_name": "Berufliche Rehabilitation",
+  "aliases": ["Berufliche Rehabilitation", "Reha", "Leistungen zur Teilhabe am Arbeitsleben", "Berufliche Wiedereingliederung"],
+  "former_names": [],
+  "type": "employment_benefit",
+  "status": "verified",
+  "category": "Arbeit & Beschäftigung",
+  "subcategory": "Berufliche Rehabilitation",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Deutsche Rentenversicherung / Integrationsämter",
+    "authority": "Deutsche Rentenversicherung / Integrationsämter",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Reha/Berufliche-Reha/berufliche-reha",
+    "phone": "0800 1000 4800"
+  },
+  "target_groups": ["Menschen mit Behinderungen", "Menschen mit gesundheitlichen Einschränkungen", "Versicherte mit verminderter Erwerbsfähigkeit"],
+  "life_situations": ["arbeit_arbeitnehmer", "weiterbildung"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "reha-001",
+        "description": "Verminderte Erwerbsfähigkeit oder Behinderung",
+        "condition": "Die Erwerbsfähigkeit ist wegen Krankheit oder Behinderung vermindert oder es besteht die Gefahr einer Minderung",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "reha-002",
+        "description": "Berufliche Rehabilitation notwendig",
+        "condition": "Die berufliche Rehabilitation ist erforderlich, um die Erwerbsfähigkeit zu erhalten, zu verbessern oder wiederherzustellen",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "reha-003",
+        "description": "Versichertenstatus oder anerkannte Behinderung",
+        "condition": "Versicherte der gesetzlichen Rentenversicherung oder Personen mit anerkannter Behinderung (Schwerbehinderung)",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "reha-004",
+        "description": "Aussicht auf Erfolg",
+        "condition": "Die Maßnahme muss nach fachlicher Erkenntnis erfolgreich abgeschlossen werden können",
+        "required": true,
+        "category": "health"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Übergangsgeld während der Reha-Maßnahme (67% oder 60% der Berechnungsgrundlage)",
+      "Leistungen zur Teilhabe am Arbeitsleben nach SGB IX",
+      "Trägerübergreifende Rehabilitation nach § 14 SGB IX"
+    ]
+  },
+  "calculation": {
+    "method": "Individuelle Leistungen zur Sicherung und Wiederherstellung der Erwerbsfähigkeit",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Antrag auf berufliche Rehabilitation",
+        "note": "Stellen Sie den Antrag bei der zuständigen Stelle (Rentenversicherung oder Integrationsamt)"
+      },
+      {
+        "step": 2,
+        "description": "Beratung und Bedarfsfeststellung",
+        "note": "Die zuständige Stelle prüft die Förderfähigkeit"
+      },
+      {
+        "step": 3,
+        "description": "Durchführung der Maßnahme",
+        "note": "Lehrgangskosten, Übergangsgeld, Fahrtkosten, Hilfsmittel"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Übergangsgeld: 67% (mit Kind) oder 60% (ohne Kind) der Berechnungsgrundlage",
+    "frequency": "monthly",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Übergangsgeld während der Maßnahme; Übernahme der Kosten für die Reha-Maßnahme",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Berechnungsgrundlage", "Anzahl Kinder", "Art der Maßnahme"]
+  },
+  "application": {
+    "method": "Antrag bei der zuständigen Stelle (Deutsche Rentenversicherung oder Integrationsamt)",
+    "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Reha/Berufliche-Reha/berufliche-reha",
+    "forms": ["Antrag auf berufliche Rehabilitation"],
+    "required_documents": [
+      "Personalausweis",
+      "Ärztliche Befunde",
+      "Lebenslauf",
+      "Nachweise über Qualifikationen",
+      "Versicherungsverlauf"
+    ],
+    "processing_time": "Ca. 4-8 Wochen nach Antragstellung",
+    "deadlines": {
+      "description": "Antrag sollte so früh wie möglich gestellt werden",
+      "note": "Keine festen Fristen, aber frühe Antragstellung empfohlen"
+    }
+  },
+  "legal_basis": [
+    "§ 49 SGB IX (Leistungen zur Teilhabe am Arbeitsleben)",
+    "§ 14 SGB IX (Trägerübergreifende Rehabilitation)",
+    "§ 93 SGB IX (Berufliche Rehabilitation bei Rentenversicherung)",
+    "§ 26 SGB VI (Berufliche Rehabilitation bei Rentenversicherung)"
+  ],
+  "compatible_with": ["berufseinstieg", "weiterbildung"],
+  "incompatible_with": [],
+  "related_benefits": ["berufsunfähigkeitsversicherung_staat", "beschaeftigungsförderung"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die berufliche Rehabilitation hilft Ihnen, Ihre Erwerbsfähigkeit zu erhalten oder wiederherzustellen – mit Maßnahmen, Übergangsgeld und individueller Unterstützung.",
+    "for_whom": "Menschen mit Behinderungen oder gesundheitlichen Einschränkungen, deren Erwerbsfähigkeit vermindert ist.",
+    "requirements": "Ihre Erwerbsfähigkeit muss vermindert sein oder die Gefahr einer Minderung bestehen. Die Reha muss erforderlich sein, um Ihre Erwerbsfähigkeit zu sichern.",
+    "how_much": "Übergangsgeld: 67% (mit Kind) oder 60% (ohne Kind) der Berechnungsgrundlage. Die Kosten für die Maßnahme werden übernommen.",
+    "how_calculated": "Die zuständige Stelle prüft Ihre Situation und stellt einen Reha-Plan auf. Das Übergangsgeld wird an Ihre letzte Rente oder an den Durchschnittsverdienst angelehnt.",
+    "documents_needed": "Personalausweis, ärztliche Befunde, Lebenslauf, Nachweise über Qualifikationen, Versicherungsverlauf.",
+    "where_to_apply": "Antrag bei der Deutschen Rentenversicherung oder dem Integrationsamt.",
+    "deadlines": "Keine festen Fristen, aber frühe Antragstellung empfohlen.",
+    "faq": [
+      {
+        "question": "Wer ist zuständig für meine berufliche Reha?",
+        "answer": "Das hängt von Ihrer Situation ab. Zuständig können die Deutsche Rentenversicherung, die Agentur für Arbeit, die Krankenkasse oder das Integrationsamt sein."
+      },
+      {
+        "question": "Wie lange dauert die berufliche Reha?",
+        "answer": "Die Dauer hängt von der Art der Maßnahme ab. In der Regel zwischen 6 Monaten und 2 Jahren."
+      },
+      {
+        "question": "Bekomme ich während der Reha ein Übergangsgeld?",
+        "answer": "Ja, während der Reha-Maßnahme erhalten Sie ein Übergangsgeld in Höhe von 67% (mit Kind) oder 60% (ohne Kind) der Berechnungsgrundlage."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Reha/Berufliche-Reha/berufliche-reha",
+      "title": "Berufliche Rehabilitation - Deutsche Rentenversicherung",
+      "organization": "Deutsche Rentenversicherung",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_9/__49.html",
+      "title": "§ 49 SGB IX Leistungen zur Teilhabe am Arbeitsleben",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bih.de/",
+      "title": "Bundesverband für Integrationsämter und Hauptfürsorgestellen",
+      "organization": "BIH",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

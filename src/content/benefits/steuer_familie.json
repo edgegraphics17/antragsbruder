@@ -1,0 +1,173 @@
+{
+  "id": "steuer_familie",
+  "official_name": "Steuerliche Familienleistungen",
+  "aliases": ["Kinderfreibetrag", "Betreuungsfreibetrag", "Entlastungsbetrag Alleinerziehende", "Haushaltshilfe-Pauschbetrag", "Familienleistungsausgleich"],
+  "former_names": [],
+  "type": "tax_benefit",
+  "status": "verified",
+  "category": "Familie & Kinder",
+  "subcategory": "Steuerliche Familienleistungen",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Finanzamt",
+    "authority": "Bundesministerium der Finanzen",
+    "url": "https://www.bundesfinanzministerium.de/",
+    "phone": "030 18682-0"
+  },
+  "target_groups": ["Eltern", "Alleinerziehende", "Steuerpflichtige mit Kindern"],
+  "life_situations": ["familie", "alleinerziehend", "kind_bekommen"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "st-001",
+        "description": "Kinderfreibetrag: Anspruch für Eltern mit Kindern",
+        "condition": "Kind ist Einkünfte erzielend oder in Ausbildung",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "st-002",
+        "description": "Entlastungsbetrag für Alleinerziehende",
+        "condition": "Alleinstehendes Elternteil mit Kind im Haushalt",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "st-003",
+        "description": "Betreuungsfreibetrag: Aufwendungen für Betreuung",
+        "condition": "Kinder unter 14 Jahre oder behinderte Kinder",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "st-004",
+        "description": "Haushaltshilfe-Pauschbetrag",
+        "condition": "Aufwendungen für Haushaltshilfe oder Familienpflege",
+        "required": false,
+        "category": "household"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Kinderfreibetrag",
+        "threshold": 0,
+        "threshold_type": "yearly",
+        "free_allowance": 9756,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Kindergeld und Kinderfreibetrag werden verglichen (Vorteilsberechnung)",
+      "Kinderfreibetrag 2026: 6.828 Euro (3.414 Euro je Elternteil)",
+      "Betreuungsfreibetrag 2026: 4.878 Euro je Elternteil",
+      "Entlastungsbetrag Alleinerziehende 2026: 4.008 Euro (+ 240 Euro pro weiteres Kind)"
+    ]
+  },
+  "calculation": {
+    "method": "Vergleich von Kindergeld und Kinderfreibetrag, zusätzliche Freibeträge",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Kinderfreibetrag berechnen",
+        "formula": "3.414 Euro × 2 Elternteile = 6.828 Euro",
+        "value": "6.828 Euro (2026)"
+      },
+      {
+        "step": 2,
+        "description": "Betreuungsfreibetrag hinzufügen",
+        "formula": "4.878 Euro je Elternteil",
+        "value": "4.878 Euro"
+      },
+      {
+        "step": 3,
+        "description": "Entlastungsbetrag Alleinerziehende",
+        "formula": "4.008 Euro + 240 Euro pro weiteres Kind",
+        "value": "4.008 Euro"
+      },
+      {
+        "step": 4,
+        "description": "Vergleich mit Kindergeld",
+        "formula": "max(Kindergeld, Kinderfreibetrag-Effekt)",
+        "value": "Vorteilhafteste Variante"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": null,
+    "typical_amount": "Hängt vom Einkommen ab - Vergleich Kindergeld vs. Kinderfreibetrag",
+    "frequency": "yearly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Kinderfreibetrag: 6.828 Euro (2026), Betreuungsfreibetrag: 4.878 Euro, Entlastungsbetrag: 4.008 Euro",
+    "min_monthly": 0,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Einkommen", "Anzahl Kinder", "Familienstand"]
+  },
+  "application": {
+    "method": "Über die Einkommensteuererklärung",
+    "url": "https://www.bundesfinanzministerium.de/",
+    "forms": ["Einkommensteuererklärung", "Anlage Kind"],
+    "required_documents": ["Geburtsurkunden", "Einkommensnachweise", "Betreuungskosten-Nachweise"],
+    "processing_time": "2-6 Monate (Steuererklärung)",
+    "deadlines": {
+      "description": "Mit der Einkommensteuererklärung (31.07. des Folgejahres)",
+      "note": "Vergleichsrechnung automatisch durch Finanzamt"
+    }
+  },
+  "legal_basis": ["§ 32 EStG (Kinderfreibetrag)", "§ 33a EStG (Betreuungs- und Unterhaltsfreibetrag)", "§ 24b EStG (Entlastungsbetrag Alleinerziehende)", "§ 62 ff. EStG (Kindergeld)"],
+  "compatible_with": ["kindergeld", "ehegattensplitting"],
+  "incompatible_with": [],
+  "related_benefits": ["kindergeld", "ehegattensplitting", "unterhalt"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Steuerliche Familienleistungen entlasten Eltern durch Freibeträge und Vergleichsrechnungen.",
+    "for_whom": "Eltern mit Kindern, Alleinerziehende, Steuerpflichtige",
+    "requirements": "Einkommensteuererklärung, Kinder im Haushalt, Nachweis der Aufwendungen",
+    "how_much": "Kinderfreibetrag: 6.828 Euro, Betreuungsfreibetrag: 4.878 Euro, Entlastungsbetrag: 4.008 Euro",
+    "how_calculated": "Vergleich von Kindergeld und Kinderfreibetrag, zusätzliche Freibeträge",
+    "documents_needed": "Geburtsurkunden, Einkommensnachweise, Betreuungskosten-Nachweise",
+    "where_to_apply": "Über die Einkommensteuererklärung beim Finanzamt",
+    "deadlines": "Mit der Steuererklärung (31.07. des Folgejahres)",
+    "faq": [
+      {
+        "question": "Was ist besser: Kindergeld oder Kinderfreibetrag?",
+        "answer": "Das Finanzamt führt eine Vorteilsberechnung durch. Bei höherem Einkommen lohnt sich oft der Kinderfreibetrag"
+      },
+      {
+        "question": "Wer bekommt den Entlastungsbetrag für Alleinerziehende?",
+        "answer": "Alleinstehende Steuerpflichtige mit mindestens einem Kind im Haushalt"
+      },
+      {
+        "question": "Wie viel ist der Betreuungsfreibetrag?",
+        "answer": "4.878 Euro je Elternteil (2026) für Kinder unter 14 Jahre"
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bundesfinanzministerium.de/",
+      "title": "Bundesfinanzministerium",
+      "organization": "Bundesministerium der Finanzen",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/estg/__32.html",
+      "title": "§ 32 EStG - Kinderfreibetrag",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2026-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": ["Kinderfreibetrag 2026: 6.828 Euro (3.414 Euro je Elternteil)", "Betreuungsfreibetrag 2026: 4.878 Euro je Elternteil", "Entlastungsbetrag Alleinerziehende 2026: 4.008 Euro (+ 240 Euro pro weiteres Kind)", "Vergleichsrechnung automatisch durch Finanzamt"],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

@@ -1,0 +1,198 @@
+{
+  "id": "kommunale-energie-klimaprogramme",
+  "official_name": "Kommunale Energie- und Klimaprogramme",
+  "aliases": [
+    "Kommunale Förderung",
+    "Städtische Energieprogramme",
+    "Gemeindliche Klimaförderung",
+    "Kommunaler Förderfonds"
+  ],
+  "former_names": [
+    "Kommunales Energiemanagement",
+    "Städtische Förderprogramme"
+  ],
+  "type": "energy_subsidy",
+  "status": "partially_verified",
+  "category": "Energie & Klima",
+  "subcategory": "Kommunale Förderprogramme",
+  "level": "municipal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Kommunen / Städte / Landkreise",
+    "authority": "Stadtwerke, kommunale Förderstellen",
+    "url": "https://www.klimabuendnis.org/",
+    "phone": "variiert je nach Kommune"
+  },
+  "target_groups": [
+    "Bürgerinnen und Bürger",
+    "Hauseigentümer",
+    "Mieter",
+    "Unternehmen",
+    "Vereine",
+    "Wohnungseigentümergemeinschaften"
+  ],
+  "life_situations": [
+    "energiesanierung",
+    "photovoltaik",
+    "elektromobilitaet",
+    "klimaschutz"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "kom-001",
+        "description": "Wohnsitz oder Eigentum in der Kommune",
+        "condition": "Antragsteller wohnt oder besitzt Immobilie in der fördernden Kommune",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "kom-002",
+        "description": "Maßnahme wird in der Kommune durchgeführt",
+        "condition": "Die energetische Maßnahme wird im Gebiet der Kommune umgesetzt",
+        "required": true,
+        "category": "location"
+      },
+      {
+        "rule_id": "kom-003",
+        "description": "Kommunale Förder-Richtlinie eingehalten",
+        "condition": "Einhaltung der spezifischen kommunalen Förderrichtlinien",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Fördervarieren stark je nach Kommune",
+      "Oft Zuschuss für Beratung, Dämmung, Heizungstausch",
+      "Manche Kommunen bieten zusätzliche KfW/BAFA-Boni",
+      "Wärmeplanung: bis zu 100% Förderung für Kommunen"
+    ]
+  },
+  "calculation": {
+    "method": "Kommunale Förderung variiert stark. Oft als Zuschuss oder zinsgünstiger Kredit.",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Kommunale Förderung prüfen",
+        "formula": "Variiert je nach Stadt/Gemeinde",
+        "note": "Oft über Stadtwerke oder kommunale Förderstellen"
+      },
+      {
+        "step": 2,
+        "description": "Kombination mit Bundesförderung",
+        "formula": "Kommunale + BAFA + KfW möglich",
+        "note": "Oft bis zu 100% der Kosten förderbar"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Variiert stark: 500 € bis 30.000 € je nach Kommune",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Kommunale Förderung variiert stark je nach Stadt und Maßnahme. Oft 500 € bis 30.000 €.",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": [
+      "Kommune",
+      "Art der Maßnahme",
+      "Gebäudetyp"
+    ]
+  },
+  "application": {
+    "method": "Je nach Kommune: Online, schriftlich oder persönlich",
+    "url": "https://www.klimabuendnis.org/",
+    "forms": [
+      "Kommunale Antragsformulare"
+    ],
+    "required_documents": [
+      "Variiert je nach Kommune",
+      "Oft: Nachweis über Wohnsitz/Eigentum",
+      "Kostenangebote",
+      "Energieberatungsnachweis"
+    ],
+    "processing_time": "4-12 Wochen",
+    "deadlines": {
+      "description": "Fristen variieren je nach Kommune",
+      "note": "Vor Baubeginn klären"
+    }
+  },
+  "legal_basis": [
+    "Kommunale Selbstverwaltung (Art. 28 GG)",
+    "Landes-Gesetze zur Förderung erneuerbarer Energien",
+    "Kommunale Förder-Richtlinien",
+    "Sondervermögen Infrastruktur und Klimaneutralität"
+  ],
+  "compatible_with": [
+    "photovoltaik",
+    "energieeffizienz",
+    "gebaeude-daemmung",
+    "waermepumpe",
+    "elektromobilitaet"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "energieschuldenberatung",
+    "klimaschutz-beratung"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Viele Kommunen bieten eigene Förderprogramme für Energieeffizienz, erneuerbare Energien und Klimaschutz – oft zusätzlich zu den Bundesförderungen.",
+    "for_whom": "Bürgerinnen und Unternehmen mit Wohnsitz oder Immobilie in der fördernden Kommune.",
+    "requirements": "Die Voraussetzungen variieren stark je nach Kommune. Oft reicht der Wohnsitz oder das Eigentum in der Kommune.",
+    "how_much": "Die Fördersumme variiert stark: von 500 € für Beratung bis zu 30.000 € für umfassende Sanierung.",
+    "how_calculated": "Die Berechnung erfolgt nach den kommunalen Förder-Richtlinien. Oft als Prozentsatz der Kosten oder als Festbetrag.",
+    "documents_needed": "Wohnsnachweis, Kostenangebote, Energieberatungsnachweis.",
+    "where_to_apply": "Bei der jeweiligen Kommune, Stadtwerken oder kommunalen Förderstelle.",
+    "deadlines": "Fristen variieren je nach Kommune. Vor Baubeginn klären.",
+    "faq": [
+      {
+        "question": "Wie finde ich heraus, was meine Kommune fördert?",
+        "answer": "Informieren Sie sich bei Ihrer Stadtwerke, dem Bauamt oder der Klimaschutzstelle Ihrer Kommune."
+      },
+      {
+        "question": "Kann ich kommunale und Bundesförderung kombinieren?",
+        "answer": "Ja, in vielen Fällen ist eine Kombination möglich. Klären Sie dies vorab."
+      },
+      {
+        "question": "Gibt es eine Liste aller kommunalen Förderungen?",
+        "answer": "Nein, es gibt keine zentrale Liste. Die Klimaschutz- und Energieagentur Ihrer Region kann helfen."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.klimabuendnis.org/",
+      "title": "Klimabündnis – Kommunale Förderung",
+      "organization": "Klimabündnis",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.klimaschutz-kommune.de/",
+      "title": "Klimaschutz-Kommune",
+      "organization": "Klimaschutz-Kommune",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": null,
+  "confidence": "medium",
+  "verification_status": "partially_verified",
+  "notes": [
+    "Kommunale Förderungen variieren stark je nach Stadt/Gemeinde.",
+    "Keine zentrale Datenbank – Recherche bei der jeweiligen Kommune erforderlich.",
+    "Oft Kombination mit BAFA und KfW möglich."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

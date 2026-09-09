@@ -1,0 +1,207 @@
+{
+  "id": "junglandwirte-einkommensstuetzung",
+  "official_name": "Junglandwirte-Einkommensstützung (JES)",
+  "aliases": [
+    "Junglandwirte-Prämie",
+    "Ergänzende Einkommensstützung für Junglandwirte",
+    "Young Farmers Payment",
+    "Junglandwirte-Förderung"
+  ],
+  "former_names": [],
+  "type": "agriculture_subsidy",
+  "status": "verified",
+  "category": "Landwirtschaft & Ländlicher Raum",
+  "subcategory": "Junglandwirte-Förderung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium für Landwirtschaft, Ernährung und Heimat (BMLEH)",
+    "authority": "Landwirtschaftskammern / Zahlstellen",
+    "url": "https://www.landwirtschaftskammer.de/foerderung/direktzahlungen/junglandwirte.htm",
+    "phone": "0228 6845-0"
+  },
+  "target_groups": [
+    "Junglandwirte und Junglandwirtinnen",
+    "Landwirte unter 40 Jahren",
+    "Erstmalig niedergelassene Landwirte",
+    "Hofnachfolger"
+  ],
+  "life_situations": [
+    "landwirtschaft",
+    "ländlicher_raum"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "jl-001",
+        "description": "Altersgrenze bei Antragstellung",
+        "condition": "Höchstens 40 Jahre alt zum Zeitpunkt der ersten Antragstellung",
+        "required": true,
+        "category": "personal"
+      },
+      {
+        "rule_id": "jl-002",
+        "description": "Betriebsleitung",
+        "condition": "Antragsteller muss Betriebsleiter sein",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "jl-003",
+        "description": "Förderfähige Fläche",
+        "condition": "Maximal 120 Hektar förderfähige Fläche",
+        "required": true,
+        "category": "asset"
+      },
+      {
+        "rule_id": "jl-004",
+        "description": "Förderdauer",
+        "condition": "Maximal 5 Jahre ab dem Jahr der erstmaligen Beantragung",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "jl-005",
+        "description": "Einmalige Beantragung",
+        "condition": "Jede natürliche Person kann diese Prämie nur einmal erhalten",
+        "required": true,
+        "category": "personal"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Förderfähige Fläche",
+        "threshold": 120,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "region": "all",
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Mindestens 3 % der EU-Direktzahlungen für Junglandwirte reserviert",
+      "Kombinierbar mit Investitionsförderung (AFP)",
+      "Kombinierbar mit Existenzgründungsförderung der Länder"
+    ]
+  },
+  "calculation": {
+    "method": "Pauschaler Betrag pro Hektar förderfähiger Fläche",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Ermittlung der förderfähigen Fläche",
+        "formula": "Förderfähige Fläche = min(tatsächliche Fläche, 120 ha)",
+        "note": "Maximal 120 ha"
+      },
+      {
+        "step": 2,
+        "description": "Berechnung der Prämie",
+        "formula": "Prämie = Förderfähige Fläche × Betrag pro ha",
+        "note": "Voraussichtlich ca. 134 Euro/ha"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": 16080,
+    "typical_amount": "ca. 134 Euro je Hektar, maximal 120 ha",
+    "frequency": "yearly",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Jährliche Prämie von ca. 134 Euro pro Hektar, maximal für 120 Hektar",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": [
+      "Förderfähige Fläche",
+      "Betrag pro Hektar (jährlich festgelegt)"
+    ]
+  },
+  "application": {
+    "method": "Über die Flächenantragstellung bei der zuständigen Zahlstelle",
+    "url": "https://www.landwirtschaftskammer.de/foerderung/direktzahlungen/junglandwirte.htm",
+    "forms": [
+      "Flächenantrag (Junglandwirte-Antrag)",
+      "Nachweis der Betriebsleitung"
+    ],
+    "required_documents": [
+      "Flächenantrag mit Junglandwirte-Kennzeichnung",
+      "Altsnachweis (Personalausweis/Geburtsurkunde)",
+      "Nachweis der Betriebsleitung",
+      "Falls zutreffend: Nachweis der landwirtschaftlichen Berufsausbildung"
+    ],
+    "processing_time": "Innerhalb des laufenden Jahres",
+    "deadlines": {
+      "description": "Jährliche Antragsfrist für Flächenanträge",
+      "date": "15. Mai jedes Jahres",
+      "note": "Einreichung bei der zuständigen Zahlstelle"
+    }
+  },
+  "legal_basis": [
+    "Verordnung (EU) Nr. 1307/2013 (Direktzahlungen)",
+    "GAP-Strategieplan Deutschland 2023-2027",
+    "Verordnung (EU) 2022/2105 über die GAP"
+  ],
+  "compatible_with": [
+    "landwirtschaft-investitionen",
+    "existenzgruendung-landwirtschaft",
+    "biologischer-bau-foerderung",
+    "tierhaltung-umbau"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "landwirtschaft-investitionen",
+    "existenzgruendung-landwirtschaft",
+    "betriebsberatung"
+  ],
+  "user_content": {
+    "short_explanation": "Die Junglandwirte-Einkommensstützung ist eine jährliche Prämie für Landwirte unter 40 Jahren, die sich erstmals niedergelassen haben.",
+    "for_whom": "Junge Landwirte und Landwirtinnen bis 40 Jahre, die ihren Betrieb erstmals leiten.",
+    "requirements": "Maximal 40 Jahre alt, Betriebsleiter, maximal 120 ha förderfähige Fläche, einmalige Beantragung.",
+    "how_much": "Ca. 134 Euro pro Hektar, maximal für 120 Hektar (ca. 16.080 Euro jährlich).",
+    "how_calculated": "Die Prämie wird pauschal pro Hektar berechnet. Die gen Höhe wird jährlich festgelegt.",
+    "documents_needed": "Flächenantrag, Altsnachweis, Nachweis der Betriebsleitung.",
+    "where_to_apply": "Bei der zuständigen Zahlstelle (oft Landwirtschaftskammer) im Rahmen der Flächenantragstellung.",
+    "deadlines": "Jährliche Antragsfrist: 15. Mai.",
+    "faq": [
+      {
+        "question": "Kann ich die Junglandwirte-Prämie mit anderen Förderungen kombinieren?",
+        "answer": "Ja, die Prämie ist mit der Investitionsförderung (AFP), Existenzgründungsförderung und Biobau-Förderung kombinierbar."
+      },
+      {
+        "question": "Wie lange kann ich die Prämie erhalten?",
+        "answer": "Maximal 5 Jahre ab dem Jahr der erstmaligen Beantragung."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.landwirtschaftskammer.de/foerderung/direktzahlungen/junglandwirte.htm",
+      "title": "Einkommensstützung für Junglandwirte",
+      "organization": "Landwirtschaftskammer",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    },
+    {
+      "url": "https://agriculture.ec.europa.eu/common-agricultural-policy/income-support/young-farmers_de",
+      "title": "Junglandwirte - EU-Landwirtschaft",
+      "organization": "Europäische Kommission",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2023-01-01",
+  "valid_until": "2027-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "EU-Länder müssen mindestens 3 % der Direktzahlungen für Junglandwirte bereitstellen",
+    "Betrag pro Hektar wird jährlich festgelegt (2023: ca. 134 Euro/ha)",
+    "Kombination mit nationaler Existenzgründungsförderung möglich"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

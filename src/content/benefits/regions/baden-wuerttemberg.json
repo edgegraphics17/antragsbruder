@@ -1,0 +1,78 @@
+{
+  "state": "Baden-Württemberg",
+  "state_code": "BW",
+  "benefits": [
+    {
+      "id": "bw-lbank-wohneigentum-z15",
+      "official_name": "L-Bank Förderdarlehen Z15 – Wohneigentum",
+      "description": "Zinsgünstiges Darlehen bis 200.000 Euro pro Wohneinheit für den Bau, Kauf oder die selbstgenutzte Immobilie. Gefördert werden Neubau, Ersterwerb, Ersatzneubau, Erweiterung und Umwandlung von Miet- in Selbstnutzung. Teil der bayerischen Wohneigentumsförderung via L-Bank (Staatsbank für Baden-Württemberg).",
+      "type": "housing_benefit",
+      "provider": "L-Bank Baden-Württemberg",
+      "url": "https://www.l-bank.de/produkte",
+      "status": "verified"
+    },
+    {
+      "id": "bw-lbank-gruendung",
+      "official_name": "L-Bank Gründungsfinanzierung",
+      "description": "Förderdarlehen für Existenzgründer in Baden-Württemberg. Zinsvergünstigte Kredite für Investitionen und Betriebsmittel bei Neugründungen. Antrag über die Hausbank.",
+      "type": "business_subsidy",
+      "provider": "L-Bank Baden-Württemberg",
+      "url": "https://www.l-bank.de/produkte",
+      "status": "verified"
+    },
+    {
+      "id": "bw-lbank-digitalisierungspraemie",
+      "official_name": "Digitalisierungsprämie Plus Baden-Württemberg",
+      "description": "Zuschussvariante der L-Bank für Digitalisierungsvorhaben von KMU in Baden-Württemberg. Förderung von Software, IT-Infrastruktur und digitalen Geschäftsprozessen.",
+      "type": "business_subsidy",
+      "provider": "L-Bank Baden-Württemberg",
+      "url": "https://wm.baden-wuerttemberg.de/de/service/foerderprogramme",
+      "status": "verified"
+    },
+    {
+      "id": "bw-klimaschutz-plus",
+      "official_name": "Klimaschutz-Plus für Kommunen",
+      "description": "Förderprogramm des Umweltministeriums Baden-Württemberg für kommunale Klimaschutzmaßnahmen. Teil 1: Gebäudesanierung (seit 21.07.2025), Teil 2: Strategische Maßnahmen (ab 01.02.2026).",
+      "type": "energy_subsidy",
+      "provider": "Ministerium für Umwelt, Klima und Energiewirtschaft Baden-Württemberg",
+      "url": "https://um.baden-wuerttemberg.de/de/presse-service/foerderprogramme/klima/klimaschutz-plus",
+      "status": "verified"
+    },
+    {
+      "id": "bw-foerderprogramm-elektrolyseure",
+      "official_name": "Förderprogramm Elektrolyseure (ELY)",
+      "description": "Landesförderprogramm für regionale Wasserstofferzeugung. Zweiter Förderaufruf 2026 mit über 50 Millionen Euro. Stichtag für Anträge: 18. Mai 2026.",
+      "type": "energy_subsidy",
+      "provider": "Ministerium für Umwelt, Klima und Energiewirtschaft Baden-Württemberg",
+      "url": "https://um.baden-wuerttemberg.de/de/presse-service/foerderprogramme/energie/foerderprogramm-elektrolyseure",
+      "status": "verified"
+    },
+    {
+      "id": "bw-staedtebaufoerderung",
+      "official_name": "Städtebauförderung Baden-Württemberg",
+      "description": "Förderung für Städtebau- und Entwicklungsmaßnahmen in Kommunen. Gefördert werden Sanierung, Aufbau und Entwicklung städtischer Gebiete.",
+      "type": "business_subsidy",
+      "provider": "Ministerium für Landesentwicklung und Wohnen Baden-Württemberg",
+      "url": "https://mlw.baden-wuerttemberg.de/de/service/foerderprogramme/liste-foerderprogramme-mlw/staedtebaufoerderung",
+      "status": "verified"
+    },
+    {
+      "id": "bw-azubicard",
+      "official_name": "AzubiCardBW 2026",
+      "description": "Förderung der Ausbildung in Baden-Württemberg. Karte für Auszubildende mit Vergünstigungen und Zuschüssen.",
+      "type": "education_benefit",
+      "provider": "Ministerium für Wirtschaft, Arbeit und Energie Baden-Württemberg",
+      "url": "https://wm.baden-wuerttemberg.de/de/service/foerderprogramme",
+      "status": "verified"
+    },
+    {
+      "id": "bw-buergschaftsprogramme",
+      "official_name": "Bürgschaftsprogramme Baden-Württemberg",
+      "description": "Bürgschaften für Investitionen, Betriebsübernahmen, Konsolidierungsmaßnahmen und Kooperationsvorhaben. Für Gründung und Nachfolge.",
+      "type": "business_subsidy",
+      "provider": "L-Bank Baden-Württemberg",
+      "url": "https://wm.baden-wuerttemberg.de/de/service/foerderprogramme-und-aufrufe/liste-foerderprogramme/buergschaftsprogramme",
+      "status": "verified"
+    }
+  ]
+}

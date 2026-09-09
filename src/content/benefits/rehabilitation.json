@@ -1,0 +1,186 @@
+{
+  "id": "rehabilitation",
+  "official_name": "Rehabilitation",
+  "aliases": [
+    "Medizinische Rehabilitation",
+    "Berufliche Rehabilitation",
+    "Reha-Leistungen",
+    "Rehabilitation SGB IX",
+    "Medizinische Reha",
+    "Berufliche Reha"
+  ],
+  "former_names": [],
+  "type": "health_benefit",
+  "status": "verified",
+  "category": "Gesundheit",
+  "subcategory": "Rehabilitation",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Verschiedene Rehabilitationsträger",
+    "authority": "Rentenversicherung, Krankenkasse, Agentur für Arbeit, Unfallversicherung, Sozialhilfe",
+    "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Rehabilitation/rehabilitation.html",
+    "phone": "Kontakt über zuständigen Rehabilitationsträger"
+  },
+  "target_groups": [
+    "Menschen mit gesundheitlichen Beeinträchtigungen",
+    "Menschen mit Behinderung",
+    "Menschen, die ihre Arbeitsfähigkeit erhalten oder wiederherstellen müssen"
+  ],
+  "life_situations": [
+    "behinderung",
+    "gesundheit",
+    "kann_nicht_arbeiten"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "elg-re-01",
+        "description": "Gesundheitliche Beeinträchtigung",
+        "condition": "Die Person hat gesundheitliche Beeinträchtigungen, die eine Rehabilitation erforderlich machen",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-re-02",
+        "description": "Rehabilitationsbedürftigkeit",
+        "condition": "Die Rehabilitation ist erforderlich, um die Gesundheit oder Arbeitsfähigkeit zu erhalten oder wiederherzustellen",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-re-03",
+        "description": "Versicherungsverhältnis",
+        "condition": "Die Person ist versichert bei einem Rehabilitationsträger (Rentenversicherung, Krankenkasse, Agentur für Arbeit, Unfallversicherung)",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Medizinische Rehabilitation: Krankenkasse oder Rentenversicherung",
+      "Berufliche Rehabilitation: Agentur für Arbeit oder Rentenversicherung",
+      "Übergangsgeld während der beruflichen Rehabilitation",
+      "Unfallversicherung: bei Arbeitsunfällen"
+    ]
+  },
+  "calculation": {
+    "method": "Kostenerstattung für benötigte Rehabilitationsleistungen nach individuellem Bedarf",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Rehabilitationsbedarf ermitteln",
+        "value": "Individuelle Bedarfsermittlung"
+      },
+      {
+        "step": 2,
+        "description": "Zuständigen Rehabilitationsträger ermitteln",
+        "value": "Reha-Check"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "Abhängig vom individuellen Bedarf",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Kostenerstattung für benötigte Rehabilitationsleistungen",
+    "depends_on": [
+      "Individueller Bedarf",
+      "Art der Rehabilitation"
+    ]
+  },
+  "application": {
+    "method": "Antrag beim zuständigen Rehabilitationsträger",
+    "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Rehabilitation/rehabilitation.html",
+    "forms": [
+      "Antrag auf Rehabilitation"
+    ],
+    "required_documents": [
+      "Antrag auf Rehabilitation",
+      "Ärztliche Gutachten",
+      "Versicherungsnachweise"
+    ],
+    "processing_time": "3-6 Monate",
+    "deadlines": {
+      "description": "Antrag vor Beginn der Rehabilitation stellen",
+      "note": "Keine feste Frist, aber rückwirkend maximal 1 Monat vor Antragstellung"
+    }
+  },
+  "legal_basis": [
+    "§§ 1-10 SGB IX (Grundlagen der Rehabilitation)",
+    "§§ 11-20 SGB IX (Leistungen zur medizinischen Rehabilitation)",
+    "§§ 21-30 SGB IX (Leistungen zur beruflichen Rehabilitation)"
+  ],
+  "compatible_with": [
+    "schwerbehinderung",
+    "assistenz",
+    "hilfsmittel",
+    "teilhabe"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "schwerbehinderung",
+    "assistenz",
+    "hilfsmittel",
+    "teilhabe"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Rehabilitation umfasst medizinische und berufliche Maßnahmen, um gesundheitliche Beeinträchtigungen zu überwinden oder zu verbessern.",
+    "for_whom": "Menschen mit gesundheitlichen Beeinträchtigungen, die eine Rehabilitation benötigen.",
+    "requirements": "Gesundheitliche Beeinträchtigung, Rehabilitationsbedürftigkeit, Versicherungsverhältnis.",
+    "how_much": "Abhängig vom individuellen Bedarf an Rehabilitation.",
+    "how_calculated": "Kostenerstattung für benötigte Rehabilitationsleistungen.",
+    "documents_needed": "Antrag auf Rehabilitation, ärztliche Gutachten, Versicherungsnachweise.",
+    "where_to_apply": "Beim zuständigen Rehabilitationsträger (Rentenversicherung, Krankenkasse, Agentur für Arbeit, Unfallversicherung).",
+    "deadlines": "Keine feste Frist. Antrag vor Beginn der Rehabilitation stellen.",
+    "faq": [
+      {
+        "question": "Was ist der Unterschied zwischen medizinischer und beruflicher Rehabilitation?",
+        "answer": "Medizinische Rehabilitation dient der Wiederherstellung der Gesundheit, berufliche Rehabilitation der Wiederherstellung der Arbeitsfähigkeit."
+      },
+      {
+        "question": "Bekomme ich während der Rehabilitation ein Ersatzeinkommen?",
+        "answer": "Ja, während der beruflichen Rehabilitation erhalten Sie Übergangsgeld."
+      },
+      {
+        "question": "Wer ist für meine Rehabilitation zuständig?",
+        "answer": "Die Zuständigkeit hängt von Ihrem Versicherungsverhältnis ab. Nutzen Sie den Reha-Check der Agentur für Arbeit."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_9_2018/",
+      "title": "SGB IX - Rehabilitation und Teilhabe von Menschen mit Behinderungen",
+      "organization": "Gesetze im Internet",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bmas.de/DE/Soziales/Teilhabe-und-Inklusion/Rehabilitation/rehabilitation.html",
+      "title": "Rehabilitation - BMAS",
+      "organization": "Bundesministerium für Arbeit und Soziales",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Medizinische Rehabilitation: Krankenkasse oder Rentenversicherung",
+    "Berufliche Rehabilitation: Agentur für Arbeit oder Rentenversicherung",
+    "Übergangsgeld während der beruflichen Rehabilitation",
+    "Unfallversicherung: bei Arbeitsunfällen"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

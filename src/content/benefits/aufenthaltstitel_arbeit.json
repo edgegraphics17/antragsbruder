@@ -1,0 +1,206 @@
+{
+  "id": "aufenthaltstitel_arbeit",
+  "official_name": "Aufenthaltstitel zum Zweck der Arbeit",
+  "aliases": ["Arbeitsvisum", "Fachkräftevisum", "§ 18 AufenthG", "Fachkräfteeinwanderungsgesetz", "Blue Card EU", "IT-Spezialisten", "Ausbildungsvisum"],
+  "former_names": [],
+  "type": "employment_benefit",
+  "status": "verified",
+  "category": "Integration & Aufenthalt",
+  "subcategory": "Aufenthaltstitel zur Erwerbstätigkeit",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Ausländerbehörden / Auslandsvertretungen",
+    "authority": "Landesbehörden für Ausländerangelegenheiten / Auswärtiges Amt",
+    "url": "https://www.bamf.de/DE/Themen/ArbeitenUndLeben/arbeitenundleben-node.html",
+    "phone": "030 1815-1111"
+  },
+  "target_groups": [
+    "Fachkräfte mit anerkannter Qualifikation",
+    "Fachkräfte mit Berufserfahrung (§ 18c AufenthG)",
+    "IT-Spezialisten (§ 19c Abs. 2 AufenthG)",
+    "Hochqualifizierte (§ 19b AufenthG – EU Blue Card)",
+    "Auszubildende (§ 18a AufenthG)",
+    "Wissenschaftler und Forscher (§ 20 AufenthG)",
+    "Selbstständige und Gründer (§ 21 AufenthG)"
+  ],
+  "life_situations": ["neu_in_deutschland", "migration", "eu_bürger"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "ata-001",
+        "description": "Fachkräfte mit Berufsausbildung (§ 18a AufenthG)",
+        "condition": "Anerkannte Berufsqualifikation; konkretes Arbeitsplatzangebot; Zustimmung der BA",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ata-002",
+        "description": "Fachkräfte mit Hochschulabschluss (§ 18b AufenthG)",
+        "condition": "Anerkannter Hochschulabschluss; konkretes Arbeitsplatzangebot; ggf. Zustimmung der BA",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ata-003",
+        "description": "EU Blue Card (§ 19b AufenthG)",
+        "condition": "Hochschulabschluss; Arbeitsvertrag mit Bruttogehalt ≥ 43.800€ (2024) oder Mangelberuf ≥ 39.682€",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "ata-004",
+        "description": "IT-Spezialisten (§ 19c Abs. 2 AufenthG)",
+        "condition": "IT-Erfahrung (mindestens 3 Jahre in den letzten 7 Jahren); Arbeitsvertrag; Gehalt ≥ 49.560€",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "ata-005",
+        "description": "Ausbildungsplatzsuche (§ 20 AufenthG)",
+        "condition": "Ausbildungsplatzsuche; Qualifikation; Sprachkenntnisse B2; finanzielle Absicherung",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "EU Blue Card",
+        "threshold": 43800,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      },
+      {
+        "applies_to": "IT-Spezialisten",
+        "threshold": 49560,
+        "threshold_type": "yearly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Fachkräfteeinwanderungsgesetz (FEG) seit 1. März 2020 in Kraft",
+      "Erleichterungen für Fachkräfte mit anerkannter Qualifikation",
+      "Keine Vorrangprüfung bei Mangelberufen",
+      "EU Blue Card: erleichterter Nachzug der Familie",
+      "Aufenthaltstitel wird für 4 Jahre erteilt (Blue Card: 4 Jahre oder Laufzeit des Arbeitsvertrags + 3 Monate)"
+    ]
+  },
+  "calculation": {
+    "method": "Kein Geldbetrag; Aufenthaltstitel zur Erwerbstätigkeit",
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Keine Zahlung; Verwaltungsgebühr ca. 100€",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Aufenthaltstitel zur Erwerbstätigkeit; keine regelmäßige Zahlung",
+    "one_time": 100,
+    "depends_on": ["Art des Aufenthaltstitels", "Qualifikation", "Arbeitsvertrag"]
+  },
+  "application": {
+    "method": "Persönlich bei der Auslandsvertretung (Visum) oder Ausländerbehörde (Inland)",
+    "url": "https://www.bamf.de/DE/Themen/ArbeitenUndLeben/arbeitenundleben-node.html",
+    "forms": ["Antrag auf Erteilung eines Aufenthaltstitels"],
+    "required_documents": [
+      "Reisepass",
+      "Lebenslauf",
+      "Qualifikationsnachweise (Anerkennung)",
+      "Arbeitsvertrag oder Jobangebot",
+      "ggf. Zustimmung der Bundesagentur für Arbeit",
+      "Biometrisches Foto",
+      "Krankenversicherungsnachweis"
+    ],
+    "processing_time": "4-12 Wochen",
+    "deadlines": {
+      "description": "Vor Arbeitsbeginn beantragen",
+      "note": "Visumverfahren: möglichst frühzeitig, da Wartezeiten lang sein können"
+    }
+  },
+  "legal_basis": [
+    "§ 18 AufenthG – Grundsatz der Fachkräfteeinwanderung",
+    "§ 18a AufenthG – Fachkräfte mit Berufsausbildung",
+    "§ 18b AufenthG – Fachkräfte mit Hochschulabschluss",
+    "§ 18c AufenthG – Fachkräfte mit Berufserfahrung",
+    "§ 19b AufenthG – EU Blue Card",
+    "§ 19c AufenthG – ICT-Karte und IT-Spezialisten",
+    "§ 20 AufenthG – Arbeitsplatzsuche",
+    "§ 21 AufenthG – Selbstständige und Gründer",
+    "Fachkräfteeinwanderungsgesetz (FEG)"
+  ],
+  "compatible_with": [
+    "arbeitsmarktzugang",
+    "anerkennung_abschluss",
+    "familiezusammenführung",
+    "integrationskurs"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "arbeitsmarktzugang",
+    "anerkennung_abschluss",
+    "familiezusammenführung"
+  ],
+  "user_content": {
+    "short_explanation": "Der Aufenthaltstitel zum Zweck der Arbeit ermöglicht es Fachkräften, in Deutschland zu arbeiten und zu leben. Es gibt verschiedene Kategorien: Fachkräfte, EU Blue Card, IT-Spezialisten, Auszubildende.",
+    "for_whom": "Für Fachkräfte mit anerkannter Qualifikation, Hochschulabsolventen, IT-Spezialisten, Auszubildende und Gründer, die in Deutschland arbeiten möchten.",
+    "requirements": "Anerkannte Qualifikation; konkretes Arbeitsplatzangebot; ggf. Zustimmung der Bundesagentur für Arbeit; Gehaltsschwelle (Blue Card).",
+    "how_much": "Keine regelmäßige Zahlung. Verwaltungsgebühr: ca. 100€.",
+    "how_calculed": "Die Ausländerbehörde prüft die Voraussetzungen und erteilt den Aufenthaltstitel. Die Bundesagentur für Arbeit stimmt der Beschäftigung zu.",
+    "documents_needed": "Reisepass, Lebenslauf, Qualifikationsnachweise, Arbeitsvertrag, ggf. Zustimmung der BA, biometrisches Foto, Krankenversicherungsnachweis.",
+    "where_to_apply": "Deutsche Auslandsvertretung im Heimatland (Visum) oder Ausländerbehörde in Deutschland (Inland).",
+    "deadlines": "Vor Arbeitsbeginn beantragen. Visumverfahren: möglichst frühzeitig wegen langer Wartezeiten.",
+    "faq": [
+      {
+        "question": "Was ist der Unterschied zwischen Fachkräftevisum und EU Blue Card?",
+        "answer": "Die EU Blue Card ist für Hochschulabsolventen mit einem Mindestgehalt (43.800€/Jahr). Das Fachkräftevisum gilt für alle Fachkräfte mit anerkannter Qualifikation."
+      },
+      {
+        "question": "Brauche ich eine Anerkennung meines Abschlusses?",
+        "answer": "Ja, für die meisten Aufenthaltstitel ist eine Anerkennung der ausländischen Qualifikation erforderlich. Ohne Anerkennung ist nur die Arbeit als ungelernter Helfer möglich."
+      },
+      {
+        "question": "Kann ich meine Familie nachholen?",
+        "answer": "Ja, mit einem Aufenthaltstitel zur Erwerbstätigkeit haben Sie Anspruch auf Familiennachzug (Ehepartner, Kinder)."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bamf.de/DE/Themen/ArbeitenUndLeben/arbeitenundleben-node.html",
+      "title": "Arbeiten und Leben in Deutschland – BAMF",
+      "organization": "Bundesamt für Migration und Flüchtlinge (BAMF)",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__18.html",
+      "title": "§ 18 AufenthG – Grundsatz der Fachkräfteeinwanderung",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__19b.html",
+      "title": "§ 19b AufenthG – EU Blue Card",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2020-03-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Fachkräfteeinwanderungsgesetz (FEG) seit 1. März 2020 in Kraft",
+    "EU Blue Card: Gehaltsschwelle 2024: 43.800€ (Mangelberufe: 39.682€)",
+    "IT-Spezialisten: Gehaltsschwelle 49.560€ (2024)",
+    "Erleichterungen für Fachkräfte mit anerkannter Qualifikation"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

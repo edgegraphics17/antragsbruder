@@ -1,0 +1,232 @@
+{
+  "id": "landwirtschaft-investitionen",
+  "official_name": "Investitionsförderung Landwirtschaft (AFP/EIF)",
+  "aliases": [
+    "Agrarinvestitionsförderungsprogramm",
+    "EIF - Einzelbetriebliche Investitionsförderung",
+    "DLG-Förderung",
+    "KfW Landwirtschaft",
+    "Investitionsprogramm Landwirtschaft"
+  ],
+  "former_names": [
+    "DLG - Landwirtschaftliche Entwicklungsgemeinschaft"
+  ],
+  "type": "agriculture_subsidy",
+  "status": "verified",
+  "category": "Landwirtschaft & Ländlicher Raum",
+  "subcategory": "Investitionsförderung",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesministerium für Landwirtschaft, Ernährung und Heimat (BMLEH)",
+    "authority": "Landwirtschaftskammern / Rentenbank",
+    "url": "https://www.bmleh.de/DE/themen/landwirtschaft/klimaschutz/investitionsprogramm-landwirtschaft.html",
+    "phone": "0228 6845-0"
+  },
+  "target_groups": [
+    "Landwirte und Landwirtinnen",
+    "Junglandwirte",
+    "Betriebe in der Tierhaltung",
+    "Betriebe im Pflanzenbau",
+    "Forstbetriebe"
+  ],
+  "life_situations": [
+    "landwirtschaft",
+    "forstwirtschaft",
+    "ländlicher_raum"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "lw-inv-001",
+        "description": "Landwirtschaftlicher Betrieb mit ordnungsgemäßer Buchführung",
+        "condition": "Mindestens zwei Buchabschlüsse (BMEL-Abschluss) müssen vorliegen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "lw-inv-002",
+        "description": "Mindestinvestitionsvolumen",
+        "condition": "Förderfähige Investitionen von mindestens 20.000 Euro",
+        "required": true,
+        "category": "income"
+      },
+      {
+        "rule_id": "lw-inv-003",
+        "description": "Wirtschaftlichkeit und Finanzierbarkeit",
+        "condition": "Investitionskonzept mit Nachweis der Wirtschaftlichkeit erforderlich",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "lw-inv-004",
+        "description": "Eigenkapitalbildung",
+        "condition": "Nachweis angemessener Eigenkapitalbildung",
+        "required": true,
+        "category": "asset"
+      },
+      {
+        "rule_id": "lw-inv-005",
+        "description": "Buchführungsauflage",
+        "condition": "Buchführung für mindestens 5 Jahre ab Abschluss der Maßnahme",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Gesamtbetrieb",
+        "threshold": 1200000,
+        "threshold_type": "yearly",
+        "free_allowance": 20000,
+        "region": "all",
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Junglandwirte (unter 41 Jahre) erhalten zusätzlichen Zuschuss",
+      "Investitionen in Tierhaltung bis 25 % Förderung (Premiumförderung)",
+      "Umwelt- und Klimaschutzmaßnahmen: Verbesserung um mindestens 20 %"
+    ]
+  },
+  "calculation": {
+    "method": "Prozentsatz der förderfähigen Ausgaben, gestaffelt nach Art der Investition",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Ermittlung der förderfähigen Ausgaben",
+        "formula": "Förderfähige Ausgaben = Gesamtkosten - nicht förderfähige Posten",
+        "note": "Mindestens 20.000 Euro"
+      },
+      {
+        "step": 2,
+        "description": "Anwendung des Fördersatzes",
+        "formula": "Zuschuss = Förderfähige Ausgaben × Fördersatz",
+        "note": "20-50 % je nach Maßnahme"
+      },
+      {
+        "step": 3,
+        "description": "Berücksichtigung von Zuschlägen",
+        "formula": "Gesamtzuschuss = Basiszuschuss + Junglandwirtenzuschlag + Biozuschlag",
+        "note": "Junglandwirte: +10 % (max. 20.000 Euro)"
+      }
+    ],
+    "min_amount": 4000,
+    "max_amount": 600000,
+    "typical_amount": "20-50 % der förderfähigen Ausgaben",
+    "frequency": "once",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Zuschuss von 20-50 % der förderfähigen Ausgaben, je nach Art der Investition und Zielgruppe",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": 600000,
+    "depends_on": [
+      "Art der Investition",
+      "Betriebsgröße",
+      "Zielgruppe",
+      "Bundesland"
+    ]
+  },
+  "application": {
+    "method": "Schriftlich über Landwirtschaftskammer oder Förderbank",
+    "url": "https://www.landwirtschaftskammer.de/foerderung/laendlicherraum/investition/afp-2023.htm",
+    "forms": [
+      "AFP-Antrag",
+      "Investitionskonzept",
+      "Buchführungsnachweise"
+    ],
+    "required_documents": [
+      "Vollständig ausgefüllter Antrag",
+      "Investitionskonzept mit Wirtschaftlichkeitsnachweis",
+      "Mindestens zwei Buchabschlüsse (BMEL-Abschluss)",
+      "Kostenvoranschäge / Angebote",
+      "Nachweis der Eigenkapitalbildung",
+      "Junglandwirtenachweis (falls zutreffend)"
+    ],
+    "processing_time": "3-6 Monate",
+    "deadlines": {
+      "description": "Jährliche Antragsfristen je nach Bundesland",
+      "date": "Variiert je nach Bundesland",
+      "note": "Bayern: 07.11.2024, 13.06.2024 (Beispiel)"
+    }
+  },
+  "legal_basis": [
+    "Verordnung (EU) Nr. 1305/2013 (ELER)",
+    "Gesetz über die Gemeinschaftsaufgabe Agrarstruktur und Küstenschutz (GAKG)",
+    "Richtlinie über die Gewährung von Zuwendungen im Rahmen des Agrarinvestitionsförderungsprogramms (AFP-RL)",
+    "Nationaler Strategieplan GAP 2023-2027"
+  ],
+  "compatible_with": [
+    "junglandwirte-einkommensstuetzung",
+    "tierhaltung-umbau",
+    "biologischer-bau-foerderung",
+    "betriebsberatung"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "junglandwirte",
+    "tierhaltung",
+    "forstwirtschaft",
+    "biologischer-bau"
+  ],
+  "user_content": {
+    "short_explanation": "Die Investitionsförderung unterstützt landwirtschaftliche Betriebe bei Modernisierungen, Stallbau, Maschinenkauf und Dauerkulturen mit Zuschüssen von bis zu 50 %.",
+    "for_whom": "Landwirte und Landwirtinnen, die in ihren Betrieb investieren möchten – besonders Junglandwirte profitieren von Zuschlägen.",
+    "requirements": "Mindestens 20.000 Euro Investitionsvolumen, ordnungsgemäße Buchführung, Wirtschaftlichkeitsnachweis und Eigenkapitalbildung.",
+    "how_much": "20-50 % der förderfähigen Ausgaben als Zuschuss, maximal 600.000 Euro.",
+    "how_calculated": "Der Zuschuss wird prozentual auf die förderfähigen Ausgaben berechnet. Junglandwirte erhalten bis zu 10 % extra (max. 20.000 Euro).",
+    "documents_needed": "Antrag, Investitionskonzept, Buchabschlüsse, Kostenvoranschäge, Junglandwirtenachweis.",
+    "where_to_apply": "Bei der zuständigen Landwirtschaftskammer oder der Landwirtschaftlichen Rentenbank.",
+    "deadlines": "Jährliche Antragsfristen je nach Bundesland – frühzeitig bei der Landwirtschaftskammer informieren.",
+    "faq": [
+      {
+        "question": "Kann ich die Förderung mit anderen Programmen kombinieren?",
+        "answer": "Ja, die Investitionsförderung ist mit Junglandwirte-Förderung, Tierhaltungsförderung und Biobau-Förderung kombinierbar."
+      },
+      {
+        "question": "Was wird nicht gefördert?",
+        "answer": "Selbstfahrende Maschinen, reine Ersatzinvestitionen und Investitionen unter 20.000 Euro sind nicht förderfähig."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bmleh.de/DE/themen/landwirtschaft/klimaschutz/investitionsprogramm-landwirtschaft.html",
+      "title": "Das Investitionsprogramm Landwirtschaft - BMLEH",
+      "organization": "Bundesministerium für Landwirtschaft, Ernährung und Heimat",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    },
+    {
+      "url": "https://www.landwirtschaftskammer.de/foerderung/laendlicherraum/investition/afp-2023.htm",
+      "title": "Agrarinvestitionsförderungsprogramm (AFP)",
+      "organization": "Landwirtschaftskammer",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    },
+    {
+      "url": "https://www.rentenbank.de/foerderkredite/land-forstwirtschaft/",
+      "title": "LR-Förderkredite für Land- und Forstwirtschaft",
+      "organization": "Landwirtschaftliche Rentenbank",
+      "last_verified": "2026-09-08",
+      "type": "bank"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2023-01-01",
+  "valid_until": "2027-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Das Investitionsprogramm Landwirtschaft (2021-2024) ist abgeschlossen, Fortführung über GAK ab 2025",
+    "Förderung erfolgt nun über die Gemeinschaftsaufgabe Agrarstruktur und Küstenschutz (GAK)",
+    "Junglandwirte erhalten zusätzlichen Zuschuss von bis zu 10 % (max. 20.000 Euro)"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

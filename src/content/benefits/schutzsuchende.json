@@ -1,0 +1,215 @@
+{
+  "id": "schutzsuchende",
+  "official_name": "Leistungen für Schutzsuchende (Asylbewerberleistungen)",
+  "aliases": ["Asylbewerberleistungen", "AsylbLG", "Asylbewerberleistungsgesetz", "Grundleistungen für Asylbewerber", "Asylhilfe"],
+  "former_names": [],
+  "type": "social_benefit",
+  "status": "verified",
+  "category": "Integration & Aufenthalt",
+  "subcategory": "Leistungen für Schutzsuchende",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Sozialämter / Jobcenter / Ausländerbehörden",
+    "authority": "Kommunale Sozialämter (örtlich zuständig)",
+    "url": "https://www.gesetze-im-internet.de/asylblg/",
+    "phone": "030 18681-0"
+  },
+  "target_groups": [
+    "Asylbewerber (mit Aufenthaltsgestattung)",
+    "Geduldete",
+    "Personen mit Abschiebungsstopp",
+    "Subsidiär Schutzberechtigte (in Übergangsphase)",
+    "Schutzsuchende in Gemeinschaftsunterkünften"
+  ],
+  "life_situations": ["asyl", "migration"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "ss-001",
+        "description": "Asylbewerber mit Aufenthaltsgestattung",
+        "condition": "Asylbewerber mit Aufenthaltsgestattung nach § 55 AsylG",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ss-002",
+        "description": "Geduldete",
+        "condition": "Geduldete nach § 60a AufenthG",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "ss-003",
+        "description": "Wohnsitz in Gemeinschaftsunterkunft",
+        "condition": "Wohnsitz in einer Gemeinschaftsunterkunft (Erstaufnahme)",
+        "required": false,
+        "category": "location"
+      },
+    {
+        "rule_id": "ss-004",
+        "description": "Einkommens- und Vermögensprüfung",
+        "condition": "Kein eigenes Einkommen oder Vermögen über der Freibetragshöhe",
+        "required": true,
+        "category": "income"
+      }
+    ],
+    "income_rules": [
+      {
+        "applies_to": "Asylbewerber in Gemeinschaftsunterkünften",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      },
+      {
+        "applies_to": "Asylbewerber in eigenen Wohnungen",
+        "threshold": 0,
+        "threshold_type": "monthly",
+        "free_allowance": 0,
+        "last_updated": "2026-09-08"
+      }
+    ],
+    "special_conditions": [
+      "Leistungen in Gemeinschaftsunterkünften: überwiegend Sachleistungen",
+      "Leistungen in eigenen Wohnungen: Geldleistungen nach SGB-II-Regelsätzen",
+      "Gesundheitsleistungen: nur akute Erkrankungen und Schmerzzustände (§ 4 AsylbLG)",
+      "Arbeitserlaubnis: nach 3 Monaten möglich",
+      "Leistungen werden nach 18 Monaten umgestellt (SGB II)"
+    ]
+  },
+  "calculation": {
+    "method": "Bedarfsdeckung nach AsylbLG; Regelsätze nach SGB II",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Bedarf an Ernährung, Unterkunft, Heizung, Kleidung, Gesundheitspflege",
+        "formula": "Regelsatz nach AsylbLG § 3a",
+        "value": "ca. 367€/Monat (2024, Single)"
+      },
+      {
+        "step": 2,
+        "description": "Persönliche Bedürfnisse",
+        "formula": "Zuschlag nach AsylbLG",
+        "value": "ca. 50-100€/Monat"
+      },
+      {
+        "step": 3,
+        "description": "Sonderbedarfe (Schwangerschaft, Behinderung)",
+        "formula": "Nach § 5 AsylbLG",
+        "value": "Variabel"
+      }
+    ],
+    "min_amount": 367,
+    "max_amount": 500,
+    "typical_amount": "ca. 367-500€/Monat (Single, 2024)",
+    "frequency": "monthly",
+    "calculator_possible": true,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Leistungen zur Deckung des Lebensunterhalts (Ernährung, Unterkunft, Kleidung, Gesundheit)",
+    "min_monthly": 367,
+    "max_monthly": 500,
+    "depends_on": ["Familienstand", "Wohnsituation", "besondere Bedürfnisse"]
+  },
+  "application": {
+    "method": "Persönlich beim zuständigen Sozialamt",
+    "url": "https://www.gesetze-im-internet.de/asylblg/",
+    "forms": ["Antrag auf Asylbewerberleistungen"],
+    "required_documents": [
+      "Aufenthaltsgestattung oder Duldung",
+      "Personalausweis (falls vorhanden)",
+      "Meldebescheinigung",
+      "ggf. Nachweise über Einkommen/Vermögen"
+    ],
+    "processing_time": "1-4 Wochen",
+    "deadlines": {
+      "description": "Sofort nach Asylantragstellung",
+      "note": "Leistungen werden ab Asylantrag gewährt"
+    }
+  },
+  "legal_basis": [
+    "Asylbewerberleistungsgesetz (AsylbLG)",
+    "§ 1 AsylbLG – Leistungsberechtigte",
+    "§ 3 AsylbLG – Grundleistungen",
+    "§ 3a AsylbLG – Bedarfssätze der Grundleistungen",
+    "§ 4 AsylbLG – Leistungen bei Krankheit, Schwangerschaft und Geburt",
+    "§ 5 AsylbLG – Sonderbedarfe",
+    "§ 6 AsylbLG – Leistungen in besonderen Fällen"
+  ],
+  "compatible_with": [
+    "integrationskurs",
+    "deutschkurs",
+    "beratung_migranten",
+    "medizinische_versorgung_flüchtlinge"
+  ],
+  "incompatible_with": [
+    "arbeitsmarktzugang (teilweise)"
+  ],
+  "related_benefits": [
+    "beratung_migranten",
+    "medizinische_versorgung_flüchtlinge"
+  ],
+  "user_content": {
+    "short_explanation": "Asylbewerberleistungen decken Ihren Grundbedarf (Ernährung, Unterkunft, Kleidung, Gesundheit), während Sie auf den Asylentscheid warten. Die Leistungen werden vom Sozialamt gezahlt.",
+    "for_whom": "Für Asylbewerber, Geduldete und Schutzsuchende, die keinen eigenen Lebensunterhalt bestreiten können.",
+    "requirements": "Asylantrag gestellt (Aufenthaltsgestattung) oder Duldung; kein eigenes Einkommen oder Vermögen.",
+    "how_much": "Ca. 367-500€ pro Monat (Single, 2024). In Gemeinschaftsunterkünften überwiegend Sachleistungen (Unterkunft, Verpflegung).",
+    "how_calculed": "Die Leistungen werden nach den Bedarfssätzen des AsylbLG berechnet. In Gemeinschaftsunterkünften erhalten Sie Sachleistungen, in eigenen Wohnungen Geldleistungen.",
+    "documents_needed": "Aufenthaltsgestattung oder Duldung, Meldebescheinigung, ggf. Nachweise über Einkommen/Vermögen.",
+    "where_to_apply": "Zuständiges Sozialamt (Stadt-/Kreisverwaltung).",
+    "deadlines": "Sofort nach Asylantragstellung. Leistungen werden ab dem Tag des Asylantrags gewährt.",
+    "faq": [
+      {
+        "question": "Wann bekomme ich die ersten Leistungen?",
+        "answer": "Ab dem Tag der Asylantragstellung haben Sie Anspruch auf Leistungen. Die Auszahlung kann 1-4 Wochen dauern."
+      },
+      {
+        "question": "Darf ich arbeiten?",
+        "answer": "Nach 3 Monaten Aufenthalt können Sie eine Arbeitserlaubnis beantragen. Vorher ist es nur in Ausnahmefällen möglich."
+      },
+      {
+        "question": "Was passiert nach 18 Monaten?",
+        "answer": "Nach 18 Monaten werden die Leistungen nach dem AsylbLG in Leistungen nach SGB II (Jobcenter) umgestellt. Dann gelten die Regelsätze des SGB II."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/asylblg/",
+      "title": "Asylbewerberleistungsgesetz (AsylbLG)",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/asylblg/__1.html",
+      "title": "§ 1 AsylbLG – Leistungsberechtigte",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.gesetze-im-internet.de/asylblg/__3.html",
+      "title": "§ 3 AsylbLG – Grundleistungen",
+      "organization": "Gesetze im Internet (BMJV)",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "1993-11-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "AsylbLG regelt Leistungen für Asylbewerber und Geduldete",
+    "Leistungen in Gemeinschaftsunterkünften: überwiegend Sachleistungen",
+    "Nach 18 Monaten: Umstellung auf SGB II (Jobcenter)",
+    "Gesundheitsleistungen: nur akute Erkrankungen (§ 4 AsylbLG)",
+    "Regelsätze werden jährlich angepasst"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

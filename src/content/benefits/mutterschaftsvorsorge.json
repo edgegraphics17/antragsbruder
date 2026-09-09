@@ -1,0 +1,162 @@
+{
+  "id": "mutterschaftsvorsorge",
+  "official_name": "Mutterschaftsvorsorge",
+  "aliases": [
+    "Schwangerenvorsorge",
+    "Mutterschaftsvorsorge SGB V",
+    "Hebammenhilfe",
+    "Mutterschaftsleistungen",
+    "Schwangerschaftsvorsorge"
+  ],
+  "former_names": [],
+  "type": "health_benefit",
+  "status": "verified",
+  "category": "Gesundheit",
+  "subcategory": "Mutterschaftsvorsorge",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Krankenkasse",
+    "authority": "Gesetzliche Krankenkasse oder private Krankenversicherung",
+    "url": "https://www.bundesgesundheitsministerium.de/schwangerschaft-krankenversicherung",
+    "phone": "Kontakt über Krankenkasse"
+  },
+  "target_groups": [
+    "Schwangere",
+    "Werdende Mütter",
+    "Frauen mit Schwangerschaft"
+  ],
+  "life_situations": [
+    "gesundheit"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "elg-mv-01",
+        "description": "Schwangerschaft",
+        "condition": "Die Frau ist schwanger",
+        "required": true,
+        "category": "health"
+      },
+      {
+        "rule_id": "elg-mv-02",
+        "description": "Versicherung bei Krankenkasse",
+        "condition": "Die Frau ist gesetzlich oder privat krankenversichert",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "special_conditions": [
+      "Vorsorgeuntersuchungen sind kostenlos",
+      "Hebammenhilfe ist kostenlos",
+      "Entbindungskosten werden übernommen"
+    ]
+  },
+  "calculation": {
+    "method": "Kostenlose Vorsorgeuntersuchungen und Hebammenhilfe",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Schwangerschaft feststellen",
+        "value": "Ärztliche Untersuchung"
+      },
+      {
+        "step": 2,
+        "description": "Vorsorgeuntersuchungen wahrnehmen",
+        "value": "Regelmäßige Untersuchungen"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 0,
+    "typical_amount": "Kostenlos für Versicherte",
+    "frequency": "as_needed",
+    "calculator_possible": false,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "Kostenlose Vorsorgeuntersuchungen und Hebammenhilfe",
+    "depends_on": [
+      "Art der Untersuchung"
+    ]
+  },
+  "application": {
+    "method": "Keine Antragstellung erforderlich",
+    "url": "https://www.bundesgesundheitsministerium.de/schwangerschaft-krankenversicherung",
+    "forms": [],
+    "required_documents": [
+      "Keine Unterlagen erforderlich"
+    ],
+    "processing_time": "Keine Bearbeitungszeit",
+    "deadlines": {
+      "description": "Keine Frist",
+      "note": "Vorsorgeuntersuchungen sollten regelmäßig wahrgenommen werden"
+    }
+  },
+  "legal_basis": [
+    "§ 24 SGB V (Mutterschaftsvorsorge)",
+    "§ 24a SGB V (Hebammenhilfe)",
+    "§ 24b SGB V (Entbindung)"
+  ],
+  "compatible_with": [],
+  "incompatible_with": [],
+  "related_benefits": [
+    "arbeitsmedizinische_vorsorge",
+    "kinderfrühförderung"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Mutterschaftsvorsorge umfasst kostenlose Vorsorgeuntersuchungen und Hebammenhilfe während der Schwangerschaft.",
+    "for_whom": "Schwangere und werdende Mütter.",
+    "requirements": "Schwangerschaft, Versicherung bei Krankenkasse.",
+    "how_much": "Kostenlos für Versicherte.",
+    "how_calculated": "Kostenlose Vorsorgeuntersuchungen und Hebammenhilfe.",
+    "documents_needed": "Keine Unterlagen erforderlich.",
+    "where_to_apply": "Keine Antragstellung erforderlich. Untersuchungen bei Frauenärztin oder Frauenarzt.",
+    "deadlines": "Keine Frist. Vorsorgeuntersuchungen sollten regelmäßig wahrgenommen werden.",
+    "faq": [
+      {
+        "question": "Was ist Mutterschaftsvorsorge?",
+        "answer": "Mutterschaftsvorsorge umfasst kostenlose Vorsorgeuntersuchungen und Hebammenhilfe während der Schwangerschaft."
+      },
+      {
+        "question": "Wie oft muss ich zur Vorsorgeuntersuchung?",
+        "answer": "In einer normalen Schwangerschaft sollten Sie im Abstand von vier Wochen zur ärztlichen Vorsorgeuntersuchung gehen. In den letzten Monaten alle zwei Wochen."
+      },
+      {
+        "question": "Kann ich eine Hebamme in Anspruch nehmen?",
+        "answer": "Ja, Hebammenhilfe ist kostenlos und kann während der Schwangerschaft, der Entbindung und nach der Entbindung in Anspruch genommen werden."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.gesetze-im-internet.de/sgb_5/__24.html",
+      "title": "§ 24 SGB V - Mutterschaftsvorsorge",
+      "organization": "Gesetze im Internet",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    },
+    {
+      "url": "https://www.bundesgesundheitsministerium.de/schwangerschaft-krankenversicherung",
+      "title": "Angebote für werdende Mütter - BMG",
+      "organization": "Bundesministerium für Gesundheit",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Vorsorgeuntersuchungen sind kostenlos",
+    "Hebammenhilfe ist kostenlos",
+    "Entbindungskosten werden übernommen"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

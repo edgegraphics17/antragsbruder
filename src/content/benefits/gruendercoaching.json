@@ -1,0 +1,159 @@
+{
+  "id": "gruendercoaching",
+  "official_name": "Gründercoaching Deutschland (BAFA)",
+  "aliases": [
+    "Gründercoaching",
+    "Unternehmensberatung Förderung",
+    "Coaching für Gründer",
+    "AVGS"
+  ],
+  "former_names": [],
+  "type": "business_subsidy",
+  "status": "verified",
+  "category": "Existenzgründung",
+  "subcategory": "Beratung und Coaching",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA)",
+    "authority": "BAFA",
+    "url": "https://www.bafa.de/DE/Wirtschaft/Beratung_Finanzierung/Unternehmensberatung/unternehmensberatung_node.html",
+    "phone": "06196 9080"
+  },
+  "target_groups": [
+    "Existenzgründer",
+    "Junge Unternehmen (< 5 Jahre)",
+    "Selbstständige"
+  ],
+  "life_situations": [
+    "arbeit_selbststaendig",
+    "gründung",
+    "unternehmen"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "gc_01",
+        "description": "Existenzgründung oder Unternehmen mit weniger als 5 Jahren Marktaktivität",
+        "condition": "unternehmen_alt < 5_years OR existenzgruender = true",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "gc_02",
+        "description": "Beratung durch zertifizierten Coach",
+        "condition": "coach_zertifiziert = true",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "gc_03",
+        "description": "Förderfähige Beratungsleistung",
+        "condition": "beratung_foerderfaehig = true",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "special_conditions": [
+      "Förderung bis zu 50% der förderfähigen Kosten",
+      "Maximal 3.500 Euro förderfähiger Gesamtbetrag",
+      "Förderrichtlinie gilt bis 31.12.2026"
+    ]
+  },
+  "calculation": {
+    "method": "50% Zuschuss auf förderfähige Beratungskosten, max. 3.500 Euro",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Zuschussberechnung",
+        "formula": "beratungskosten * 0.50",
+        "note": "Maximal 3.500 Euro förderfähig"
+      }
+    ],
+    "min_amount": 0,
+    "max_amount": 1750,
+    "typical_amount": "50% der Beratungskosten, max. 1.750 Euro",
+    "frequency": "once",
+    "calculator_possible": true,
+    "manual_review_needed": false
+  },
+  "amount": {
+    "description": "50% Zuschuss auf Beratungskosten, max. 3.500 Euro förderfähig",
+    "one_time": 1750,
+    "depends_on": [
+      "beratungskosten"
+    ]
+  },
+  "application": {
+    "method": "Online bei BAFA",
+    "url": "https://www.bafa.de/DE/Wirtschaft/Beratung_Finanzierung/Unternehmensberatung/unternehmensberatung_node.html",
+    "forms": [
+      "Zuschussantrag Unternehmensberatung"
+    ],
+    "required_documents": [
+      "Angebot/Rechnung des Coaches",
+      "Nachweis der Beratungsleistung",
+      "Kostennachweis"
+    ],
+    "processing_time": "4-6 Wochen",
+    "deadlines": {
+      "description": "Antrag vor Beginn der Beratung",
+      "note": "Förderantrag muss vor Leistungserbringung gestellt werden"
+    }
+  },
+  "legal_basis": [
+    "Förderrichtlinie Unternehmensberatung"
+  ],
+  "compatible_with": [
+    "gruendungszuschuss",
+    "existenzgruenderkredit"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "gruendungszuschuss",
+    "existenzgruenderkredit"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Das Gründercoaching fördert bis zu 50% der Kosten für professionelle Beratung bei der Existenzgründung.",
+    "for_whom": "Existenzgründer und junge Unternehmen, die professionelle Beratung in Anspruch nehmen",
+    "requirements": "Zertifizierter Coach, förderfähige Beratungsleistung, Antrag vor Beginn",
+    "how_much": "50% der Beratungskosten, maximal 1.750 Euro",
+    "how_calculated": "50% Zuschuss auf die Rechnung des Coaches",
+    "documents_needed": "Angebot/Rechnung des Coaches, Nachweis der Beratungsleistung",
+    "where_to_apply": "Online bei BAFA",
+    "deadlines": "Antrag VOR Beginn der Beratung stellen",
+    "faq": [
+      {
+        "question": "Welche Coaches werden gefördert?",
+        "answer": "Nur Berater/Coaches, die über eine entsprechende Qualifikation verfügen."
+      },
+      {
+        "question": "Kann ich das Gründercoaching mit dem Gründungszuschuss kombinieren?",
+        "answer": "Ja, beide Förderungen lassen sich kombinieren."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bafa.de/DE/Wirtschaft/Beratung_Finanzierung/Unternehmensberatung/unternehmensberatung_node.html",
+      "title": "Unternehmensberatung - BAFA",
+      "organization": "BAFA",
+      "last_verified": "2026-09-08",
+      "type": "official"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2023-01-01",
+  "valid_until": "2026-12-31",
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Förderrichtlinie gilt bis 31.12.2026",
+    "Antrag muss vor Beginn der Beratung gestellt werden"
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

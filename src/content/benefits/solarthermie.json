@@ -1,0 +1,197 @@
+{
+  "id": "solarthermie-foerderung",
+  "official_name": "Solarthermie-Förderung (BAFA & KfW)",
+  "aliases": [
+    "Solarwasserheizung",
+    "Solarwärme",
+    "Solarkollektoren",
+    "Solarthermieanlage"
+  ],
+  "former_names": [
+    "Solarthermie-Förderprogramm",
+    "BMU Solarthermie"
+  ],
+  "type": "energy_subsidy",
+  "status": "verified",
+  "category": "Energie & Klima",
+  "subcategory": "Erneuerbare Wärme",
+  "level": "federal",
+  "regions": [
+    "all"
+  ],
+  "provider": {
+    "name": "Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA)",
+    "authority": "Bundesministerium für Wirtschaft und Klimaschutz (BMWK)",
+    "url": "https://www.bafa.de/DE/Energie/Heizen_mit_Erneuerbaren_Energien/Foerderprogramm_im_Ueberblick/foerderprogramm_im_ueberblick_node.html",
+    "phone": "06196 908-0"
+  },
+  "target_groups": [
+    "Hauseigentümer",
+    "Wohnungseigentümer",
+    "Unternehmen (Neubau)"
+  ],
+  "life_situations": [
+    "energiesanierung",
+    "klimaschutz",
+    "gebäude-sanierung"
+  ],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "st-001",
+        "description": "Solarthermieanlage zur Warmwasserbereitung und Heizungsunterstützung",
+        "condition": "Anlage erzeugt Wärme aus Sonnenenergie",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "st-002",
+        "description": "Mindestkollektorfläche im Neubau",
+        "condition": "Mindestens 20 m² Bruttokollektorfläche im Neubau",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "st-003",
+        "description": "Kombination mit förderbarem Wärmeerzeuger",
+        "condition": "Kombination mit Wärmepumpe, Biomasse oder Nahwärme für erhöhte Förderung",
+        "required": false,
+        "category": "status"
+      },
+      {
+        "rule_id": "st-004",
+        "description": "Fachbetriebliche Installation",
+        "condition": "Installation durch zertifizierten Fachbetrieb",
+        "required": true,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Basiszuschuss: 30% der förderfähigen Kosten",
+      "Bei Kombination mit Wärmepumpe/Biomasse: bis zu 35%",
+      "Im Neubau nur ab 3 Wohneinheiten (Wohnen) oder 500 m² (gewerblich)",
+      "Pufferspeicher Mindestvolumen je nach Kollektorart"
+    ]
+  },
+  "calculation": {
+    "method": "Zuschuss in Prozent der förderfähigen Kosten. Bei Kombination bis zu 35%.",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Basiszuschuss berechnen",
+        "formula": "30% der förderfähigen Kosten",
+        "note": "Für Solarthermie allein"
+      },
+      {
+        "step": 2,
+        "description": "Kombinationsbonus prüfen",
+        "formula": "35% bei Kombination mit förderbarem Wärmeerzeuger",
+        "note": "Mit Wärmepumpe, Biomasse etc."
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "30-35% der förderfähigen Kosten",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Zuschuss 30-35% der förderfähigen Kosten.",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": [
+      "Kollektorfläche",
+      "Kosten",
+      "Kombination mit anderen Anlagen"
+    ]
+  },
+  "application": {
+    "method": "Online-Antrag über BAFA-Portal",
+    "url": "https://www.bafa.de/DE/Energie/Heizen_mit_Erneuerbaren_Energien/Foerderprogramm_im_Ueberblick/foerderprogramm_im_ueberblick_node.html",
+    "forms": [
+      "Online-Antrag im BAFA-Portal"
+    ],
+    "required_documents": [
+      "Rechnungen über Material und Arbeitsleistung",
+      "Antrag auf Förderung vor Baubeginn",
+      "Nachweis über Kollektorfläche und Speichervolumen",
+      "Fachbetriebsnachweis"
+    ],
+    "processing_time": "4-8 Wochen",
+    "deadlines": {
+      "description": "Antrag vor Baubeginn stellen",
+      "note": "Baubeginn spätestens 6 Monate nach Antragstellung"
+    }
+  },
+  "legal_basis": [
+    "Richtlinie zur Förderung von Maßnahmen zur Nutzung erneuerbaren Energien im Wärmebereich (BMWi)",
+    "§ 35c EStG (Steuerbonus)"
+  ],
+  "compatible_with": [
+    "photovoltaik",
+    "waermepumpe",
+    "heizungstausch",
+    "energieeffizienz"
+  ],
+  "incompatible_with": [],
+  "related_benefits": [
+    "energieschuldenberatung"
+  ],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Der Staat fördert die Installation von Solarthermieanlagen – für Warmwasser und Heizungsunterstützung.",
+    "for_whom": "Hauseigentümer, die eine Solarthermieanlage installieren möchten.",
+    "requirements": "Die Anlage muss eine Mindestkollektorfläche haben. Im Neubau gelten besondere Regeln. Die Installation muss durch einen Fachbetrieb erfolgen.",
+    "how_much": "Basiszuschuss 30% der Kosten. Bei Kombination mit einer Wärmepumpe oder Biomasse bis zu 35%.",
+    "how_calculated": "Der Zuschuss wird auf Basis der förderfähigen Kosten berechnet. Bei Kombination mit förderbaren Wärmeerzeugern steigt er auf 35%.",
+    "documents_needed": "Rechnungen, Nachweis über Kollektorfläche und Speichervolumen, Fachbetriebsnachweis.",
+    "where_to_apply": "Online im BAFA-Portal.",
+    "deadlines": "Antrag vor Baubeginn. Bau beginnt spätestens 6 Monate nach Antragstellung.",
+    "faq": [
+      {
+        "question": "Kann ich Solarthermie mit PV kombinieren?",
+        "answer": "Ja, beide Förderungen können kombiniert werden."
+      },
+      {
+        "question": "Welche Kollektorfläche wird gefördert?",
+        "answer": "Im Bestand keine Mindestgröße. Im Neubau mindestens 20 m²."
+      },
+      {
+        "question": "Gibt es einen Bonus bei Kombination?",
+        "answer": "Ja, bei Kombination mit Wärmepumpe oder Biomasse steigt der Zuschuss auf bis zu 35%."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.bafa.de/DE/Energie/Heizen_mit_Erneuerbaren_Energien/Foerderprogramm_im_Ueberblick/foerderprogramm_im_ueberblick_node.html",
+      "title": "Förderprogramm im Überblick - BAFA",
+      "organization": "BAFA",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    },
+    {
+      "url": "https://www.bafa.de/DE/Energie/Heizen_mit_Erneuerbaren_Energien/Foerdervoraussetzungen/foerdervoraussetzungen_node.html",
+      "title": "Fördervoraussetzungen - BAFA",
+      "organization": "BAFA",
+      "last_verified": "2026-09-08",
+      "type": "authority"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2024-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [
+    "Solarthermie-Förderung ist Teil der BAFA-Förderung 'Heizen mit Erneuerbaren Energien'.",
+    "Kombinationsbonus bei Wärmepumpe oder Biomasse.",
+    "Im Neubau nur ab 3 Wohneinheiten oder 500 m² Nutzfläche."
+  ],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}

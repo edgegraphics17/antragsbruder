@@ -1,0 +1,173 @@
+{
+  "id": "umschulung",
+  "official_name": "Förderung von Umschulungsmaßnahmen",
+  "aliases": ["Umschulung", "Berufliche Umschulung", "Umschulungsförderung", "Bildungsgutschein Umschulung"],
+  "former_names": [],
+  "type": "employment_benefit",
+  "status": "verified",
+  "category": "Arbeit & Beschäftigung",
+  "subcategory": "Berufliche Weiterbildung",
+  "level": "federal",
+  "regions": ["all"],
+  "provider": {
+    "name": "Bundesagentur für Arbeit",
+    "authority": "Agentur für Arbeit",
+    "url": "https://www.arbeitsagentur.de/karriere-und-weiterbildung/foerderung-berufliche-weiterbildung",
+    "phone": "0800 4 555500"
+  },
+  "target_groups": ["Arbeitslose Arbeitnehmer", "Von Arbeitslosigkeit bedrohte Beschäftigte", "Personen mit gesundheitlichen Einschränkungen", "Geringqualifizierte"],
+  "life_situations": ["job_lost", "arbeit_arbeitnehmer", "weiterbildung"],
+  "eligibility": {
+    "rules": [
+      {
+        "rule_id": "ums-001",
+        "description": "Umschulung notwendig zur beruflichen Eingliederung",
+        "condition": "Die Umschulung muss erforderlich sein, um eine dauerhafte Beschäftigung zu ermöglichen",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ums-002",
+        "description": "Beratungsgespräch bei der Agentur für Arbeit",
+        "condition": "Vor Beginn der Maßnahme muss ein Beratungsgespräch stattgefunden haben",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ums-003",
+        "description": "Zugelassener Bildungsträger",
+        "condition": "Der Bildungsträger muss nach SGB III zugelassen sein",
+        "required": true,
+        "category": "status"
+      },
+      {
+        "rule_id": "ums-004",
+        "description": "Kein Anspruch auf andere Förderungen",
+        "condition": "Kein Anspruch auf Aufstiegs-BAföG oder vergleichbare Leistungen",
+        "required": false,
+        "category": "status"
+      }
+    ],
+    "income_rules": [],
+    "asset_rules": null,
+    "special_conditions": [
+      "Umschulung zu einem anerkannten Ausbildungsberuf möglich",
+      "Weiterbildungsgeld (150 Euro monatlich) bei abschlussorientierten Maßnahmen",
+      "Förderung von Lehrgangskosten, Fahrtkosten und Kinderbetreuungskosten"
+    ]
+  },
+  "calculation": {
+    "method": "Übernahme der Weiterbildungskosten durch Bildungsgutschein; ggf. Zuschüsse zu Lebenshaltungskosten",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Beratung und Bedarfsfeststellung",
+        "note": "Agentur für Arbeit prüft Förderfähigkeit"
+      },
+      {
+        "step": 2,
+        "description": "Ausstellung des Bildungsgutscheins",
+        "note": "Gültigkeit in der Regel 3 Monate"
+      },
+      {
+        "step": 3,
+        "description": "Kostenübernahme",
+        "note": "Lehrgangskosten, Fahrtkosten, ggf. Kinderbetreuungskosten"
+      }
+    ],
+    "min_amount": null,
+    "max_amount": null,
+    "typical_amount": "100% der Lehrgangskosten; ggf. Zuschüsse zu Lebenshaltungskosten",
+    "frequency": "once",
+    "calculator_possible": false,
+    "manual_review_needed": true
+  },
+  "amount": {
+    "description": "Übernahme der vollständigen Umschulungskosten; bei Bedarf Zuschüsse zu Lebenshaltungskosten und Fahrtkosten",
+    "min_monthly": null,
+    "max_monthly": null,
+    "one_time": null,
+    "depends_on": ["Art der Umschulung", "Lehrgangskosten", "Persönliche Situation"]
+  },
+  "application": {
+    "method": "Persönliche Beratung bei der Agentur für Arbeit, Ausstellung des Bildungsgutscheins",
+    "url": "https://www.arbeitsagentur.de/karriere-und-weiterbildung/bildungsgutschein",
+    "forms": ["Bildungsgutschein", "Fragebogen zur Förderung der Teilnahme an einer beruflichen Weiterbildungsmaßnahme"],
+    "required_documents": [
+      "Personalausweis",
+      "Lebenslauf",
+      "Nachweise über Qualifikationen",
+      "Bildungsgutschein",
+      "Kostenangebot des Bildungsträgers"
+    ],
+    "processing_time": "Ca. 2-4 Wochen nach Beratungsgespräch",
+    "deadlines": {
+      "description": "Bildungsgutschein muss vor Beginn der Maßnahme vorliegen",
+      "note": "Keine nachträgliche Förderung für bereits begonnene Maßnahmen"
+    }
+  },
+  "legal_basis": [
+    "§ 81 SGB III (Grundsatz)",
+    "§ 115 SGB III (Umschulung)",
+    "§ 87a SGB III (Weiterbildungsprämie und Weiterbildungsgeld)"
+  ],
+  "compatible_with": ["arbeitslosengeld-i", "berufseinstieg"],
+  "incompatible_with": ["arbeitnehmerförderung"],
+  "related_benefits": ["weiterbildung", "kurzarbeitergeld", "qualifizierungschancengesetz"],
+  "reduces": [],
+  "user_content": {
+    "short_explanation": "Die Agentur für Arbeit fördert Ihre Umschulung in einen neuen Beruf – die Kosten für Lehrgänge, Prüfungen und Fahrt werden übernommen.",
+    "for_whom": "Arbeitslose, von Arbeitslosigkeit bedrohte Beschäftigte und Personen, die aus gesundheitlichen Gründen ihren Beruf nicht mehr ausüben können.",
+    "requirements": "Die Umschulung muss notwendig sein, um eine dauerhafte Beschäftigung zu ermöglichen. Ein Beratungsgespräch bei der Agentur für Arbeit ist Pflicht.",
+    "how_much": "In der Regel 100% der Lehrgangskosten. Bei Bedarf zusätzlich Zuschüsse zu Fahrtkosten und Kinderbetreuung.",
+    "how_calculated": "Die Agentur für Arbeit stellt einen Bildungsgutschein aus, der die Kosten direkt an den Bildungsträger abgibt.",
+    "documents_needed": "Personalausweis, Lebenslauf, Nachweise über Qualifikationen, Kostenangebot des Bildungsträgers.",
+    "where_to_apply": "Beratungsgespräch bei der Agentur für Arbeit vor Ort oder online vereinbaren.",
+    "deadlines": "Der Bildungsgutschein muss vor Beginn der Umschulung ausgestellt sein. Keine nachträgliche Förderung.",
+    "faq": [
+      {
+        "question": "Kann ich mich umschulen lassen, wenn ich bereits einen Berufsabschluss habe?",
+        "answer": "Ja, wenn die Umschulung notwendig ist, um eine dauerhafte Beschäftigung zu ermöglichen."
+      },
+      {
+        "question": "Gibt es auch Förderung für Beschäftigte?",
+        "answer": "Ja, nach § 82 SGB III können auch Beschäftigte gefördert werden, wenn die Weiterbildung notwendig ist."
+      },
+      {
+        "question": "Wie hoch ist das Weiterbildungsgeld?",
+        "answer": "150 Euro monatlich bei abschlussorientierten Maßnahmen mit mindestens 2-jähriger Ausbildungsdauer."
+      }
+    ]
+  },
+  "official_sources": [
+    {
+      "url": "https://www.arbeitsagentur.de/karriere-und-weiterbildung/foerderung-berufliche-weiterbildung",
+      "title": "Förderung der beruflichen Weiterbildung",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.arbeitsagentur.de/karriere-und-weiterbildung/bildungsgutschein",
+      "title": "Bildungsgutschein für berufliche Weiterbildung",
+      "organization": "Bundesagentur für Arbeit",
+      "last_verified": "2026-09-08",
+      "type": "agency"
+    },
+    {
+      "url": "https://www.sozialgesetzbuch-sgb.de/sgbiii/115.html",
+      "title": "§ 115 SGB III Umschulung",
+      "organization": "Bundesministerium der Justiz",
+      "last_verified": "2026-09-08",
+      "type": "law"
+    }
+  ],
+  "last_verified": "2026-09-08",
+  "valid_from": "2025-01-01",
+  "valid_until": null,
+  "confidence": "high",
+  "verification_status": "verified",
+  "notes": [],
+  "created_at": "2026-09-08",
+  "updated_at": "2026-09-08"
+}
