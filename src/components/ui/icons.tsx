@@ -230,3 +230,20 @@ export function IconHands({ className = "h-6 w-6" }: IconProps) {
     </svg>
   );
 }
+
+export function IconArrowLeft({ className = "h-6 w-6" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`} aria-hidden="true">
+      <path d="M19 12H5M5 12l7 7M5 12l7-7" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function IconAlertTriangle({ className = "h-6 w-6" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`} aria-hidden="true">
+      <path d="M12 3L2 20h20L12 3z" strokeWidth="1.7" strokeLinejoin="round" />
+      <path d="M12 10v4M12 17h.01" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}

@@ -1,81 +1,66 @@
+// ============================================================
+// FILTER CONFIG — Vereinfachte, kompakte Filter
+// ============================================================
+
 export interface FilterState {
   query: string;
   category: string;
-  level: string[];
-  lifeSituations: string[];
-  targetGroups: string[];
+  state: string; // Bundesland
+  lifeSituation: string;
   hasCalculator: string;
 }
 
 export const emptyFilters: FilterState = {
   query: "",
   category: "Alle",
-  level: [],
-  lifeSituations: [],
-  targetGroups: [],
+  state: "Alle",
+  lifeSituation: "Alle",
   hasCalculator: "all",
 };
 
-export interface FilterOptions {
-  categories: string[];
-  levels: { value: string; label: string }[];
-  lifeSituations: { value: string; label: string }[];
-  targetGroups: { value: string; label: string }[];
-  hasCalculatorOptions: { value: string; label: string }[];
-}
+export const filterOptions = {
+  categories: [] as string[],
 
-export const filterOptions: FilterOptions = {
-  categories: [],
-  levels: [
-    { value: "federal", label: "Bundesweit" },
-    { value: "state", label: "Landesebene" },
-    { value: "municipal", label: "Kommunal" },
+  states: [
+    { value: "Alle", label: "Alle Bundesländer" },
+    { value: "BW", label: "Baden-Württemberg" },
+    { value: "BY", label: "Bayern" },
+    { value: "BE", label: "Berlin" },
+    { value: "BB", label: "Brandenburg" },
+    { value: "HB", label: "Bremen" },
+    { value: "HH", label: "Hamburg" },
+    { value: "HE", label: "Hessen" },
+    { value: "MV", label: "Mecklenburg-Vorpommern" },
+    { value: "NI", label: "Niedersachsen" },
+    { value: "NW", label: "Nordrhein-Westfalen" },
+    { value: "RP", label: "Rheinland-Pfalz" },
+    { value: "SL", label: "Saarland" },
+    { value: "SN", label: "Sachsen" },
+    { value: "ST", label: "Sachsen-Anhalt" },
+    { value: "SH", label: "Schleswig-Holstein" },
+    { value: "TH", label: "Thüringen" },
   ],
+
   lifeSituations: [
+    { value: "Alle", label: "Alle Lebenslagen" },
+    { value: "job_lost", label: "Job verloren" },
     { value: "familie", label: "Familie & Kinder" },
     { value: "alleinerziehend", label: "Alleinerziehend" },
-    { value: "job_lost", label: "Job verloren" },
-    { value: "arbeit_arbeitnehmer", label: "Arbeitnehmer" },
-    { value: "arbeit_selbststaendig", label: "Selbstständig" },
-    { value: "einkommen_nicht_genug", label: "Geringes Einkommen" },
-    { value: "kann_nicht_arbeiten", label: "Arbeitunfähig" },
-    { value: "pflege_angehoeriger", label: "Pflege Angehöriger" },
-    { value: "neu_in_deutschland", label: "Neu in Deutschland" },
-    { value: "wohnkosten_hoch", label: "Hohe Wohnkosten" },
-    { value: "schwanger", label: "Schwangerschaft" },
-    { value: "student", label: "Student" },
-    { value: "senior", label: "Rentner" },
-    { value: "migration", label: "Migration" },
-    { value: "weiterbildung", label: "Weiterbildung" },
+    { value: "geringverdiener", label: "Geringes Einkommen" },
+    { value: "student", label: "Studium" },
     { value: "ausbildung", label: "Ausbildung" },
-    { value: "klimaschutz", label: "Klima & Energie" },
+    { value: "selbststaendig", label: "Selbstständig" },
+    { value: "pflege", label: "Pflege" },
+    { value: "migration", label: "Migration" },
+    { value: "klima", label: "Klima & Energie" },
     { value: "landwirtschaft", label: "Landwirtschaft" },
     { value: "behinderung", label: "Behinderung" },
-    { value: "gründung", label: "Gründung" },
+    { value: "gruendung", label: "Gründung" },
   ],
-  targetGroups: [
-    { value: "Familie", label: "Familien" },
-    { value: "Alleinerziehende", label: "Alleinerziehende" },
-    { value: "Arbeitnehmer", label: "Arbeitnehmer" },
-    { value: "Selbstständige", label: "Selbstständige" },
-    { value: "Studierende", label: "Studierende" },
-    { value: "Schüler", label: "Schüler" },
-    { value: "Rentner", label: "Rentner" },
-    { value: "Arbeitsuchende", label: "Arbeitsuchende" },
-    { value: "Geringverdiener", label: "Geringverdiener" },
-    { value: "Migranten", label: "Migranten" },
-    { value: "Flüchtlinge", label: "Flüchtlinge" },
-    { value: "Landwirte", label: "Landwirte" },
-    { value: "Unternehmen", label: "Unternehmen" },
-    { value: "Kleine Unternehmen", label: "Kleine Unternehmen" },
-    { value: "Schwangere", label: "Schwangere" },
-    { value: "Pflegebedürftige", label: "Pflegebedürftige" },
-    { value: "Behinderte", label: "Menschen mit Behinderung" },
-  ],
-  hasCalculatorOptions: [
+
+  calculatorOptions: [
     { value: "all", label: "Alle" },
     { value: "yes", label: "Mit Rechner" },
-    { value: "no", label: "Ohne Rechner" },
   ],
 };
 
@@ -102,26 +87,19 @@ export function applyFilters(
     result = result.filter((b) => b.category === filters.category);
   }
 
-  // Ebene (Bundesweit/Land/Kommune)
-  if (filters.level.length > 0) {
-    result = result.filter((b) => filters.level.includes(b.level));
+  // Bundesland — zeigt Benefits die für dieses Bundesland gelten
+  // (entweder 'all' oder das spezifische Bundesland)
+  if (filters.state !== "Alle") {
+    result = result.filter((b) => {
+      const regions = b.regions || [];
+      return regions.includes("all") || regions.includes(filters.state);
+    });
   }
 
-  // Lebenssituationen (OR-Logik: mindestens eine muss passen)
-  if (filters.lifeSituations.length > 0) {
+  // Lebenssituation
+  if (filters.lifeSituation !== "Alle") {
     result = result.filter((b) =>
-      filters.lifeSituations.some((ls) => b.life_situations?.includes(ls))
-    );
-  }
-
-  // Zielgruppen (OR-Logik)
-  if (filters.targetGroups.length > 0) {
-    result = result.filter((b) =>
-      filters.targetGroups.some((tg) =>
-        b.target_groups?.some((bTG: string) =>
-          bTG.toLowerCase().includes(tg.toLowerCase())
-        )
-      )
+      b.life_situations?.includes(filters.lifeSituation)
     );
   }
 
@@ -129,10 +107,6 @@ export function applyFilters(
   if (filters.hasCalculator === "yes") {
     result = result.filter(
       (b) => b.calculation?.calculator_possible === true
-    );
-  } else if (filters.hasCalculator === "no") {
-    result = result.filter(
-      (b) => b.calculation?.calculator_possible !== true
     );
   }
 
@@ -143,9 +117,8 @@ export function countActiveFilters(filters: FilterState): number {
   let count = 0;
   if (filters.query) count++;
   if (filters.category !== "Alle") count++;
-  count += filters.level.length;
-  count += filters.lifeSituations.length;
-  count += filters.targetGroups.length;
+  if (filters.state !== "Alle") count++;
+  if (filters.lifeSituation !== "Alle") count++;
   if (filters.hasCalculator !== "all") count++;
   return count;
 }
