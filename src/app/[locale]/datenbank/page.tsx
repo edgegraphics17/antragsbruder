@@ -6,7 +6,7 @@ import { getAllBenefits, getCategories, searchBenefits } from "./data";
 
 type Benefit = ReturnType<typeof getAllBenefits>[number];
 
-export default function DatenbankPage() {
+export default function DatenbankPage({ params }: { params: Promise<{ locale: string }> }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Alle");
 

@@ -38,7 +38,6 @@ const structure: StructureGroup[] = [
       { key: "wohngeldRechner", href: "/wohngeldrechner" },
       { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
       { key: "bafoegRechner", href: "/bafoegrechner" },
-      { key: "datenbank", href: "/datenbank" },
     ],
   },
   {
@@ -48,6 +47,7 @@ const structure: StructureGroup[] = [
       { key: "pricing", href: "/preise" },
       { key: "ueberUns", href: "/wer-wir-sind" },
       { key: "faq", href: "/faq" },
+      { key: "datenbank", href: "/datenbank" },
     ],
   },
   { key: "kontakt", href: "/kontakt" },

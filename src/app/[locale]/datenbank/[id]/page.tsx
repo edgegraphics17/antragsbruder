@@ -8,7 +8,7 @@ export function generateStaticParams() {
   return benefits.map((b) => ({ id: b.id }));
 }
 
-export default async function BenefitPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function BenefitPage({ params }: { params: Promise<{ locale: string; id: string }> }) {
   const { id } = await params;
   const benefit = getBenefitById(id);
 
