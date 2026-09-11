@@ -42,13 +42,30 @@ export class MasterOrchestrator {
     const question = questionEngine.getQuestion(questionId);
     if (!question) throw new Error(`Question ${questionId} not found`);
 
-    const facts: Omit<Fact, 'id' | 'caseId' | 'collectedAt'>[] = question.writesTo.map((path) => ({
-      path,
-      value: answer,
-      sourceType: 'USER_CONFIRMED' as const,
-      confidence: 1.0,
-      confirmedByUser: true,
-    }));
+    // Composite questions (e.g. J19_COMPOSITE) write to multiple fact paths.
+    // The answer is an object like { coldRent: number, heatingCosts: number }.
+    let facts: Omit<Fact, 'id' | 'caseId' | 'collectedAt'>[];
+    if (question.answerType === 'composite_money' && typeof answer === 'object' && answer !== null) {
+      facts = question.writesTo.map((path, idx) => {
+        const values = answer as Record<string, number>;
+        const keys = Object.keys(values);
+        return {
+          path,
+          value: values[keys[idx]] ?? 0,
+          sourceType: 'USER_CONFIRMED' as const,
+          confidence: 1.0,
+          confirmedByUser: true,
+        };
+      });
+    } else {
+      facts = question.writesTo.map((path) => ({
+        path,
+        value: answer,
+        sourceType: 'USER_CONFIRMED' as const,
+        confidence: 1.0,
+        confirmedByUser: true,
+      }));
+    }
     await factStore.storeFacts(caseId, facts);
 
     const nextQuestion = await questionEngine.getNextQuestion(caseId);

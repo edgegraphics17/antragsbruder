@@ -45,7 +45,7 @@ export class GrundsicherungEngine extends BaseBenefitEngine {
     const assetsBucket = await this.getFactValue(caseId, 'assets.total_bucket');
 
     if (!structure) unresolvedQuestions.push('J10');
-    if (!coldRent) unresolvedQuestions.push('J19');
+    if (!coldRent) unresolvedQuestions.push('J19_COMPOSITE');
     if (!assetsBucket) unresolvedQuestions.push('J20');
 
     let regelbedarf = 0;

@@ -137,7 +137,7 @@ export interface RuleEvaluation {
 
 // === QUESTION ENGINE ========================================
 
-export type AnswerType = 'single_choice' | 'multi_choice' | 'date' | 'money' | 'number' | 'person_repeater' | 'text';
+export type AnswerType = 'single_choice' | 'multi_choice' | 'date' | 'money' | 'number' | 'person_repeater' | 'text' | 'composite_money';
 
 export interface QuestionOption {
   key: string;

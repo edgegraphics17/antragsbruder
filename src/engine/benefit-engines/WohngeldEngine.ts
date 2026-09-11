@@ -62,7 +62,7 @@ export class WohngeldEngine extends BaseBenefitEngine {
       });
     }
 
-    if (!coldRent) unresolvedQuestions.push('J19');
+    if (!coldRent) unresolvedQuestions.push('J19_COMPOSITE');
 
     const hasAlg1 = incomeSources.includes('ALG1');
     const hasGrundsicherung = incomeSources.includes('GRUNDSICHERUNG');
