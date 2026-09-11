@@ -38,7 +38,7 @@ const JOB_LOSS_QUESTIONS: Question[] = [
     writesTo: ['employment.termination_reason'],
     showIf: [{ factPath: 'employment.termination_type', operator: 'eq', value: 'EMPLOYER_TERMINATED' }],
     legalRelevance: ['ALG1'],
-    priority: 95,
+    priority: 55,
     sensitivity: 'STANDARD',
   },
   {
@@ -55,7 +55,7 @@ const JOB_LOSS_QUESTIONS: Question[] = [
     writesTo: ['employment.self_quit_reason'],
     showIf: [{ factPath: 'employment.termination_type', operator: 'eq', value: 'SELF_QUIT' }],
     legalRelevance: ['ALG1'],
-    priority: 95,
+    priority: 55,
     sensitivity: 'STANDARD',
   },
   {
@@ -259,7 +259,7 @@ const JOB_LOSS_QUESTIONS: Question[] = [
     ],
     writesTo: ['crisis.indicators'],
     legalRelevance: ['CRISIS'],
-    priority: 200,
+    priority: 25,
     sensitivity: 'SENSITIVE',
   },
 ];

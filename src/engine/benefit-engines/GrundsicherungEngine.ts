@@ -45,7 +45,8 @@ export class GrundsicherungEngine extends BaseBenefitEngine {
     const assetsBucket = await this.getFactValue(caseId, 'assets.total_bucket');
 
     if (!structure) unresolvedQuestions.push('J10');
-    if (!coldRent) unresolvedQuestions.push('J19_COMPOSITE');
+    const housingType = (await this.getFactValue(caseId, 'housing.type') as string);
+    if (housingType === 'RENT' && !coldRent) unresolvedQuestions.push('J19_COMPOSITE');
     if (!assetsBucket) unresolvedQuestions.push('J20');
 
     let regelbedarf = 0;
@@ -98,7 +99,10 @@ export class GrundsicherungEngine extends BaseBenefitEngine {
   async getMissingFacts(caseId: string): Promise<string[]> {
     const missing: string[] = [];
     if (!await this.getFactValue(caseId, 'household.structure')) missing.push('household.structure');
-    if (!await this.getFactValue(caseId, 'housing.cold_rent')) missing.push('housing.cold_rent');
+    const housingType = (await this.getFactValue(caseId, 'housing.type') as string);
+    if (housingType === 'RENT') {
+      if (!await this.getFactValue(caseId, 'housing.cold_rent')) missing.push('housing.cold_rent');
+    }
     if (!await this.getFactValue(caseId, 'income.sources')) missing.push('income.sources');
     if (!await this.getFactValue(caseId, 'assets.total_bucket')) missing.push('assets.total_bucket');
     return missing;

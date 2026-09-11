@@ -127,7 +127,10 @@ export class WohngeldEngine extends BaseBenefitEngine {
   async getMissingFacts(caseId: string): Promise<string[]> {
     const missing: string[] = [];
     if (!await this.getFactValue(caseId, 'housing.type')) missing.push('housing.type');
-    if (!await this.getFactValue(caseId, 'housing.cold_rent')) missing.push('housing.cold_rent');
+    const housingType = (await this.getFactValue(caseId, 'housing.type') as string);
+    if (housingType === 'RENT') {
+      if (!await this.getFactValue(caseId, 'housing.cold_rent')) missing.push('housing.cold_rent');
+    }
     if (!await this.getFactValue(caseId, 'household.structure')) missing.push('household.structure');
     return missing;
   }
