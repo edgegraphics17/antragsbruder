@@ -5,6 +5,8 @@ import "../globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { TranslationBanner } from "@/components/layout/TranslationBanner";
+import { AuthNav } from "@/components/auth/AuthNav";
+import { AuthLayoutWrapper } from "@/components/auth/AuthLayoutWrapper";
 import { site } from "@/content/site";
 import { commonDict } from "@/content/i18n/common";
 import { locales, localeMeta, isLocale, localeHref, defaultLocale, type Locale } from "@/i18n/config";
@@ -84,10 +86,13 @@ export default async function RootLayout({
   return (
     <html lang={locale} dir={dir}>
       <body className={`${bodyFont.variable} ${headingFont.variable} antialiased`}>
-        <Navbar locale={locale} />
-        <TranslationBanner locale={locale} />
-        <main id="main-content">{children}</main>
-        <Footer locale={locale} />
+        <AuthLayoutWrapper>
+          <Navbar locale={locale} />
+          <AuthNav locale={locale} />
+          <TranslationBanner locale={locale} />
+          <main id="main-content">{children}</main>
+          <Footer locale={locale} />
+        </AuthLayoutWrapper>
       </body>
     </html>
   );

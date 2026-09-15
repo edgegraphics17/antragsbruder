@@ -9,7 +9,9 @@ import { commonDict } from "@/content/i18n/common";
 import { Button } from "@/components/ui/Button";
 import { MascotIcon } from "@/components/ui/Logo";
 import { IconChevronDown, IconClose, IconMenu } from "@/components/ui/icons";
+import { IconPerson } from "@/components/ui/icons-person";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { useAuth } from "@/lib/auth-context";
 import { localeHref, stripLocale, type Locale } from "@/i18n/config";
 
 /** True when `href` is the current page or one of its sub-pages. */
@@ -32,6 +34,7 @@ export function Navbar({ locale }: { locale: Locale }) {
   const [expandedGroup, setExpandedGroup] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { user, logout, loading: authLoading } = useAuth();
 
   const mainNav = getMainNav(locale);
   const t = commonDict[locale];
@@ -188,9 +191,41 @@ export function Navbar({ locale }: { locale: Locale }) {
           <div className="hidden items-center gap-1 xl:ms-3 xl:flex">
             <span aria-hidden="true" className="mx-1 h-6 w-px bg-line-soft" />
             <LanguageSwitcher locale={locale} label={t.navbar.language} />
-            <Button href={localeHref(locale, "/hilfe-starten")} variant="primary" size="md" className="ms-1 whitespace-nowrap">
-              {t.nav.hilfeStarten}
-            </Button>
+            {user ? (
+              <div className="relative flex items-center gap-2 ms-2">
+                <Link
+                  href={localeHref(locale, "/dashboard")}
+                  className="flex items-center gap-2 rounded-full bg-brand-50 px-3 py-2 text-sm font-medium text-brand-800 hover:bg-brand-100 transition-colors"
+                  title={t.navbar.dashboard}
+                >
+                  <IconPerson className="h-4 w-4" />
+                  <span className="hidden lg:inline">{user.email?.split("@")[0]}</span>
+                </Link>
+                <button
+                  type="button"
+                  onClick={async () => {
+                    await logout();
+                    window.location.href = localeHref(locale, "/");
+                  }}
+                  className="flex items-center gap-1 rounded-full border border-line-soft px-3 py-2 text-sm font-medium text-ink-soft hover:bg-brand-50 hover:text-brand-800 transition-colors"
+                  title={t.navbar.abmelden}
+                >
+                  <span className="hidden lg:inline">{t.navbar.abmelden}</span>
+                </button>
+              </div>
+            ) : (
+              <>
+                <Link
+                  href={localeHref(locale, "/anmelden")}
+                  className="ms-2 rounded-full border border-line-soft px-3 py-2 text-sm font-medium text-ink hover:bg-brand-50 transition-colors"
+                >
+                  {t.navbar.anmelden}
+                </Link>
+                <Button href={localeHref(locale, "/konto-erstellen")} variant="primary" size="md" className="ms-1 whitespace-nowrap">
+                  {t.navbar.kontoErstellen}
+                </Button>
+              </>
+            )}
           </div>
 
           <button
