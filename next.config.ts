@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 
+// Disable Turbopack to avoid middleware NFT build bug in Next.js 16.3.4
+// (ENOENT: middleware.js.nft.json). Re-enable when fixed upstream.
+process.env.NEXT_DISABLE_TURBOPACK = "1";
+
 const securityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
   { key: "X-Content-Type-Options", value: "nosniff" },
