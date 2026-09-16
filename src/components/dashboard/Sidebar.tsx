@@ -1,15 +1,22 @@
 'use client';
 
 // ============================================================
-// DASHBOARD SIDEBAR — Dunkle Navigation (Desktop) + Mobile Sheet
-// Desktop: Fixe Sidebar links. Mobile: Top-Bar mit Burger → Slide-over.
+// DASHBOARD NAVIGATION
+// Desktop: Fixe, dunkle Sidebar links (Profil + Abmelden inklusive).
+// Mobile: Schlanke Top-Bar + native-app-artige Tab-Bar unten
+// (mit Safe-Area-Support für Notch/Home-Indicator).
 // ============================================================
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
-import { IconDocument, IconFolder, IconSpark, IconArrowRight, IconX } from '@/components/ui/icons';
+import {
+  IconDocument,
+  IconFolder,
+  IconSpark,
+  IconArrowRight,
+  IconFileUp,
+} from '@/components/ui/icons';
 import { IconPerson } from '@/components/ui/icons-person';
 
 type NavItem = {
@@ -20,8 +27,8 @@ type NavItem = {
 
 const NAV_ITEMS: NavItem[] = [
   { href: '/dashboard', label: 'Übersicht', icon: IconFolder },
-  { href: '/dashboard/upload', label: 'Unterlagen hochladen', icon: IconDocument },
   { href: '/dokumente', label: 'Dokumente', icon: IconDocument },
+  { href: '/dashboard/upload', label: 'Upload', icon: IconFileUp },
   { href: '/foerderungen', label: 'Förderungen', icon: IconSpark },
   { href: '/profil', label: 'Profil', icon: IconPerson },
 ];
@@ -30,10 +37,10 @@ function isActive(pathname: string, href: string): boolean {
   if (href === '/dashboard') {
     return pathname === '/dashboard' || pathname.startsWith('/antraege/');
   }
-  return pathname.startsWith(href);
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
+function SidebarContent() {
   const pathname = usePathname();
   const router = useRouter();
   const { user, logout } = useAuth();
@@ -74,7 +81,6 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
             <Link
               key={item.href}
               href={item.href}
-              onClick={onNavigate}
               aria-current={active ? 'page' : undefined}
               className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
                 active
@@ -111,7 +117,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
 }
 
 export function DashboardSidebar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -123,40 +129,39 @@ export function DashboardSidebar() {
       {/* Mobile Top-Bar */}
       <div className="sticky top-0 z-40 flex items-center justify-between border-b border-white/10 bg-brand-950 px-4 py-3 lg:hidden">
         <span className="font-display text-base font-bold text-white">Antragsbruder</span>
-        <button
-          type="button"
-          onClick={() => setMobileOpen(true)}
-          aria-label="Menü öffnen"
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-white/80 hover:bg-white/10"
-        >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
       </div>
 
-      {/* Mobile Slide-over */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true">
-          <button
-            type="button"
-            aria-label="Menü schließen"
-            className="absolute inset-0 bg-black/50"
-            onClick={() => setMobileOpen(false)}
-          />
-          <div className="absolute inset-y-0 left-0 w-72 shadow-xl">
-            <button
-              type="button"
-              onClick={() => setMobileOpen(false)}
-              aria-label="Menü schließen"
-              className="absolute right-3 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-lg text-white/70 hover:bg-white/10"
+      {/* Mobile Tab-Bar (native-app-artig, Upload als hervorgehobener Mittel-Tab) */}
+      <nav
+        aria-label="Dashboard-Navigation"
+        className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t border-line-soft bg-white/95 backdrop-blur-sm lg:hidden"
+        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+      >
+        {NAV_ITEMS.map((item) => {
+          const active = isActive(pathname, item.href);
+          const Icon = item.icon;
+          const isUpload = item.href === '/dashboard/upload';
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={active ? 'page' : undefined}
+              className={`flex min-h-14 flex-col items-center justify-center gap-0.5 px-1 py-2 text-[10px] font-medium transition-colors ${
+                active ? 'text-brand-700' : 'text-ink-soft'
+              }`}
             >
-              <IconX className="h-4 w-4" />
-            </button>
-            <SidebarContent onNavigate={() => setMobileOpen(false)} />
-          </div>
-        </div>
-      )}
+              <span
+                className={`flex items-center justify-center rounded-full ${
+                  isUpload ? 'h-9 w-9 -mt-4 bg-brand-600 text-white shadow-md' : ''
+                }`}
+              >
+                <Icon className="h-5 w-5" />
+              </span>
+              {item.label}
+            </Link>
+          );
+        })}
+      </nav>
     </>
   );
 }

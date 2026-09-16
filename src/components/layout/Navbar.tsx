@@ -7,6 +7,7 @@ import { getMainNav, type NavGroup } from "@/content/nav";
 import { site } from "@/content/site";
 import { commonDict } from "@/content/i18n/common";
 import { Button } from "@/components/ui/Button";
+import { ButtonAction } from "@/components/ui/Button";
 import { MascotIcon } from "@/components/ui/Logo";
 import { IconChevronDown, IconClose, IconMenu } from "@/components/ui/icons";
 import { IconPerson } from "@/components/ui/icons-person";
@@ -309,9 +310,53 @@ export function Navbar({ locale }: { locale: Locale }) {
             </nav>
 
             <div className="mt-3 flex flex-col gap-3 border-t border-line-soft pt-3">
+              {user ? (
+                <>
+                  <Button
+                    href={localeHref(locale, "/dashboard")}
+                    variant="primary"
+                    size="lg"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <IconPerson className="h-4 w-4" />
+                    {t.navbar.dashboard}
+                  </Button>
+                  <ButtonAction
+                    variant="outline"
+                    size="lg"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      void logout().then(() => {
+                        window.location.href = localeHref(locale, "/");
+                      });
+                    }}
+                  >
+                    {t.navbar.abmelden}
+                  </ButtonAction>
+                </>
+              ) : (
+                <>
+                  <Button
+                    href={localeHref(locale, "/konto-erstellen")}
+                    variant="primary"
+                    size="lg"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {t.navbar.kontoErstellen}
+                  </Button>
+                  <Button
+                    href={localeHref(locale, "/anmelden")}
+                    variant="outline"
+                    size="lg"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {t.navbar.anmelden}
+                  </Button>
+                </>
+              )}
               <Button
                 href={localeHref(locale, "/hilfe-starten")}
-                variant="primary"
+                variant="outline"
                 size="lg"
                 onClick={() => setMobileOpen(false)}
               >
