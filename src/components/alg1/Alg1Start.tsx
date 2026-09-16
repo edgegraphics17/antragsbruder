@@ -6,7 +6,7 @@
 // cases.user_id wird beim Insert gesetzt).
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { SchnellCheck } from '@/components/alg1/SchnellCheck';
+import { SchnellCheck, clearSchnellCheckCache } from '@/components/alg1/SchnellCheck';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth-context';
 import type { SchnellCheck as SchnellCheckData } from '@/lib/types/alg1';
@@ -55,10 +55,13 @@ export function Alg1Start() {
 
     setBusy(false);
     if (appError || !appRow) {
-      setError('Antrag konnte nicht erstellt werden. Bitte später erneut versuchen.');
+      // appError.message für exaktes Feedback (z. B. RLS/Constraint-Fehler)
+      setError(`Antrag konnte nicht erstellt werden: ${appError?.message ?? 'Unbekannter Fehler'}`);
       return;
     }
 
+    // Cache erst nach erfolgreichem Start leeren
+    clearSchnellCheckCache();
     router.push(`/alg1/antrag?applicationId=${appRow.id}`);
   };
 

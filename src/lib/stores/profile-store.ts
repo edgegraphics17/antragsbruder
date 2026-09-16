@@ -6,6 +6,7 @@ interface ProfileStore {
   profile: UserProfile | null;
   loading: boolean;
   error: string | null;
+  initialized: boolean;
   loadProfile: (userId: string) => Promise<void>;
   updateProfile: (userId: string, updates: Partial<UserProfile>) => Promise<boolean>;
   setAvatar: (url: string | null) => void;
@@ -36,15 +37,41 @@ export const useProfileStore = create<ProfileStore>((set) => ({
   profile: null,
   loading: false,
   error: null,
+  initialized: false,
 
   loadProfile: async (userId: string) => {
     set({ loading: true, error: null });
-    const { data, error } = await supabase.from('profiles').select('*').eq('id', userId).single();
-    if (error) {
-      set({ error: error.message, loading: false });
+
+    // maybeSingle(): kein PGRST116-Fehler bei fehlender Zeile
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', userId)
+      .maybeSingle();
+
+    // Kein Profil gefunden → einmalig anlegen, Ergebnis direkt in den Store.
+    // Kein Retry, keine Rekursion (V6-Guard).
+    if (!data && !error) {
+      const { data: authData } = await supabase.auth.getUser();
+      const { data: inserted, error: upsertError } = await supabase
+        .from('profiles')
+        .upsert({ id: userId, email: authData.user?.email, updated_at: new Date().toISOString() })
+        .select('*')
+        .single();
+
+      if (upsertError || !inserted) {
+        set({ error: 'Profil konnte nicht erstellt werden', loading: false, initialized: true });
+        return;
+      }
+      set({ profile: mapDbToProfile(inserted), loading: false, error: null, initialized: true });
       return;
     }
-    set({ profile: mapDbToProfile(data), loading: false });
+
+    if (error) {
+      set({ error: error.message, loading: false, initialized: true });
+      return;
+    }
+    set({ profile: mapDbToProfile(data), loading: false, error: null, initialized: true });
   },
 
   updateProfile: async (userId: string, updates: Partial<UserProfile>) => {

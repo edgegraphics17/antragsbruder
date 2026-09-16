@@ -52,7 +52,12 @@ export function Alg1Flow({ applicationId }: { applicationId: string }) {
         <p className="mb-6 text-sm text-ink-soft">
           Lade die wichtigsten Dokumente hoch — wir lesen sie automatisch aus.
         </p>
-        <DocumentUpload userId={app.userId} caseId={app.caseId} onComplete={() => setStage('form')} />
+        <DocumentUpload
+          userId={app.userId}
+          caseId={app.caseId}
+          applicationId={app.id}
+          onComplete={() => setStage('form')}
+        />
       </div>
     );
   }

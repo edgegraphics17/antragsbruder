@@ -1,189 +1,153 @@
 'use client';
 
-// SLICE 3 — DocumentUpload: DB-Eintrag zuerst (PENDING), dann Storage-Upload
-// unter ${user_id}/${case_id}/${file_id}.${ext}, dann Status PROCESSING.
-// Verhindert Orphaned Files: schlägt der Upload fehl, wird der DB-Eintrag
-// wieder entfernt.
-import { useCallback, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
+// SLICE 3 (V6) — DocumentUpload: feste Slots, DB-First mit Rollback.
+// DB-Eintrag (PENDING) vor Storage-Upload, bei Fehler Rollback (Löschen),
+// danach Status PROCESSING. Pfad: ${userId}/${caseId}/${fileId}.${ext}.
+// Reload-sicher: Beim Mounten werden vorhandene Dokumente geladen.
+import { useCallback, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import type { DocumentRole } from '@/lib/types/alg1';
-import { ButtonAction } from '@/components/ui/Button';
+import { useAuth } from '@/lib/auth-context';
+import { DocumentSlot } from './upload/DocumentSlot';
 
-type UploadStatus = 'db_pending' | 'uploading' | 'processing' | 'done' | 'error';
+const SLOTS = [
+  { role: 'TERMINATION', label: 'Kündigungsschreiben', description: 'Beendigung des Arbeitsverhältnisses', required: true },
+  { role: 'PAYSLIP', label: 'Letzter Lohnzettel', description: 'Brutto-Gehaltsnachweis', required: true },
+  { role: 'ID_CARD', label: 'Personalausweis', description: 'Vorder- und Rückseite', required: true },
+  { role: 'OTHER', label: 'Zusätzliche Unterlagen', description: 'Optional', required: false },
+] as const;
 
-interface UploadedFile {
+interface DocumentRow {
   id: string;
   filename: string;
-  status: UploadStatus;
-  role?: DocumentRole;
-  storagePath?: string;
+  status: string;
+  storage_path: string | null;
 }
-
-export const REQUIRED_DOCS: { role: DocumentRole; label: string; required: boolean }[] = [
-  { role: 'TERMINATION', label: 'Kündigungsschreiben', required: true },
-  { role: 'PAYSLIP', label: 'Letzter Lohnzettel', required: true },
-  { role: 'ID_CARD', label: 'Personalausweis', required: true },
-  { role: 'CONTRACT', label: 'Arbeitsvertrag', required: false },
-  { role: 'BANK_STATEMENT', label: 'Kontoauszug', required: false },
-];
 
 export function DocumentUpload({
   userId,
   caseId,
+  applicationId,
   onComplete,
 }: {
   userId: string;
   caseId: string;
+  applicationId?: string;
   onComplete: () => void;
 }) {
-  const [files, setFiles] = useState<UploadedFile[]>([]);
+  const { user } = useAuth();
+  const [files, setFiles] = useState<Record<string, DocumentRow>>({});
+  const [loading, setLoading] = useState(true);
+  const [bypass, setBypass] = useState(false);
 
-  const patchFile = (id: string, patch: Partial<UploadedFile>) =>
-    setFiles((prev) => prev.map((f) => (f.id === id ? { ...f, ...patch } : f)));
-
-  const uploadFile = async (file: File) => {
-    const id = crypto.randomUUID();
-    const ext = (file.name.split('.').pop() ?? 'bin').toLowerCase();
-    // Nutzerspezifischer Ordner: ${user_id}/${case_id}/${file_id}.${ext}
-    const path = `${userId}/${caseId}/${id}.${ext}`;
-
-    setFiles((prev) => [...prev, { id, filename: file.name, status: 'db_pending' }]);
-
-    // 1. ZUERST: DB-Eintrag mit Status PENDING (verhindert Orphaned Files)
-    const { data: metaRecord, error: metaError } = await supabase
-      .from('documents_meta')
-      .insert({
-        case_id: caseId,
-        user_id: userId,
-        storage_path: path,
-        filename: file.name,
-        file_size: file.size,
-        mime_type: file.type,
-        status: 'PENDING',
-      })
-      .select('id')
-      .single();
-
-    if (metaError || !metaRecord) {
-      patchFile(id, { status: 'error' });
+  // Initialer Fetch — Reload-Sicherheit (Dokumente bleiben immer sichtbar)
+  useEffect(() => {
+    if (!user || !applicationId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Initialzustand ohne Fetch-Möglichkeit
+      setLoading(false);
       return;
     }
+    const load = async () => {
+      const { data } = await supabase
+        .from('documents_meta')
+        .select('id, filename, status, storage_path, document_role')
+        .eq('application_id', applicationId)
+        .neq('status', 'ERROR');
+      if (data) {
+        const mapped: Record<string, DocumentRow> = {};
+        (data as (DocumentRow & { document_role: string | null })[]).forEach((doc) => {
+          if (doc.document_role) mapped[doc.document_role] = doc;
+        });
+        setFiles(mapped);
+      }
+      setLoading(false);
+    };
+    load();
+  }, [user, applicationId]);
 
-    patchFile(id, { status: 'uploading' });
+  const handleUpload = useCallback(
+    async (file: File, role: string) => {
+      if (!user) return;
+      const fileId = crypto.randomUUID();
+      const ext = (file.name.split('.').pop() ?? 'bin').toLowerCase();
+      const filePath = `${userId}/${caseId}/${fileId}.${ext}`;
 
-    // 2. Storage-Upload
-    const { error: uploadError } = await supabase.storage
-      .from('documents')
-      .upload(path, file);
+      // 1. DB-First: Slot reservieren (PENDING) — application_id UND case_id
+      const { data: meta, error: metaErr } = await supabase
+        .from('documents_meta')
+        .insert({
+          application_id: applicationId,
+          case_id: caseId,
+          user_id: user.id,
+          document_role: role,
+          storage_path: filePath,
+          filename: file.name,
+          file_size: file.size,
+          mime_type: file.type,
+          status: 'PENDING',
+        })
+        .select('id')
+        .single();
+      if (metaErr || !meta) return;
 
-    if (uploadError) {
-      // Cleanup: DB-Eintrag bei fehlgeschlagenem Upload löschen
-      await supabase.from('documents_meta').delete().eq('id', metaRecord.id);
-      patchFile(id, { status: 'error' });
-      return;
-    }
+      // 2. Storage-Upload
+      const { error: storageErr } = await supabase.storage.from('documents').upload(filePath, file);
 
-    // 3. Status → PROCESSING (wartet auf OCR via n8n)
-    await supabase
-      .from('documents_meta')
-      .update({ status: 'PROCESSING' })
-      .eq('id', metaRecord.id);
-
-    patchFile(id, { status: 'processing', storagePath: path });
-  };
-
-  const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      acceptedFiles.forEach(uploadFile);
+      // 3. Rollback bei Fehler, sonst Status PROCESSING (wartet auf OCR)
+      if (storageErr) {
+        await supabase.from('documents_meta').delete().eq('id', meta.id);
+        return;
+      }
+      await supabase.from('documents_meta').update({ status: 'PROCESSING' }).eq('id', meta.id);
+      setFiles((prev) => ({ ...prev, [role]: { id: meta.id, filename: file.name, status: 'PROCESSING', storage_path: filePath } }));
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [userId, caseId],
+    [user, applicationId, caseId],
   );
 
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: { 'application/pdf': [], 'image/jpeg': [], 'image/png': [] },
-    maxSize: 10 * 1024 * 1024,
-  });
-
-  const requiredUploaded = REQUIRED_DOCS.filter((d) => d.required).every((d) =>
-    files.some((f) => f.role === d.role && f.status !== 'error'),
+  const handleDelete = useCallback(
+    async (role: string) => {
+      const doc = files[role];
+      if (!doc) return;
+      await supabase.from('documents_meta').delete().eq('id', doc.id);
+      if (doc.storage_path) {
+        await supabase.storage.from('documents').remove([doc.storage_path]);
+      }
+      setFiles((prev) => {
+        const next = { ...prev };
+        delete next[role];
+        return next;
+      });
+    },
+    [files],
   );
+
+  if (loading) {
+    return <div className="h-6 w-6 animate-spin rounded-full border-2 border-brand-600 border-t-transparent" />;
+  }
+
+  const requiredDone = SLOTS.filter((s) => s.required).every((s) => files[s.role]);
+  const canContinue = requiredDone || bypass;
 
   return (
     <div className="space-y-4">
-      <div
-        {...getRootProps()}
-        className="cursor-pointer rounded-xl border-2 border-dashed border-line p-8 text-center hover:border-brand-600"
+      <div className="space-y-3">
+        {SLOTS.map((slot) => (
+          <DocumentSlot key={slot.role} slot={slot} document={files[slot.role]} onUpload={handleUpload} onDelete={handleDelete} />
+        ))}
+      </div>
+
+      <label className="flex items-center gap-2 text-sm text-ink-soft">
+        <input type="checkbox" checked={bypass} onChange={(e) => setBypass(e.target.checked)} className="accent-brand-600" />
+        Ich reiche Unterlagen später nach
+      </label>
+
+      <button
+        type="button"
+        onClick={onComplete}
+        disabled={!canContinue}
+        className="w-full rounded-xl bg-brand-600 py-3 font-semibold text-white transition-colors hover:bg-brand-700 disabled:opacity-50"
       >
-        <input {...getInputProps()} />
-        <p className="text-sm text-ink-soft">
-          Dateien hierher ziehen oder klicken (PDF, JPG, PNG — max. 10 MB)
-        </p>
-      </div>
-
-      <div className="space-y-2">
-        {REQUIRED_DOCS.map((doc) => {
-          const uploaded = files.find((f) => f.role === doc.role);
-          const label = uploaded
-            ? uploaded.status === 'processing' ? 'Wird verarbeitet'
-              : uploaded.status === 'uploading' ? 'Wird hochgeladen'
-                : uploaded.status === 'done' ? 'Fertig' : 'Fehler'
-            : '—';
-          return (
-            <div key={doc.role} className="flex items-center justify-between rounded-lg border border-line p-3">
-              <span className="text-sm">
-                {doc.label} {doc.required && <span className="text-brand-700">*</span>}
-              </span>
-              <span
-                className={`text-xs font-medium ${
-                  uploaded?.status === 'done' ? 'text-green-600'
-                    : uploaded?.status === 'error' ? 'text-red-600'
-                      : uploaded ? 'text-amber-600' : 'text-ink-soft'
-                }`}
-              >
-                {uploaded?.filename ? `${uploaded.filename} — ${label}` : label}
-              </span>
-            </div>
-          );
-        })}
-        {files
-          .filter((f) => !f.role && f.status !== 'error')
-          .map((f) => (
-            <div key={f.id} className="flex items-center justify-between rounded-lg border border-line p-3">
-              <span className="text-sm">{f.filename}</span>
-              <select
-                aria-label="Dokumenttyp zuordnen"
-                onChange={(e) => {
-                  const role = e.target.value as DocumentRole;
-                  patchFile(f.id, { role });
-                  if (role) {
-                    // Dokumenttyp in DB setzen (auch bevor n8n klassifiziert)
-                    void supabase
-                      .from('documents_meta')
-                      .update({ document_role: role })
-                      .eq('storage_path', f.storagePath ?? '');
-                  }
-                }}
-                defaultValue=""
-                className="rounded-md border border-line px-2 py-1 text-xs"
-              >
-                <option value="" disabled>Typ wählen…</option>
-                {REQUIRED_DOCS.map((d) => (
-                  <option key={d.role} value={d.role}>{d.label}</option>
-                ))}
-                <option value="OTHER">Sonstiges</option>
-              </select>
-            </div>
-          ))}
-      </div>
-
-      {requiredUploaded && (
-        <ButtonAction onClick={onComplete} className="w-full">
-          Weiter zu den Fragen
-        </ButtonAction>
-      )}
+        Weiter zu den Fragen
+      </button>
     </div>
   );
 }

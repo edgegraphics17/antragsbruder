@@ -22,6 +22,7 @@ interface AppRecord {
   benefit_type: string;
   status: string;
   created_at: string;
+  calculation_result: { amount?: number; unit?: string } | null;
 }
 
 export function DashboardHome() {
@@ -38,7 +39,7 @@ export function DashboardHome() {
     const load = async () => {
       const { data } = await supabase
         .from('applications')
-        .select('id, case_id, benefit_type, status, created_at')
+        .select('id, case_id, benefit_type, status, created_at, calculation_result')
         .eq('user_id', user.id)
         .order('updated_at', { ascending: false });
       setApplications(data ?? []);
@@ -69,7 +70,7 @@ export function DashboardHome() {
             <div className="rounded-2xl border border-line-soft bg-paper p-8 text-center">
               <p className="mb-4 text-ink-soft">Noch keine aktiven Anträge</p>
               <Link
-                href="/alg1/antrag"
+                href="/alg1"
                 className="inline-block rounded-xl bg-brand-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-700"
               >
                 Jetzt starten
@@ -81,9 +82,15 @@ export function DashboardHome() {
                 <div className="min-w-0">
                   <p className="truncate font-semibold text-ink">{app.benefit_type || 'Antrag'}</p>
                   <p className="text-xs text-ink-soft">Erstellt am {formatDate(app.created_at)}</p>
+                  {app.calculation_result?.amount != null && app.calculation_result.amount > 0 && (
+                    <p className="mt-0.5 text-xs font-medium text-brand-700">
+                      ca. {app.calculation_result.amount} €
+                      {app.calculation_result.unit === 'EUR_MONTH' ? ' / Monat' : ''}
+                    </p>
+                  )}
                 </div>
                 <Link
-                  href={app.benefit_type === 'ALG1' ? '/alg1/antrag' : `/antraege/${app.case_id}`}
+                  href={app.benefit_type === 'ALG1' ? `/alg1/antrag?applicationId=${app.id}` : `/antraege/${app.case_id}`}
                   className="shrink-0 rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
                 >
                   Weiterarbeiten

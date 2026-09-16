@@ -11,6 +11,34 @@ import { SchnellCheckResultView } from './SchnellCheckResultView';
 import { ButtonAction } from '@/components/ui/Button';
 import type { Alg1SchnellCheckResult, SchnellCheck } from '@/lib/types/alg1';
 
+const STORAGE_KEY = 'alg1_schnellcheck_answers';
+
+function loadCachedAnswers(): Partial<SchnellCheck> {
+  if (typeof window === 'undefined') return {};
+  try {
+    const cached = sessionStorage.getItem(STORAGE_KEY);
+    return cached ? (JSON.parse(cached) as Partial<SchnellCheck>) : {};
+  } catch {
+    return {};
+  }
+}
+
+function cacheAnswers(answers: Partial<SchnellCheck>) {
+  try {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+  } catch {
+    // sessionStorage nicht verfügbar — Cache ist optional
+  }
+}
+
+export function clearSchnellCheckCache() {
+  try {
+    sessionStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // optional
+  }
+}
+
 export function SchnellCheck({
   onComplete,
 }: {
@@ -18,7 +46,7 @@ export function SchnellCheck({
   onComplete: (result: Alg1SchnellCheckResult, answers: SchnellCheck) => void;
 }) {
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Partial<SchnellCheck>>({});
+  const [answers, setAnswersState] = useState<Partial<SchnellCheck>>(loadCachedAnswers);
   const [numberInput, setNumberInput] = useState('');
   const [showResult, setShowResult] = useState(false);
   const [finalResult, setFinalResult] = useState<Alg1SchnellCheckResult | null>(null);
@@ -28,7 +56,8 @@ export function SchnellCheck({
 
   const handleAnswer = (value: unknown) => {
     const next = { ...answers, [currentQ.key]: value };
-    setAnswers(next);
+    setAnswersState(next);
+    cacheAnswers(next); // Refresh-/Tab-Wechsel-sicher
     setNumberInput('');
     if (step < QUESTIONS.length - 1) {
       setStep(step + 1);
