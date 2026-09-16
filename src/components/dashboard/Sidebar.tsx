@@ -2,21 +2,24 @@
 
 // ============================================================
 // DASHBOARD NAVIGATION
-// Desktop: Fixe, dunkle Sidebar links (Profil + Abmelden inklusive).
-// Mobile: Schlanke Top-Bar + native-app-artige Tab-Bar unten
-// (mit Safe-Area-Support für Notch/Home-Indicator).
+// Desktop: Fixe, dunkle Sidebar links (Profil-Widget + Abmelden).
+// Mobile: Schlanke Top-Bar + native-app-artige Tab-Bar unten.
+// Profil-Daten kommen aus dem globalen ProfileStore (Realtime).
 // ============================================================
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { useAuth } from '@/lib/auth-context';
+import { useProfileStore } from '@/lib/stores/profile-store';
+import { supabase } from '@/lib/supabase';
 import {
   IconDocument,
   IconFolder,
   IconSpark,
   IconArrowRight,
-  IconFileUp,
   IconCoin,
+  IconSettings,
 } from '@/components/ui/icons';
 import { IconPerson } from '@/components/ui/icons-person';
 
@@ -30,9 +33,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: '/dashboard', label: 'Übersicht', icon: IconFolder },
   { href: '/alg1', label: 'ALG1', icon: IconCoin },
   { href: '/dokumente', label: 'Dokumente', icon: IconDocument },
-  { href: '/dashboard/upload', label: 'Upload', icon: IconFileUp },
   { href: '/foerderungen', label: 'Förderungen', icon: IconSpark },
-  { href: '/profil', label: 'Profil', icon: IconPerson },
 ];
 
 function isActive(pathname: string, href: string): boolean {
@@ -46,11 +47,38 @@ function SidebarContent() {
   const pathname = usePathname();
   const router = useRouter();
   const { user, logout } = useAuth();
+  const { profile, loadProfile } = useProfileStore();
+
+  useEffect(() => {
+    if (user && !profile) loadProfile(user.id);
+  }, [user, profile, loadProfile]);
+
+  // Realtime-Fallback: Profil-Änderungen (z. B. Avatar aus anderem Tab) nachziehen.
+  useEffect(() => {
+    if (!user) return;
+    const channel = supabase
+      .channel('sidebar-profile')
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'profiles', filter: `id=eq.${user.id}` },
+        () => {
+          loadProfile(user.id);
+        },
+      )
+      .subscribe();
+    return () => {
+      channel.unsubscribe();
+    };
+  }, [user, loadProfile]);
 
   const handleLogout = async () => {
     await logout();
     router.push('/anmelden');
   };
+
+  const displayName = profile?.firstName
+    ? `${profile.firstName} ${profile.lastName ?? ''}`.trim()
+    : user?.email?.split('@')[0] ?? 'Gast';
 
   return (
     <div className="flex h-full flex-col bg-brand-950 text-white">
@@ -59,20 +87,25 @@ function SidebarContent() {
         <span className="font-display text-lg font-bold tracking-tight">Antragsbruder</span>
       </div>
 
-      {/* Profil */}
-      <div className="mx-4 mb-4 flex items-center gap-3 rounded-2xl bg-white/5 px-4 py-3">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-600">
-          <IconPerson className="h-4 w-4 text-white" />
-        </div>
-        <div className="min-w-0">
-          <p className="truncate text-sm font-medium">
-            {user ? user.email.split('@')[0] : 'Gast'}
-          </p>
-          {user && (
-            <p className="truncate text-xs text-white/50">{user.email}</p>
+      {/* Profil-Widget */}
+      <Link
+        href="/profil"
+        className="mx-4 mb-4 flex items-center gap-3 rounded-2xl bg-white/5 px-4 py-3 transition-colors hover:bg-white/10"
+      >
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-600">
+          {profile?.avatarUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={profile.avatarUrl} alt="" className="h-full w-full object-cover" />
+          ) : (
+            <IconPerson className="h-4 w-4 text-white" />
           )}
         </div>
-      </div>
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-sm font-medium">{displayName}</p>
+          {user && <p className="truncate text-xs text-white/50">{user.email}</p>}
+        </div>
+        <IconSettings className="h-4 w-4 shrink-0 text-white/50" />
+      </Link>
 
       {/* Navigation */}
       <nav className="flex flex-col gap-1 px-4" aria-label="Dashboard-Navigation">
@@ -133,16 +166,15 @@ export function DashboardSidebar() {
         <span className="font-display text-base font-bold text-white">Antragsbruder</span>
       </div>
 
-      {/* Mobile Tab-Bar (native-app-artig, Upload als hervorgehobener Mittel-Tab) */}
+      {/* Mobile Tab-Bar */}
       <nav
         aria-label="Dashboard-Navigation"
-        className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-6 border-t border-line-soft bg-white/95 backdrop-blur-sm lg:hidden"
+        className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-line-soft bg-white/95 backdrop-blur-sm lg:hidden"
         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       >
         {NAV_ITEMS.map((item) => {
           const active = isActive(pathname, item.href);
           const Icon = item.icon;
-          const isUpload = item.href === '/dashboard/upload';
           return (
             <Link
               key={item.href}
@@ -152,13 +184,7 @@ export function DashboardSidebar() {
                 active ? 'text-brand-700' : 'text-ink-soft'
               }`}
             >
-              <span
-                className={`flex items-center justify-center rounded-full ${
-                  isUpload ? 'h-9 w-9 -mt-4 bg-brand-600 text-white shadow-md' : ''
-                }`}
-              >
-                <Icon className="h-5 w-5" />
-              </span>
+              <Icon className="h-5 w-5" />
               {item.label}
             </Link>
           );

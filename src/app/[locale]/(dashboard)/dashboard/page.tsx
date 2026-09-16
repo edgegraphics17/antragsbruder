@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
-import { Dashboard } from '@/components/dashboard/Dashboard';
+import { DashboardHome } from '@/components/dashboard/DashboardHome';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Dashboard — Antragsbruder',
-    description: 'Verwende deine Anträge, lade Unterlagen hoch und verwalte deine Förderanträge.',
+    description: 'Deine laufenden Anträge und passenden Förderungen auf einen Blick.',
   };
 }
 
 export default function DashboardPage() {
-  // Cases werden client-seitig über /api/dashboard/cases geladen.
-  return <Dashboard />;
+  // Anträge & Empfehlungen werden client-seitig über den ProfileStore
+  // und die applications-Tabelle geladen (siehe DashboardHome).
+  return <DashboardHome />;
 }
