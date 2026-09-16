@@ -2,7 +2,7 @@
 // BENEFIT ENGINE BASE — Gemeinsame Schnittstelle (async)
 // ============================================================
 
-import type { BenefitResult, BenefitStatus, CalculationResult, Fact, RuleEvaluation } from '../types';
+import type { BenefitResult, BenefitStatus, CalculationResult, Fact, RuleEvaluation, BenefitType } from '../types';
 import { factStore } from '../fact-store/FactStore';
 import { ruleEngine } from '../rule-engine/RuleEngine';
 
@@ -41,7 +41,7 @@ export abstract class BaseBenefitEngine implements BenefitEngineContract {
     calculation?: CalculationResult | null;
   }): BenefitResult {
     return {
-      benefitType: this.benefitType as any,
+      benefitType: this.benefitType as BenefitType,
       status: params.status,
       confidence: params.confidence,
       discoveryReasons: params.reasons || [],

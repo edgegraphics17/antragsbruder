@@ -145,7 +145,7 @@ export function IntakeForm({
         <div className="flex items-start gap-3 rounded-2xl border border-dashed border-brand-400 bg-brand-50 px-4 py-3 text-sm text-ink-soft">
           <IconUpload className="h-5 w-5 shrink-0 text-brand-700" />
           <div>
-            <span className="font-semibold text-ink">So funktioniert's:</span>
+            <span className="font-semibold text-ink">So funktioniert{'\''}s:</span>
             <span className="mt-1 block">{t.uploadHint}</span>
             <span className="mt-1 block text-xs text-ink-soft">Deine Daten werden verschlüsselt übertragen und nur zur Bearbeitung gespeichert. Nach Abschluss der Bearbeitung werden sie gelöscht.</span>
           </div>

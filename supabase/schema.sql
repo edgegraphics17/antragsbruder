@@ -114,6 +114,22 @@ create table if not exists emergencies (
 create index if not exists idx_emergencies_case_id on emergencies(case_id);
 
 -- ============================================================
+-- DOCUMENTS META (OCR-Verarbeitungsergebnisse)
+-- ============================================================
+create table if not exists documents_meta (
+  id uuid primary key default uuid_generate_v4(),
+  case_id uuid not null references cases(id) on delete cascade,
+  storage_path text not null,
+  filename text not null,
+  ocr_text text,
+  meta_json jsonb,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists idx_documents_meta_case_id on documents_meta(case_id);
+create index if not exists idx_documents_meta_storage_path on documents_meta(storage_path);
+
+-- ============================================================
 -- RULES (Versionierte Rechtsregeln)
 -- ============================================================
 create table if not exists rules (
@@ -184,6 +200,7 @@ alter table facts enable row level security;
 alter table benefit_results enable row level security;
 alter table actions enable row level security;
 alter table emergencies enable row level security;
+alter table documents_meta enable row level security;
 alter table rules enable row level security;
 alter table legal_parameters enable row level security;
 
@@ -228,6 +245,13 @@ create policy "Allow public update on actions"
 
 create policy "Allow public read on emergencies"
   on emergencies for select using (true);
+
+create policy "Allow public read/write on documents_meta"
+  on documents_meta for select using (true);
+create policy "Allow public insert on documents_meta"
+  on documents_meta for insert with check (true);
+create policy "Allow public update on documents_meta"
+  on documents_meta for update using (true);
 
 create policy "Allow public insert on emergencies"
   on emergencies for insert with check (true);

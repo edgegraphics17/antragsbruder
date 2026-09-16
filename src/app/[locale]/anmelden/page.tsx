@@ -5,6 +5,7 @@ import { LoginForm } from '@/components/auth/LoginForm';
 import { RegisterForm } from '@/components/auth/RegisterForm';
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import Link from 'next/link';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -55,23 +56,19 @@ export default async function LoginPage({ params, searchParams }: PageProps) {
 
           <div className="mb-6 flex justify-center">
             {locale === 'de' ? (
-              <a
-                href="/de/anmelden"
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors cursor-pointer ${
+              <Link href="/de/anmelden"><a className={`rounded-full px-4 py-2 text-sm font-medium transition-colors cursor-pointer ${
                   redirect ? 'bg-brand-50 text-brand-700' : 'bg-brand-50 text-brand-700'
                 }`}
               >
                 Anmelden
-              </a>
+              </a></Link>
             ) : (
-              <a
-                href="/en/signin"
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors cursor-pointer ${
+              <Link href="/en/signin"><a className={`rounded-full px-4 py-2 text-sm font-medium transition-colors cursor-pointer ${
                   redirect ? 'bg-brand-50 text-brand-700' : 'bg-brand-50 text-brand-700'
                 }`}
               >
                 Sign in
-              </a>
+              </a></Link>
             )}
           </div>
 
@@ -88,25 +85,25 @@ export default async function LoginPage({ params, searchParams }: PageProps) {
           {locale === 'de' ? (
             <>
               Mit der Anmeldung stimmst du unseren{' '}
-              <a href="/de/datenschutz" className="underline underline-offset-2 hover:text-brand-700">
+              <Link href="/de/datenschutz"><a className="underline underline-offset-2 hover:text-brand-700">
                 Datenschutzbedingungen
-              </a>{' '}
+              </a></Link>{' '}
               und{' '}
-              <a href="/de/agb" className="underline underline-offset-2 hover:text-brand-700">
+              <Link href="/de/agb"><a className="underline underline-offset-2 hover:text-brand-700">
                 Allgemeinen Geschäftsbedingungen
-              </a>{' '}
+              </a></Link>{' '}
               zu.
             </>
           ) : (
             <>
               By signing in, you agree to our{' '}
-              <a href="/en/privacy" className="underline underline-offset-2 hover:text-brand-700">
+              <Link href="/en/privacy"><a className="underline underline-offset-2 hover:text-brand-700">
                 Privacy Policy
-              </a>{' '}
+              </a></Link>{' '}
               and{' '}
-              <a href="/en/terms" className="underline underline-offset-2 hover:text-brand-700">
+              <Link href="/en/terms"><a className="underline underline-offset-2 hover:text-brand-700">
                 Terms of Service
-              </a>.
+              </a></Link>.
             </>
           )}
         </p>

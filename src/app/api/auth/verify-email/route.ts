@@ -1,29 +1,46 @@
 // ============================================================
 // API: Auth — E-Mail-Verifizierung bestätigen
 // POST /api/auth/verify-email
-// Body: { token }  (oder optional leer → versucht aktuelle Verifikation)
 // ============================================================
 
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { createAuthServerClient } from '@/lib/auth-server';
+import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
+import { trackError } from '@/lib/sentry';
+
+const verifyEmailSchema = z.object({
+  token: z.string().optional(),
+});
 
 export async function POST(request: NextRequest) {
+  const ip = getClientIp(request);
+  const rate = checkRateLimit(ip, 'default');
+  if (!rate.allowed) {
+    return NextResponse.json({ error: 'Zu viele Anfragen.' }, { status: 429 });
+  }
+
   try {
     const supabase = createAuthServerClient();
 
-    // Optional: Token-Option. Standardmäßig wird versucht,
-    // die Token-Verbindung über den aktuellen Auth-Zustand zu bestätigen.
     const body = await request.json().catch(() => ({}));
-    const { token } = body as { token?: string };
+
+    // Zod validieren
+    const parsed = verifyEmailSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json({ error: 'Validierungsfehler' }, { status: 400 });
+    }
+
+    const { token } = parsed.data;
 
     if (token) {
       const { error } = await supabase.auth.verifyOtp({
         token,
         type: 'email',
-        email: '', // Dummy — Supabase nutzt Token, nicht email, für manuelle Token-Verifikation
-      } as any);
+        email: '',
+      });
       if (error) {
-        return NextResponse.json({ error: error.message }, { status: 400 });
+        return NextResponse.json({ error: error instanceof Error ? error.message : String(error) }, { status: 400 });
       }
       return NextResponse.json({ success: true });
     }
@@ -33,11 +50,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Nicht authentifiziert' }, { status: 401 });
     }
 
-    // Bei bestehender Session prüfen, ob E-Mail verifiziert ist
     const { data: profile, error: profileError } = await supabase
       .from('profiles')
-      // Supabase auth.users.email_confirmed_at ist da —
-      // vereinfacht: wir antworten mit dem Verifikationsstatus der Session
       .select('id')
       .eq('id', data.session.user.id)
       .single();
@@ -50,7 +64,8 @@ export async function POST(request: NextRequest) {
       success: true,
       emailConfirmed: data.session.user.email_confirmed_at ? true : false,
     });
-  } catch (err: any) {
-    return NextResponse.json({ error: err.message }, { status: 500 });
+  } catch (err: unknown) {
+    trackError(err, { route: 'auth.verify-email' });
+    return NextResponse.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
   }
 }

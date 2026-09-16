@@ -126,7 +126,7 @@ export class FactStore {
       
       const { data, error } = await query;
       if (!error && data) {
-        facts = data.map((row: any) => ({
+        facts = data.map((row) => ({
           id: row.id,
           caseId: row.case_id,
           path: row.path,

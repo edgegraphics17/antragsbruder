@@ -7,6 +7,7 @@ import { IconPerson } from '@/components/ui/icons-person';
 import { IconArrowRight, IconDocument, IconAlertTriangle } from '@/components/ui/icons';
 import { ButtonAction } from '@/components/ui/Button';
 import { formatDate } from '@/lib/dashboard';
+import { ChatWidget } from '@/components/chat/ChatWidget';
 
 interface Case {
   id: string;
@@ -114,8 +115,8 @@ export function Dashboard({ cases: initialCases, loading: initialLoading, error:
       if (data.caseId) {
         router.push(`/dashboard/${data.caseId}`);
       }
-    } catch (err: any) {
-      setError(err.message ?? 'Fehler beim Erstellen des Antrags');
+    } catch (err: unknown) {
+      setError((err instanceof Error ? err.message : String(err)) ?? 'Fehler beim Erstellen des Antrags');
     } finally {
       setLoading(false);
     }
@@ -280,6 +281,9 @@ export function Dashboard({ cases: initialCases, loading: initialLoading, error:
           )}
         </div>
       </div>
+
+      {/* Chat Widget */}
+      <ChatWidget caseId={undefined} userName={user?.email?.split('@')[0] ?? 'Gast'} />
     </div>
   );
 }

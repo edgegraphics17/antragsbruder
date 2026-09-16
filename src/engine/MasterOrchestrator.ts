@@ -2,7 +2,7 @@
 // MASTER ORCHESTRATOR — Zentrale Orchestrierung (async)
 // ============================================================
 
-import type { Case, Fact, Question, ResultViewModel, CrisisResult, BenefitResult, Action } from './types';
+import type { Case, Fact, Question, ResultViewModel, CrisisResult, BenefitResult, Action, Emergency } from './types';
 import { caseService } from './fact-store/CaseService';
 import { factStore } from './fact-store/FactStore';
 import { questionEngine } from './question-engine/QuestionEngine';
@@ -152,7 +152,7 @@ export class MasterOrchestrator {
 
       if (crisisResult.emergencies.length > 0) {
         await supabase.from('emergencies').insert(
-          crisisResult.emergencies.map((e: any) => ({
+          crisisResult.emergencies.map((e: Emergency) => ({
             id: e.id,
             case_id: caseId,
             type: e.type,

@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
-
 type Variant = "primary" | "secondary" | "outline" | "ghost";
-type Size = "md" | "lg";
+type Size = "sm" | "md" | "lg";
 
 const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700 disabled:opacity-50 disabled:cursor-not-allowed";
@@ -15,6 +14,7 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
+  sm: "px-3 py-1.5 text-xs min-h-8",
   md: "px-5 py-3 text-sm min-h-11",
   lg: "px-7 py-4 text-base min-h-12",
 };

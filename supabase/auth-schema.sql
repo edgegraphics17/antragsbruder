@@ -129,12 +129,15 @@ values ('antragsunterlagen', 'antragsunterlagen', false)
 on conflict (id) do nothing;
 
 -- RLS für den Bucket: nur authentifizierte Nutzer, nur eigene Dateien
+-- Nutzer-ID als Ordner-Präfix im Pfad (z.B. uuid/dateiname.pdf)
+-- Hinweis: storage.fold_name() ist in neueren Supabase-Versionen nicht verfügbar,
+-- daher wird split_part(name, '/', 1) verwendet.
 create policy "Authenticated users can upload documents"
   on storage.objects for insert
   to authenticated
   with check (
     bucket_id = 'antragsunterlagen'
-    and auth.uid()::text = (storage.fold_name(name))[1]
+    and split_part(name, '/', 1) = auth.uid()::text
   );
 
 create policy "Users can view own documents"
@@ -142,7 +145,7 @@ create policy "Users can view own documents"
   to authenticated
   using (
     bucket_id = 'antragsunterlagen'
-    and auth.uid()::text = (storage.fold_name(name))[1]
+    and split_part(name, '/', 1) = auth.uid()::text
   );
 
 create policy "Users can delete own documents"
@@ -150,7 +153,7 @@ create policy "Users can delete own documents"
   to authenticated
   using (
     bucket_id = 'antragsunterlagen'
-    and auth.uid()::text = (storage.fold_name(name))[1]
+    and split_part(name, '/', 1) = auth.uid()::text
   );
 
 -- ============================================================

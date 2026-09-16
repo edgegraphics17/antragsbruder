@@ -39,6 +39,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchSession().then((u) => setLoading(false));
 
     const supabase = getBrowserClient();
@@ -62,12 +63,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const supabase = getBrowserClient();
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) {
-        setError(error.message);
+        setError(error instanceof Error ? error.message : String(error));
         return false;
       }
       return true;
-    } catch (err: any) {
-      setError(err.message ?? 'Ein unerwarteter Fehler ist aufgetreten');
+    } catch (err: unknown) {
+      setError((err instanceof Error ? err.message : String(err)) ?? 'Ein unerwarteter Fehler ist aufgetreten');
       return false;
     } finally {
       setLoading(false);
@@ -90,16 +91,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         },
       });
       if (error) {
-        if (error.message?.includes('already registered')) {
+        if ((error instanceof Error ? error.message : String(error)).includes('already registered')) {
           setError('Diese E-Mail ist bereits registriert');
         } else {
-          setError(error.message);
+          setError(error instanceof Error ? error.message : String(error));
         }
         return { success: false, requiresEmailVerification: false };
       }
       return { success: true, requiresEmailVerification: true };
-    } catch (err: any) {
-      setError(err.message ?? 'Ein unerwarteter Fehler ist aufgetreten');
+    } catch (err: unknown) {
+      setError((err instanceof Error ? err.message : String(err)) ?? 'Ein unerwarteter Fehler ist aufgetreten');
       return { success: false, requiresEmailVerification: false };
     } finally {
       setLoading(false);
@@ -113,8 +114,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const supabase = getBrowserClient();
       await supabase.auth.signOut();
       setUser(null);
-    } catch (err: any) {
-      setError(err.message ?? 'Ein unerwarteter Fehler ist aufgetreten');
+    } catch (err: unknown) {
+      setError((err instanceof Error ? err.message : String(err)) ?? 'Ein unerwarteter Fehler ist aufgetreten');
     } finally {
       setLoading(false);
     }

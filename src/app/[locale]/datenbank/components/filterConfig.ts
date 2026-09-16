@@ -2,6 +2,18 @@
 // FILTER CONFIG — Vereinfachte, kompakte Filter
 // ============================================================
 
+/** Felder, die für die Filterung von Benefits benötigt werden.
+ * Wird intern als Typ für strukturelle Casts verwendet. */
+interface BenefitFields {
+  official_name?: string;
+  aliases?: string[];
+  category?: string;
+  target_groups?: string[];
+  regions?: string[];
+  life_situations?: string[];
+  calculation?: { calculator_possible?: boolean };
+}
+
 export interface FilterState {
   query: string;
   category: string;
@@ -64,33 +76,40 @@ export const filterOptions = {
   ],
 };
 
-export function applyFilters(
-  benefits: any[],
+/** Filtert Benefits. Generic — behält den Eingabetyp als Ausgabetyp. */
+export function applyFilters<T extends Record<string, unknown>>(
+  benefits: T[],
   filters: FilterState
-): any[] {
+): T[] {
   let result = benefits;
+  const asBenefit = (item: T): BenefitFields => item as unknown as BenefitFields;
 
   // Textsuche
   if (filters.query) {
     const q = filters.query.toLowerCase();
-    result = result.filter(
-      (b) =>
-        b.official_name.toLowerCase().includes(q) ||
-        b.aliases?.some((a: string) => a.toLowerCase().includes(q)) ||
-        b.category.toLowerCase().includes(q) ||
-        b.target_groups?.some((t: string) => t.toLowerCase().includes(q))
-    );
+    result = result.filter((item) => {
+      const b = asBenefit(item);
+      return (
+        b.official_name?.toLowerCase().includes(q) ||
+        b.aliases?.some((a) => a.toLowerCase().includes(q)) ||
+        b.category?.toLowerCase().includes(q) ||
+        b.target_groups?.some((t) => t.toLowerCase().includes(q))
+      );
+    });
   }
 
   // Kategorie
   if (filters.category !== "Alle") {
-    result = result.filter((b) => b.category === filters.category);
+    result = result.filter(
+      (item) => asBenefit(item).category === filters.category
+    );
   }
 
   // Bundesland — zeigt Benefits die für dieses Bundesland gelten
   // (entweder 'all' oder das spezifische Bundesland)
   if (filters.state !== "Alle") {
-    result = result.filter((b) => {
+    result = result.filter((item) => {
+      const b = asBenefit(item);
       const regions = b.regions || [];
       return regions.includes("all") || regions.includes(filters.state);
     });
@@ -98,15 +117,16 @@ export function applyFilters(
 
   // Lebenssituation
   if (filters.lifeSituation !== "Alle") {
-    result = result.filter((b) =>
-      b.life_situations?.includes(filters.lifeSituation)
+    result = result.filter(
+      (item) =>
+        asBenefit(item).life_situations?.includes(filters.lifeSituation)
     );
   }
 
   // Rechner verfügbar
   if (filters.hasCalculator === "yes") {
     result = result.filter(
-      (b) => b.calculation?.calculator_possible === true
+      (item) => asBenefit(item).calculation?.calculator_possible === true
     );
   }
 

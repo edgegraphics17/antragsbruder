@@ -5,7 +5,6 @@ import "../globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { TranslationBanner } from "@/components/layout/TranslationBanner";
-import { AuthNav } from "@/components/auth/AuthNav";
 import { AuthLayoutWrapper } from "@/components/auth/AuthLayoutWrapper";
 import { site } from "@/content/site";
 import { commonDict } from "@/content/i18n/common";
@@ -88,7 +87,6 @@ export default async function RootLayout({
       <body className={`${bodyFont.variable} ${headingFont.variable} antialiased`}>
         <AuthLayoutWrapper>
           <Navbar locale={locale} />
-          <AuthNav locale={locale} />
           <TranslationBanner locale={locale} />
           <main id="main-content">{children}</main>
           <Footer locale={locale} />

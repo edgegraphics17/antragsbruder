@@ -6,6 +6,7 @@
 // ============================================================
 
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { createAuthServerClient } from '@/lib/auth-server';
 import {
   uploadDocument,
@@ -14,8 +15,19 @@ import {
   storeDocumentToDB,
   type DocumentRecord,
 } from '@/lib/storage';
+import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
+import { sendUploadConfirmationEmail } from '@/lib/email';
+import { documentUploadJsonSchema, documentUploadFormSchema } from '@/lib/api-validation';
+import { trackError } from '@/lib/sentry';
 
+// --- GET: Dokumente auflisten ---
 export async function GET(request: NextRequest) {
+  const ip = getClientIp(request);
+  const rate = checkRateLimit(ip, 'default');
+  if (!rate.allowed) {
+    return NextResponse.json({ error: 'Zu viele Anfragen.' }, { status: 429 });
+  }
+
   try {
     const supabase = createAuthServerClient();
     const { data, error: sessionError } = await supabase.auth.getSession();
@@ -29,17 +41,34 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'caseId erforderlich' }, { status: 400 });
     }
 
+    // Zod: caseId ist UUID
+    const parsedId = z.string().uuid().safeParse(caseId);
+    if (!parsedId.success) {
+      return NextResponse.json({ error: 'Ungültige Case-ID' }, { status: 400 });
+    }
+
     const documents = (await getDocumentsForCase(
       request,
       caseId,
     )) as DocumentRecord[];
     return NextResponse.json({ documents });
-  } catch (err: any) {
-    return NextResponse.json({ error: err.message }, { status: 500 });
+  } catch (err: unknown) {
+    trackError(err, { route: 'dashboard.documents.get' });
+    return NextResponse.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
   }
 }
 
+// --- POST: Dokument hochladen ---
 export async function POST(request: NextRequest) {
+  const ip = getClientIp(request);
+  const rate = checkRateLimit(ip, 'upload');
+  if (!rate.allowed) {
+    return NextResponse.json(
+      { error: 'Zu viele Anfragen. Bitte warte einen Moment.', retryAfter: '60' },
+      { status: 429, headers: { 'Retry-After': '60' } },
+    );
+  }
+
   try {
     const supabase = createAuthServerClient();
     const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
@@ -71,17 +100,24 @@ export async function POST(request: NextRequest) {
       originalName = file.name;
       fileBytes = new Uint8Array(await file.arrayBuffer());
     } else {
-      const body = await request.json();
-      caseId = body.caseId;
-      const { fileBase64, filename } = body;
-      if (!caseId || !fileBase64) {
+      const body = await request.json().catch(() => null);
+      if (!body || typeof body !== 'object') {
+        return NextResponse.json({ error: 'Ungültiger AnfrageBody' }, { status: 400 });
+      }
+
+      // Zod-Validierung
+      const parsed = documentUploadJsonSchema.safeParse(body);
+      if (!parsed.success) {
+        const firstError = parsed.error.issues[0];
         return NextResponse.json(
-          { error: 'caseId und fileBase64 (JSON) erforderlich' },
+          { error: firstError?.message ?? 'Validierungsfehler' },
           { status: 400 },
         );
       }
-      originalName = filename ?? 'upload.pdf';
-      fileBytes = new Uint8Array(Buffer.from(fileBase64, 'base64'));
+
+      caseId = parsed.data.caseId;
+      originalName = parsed.data.filename ?? 'upload.pdf';
+      fileBytes = new Uint8Array(Buffer.from(parsed.data.fileBase64, 'base64'));
     }
 
     if (!caseId) {
@@ -109,17 +145,38 @@ export async function POST(request: NextRequest) {
       uploadedBy: userId,
     });
 
+    // Upload-Bestätigung per E-Mail senden (versuchen, nicht blockieren)
+    try {
+      await sendUploadConfirmationEmail(
+        sessionData.session.user.email ?? '',
+        sessionData.session.user.email?.split('@')[0] ?? 'Nutzer',
+        uploadResult.filename,
+        caseId,
+      );
+    } catch (emailErr) {
+      // E-Mail-Fehler darf den Upload nicht abbrechen
+      console.warn('[Email] Upload-Bestätigung konnte nicht gesendet werden:', emailErr);
+    }
+
     return NextResponse.json({
       success: true,
       document: dbRecord,
       publicUrl: uploadResult.publicUrl,
     });
-  } catch (err: any) {
-    return NextResponse.json({ error: err.message }, { status: 500 });
+  } catch (err: unknown) {
+    trackError(err, { route: 'dashboard.documents.post' });
+    return NextResponse.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
   }
 }
 
+// --- DELETE: Dokument löschen ---
 export async function DELETE(request: NextRequest) {
+  const ip = getClientIp(request);
+  const rate = checkRateLimit(ip, 'default');
+  if (!rate.allowed) {
+    return NextResponse.json({ error: 'Zu viele Anfragen.' }, { status: 429 });
+  }
+
   try {
     const supabase = createAuthServerClient();
     const { data, error: sessionError } = await supabase.auth.getSession();
@@ -136,7 +193,8 @@ export async function DELETE(request: NextRequest) {
     await storageDelete(request, storagePath);
 
     return NextResponse.json({ success: true });
-  } catch (err: any) {
-    return NextResponse.json({ error: err.message }, { status: 500 });
+  } catch (err: unknown) {
+    trackError(err, { route: 'dashboard.documents.delete' });
+    return NextResponse.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
   }
 }

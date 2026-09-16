@@ -23,7 +23,8 @@ export default function AnspruecheCheckenClient({
   dict,
 }: {
   locale: Locale;
-  dict: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+dict: any;
 }) {
   const t = dict;
   const [selected, setSelected] = useState<string[]>([]);
@@ -54,7 +55,7 @@ export default function AnspruecheCheckenClient({
           <h2 className="text-xl font-bold text-ink">{t.situationsTitle}</h2>
           <p className="mt-2 text-sm text-ink-soft">{t.situationsSubtitle}</p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {t.situations.map((s: any) => {
+            {t.situations.map((s: { key: string; icon: string; label: string }) => {
               const Icon = iconMap[s.icon];
               const isSelected = selected.includes(s.key);
               return (

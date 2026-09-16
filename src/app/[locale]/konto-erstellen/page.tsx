@@ -4,6 +4,7 @@ import { commonDict } from '@/content/i18n/common';
 import { RegisterForm } from '@/components/auth/RegisterForm';
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import Link from 'next/link';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -36,9 +37,9 @@ export default async function RegisterPage({ params }: PageProps) {
 
         <p className="mt-6 text-center text-xs text-ink-soft">
           Du hast schon ein Konto?{' '}
-          <a href="/de/anmelden" className="font-semibold text-brand-700 underline underline-offset-2 hover:text-brand-800">
+          <Link href="/de/anmelden"><a className="font-semibold text-brand-700 underline underline-offset-2 hover:text-brand-800">
             Jetzt anmelden
-          </a>
+          </a></Link>
         </p>
       </div>
     </Container>

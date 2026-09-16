@@ -30,7 +30,7 @@ export async function uploadDocument(
     });
 
   if (error) {
-    throw new Error(`Upload fehlgeschlagen: ${error.message}`);
+    throw new Error(`Upload fehlgeschlagen: ${error instanceof Error ? error.message : String(error)}`);
   }
 
   const { data: urlData } = supabase.storage
@@ -41,8 +41,8 @@ export async function uploadDocument(
     storagePath: data.path,
     publicUrl: urlData.publicUrl,
     filename: file.name,
-    fileSize: (data as any)?.fileSize ?? file.size ?? 0,
-    mimeType: (data as any)?.mimeType ?? fileType,
+    fileSize: file.size,
+    mimeType: fileType,
   };
 }
 
@@ -66,7 +66,7 @@ export async function deleteDocument(_request: Request, storagePath: string) {
     .remove([storagePath]);
 
   if (error) {
-    throw new Error(`Löschen fehlgeschlagen: ${error.message}`);
+    throw new Error(`Löschen fehlgeschlagen: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
 
@@ -81,8 +81,8 @@ export async function listDocuments(
     .from('antragsunterlagen')
     .list(`${userId}/${caseId}`);
 
-  if (error && error.message !== 'Not found') {
-    throw new Error(`Listing fehlgeschlagen: ${error.message}`);
+  if (error && error instanceof Error ? error.message : String(error) !== 'Not found') {
+    throw new Error(`Listing fehlgeschlagen: ${error instanceof Error ? error.message : String(error)}`);
   }
 
   const files = (data || [])
@@ -90,8 +90,8 @@ export async function listDocuments(
     .map((file) => ({
       name: file.name ?? '',
       path: file.name ?? '',
-      size: (file as any).size ?? 0,
-      mimeType: (file as any).mime_type ?? 'application/octet-stream',
+      size: (file.metadata as { size?: number } | null)?.size ?? 0,
+      mimeType: (file.metadata as { mimetype?: string } | null)?.mimetype ?? 'application/octet-stream',
       uploadedAt: file.updated_at
         ? new Date(file.updated_at).toISOString()
         : new Date().toISOString(),
@@ -144,7 +144,7 @@ export async function storeDocumentToDB(
     .single();
 
   if (error) {
-    throw new Error(`DB-Speicherung fehlgeschlagen: ${error.message}`);
+    throw new Error(`DB-Speicherung fehlgeschlagen: ${error instanceof Error ? error.message : String(error)}`);
   }
 
   return data as DocumentRecord;
@@ -163,7 +163,7 @@ export async function getDocumentsForCase(
     .order('created_at', { ascending: false });
 
   if (error) {
-    throw new Error(`Dokumente für Case nicht lieferbar: ${error.message}`);
+    throw new Error(`Dokumente für Case nicht lieferbar: ${error instanceof Error ? error.message : String(error)}`);
   }
 
   // Signierte URLs für jeden Eintrag nachladen
@@ -195,7 +195,7 @@ export async function getSignedUrl(
     .createSignedUrl(storagePath, expiresSeconds);
 
   if (error) {
-    throw new Error(`Signierte URL fehlgeschlagen: ${error.message}`);
+    throw new Error(`Signierte URL fehlgeschlagen: ${error instanceof Error ? error.message : String(error)}`);
   }
 
   return data?.signedUrl ?? '';
