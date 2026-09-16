@@ -31,3 +31,15 @@ export interface Alg1SchnellCheckResult {
   warnings: string[];
   nextSteps: string[];
 }
+
+// Rolle eines Dokuments im ALG1-Flow (entspricht documents_meta.document_role)
+export type DocumentRole =
+  | 'TERMINATION'
+  | 'PAYSLIP'
+  | 'ID_CARD'
+  | 'CONTRACT'
+  | 'BANK_STATEMENT'
+  | 'OTHER';
+
+// Upload-Status eines Dokuments (entspricht documents_meta.status)
+export type DocumentStatus = 'PENDING' | 'PROCESSING' | 'DONE' | 'ERROR';

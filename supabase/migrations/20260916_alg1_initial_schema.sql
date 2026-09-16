@@ -49,7 +49,15 @@ create table if not exists applications (
   unique (case_id, benefit_type)
 );
 
--- Trigger für updated_at (Funktion existiert bereits in schema.sql)
+-- Trigger für updated_at (Funktion idempotent sichergestellt)
+create or replace function update_updated_at()
+returns trigger as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$ language plpgsql;
+
 drop trigger if exists trigger_applications_updated_at on applications;
 create trigger trigger_applications_updated_at
   before update on applications
@@ -81,7 +89,68 @@ create policy "Users can update own applications"
   with check (auth.uid() = user_id);
 
 -- ============================================================
--- 2. DOCUMENTS_META ERWEITERN (Meta-Tags statt eigener Tabellen)
+-- 2. DOCUMENTS_META (Basis-Tabelle, falls noch nicht vorhanden
+--    — Live-DB-Drift: documents_meta existierte dort noch nicht)
+-- ============================================================
+create table if not exists documents_meta (
+  id uuid primary key default uuid_generate_v4(),
+  case_id uuid not null references cases(id) on delete cascade,
+  user_id uuid,
+  storage_path text not null,
+  filename text not null,
+  ocr_text text,
+  meta_json jsonb,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists idx_documents_meta_case_id on documents_meta(case_id);
+create index if not exists idx_documents_meta_storage_path on documents_meta(storage_path);
+
+-- RLS: Zugriff nur für den Besitzer des Cases
+alter table documents_meta enable row level security;
+
+drop policy if exists "Users can view own case documents" on documents_meta;
+create policy "Users can view own case documents"
+  on documents_meta for select
+  using (
+    exists (
+      select 1 from cases c
+      where c.id = documents_meta.case_id and c.user_id = auth.uid()
+    )
+  );
+
+drop policy if exists "Users can insert own case documents" on documents_meta;
+create policy "Users can insert own case documents"
+  on documents_meta for insert
+  with check (
+    exists (
+      select 1 from cases c
+      where c.id = documents_meta.case_id and c.user_id = auth.uid()
+    )
+  );
+
+drop policy if exists "Users can update own case documents" on documents_meta;
+create policy "Users can update own case documents"
+  on documents_meta for update
+  using (
+    exists (
+      select 1 from cases c
+      where c.id = documents_meta.case_id and c.user_id = auth.uid()
+    )
+  );
+
+drop policy if exists "Users can delete own case documents" on documents_meta;
+create policy "Users can delete own case documents"
+  on documents_meta for delete
+  using (
+    exists (
+      select 1 from cases c
+      where c.id = documents_meta.case_id and c.user_id = auth.uid()
+    )
+  );
+
+-- ============================================================
+-- 3. DOCUMENTS_META ERWEITERN (ALG1 Meta-Tags statt eigener Tabellen)
 -- ============================================================
 alter table documents_meta
   add column if not exists benefit_types text[] default '{}';
@@ -102,6 +171,12 @@ alter table documents_meta
 alter table documents_meta
   add column if not exists status text default 'PENDING'
     check (status in ('PENDING', 'PROCESSING', 'DONE', 'ERROR'));
+
+alter table documents_meta
+  add column if not exists file_size bigint;
+
+alter table documents_meta
+  add column if not exists mime_type text;
 
 -- Indexes für Rolle & Status
 create index if not exists idx_documents_role on documents_meta(document_role);
