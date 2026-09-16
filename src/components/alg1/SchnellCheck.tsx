@@ -1,36 +1,15 @@
 'use client';
 
-// SLICE 2 — SchnellCheck: Step-by-Step Wizard (7 Fragen).
-// Validierung via Zod (safeParse), UI-Logik über die Question-Config.
+// SLICE 2 — SchnellCheck: Step-by-Step Wizard.
+// Number-Inputs werden gepuffert (kein Sprung bei der ersten Ziffer);
+// nach der letzten Frage erscheint das Resümee statt sofortigem onComplete.
 import { useState } from 'react';
 import { SchnellCheckSchema } from '@/lib/schemas/alg1';
 import { evaluateSchnellCheck } from '@/lib/alg1/logic';
-import type { Alg1SchnellCheckResult, SchnellCheck } from '@/lib/types/alg1';
+import { QUESTIONS, TERMINATION_LABELS } from '@/lib/alg1/schnellcheck-config';
+import { SchnellCheckResultView } from './SchnellCheckResultView';
 import { ButtonAction } from '@/components/ui/Button';
-
-const TERMINATION_LABELS: Record<SchnellCheck['termination_type'], string> = {
-  EMPLOYER_TERMINATED: 'Arbeitgeber hat gekündigt',
-  CONTRACT_END: 'Vertrag ist ausgelaufen',
-  SELF_QUIT: 'Ich habe selbst gekündigt',
-  MUTUAL_AGREEMENT: 'Aufhebungsvertrag',
-  EMPLOYER_INSOLVENT: 'Arbeitgeber insolvent',
-  HOURS_REDUCED: 'Arbeitszeit wurde reduziert',
-  OTHER: 'Sonstiges',
-};
-
-const QUESTIONS: {
-  key: keyof SchnellCheck;
-  label: string;
-  type: 'select' | 'number' | 'boolean';
-}[] = [
-  { key: 'termination_type', label: 'Was ist mit deinem Job passiert?', type: 'select' },
-  { key: 'insurance_period_months', label: 'Wie viele Monate warst du in den letzten 28 Monaten versicherungspflichtig?', type: 'number' },
-  { key: 'registered_unemployed', label: 'Hast du dich bereits arbeitslos gemeldet?', type: 'boolean' },
-  { key: 'available_hours_per_week', label: 'Wie viele Stunden pro Woche kannst du arbeiten?', type: 'number' },
-  { key: 'actively_seeking', label: 'Suchst du aktiv nach Arbeit?', type: 'boolean' },
-  { key: 'has_children', label: 'Hast du Kinder unter 18?', type: 'boolean' },
-  { key: 'has_partner', label: 'Lebst du mit einem Partner/einer Partnerin zusammen?', type: 'boolean' },
-];
+import type { Alg1SchnellCheckResult, SchnellCheck } from '@/lib/types/alg1';
 
 export function SchnellCheck({
   onComplete,
@@ -40,6 +19,9 @@ export function SchnellCheck({
 }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Partial<SchnellCheck>>({});
+  const [numberInput, setNumberInput] = useState('');
+  const [showResult, setShowResult] = useState(false);
+  const [finalResult, setFinalResult] = useState<Alg1SchnellCheckResult | null>(null);
 
   const currentQ = QUESTIONS[step];
   const progress = Math.round((step / QUESTIONS.length) * 100);
@@ -47,13 +29,43 @@ export function SchnellCheck({
   const handleAnswer = (value: unknown) => {
     const next = { ...answers, [currentQ.key]: value };
     setAnswers(next);
+    setNumberInput('');
     if (step < QUESTIONS.length - 1) {
       setStep(step + 1);
       return;
     }
     const parsed = SchnellCheckSchema.safeParse(next);
-    if (parsed.success) onComplete(evaluateSchnellCheck(parsed.data), parsed.data);
+    if (parsed.success) {
+      setFinalResult(evaluateSchnellCheck(parsed.data));
+      setShowResult(true);
+    }
   };
+
+  const submitNumber = () => {
+    const n = parseInt(numberInput, 10);
+    if (!Number.isNaN(n) && n >= 0) handleAnswer(n);
+  };
+
+  const goBack = () => {
+    setNumberInput('');
+    setStep(step - 1);
+  };
+
+  const editQuestion = (questionIndex: number) => {
+    setShowResult(false);
+    setStep(questionIndex);
+  };
+
+  if (showResult && finalResult) {
+    return (
+      <SchnellCheckResultView
+        result={finalResult}
+        answers={answers as SchnellCheck}
+        onEdit={editQuestion}
+        onStart={() => onComplete(finalResult, answers as SchnellCheck)}
+      />
+    );
+  }
 
   return (
     <div className="mx-auto max-w-lg p-6">
@@ -84,13 +96,20 @@ export function SchnellCheck({
       )}
 
       {currentQ.type === 'number' && (
-        <input
-          type="number"
-          min={0}
-          autoFocus
-          onChange={(e) => e.target.value && handleAnswer(parseInt(e.target.value, 10) || 0)}
-          className="w-full rounded-lg border border-line px-4 py-3 focus:border-brand-600 focus:outline-none"
-        />
+        <div className="space-y-3">
+          <input
+            type="number"
+            min={0}
+            autoFocus
+            value={numberInput}
+            onChange={(e) => setNumberInput(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && submitNumber()}
+            className="w-full rounded-lg border border-line px-4 py-3 focus:border-brand-600 focus:outline-none"
+          />
+          <ButtonAction onClick={submitNumber} disabled={!numberInput} className="w-full">
+            Weiter
+          </ButtonAction>
+        </div>
       )}
 
       {currentQ.type === 'boolean' && (
@@ -101,10 +120,7 @@ export function SchnellCheck({
       )}
 
       {step > 0 && (
-        <button
-          onClick={() => setStep(step - 1)}
-          className="mt-4 text-xs text-ink-soft hover:text-brand-700"
-        >
+        <button onClick={goBack} className="mt-4 text-xs text-ink-soft hover:text-brand-700">
           ← Zurück
         </button>
       )}

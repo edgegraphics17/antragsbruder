@@ -20,6 +20,8 @@ export const SchnellCheckSchema = z.object({
   actively_seeking: z.boolean(),
   has_children: z.boolean(),
   has_partner: z.boolean(),
+  // Für Live-Berechnung der geschätzten Anspruchshöhe (€/Monat, brutto, Ø letzte 12 Monate)
+  gross_salary: z.number().min(0),
 });
 
 // ── ALG1 Antragsdaten (alle Felder des Formulars) ────────────

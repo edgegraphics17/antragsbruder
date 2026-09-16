@@ -1,32 +1,25 @@
 'use client';
 
-// SLICE 2/6 — ALG1-Start: Schnell-Check → Ergebnis → Case + Application
-// anlegen → Weiter zum Antrag. Kein Route-Handler: direkte supabase-js-Calls
-// (RLS schützt; cases.user_id wird beim Insert gesetzt).
+// SLICE 2/6 — ALG1-Start: Schnell-Check (inkl. Resümee) → CTA legt
+// Case + Application an und navigiert in den Antrags-Flow.
+// Kein Route-Handler: direkte supabase-js-Calls (RLS schützt;
+// cases.user_id wird beim Insert gesetzt).
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { SchnellCheck } from '@/components/alg1/SchnellCheck';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth-context';
-import { ButtonAction } from '@/components/ui/Button';
-import type { Alg1SchnellCheckResult, SchnellCheck as SchnellCheckData } from '@/lib/types/alg1';
-
-const RESULT_STYLES = {
-  LIKELY: { badge: 'bg-green-100 text-green-700', label: 'Gute Aussichten' },
-  UNCLEAR: { badge: 'bg-amber-100 text-amber-700', label: 'Einzelfallprüfung' },
-  UNLIKELY: { badge: 'bg-red-100 text-red-700', label: 'Wenig Aussichten' },
-} as const;
+import type { SchnellCheck as SchnellCheckData } from '@/lib/types/alg1';
 
 export function Alg1Start() {
   const router = useRouter();
   const { user } = useAuth();
-  const [result, setResult] = useState<Alg1SchnellCheckResult | null>(null);
-  const [answers] = useState<SchnellCheckData | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const startApplication = async () => {
-    if (!user || !answers) return;
+  // Wird vom CTA-Button im Ergebnis-Resümee aufgerufen.
+  const startApplication = async (answers: SchnellCheckData) => {
+    if (!user || busy) return;
     setBusy(true);
     setError(null);
 
@@ -69,37 +62,12 @@ export function Alg1Start() {
     router.push(`/alg1/antrag?applicationId=${appRow.id}`);
   };
 
-  if (!result || !answers) {
-    return <SchnellCheck caseId="" onComplete={setResult} />;
-  }
-
-  const style = RESULT_STYLES[result.eligibility];
-
   return (
-    <div className="mx-auto max-w-lg space-y-6 p-6">
-      <div className="rounded-xl bg-brand-100 p-6 text-center">
-        <span className={`inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide ${style.badge}`}>
-          {style.label}
-        </span>
-        <p className="mt-4 font-semibold">{result.reason}</p>
-        {result.warnings.length > 0 && (
-          <ul className="mt-3 list-inside list-disc text-sm text-ink-soft">
-            {result.warnings.map((w, i) => <li key={i}>{w}</li>)}
-          </ul>
-        )}
-      </div>
-
-      <div className="rounded-xl border border-line p-4">
-        <p className="mb-2 text-sm font-semibold">Nächste Schritte</p>
-        <ul className="list-inside list-disc text-sm text-ink-soft">
-          {result.nextSteps.map((s, i) => <li key={i}>{s}</li>)}
-        </ul>
-      </div>
-
-      <ButtonAction onClick={startApplication} disabled={busy} className="w-full">
-        {busy ? 'Wird gestartet…' : 'Jetzt Antrag starten'}
-      </ButtonAction>
-      {error && <p className="text-xs text-red-600">{error}</p>}
+    <div className="mx-auto max-w-lg">
+      {error && (
+        <p className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-600">{error}</p>
+      )}
+      <SchnellCheck caseId="" onComplete={(_, answers) => void startApplication(answers)} />
     </div>
   );
 }

@@ -65,7 +65,7 @@ export function evaluateSchnellCheck(data: SchnellCheck): Alg1SchnellCheckResult
   };
 }
 
-export function calculateAlg1Estimate(data: Alg1FormData): {
+export function calculateAlg1Estimate(data: Pick<Alg1FormData, 'grossSalary' | 'childrenCount'>): {
   monthly: number;
   daily: number;
   rate: 0.6 | 0.67;
@@ -77,4 +77,17 @@ export function calculateAlg1Estimate(data: Alg1FormData): {
   const monthly = Math.round(dailyAmount * 21);
 
   return { monthly, daily: dailyAmount, rate, basis: data.grossSalary };
+}
+
+// Berechnung direkt aus den Schnell-Check-Antworten (Kind-Info als Boolean).
+export function calculateAlg1EstimateFromSchnellCheck(data: SchnellCheck): {
+  monthly: number;
+  daily: number;
+  rate: 0.6 | 0.67;
+  basis: number;
+} {
+  return calculateAlg1Estimate({
+    grossSalary: data.gross_salary,
+    childrenCount: data.has_children ? 1 : 0,
+  });
 }
