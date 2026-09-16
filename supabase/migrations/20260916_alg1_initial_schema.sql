@@ -253,3 +253,9 @@ create policy "documents: owner delete"
     bucket_id = 'documents'
     and auth.uid()::text = (storage.foldername(name))[1]
   );
+
+-- ============================================================
+-- 5. REALTIME-PUBLICATION (für Supabase-Subscriptions)
+-- ============================================================
+alter publication supabase_realtime add table applications;
+alter publication supabase_realtime add table documents_meta;
