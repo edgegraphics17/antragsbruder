@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Antragsbruder Dashboard — Design-Vorschlag</title>
+  <!-- Duagon/Dashboard-Specimen: Antragsbruner Stil -->
+  <style>
+    /* ===== Antragsbruner Farben ===== */
+    :root {
+      --brand-950: #12302f;
+      --brand-900: #163d3b;
+      --brand-800: #1b4d4a;
+      --brand-700: #235f5b;
+      --brand-600: #2f7370;
+      --brand-500: #4a9895;
+      --brand-400: #6bb0ad;
+      --brand-300: #97c9c6;
+      --brand-200: #c3e0de;
+      --brand-100: #e0eeed;
+      --brand-50:   #f0f7f6;
+
+      --charcoal:   #2c2f33;
+      --ink:        #22261f;
+      --ink-soft:   #55594f;
+      --paper:      #fffdf7;
+      --cream:      #faf6ea;
+      --cream-deep: #f1e9d3;
+      --line-soft:  #ece3cc;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+    .font-display {
+      font-family: 'Baloo_2', 'Trebuchet MS', sans-serif;
+    }
+
+    /* ===== Layout Grid ===== */
+    .dashboard-shell {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ===== Sidebar (dunkel, wie Referenzbild) ===== */
+    .sidebar {
+      width: 260px;
+      min-width: 260px;
+      background: var(--charcoal);
+      border-right: 1px solid var(--line-soft);
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem 1rem;
+      gap: 0.75rem;
+      overflow-y: auto;
+    }
+    .sidebar .profile {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border-radius: 1rem;
+      background: rgba(255,255,255,0.06);
+      margin-bottom: 1rem;
+    }
+    .sidebar .profile .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand-400) 0%, var(--brand-600) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .sidebar .profile .name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: white;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .sidebar .profile .email {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .sidebar .profile .badge {
+      margin-left: auto;
+      background: var(--brand-500);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+
+    /* Nav-Item */
+    .sidebar .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.7rem 0.85rem;
+      border-radius: 0.7rem;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+    .sidebar .nav-item:hover {
+      color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.06);
+    }
+    .sidebar .nav-item.active {
+      color: white;
+      background: var(--brand-700);
+      box-shadow: 0 0 0 2px var(--brand-400);
+    }
+    .sidebar .nav-item .icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* Trenner */
+    .sidebar .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin: 0.75rem 0;
+    }
+
+    /* Logout Button */
+    .sidebar .logout-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 0.7rem;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      margin-top: auto;
+    }
+    .sidebar .logout-btn:hover {
+      color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* ===== Main Content ===== */
+    .main-content {
+      flex: 1;
+      background: var(--paper);
+      min-height: 100vh;
+    }
+    .content-wrapper {
+      padding: 2rem 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* ===== Typography ===== */
+    h1.font-display {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    h2.font-display {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    p { font-size: 0.95rem; line-height: 1.6; }
+    .text-ink-soft { color: var(--ink-soft); }
+    .text-xs { font-size: 0.75rem; }
+    .text-sm { font-size: 0.875rem; }
+    .text-2xl { font-size: 1.25rem; }
+    .font-semibold { font-weight: 600; }
+    .font-medium { font-weight: 500; }
+
+    /* ===== Cards ===== */
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line-soft);
+      border-radius: 1.25rem;
+      padding: 1.25rem;
+      transition: all 0.15s;
+    }
+    .card:hover {
+      border-color: var(--brand-200);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    }
+    .card-inner {
+      background: var(--cream);
+      border-radius: 1rem;
+      padding: 1.25rem;
+    }
+
+    /* ===== Badges ===== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .badge-active { background: var(--brand-50); color: var(--brand-700); }
+    .badge-pending { background: var(--brand-100); color: var(--brand-700); }
+    .badge-completed { background: var(--brand-700); color: white; }
+    .badge-paused { background: rgba(139,139,139,0.15); color: var(--ink-soft); }
+
+    /* ===== Grid ===== */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+
+    /* ===== Filter Bar ===== */
+    .filter-bar {
+      display: flex;
+      gap: 0.75rem;
+      padding: 1.25rem;
+      background: var(--paper);
+      border: 1px solid var(--line-soft);
+      border-radius: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter-bar .search {
+      flex: 1;
+      min-width: 220px;
+      padding: 0.55rem 0.85rem 0.55rem 2.25rem;
+      border: 1px solid var(--line-soft);
+      border-radius: 0.7rem;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.15s;
+      position: relative;
+    }
+    .filter-bar .search:focus { border-color: var(--brand-500); }
+    .filter-bar .search::before {
+      content: "🔍";
+      position: absolute;
+      left: 0.7rem;
+      font-size: 1rem;
+      opacity: 0.5;
+    }
+    .filter-bar .dropdown {
+      padding: 0.55rem 0.85rem;
+      border: 1px solid var(--line-soft);
+      border-radius: 0.7rem;
+      background: white;
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* ===== Case Card ===== */
+    .case-card {
+      border: 1px solid var(--line-soft);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      background: var(--paper);
+      transition: all 0.15s;
+    }
+    .case-card:hover {
+      border-color: var(--brand-200);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    }
+    .case-card .case-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+    .case-card .case-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .case-card .case-meta {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+    }
+    .case-card .case-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 0.35rem;
+      background: var(--brand-100);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 0.75rem;
+    }
+    .progress-bar .fill {
+      height: 100%;
+      background: var(--brand-500);
+      border-radius: 999px;
+      transition: width 0.3s;
+    }
+
+    /* ===== Status Legend ===== */
+    .status-legend {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* ===== Document Card ===== */
+    .doc-card {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.75rem;
+      border: 1px solid var(--line-soft);
+      border-radius: 0.85rem;
+      background: var(--paper);
+      transition: all 0.15s;
+    }
+    .doc-card:hover {
+      border-color: var(--brand-200);
+      background: var(--brand-50);
+    }
+    .doc-card .doc-icon {
+      font-size: 1.5rem;
+    }
+    .doc-card .doc-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .doc-card .doc-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .doc-card .doc-meta {
+      font-size: 0.7rem;
+      color: var(--ink-soft);
+    }
+
+    /* ===== Upload Zone ===== */
+    .upload-zone {
+      border: 2px dashed var(--line-soft);
+      border-radius: 1rem;
+      padding: 2rem;
+      text-align: center;
+      background: var(--brand-50);
+      transition: all 0.15s;
+      margin-bottom: 1.5rem;
+    }
+    .upload-zone:hover {
+      border-color: var(--brand-400);
+      background: var(--brand-50);
+    }
+    .upload-zone.dragover {
+      border-color: var(--brand-500);
+      background: var(--brand-50);
+    }
+    .upload-zone .upload-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .upload-zone p {
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+    }
+    .camera-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--brand-700);
+      background: var(--brand-100);
+      border-radius: 0.6rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .camera-btn:hover {
+      background: var(--brand-200);
+    }
+
+    /* ===== Tabs ===== */
+    .tabs {
+      display: flex;
+      gap: 1.5rem;
+      border-bottom: 1px solid var(--line-soft);
+      margin-bottom: 1.5rem;
+    }
+    .tabs .tab {
+      padding: 0.6rem 0.2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .tabs .tab.active {
+      color: var(--brand-700);
+      border-bottom-color: var(--brand-500);
+    }
+
+    /* ===== Button ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--brand-700);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: var(--brand-800);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--line-soft);
+      color: var(--ink-soft);
+    }
+    .btn-outline:hover {
+      background: var(--brand-50);
+      color: var(--brand-700);
+    }
+
+    /* ===== Chat Button (floating) ===== */
+    .chat-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--brand-700);
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(35,95,91,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      transition: all 0.15s;
+      z-index: 100;
+    }
+    .chat-float:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 28px rgba(35,95,91,0.4);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .content-wrapper { padding: 1.5rem; }
+      h1.font-display { font-size: 1.5rem; }
+    }
+
+    /* Icons */
+    .icon-home::before     { content: "🏠"; }
+    .icon-doc::before       { content: "📄"; }
+    .icon-folder::before    { content: "📁"; }
+    .icon-compass::before   { content: "🧭"; }
+    .icon-person::before    { content: "👤"; }
+    .icon-logout::before    { content: "↗"; }
+  </style>
+</head>
+<body>
+  <div class="dashboard-shell">
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar">
+      <!-- Profile -->
+      <div class="profile">
+        <div class="avatar">M</div>
+        <div style="min-width:0; flex:1;">
+          <div class="name">max_mustermann</div>
+          <div class="email">max.mustermann@email.de</div>
+        </div>
+        <div class="badge">4</div>
+      </div>
+
+      <!-- Nav Items -->
+      <div class="nav-item active">
+        <span class="icon icon-home"></span>Übersicht
+      </div>
+      <div class="nav-item">
+        <span class="icon icon-doc"></span>Anträge
+      </div>
+      <div class="nav-item">
+        <span class="icon icon-folder"></span>Dokumente
+      </div>
+      <div class="nav-item">
+        <span class="icon icon-compass"></span>Förderungen
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- More items -->
+      <div class="nav-item">
+        <span class="icon icon-person"></span>Profil
+      </div>
+
+      <!-- Logout -->
+      <div class="logout-btn">
+        <span class="icon icon-logout"></span>Abmelden
+      </div>
+    </aside>
+
+    <!-- ===== Main Content ===== -->
+    <main class="main-content">
+      <div class="content-wrapper">
+        <!-- Overview Page -->
+        <h1 class="font-display">Übersicht</h1>
+        <p class="text-ink-soft mb-6">Willkommen zurück, Max. Hier siehst du Schnellzugriffe auf deine Anträge und aktuelle To-Dos.</p>
+
+        <!-- 3 Columns: Stats -->
+        <div class="grid-3" style="margin-bottom: 1.5rem;">
+          <!-- Stat 1 -->
+          <div class="card card-inner text-center">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📋</div>
+            <div style="font-size: 1.75rem; font-weight: 700; color: var(--brand-700);">3</div>
+            <div class="text-xs text-ink-soft">Aktive Anträge</div>
+          </div>
+          <!-- Stat 2 -->
+          <div class="card card-inner text-center">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📎</div>
+            <div style="font-size: 1.75rem; font-weight: 700; color: var(--brand-700);">2</div>
+            <div class="text-xs text-ink-soft">Offene To-Dos</div>
+          </div>
+          <!-- Stat 3 -->
+          <div class="card card-inner text-center">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+            <div style="font-size: 1.75rem; font-weight: 700; color: var(--brand-700);">5</div>
+            <div class="text-xs text-ink-soft">Erwartete Beträge</div>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <div class="tab active">Offene Anträge</div>
+          <div class="tab">Letzte Aktivität</div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <input type="text" class="search" placeholder="Antrag suchen..." />
+          <select class="dropdown">
+            <option>Alle Status</option>
+            <option>Aktiv</option>
+            <option>Pausiert</option>
+            <option>Abgeschlossen</option>
+          </select>
+          <select class="dropdown">
+            <option>Alle Förderungen</option>
+            <option>Wohngeld</option>
+            <option>Kindergeld</option>
+            <option>Grundsicherung</option>
+          </select>
+        </div>
+
+        <!-- Case Cards Grid -->
+        <div class="grid-3">
+          <!-- Case Card 1 -->
+          <div class="case-card">
+            <div class="case-header">
+              <div>
+                <div class="case-title">Wohngeld für Wohngeldverfahren</div>
+                <div class="text-xs text-ink-soft">Beantragt am 15.03.2024</div>
+              </div>
+              <span class="badge badge-active">Aktiv</span>
+            </div>
+            <div style="margin: 0.5rem 0; font-size: 0.8rem; color: var(--ink-soft);">
+              3 von 5 Dokumenten hochgeladen
+            </div>
+            <div class="progress-bar">
+              <div class="fill" style="width: 60%;"></div>
+            </div>
+            <div class="case-meta">
+              <span>💰 Kalkuliert</span>
+              <span>📎 3/5 Docs</span>
+            </div>
+          </div>
+
+          <!-- Case Card 2 -->
+          <div class="case-card">
+            <div class="case-header">
+              <div>
+                <div class="case-title">Kindergeld für Lena Mustermann</div>
+                <div class="text-xs text-ink-soft">Beantragt am 10.01.2024</div>
+              </div>
+              <span class="badge badge-pending">In Bearbeitung</span>
+            </div>
+            <div style="margin: 0.5rem 0; font-size: 0.8rem; color: var(--ink-soft);">
+              Alle Dokumente hochgeladen, auf Bearbeitung durch Amt
+            </div>
+            <div class="progress-bar">
+              <div class="fill" style="width: 100%;"></div>
+            </div>
+            <div class="case-meta">
+              <span>💰 €250/Monat</span>
+              <span>📎 5/5 Docs</span>
+            </div>
+          </div>
+
+          <!-- Case Card 3 -->
+          <div class="case-card">
+            <div class="case-header">
+              <div>
+                <div class="case-title">Grundsicherung Mietzuschuss</div>
+                <div class="text-xs text-ink-soft">Beantragt am 02.02.2024</div>
+              </div>
+              <span class="badge badge-paused">Pausiert</span>
+            </div>
+            <div style="margin: 0.5rem 0; font-size: 0.8rem; color: var(--ink-soft);">
+              Auf Eingabe weiterer Dokumente gestoppt
+            </div>
+            <div class="progress-bar">
+              <div class="fill" style="width: 35%;"></div>
+            </div>
+            <div class="case-meta">
+              <span>🛠️ Aktion nötig</span>
+              <span>📎 2/7 Docs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Float Button -->
+        <button class="chat-float" title="Chat öffnen">💬</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===== Hidden: Document Center page (for JS toggle) ===== -->
+  <div id="doc-center" style="display:none;">
+    <div class="dashboard-shell">
+      <aside class="sidebar">
+        <div class="profile">
+          <div class="avatar">M</div>
+          <div style="min-width:0; flex:1;">
+            <div class="name">max_mustermann</div>
+            <div class="email">max.mustermann@email.de</div>
+          </div>
+          <div class="badge">4</div>
+        </div>
+        <div class="nav-item">
+          <span class="icon icon-home"></span>Übersicht
+        </div>
+        <div class="nav-item">
+          <span class="icon icon-doc"></span>Anträge
+        </div>
+        <div class="nav-item active">
+          <span class="icon icon-folder"></span>Dokumente
+        </div>
+        <div class="nav-item">
+          <span class="icon icon-compass"></span>Förderungen
+        </div>
+        <div class="divider"></div>
+        <div class="nav-item">
+          <span class="icon icon-person"></span>Profil
+        </div>
+        <div class="logout-btn">
+          <span class="icon icon-logout"></span>Abmelden
+        </div>
+      </aside>
+      <main class="main-content">
+        <div class="content-wrapper">
+          <h1 class="font-display">Dokumente</h1>
+          <p class="text-ink-soft mb-6">Alle deine Dokumente an einem Ort. Lade neue hoch oder scanne sie mit der Kamera.</p>
+
+          <!-- Upload Zone -->
+          <div class="upload-zone">
+            <div class="upload-icon">📤</div>
+            <p>Drag & Drop oder klicke zum Hochladen</p>
+            <button class="camera-btn">📷 Kamera scannen</button>
+          </div>
+
+          <!-- Tabs -->
+          <div class="tabs">
+            <div class="tab active">Alle Dokumente</div>
+            <div class="tab">Letzte 30 Tage</div>
+            <div class="tab">Ohne Zuordnung</div>
+          </div>
+
+          <!-- Document Grid -->
+          <div class="grid-3">
+            <div class="doc-card">
+              <span class="doc-icon">📄</span>
+              <div class="doc-info">
+                <div class="doc-name">Einkommensnachweis_Mustermann.pdf</div>
+                <div class="doc-meta">15. März 2024 • Wohngeld-Antrag</div>
+              </div>
+            </div>
+            <div class="doc-card">
+              <span class="doc-icon">📄</span>
+              <div class="doc-info">
+                <div class="doc-name">Mietvertrag_2024.pdf</div>
+                <div class="doc-meta">10. Februar 2024 • Wohngeld-Antrag</div>
+              </div>
+            </div>
+            <div class="doc-card">
+              <span class="doc-icon">📄</span>
+              <div class="doc-info">
+                <div class="doc-name">Geburtsurkunde_Lena.pdf</div>
+                <div class="doc-meta">5. September 2023 • Kindergeld-Antrag</div>
+              </div>
+            </div>
+            <div class="doc-card">
+              <span class="doc-icon">📄</span>
+              <div class="doc-info">
+                <div class="doc-name">BANK_AB_2024_03.pdf</div>
+                <div class="doc-meta">3. April 2024 • Grundsicherung</div>
+              </div>
+            </div>
+            <div class="doc-card">
+              <span class="doc-icon">📄</span>
+              <div class="doc-info">
+                <div class="doc-name">Melbescheinigung.pdf</div>
+                <div class="doc-meta">12. Januar 2024 • Wohngeld-Antrag</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Minimal interactivity demo
+    let isDocView = false;
+    const toggle = () => { isDocView = !isDocView; document.querySelectorAll('body > div').forEach((d,i) => d.style.display = i === (isDocView?1:0) ? 'block' : 'none'); };
+  </script>
+</body>
+</html>

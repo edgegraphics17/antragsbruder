@@ -1,0 +1,248 @@
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/[locale]/anmelden/page.tsx
+   26:9   warning  't' is assigned a value but never used                                                                                                                                @typescript-eslint/no-unused-vars
+   58:15  error    Do not use an `<a>` element to navigate to `/de/anmelden/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages     @next/next/no-html-link-for-pages
+   58:15  error    Do not use an `<a>` element to navigate to `/de/anmelden/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages     @next/next/no-html-link-for-pages
+   67:15  error    Do not use an `<a>` element to navigate to `/en/signin/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages       @next/next/no-html-link-for-pages
+   67:15  error    Do not use an `<a>` element to navigate to `/en/signin/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages       @next/next/no-html-link-for-pages
+   91:15  error    Do not use an `<a>` element to navigate to `/de/datenschutz/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+   91:15  error    Do not use an `<a>` element to navigate to `/de/datenschutz/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+   95:15  error    Do not use an `<a>` element to navigate to `/de/agb/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages          @next/next/no-html-link-for-pages
+   95:15  error    Do not use an `<a>` element to navigate to `/de/agb/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages          @next/next/no-html-link-for-pages
+  103:15  error    Do not use an `<a>` element to navigate to `/en/privacy/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages      @next/next/no-html-link-for-pages
+  103:15  error    Do not use an `<a>` element to navigate to `/en/privacy/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages      @next/next/no-html-link-for-pages
+  107:15  error    Do not use an `<a>` element to navigate to `/en/terms/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages        @next/next/no-html-link-for-pages
+  107:15  error    Do not use an `<a>` element to navigate to `/en/terms/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages        @next/next/no-html-link-for-pages
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/[locale]/ansprueche-checken/AnspruecheCheckenClient.tsx
+  22:3   warning  'locale' is defined but never used        @typescript-eslint/no-unused-vars
+  26:9   error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  57:35  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/[locale]/dashboard/page.tsx
+  11:11  warning  'locale' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  20:9   warning  't' is assigned a value but never used       @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/[locale]/datenbank/components/filterConfig.ts
+  68:13  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  70:4   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/[locale]/datenbank/page.tsx
+  11:41  warning  'params' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/[locale]/konto-erstellen/page.tsx
+   3:10  warning  'commonDict' is defined but never used                                                                                                                             @typescript-eslint/no-unused-vars
+   6:10  warning  'SectionHeading' is defined but never used                                                                                                                         @typescript-eslint/no-unused-vars
+  13:11  warning  'locale' is assigned a value but never used                                                                                                                        @typescript-eslint/no-unused-vars
+  39:11  error    Do not use an `<a>` element to navigate to `/de/anmelden/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  39:11  error    Do not use an `<a>` element to navigate to `/de/anmelden/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/[locale]/navigator/page.tsx
+  14:9  warning  'locale' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/auth/logout/route.ts
+  30:17  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/auth/signin/route.ts
+  60:17  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/auth/signup/route.ts
+   8:10  warning  'z' is defined but never used             @typescript-eslint/no-unused-vars
+  74:17  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/auth/status/route.ts
+  36:17  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/auth/update-password/route.ts
+  20:9  warning  '_token' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  21:9  warning  '_type' is assigned a value but never used   @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/auth/verify-email/route.ts
+  41:12  error    Unexpected any. Specify a different type      @typescript-eslint/no-explicit-any
+  53:19  warning  'profile' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  67:17  error    Unexpected any. Specify a different type      @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/case/route.ts
+   7:10  warning  'z' is defined but never used             @typescript-eslint/no-unused-vars
+  26:19  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/chat/message/route.ts
+  134:39  warning  'sessionError' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  135:11  warning  'userId' is assigned a value but never used          @typescript-eslint/no-unused-vars
+  138:11  warning  'resolvedCaseId' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/crisis/scan/route.ts
+  10:10  warning  'crisisEngine' is defined but never used  @typescript-eslint/no-unused-vars
+  15:57  warning  'caseId' is defined but never used        @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/dashboard/case/[id]/route.ts
+  106:11  warning  'existingRow' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/dashboard/cases/route.ts
+  72:17  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/dashboard/documents/route.ts
+   20:36  warning  'documentUploadFormSchema' is defined but never used  @typescript-eslint/no-unused-vars
+   55:17  error    Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+  166:17  error    Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+  196:17  error    Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/health/supabase/route.ts
+  19:13  warning  'data' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  38:17  error    Unexpected any. Specify a different type   @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/question/route.ts
+   8:10  warning  'z' is defined but never used             @typescript-eslint/no-unused-vars
+  49:19  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/dashboard/[id]/page.tsx
+    8:31  warning  'useCallback' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-unused-vars
+   12:10  warning  'SectionHeading' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+   15:3   warning  'IconCheckCircle' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+   25:15  warning  'BenefitType' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-unused-vars
+  173:10  warning  'statusLoading' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+  184:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/dashboard/[id]/page.tsx:184:5
+  182 |
+  183 |     let mounted = true;
+> 184 |     setLoading(true);
+      |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  185 |     setError(null);
+  186 |
+  187 |     const loadCase = async () => {  react-hooks/set-state-in-effect
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/auth/AuthNav.tsx
+  10:22  warning  'stripLocale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/auth/LoginForm.tsx
+  18:7  warning  'LANGUAGES' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/auth/RegisterForm.tsx
+  17:9  warning  'router' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/dashboard/Dashboard.tsx
+    3:20  warning  'useEffect' is defined but never used          @typescript-eslint/no-unused-vars
+  105:17  warning  'setCases' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  118:19  error    Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/layout/Navbar.tsx
+  37:34  warning  'authLoading' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/navigator/JobLossNavigator.tsx
+  10:20  warning  'useEffect' is defined but never used      @typescript-eslint/no-unused-vars
+  14:26  warning  'IconArrowLeft' is defined but never used  @typescript-eslint/no-unused-vars
+  15:71  warning  'Action' is defined but never used         @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/questionnaire/QuestionnaireForm.tsx
+    9:15  warning  'Question' is defined but never used                  @typescript-eslint/no-unused-vars
+   13:10  warning  'ButtonAction' is defined but never used              @typescript-eslint/no-unused-vars
+   55:10  warning  'progress' is assigned a value but never used         @typescript-eslint/no-unused-vars
+   57:10  warning  'isSubmitting' is assigned a value but never used     @typescript-eslint/no-unused-vars
+   57:24  warning  'setIsSubmitting' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  248:34  warning  'e' is defined but never used                         @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/sections/IntakeForm.tsx
+  148:69  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/upload/UploadOnboardingFlow.tsx
+   19:3   warning  'IconDocument' is defined but never used                                                                         @typescript-eslint/no-unused-vars
+   20:3   warning  'IconFolder' is defined but never used                                                                           @typescript-eslint/no-unused-vars
+   22:10  warning  'formatDate' is defined but never used                                                                           @typescript-eslint/no-unused-vars
+  146:40  warning  'locale' is defined but never used                                                                               @typescript-eslint/no-unused-vars
+  275:6   warning  React Hook useCallback has a missing dependency: 'uploadFile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/MasterOrchestrator.ts
+  155:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/action-engine/ActionEngine.ts
+  5:23  warning  'ActionType' is defined but never used    @typescript-eslint/no-unused-vars
+  5:35  warning  'ActionStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/benefit-engines/BaseBenefitEngine.ts
+  44:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/benefit-engines/KindergeldEngine.ts
+  6:30  warning  'BenefitStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/benefit-engines/KinderzuschlagEngine.ts
+  6:30  warning  'BenefitStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/benefit-engines/UnterhaltsvorschussEngine.ts
+  6:30  warning  'BenefitStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/benefit-engines/WohngeldEngine.ts
+  52:11  warning  'heatingCosts' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/document-engine/DocumentCategorizer.ts
+  166:9   warning  'fnameLower' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  247:10  warning  'entryPriority' is defined but never used        @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/document-engine/DocumentToFactMapper.ts
+   11:15  warning  'DocumentCategory' is defined but never used               @typescript-eslint/no-unused-vars
+   12:21  warning  'SourceType' is defined but never used                     @typescript-eslint/no-unused-vars
+   64:10  warning  'extractFromSchulzeugnis' is defined but never used        @typescript-eslint/no-unused-vars
+   64:34  warning  'text' is defined but never used                           @typescript-eslint/no-unused-vars
+   70:10  warning  'extractFromAusbildungsvertrag' is defined but never used  @typescript-eslint/no-unused-vars
+   70:40  warning  'text' is defined but never used                           @typescript-eslint/no-unused-vars
+  199:9   warning  'now' is assigned a value but never used                   @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/fact-store/FactStore.ts
+  129:32  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/rule-engine/RuleEngine.ts
+  5:15  warning  'Rule' is defined but never used  @typescript-eslint/no-unused-vars
+  5:52  warning  'Fact' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/lib/auth-context.tsx
+   42:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/karim/Claude/Projects/Antragsbruder/src/lib/auth-context.tsx:42:5
+  40 |
+  41 |   useEffect(() => {
+> 42 |     fetchSession().then((u) => setLoading(false));
+     |     ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  43 |
+  44 |     const supabase = getBrowserClient();
+  45 |     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (  react-hooks/set-state-in-effect
+   42:26  warning  'u' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+   69:19  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-explicit-any
+  101:19  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-explicit-any
+  116:19  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/src/lib/auth-server.ts
+  5:30  warning  'isBrowser' is defined but never used    @typescript-eslint/no-unused-vars
+  8:6   warning  'CookieStore' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/lib/storage.ts
+  44:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  45:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  93:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  94:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/karim/Claude/Projects/Antragsbruder/tests/e2e/global-setup.ts
+  10:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  11:16  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/Users/karim/Claude/Projects/Antragsbruder/tests/e2e/login-upload-case.spec.ts
+  63:16  warning  'createCase' is defined but never used      @typescript-eslint/no-unused-vars
+  84:16  warning  'uploadDocument' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/tests/unit/rate-limiter.test.ts
+  12:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  21:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  30:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 120 problems (50 errors, 70 warnings)
