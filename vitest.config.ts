@@ -6,19 +6,16 @@ export default defineConfig({
     globals: true,
     environment: 'node',
     include: ['tests/unit/**/*.test.ts'],
-    // Alias-Integration für das Projekt
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, './src'),
-      },
-    },
-    // TypeScript-Unterstützung
     deps: {
       interopDefault: true,
     },
-    // Fehlermeldungen mit Stack-Trace
     logLevel: 'info',
-    // Briefe Fehler anzeigen
     reporters: ['verbose'],
+  },
+  // Vite resolve config — top-level für Alias-Integration
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
   },
 });
