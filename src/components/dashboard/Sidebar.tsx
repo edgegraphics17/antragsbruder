@@ -21,9 +21,9 @@ type NavItem = {
 const NAV_ITEMS: NavItem[] = [
   { href: '/dashboard', label: 'Übersicht', icon: IconFolder },
   { href: '/dashboard/upload', label: 'Unterlagen hochladen', icon: IconDocument },
-  { href: '/dashboard/dokumente', label: 'Dokumente', icon: IconDocument },
-  { href: '/dashboard/foerderungen', label: 'Förderungen', icon: IconSpark },
-  { href: '/dashboard/profil', label: 'Profil', icon: IconPerson },
+  { href: '/dokumente', label: 'Dokumente', icon: IconDocument },
+  { href: '/foerderungen', label: 'Förderungen', icon: IconSpark },
+  { href: '/profil', label: 'Profil', icon: IconPerson },
 ];
 
 function isActive(pathname: string, href: string): boolean {
