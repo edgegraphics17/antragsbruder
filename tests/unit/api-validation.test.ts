@@ -10,7 +10,7 @@ import {
   signinSchema,
   questionSubmitSchema,
   documentUploadJsonSchema,
-} from '@/lib/api-validation';
+} from '../../src/lib/api-validation';
 
 // ============================================================
 // AUTH-Validierung: signupSchema

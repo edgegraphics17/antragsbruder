@@ -1,14 +1,8 @@
-// ============================================================
-// Unit Tests — Rate Limiter
-// Testet die Funktionsweise des In-Memory-Rate-Limiters.
-// ============================================================
-
 import { describe, it, expect } from 'vitest';
-import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
+import { checkRateLimit, getClientIp } from '../../src/lib/rate-limiter';
 
 describe('getClientIp', () => {
   it('extrahiert IP aus cf-connecting-ip Header', () => {
-    // Create a simple request-like object for testing
     const request: { headers: { get: (name: string) => string | null } } = {
       headers: {
         get: (name: string) => name === 'cf-connecting-ip' ? '203.0.113.42' : null,
