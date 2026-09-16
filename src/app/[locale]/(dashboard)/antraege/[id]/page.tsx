@@ -7,9 +7,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/lib/auth-context';
 import { ButtonAction } from '@/components/ui/Button';
-import { SectionHeading } from '@/components/ui/SectionHeading';
 import {
   IconAlertTriangle,
   IconCheckCircle,
@@ -165,7 +163,6 @@ function DocumentRow({ doc, onDelete }: { doc: DocRecord; onDelete: (id: string)
 
 export default function CaseDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
-  const { user, loading: authLoading } = useAuth();
   const [caseId, setCaseId] = useState<string | null>(null);
   const [caseData, setCaseData] = useState<CaseData | null>(null);
   const [documents, setDocuments] = useState<DocRecord[]>([]);
@@ -178,7 +175,7 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
   }, [params]);
 
   useEffect(() => {
-    if (!caseId || !user) return;
+    if (!caseId) return;
 
     let mounted = true;
     const loadCase = async () => {
@@ -213,10 +210,10 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
     return () => {
       mounted = false;
     };
-  }, [caseId, user]);
+  }, [caseId]);
 
   const handleStatusChange = async (newStatus: string) => {
-    if (!caseId || !user) return;
+    if (!caseId) return;
     setStatusLoading(true);
     try {
       const res = await fetch(`/api/dashboard/case/${caseId}`, {
@@ -238,22 +235,6 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
   const handleDeleteDocument = (docId: string) => {
     setDocuments((prev) => prev.filter((d) => d.id !== docId));
   };
-
-  if (authLoading) {
-    return (
-      <div className="flex min-h-[calc(100dvh-6rem)] items-center justify-center">
-        <div className="flex flex-col items-center gap-3">
-          <div className="h-6 w-6 animate-spin rounded-full border-2 border-brand-600 border-t-transparent" />
-          <p className="text-sm text-ink-soft">Laden…</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    router.push('/de/anmelden');
-    return null;
-  }
 
   if (!caseId) return null;
 
@@ -279,7 +260,7 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
             type="button"
             variant="secondary"
             size="sm"
-            onClick={() => router.push('/dashboard/upload')}
+            onClick={() => router.push(`/dashboard/upload?caseId=${caseId}`)}
           >
             <IconDocument className="h-4 w-4" />
             Dokument hochladen
@@ -369,7 +350,7 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
                       variant="primary"
                       size="md"
                       className="mt-6"
-                      onClick={() => router.push('/dashboard/upload')}
+                      onClick={() => router.push(`/dashboard/upload?caseId=${caseId}`)}
                     >
                       <IconDocument className="h-4 w-4" />
                       Unterlagen hochladen

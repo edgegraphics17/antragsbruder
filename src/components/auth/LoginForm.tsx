@@ -52,7 +52,14 @@ export function LoginForm({ locale }: LoginFormProps) {
       setSubmitting(false);
       if (ok) {
         setSuccess(true);
-        const dash = locale === 'de' ? '/de/dashboard' : `/${locale}/dashboard`;
+        // ?next= hat Vorrang (gesetzt vom Proxy bei umgeleiteten Dashboard-Routen)
+        const nextParam = new URLSearchParams(window.location.search).get('next');
+        const dash =
+          nextParam && nextParam.startsWith('/')
+            ? nextParam
+            : locale === 'de'
+            ? '/dashboard'
+            : `/${locale}/dashboard`;
         router.push(dash);
       }
     } else {

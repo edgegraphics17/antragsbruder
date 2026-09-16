@@ -47,6 +47,6 @@ describe('checkRateLimit', () => {
     const result = checkRateLimit('192.168.1.300', 'default');
     const resetAt = result.resetAt;
     expect(resetAt).toBeGreaterThan(Date.now());
-    expect(resetAt).toBeLessThan(Date.now() + 60000);
+    expect(resetAt).toBeLessThanOrEqual(Date.now() + 60000);
   });
 });

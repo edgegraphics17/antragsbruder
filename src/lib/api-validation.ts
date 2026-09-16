@@ -29,7 +29,7 @@ export const questionSubmitSchema = z.object({
 // --- Documents ---
 export const documentUploadJsonSchema = z.object({
   caseId: z.string().uuid('Ungültige Case-ID'),
-  fileBase64: z.string().min(1, 'Datei (base64) erforderlich'),
+  fileBase64: z.string({ error: 'Datei (base64) erforderlich' }).min(1, 'Datei (base64) erforderlich'),
   filename: z.string().optional(),
 });
 

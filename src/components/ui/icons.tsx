@@ -319,3 +319,12 @@ export function IconAlertTriangle({ className = "h-6 w-6" }: IconProps) {
     </svg>
   );
 }
+
+export function IconSearch({ className = "h-6 w-6" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={`${base} ${className}`} aria-hidden="true">
+      <circle cx="11" cy="11" r="7" strokeWidth="1.7" />
+      <path d="M20 20l-4-4" strokeWidth="1.7" strokeLinecap="round" />
+    </svg>
+  );
+}

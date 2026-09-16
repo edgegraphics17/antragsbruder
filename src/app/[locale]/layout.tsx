@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Baloo_2 } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { TranslationBanner } from "@/components/layout/TranslationBanner";
 import { AuthLayoutWrapper } from "@/components/auth/AuthLayoutWrapper";
 import { site } from "@/content/site";
 import { commonDict } from "@/content/i18n/common";
@@ -70,6 +67,9 @@ export async function generateMetadata({
   };
 }
 
+// Root-Layout: Nur HTML-Gerüst, Fonts, AuthProvider und Locale-Validierung.
+// Navbar/Footer liegen im (site) Route Group Layout, das Dashboard-Layout
+// im (dashboard) Route Group Layout — so hat das Dashboard keine globale Navigation.
 export default async function RootLayout({
   children,
   params,
@@ -85,12 +85,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} dir={dir}>
       <body className={`${bodyFont.variable} ${headingFont.variable} antialiased`}>
-        <AuthLayoutWrapper>
-          <Navbar locale={locale} />
-          <TranslationBanner locale={locale} />
-          <main id="main-content">{children}</main>
-          <Footer locale={locale} />
-        </AuthLayoutWrapper>
+        <AuthLayoutWrapper>{children}</AuthLayoutWrapper>
       </body>
     </html>
   );

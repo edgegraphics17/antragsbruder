@@ -1,6 +1,6 @@
 // ============================================================
-// Seite: Upload-Onboarding (nach Registrierung)
-// /de/dashboard/upload
+// Seite: Upload-Flow
+// /dashboard/upload?caseId={id}
 // ============================================================
 
 import type { Metadata } from 'next';
@@ -13,6 +13,11 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function UploadPage() {
-  return <UploadOnboardingFlow locale="de" />;
+export default async function UploadPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ caseId?: string }>;
+}) {
+  const { caseId } = await searchParams;
+  return <UploadOnboardingFlow caseId={caseId} />;
 }

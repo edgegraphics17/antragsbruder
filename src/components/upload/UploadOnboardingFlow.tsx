@@ -19,7 +19,6 @@ import {
   IconDocument,
   IconFolder,
 } from '@/components/ui/icons';
-import { formatDate } from '@/lib/dashboard';
 
 // ── Doku-Karte ────────────────────────────────────────────
 
@@ -143,14 +142,21 @@ function FileCard({
 
 // ── Hauptkomponente ──────────────────────────────────────
 
-export function UploadOnboardingFlow({ locale }: { locale: 'de' }) {
+export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }) {
   const router = useRouter();
-  const { user, loading: authLoading } = useAuth();
+  const { user } = useAuth();
   const [step, setStep] = useState<1 | 2>(1);
   const [files, setFiles] = useState<FileItem[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [dragOver, setDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Optionaler Fallback: SessionStorage (alter Onboarding-Flow), nur im Browser.
+  const caseId =
+    caseIdProp ??
+    (typeof window !== 'undefined'
+      ? sessionStorage.getItem(`caseId_${user?.id}`)
+      : null);
 
   const addFiles = useCallback((incoming: File[]) => {
     const next: FileItem[] = incoming.map((f) => ({
@@ -174,7 +180,6 @@ export function UploadOnboardingFlow({ locale }: { locale: 'de' }) {
       ),
     );
 
-    const caseId = sessionStorage.getItem(`caseId_${user?.id}`);
     if (!caseId) {
       setError('Kein Antrag vorhanden – bitte zuerst einen Antrag erstellen.');
       setFiles((prev) =>
@@ -218,8 +223,10 @@ export function UploadOnboardingFlow({ locale }: { locale: 'de' }) {
     }
   };
 
+  // OCR läuft client-seitig im Browser (Tesseract WebAssembly): keine
+  // Serverless-Timeouts, keine Server-Ressourcen, flüssiger Fortschritt.
+  // Das Ergebnis wird an die API geschickt, die es nur noch persistiert.
   const parseFile = async (item: FileItem) => {
-    const caseId = sessionStorage.getItem(`caseId_${user?.id}`);
     if (!caseId || !item.storagePath) return;
 
     setFiles((prev) =>
@@ -227,12 +234,21 @@ export function UploadOnboardingFlow({ locale }: { locale: 'de' }) {
     );
 
     try {
+      const Tesseract = (await import('tesseract.js')).default;
+      const result = await Tesseract.recognize(item.file, 'deu');
+      const text = (result.data?.text ?? '').trim();
+
       const parseRes = await fetch('/api/dashboard/documents/parse', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           storagePath: item.storagePath,
           caseId,
+          text,
+          meta: {
+            language: 'deu',
+            confidence: result.data?.confidence ?? 0,
+          },
         }),
       });
 
@@ -242,15 +258,10 @@ export function UploadOnboardingFlow({ locale }: { locale: 'de' }) {
         throw new Error(parseData.error ?? 'OCR fehlgeschlagen');
       }
 
-      const ocrText = parseData.ocr?.text ?? '';
       setFiles((prev) =>
         prev.map((f) =>
-          f.id === item.id ? { ...f, status: 'done' as const, ocrText } : f,
+          f.id === item.id ? { ...f, status: 'done' as const, ocrText: text } : f,
         ),
-      );
-      sessionStorage.setItem(
-        `ocr_${caseId}_${item.storagePath}`,
-        JSON.stringify({ text: ocrText, meta: parseData.ocr?.meta }),
       );
 
       const doneCount = files.filter((f) => f.status === 'done').length + 1;
@@ -301,59 +312,28 @@ export function UploadOnboardingFlow({ locale }: { locale: 'de' }) {
     fileInputRef.current?.click();
   };
 
-  if (authLoading) {
-    return (
-      <div className="flex min-h-[calc(100dvh-6rem)] items-center justify-center">
-        <div className="flex flex-col items-center gap-3">
-          <div className="h-6 w-6 animate-spin rounded-full border-2 border-brand-600 border-t-transparent" />
-          <p className="text-sm text-ink-soft">Laden…</p>
-        </div>
-      </div>
-    );
-  }
+  if (!user) return null; // Auth-Schutz passiert serverseitig im Proxy
 
-  if (!user) {
-    router.push('/de/anmelden');
-    return null;
-  }
-
-  const caseId = sessionStorage.getItem(`caseId_${user.id}`);
   const hasCase = !!caseId;
   const doneCount = files.filter((f) => f.status === 'done').length;
   const canProceed = doneCount >= 1;
 
   return (
-    <div className="flex min-h-[calc(100dvh-6rem)] flex-col">
-      {/* Header */}
-      <header className="flex items-center justify-between border-b border-line-soft bg-paper/80 px-6 py-4 backdrop-blur-sm">
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-semibold text-ink">
-            Willkommen, {user.email.split('@')[0]}
-          </span>
-        </div>
-        <div className="flex items-center gap-3">
-          {step === 2 && (
-            <ButtonAction
-              type="button"
-              variant="primary"
-              size="md"
-              onClick={() => router.push(`/dashboard/${caseId}`)}
-              disabled={!canProceed}
-            >
-              Zur Antragsübersicht
-              <IconArrowRight className="ml-1.5 h-4 w-4" />
-            </ButtonAction>
-          )}
-          {caseId && (
-            <a
-              href={`/dashboard/${caseId}`}
-              className="rounded-full border border-line-soft px-3 py-1.5 text-xs font-semibold text-ink-soft transition-colors hover:bg-brand-50 hover:text-brand-700"
-            >
-              Zum Antrag
-            </a>
-          )}
-        </div>
-      </header>
+    <div className="flex flex-col px-6 py-8">
+      {/* Kopfzeile */}
+      <div className="mx-auto mb-4 flex w-full max-w-2xl items-center justify-between gap-3">
+        <span className="text-sm font-semibold text-ink">
+          Willkommen, {user.email.split('@')[0]}
+        </span>
+        {caseId && (
+          <a
+            href={`/antraege/${caseId}`}
+            className="rounded-full border border-line-soft bg-white px-3 py-1.5 text-xs font-semibold text-ink-soft transition-colors hover:bg-brand-50 hover:text-brand-700"
+          >
+            Zum Antrag
+          </a>
+        )}
+      </div>
 
       {/* Progress-Leiste */}
       <div className="mx-auto max-w-2xl px-6 pt-6">
@@ -552,7 +532,7 @@ export function UploadOnboardingFlow({ locale }: { locale: 'de' }) {
                   type="button"
                   variant="primary"
                   size="lg"
-                  onClick={() => router.push(`/dashboard/${caseId}`)}
+                  onClick={() => router.push(`/antraege/${caseId}`)}
                   disabled={!hasCase}
                 >
                   Zum Antrag

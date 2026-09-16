@@ -1,5 +1,9 @@
 // ============================================================
-// FACT STORE — Supabase + localStorage Fallback
+// FACT STORE — Supabase (single source of truth)
+// Bewusste Entscheidung (Weg B): Kein localStorage-Fallback.
+// Dual-Writing (Supabase + localStorage) hat den Datenbestand
+// gesplittet, sobald ein Insert fehlschlug. Fehler werden jetzt
+// an den Aufrufer durchgereicht statt still degradiert.
 // ============================================================
 
 import type { Fact, SourceType } from '../types';
@@ -15,47 +19,7 @@ const SOURCE_PRIORITY: Record<SourceType, number> = {
   AI_INFERRED: 1,
 };
 
-// LocalStorage Fallback
-const STORAGE_KEY = 'antragsbruder_facts';
-
-function getLocalFacts(): Map<string, Fact[]> {
-  if (typeof window === 'undefined') return new Map();
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return new Map();
-    const data: Record<string, Fact[]> = JSON.parse(raw);
-    return new Map(Object.entries(data));
-  } catch {
-    return new Map();
-  }
-}
-
-function saveLocalFacts(facts: Map<string, Fact[]>): void {
-  if (typeof window === 'undefined') return;
-  const data: Record<string, Fact[]> = {};
-  facts.forEach((v, k) => { data[k] = v; });
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-}
-
 export class FactStore {
-  private useSupabase = true;
-
-  constructor() {
-    this.checkSupabase();
-  }
-
-  private async checkSupabase() {
-    try {
-      const { error } = await supabase.from('facts').select('id').limit(1);
-      if (error) {
-        console.warn('Supabase not available, using localStorage fallback');
-        this.useSupabase = false;
-      }
-    } catch {
-      this.useSupabase = false;
-    }
-  }
-
   // --- Core Operations ---
 
   async storeFacts(caseId: string, facts: Omit<Fact, 'id' | 'caseId' | 'collectedAt'>[]): Promise<Fact[]> {
@@ -66,91 +30,85 @@ export class FactStore {
       collectedAt: new Date().toISOString(),
     }));
 
-    if (this.useSupabase) {
-      const { error } = await supabase.from('facts').insert(
-        newFacts.map((f) => ({
-          id: f.id,
-          case_id: f.caseId,
-          path: f.path,
-          value: f.value,
-          unit: f.unit,
-          valid_from: f.validFrom,
-          valid_to: f.validTo,
-          source_type: f.sourceType,
-          source_reference: f.sourceReference,
-          confidence: f.confidence,
-          confirmed_by_user: f.confirmedByUser,
-          collected_at: f.collectedAt,
-        }))
-      );
-      if (error) {
-        console.warn('Supabase insert failed, falling back to localStorage', error);
-        this.useSupabase = false;
-      }
-    }
-
-    // Always update localStorage as backup
-    const localFacts = getLocalFacts();
-    const existing = localFacts.get(caseId) || [];
-    
+    // Konflikte auf Supabase-Seite auflösen: Alte Facts am selben Pfad
+    // mit niedrigerer/gleicher Source-Priority werden supersedet.
+    const existingFacts = await this.getFacts(caseId);
+    const supersedes: { oldId: string; newFactId: string }[] = [];
     for (const newFact of newFacts) {
-      const conflicting = existing.filter(
-        (f) => f.path === newFact.path && !f.supersededBy
-      );
-      for (const old of conflicting) {
-        if (SOURCE_PRIORITY[newFact.sourceType] >= SOURCE_PRIORITY[old.sourceType]) {
-          old.supersededBy = newFact.id;
+      for (const old of existingFacts) {
+        if (old.path === newFact.path && !old.supersededBy) {
+          if (SOURCE_PRIORITY[newFact.sourceType] >= SOURCE_PRIORITY[old.sourceType]) {
+            supersedes.push({ oldId: old.id, newFactId: newFact.id });
+          }
         }
       }
     }
-    
-    localFacts.set(caseId, [...existing, ...newFacts]);
-    saveLocalFacts(localFacts);
+
+    const { error } = await supabase.from('facts').insert(
+      newFacts.map((f) => ({
+        id: f.id,
+        case_id: f.caseId,
+        path: f.path,
+        value: f.value,
+        unit: f.unit,
+        valid_from: f.validFrom,
+        valid_to: f.validTo,
+        source_type: f.sourceType,
+        source_reference: f.sourceReference,
+        confidence: f.confidence,
+        confirmed_by_user: f.confirmedByUser,
+        collected_at: f.collectedAt,
+      }))
+    );
+    if (error) {
+      throw new Error(`Facts konnten nicht gespeichert werden: ${error.message}`);
+    }
+
+    // Alte Facts als supersedet markieren
+    for (const { oldId, newFactId } of supersedes) {
+      const { error: updError } = await supabase
+        .from('facts')
+        .update({ superseded_by: newFactId })
+        .eq('id', oldId);
+      if (updError) {
+        console.warn('Supersede fehlgeschlagen:', updError);
+      }
+    }
 
     return newFacts;
   }
 
   async getFacts(caseId: string, paths?: string[]): Promise<Fact[]> {
-    let facts: Fact[] = [];
+    let query = supabase
+      .from('facts')
+      .select('*')
+      .eq('case_id', caseId)
+      .is('superseded_by', null);
 
-    if (this.useSupabase) {
-      let query = supabase
-        .from('facts')
-        .select('*')
-        .eq('case_id', caseId)
-        .is('superseded_by', null);
-      
-      if (paths && paths.length > 0) {
-        query = query.in('path', paths);
-      }
-      
-      const { data, error } = await query;
-      if (!error && data) {
-        facts = data.map((row) => ({
-          id: row.id,
-          caseId: row.case_id,
-          path: row.path,
-          value: row.value,
-          unit: row.unit,
-          validFrom: row.valid_from,
-          validTo: row.valid_to,
-          sourceType: row.source_type,
-          sourceReference: row.source_reference,
-          confidence: row.confidence,
-          confirmedByUser: row.confirmed_by_user,
-          supersededBy: row.superseded_by,
-          collectedAt: row.collected_at,
-        }));
-        return facts;
-      }
+    if (paths && paths.length > 0) {
+      query = query.in('path', paths);
     }
 
-    // Fallback to localStorage
-    const localFacts = getLocalFacts();
-    const all = localFacts.get(caseId) || [];
-    const active = all.filter((f) => !f.supersededBy);
-    if (!paths) return active;
-    return active.filter((f) => paths.includes(f.path));
+    const { data, error } = await query;
+    if (error) {
+      throw new Error(`Facts konnten nicht geladen werden: ${error.message}`);
+    }
+
+    return (data ?? []).map((row) => ({
+      id: row.id,
+      caseId: row.case_id,
+      path: row.path,
+      value: row.value,
+      unit: row.unit,
+      validFrom: row.valid_from,
+      validTo: row.valid_to,
+      sourceType: row.source_type,
+      sourceReference: row.source_reference,
+      confidence: row.confidence,
+      confirmedByUser: row.confirmed_by_user,
+      supersededBy: row.superseded_by,
+      collectedAt: row.collected_at,
+    }));
   }
 
   async getFact(caseId: string, path: string): Promise<Fact | undefined> {
@@ -172,20 +130,9 @@ export class FactStore {
   }
 
   async clear(caseId?: string): Promise<void> {
-    if (this.useSupabase) {
-      if (caseId) {
-        await supabase.from('facts').delete().eq('case_id', caseId);
-      } else {
-        await supabase.from('facts').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-      }
-    }
-
     if (caseId) {
-      const localFacts = getLocalFacts();
-      localFacts.delete(caseId);
-      saveLocalFacts(localFacts);
-    } else {
-      localStorage.removeItem(STORAGE_KEY);
+      const { error } = await supabase.from('facts').delete().eq('case_id', caseId);
+      if (error) throw new Error(`Facts konnten nicht gelöscht werden: ${error.message}`);
     }
   }
 }
