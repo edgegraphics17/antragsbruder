@@ -16,6 +16,7 @@ import {
   IconSpark,
   IconArrowRight,
   IconFileUp,
+  IconCoin,
 } from '@/components/ui/icons';
 import { IconPerson } from '@/components/ui/icons-person';
 
@@ -27,6 +28,7 @@ type NavItem = {
 
 const NAV_ITEMS: NavItem[] = [
   { href: '/dashboard', label: 'Übersicht', icon: IconFolder },
+  { href: '/alg1', label: 'ALG1', icon: IconCoin },
   { href: '/dokumente', label: 'Dokumente', icon: IconDocument },
   { href: '/dashboard/upload', label: 'Upload', icon: IconFileUp },
   { href: '/foerderungen', label: 'Förderungen', icon: IconSpark },
@@ -134,7 +136,7 @@ export function DashboardSidebar() {
       {/* Mobile Tab-Bar (native-app-artig, Upload als hervorgehobener Mittel-Tab) */}
       <nav
         aria-label="Dashboard-Navigation"
-        className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t border-line-soft bg-white/95 backdrop-blur-sm lg:hidden"
+        className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-6 border-t border-line-soft bg-white/95 backdrop-blur-sm lg:hidden"
         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       >
         {NAV_ITEMS.map((item) => {

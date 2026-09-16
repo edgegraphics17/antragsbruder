@@ -8,6 +8,7 @@ import { defaultLocale, isLocale } from "@/i18n/config";
 const PROTECTED_PREFIXES = [
   "dashboard",
   "antraege",
+  "alg1",
   "dokumente",
   "foerderungen",
   "profil",

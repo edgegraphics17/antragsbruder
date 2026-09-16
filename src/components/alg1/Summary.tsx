@@ -7,11 +7,11 @@ import { Alg1FormSchema } from '@/lib/schemas/alg1';
 import { calculateAlg1Estimate } from '@/lib/alg1/logic';
 import { useAlg1Store } from '@/lib/alg1/store';
 import { ButtonAction } from '@/components/ui/Button';
-import type { Alg1FormData } from '@/lib/types/alg1';
 
 export function Summary({ onConfirmed }: { onConfirmed?: () => void }) {
   const { formState, submitAll, isSaving, validationErrors } = useAlg1Store();
   const [confirmed, setConfirmed] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const parsed = Alg1FormSchema.safeParse(formState);
 
@@ -37,7 +37,6 @@ export function Summary({ onConfirmed }: { onConfirmed?: () => void }) {
 
   const data = parsed.data;
   const estimate = calculateAlg1Estimate(data);
-  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleSubmit = async () => {
     setSubmitError(null);
