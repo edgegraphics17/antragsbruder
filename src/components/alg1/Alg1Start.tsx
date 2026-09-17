@@ -18,13 +18,41 @@ interface Props {
   applicationId?: string;
 }
 
-export function Alg1Start({ applicationId }: Props) {
+const ACTIVE_STATUSES = ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY', 'PROCESSING'];
+
+export function Alg1Start({ applicationId: initialApplicationId }: Props) {
   const router = useRouter();
   const { user } = useAuth();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(Boolean(applicationId));
+  const [loading, setLoading] = useState(Boolean(initialApplicationId));
+  const [applicationId, setApplicationId] = useState<string | null>(initialApplicationId ?? null);
   const [existingAnswers, setExistingAnswers] = useState<Partial<SchnellCheckData>>({});
+
+  // Prüfe auf bestehende aktive Application (Single-Active-Guarantee)
+  useEffect(() => {
+    if (initialApplicationId || !user) return;
+    const checkExisting = async () => {
+      const { data } = await supabase
+        .from('applications')
+        .select('id, form_state')
+        .eq('user_id', user.id)
+        .eq('benefit_type', 'ALG1')
+        .in('status', ACTIVE_STATUSES)
+        .order('updated_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (data?.id) {
+        setApplicationId(data.id);
+        if (data.form_state && typeof data.form_state === 'object') {
+          setExistingAnswers(data.form_state as Partial<SchnellCheckData>);
+        }
+      }
+      setLoading(false);
+    };
+    void checkExisting();
+  }, [initialApplicationId, user]);
 
   // Entwurfs-Persistenz: gespeicherte Antworten aus form_state laden
   useEffect(() => {
