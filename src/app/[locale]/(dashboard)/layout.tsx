@@ -16,7 +16,7 @@ export default function DashboardLayout({
       <OnboardingModal />
       <div className="lg:pl-64">
         {/* Zentrierte Content-Breite: keine Überdehnung auf Widescreen */}
-        <main className="mx-auto w-full max-w-6xl min-h-dvh px-4 pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:px-6 lg:pb-0 lg:py-2">
+        <main className="mx-auto w-full max-w-6xl min-h-dvh px-4 pb-[calc(7rem+env(safe-area-inset-bottom))] md:px-6 lg:pb-0 lg:py-2">
           {children}
         </main>
       </div>

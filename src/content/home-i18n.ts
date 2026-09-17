@@ -46,6 +46,12 @@ export type Dict = {
   bafoegAmount: string;
   bafoegUnit: string;
   bafoegCaption: string;
+  alg1Title: string;
+  alg1Cta: string;
+  alg1CardLabel: string;
+  alg1Amount: string;
+  alg1Unit: string;
+  alg1Caption: string;
 
   warumTitle: string;
 
@@ -88,7 +94,7 @@ export const dict: Record<Locale, Dict> = {
     rechnerEyebrow: "Kostenlos & ohne Anmeldung",
     rechnerTitle: "Weißt du, ob dir Geld zusteht?",
     rechnerLede:
-      "Mit unseren drei Rechnern findest du in wenigen Minuten heraus, ob du wahrscheinlich Anspruch hast. Kostenlos, in mehreren Sprachen. Anspruch? Wir übernehmen deinen Antrag für 99 €.",
+      "Mit unseren vier Rechnern findest du in wenigen Minuten heraus, ob du wahrscheinlich Anspruch hast. Kostenlos, in mehreren Sprachen. Anspruch? Wir übernehmen deinen Antrag für 99 €.",
     toolBadge: "Kostenloses Tool",
     wohngeldTitle: "Wohngeld-Rechner",
     wohngeldCta: "Wohngeld berechnen",
@@ -109,6 +115,12 @@ export const dict: Record<Locale, Dict> = {
     bafoegAmount: "650",
     bafoegUnit: "€ / Monat",
     bafoegCaption: "Beispielhafte Berechnung – dein Ergebnis kann abweichen.",
+    alg1Title: "Arbeitslosengeld-Rechner",
+    alg1Cta: "ALG1 berechnen",
+    alg1CardLabel: "Dein mögliches Arbeitslosengeld",
+    alg1Amount: "bis zu 67 %",
+    alg1Unit: "des Nettoeinkommens",
+    alg1Caption: "ALG1 beträgt 60 % deines letzten Nettoeinkommens, mit Kindern bis zu 67 %.",
 
     warumTitle: "Warum Antragsbruder?",
 
@@ -154,7 +166,7 @@ export const dict: Record<Locale, Dict> = {
     rechnerEyebrow: "Free, no sign-up",
     rechnerTitle: "Do you know if you're entitled to money?",
     rechnerLede:
-      "With our three calculators, find out in a few minutes whether you're likely eligible. Free, in several languages. Eligible? We'll handle your application for €99.",
+      "With our four calculators, find out in a few minutes whether you're likely eligible. Free, in several languages. Eligible? We'll handle your application for €99.",
     toolBadge: "Free tool",
     wohngeldTitle: "Housing Benefit Calculator",
     wohngeldCta: "Calculate housing benefit",
@@ -175,6 +187,12 @@ export const dict: Record<Locale, Dict> = {
     bafoegAmount: "650",
     bafoegUnit: "€ / month",
     bafoegCaption: "Example calculation – your result may differ.",
+    alg1Title: "Unemployment Benefit Calculator",
+    alg1Cta: "Calculate ALG1",
+    alg1CardLabel: "Your possible unemployment benefit",
+    alg1Amount: "up to 67 %",
+    alg1Unit: "of your net income",
+    alg1Caption: "ALG1 pays 60 % of your last net income, up to 67 % with children.",
 
     warumTitle: "Why Antragsbruder?",
 
@@ -220,7 +238,7 @@ export const dict: Record<Locale, Dict> = {
     rechnerEyebrow: "مجاني وبدون تسجيل",
     rechnerTitle: "هل تعرف إن كان لديك حق في مبلغ مالي؟",
     rechnerLede:
-      "باستخدام حاسباتنا الثلاث، تعرف خلال دقائق إن كان لديك حق على الأرجح. مجانًا، وبعدة لغات. هل لديك حق؟ نتولى طلبك مقابل 99 يورو.",
+      "باستخدام حاسباتنا الأربع، تعرف خلال دقائق إن كان لديك حق على الأرجح. مجانًا، وبعدة لغات. هل لديك حق؟ نتولى طلبك مقابل 99 يورو.",
     toolBadge: "أداة مجانية",
     wohngeldTitle: "حاسبة إعانة السكن",
     wohngeldCta: "احسب إعانة السكن",
@@ -241,6 +259,12 @@ export const dict: Record<Locale, Dict> = {
     bafoegAmount: "650",
     bafoegUnit: "يورو / شهر",
     bafoegCaption: "حساب توضيحي — قد تختلف نتيجتك.",
+    alg1Title: "حاسبة إعانة البطالة",
+    alg1Cta: "احسب ALG1",
+    alg1CardLabel: "إعانة البطالة المحتملة لك",
+    alg1Amount: "حتى 67 %",
+    alg1Unit: "من صافي الدخل",
+    alg1Caption: "تدفع إعانة البطالة 60 % من صافي دخلك الأخير، وحتى 67 % مع الأطفال.",
 
     warumTitle: "لماذا Antragsbruder؟",
 
@@ -286,7 +310,7 @@ export const dict: Record<Locale, Dict> = {
     rechnerEyebrow: "Ücretsiz, kayıt gerekmez",
     rechnerTitle: "Sana para hakkın olup olmadığını biliyor musun?",
     rechnerLede:
-      "Üç hesap makinemizle, muhtemelen hakkın olup olmadığını birkaç dakikada öğren. Ücretsiz, birden fazla dilde. Hakkın var mı? Başvurunu 99 € karşılığında üstleniriz.",
+      "Dört hesap makinemizle, muhtemelen hakkın olup olmadığını birkaç dakikada öğren. Ücretsiz, birden fazla dilde. Hakkın var mı? Başvurunu 99 € karşılığında üstleniriz.",
     toolBadge: "Ücretsiz araç",
     wohngeldTitle: "Konut Yardımı Hesaplayıcı",
     wohngeldCta: "Konut yardımını hesapla",
@@ -307,6 +331,12 @@ export const dict: Record<Locale, Dict> = {
     bafoegAmount: "650",
     bafoegUnit: "€ / ay",
     bafoegCaption: "Örnek hesaplama — sonucun farklı olabilir.",
+    alg1Title: "İşsizlik Maaşı Hesaplayıcı",
+    alg1Cta: "ALG1 hesapla",
+    alg1CardLabel: "Alabileceğin işsizlik maaşı",
+    alg1Amount: "en fazla % 67",
+    alg1Unit: "net gelirin",
+    alg1Caption: "İşsizlik maaşı son net gelirinin % 60'ıdır, çocukluysan % 67'ye kadar çıkar.",
 
     warumTitle: "Neden Antragsbruder?",
 
@@ -352,7 +382,7 @@ export const dict: Record<Locale, Dict> = {
     rechnerEyebrow: "Бесплатно, без регистрации",
     rechnerTitle: "Знаешь, положены ли тебе деньги?",
     rechnerLede:
-      "С помощью наших трёх калькуляторов узнай за пару минут, есть ли у тебя, скорее всего, право на выплату. Бесплатно, на нескольких языках. Есть право? Мы оформим твоё заявление за 99 €.",
+      "С помощью наших четырёх калькуляторов узнай за пару минут, есть ли у тебя, скорее всего, право на выплату. Бесплатно, на нескольких языках. Есть право? Мы оформим твоё заявление за 99 €.",
     toolBadge: "Бесплатный инструмент",
     wohngeldTitle: "Калькулятор жилищного пособия",
     wohngeldCta: "Рассчитать жилищное пособие",
@@ -373,6 +403,12 @@ export const dict: Record<Locale, Dict> = {
     bafoegAmount: "650",
     bafoegUnit: "€ / месяц",
     bafoegCaption: "Примерный расчёт — твой результат может отличаться.",
+    alg1Title: "Калькулятор пособия по безработице",
+    alg1Cta: "Рассчитать ALG1",
+    alg1CardLabel: "Твоё возможное пособие",
+    alg1Amount: "до 67 %",
+    alg1Unit: "чистого дохода",
+    alg1Caption: "Пособие составляет 60 % последнего чистого дохода, с детьми — до 67 %.",
 
     warumTitle: "Почему Antragsbruder?",
 
@@ -418,7 +454,7 @@ export const dict: Record<Locale, Dict> = {
     rechnerEyebrow: "Безкоштовно, без реєстрації",
     rechnerTitle: "Знаєш, чи належать тобі гроші?",
     rechnerLede:
-      "За допомогою наших трьох калькуляторів дізнайся за кілька хвилин, чи маєш ти, ймовірно, право на виплату. Безкоштовно, кількома мовами. Маєш право? Ми оформимо твою заяву за 99 €.",
+      "За допомогою наших чотирьох калькуляторів дізнайся за кілька хвилин, чи маєш ти, ймовірно, право на виплату. Безкоштовно, кількома мовами. Маєш право? Ми оформимо твою заяву за 99 €.",
     toolBadge: "Безкоштовний інструмент",
     wohngeldTitle: "Калькулятор житлової допомоги",
     wohngeldCta: "Розрахувати житлову допомогу",
@@ -439,6 +475,12 @@ export const dict: Record<Locale, Dict> = {
     bafoegAmount: "650",
     bafoegUnit: "€ / місяць",
     bafoegCaption: "Орієнтовний розрахунок — твій результат може відрізнятися.",
+    alg1Title: "Калькулятор допомоги з безробіття",
+    alg1Cta: "Розрахувати ALG1",
+    alg1CardLabel: "Твоя можлива допомога",
+    alg1Amount: "до 67 %",
+    alg1Unit: "чистого доходу",
+    alg1Caption: "Допомога становить 60 % останнього чистого доходу, з дітьми — до 67 %.",
 
     warumTitle: "Чому Antragsbruder?",
 
@@ -484,7 +526,7 @@ export const dict: Record<Locale, Dict> = {
     rechnerEyebrow: "Bezpłatnie, bez rejestracji",
     rechnerTitle: "Wiesz, czy należą ci się pieniądze?",
     rechnerLede:
-      "Dzięki naszym trzem kalkulatorom sprawdzisz w kilka minut, czy prawdopodobnie masz prawo do świadczenia. Bezpłatnie, w kilku językach. Masz prawo? Zajmiemy się twoim wnioskiem za 99 €.",
+      "Dzięki naszym czterem kalkulatorom sprawdzisz w kilka minut, czy prawdopodobnie masz prawo do świadczenia. Bezpłatnie, w kilku językach. Masz prawo? Zajmiemy się twoim wnioskiem za 99 €.",
     toolBadge: "Bezpłatne narzędzie",
     wohngeldTitle: "Kalkulator dodatku mieszkaniowego",
     wohngeldCta: "Oblicz dodatek mieszkaniowy",
@@ -505,6 +547,12 @@ export const dict: Record<Locale, Dict> = {
     bafoegAmount: "650",
     bafoegUnit: "€ / miesiąc",
     bafoegCaption: "Przykładowe obliczenie — twój wynik może się różnić.",
+    alg1Title: "Kalkulator zasiłku dla bezrobotnych",
+    alg1Cta: "Oblicz zasiłek",
+    alg1CardLabel: "Twoje możliwe świadczenie",
+    alg1Amount: "do 67 %",
+    alg1Unit: "wynagrodzenia netto",
+    alg1Caption: "Zasiłek wynosi 60 % ostatniego wynagrodzenia netto, z dziećmi do 67 %.",
 
     warumTitle: "Dlaczego Antragsbruder?",
 
@@ -550,7 +598,7 @@ export const dict: Record<Locale, Dict> = {
     rechnerEyebrow: "Безплатно, без регистрация",
     rechnerTitle: "Знаеш ли дали ти се полагат пари?",
     rechnerLede:
-      "С трите ни калкулатора разбираш за няколко минути дали вероятно имаш право. Безплатно, на няколко езика. Имаш право? Поемаме заявлението ти за 99 €.",
+      "С четирите ни калкулатора разбираш за няколко минути дали вероятно имаш право. Безплатно, на няколко езика. Имаш право? Поемаме заявлението ти за 99 €.",
     toolBadge: "Безплатен инструмент",
     wohngeldTitle: "Калкулатор за жилищна помощ",
     wohngeldCta: "Изчисли жилищна помощ",
@@ -571,6 +619,12 @@ export const dict: Record<Locale, Dict> = {
     bafoegAmount: "650",
     bafoegUnit: "€ / месец",
     bafoegCaption: "Примерно изчисление — резултатът ти може да е различен.",
+    alg1Title: "Калкулатор за помощи при безработица",
+    alg1Cta: "Изчисли ALG1",
+    alg1CardLabel: "Възможната помощ за теб",
+    alg1Amount: "до 67 %",
+    alg1Unit: "от нетния доход",
+    alg1Caption: "Помощта е 60 % от последния нетен доход, с деца — до 67 %.",
 
     warumTitle: "Защо Antragsbruder?",
 
@@ -616,7 +670,7 @@ export const dict: Record<Locale, Dict> = {
     rechnerEyebrow: "Gratuit, fără înregistrare",
     rechnerTitle: "Știi dacă ai dreptul la bani?",
     rechnerLede:
-      "Cu cele trei calculatoare ale noastre afli în câteva minute dacă probabil ai dreptul. Gratuit, în mai multe limbi. Ai dreptul? Preluăm cererea ta pentru 99 €.",
+      "Cu cele patru calculatoare ale noastre afli în câteva minute dacă probabil ai dreptul. Gratuit, în mai multe limbi. Ai dreptul? Preluăm cererea ta pentru 99 €.",
     toolBadge: "Instrument gratuit",
     wohngeldTitle: "Calculator ajutor de locuință",
     wohngeldCta: "Calculează ajutorul de locuință",
@@ -637,6 +691,12 @@ export const dict: Record<Locale, Dict> = {
     bafoegAmount: "650",
     bafoegUnit: "€ / lună",
     bafoegCaption: "Calcul exemplificativ — rezultatul tău poate diferi.",
+    alg1Title: "Calculator de ajutor de șomaj",
+    alg1Cta: "Calculează ALG1",
+    alg1CardLabel: "Ajutorul tău posibil",
+    alg1Amount: "până la 67 %",
+    alg1Unit: "din venitul net",
+    alg1Caption: "Ajutorul este de 60 % din ultimul venit net, cu copii până la 67 %.",
 
     warumTitle: "De ce Antragsbruder?",
 

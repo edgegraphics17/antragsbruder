@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Baloo_2 } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
@@ -12,6 +12,16 @@ const bodyFont = Inter({
   subsets: ["latin"],
   display: "swap",
 });
+
+// Mobile: viewport-fit=cover für iOS Safe-Area, kein User-Zoom (App-Gefühl).
+// WICHTIG: Als Next.js Viewport-Export, NICHT als manuelles <meta>-Tag im <head>.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
+};
 
 const headingFont = Baloo_2({
   variable: "--font-heading",

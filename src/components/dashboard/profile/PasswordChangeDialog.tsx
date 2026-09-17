@@ -48,7 +48,7 @@ export function PasswordChangeDialog({ open, onClose }: Props) {
   };
 
   const inputCls =
-    'mt-1 w-full rounded-lg border border-line-soft bg-white px-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100';
+    'mt-1 w-full rounded-lg border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100';
 
   return (
     <div
@@ -57,7 +57,7 @@ export function PasswordChangeDialog({ open, onClose }: Props) {
       aria-modal="true"
       aria-label="Passwort ändern"
     >
-      <div className="relative w-full max-w-md rounded-2xl bg-white p-6">
+      <div className="relative max-h-[85dvh] w-[95vw] max-w-md overflow-y-auto rounded-2xl bg-white p-6 sm:w-full">
         <button
           type="button"
           onClick={onClose}

@@ -42,7 +42,7 @@ export function EmailChangeDialog({ open, onClose }: Props) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" role="dialog" aria-modal="true" aria-label="E-Mail-Adresse ändern">
-      <div className="relative w-full max-w-md rounded-2xl bg-white p-6">
+      <div className="relative max-h-[85dvh] w-[95vw] max-w-md overflow-y-auto rounded-2xl bg-white p-6 sm:w-full">
         <button
           type="button"
           onClick={onClose}
@@ -60,7 +60,7 @@ export function EmailChangeDialog({ open, onClose }: Props) {
           placeholder="neue@email.de"
           value={newEmail}
           onChange={(e) => setNewEmail(e.target.value)}
-          className="w-full rounded-lg border border-line-soft bg-white px-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+          className="w-full rounded-lg border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
         />
         {status && <p className="mt-3 text-xs text-amber-700">{status}</p>}
         <ButtonAction

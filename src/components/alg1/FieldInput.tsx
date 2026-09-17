@@ -13,7 +13,7 @@ import type { Alg1FormData } from '@/lib/types/alg1';
 import type { FormField } from '@/lib/alg1/form-config';
 
 function baseClass(hasError: boolean) {
-  return `w-full rounded-lg border px-4 py-3 text-sm focus:outline-none ${
+  return `w-full rounded-lg border px-4 py-3 text-base md:text-sm focus:outline-none ${
     hasError
       ? 'border-red-500 bg-red-50 focus:border-red-600'
       : 'border-line focus:border-brand-600'

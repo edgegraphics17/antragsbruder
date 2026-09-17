@@ -134,7 +134,7 @@ export function DashboardHome() {
   const displayName = profile?.firstName || user?.email?.split('@')[0] || 'Nutzer';
 
   return (
-    <div className="mx-auto max-w-6xl p-6 pb-48 md:p-8 md:pb-56">
+    <div className="mx-auto max-w-6xl p-6 md:p-8 md:pb-56">
       {/* Gruß */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-ink" suppressHydrationWarning>
@@ -254,11 +254,12 @@ export function DashboardHome() {
         </div>
       </div>
 
-      {/* TIMELINE — Angepinnt am unteren Rand (nur Content-Bereich, rechts neben der Sidebar) */}
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-line-soft bg-paper/95 backdrop-blur-md lg:left-64">
-        <div className="mx-auto max-w-6xl px-4 py-4 md:px-6 md:py-5">
+      {/* TIMELINE — Mobile: statisch & kompakt am Seitenende (eine Zeile: Balken + Schritt X/Y).
+          Desktop (md+): wie bisher fixiert am unteren Rand, rechts neben der Sidebar. */}
+      <div className="border-t border-line-soft bg-paper/95 backdrop-blur-md md:fixed md:inset-x-0 md:bottom-0 md:z-50 lg:left-64">
+        <div className="mx-auto max-w-6xl px-4 py-3 md:px-6 md:py-5">
           {/* Fortschrittsbalken */}
-          <div className="mb-3 flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <div className="flex-1">
               <div className="h-2 w-full overflow-hidden rounded-full bg-brand-100">
                 <div
@@ -276,8 +277,8 @@ export function DashboardHome() {
             </span>
           </div>
 
-          {/* Steps */}
-          <div className="grid grid-cols-4 gap-2 md:gap-4">
+          {/* Steps — nur Desktop */}
+          <div className="hidden gap-2 md:mt-3 md:grid md:grid-cols-4 md:gap-4">
             {TIMELINE_STEPS.map((step, idx) => {
               const stepNum = idx + 1;
               const isCompleted = timeline.completedSteps.includes(stepNum);
@@ -306,16 +307,6 @@ export function DashboardHome() {
                 </div>
               );
             })}
-          </div>
-
-          {/* Aktueller Schritt — Beschreibung */}
-          <div className="mt-3 rounded-xl border border-line-soft bg-white p-3 md:hidden">
-            <p className="text-xs font-semibold text-ink">
-              {TIMELINE_STEPS[timeline.activeStep - 1].label}
-            </p>
-            <p className="mt-0.5 text-[10px] text-ink-soft">
-              {TIMELINE_STEPS[timeline.activeStep - 1].description}
-            </p>
           </div>
 
           {/* Desktop: Beschreibung des aktiven Schritts — mittig unten zentriert */}

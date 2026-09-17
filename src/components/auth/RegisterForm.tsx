@@ -87,7 +87,7 @@ export function RegisterForm({ locale }: RegisterFormProps) {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+          className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
           placeholder="Max Mustermann"
         />
       </div>
@@ -126,7 +126,7 @@ export function RegisterForm({ locale }: RegisterFormProps) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           minLength={6}
-          className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+          className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
           placeholder="Mindestens 6 Zeichen"
         />
         {password && !passOk && (
@@ -145,7 +145,7 @@ export function RegisterForm({ locale }: RegisterFormProps) {
           autoComplete="new-password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+          className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
           placeholder="Passwort bestätigen"
         />
         {confirmPassword && !passMatch && (

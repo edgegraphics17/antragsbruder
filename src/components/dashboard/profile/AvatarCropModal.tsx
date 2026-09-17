@@ -49,7 +49,7 @@ export function AvatarCropModal({ open, imageUrl, onComplete, onCancel }: Props)
       aria-modal="true"
       aria-label="Profilbild zuschneiden"
     >
-      <div className="w-full max-w-lg rounded-2xl bg-white p-6">
+      <div className="max-h-[85dvh] w-[95vw] max-w-lg overflow-y-auto rounded-2xl bg-white p-6 sm:w-full">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-ink">Profilbild zuschneiden</h2>
           <button

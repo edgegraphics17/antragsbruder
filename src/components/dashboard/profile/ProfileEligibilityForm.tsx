@@ -11,7 +11,7 @@ import { useProfileStore } from '@/lib/stores/profile-store';
 import { ButtonAction } from '@/components/ui/Button';
 
 const inputCls =
-  'mt-1 w-full rounded-lg border border-line-soft bg-white px-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100';
+  'mt-1 w-full rounded-lg border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100';
 
 const defaultValues = (profile: {
   housingType: 'RENT' | 'OWN' | 'PARENTS' | 'OTHER' | null;

@@ -85,6 +85,17 @@ button {
   touch-action: manipulation;
 }
 
+/* iOS Auto-Zoom verhindern: Safari zoomt in Formulare < 16px.
+   Mobile (bis md) deshalb garantiert 16px auf allen Eingabefeldern —
+   unabhängig von text-sm/text-xs-Klassen im Markup. */
+@media (max-width: 767px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
 :focus-visible {
   outline: 2px solid var(--color-brand-600);
   outline-offset: 3px;

@@ -153,7 +153,7 @@ export function LoginForm({ locale }: LoginFormProps) {
                 autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-xl border border-line-soft bg-white pl-10 pr-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+                className="w-full rounded-xl border border-line-soft bg-white pl-10 pr-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
                 placeholder="name@buero.de"
               />
             </div>
@@ -173,7 +173,7 @@ export function LoginForm({ locale }: LoginFormProps) {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+              className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
               placeholder="Dein Passwort"
             />
             {password && !passOk && (
@@ -240,7 +240,7 @@ export function LoginForm({ locale }: LoginFormProps) {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+              className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
               placeholder="Max Mustermann"
             />
           </div>
@@ -258,7 +258,7 @@ export function LoginForm({ locale }: LoginFormProps) {
                 autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-xl border border-line-soft bg-white pl-10 pr-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+                className="w-full rounded-xl border border-line-soft bg-white pl-10 pr-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
                 placeholder="name@buero.de"
               />
             </div>
@@ -279,7 +279,7 @@ export function LoginForm({ locale }: LoginFormProps) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               minLength={6}
-              className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+              className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
               placeholder="Mindestens 6 Zeichen"
             />
             {password && !passOk && (
@@ -298,7 +298,7 @@ export function LoginForm({ locale }: LoginFormProps) {
               autoComplete="new-password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+              className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
               placeholder="Passwort bestätigen"
             />
             {confirmPassword && !passMatch && (
