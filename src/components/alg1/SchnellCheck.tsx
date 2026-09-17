@@ -41,12 +41,18 @@ export function clearSchnellCheckCache() {
 
 export function SchnellCheck({
   onComplete,
+  initialAnswers,
 }: {
   caseId: string;
   onComplete: (result: Alg1SchnellCheckResult, answers: SchnellCheck) => void;
+  /** Vorbefüllung (z. B. aus applications.form_state bei Resume) */
+  initialAnswers?: Partial<SchnellCheck>;
 }) {
   const [step, setStep] = useState(0);
-  const [answers, setAnswersState] = useState<Partial<SchnellCheck>>(loadCachedAnswers);
+  const [answers, setAnswersState] = useState<Partial<SchnellCheck>>(() => ({
+    ...loadCachedAnswers(),
+    ...initialAnswers,
+  }));
   const [numberInput, setNumberInput] = useState('');
   const [showResult, setShowResult] = useState(false);
   const [finalResult, setFinalResult] = useState<Alg1SchnellCheckResult | null>(null);

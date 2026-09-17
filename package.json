@@ -14,6 +14,7 @@
     "test:e2e:install": "playwright install"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.9.1",
     "@playwright/test": "^1.63.0",
     "@sentry/nextjs": "^10.74.0",
     "@supabase/ssr": "^0.12.7",
@@ -22,6 +23,8 @@
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-dropzone": "^20.1.2",
+    "react-easy-crop": "^6.2.3",
+    "react-hook-form": "^7.88.0",
     "resend": "^6.28.1",
     "tesseract.js": "^7.0.0",
     "uuid": "^14.0.2",

@@ -1,8 +1,12 @@
 'use client';
 
-// Stammdaten: Vorname, Nachname, Telefon + E-Mail-Anzeige (Änderung via Dialog).
+// Stammdaten: Vorname, Nachname, Telefon — React-Hook-Form + Zod,
+// E-Mail nur Anzeige (Änderung via Dialog, Sync per DB-Trigger).
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { ProfileMasterDataSchema, type ProfileMasterData } from '@/lib/schemas/profile';
 import { useProfileStore } from '@/lib/stores/profile-store';
 import { ButtonAction } from '@/components/ui/Button';
 
@@ -10,68 +14,67 @@ interface Props {
   onEmailChange: () => void;
 }
 
+const inputCls =
+  'mt-1 w-full rounded-lg border border-line-soft bg-white px-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100';
+
 export function ProfileMasterDataForm({ onEmailChange }: Props) {
   const { profile, updateProfile } = useProfileStore();
-  const [form, setForm] = useState({ firstName: '', lastName: '', phone: '' });
-  const [saving, setSaving] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isDirty, isSubmitting },
+  } = useForm<ProfileMasterData>({
+    resolver: zodResolver(ProfileMasterDataSchema),
+    defaultValues: {
+      firstName: profile?.firstName ?? '',
+      lastName: profile?.lastName ?? '',
+      phone: profile?.phone ?? '',
+    },
+  });
+
+  // Reset bei Profil-Änderung (Sync aus Store)
   useEffect(() => {
-    if (profile) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- Sync aus Store: setState bewusst nach Profil-Load
-      setForm({
-        firstName: profile.firstName ?? '',
-        lastName: profile.lastName ?? '',
-        phone: profile.phone ?? '',
-      });
-    }
-  }, [profile]);
+    if (!profile) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- RHF reset nach Store-Load
+    reset({
+      firstName: profile.firstName ?? '',
+      lastName: profile.lastName ?? '',
+      phone: profile.phone ?? '',
+    });
+  }, [profile, reset]);
 
   if (!profile) return null;
 
-  const handleSave = async () => {
-    setSaving(true);
-    setMessage(null);
+  const onSubmit = async (data: ProfileMasterData) => {
     const ok = await updateProfile(profile.id, {
-      firstName: form.firstName.trim() || null,
-      lastName: form.lastName.trim() || null,
-      phone: form.phone.trim() || null,
+      firstName: data.firstName.trim(),
+      lastName: data.lastName.trim(),
+      phone: data.phone?.trim() || null,
     });
-    setSaving(false);
-    setMessage(ok ? 'Gespeichert ✓' : 'Speichern fehlgeschlagen');
+    if (ok) reset(data); // Dirty-State zurücksetzen
   };
 
   return (
-    <div className="space-y-4 rounded-2xl border border-line-soft bg-paper p-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 rounded-2xl border border-line-soft bg-paper p-5">
       <h2 className="font-semibold text-ink">Stammdaten</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <label className="text-sm text-ink-soft">
           Vorname
-          <input
-            type="text"
-            value={form.firstName}
-            onChange={(e) => setForm((f) => ({ ...f, firstName: e.target.value }))}
-            className="mt-1 w-full rounded-lg border border-line-soft bg-white px-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
-          />
+          <input {...register('firstName')} type="text" className={inputCls} />
+          {errors.firstName && <p className="mt-1 text-xs text-red-600">{errors.firstName.message}</p>}
         </label>
         <label className="text-sm text-ink-soft">
           Nachname
-          <input
-            type="text"
-            value={form.lastName}
-            onChange={(e) => setForm((f) => ({ ...f, lastName: e.target.value }))}
-            className="mt-1 w-full rounded-lg border border-line-soft bg-white px-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
-          />
+          <input {...register('lastName')} type="text" className={inputCls} />
+          {errors.lastName && <p className="mt-1 text-xs text-red-600">{errors.lastName.message}</p>}
         </label>
       </div>
       <label className="block text-sm text-ink-soft">
         Telefon (optional)
-        <input
-          type="tel"
-          value={form.phone}
-          onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-          className="mt-1 w-full rounded-lg border border-line-soft bg-white px-4 py-3 text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
-        />
+        <input {...register('phone')} type="tel" className={inputCls} />
+        {errors.phone && <p className="mt-1 text-xs text-red-600">{errors.phone.message}</p>}
       </label>
       <div className="border-t border-line-soft pt-4">
         <span className="text-sm text-ink-soft">E-Mail</span>
@@ -86,10 +89,16 @@ export function ProfileMasterDataForm({ onEmailChange }: Props) {
           </button>
         </div>
       </div>
-      {message && <p className={`text-sm ${message.includes('✓') ? 'text-green-700' : 'text-red-600'}`}>{message}</p>}
-      <ButtonAction type="button" onClick={handleSave} disabled={saving} className="w-full">
-        {saving ? 'Wird gespeichert…' : 'Speichern'}
-      </ButtonAction>
-    </div>
+      <div className="flex gap-3">
+        <ButtonAction type="submit" disabled={!isDirty || isSubmitting} className="flex-1">
+          {isSubmitting ? 'Wird gespeichert…' : 'Speichern'}
+        </ButtonAction>
+        {isDirty && (
+          <ButtonAction type="button" variant="secondary" onClick={() => reset()} className="flex-1">
+            Verwerfen
+          </ButtonAction>
+        )}
+      </div>
+    </form>
   );
 }

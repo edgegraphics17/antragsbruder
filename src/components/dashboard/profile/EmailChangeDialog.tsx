@@ -1,12 +1,12 @@
 'use client';
 
 // E-Mail-Änderung: supabase.auth.updateUser() → Bestätigungslink.
-// profiles.email wird zusätzlich manuell nachgezogen (zusätzlich zum Trigger).
+// KEIN manuelles Update in profiles — der DB-Trigger sync_profile_email
+// überträgt die neue E-Mail erst nach Bestätigung (Single Source of Truth).
 
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth-context';
-import { useProfileStore } from '@/lib/stores/profile-store';
 import { IconClose } from '@/components/ui/icons';
 import { ButtonAction } from '@/components/ui/Button';
 
@@ -17,7 +17,6 @@ interface Props {
 
 export function EmailChangeDialog({ open, onClose }: Props) {
   const { user } = useAuth();
-  const { setEmail } = useProfileStore();
   const [newEmail, setNewEmail] = useState('');
   const [status, setStatus] = useState<string | null>(null);
   const [sending, setSending] = useState(false);
@@ -34,9 +33,8 @@ export function EmailChangeDialog({ open, onClose }: Props) {
     if (error) {
       setStatus(`Fehler: ${error.message}`);
     } else {
-      // Manuelles Nachziehen (zusätzlich zum DB-Trigger)
-      await supabase.from('profiles').update({ email: newEmail }).eq('id', user.id);
-      setEmail(newEmail);
+      // ✅ KEIN manuelles profiles-Update: der Trigger sync_profile_email
+      // aktualisiert profiles.email automatisch NACH Bestätigung des Links.
       setStatus('Bestätigungslink gesendet. Bitte bestätige den Link in deiner neuen Mail.');
     }
     setSending(false);

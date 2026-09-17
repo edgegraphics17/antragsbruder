@@ -1,9 +1,10 @@
 import { create } from 'zustand';
 import { supabase } from '@/lib/supabase';
-import type { UserProfile } from '../schemas/profile';
+import type { DocumentEntry, UserProfile } from '../schemas/profile';
 
 interface ProfileStore {
   profile: UserProfile | null;
+  documents: DocumentEntry[];
   loading: boolean;
   error: string | null;
   initialized: boolean;
@@ -12,6 +13,11 @@ interface ProfileStore {
   setAvatar: (url: string | null) => void;
   setName: (firstName: string, lastName: string) => void;
   setEmail: (email: string) => void;
+
+  // Dokumenten-Tresor
+  loadDocuments: (userId: string) => Promise<void>;
+  addDocument: (doc: DocumentEntry) => void;
+  removeDocument: (docId: string) => void;
 }
 
 // DB (snake_case) → App (CamelCase). Single Source of Truth fürs Mapping.
@@ -35,6 +41,7 @@ export function mapDbToProfile(data: Record<string, unknown>): UserProfile {
 
 export const useProfileStore = create<ProfileStore>((set) => ({
   profile: null,
+  documents: [],
   loading: false,
   error: null,
   initialized: false,
@@ -96,4 +103,26 @@ export const useProfileStore = create<ProfileStore>((set) => ({
   setAvatar: (url) => set((s) => ({ profile: s.profile ? { ...s.profile, avatarUrl: url } : null })),
   setName: (firstName, lastName) => set((s) => ({ profile: s.profile ? { ...s.profile, firstName, lastName } : null })),
   setEmail: (email) => set((s) => ({ profile: s.profile ? { ...s.profile, email } : null })),
+
+  // ── Dokumenten-Tresor ──────────────────────────────────────
+  loadDocuments: async (userId: string) => {
+    const { data, error } = await supabase
+      .from('documents_meta')
+      .select(
+        'id, user_id, application_id, document_role, filename, storage_path, file_size, mime_type, status, created_at',
+      )
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      set({ error: error.message });
+      return;
+    }
+    set({ documents: (data ?? []) as DocumentEntry[], error: null });
+  },
+
+  addDocument: (doc) => set((s) => ({ documents: [doc, ...s.documents] })),
+
+  removeDocument: (docId) =>
+    set((s) => ({ documents: s.documents.filter((d) => d.id !== docId) })),
 }));
