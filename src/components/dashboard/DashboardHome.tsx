@@ -23,6 +23,7 @@ interface AppRecord {
   benefit_type: string;
   status: string;
   created_at: string;
+  last_stage: string | null;
   calculation_result: { amount?: number; unit?: string } | null;
 }
 
@@ -40,7 +41,7 @@ export function DashboardHome() {
     const load = async () => {
       const { data } = await supabase
         .from('applications')
-        .select('id, case_id, benefit_type, status, created_at, calculation_result')
+        .select('id, case_id, benefit_type, status, created_at, last_stage, calculation_result')
         .eq('user_id', user.id)
         .order('updated_at', { ascending: false });
       setApplications(data ?? []);
@@ -158,7 +159,11 @@ export function DashboardHome() {
                   )}
                 </div>
                 <Link
-                  href={app.benefit_type === 'ALG1' ? `/alg1/antrag?applicationId=${app.id}` : `/antraege/${app.case_id}`}
+                  href={
+                    app.benefit_type === 'ALG1'
+                      ? `/alg1/antrag?applicationId=${app.id}&stage=${app.last_stage ?? 'upload'}`
+                      : `/antraege/${app.case_id}`
+                  }
                   className="shrink-0 rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
                 >
                   Weiterarbeiten

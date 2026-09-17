@@ -2,26 +2,36 @@
 
 // SLICE 5 — Zusammenfassung & Einreichung (Simulation).
 // Block-Submit: ohne vollständige, valide Daten (Zod) gibt es keine Einreichung.
+// Pflichtfeld-Lücken verweisen direkt auf die fehlenden Abschnitte —
+// der bestehende Eingaben-Stand bleibt dabei zu 100 % erhalten.
 import { useState } from 'react';
 import { Alg1FormSchema } from '@/lib/schemas/alg1';
 import { calculateAlg1Estimate } from '@/lib/alg1/logic';
 import { useAlg1Store } from '@/lib/alg1/store';
+import { FORM_CONFIG } from '@/lib/alg1/form-config';
 import { ButtonAction } from '@/components/ui/Button';
 
 export function Summary({ onConfirmed }: { onConfirmed?: () => void }) {
-  const { formState, submitAll, isSaving, validationErrors } = useAlg1Store();
+  const { formState, submitAll, isSaving, validationErrors, setStage } = useAlg1Store();
   const [confirmed, setConfirmed] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const parsed = Alg1FormSchema.safeParse(formState);
 
   if (!parsed.success) {
+    // Fehlende Felder → betroffene Abschnitte → direkter Sprung zurück (Stand bleibt)
+    const missingKeys = [...new Set(parsed.error.issues.map((i) => String(i.path[0])))];
+    const missingSections = [
+      ...new Set(
+        FORM_CONFIG.filter((f) => missingKeys.includes(String(f.key))).map((f) => f.section),
+      ),
+    ];
     return (
       <div className="mx-auto max-w-2xl space-y-4 p-6">
         <h2 className="text-2xl font-bold">Zusammenfassung deines ALG1-Antrags</h2>
         <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-ink-soft">
           <p className="mb-2 font-semibold text-amber-700">
-            Bitte zuerst alle Pflichtfelder ausfüllen ({parsed.error.issues.length} Prüffehler):
+            Es fehlen noch {missingKeys.length} Angaben ({parsed.error.issues.length} Prüffehler):
           </p>
           <ul className="list-inside list-disc space-y-1">
             {parsed.error.issues.slice(0, 8).map((issue, i) => (
@@ -31,6 +41,11 @@ export function Summary({ onConfirmed }: { onConfirmed?: () => void }) {
             ))}
           </ul>
         </div>
+        {missingSections.length > 0 && (
+          <ButtonAction onClick={() => setStage('form')} className="w-full">
+            Angaben ergänzen ({missingSections.join(', ')})
+          </ButtonAction>
+        )}
       </div>
     );
   }
@@ -104,7 +119,7 @@ export function Summary({ onConfirmed }: { onConfirmed?: () => void }) {
         </p>
       )}
 
-      <ButtonAction onClick={handleSubmit} disabled={isSaving} className="w-full rounded-xl py-4 text-lg">
+      <ButtonAction onClick={() => void handleSubmit()} disabled={isSaving} className="w-full rounded-xl py-4 text-lg">
         {isSaving ? 'Wird eingereicht…' : 'Antrag einreichen (Simulation)'}
       </ButtonAction>
     </div>

@@ -15,6 +15,7 @@ export const ProfileFormSchema = z.object({
     .optional()
     .or(z.literal('')),
   street: z.string().max(120, 'Maximal 120 Zeichen').optional().or(z.literal('')),
+  houseNumber: z.string().max(10, 'Maximal 10 Zeichen').optional().or(z.literal('')),
   phone: z.string().max(20, 'Maximal 20 Zeichen').optional().or(z.literal('')),
   postcode: z
     .string()
@@ -46,6 +47,7 @@ export const ProfileMasterDataSchema = ProfileFormSchema.pick({
   lastName: true,
   birthDate: true,
   street: true,
+  houseNumber: true,
   postcode: true,
   city: true,
   phone: true,
@@ -103,6 +105,7 @@ export interface UserProfile {
   lastName: string | null;
   birthDate: string | null;
   street: string | null;
+  houseNumber: string | null;
   phone: string | null;
   postcode: string | null;
   city: string | null;

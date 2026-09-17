@@ -35,6 +35,7 @@ export function ProfileMasterDataForm({ onEmailChange }: Props) {
       lastName: profile?.lastName ?? '',
       birthDate: profile?.birthDate ?? '',
       street: profile?.street ?? '',
+      houseNumber: profile?.houseNumber ?? '',
       postcode: profile?.postcode ?? '',
       city: profile?.city ?? '',
       phone: profile?.phone ?? '',
@@ -50,6 +51,7 @@ export function ProfileMasterDataForm({ onEmailChange }: Props) {
       lastName: profile.lastName ?? '',
       birthDate: profile.birthDate ?? '',
       street: profile.street ?? '',
+      houseNumber: profile.houseNumber ?? '',
       postcode: profile.postcode ?? '',
       city: profile.city ?? '',
       phone: profile.phone ?? '',
@@ -86,6 +88,7 @@ export function ProfileMasterDataForm({ onEmailChange }: Props) {
       lastName: data.lastName.trim(),
       birthDate: data.birthDate || null,
       street: data.street?.trim() || null,
+      houseNumber: data.houseNumber?.trim() || null,
       postcode: data.postcode || null,
       city: data.city?.trim() || null,
       phone: data.phone?.trim() || null,
@@ -120,11 +123,18 @@ export function ProfileMasterDataForm({ onEmailChange }: Props) {
           {errors.phone && <p className="mt-1 text-xs text-red-600">{errors.phone.message}</p>}
         </label>
       </div>
-      <label className="block text-sm text-ink-soft">
-        Straße & Hausnummer
-        <input {...register('street')} type="text" placeholder="Musterstraße 12" className={inputCls} />
-        {errors.street && <p className="mt-1 text-xs text-red-600">{errors.street.message}</p>}
-      </label>
+      <div className="grid grid-cols-3 gap-4">
+        <label className="col-span-2 text-sm text-ink-soft">
+          Straße
+          <input {...register('street')} type="text" placeholder="Musterstraße" className={inputCls} />
+          {errors.street && <p className="mt-1 text-xs text-red-600">{errors.street.message}</p>}
+        </label>
+        <label className="text-sm text-ink-soft">
+          Hausnummer
+          <input {...register('houseNumber')} type="text" placeholder="12b" className={inputCls} />
+          {errors.houseNumber && <p className="mt-1 text-xs text-red-600">{errors.houseNumber.message}</p>}
+        </label>
+      </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <label className="text-sm text-ink-soft">
           PLZ

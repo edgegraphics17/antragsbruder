@@ -29,6 +29,7 @@ export function mapDbToProfile(data: Record<string, unknown>): UserProfile {
     lastName: (data.last_name as string) ?? null,
     birthDate: (data.birth_date as string) ?? null,
     street: (data.street as string) ?? null,
+    houseNumber: (data.house_number as string) ?? null,
     phone: (data.phone as string) ?? null,
     postcode: (data.postcode as string) ?? null,
     city: (data.city as string) ?? null,
@@ -89,6 +90,7 @@ export const useProfileStore = create<ProfileStore>((set) => ({
     if (updates.lastName !== undefined) dbUpdates.last_name = updates.lastName;
     if (updates.birthDate !== undefined) dbUpdates.birth_date = updates.birthDate || null;
     if (updates.street !== undefined) dbUpdates.street = updates.street || null;
+    if (updates.houseNumber !== undefined) dbUpdates.house_number = updates.houseNumber || null;
     if (updates.phone !== undefined) dbUpdates.phone = updates.phone;
     if (updates.postcode !== undefined) dbUpdates.postcode = updates.postcode;
     if (updates.city !== undefined) dbUpdates.city = updates.city;

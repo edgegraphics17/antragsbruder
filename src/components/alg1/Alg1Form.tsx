@@ -1,60 +1,55 @@
 'use client';
 
 // SLICE 4 — ALG1-Fragebogen (JSON-getrieben, Client-seitig).
-// Kein API-Ping-Pong pro Frage: Zustand-Store + Abschnitt-Submit.
-// Bei Realtime-Events wird aktiv RE-FETCHED (frische Server-Daten),
-// bevor der Store aktualisiert wird — keine veraltete Merge-Basis.
-import { useEffect, useMemo, useState } from 'react';
+// Kein API-Ping-Pong pro Frage: Zustand-Store (Stufe 1 localStorage) +
+// debounced Cloud-Autosave (Stufe 2, 1s nach letzter Eingabe).
+// Datenverlust unmöglich: Jede Eingabe ist sofort im persist-Store,
+// spätestens 1s später in Supabase. Validierung löscht nie Eingaben.
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useAlg1Store } from '@/lib/alg1/store';
 import { FORM_CONFIG, getVisibleFields } from '@/lib/alg1/form-config';
 import { subscribeToApplication } from '@/lib/alg1/realtime';
 import { supabase } from '@/lib/supabase';
 import { FieldInput } from './FieldInput';
 import { ButtonAction } from '@/components/ui/Button';
-import type { Alg1Application } from '@/lib/types/alg1';
+import type { Alg1FormData } from '@/lib/types/alg1';
 
-export function Alg1Form({ applicationId }: { applicationId: string }) {
-  const { formState, progress, updateField, loadFromExtracted, saveSection, isSaving } =
-    useAlg1Store();
-  const [savedAt, setSavedAt] = useState<number | null>(null);
+export function Alg1Form() {
+  const {
+    formState,
+    progress,
+    updateField,
+    loadFromExtracted,
+    saveSection,
+    scheduleCloudSave,
+    isSaving,
+    lastSavedAt,
+  } = useAlg1Store();
+  const firstRender = useRef(true);
 
-  // Initial laden
+  // Debounced Cloud-Autosave (Stufe 2): 1s nach der letzten Änderung.
+  // Erster Render zählt nicht (Daten kamen gerade aus Store/DB).
   useEffect(() => {
-    void (async () => {
-      const { data } = await supabase
-        .from('applications')
-        .select('*')
-        .eq('id', applicationId)
-        .single();
-      if (!data) return;
-      const app: Alg1Application = {
-        id: data.id,
-        caseId: data.case_id,
-        userId: data.user_id,
-        benefitType: data.benefit_type,
-        status: data.status,
-        extractedFacts: (data.extracted_facts ?? {}) as Alg1Application['extractedFacts'],
-        formState: (data.form_state ?? {}) as Alg1Application['formState'],
-        calculationResult: (data.calculation_result ?? undefined) as Alg1Application['calculationResult'],
-        progressPercent: data.progress_percent ?? 0,
-        createdAt: data.created_at,
-        updatedAt: data.updated_at,
-      };
-      useAlg1Store.getState().setApplication(app);
-      if (data.extracted_facts) loadFromExtracted(app.extractedFacts);
-    })();
-  }, [applicationId, loadFromExtracted]);
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    scheduleCloudSave();
+  }, [formState, scheduleCloudSave]);
 
-  // Realtime: aktives Re-Fetching vor dem Store-Update
+  // Realtime: aktives Re-Fetching vor dem Store-Update (kein Echo-Risiko:
+  // loadFromExtracted merged nur extracted_facts, überschreibt keine Eingaben)
+  const applicationId = useAlg1Store((s) => s.application?.id);
   useEffect(() => {
+    if (!applicationId) return;
     const sub = subscribeToApplication(applicationId, async () => {
       const { data } = await supabase
         .from('applications')
-        .select('extracted_facts, form_state, progress_percent, status, updated_at')
+        .select('extracted_facts')
         .eq('id', applicationId)
         .single();
       if (!data) return;
-      loadFromExtracted((data.extracted_facts ?? {}) as Partial<import('@/lib/types/alg1').Alg1FormData>);
+      loadFromExtracted((data.extracted_facts ?? {}) as Partial<Alg1FormData>);
     });
     return () => {
       void sub.unsubscribe();
@@ -67,9 +62,15 @@ export function Alg1Form({ applicationId }: { applicationId: string }) {
     [visibleFields],
   );
 
-  const handleSaveSection = async () => {
-    if (await saveSection()) setSavedAt(Date.now());
-  };
+  // Autosave-Indikator: 🟢 Gespeichert / ⏳ Speichert…
+  const savedLabel = isSaving
+    ? '⏳ Speichert…'
+    : lastSavedAt
+      ? `🟢 Gespeichert · ${new Date(lastSavedAt).toLocaleTimeString('de-DE', {
+          hour: '2-digit',
+          minute: '2-digit',
+        })}`
+      : null;
 
   return (
     <div className="mx-auto max-w-2xl p-6">
@@ -80,6 +81,12 @@ export function Alg1Form({ applicationId }: { applicationId: string }) {
         </div>
         <div className="h-2 rounded-full bg-line-soft">
           <div className="h-full rounded-full bg-brand-600 transition-all" style={{ width: `${progress}%` }} />
+        </div>
+        <div className="mt-2 flex items-center justify-between">
+          <span className="text-xs text-ink-soft">
+            Deine Eingaben werden automatisch gespeichert.
+          </span>
+          {savedLabel && <span className="text-xs text-ink-soft">{savedLabel}</span>}
         </div>
       </div>
 
@@ -99,16 +106,19 @@ export function Alg1Form({ applicationId }: { applicationId: string }) {
                 </div>
               ))}
           </div>
-          <ButtonAction variant="secondary" onClick={handleSaveSection} disabled={isSaving} className="mt-4">
-            {isSaving ? 'Speichern…' : 'Abschnitt speichern'}
-          </ButtonAction>
-          {savedAt && (
-            <span className="ml-3 text-xs text-ink-soft">Gespeichert ✓</span>
-          )}
         </div>
       ))}
 
-      {/* Zusammenfassung folgt in Slice 5 — hier nur die relevanten Keys */}
+      {/* Manueller Sofort-Save (Autosave läuft zusätzlich automatisch) */}
+      <ButtonAction
+        variant="secondary"
+        onClick={() => void saveSection()}
+        disabled={isSaving}
+        className="mb-6"
+      >
+        {isSaving ? 'Speichert…' : 'Jetzt speichern'}
+      </ButtonAction>
+
       <p className="text-xs text-ink-soft">
         {FORM_CONFIG.length} Felder insgesamt, {visibleFields.length} sichtbar.
       </p>
