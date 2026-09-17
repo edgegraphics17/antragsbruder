@@ -19,6 +19,7 @@ export function Alg1Form() {
     formState,
     progress,
     updateField,
+    errorKeys,
     loadFromExtracted,
     saveSection,
     scheduleCloudSave,
@@ -100,9 +101,21 @@ export function Alg1Form() {
                 <div key={field.key}>
                   <label className="mb-1 block text-sm text-ink-soft">
                     {field.label}
-                    {field.required && <span className="text-brand-700"> *</span>}
+                    {field.required && (
+                      <span className={errorKeys.includes(String(field.key)) ? 'text-red-600' : 'text-brand-700'}>
+                        {' '}*
+                      </span>
+                    )}
+                    {errorKeys.includes(String(field.key)) && (
+                      <span className="ml-2 text-xs font-medium text-red-600">— bitte prüfen</span>
+                    )}
                   </label>
-                  <FieldInput field={field} value={formState[field.key]} onChange={updateField} />
+                  <FieldInput
+                    field={field}
+                    value={formState[field.key]}
+                    onChange={updateField}
+                    hasError={errorKeys.includes(String(field.key))}
+                  />
                 </div>
               ))}
           </div>

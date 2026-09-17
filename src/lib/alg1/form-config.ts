@@ -12,6 +12,14 @@ export interface FormField {
   required: boolean;
   section: string;
   showIf?: (state: Partial<Alg1FormData>) => boolean;
+  /** Platzhalter mit Musterbeispiel (z.B. „12 34 56789 01" bei der Steuer-ID) */
+  placeholder?: string;
+  /** Regex für Live-Validierung im Feld (rote Umrandung bei Verstoß) */
+  pattern?: string;
+  /** Hilfetext unter dem Feld */
+  hint?: string;
+  /** Select-Feld speichert string[] statt string (Multi-Auswahl) */
+  isArray?: boolean;
 }
 
 export const FORM_CONFIG: FormField[] = [
@@ -20,10 +28,10 @@ export const FORM_CONFIG: FormField[] = [
   { key: 'lastName', label: 'Nachname', type: 'text', required: true, section: 'Personendaten' },
   { key: 'dateOfBirth', label: 'Geburtsdatum', type: 'date', required: true, section: 'Personendaten' },
   { key: 'street', label: 'Straße & Hausnummer', type: 'text', required: true, section: 'Personendaten' },
-  { key: 'postcode', label: 'PLZ', type: 'text', required: true, section: 'Personendaten' },
+  { key: 'postcode', label: 'PLZ', type: 'text', required: true, section: 'Personendaten', placeholder: 'z.B. 10115', pattern: '^\\d{5}$' },
   { key: 'city', label: 'Stadt', type: 'text', required: true, section: 'Personendaten' },
-  { key: 'phone', label: 'Telefon', type: 'text', required: true, section: 'Personendaten' },
-  { key: 'email', label: 'E-Mail', type: 'text', required: true, section: 'Personendaten' },
+  { key: 'phone', label: 'Telefon', type: 'text', required: true, section: 'Personendaten', placeholder: 'z.B. 030 12345678' },
+  { key: 'email', label: 'E-Mail', type: 'text', required: true, section: 'Personendaten', placeholder: 'z.B. max@beispiel.de' },
   {
     key: 'nationality', label: 'Staatsangehörigkeit', type: 'select', required: true, section: 'Personendaten',
     options: [
@@ -32,8 +40,18 @@ export const FORM_CONFIG: FormField[] = [
       { value: 'OTHER', label: 'Sonstige' },
     ],
   },
-  { key: 'taxId', label: 'Steuer-ID', type: 'text', required: true, section: 'Personendaten' },
-  { key: 'iban', label: 'IBAN', type: 'text', required: true, section: 'Personendaten' },
+  {
+    key: 'taxId', label: 'Steuer-ID', type: 'text', required: true, section: 'Personendaten',
+    placeholder: 'z.B. 12 34 56789 01',
+    pattern: '^(\\d{11}|\\d{2} \\d{2} \\d{5} \\d{2})$',
+    hint: '11 Ziffern – stehen auf deiner Lohnsteuerbescheinigung',
+  },
+  {
+    key: 'iban', label: 'IBAN', type: 'text', required: true, section: 'Personendaten',
+    placeholder: 'z.B. DE89 3704 0044 0532 0130 00',
+    pattern: '^[A-Z]{2}\\d{2}( ?[0-9A-Z]{4})*$',
+    hint: 'Beginnt mit DE + 2 Prüfziffern',
+  },
   { key: 'healthInsurance', label: 'Krankenversicherung', type: 'text', required: true, section: 'Personendaten' },
 
   // Abschnitt 2: Arbeitgeber
@@ -61,7 +79,7 @@ export const FORM_CONFIG: FormField[] = [
   { key: 'childrenAllowance', label: 'Kinderfreibeträge', type: 'boolean', required: false, section: 'Letzter Arbeitgeber' },
 
   // Abschnitt 3: Agentur für Arbeit
-  { key: 'unemployedSince', label: 'Arbeitslos seit', type: 'date', required: true, section: 'Agentur für Arbeit' },
+  { key: 'unemployedSince', label: 'Arbeitslos seit/ab (auch zukünftiges Datum möglich)', type: 'date', required: true, section: 'Agentur für Arbeit' },
   { key: 'agencyLocation', label: 'Agentur-Standort', type: 'text', required: true, section: 'Agentur für Arbeit' },
   { key: 'agencyReference', label: 'Aktenzeichen (falls bekannt)', type: 'text', required: false, section: 'Agentur für Arbeit' },
 
@@ -82,7 +100,7 @@ export const FORM_CONFIG: FormField[] = [
 
   // Abschnitt 5: Haushalt
   { key: 'childrenCount', label: 'Anzahl Kinder unter 18', type: 'number', required: true, section: 'Haushalt' },
-  { key: 'childrenAges', label: 'Alter der Kinder (durch Komma getrennt)', type: 'text', required: false, section: 'Haushalt' },
+  { key: 'childrenAges', label: 'Alter der Kinder (durch Komma getrennt)', type: 'text', required: false, section: 'Haushalt', placeholder: 'z.B. 3, 7', hint: 'Bei 2 Kindern also z.B. „3, 7“' },
   { key: 'hasPartner', label: 'Partner im Haushalt', type: 'boolean', required: true, section: 'Haushalt' },
   {
     key: 'partnerUnemployed', label: 'Partner ebenfalls arbeitslos', type: 'boolean', required: false,
@@ -91,7 +109,7 @@ export const FORM_CONFIG: FormField[] = [
 
   // Abschnitt 6: Finanzen
   {
-    key: 'incomeSources', label: 'Aktuelle Einkommensquellen', type: 'select', required: true, section: 'Finanzen',
+    key: 'incomeSources', label: 'Aktuelle Einkommensquellen', type: 'select', required: true, section: 'Finanzen', isArray: true,
     options: [
       { value: 'NONE', label: 'Keine' },
       { value: 'EMPLOYMENT', label: 'Beschäftigung' },

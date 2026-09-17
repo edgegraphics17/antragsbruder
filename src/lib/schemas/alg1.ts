@@ -36,7 +36,10 @@ export const Alg1FormSchema = z.object({
   phone: z.string().min(6),
   email: z.email(),
   nationality: z.string().default('DE'),
-  taxId: z.string().regex(/^\d{11}$/),
+  // Akzeptiert 11 Ziffern pur ODER gruppiert (12 34 56789 01)
+  taxId: z.string().regex(/^(\d{11}|\d{2} \d{2} \d{5} \d{2})$/, {
+    message: 'Die Steuer-ID besteht aus genau 11 Ziffern (z.B. 12 34 56789 01)',
+  }),
   iban: z.string().regex(/^[A-Z]{2}\d{2}[\d\s]{10,30}$/),
   healthInsurance: z.string().min(2),
 

@@ -26,6 +26,35 @@ export function Summary({ onConfirmed }: { onConfirmed?: () => void }) {
         FORM_CONFIG.filter((f) => missingKeys.includes(String(f.key))).map((f) => f.section),
       ),
     ];
+    // Feld-Labels für verständliche Fehlermeldungen
+    const labelOf = (key: string) => FORM_CONFIG.find((f) => String(f.key) === key)?.label ?? key;
+    // Verständliche Meldung statt roher Zod-Fehler
+    const friendlyMessage = (key: string, issue: { code: string }): string => {
+      if (issue.code === 'invalid_type' || issue.code === 'invalid_value') {
+        return 'Bitte ausfüllen – diese Angabe fehlt noch.';
+      }
+      switch (key) {
+        case 'taxId':
+          return 'Bitte gib deine Steuer-ID mit genau 11 Ziffern ein (z.B. 12 34 56789 01).';
+        case 'iban':
+          return 'Bitte gib eine gültige IBAN ein (z.B. DE89 3704 0044 0532 0130 00).';
+        case 'postcode':
+          return 'Bitte gib eine PLZ mit 5 Ziffern ein (z.B. 10115).';
+        case 'email':
+          return 'Bitte gib eine gültige E-Mail-Adresse ein.';
+        case 'dateOfBirth':
+        case 'employmentStart':
+        case 'employmentEnd':
+        case 'unemployedSince':
+          return 'Bitte wähle ein Datum aus.';
+        case 'incomeSources':
+          return 'Bitte wähle mindestens eine Einkommensquelle aus (oder „Keine“).';
+        case 'childrenAges':
+          return 'Bitte gib das Alter der Kinder an, durch Komma getrennt (z.B. 3, 7).';
+        default:
+          return 'Bitte prüfe und ergänze diese Angabe.';
+      }
+    };
     return (
       <div className="mx-auto max-w-2xl space-y-4 p-6">
         <h2 className="text-2xl font-bold">Zusammenfassung deines ALG1-Antrags</h2>
@@ -34,15 +63,24 @@ export function Summary({ onConfirmed }: { onConfirmed?: () => void }) {
             Es fehlen noch {missingKeys.length} Angaben ({parsed.error.issues.length} Prüffehler):
           </p>
           <ul className="list-inside list-disc space-y-1">
-            {parsed.error.issues.slice(0, 8).map((issue, i) => (
-              <li key={i}>
-                <code className="font-mono text-xs">{String(issue.path[0])}</code> — {issue.message}
-              </li>
-            ))}
+            {parsed.error.issues.slice(0, 8).map((issue, i) => {
+              const key = String(issue.path[0]);
+              return (
+                <li key={i}>
+                  <strong>{labelOf(key)}</strong> — {friendlyMessage(key, issue)}
+                </li>
+              );
+            })}
           </ul>
         </div>
         {missingSections.length > 0 && (
-          <ButtonAction onClick={() => setStage('form')} className="w-full">
+          <ButtonAction
+            onClick={() => {
+              useAlg1Store.getState().setErrorKeys(missingKeys);
+              setStage('form');
+            }}
+            className="w-full"
+          >
             Angaben ergänzen ({missingSections.join(', ')})
           </ButtonAction>
         )}

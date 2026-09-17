@@ -51,6 +51,8 @@ interface Alg1Store {
   lastSavedAt: number | null;
   /** Feld-Pfade, die beim Block-Submit die Validierung nicht bestanden haben */
   validationErrors: string[];
+  /** Form-Feld-Keys mit Validierungsfehlern (für rote Markierung im Formular) */
+  errorKeys: string[];
 
   /**
    * DB-Stand in den Store laden. keepLocal=true (gleicher Draft im selben
@@ -64,6 +66,7 @@ interface Alg1Store {
   /** Lokalen Persistenz-Stand verwerfen (fremder/alter Draft, Nutzerwechsel) */
   discardLocal: () => void;
   /** Stage-Wechsel ohne Datenverlust; persistiert last_stage sofort in der Cloud */
+  setErrorKeys: (keys: string[]) => void;
   setStage: (stage: Alg1Stage) => void;
   updateField: (key: keyof Alg1FormData, value: unknown) => void;
   loadFromExtracted: (facts: Partial<Alg1FormData>) => void;
@@ -106,6 +109,9 @@ export const useAlg1Store = create<Alg1Store>()(
       isSaving: false,
       lastSavedAt: null,
       validationErrors: [],
+      errorKeys: [],
+
+      setErrorKeys: (keys) => set({ errorKeys: keys }),
 
       resumeFromDb: (app, opts) => {
         const s = get();
@@ -138,6 +144,8 @@ export const useAlg1Store = create<Alg1Store>()(
         set({
           formState: newState,
           progress: calculateProgress(newState, getVisibleFields(newState)),
+          // Fehlermarkierung des bearbeiteten Feldes aufheben
+          errorKeys: get().errorKeys.filter((k) => k !== key),
         });
       },
 
