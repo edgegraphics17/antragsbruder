@@ -195,10 +195,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
   const actionCls = 'text-xs font-semibold text-ink-soft hover:text-brand-700 disabled:opacity-40';
 
   return (
-    <div className="mx-auto flex max-w-6xl flex-col gap-5 p-6 md:p-8">
-      {/* ── Schlüsselbund ────────────────────────────────────── */}
-      <IdentityVault />
-
+    <div className="mx-auto flex min-h-[calc(100dvh-1rem)] max-w-6xl flex-col gap-5 p-6 md:p-8">
       {/* ── Header (kompakt) ────────────────────────────────── */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
@@ -419,6 +416,11 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
           </div>
         </div>
       )}
+
+      {/* ── Schlüsselbund — immer unten angeheftet ───────────── */}
+      <div className="mt-auto pt-1">
+        <IdentityVault />
+      </div>
     </div>
   );
 }
