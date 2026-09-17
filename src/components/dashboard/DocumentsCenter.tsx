@@ -13,7 +13,7 @@ import { useAuth } from '@/lib/auth-context';
 import { useProfileStore } from '@/lib/stores/profile-store';
 import { roleToCategory } from '@/lib/benefits/radar';
 import { DocumentUploadSchema, type DocumentEntry, type DocumentRole } from '@/lib/schemas/profile';
-import { IconDocText, IconDocument, IconDownload, IconFileUp } from '@/components/ui/icons';
+import { IconDocText, IconDocument, IconDownload, IconFileUp, IconX } from '@/components/ui/icons';
 import { ButtonAction } from '@/components/ui/Button';
 import { IdentityVault } from './profile/IdentityVault';
 
@@ -76,6 +76,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
   const [copied, setCopied] = useState(false);
   const [renamingId, setRenamingId] = useState<string | null>(null);
   const [renameValue, setRenameValue] = useState('');
+  const [uploadOpen, setUploadOpen] = useState(false);
 
   const effectiveUserId = userId ?? user?.id ?? null;
 
@@ -194,7 +195,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
   const actionCls = 'text-xs font-semibold text-ink-soft hover:text-brand-700 disabled:opacity-40';
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="mx-auto flex max-w-6xl flex-col gap-5 p-6 md:p-8">
       {/* ── Schlüsselbund ────────────────────────────────────── */}
       <IdentityVault />
 
@@ -220,9 +221,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
             type="button"
             variant="primary"
             size="sm"
-            onClick={() => {
-              window.location.href = '/dashboard/upload';
-            }}
+            onClick={() => setUploadOpen(true)}
           >
             <IconFileUp className="h-4 w-4" />
             Dokument hochladen
@@ -367,6 +366,15 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
             );
           })}
         </div>
+      )}
+
+      {/* ── Upload-Modal (Drag & Drop, freie Kategorie, Titel) ── */}
+      {effectiveUserId && uploadOpen && (
+        <UploadModal
+          userId={effectiveUserId}
+          onClose={() => setUploadOpen(false)}
+          onUploaded={addDocument}
+        />
       )}
 
       {/* ── Share-Modal (QR + Link) ─────────────────────────── */}
@@ -521,6 +529,280 @@ function QuickUploadSlot({
         </label>
       )}
       {uploadError && <p className="mt-2 text-xs text-red-600">{uploadError}</p>}
+    </div>
+  );
+}
+
+// ============================================================
+// Upload-Modal: Drag & Drop / Dateiauswahl → freie Kategorie,
+// editierbarer Titel pro Datei → DB-First (documents_meta)
+// → Storage → DONE. Tresor-Upload ohne Antragsbezug.
+// ============================================================
+
+const UPLOAD_ROLE_OPTIONS: { value: DocumentRole; label: string }[] = [
+  { value: 'OTHER', label: '📁 Sonstiges' },
+  { value: 'ID_CARD', label: '🪪 Identität' },
+  { value: 'PAYSLIP', label: '💼 Einkommen (Gehaltsnachweis)' },
+  { value: 'BANK_STATEMENT', label: '🏦 Kontoauszug' },
+  { value: 'TERMINATION', label: '📄 Kündigung' },
+  { value: 'CONTRACT', label: '📝 Vertrag' },
+];
+
+interface PendingFile {
+  id: string;
+  file: File;
+  title: string;
+  status: 'pending' | 'uploading' | 'done' | 'error';
+  error?: string;
+}
+
+function UploadModal({
+  userId,
+  onClose,
+  onUploaded,
+}: {
+  userId: string;
+  onClose: () => void;
+  onUploaded: (doc: DocumentEntry) => void;
+}) {
+  const [role, setRole] = useState<DocumentRole>('OTHER');
+  const [files, setFiles] = useState<PendingFile[]>([]);
+  const [dragOver, setDragOver] = useState(false);
+  const [busy, setBusy] = useState(false);
+
+  const addFiles = (incoming: FileList | File[]) => {
+    const next: PendingFile[] = Array.from(incoming).map((file) => ({
+      id: crypto.randomUUID(),
+      file,
+      title: file.name.replace(/\.[^.]+$/, ''),
+      status: 'pending' as const,
+    }));
+    setFiles((prev) => [...prev, ...next]);
+  };
+
+  const uploadOne = async (pending: PendingFile): Promise<boolean> => {
+    const parsed = DocumentUploadSchema.safeParse({ role, file: pending.file });
+    if (!parsed.success) {
+      setFiles((prev) =>
+        prev.map((f) =>
+          f.id === pending.id
+            ? { ...f, status: 'error' as const, error: parsed.error.issues[0]?.message ?? 'Ungültige Datei' }
+            : f,
+        ),
+      );
+      return false;
+    }
+
+    const ext = (pending.file.name.split('.').pop() ?? 'bin').toLowerCase();
+    const filePath = `${userId}/global/${crypto.randomUUID()}.${ext}`;
+
+    // 1. DB-First: Meta-Zeile reservieren (Tresor: kein Antrag)
+    const { data: meta, error: metaErr } = await supabase
+      .from('documents_meta')
+      .insert({
+        user_id: userId,
+        application_id: null,
+        document_role: role,
+        title: pending.title,
+        storage_path: filePath,
+        filename: pending.file.name,
+        file_size: pending.file.size,
+        mime_type: pending.file.type,
+        status: 'PENDING',
+      })
+      .select()
+      .single();
+
+    if (metaErr || !meta) {
+      setFiles((prev) =>
+        prev.map((f) => (f.id === pending.id ? { ...f, status: 'error' as const, error: metaErr?.message } : f)),
+      );
+      return false;
+    }
+
+    // 2. Storage-Upload
+    const { error: storageErr } = await supabase.storage
+      .from('documents')
+      .upload(filePath, pending.file);
+
+    if (storageErr) {
+      await supabase.from('documents_meta').delete().eq('id', meta.id); // Rollback
+      setFiles((prev) =>
+        prev.map((f) => (f.id === pending.id ? { ...f, status: 'error' as const, error: storageErr.message } : f)),
+      );
+      return false;
+    }
+
+    // 3. Status auf DONE
+    const { data: updated, error: updateErr } = await supabase
+      .from('documents_meta')
+      .update({ status: 'DONE' })
+      .eq('id', meta.id)
+      .select()
+      .single();
+
+    if (updateErr || !updated) {
+      setFiles((prev) =>
+        prev.map((f) => (f.id === pending.id ? { ...f, status: 'error' as const, error: 'Status-Update fehlgeschlagen' } : f)),
+      );
+      return false;
+    }
+
+    onUploaded(updated as DocumentEntry);
+    setFiles((prev) => prev.map((f) => (f.id === pending.id ? { ...f, status: 'done' as const } : f)));
+    return true;
+  };
+
+  const handleUploadAll = async () => {
+    setBusy(true);
+    const queue = files.filter((f) => f.status === 'pending' || f.status === 'error');
+    for (const pending of queue) {
+      setFiles((prev) => prev.map((f) => (f.id === pending.id ? { ...f, status: 'uploading' as const } : f)));
+      await uploadOne(pending);
+    }
+    setBusy(false);
+  };
+
+  const doneCount = files.filter((f) => f.status === 'done').length;
+  const pendingCount = files.filter((f) => f.status === 'pending' || f.status === 'error').length;
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Dokument hochladen"
+    >
+      <div className="flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-xl">
+        <div className="flex items-center justify-between border-b border-line-soft px-5 py-4">
+          <h2 className="text-lg font-semibold text-ink">Dokument hochladen</h2>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Schließen"
+            className="rounded-lg p-1 text-ink-soft hover:bg-neutral-100 hover:text-ink"
+          >
+            <IconX className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-4 overflow-y-auto px-5 py-4">
+          {/* Drag & Drop Zone */}
+          <div
+            onDragOver={(e) => {
+              e.preventDefault();
+              setDragOver(true);
+            }}
+            onDragLeave={() => setDragOver(false)}
+            onDrop={(e) => {
+              e.preventDefault();
+              setDragOver(false);
+              if (e.dataTransfer.files.length > 0) addFiles(e.dataTransfer.files);
+            }}
+            className={`flex flex-col items-center justify-center rounded-xl border-2 border-dashed p-6 text-center transition-colors ${
+              dragOver ? 'border-brand-600 bg-brand-50' : 'border-line-soft bg-paper'
+            }`}
+          >
+            <IconFileUp className="h-8 w-8 text-brand-400" />
+            <p className="mt-2 text-sm font-medium text-ink">
+              Dateien hierher ziehen
+            </p>
+            <label className="mt-2 cursor-pointer text-xs font-semibold text-brand-700 hover:underline">
+              oder vom Computer auswählen
+              <input
+                type="file"
+                multiple
+                className="hidden"
+                accept=".pdf,.jpg,.jpeg,.png,.webp"
+                onChange={(e) => {
+                  if (e.target.files?.length) addFiles(e.target.files);
+                  e.target.value = '';
+                }}
+              />
+            </label>
+          </div>
+
+          {/* Kategorie */}
+          <div>
+            <label htmlFor="upload-role" className="mb-1 block text-xs font-semibold text-ink-soft">
+              Kategorie
+            </label>
+            <select
+              id="upload-role"
+              value={role}
+              onChange={(e) => setRole(e.target.value as DocumentRole)}
+              className="w-full rounded-lg border border-line-soft bg-white px-3 py-2 text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+            >
+              {UPLOAD_ROLE_OPTIONS.map((o) => (
+                <option key={o.value} value={o.value}>
+                  {o.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Datei-Liste mit editierbarem Titel */}
+          {files.length > 0 && (
+            <div className="flex flex-col gap-2">
+              {files.map((f) => (
+                <div
+                  key={f.id}
+                  className="flex items-center gap-2 rounded-lg border border-line-soft bg-paper p-2.5"
+                >
+                  <div className="min-w-0 flex-1">
+                    <input
+                      type="text"
+                      value={f.title}
+                      disabled={f.status === 'uploading' || f.status === 'done'}
+                      onChange={(e) =>
+                        setFiles((prev) => prev.map((p) => (p.id === f.id ? { ...p, title: e.target.value } : p)))
+                      }
+                      aria-label={`Titel für ${f.file.name}`}
+                      className="w-full rounded-md border border-transparent bg-transparent px-1.5 py-0.5 text-sm font-semibold text-ink hover:border-line-soft focus:border-brand-300 focus:bg-white focus:outline-none"
+                    />
+                    <p className="mt-0.5 truncate px-1.5 text-xs text-ink-soft/70">
+                      {f.file.name} · {formatSize(f.file.size)}
+                    </p>
+                  </div>
+                  {f.status === 'uploading' && (
+                    <div className="h-3 w-3 shrink-0 animate-spin rounded-full border-2 border-brand-600 border-t-transparent" />
+                  )}
+                  {f.status === 'done' && <span className="shrink-0 text-xs font-semibold text-green-700">✓</span>}
+                  {f.status === 'error' && (
+                    <span className="shrink-0 text-xs font-semibold text-red-600" title={f.error}>
+                      Fehler
+                    </span>
+                  )}
+                  {(f.status === 'pending' || f.status === 'error') && (
+                    <button
+                      type="button"
+                      onClick={() => setFiles((prev) => prev.filter((p) => p.id !== f.id))}
+                      aria-label={`${f.file.name} entfernen`}
+                      className="shrink-0 rounded p-1 text-ink-soft hover:bg-neutral-100 hover:text-ink"
+                    >
+                      <IconX className="h-3.5 w-3.5" />
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="flex gap-3 border-t border-line-soft px-5 py-4">
+          <ButtonAction
+            type="button"
+            onClick={() => void handleUploadAll()}
+            disabled={busy || pendingCount === 0}
+            className="flex-1"
+          >
+            {busy ? 'Lade hoch…' : `${pendingCount} hochladen`}
+          </ButtonAction>
+          <ButtonAction type="button" variant="secondary" onClick={onClose} className="flex-1">
+            {doneCount > 0 ? 'Fertig' : 'Abbrechen'}
+          </ButtonAction>
+        </div>
+      </div>
     </div>
   );
 }
