@@ -5,12 +5,13 @@
 // links, Top-3 Förderungs-Empfehlungen (matching) rechts.
 // ============================================================
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { useProfileStore } from '@/lib/stores/profile-store';
 import { supabase } from '@/lib/supabase';
 import { getRecommendedBenefits, type BenefitMatch } from '@/lib/alg1/matching';
+import { readinessIndex } from '@/lib/benefits/radar';
 import { formatDate } from '@/lib/dashboard';
 
 // In-Bearbeitung-Status laut applications-Constraint.
@@ -27,7 +28,7 @@ interface AppRecord {
 
 export function DashboardHome() {
   const { user } = useAuth();
-  const { profile } = useProfileStore();
+  const { profile, documents, loadDocuments } = useProfileStore();
   const [applications, setApplications] = useState<AppRecord[]>([]);
   const [recommendations, setRecommendations] = useState<BenefitMatch[]>([]);
   // Im Render berechnet (nicht im Effect) — client-aktuell dank SSR-Hydration-Ausgleich.
@@ -48,6 +49,24 @@ export function DashboardHome() {
     load();
   }, [user, profile]);
 
+  useEffect(() => {
+    if (user) void loadDocuments(user.id);
+  }, [user, loadDocuments]);
+
+  const readiness = useMemo(
+    () =>
+      readinessIndex(
+        {
+          employmentStatus: profile?.employmentStatus ?? null,
+          housingType: profile?.housingType ?? null,
+          childrenCount: profile ? profile.childrenCount : null,
+        },
+        documents.map((d) => ({ document_role: d.document_role, filename: d.filename })),
+      ),
+    [profile, documents],
+  );
+  const recentDocs = documents.slice(0, 4);
+
   const activeApplications = applications.filter((a) => ACTIVE_STATUSES.includes(a.status));
   const displayName = profile?.firstName || user?.email?.split('@')[0] || 'Nutzer';
 
@@ -60,6 +79,54 @@ export function DashboardHome() {
             ? `Du hast ${activeApplications.length} aktive${activeApplications.length === 1 ? 'n Antrag' : ' Anträge'} und ${recommendations.length} passende Förderungen.`
             : 'Starte deinen ersten Antrag.'}
         </p>
+      </div>
+
+      {/* Amts-Readiness-Index */}
+      <div className="mb-8 rounded-2xl border border-line-soft bg-paper p-6">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="min-w-[220px] flex-1">
+            <p className="text-sm font-semibold text-ink">Amts-Readiness: {readiness.percent}% antragsbereit</p>
+            <div className="mt-2 h-3 w-full overflow-hidden rounded-full bg-brand-100">
+              <div
+                className="h-full rounded-full bg-brand-600 transition-all"
+                style={{ width: `${readiness.percent}%` }}
+                role="progressbar"
+                aria-valuenow={readiness.percent}
+                aria-valuemin={0}
+                aria-valuemax={100}
+              />
+            </div>
+            <p className="mt-2 text-xs text-ink-soft">
+              {readiness.missing.length === 0
+                ? readiness.percent === 0
+                  ? 'Fülle dein Förder-Profil aus, um den Readiness-Index zu berechnen.'
+                  : 'Alle Pflicht-Unterlagen der empfohlenen Leistungen sind im Tresor. 🎉'
+                : `Als Nächstes: ${readiness.missing[0].label} hochladen${readiness.missing[0].benefit ? ` (für ${readiness.missing[0].benefit})` : ''}.`}
+            </p>
+          </div>
+          <Link
+            href="/dokumente"
+            className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+          >
+            Zum Tresor
+          </Link>
+        </div>
+
+        {/* Letzte Tresor-Dokumente */}
+        {recentDocs.length > 0 && (
+          <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {recentDocs.map((d) => (
+              <Link
+                key={d.id}
+                href="/dokumente"
+                className="rounded-xl border border-line-soft bg-white p-3 transition-colors hover:border-brand-300"
+              >
+                <p className="truncate text-xs font-medium text-ink" title={d.filename}>{d.filename}</p>
+                <p className="mt-0.5 text-[11px] text-ink-soft">{formatDate(d.created_at)}</p>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-5">

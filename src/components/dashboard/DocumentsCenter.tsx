@@ -13,6 +13,7 @@ import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth-context';
 import { useProfileStore } from '@/lib/stores/profile-store';
 import { DocumentUploadSchema, type DocumentEntry, type DocumentRole } from '@/lib/schemas/profile';
+import { readinessIndex } from '@/lib/benefits/radar';
 import { ButtonAction } from '@/components/ui/Button';
 import { IconAlertTriangle, IconDocument, IconDocText, IconDownload, IconFileUp } from '@/components/ui/icons';
 import { formatDate } from '@/lib/dashboard';
@@ -35,7 +36,7 @@ interface DocumentsCenterProps {
 
 export function DocumentsCenter({ userId }: DocumentsCenterProps) {
   const { user } = useAuth();
-  const { documents, loadDocuments } = useProfileStore();
+  const { profile, documents, loadDocuments } = useProfileStore();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
@@ -92,6 +93,16 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
     (d) => d.document_role === 'OTHER' && !d.filename.toLowerCase().includes('steuer'),
   );
 
+  // Fehlende Pflicht-Dokumente für empfohlene Leistungen (Radar)
+  const readiness = readinessIndex(
+    {
+      employmentStatus: profile?.employmentStatus ?? null,
+      housingType: profile?.housingType ?? null,
+      childrenCount: profile ? profile.childrenCount : null,
+    },
+    documents.map((d) => ({ document_role: d.document_role, filename: d.filename })),
+  );
+
   return (
     <div className="flex flex-col gap-8">
       {/* ── Basis-Tresor (global) ────────────────────────────── */}
@@ -105,6 +116,24 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
             <DocumentSlot label="Personalausweis" role="ID_CARD" document={idCardDoc} userId={effectiveUserId} />
             <DocumentSlot label="Steuer-ID" role="OTHER" document={taxDoc} userId={effectiveUserId} />
             <DocumentSlot label="Sonstige" role="OTHER" document={undefined} miscDocs={miscDocs} userId={effectiveUserId} />
+          </div>
+        </div>
+      )}
+
+      {/* ── Fehlende Dokumente für empfohlene Leistungen ─────── */}
+      {readiness.missing.length > 0 && (
+        <div className="rounded-2xl border border-dashed border-amber-300 bg-amber-50/40 p-5">
+          <h2 className="font-semibold text-ink">Noch benötigt</h2>
+          <p className="mb-4 mt-1 text-sm text-ink-soft">
+            Diese Nachweise fehlen für deine empfohlenen Förderungen ({readiness.percent}% bereit).
+          </p>
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+            {readiness.missing.slice(0, 6).map((m) => (
+              <div key={`${m.benefit}-${m.label}`} className="rounded-lg border border-dashed border-amber-300 bg-white/60 p-3 opacity-80">
+                <p className="text-sm font-medium text-ink">{m.label}</p>
+                <p className="mt-0.5 text-xs text-ink-soft">für {m.benefit}</p>
+              </div>
+            ))}
           </div>
         </div>
       )}
