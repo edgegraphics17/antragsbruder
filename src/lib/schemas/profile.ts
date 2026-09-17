@@ -9,6 +9,12 @@ import { z } from 'zod';
 export const ProfileFormSchema = z.object({
   firstName: z.string().min(1, 'Vorname ist erforderlich').max(50, 'Maximal 50 Zeichen'),
   lastName: z.string().min(1, 'Nachname ist erforderlich').max(50, 'Maximal 50 Zeichen'),
+  birthDate: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, 'Bitte ein gültiges Datum wählen')
+    .optional()
+    .or(z.literal('')),
+  street: z.string().max(120, 'Maximal 120 Zeichen').optional().or(z.literal('')),
   phone: z.string().max(20, 'Maximal 20 Zeichen').optional().or(z.literal('')),
   postcode: z
     .string()
@@ -34,18 +40,20 @@ export const ProfileFormSchema = z.object({
 
 export type ProfileFormData = z.infer<typeof ProfileFormSchema>;
 
-// Stammdaten-Formular (Vorname, Nachname, Telefon)
+// Stammdaten-Formular (Name, Geburtsdatum, Adresse, Telefon)
 export const ProfileMasterDataSchema = ProfileFormSchema.pick({
   firstName: true,
   lastName: true,
+  birthDate: true,
+  street: true,
+  postcode: true,
+  city: true,
   phone: true,
 });
 export type ProfileMasterData = z.infer<typeof ProfileMasterDataSchema>;
 
-// Förder-Profil-Formular (PLZ, Stadt, Wohnsituation, Kinder, Erwerbsstatus)
+// Förder-Profil-Formular (Lebenslage: Wohnsituation, Kinder, Erwerbsstatus)
 export const ProfileEligibilitySchema = ProfileFormSchema.pick({
-  postcode: true,
-  city: true,
   housingType: true,
   childrenCount: true,
   employmentStatus: true,
@@ -93,6 +101,8 @@ export interface UserProfile {
   email: string;
   firstName: string | null;
   lastName: string | null;
+  birthDate: string | null;
+  street: string | null;
   phone: string | null;
   postcode: string | null;
   city: string | null;

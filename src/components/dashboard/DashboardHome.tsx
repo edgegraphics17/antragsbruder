@@ -65,7 +65,7 @@ export function DashboardHome() {
       ),
     [profile, documents],
   );
-  const recentDocs = documents.slice(0, 4);
+  const recentDocs = documents.slice(0, 3);
 
   const activeApplications = applications.filter((a) => ACTIVE_STATUSES.includes(a.status));
   const displayName = profile?.firstName || user?.email?.split('@')[0] || 'Nutzer';
@@ -129,9 +129,10 @@ export function DashboardHome() {
         )}
       </div>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-5">
-        {/* Laufende Anträge */}
-        <div className="space-y-4 md:col-span-3">
+      {/* 2/3 Hauptspalte (Readiness, letzte Dokumente, Anträge) · 1/3 Seitenspalte (Förderungen) */}
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {/* Hauptspalte */}
+        <div className="space-y-4 md:col-span-2">
           <h2 className="text-lg font-semibold text-ink">Laufende Anträge</h2>
           {activeApplications.length === 0 ? (
             <div className="rounded-2xl border border-line-soft bg-paper p-8 text-center">
@@ -168,7 +169,7 @@ export function DashboardHome() {
         </div>
 
         {/* Förderungs-Empfehlungen */}
-        <div className="space-y-4 md:col-span-2">
+        <div className="space-y-4">
           <h2 className="text-lg font-semibold text-ink">Mögliche Förderungen</h2>
           {recommendations.length === 0 ? (
             <div className="rounded-2xl border border-line-soft bg-paper p-8 text-center text-sm text-ink-soft">

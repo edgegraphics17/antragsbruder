@@ -1,11 +1,14 @@
 'use client';
 
 // Avatar-Crop-Modal: react-easy-crop mit quadratischem/rundem Schnitt,
-// Zoom-Regler und Canvas-basiertem Zuschnitt (getCroppedImg).
+// Zoom-Regler und Canvas-Zuschnitt via src/lib/cropImage.ts.
+// Der Cropper-Container MUSS relative + feste Höhe haben, sonst rendert
+// react-easy-crop unsichtbar/schwarz (0×0-Kontext).
 
 import { useState, useCallback } from 'react';
 import Cropper, { type Area } from 'react-easy-crop';
 import 'react-easy-crop/react-easy-crop.css';
+import { cropImage } from '@/lib/cropImage';
 import { ButtonAction } from '@/components/ui/Button';
 import { IconClose } from '@/components/ui/icons';
 
@@ -20,20 +23,20 @@ export function AvatarCropModal({ open, imageUrl, onComplete, onCancel }: Props)
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
-  const [cropping, setCropping] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   const onCropComplete = useCallback((_: Area, croppedPixels: Area) => {
     setCroppedAreaPixels(croppedPixels);
   }, []);
 
   const handleSave = async () => {
-    if (!imageUrl || !croppedAreaPixels) return;
-    setCropping(true);
+    if (!imageUrl || !croppedAreaPixels || isSaving) return;
+    setIsSaving(true);
     try {
-      const blob = await getCroppedImg(imageUrl, croppedAreaPixels);
+      const blob = await cropImage(imageUrl, croppedAreaPixels);
       onComplete(blob);
     } finally {
-      setCropping(false);
+      setIsSaving(false);
     }
   };
 
@@ -59,7 +62,8 @@ export function AvatarCropModal({ open, imageUrl, onComplete, onCancel }: Props)
           </button>
         </div>
 
-        <div className="relative h-80 overflow-hidden rounded-xl bg-neutral-900">
+        {/* Fixer Container — zwingend relative + h-80, sonst 0×0-Canvas */}
+        <div className="relative h-80 w-full overflow-hidden rounded-xl bg-neutral-900">
           <Cropper
             image={imageUrl}
             crop={crop}
@@ -88,8 +92,8 @@ export function AvatarCropModal({ open, imageUrl, onComplete, onCancel }: Props)
         </label>
 
         <div className="mt-4 flex gap-3">
-          <ButtonAction type="button" onClick={handleSave} disabled={cropping} className="flex-1">
-            {cropping ? 'Wird verarbeitet…' : 'Zuschneiden & Speichern'}
+          <ButtonAction type="button" onClick={handleSave} disabled={isSaving} className="flex-1">
+            {isSaving ? 'Wird verarbeitet…' : 'Zuschneiden & Speichern'}
           </ButtonAction>
           <ButtonAction type="button" variant="secondary" onClick={onCancel} className="flex-1">
             Abbrechen
@@ -98,45 +102,4 @@ export function AvatarCropModal({ open, imageUrl, onComplete, onCancel }: Props)
       </div>
     </div>
   );
-}
-
-// Canvas-basierter Zuschnitt. croppedAreaPixels bezieht sich auf die
-// Originalbild-Dimensionen (so liefert es react-easy-crop).
-async function getCroppedImg(imageSrc: string, crop: Area): Promise<Blob> {
-  const image = await createImage(imageSrc);
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  if (!ctx) throw new Error('Canvas nicht verfügbar');
-
-  canvas.width = Math.round(crop.width);
-  canvas.height = Math.round(crop.height);
-
-  ctx.drawImage(
-    image,
-    Math.round(crop.x),
-    Math.round(crop.y),
-    Math.round(crop.width),
-    Math.round(crop.height),
-    0,
-    0,
-    canvas.width,
-    canvas.height,
-  );
-
-  return new Promise<Blob>((resolve, reject) => {
-    canvas.toBlob(
-      (blob) => (blob ? resolve(blob) : reject(new Error('Blob-Erzeugung fehlgeschlagen'))),
-      'image/png',
-      0.9,
-    );
-  });
-}
-
-function createImage(url: string): Promise<HTMLImageElement> {
-  return new Promise((resolve, reject) => {
-    const image = new Image();
-    image.addEventListener('load', () => resolve(image));
-    image.addEventListener('error', () => reject(new Error('Bild konnte nicht geladen werden')));
-    image.src = url;
-  });
 }

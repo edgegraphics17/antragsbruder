@@ -22,7 +22,15 @@ export function ProfileAvatarSection() {
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length === 0) return;
-    const url = URL.createObjectURL(acceptedFiles[0]);
+    const file = acceptedFiles[0];
+    // Validierung: nur JPEG/PNG/WebP, max 10MB
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type) || file.size > 10 * 1024 * 1024) {
+      return;
+    }
+    // Race-Condition-Schutz: Objekt-URL synchron erzeugen und Modal erst
+    // danach öffnen — die URL liegt vollständig im State, bevor der
+    // Cropper sie lädt (kein 0×0-Canvas / schwarzes Modal).
+    const url = URL.createObjectURL(file);
     setSelectedFile(url);
     setCropModalOpen(true);
   }, []);
@@ -44,9 +52,9 @@ export function ProfileAvatarSection() {
       }
     }
 
-    const path = `${user.id}/avatar-${Date.now()}.png`;
+    const path = `${user.id}/avatar-${Date.now()}.jpg`;
     const { error } = await supabase.storage.from('avatars').upload(path, croppedBlob, {
-      contentType: 'image/png',
+      contentType: 'image/jpeg',
     });
 
     if (error) {
