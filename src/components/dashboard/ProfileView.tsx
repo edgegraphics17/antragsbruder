@@ -19,6 +19,7 @@ import { ProfileMasterDataForm } from './profile/ProfileMasterDataForm';
 import { ProfileEligibilityForm } from './profile/ProfileEligibilityForm';
 import { EmailChangeDialog } from './profile/EmailChangeDialog';
 import { PasswordChangeDialog } from './profile/PasswordChangeDialog';
+import { IdentityVault } from './profile/IdentityVault';
 
 export function ProfileView() {
   const { user } = useAuth();
@@ -58,6 +59,7 @@ export function ProfileView() {
               <ProfileAvatarSection />
               <ProfileMasterDataForm onEmailChange={() => setEmailDialogOpen(true)} />
               <ProfileEligibilityForm />
+              <IdentityVault />
 
               {/* Account-Sicherheit */}
               <div className="space-y-4 rounded-2xl border border-line-soft bg-paper p-5">
