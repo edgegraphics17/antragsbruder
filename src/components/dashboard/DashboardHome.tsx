@@ -1,8 +1,8 @@
 'use client';
 
 // ============================================================
-// DASHBOARD-STARTSEITE — 2-spaltig: Laufende Anträge (applications)
-// links, Top-3 Förderungs-Empfehlungen (matching) rechts.
+// DASHBOARD-STARTSEITE — Timeline-unterstütztes Layout.
+// Amts-Readiness entfernt. Timeline angepinnt (sticky bottom).
 // ============================================================
 
 import { useEffect, useMemo, useState } from 'react';
@@ -17,6 +17,29 @@ import { formatDate } from '@/lib/dashboard';
 // In-Bearbeitung-Status laut applications-Constraint.
 const ACTIVE_STATUSES = ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY', 'PROCESSING'];
 
+const TIMELINE_STEPS = [
+  {
+    id: 'docs',
+    label: 'Dokumente hinzufügen',
+    description: 'Lade Kündigung, Gehaltsnachweise und andere Unterlagen hoch.',
+  },
+  {
+    id: 'data',
+    label: 'Daten ausfüllen',
+    description: 'Beantworte die Fragen und gib deine persönlichen Daten ein.',
+  },
+  {
+    id: 'submit',
+    label: 'Antrag einreichen',
+    description: 'Prüfe die Zusammenfassung und reiche den Antrag bei der Agentur ein.',
+  },
+  {
+    id: 'receive',
+    label: 'Arbeitslosengeld bekommen',
+    description: 'Warte auf den Bescheid und erhalte deine erste Zahlung.',
+  },
+] as const;
+
 interface AppRecord {
   id: string;
   case_id: string;
@@ -27,12 +50,50 @@ interface AppRecord {
   calculation_result: { amount?: number; unit?: string } | null;
 }
 
+interface TimelineState {
+  activeStep: number; // 1-4
+  completedSteps: number[];
+}
+
+function getTimelineState(app: AppRecord | null): TimelineState {
+  if (!app) return { activeStep: 1, completedSteps: [] };
+
+  const { status, last_stage } = app;
+  const completedSteps: number[] = [];
+
+  // Step 1 (Dokumente) ist erledigt, wenn wir über 'upload' hinaus sind
+  if (last_stage !== 'upload' || status !== 'DRAFT') {
+    completedSteps.push(1);
+  }
+
+  // Step 2 (Daten) ist erledigt, wenn Stage = 'summary' oder Status >= READY
+  if (last_stage === 'summary' || status !== 'DRAFT') {
+    completedSteps.push(2);
+  }
+
+  // Step 3 (Einreichen) ist erledigt, wenn Status >= SUBMITTED
+  if (['SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(status)) {
+    completedSteps.push(3);
+  }
+
+  // Step 4 (Erhalt) ist erledigt, wenn Status = APPROVED
+  if (status === 'APPROVED') {
+    completedSteps.push(4);
+  }
+
+  // Aktiver Schritt = der erste, der noch nicht abgeschlossen ist
+  const allSteps = [1, 2, 3, 4];
+  const activeStep = allSteps.find((s) => !completedSteps.includes(s)) ?? 4;
+
+  return { activeStep, completedSteps };
+}
+
 export function DashboardHome() {
   const { user } = useAuth();
   const { profile, documents, loadDocuments } = useProfileStore();
   const [applications, setApplications] = useState<AppRecord[]>([]);
   const [recommendations, setRecommendations] = useState<BenefitMatch[]>([]);
-  // Im Render berechnet (nicht im Effect) — client-aktuell dank SSR-Hydration-Ausgleich.
+
   const hour = new Date().getHours();
   const greeting = hour < 11 ? 'Guten Morgen' : hour < 18 ? 'Guten Tag' : 'Guten Abend';
 
@@ -66,15 +127,19 @@ export function DashboardHome() {
       ),
     [profile, documents],
   );
-  const recentDocs = documents.slice(0, 3);
 
   const activeApplications = applications.filter((a) => ACTIVE_STATUSES.includes(a.status));
+  const activeAlg1 = activeApplications.find((a) => a.benefit_type === 'ALG1') ?? null;
+  const timeline = getTimelineState(activeAlg1);
   const displayName = profile?.firstName || user?.email?.split('@')[0] || 'Nutzer';
 
   return (
-    <div className="mx-auto max-w-6xl p-6 md:p-8">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-ink" suppressHydrationWarning>{greeting}, {displayName} 👋</h1>
+    <div className="mx-auto max-w-6xl p-6 pb-48 md:p-8 md:pb-56">
+      {/* Gruß */}
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold text-ink" suppressHydrationWarning>
+          {greeting}, {displayName} 👋
+        </h1>
         <p className="mt-1 text-sm text-ink-soft">
           {activeApplications.length > 0
             ? `Du hast ${activeApplications.length} aktive${activeApplications.length === 1 ? 'n Antrag' : ' Anträge'} und ${recommendations.length} passende Förderungen.`
@@ -82,57 +147,9 @@ export function DashboardHome() {
         </p>
       </div>
 
-      {/* Amts-Readiness-Index */}
-      <div className="mb-8 rounded-2xl border border-line-soft bg-paper p-6">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="min-w-[220px] flex-1">
-            <p className="text-sm font-semibold text-ink">Amts-Readiness: {readiness.percent}% antragsbereit</p>
-            <div className="mt-2 h-3 w-full overflow-hidden rounded-full bg-brand-100">
-              <div
-                className="h-full rounded-full bg-brand-600 transition-all"
-                style={{ width: `${readiness.percent}%` }}
-                role="progressbar"
-                aria-valuenow={readiness.percent}
-                aria-valuemin={0}
-                aria-valuemax={100}
-              />
-            </div>
-            <p className="mt-2 text-xs text-ink-soft">
-              {readiness.missing.length === 0
-                ? readiness.percent === 0
-                  ? 'Fülle dein Förder-Profil aus, um den Readiness-Index zu berechnen.'
-                  : 'Alle Pflicht-Unterlagen der empfohlenen Leistungen sind im Tresor. 🎉'
-                : `Als Nächstes: ${readiness.missing[0].label} hochladen${readiness.missing[0].benefit ? ` (für ${readiness.missing[0].benefit})` : ''}.`}
-            </p>
-          </div>
-          <Link
-            href="/dokumente"
-            className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
-          >
-            Zum Tresor
-          </Link>
-        </div>
-
-        {/* Letzte Tresor-Dokumente */}
-        {recentDocs.length > 0 && (
-          <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4">
-            {recentDocs.map((d) => (
-              <Link
-                key={d.id}
-                href="/dokumente"
-                className="rounded-xl border border-line-soft bg-white p-3 transition-colors hover:border-brand-300"
-              >
-                <p className="truncate text-xs font-medium text-ink" title={d.title ?? d.filename}>{d.title ?? d.filename}</p>
-                <p className="mt-0.5 text-[11px] text-ink-soft">{formatDate(d.created_at)}</p>
-              </Link>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* 2/3 Hauptspalte (Readiness, letzte Dokumente, Anträge) · 1/3 Seitenspalte (Förderungen) */}
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-        {/* Hauptspalte */}
+      {/* Hauptbereich: Anträge + Förderungen */}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {/* Laufende Anträge */}
         <div className="space-y-4 md:col-span-2">
           <h2 className="text-lg font-semibold text-ink">Laufende Anträge</h2>
           {activeApplications.length === 0 ? (
@@ -147,9 +164,14 @@ export function DashboardHome() {
             </div>
           ) : (
             activeApplications.map((app) => (
-              <div key={app.id} className="flex items-center justify-between gap-3 rounded-2xl border border-line-soft bg-paper p-5">
+              <div
+                key={app.id}
+                className="flex items-center justify-between gap-3 rounded-2xl border border-line-soft bg-paper p-5"
+              >
                 <div className="min-w-0">
-                  <p className="truncate font-semibold text-ink">{app.benefit_type || 'Antrag'}</p>
+                  <p className="truncate font-semibold text-ink">
+                    {app.benefit_type === 'ALG1' ? 'Arbeitslosengeld (ALG1)' : app.benefit_type || 'Antrag'}
+                  </p>
                   <p className="text-xs text-ink-soft">Erstellt am {formatDate(app.created_at)}</p>
                   {app.calculation_result?.amount != null && app.calculation_result.amount > 0 && (
                     <p className="mt-0.5 text-xs font-medium text-brand-700">
@@ -173,7 +195,7 @@ export function DashboardHome() {
           )}
         </div>
 
-        {/* Förderungs-Empfehlungen */}
+        {/* Mögliche Förderungen */}
         <div className="space-y-4">
           <h2 className="text-lg font-semibold text-ink">Mögliche Förderungen</h2>
           {recommendations.length === 0 ? (
@@ -185,9 +207,11 @@ export function DashboardHome() {
               {recommendations.slice(0, 3).map((rec) => (
                 <div key={rec.id} className="rounded-2xl border border-line-soft bg-paper p-5">
                   <div className="mb-2 flex items-center gap-2">
-                    <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
-                      rec.confidence === 'HIGH' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
-                    }`}>
+                    <span
+                      className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
+                        rec.confidence === 'HIGH' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
+                      }`}
+                    >
                       {rec.confidence === 'HIGH' ? 'Sehr wahrscheinlich' : 'Möglich'}
                     </span>
                   </div>
@@ -207,6 +231,102 @@ export function DashboardHome() {
               </Link>
             </>
           )}
+        </div>
+      </div>
+
+      {/* Dokumente-Schnellzugriff */}
+      <div className="mt-8 rounded-2xl border border-line-soft bg-paper p-6">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="min-w-[200px] flex-1">
+            <p className="text-sm font-semibold text-ink">Dokumente & Tresor</p>
+            <p className="mt-1 text-xs text-ink-soft">
+              {documents.length === 0
+                ? 'Lade Unterlagen hoch, um deinen Antrag abzuschließen.'
+                : `${documents.length} Dokument${documents.length === 1 ? '' : 'e'} im Tresor.`}
+            </p>
+          </div>
+          <Link
+            href="/dokumente"
+            className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+          >
+            Zum Tresor
+          </Link>
+        </div>
+      </div>
+
+      {/* TIMELINE — Angepinnt am unteren Rand (nur Content-Bereich, rechts neben der Sidebar) */}
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-line-soft bg-paper/95 backdrop-blur-md lg:left-64">
+        <div className="mx-auto max-w-6xl px-4 py-4 md:px-6 md:py-5">
+          {/* Fortschrittsbalken */}
+          <div className="mb-3 flex items-center gap-3">
+            <div className="flex-1">
+              <div className="h-2 w-full overflow-hidden rounded-full bg-brand-100">
+                <div
+                  className="h-full rounded-full bg-brand-600 transition-all duration-500"
+                  style={{ width: `${(timeline.completedSteps.length / 4) * 100}%` }}
+                  role="progressbar"
+                  aria-valuenow={timeline.completedSteps.length}
+                  aria-valuemin={0}
+                  aria-valuemax={4}
+                />
+              </div>
+            </div>
+            <span className="shrink-0 text-xs font-semibold text-ink">
+              {timeline.completedSteps.length}/4 Schritte
+            </span>
+          </div>
+
+          {/* Steps */}
+          <div className="grid grid-cols-4 gap-2 md:gap-4">
+            {TIMELINE_STEPS.map((step, idx) => {
+              const stepNum = idx + 1;
+              const isCompleted = timeline.completedSteps.includes(stepNum);
+              const isActive = timeline.activeStep === stepNum;
+
+              return (
+                <div key={step.id} className="flex flex-col items-center text-center">
+                  <div
+                    className={`mb-1 flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold transition-colors md:h-8 md:w-8 ${
+                      isCompleted
+                        ? 'bg-brand-600 text-white'
+                        : isActive
+                          ? 'bg-brand-100 text-brand-700 ring-2 ring-brand-600'
+                          : 'bg-ink-100 text-ink-soft'
+                    }`}
+                  >
+                    {isCompleted ? '✓' : stepNum}
+                  </div>
+                  <p
+                    className={`text-[10px] font-medium leading-tight md:text-xs ${
+                      isActive ? 'text-ink' : isCompleted ? 'text-ink-soft' : 'text-ink-soft/60'
+                    }`}
+                  >
+                    {step.label}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Aktueller Schritt — Beschreibung */}
+          <div className="mt-3 rounded-xl border border-line-soft bg-white p-3 md:hidden">
+            <p className="text-xs font-semibold text-ink">
+              {TIMELINE_STEPS[timeline.activeStep - 1].label}
+            </p>
+            <p className="mt-0.5 text-[10px] text-ink-soft">
+              {TIMELINE_STEPS[timeline.activeStep - 1].description}
+            </p>
+          </div>
+
+          {/* Desktop: Beschreibung des aktiven Schritts — mittig unten zentriert */}
+          <div className="mt-3 hidden md:block">
+            <p className="text-center text-xs text-ink-soft">
+              <span className="font-semibold text-ink">
+                {TIMELINE_STEPS[timeline.activeStep - 1].label}:
+              </span>{' '}
+              {TIMELINE_STEPS[timeline.activeStep - 1].description}
+            </p>
+          </div>
         </div>
       </div>
     </div>
