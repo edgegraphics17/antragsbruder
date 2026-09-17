@@ -18,6 +18,8 @@ interface ProfileStore {
   loadDocuments: (userId: string) => Promise<void>;
   addDocument: (doc: DocumentEntry) => void;
   removeDocument: (docId: string) => void;
+  /** Teilupdate eines Dokuments (z. B. editierbarer Titel) */
+  updateDocument: (docId: string, patch: Partial<DocumentEntry>) => void;
 }
 
 // DB (snake_case) → App (CamelCase). Single Source of Truth fürs Mapping.
@@ -115,7 +117,7 @@ export const useProfileStore = create<ProfileStore>((set) => ({
     const { data, error } = await supabase
       .from('documents_meta')
       .select(
-        'id, user_id, application_id, document_role, filename, storage_path, file_size, mime_type, status, created_at',
+        'id, user_id, application_id, document_role, title, filename, storage_path, file_size, mime_type, status, created_at',
       )
       .eq('user_id', userId)
       .order('created_at', { ascending: false });
@@ -131,4 +133,9 @@ export const useProfileStore = create<ProfileStore>((set) => ({
 
   removeDocument: (docId) =>
     set((s) => ({ documents: s.documents.filter((d) => d.id !== docId) })),
+
+  updateDocument: (docId, patch) =>
+    set((s) => ({
+      documents: s.documents.map((d) => (d.id === docId ? { ...d, ...patch } : d)),
+    })),
 }));

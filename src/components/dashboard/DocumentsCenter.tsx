@@ -1,22 +1,21 @@
 'use client';
 
 // ============================================================
-// BÜRGER-TRESOR (/dokumente) — Zentrale Speicherstation.
-// Einheitliche Liste aus documents_meta (Tresor + antragsgebunden),
-// Filter-Pills mit Mengen, Status-Pills, Aktionen (Vorschau/
-// Download/Löschen), Mehrfachauswahl + zeitlich begrenztes Share-
-// Paket mit QR-Code, Schnell-Upload und fehlende Nachweise.
+// BÜRGER-TRESOR (/dokumente) — Zentrale Speicherstation:
+// Schlüsselbund, kompakte Header, einheitliche Liste aus
+// documents_meta mit editierbaren Titeln, Filter-Pills, Status-
+// Pills, Aktionen, Share-Paket mit QR, Schnell-Upload.
 // ============================================================
 
 import { useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth-context';
 import { useProfileStore } from '@/lib/stores/profile-store';
-import { readinessIndex, roleToCategory, type RadarProfile } from '@/lib/benefits/radar';
+import { roleToCategory } from '@/lib/benefits/radar';
 import { DocumentUploadSchema, type DocumentEntry, type DocumentRole } from '@/lib/schemas/profile';
 import { IconDocText, IconDocument, IconDownload, IconFileUp } from '@/components/ui/icons';
 import { ButtonAction } from '@/components/ui/Button';
+import { IdentityVault } from './profile/IdentityVault';
 
 type Category = 'all' | 'identity' | 'housing' | 'income' | 'other';
 
@@ -66,7 +65,7 @@ interface DocumentsCenterProps {
 
 export function DocumentsCenter({ userId }: DocumentsCenterProps) {
   const { user } = useAuth();
-  const { profile, documents, loadDocuments, addDocument, removeDocument } = useProfileStore();
+  const { documents, loadDocuments, addDocument, removeDocument, updateDocument } = useProfileStore();
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState<Category>('all');
@@ -75,6 +74,8 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
   const [shareQr, setShareQr] = useState<string | null>(null);
   const [shareBusy, setShareBusy] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [renamingId, setRenamingId] = useState<string | null>(null);
+  const [renameValue, setRenameValue] = useState('');
 
   const effectiveUserId = userId ?? user?.id ?? null;
 
@@ -93,23 +94,25 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
     const q = search.trim().toLowerCase();
     return documents.filter((d) => {
       if (category !== 'all' && roleToCategory(d.document_role) !== category) return false;
-      if (q && !d.filename.toLowerCase().includes(q)) return false;
+      if (q) {
+        const haystack = `${d.title ?? ''} ${d.filename}`.toLowerCase();
+        if (!haystack.includes(q)) return false;
+      }
       return true;
     });
   }, [documents, category, search]);
 
-  const readiness = useMemo(
-    () =>
-      readinessIndex(
-        {
-          employmentStatus: profile?.employmentStatus ?? null,
-          housingType: profile?.housingType ?? null,
-          childrenCount: profile ? profile.childrenCount : null,
-        } satisfies RadarProfile,
-        documents.map((d) => ({ document_role: d.document_role, filename: d.filename })),
-      ),
-    [profile, documents],
-  );
+  const handleRename = async (doc: DocumentEntry) => {
+    const title = renameValue.trim();
+    setRenamingId(null);
+    if (title === (doc.title ?? '')) return;
+    const { error: updErr } = await supabase.from('documents_meta').update({ title: title || null }).eq('id', doc.id);
+    if (updErr) {
+      setError(updErr.message);
+      return;
+    }
+    updateDocument(doc.id, { title: title || null });
+  };
 
   const toggleSelection = (id: string) => {
     setSelection((prev) => {
@@ -191,20 +194,23 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
   const actionCls = 'text-xs font-semibold text-ink-soft hover:text-brand-700 disabled:opacity-40';
 
   return (
-    <div className="flex flex-col gap-8">
-      {/* ── Header ───────────────────────────────────────────── */}
-      <div className="flex flex-wrap items-end justify-between gap-4">
+    <div className="flex flex-col gap-5">
+      {/* ── Schlüsselbund ────────────────────────────────────── */}
+      <IdentityVault />
+
+      {/* ── Header (kompakt) ────────────────────────────────── */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-ink">Bürger-Tresor</h1>
-          <p className="mt-1 text-sm text-ink-soft">
-            Alle behördlichen Nachweise sicher an einem Ort – einmal hochladen, für alle Anträge nutzen.
+          <h1 className="text-xl font-bold text-ink">Bürger-Tresor</h1>
+          <p className="text-sm text-ink-soft">
+            Alle behördlichen Nachweise an einem Ort — für alle Anträge nutzbar.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
           <ButtonAction
             type="button"
             variant="secondary"
-            size="md"
+            size="sm"
             disabled={selection.size === 0 || shareBusy}
             onClick={handleShare}
           >
@@ -213,7 +219,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
           <ButtonAction
             type="button"
             variant="primary"
-            size="md"
+            size="sm"
             onClick={() => {
               window.location.href = '/dashboard/upload';
             }}
@@ -298,12 +304,42 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
                   <IconDocument className="h-6 w-6 shrink-0 text-brand-500" />
                 )}
                 <div className="min-w-0 flex-1">
-                  <span className="block truncate font-medium text-ink" title={doc.filename}>
+                  {renamingId === doc.id ? (
+                    <input
+                      type="text"
+                      autoFocus
+                      value={renameValue}
+                      onChange={(e) => setRenameValue(e.target.value)}
+                      onBlur={() => void handleRename(doc)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') void handleRename(doc);
+                        if (e.key === 'Escape') setRenamingId(null);
+                      }}
+                      className="w-full max-w-sm rounded-lg border border-brand-300 bg-white px-2 py-1 text-base font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-brand-100"
+                      aria-label="Dokumenttitel bearbeiten"
+                    />
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setRenamingId(doc.id);
+                        setRenameValue(doc.title ?? doc.filename);
+                      }}
+                      className="group flex items-center gap-1.5 text-left"
+                      title="Klicken zum Umbenennen"
+                    >
+                      <span className="truncate text-base font-semibold text-ink">
+                        {doc.title ?? doc.filename}
+                      </span>
+                      <span className="text-xs text-ink-soft/50 opacity-0 transition-opacity group-hover:opacity-100">
+                        ✎
+                      </span>
+                    </button>
+                  )}
+                  <p className="mt-0.5 truncate text-xs text-ink-soft/70">
                     {doc.filename}
-                  </span>
-                  <p className="text-xs text-ink-soft">
-                    {doc.file_size != null && `${formatSize(doc.file_size)} · `}
-                    {new Date(doc.created_at).toLocaleDateString('de-DE')}
+                    {doc.file_size != null && ` · ${formatSize(doc.file_size)}`}
+                    {` · ${new Date(doc.created_at).toLocaleDateString('de-DE')}`}
                     {doc.application_id == null && ' · Tresor'}
                   </p>
                 </div>
@@ -330,32 +366,6 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
               </div>
             );
           })}
-        </div>
-      )}
-
-      {/* ── Fehlende Unterlagen für Förderungen ─────────────── */}
-      {readiness.missing.length > 0 && (
-        <div className="rounded-2xl border border-dashed border-amber-300 bg-amber-50/40 p-5">
-          <h2 className="font-semibold text-ink">Fehlende Unterlagen für Förderungen</h2>
-          <p className="mb-4 mt-1 text-sm text-ink-soft">
-            {readiness.percent}% antragsbereit — diese Nachweise fehlen für deine empfohlenen Leistungen.
-          </p>
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-            {readiness.missing.slice(0, 6).map((m) => (
-              <div
-                key={`${m.benefit}-${m.label}`}
-                className="rounded-lg border border-dashed border-amber-300 bg-white/60 p-3"
-              >
-                <p className="text-sm font-medium text-ink">{m.label}</p>
-                <p className="mt-0.5 text-xs text-ink-soft">
-                  fehlt für {m.benefit} ·{' '}
-                  <Link href="/dashboard/upload" className="font-semibold text-brand-700 hover:underline">
-                    jetzt hochladen
-                  </Link>
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       )}
 
@@ -447,6 +457,7 @@ function QuickUploadSlot({
         user_id: userId,
         application_id: null,
         document_role: role,
+        title: file.name,
         storage_path: filePath,
         filename: file.name,
         file_size: file.size,

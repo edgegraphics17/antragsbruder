@@ -77,6 +77,7 @@ export interface DocumentEntry {
   user_id: string;
   application_id: string | null; // null = globaler Tresor
   document_role: DocumentRole;
+  title: string | null; // editierbarer Anzeigename (Original bleibt filename)
   filename: string;
   storage_path: string;
   file_size: number | null;

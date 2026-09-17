@@ -4,8 +4,8 @@
 // PROFIL — Ausschließlich persönliche Angaben & Account:
 // Avatar (+Cropper), Stammdaten (Name, Geburtsdatum, Adresse,
 // Telefon), Förder-Profil-Fragen, Account-Sicherheit (E-Mail,
-// Passwort). KEINE Dokumente — die leben im Bürger-Tresor
-// (/dokumente). Error-Boundary + Skeleton-Ladezustände.
+// Passwort). Dokumente & Schlüsselbund leben auf /dokumente.
+// Error-Boundary + Skeleton-Ladezustände.
 // ============================================================
 
 import { useEffect, useState } from 'react';
@@ -19,7 +19,6 @@ import { ProfileMasterDataForm } from './profile/ProfileMasterDataForm';
 import { ProfileEligibilityForm } from './profile/ProfileEligibilityForm';
 import { EmailChangeDialog } from './profile/EmailChangeDialog';
 import { PasswordChangeDialog } from './profile/PasswordChangeDialog';
-import { IdentityVault } from './profile/IdentityVault';
 
 export function ProfileView() {
   const { user } = useAuth();
@@ -59,7 +58,6 @@ export function ProfileView() {
               <ProfileAvatarSection />
               <ProfileMasterDataForm onEmailChange={() => setEmailDialogOpen(true)} />
               <ProfileEligibilityForm />
-              <IdentityVault />
 
               {/* Account-Sicherheit */}
               <div className="space-y-4 rounded-2xl border border-line-soft bg-paper p-5">

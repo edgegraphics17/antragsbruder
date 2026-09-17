@@ -122,7 +122,7 @@ export function DashboardHome() {
                 href="/dokumente"
                 className="rounded-xl border border-line-soft bg-white p-3 transition-colors hover:border-brand-300"
               >
-                <p className="truncate text-xs font-medium text-ink" title={d.filename}>{d.filename}</p>
+                <p className="truncate text-xs font-medium text-ink" title={d.title ?? d.filename}>{d.title ?? d.filename}</p>
                 <p className="mt-0.5 text-[11px] text-ink-soft">{formatDate(d.created_at)}</p>
               </Link>
             ))}
