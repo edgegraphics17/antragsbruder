@@ -6,19 +6,12 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createAuthServerClient } from '@/lib/auth-server';
-import { createClient } from '@supabase/supabase-js';
 import { v4 as uuidv4 } from 'uuid';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-function createDbClient() {
-  return createClient(supabaseUrl, supabaseAnonKey);
-}
 
 // --- POST: Neuen Case erstellen ---
 export async function POST(request: NextRequest) {
   try {
+    // Auth-Client mit Cookie-Session: RLS-Owner-Policies greifen (kein Public-Access).
     const supabase = createAuthServerClient();
     const { data: sessionData, error: sessionError } =
       await supabase.auth.getSession();
@@ -52,7 +45,7 @@ export async function POST(request: NextRequest) {
     const caseId = uuidv4();
     const now = new Date().toISOString();
 
-    const { data, error } = await createDbClient()
+    const { data, error } = await supabase
       .from('cases')
       .insert({
         id: caseId,

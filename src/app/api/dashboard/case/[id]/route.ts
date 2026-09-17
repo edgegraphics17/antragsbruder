@@ -6,14 +6,6 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createAuthServerClient } from '@/lib/auth-server';
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-function createDbClient() {
-  return createClient(supabaseUrl, supabaseAnonKey);
-}
 
 // --- GET: Case-Details laden ---
 export async function GET(
@@ -21,6 +13,7 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
+    // Auth-Client mit Cookie-Session: RLS-Owner-Policies greifen (kein Public-Access).
     const supabase = createAuthServerClient();
     const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
 
@@ -31,7 +24,7 @@ export async function GET(
     const userId = sessionData.session.user.id;
     const { id: caseId } = await params;
 
-    const { data: caseRow, error: caseError } = await createDbClient()
+    const { data: caseRow, error: caseError } = await supabase
       .from('cases')
       .select('id, status, life_events, legal_reference_date, user_id, metadata, created_at, updated_at')
       .eq('id', caseId)
@@ -50,7 +43,7 @@ export async function GET(
       return NextResponse.json({ error: 'Antrag nicht gefunden' }, { status: 404 });
     }
 
-    const { data: documents } = await createDbClient()
+    const { data: documents } = await supabase
       .from('documents')
       .select('*')
       .eq('case_id', caseId)
@@ -58,7 +51,17 @@ export async function GET(
 
     return NextResponse.json({
       case: caseRow,
-      documents: (documents || []).map((d) => ({
+      documents: ((documents || []) as Array<{
+        id: string;
+        storage_path: string;
+        filename: string;
+        file_size: number;
+        mime_type: string;
+        case_id: string;
+        uploaded_by: string;
+        created_at: string;
+        updated_at: string;
+      }>).map((d) => ({
         id: d.id,
         storage_path: d.storage_path,
         filename: d.filename,
@@ -93,7 +96,7 @@ export async function PATCH(
     const { id: caseId } = await params;
 
     // Existierenden Case laden
-    const existing = await createDbClient()
+    const existing = await supabase
       .from('cases')
       .select('user_id, status, metadata')
       .eq('id', caseId)
@@ -119,7 +122,7 @@ export async function PATCH(
       );
     }
 
-    const { data, error } = await createDbClient()
+    const { data, error } = await supabase
       .from('cases')
       .update({ status, updated_at: new Date().toISOString() })
       .eq('id', caseId)
