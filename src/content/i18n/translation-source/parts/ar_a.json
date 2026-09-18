@@ -1,0 +1,150 @@
+{
+ "common": {
+  "save": "حفظ",
+  "saving": "جارٍ الحفظ…",
+  "saved": "تم حفظ التغييرات.",
+  "errorSaving": "فشل الحفظ. حاول مرة أخرى.",
+  "cancel": "إلغاء",
+  "close": "إغلاق",
+  "delete": "حذف",
+  "deleting": "جارٍ الحذف…",
+  "edit": "تعديل",
+  "back": "رجوع",
+  "next": "متابعة",
+  "previous": "رجوع",
+  "loading": "جارٍ التحميل…",
+  "error": "حدث خطأ ما. حاول مرة أخرى.",
+  "retry": "حاول مجدداً",
+  "optional": "اختياري",
+  "required": "إلزامي",
+  "upload": "تحميل",
+  "uploading": "جارٍ الرفع…",
+  "download": "تنزيل",
+  "search": "بحث",
+  "yes": "نعم",
+  "no": "لا",
+  "refresh": "تحديث",
+  "confirm": "تأكيد",
+  "skip": "تخطي",
+  "notAvailable": "غير متوفر",
+  "open": "فتح",
+  "new": "جديد"
+ },
+ "nav": {
+  "dashboard": "لوحة التحكم",
+  "alg1": "ALG1 (إعانة البطالة)",
+  "dokumente": "المستندات",
+  "foerderungen": "الدعم المالي"
+ },
+ "sidebar": {
+  "logout": "تسجيل الخروج",
+  "backToSite": "العودة إلى الموقع",
+  "guest": "زائر",
+  "navLabel": "تنقل لوحة التحكم"
+ },
+ "home": {
+  "metaTitle": "لوحة التحكم — Antragsbruder",
+  "metaDescription": "طلباتك الجارية والدعم المناسب لك في لمحة واحدة.",
+  "greetingMorning": "صباح الخير",
+  "greetingDay": "يوم سعيد",
+  "greetingEvening": "مساء الخير",
+  "fallbackUser": "مستخدم",
+  "summaryOneApp": "لديك {{apps}} طلب نشط و{{benefits}} دعماً مناسباً لك.",
+  "summaryManyApps": "لديك {{apps}} طلبات نشطة و{{benefits}} دعماً مناسباً لك.",
+  "startFirst": "ابدأ طلبك الأول.",
+  "runningTitle": "الطلبات الجارية",
+  "noRunning": "لا توجد طلبات نشطة بعد",
+  "startNow": "ابدأ الآن",
+  "status": {
+   "DRAFT": "قيد التنفيذ",
+   "IN_PROGRESS": "قيد التنفيذ",
+   "DOCS_PENDING": "مستندات ناقصة",
+   "READY": "جاهز للإرسال",
+   "SUBMITTED": "تم الإرسال ✓",
+   "PROCESSING": "قيد الفحص",
+   "APPROVED": "تمت الموافقة 🎉",
+   "REJECTED": "مرفوض"
+  },
+  "alg1Title": "إعانة البطالة (ALG1)",
+  "applicationFallback": "طلب",
+  "upTo": "حتى {{amount}} € شهرياً",
+  "createdAt": "أُنشئ في {{date}}",
+  "viewStatus": "عرض الحالة",
+  "continueWorking": "متابعة",
+  "possibleTitle": "الدعم المحتمل",
+  "fillProfile": "أكمل ملفك الشخصي لرؤية الدعم المناسب لك.",
+  "confidenceHigh": "مرجّح جداً",
+  "confidencePossible": "ممكن",
+  "allBenefits": "عرض كل الدعم →",
+  "docsTresor": "المستندات والخزنة",
+  "docsEmpty": "ارفع مستنداتك لإكمال طلبك.",
+  "docsCountOne": "يوجد {{count}} مستند في الخزنة.",
+  "docsCountMany": "يوجد {{count}} مستند في الخزنة.",
+  "goToTresor": "اذهب إلى الخزنة",
+  "stepsProgress": "{{done}}/4 خطوات",
+  "timeline": {
+   "docs": {
+    "label": "إضافة مستندات",
+    "description": "ارفع إشعار الفصل، قسائم الرواتب ومستندات أخرى."
+   },
+   "data": {
+    "label": "تعبئة البيانات",
+    "description": "أجب عن الأسئلة وأدخل بياناتك الشخصية."
+   },
+   "submit": {
+    "label": "إرسال الطلب",
+    "description": "راجع الملخص وأرسله إلى الجهة المختصة."
+   },
+   "receive": {
+    "label": "استلام إعانة البطالة",
+    "description": "انتظر القرار واستلم أول دفعة لك."
+   }
+  }
+ },
+ "foerderungen": {
+  "metaTitle": "الدعم المالي — Antragsbruder",
+  "metaDescription": "فحص قائم على القواعد للدعم بناءً على بياناتك.",
+  "title": "رادار الدعم",
+  "subtitle": "{{matched}} من أصل {{total}} دعماً يناسب وضعك — بناءً على الملف الشخصي والخزنة.",
+  "tabQualified": "🎯 مؤهل لي",
+  "tabPotential": "⚡ فحص الإمكانيات",
+  "tabExcluded": "🚫 مستبعد",
+  "amountRange": "تقريباً {{min}}–{{max}} € / شهر",
+  "amountFrom": "من حوالي {{min}} € / شهر",
+  "amountUpTo": "حتى حوالي {{max}} € / شهر",
+  "calcNow": "احسب الآن",
+  "viewAtOffice": "عرض لدى الجهة",
+  "calcAvailable": "حاسبة متوفرة",
+  "authority": "الجهة المسؤولة: {{authority}}",
+  "docsInVault": "{{present}} من {{total}} مستنداً مطلوباً في الخزنة",
+  "unlockTitle": "فتح الاستحقاق",
+  "noExcluded": "لا يوجد حالياً دعم مستبعد بشكل واضح.",
+  "excludedInfo": "{{count}} من الدعم لا ينطبق بوضوح حسب ملفك الشخصي (مثلاً للطلاب أو المتقاعدين فقط). نحن نخفي هذه.",
+  "noQualified": "لا يوجد شيء مؤهل بوضوح بعد — أجب عن أسئلة التوضيح أعلاه أو املأ ملف الدعم الخاص بك.",
+  "noPotential": "لا توجد إمكانيات مفتوحة — أجب عن أسئلة التوضيح لفتح المزيد."
+ },
+ "antraege": {
+  "statusLabel": "الحالة",
+  "status": {
+   "ACTIVE": "نشط",
+   "PAUSED": "متوقف مؤقتاً",
+   "COMPLETED": "مكتمل"
+  },
+  "deleteConfirm": "هل تريد حقاً حذف „{{filename}}“؟",
+  "deleteFailed": "فشل الحذف",
+  "uploadedAt": "تم الرفع في {{date}}",
+  "notFound": "الطلب غير موجود",
+  "loadFailed": "خطأ في التحميل",
+  "statusChangeFailed": "تعذر تغيير الحالة",
+  "goBack": "العودة إلى النظرة العامة",
+  "uploadDocument": "رفع مستند",
+  "loadingCase": "جارٍ تحميل الطلب…",
+  "completedApplication": "طلب مكتمل",
+  "activeApplication": "طلب نشط",
+  "createdAt": "أُنشئ في {{date}}",
+  "documentsTitle": "المستندات",
+  "noDocuments": "لا توجد مستندات بعد",
+  "noDocumentsHint": "ارفع مستنداتك لدفع طلبك قدماً.",
+  "uploadDocuments": "رفع المستندات"
+ }
+}

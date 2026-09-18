@@ -1,0 +1,84 @@
+{
+ "alg1": {
+  "meta": {
+   "title": "Заява ALG1 | Antragsbruder",
+   "description": "Завантажте документи, дайте відповіді на запитання та подайте заяву на ALG1."
+  },
+  "index": {
+   "metaTitle": "ALG1 — швидка перевірка | Antragsbruder",
+   "metaDescription": "Перевірте за 7 запитань, чи маєте ви право на ALG1, і почніть заяву.",
+   "title": "Подати на ALG1",
+   "subtitle": "Дайте відповіді на 7 коротких запитань — ми оцінимо ваші шанси та почнемо заяву."
+  },
+  "flow": {
+   "loading": "Завантаження…",
+   "documentsTitle": "Ваші документи",
+   "documentsText": "Завантажте найважливіші документи — ми читаємо їх автоматично.",
+   "backToDocuments": "← Назад до документів",
+   "continueToSummary": "Далі до підсумку →",
+   "backToForm": "← Назад до форми",
+   "startApplication": "Почати офіційну заяву на ALG1 та завантажити документи",
+   "errorNotFound": "Заяву не знайдено або немає доступу.",
+   "errorNoAccess": "Немає доступу до цієї заяви."
+  },
+  "start": {
+   "loadingDraft": "Завантаження чернетки…",
+   "draftLoaded": "Вашу збережену чернетку завантажено.",
+   "errorCreatingCase": "Не вдалося створити справу. Спробуйте пізніше.",
+   "errorCreatingApplication": "Не вдалося створити заяву: {{errorMessage}}",
+   "errorUpdatingDraft": "Не вдалося зберегти чернетку: {{errorMessage}}"
+  },
+  "check": {
+   "questionProgress": "Запитання {{current}} з {{total}}",
+   "progressPercent": "{{progress}}%",
+   "back": "← Назад",
+   "questions": {
+    "termination_type": "Що сталося з вашою роботою?",
+    "insurance_period_months": "Скільки місяців за останні 28 місяців ви були обов'язково застраховані?",
+    "registered_unemployed": "Ви вже зареєструвалися як безробітний?",
+    "available_hours_per_week": "Скільки годин на тиждень ви можете працювати?",
+    "actively_seeking": "Ви активно шукаєте роботу?",
+    "has_children": "У вас є діти до 18?",
+    "has_partner": "Ви живете з партнером/партнеркою?",
+    "gross_salary": "Приблизний місячний валовий дохід за останні 12 місяців у €"
+   },
+   "termination": {
+    "EMPLOYER_TERMINATED": "Розірвав роботодавець",
+    "CONTRACT_END": "Договір закінчився",
+    "SELF_QUIT": "Я звільнився сам",
+    "MUTUAL_AGREEMENT": "Угода про розірвання",
+    "EMPLOYER_INSOLVENT": "Роботодавець банкрут",
+    "HOURS_REDUCED": "Робочі години скоротили",
+    "OTHER": "Інше"
+   }
+  },
+  "checkResult": {
+   "likelyTitle": "Дуже ймовірно, що ви маєте право на ALG 1",
+   "unclearTitle": "Потрібна індивідуальна перевірка — заяву все одно рекомендовано",
+   "unlikelyTitle": "Звичайного права на ALG1 за поточною оцінкою немає",
+   "estimatedMonthly": "Розрахункова місячна сума",
+   "basis": "Основа: {{amount}} € брутто",
+   "rateWithChild": "67% (з дитиною)",
+   "rateWithoutChild": "60%",
+   "perMonth": "~ {{amount}} € / міс.",
+   "perDay": "{{amount}} €/день",
+   "basisLine": "Основа: {{basis}} € брутто · ставка: {{rate}} · {{daily}} €/день",
+   "editAnswerAria": "Змінити відповідь на „{{question}}“",
+   "yourAnswers": "Ваші відповіді",
+   "change": "Змінити",
+   "nextSteps": "Наступні кроки"
+  },
+  "erfolg": {
+   "metaTitle": "ALG1 — заяву подано | Antragsbruder",
+   "metaDescription": "Вашу заяву на ALG1 підготовлено та позначено як готову.",
+   "pageTitle": "Заяву успішно подано",
+   "headline": "Готово!",
+   "bodyPre": "Вашу заяву на ALG1 повністю підготовлено та позначено як",
+   "bodyPost": ". Передача у відомство праці та відстеження статусу будуть пізніше.",
+   "hint1": "Зареєструйтеся як безробітний мінімум за 3 місяці до кінця договору.",
+   "hint2": "Збережіть підтвердження з вашим номером справи.",
+   "hint3": "ALG1 виплачується щомісяця авансом.",
+   "backLink": "До огляду"
+  }
+ }
+}

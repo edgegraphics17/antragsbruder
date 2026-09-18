@@ -5,6 +5,7 @@
 // 15-s-Reveal, 1-Klick-Kopieren. Werte werden client-seitig mit
 // AES-GCM verschlüsselt (siehe src/lib/identity-vault.ts) — die DB
 // speichert ausschließlich Ciphertext + Maske.
+// Alle Texte aus dem Dict (profile.vault.*); Kategorie-Headings ebenso.
 // ============================================================
 
 import { useEffect, useMemo, useState } from 'react';
@@ -21,6 +22,9 @@ import {
 } from '@/lib/identity-vault';
 import { ButtonAction } from '@/components/ui/Button';
 import { IconClose } from '@/components/ui/icons';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
+import { formatTemplate } from '@/content/i18n/format';
 
 interface VaultEntry {
   id: string;
@@ -32,15 +36,6 @@ interface VaultEntry {
   notes: string | null;
 }
 
-const CATEGORY_HEADINGS: Record<VaultCategory, string> = {
-  tax: '🏛 Steuern & Finanzen',
-  social: '🛡 Sozialversicherung & Arbeit',
-  health: '🏥 Gesundheit',
-  id_card: '🪪 Ausweise',
-  finance: '💶 Finanzen',
-  other: '📁 Sonstiges',
-};
-
 const CATEGORY_ORDER: VaultCategory[] = ['tax', 'social', 'health', 'id_card', 'finance', 'other'];
 
 const REVEAL_SECONDS = 15;
@@ -50,6 +45,10 @@ const inputCls =
 
 export function IdentityVault() {
   const { user } = useAuth();
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).profile.vault;
+  const tc = getDashboardDict(locale).common;
+  const categoryHeadings = t.categories as unknown as Record<VaultCategory, string>;
   const [entries, setEntries] = useState<VaultEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
@@ -130,9 +129,7 @@ export function IdentityVault() {
       setRevealed((r) => ({ ...r, [entry.id]: plaintext }));
       setCountdown((c) => ({ ...c, [entry.id]: REVEAL_SECONDS }));
     } catch {
-      setError(
-        'Dieser Eintrag wurde auf einem anderen Gerät/Geräteprofil verschlüsselt und ist hier nicht entschlüsselbar. Bitte trage ihn neu ein.',
-      );
+      setError(t.errorDecrypt);
     }
   };
 
@@ -143,7 +140,7 @@ export function IdentityVault() {
         const key = await getVaultKey(localStorage);
         plaintext = await decryptValue(key, entry.value_encrypted);
       } catch {
-        setError('Nicht entschlüsselbar — bitte neu eintragen.');
+        setError(t.errorDecryptShort);
         return;
       }
     }
@@ -153,7 +150,7 @@ export function IdentityVault() {
   };
 
   const handleDelete = async (entry: VaultEntry) => {
-    if (!window.confirm(`„${entry.label}" wirklich löschen?`)) return;
+    if (!window.confirm(formatTemplate(t.deleteConfirm, { label: entry.label }))) return;
     const { error: delErr } = await supabase.from('user_vault_entries').delete().eq('id', entry.id);
     if (delErr) {
       setError(delErr.message);
@@ -163,21 +160,20 @@ export function IdentityVault() {
   };
 
   if (loading) {
-    return <div className="rounded-2xl border border-line-soft bg-paper p-5 text-sm text-ink-soft">Schlüsselbund wird geladen…</div>;
+    return <div className="rounded-2xl border border-line-soft bg-paper p-5 text-sm text-ink-soft">{t.loading}</div>;
   }
 
   return (
     <div className="rounded-2xl border border-line-soft bg-paper p-5">
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 className="font-semibold text-ink">🔐 Bürokratie-Schlüsselbund</h2>
+          <h2 className="font-semibold text-ink">{t.title}</h2>
           <p className="mt-1 text-xs text-ink-soft">
-            Schneller Zugriff auf deine wichtigsten behördlichen Kennziffern — verschlüsselt,
-            standardmäßig maskiert, mit einem Klick kopierbar.
+            {t.description}
           </p>
         </div>
         <ButtonAction type="button" size="sm" onClick={() => { setEditing(null); setModalOpen(true); }}>
-          + Nummer hinzufügen
+          {t.add}
         </ButtonAction>
       </div>
 
@@ -185,14 +181,14 @@ export function IdentityVault() {
 
       {entries.length === 0 ? (
         <p className="rounded-xl border border-dashed border-line-soft bg-white/60 p-6 text-center text-sm text-ink-soft">
-          Noch keine Kennziffern gespeichert. Lege z. B. deine Steuer-ID an — einmal kopieren, überall einfügen.
+          {t.empty}
         </p>
       ) : (
         <div className="space-y-6">
           {CATEGORY_ORDER.filter((c) => grouped.has(c)).map((cat) => (
             <div key={cat}>
               <p className="mb-2 text-xs font-semibold tracking-wide text-ink-soft uppercase">
-                {CATEGORY_HEADINGS[cat]}
+                {categoryHeadings[cat]}
               </p>
               <div className="space-y-2">
                 {(grouped.get(cat) ?? []).map((entry) => (
@@ -207,20 +203,20 @@ export function IdentityVault() {
                           {revealed[entry.id] ?? entry.value_masked}
                           {countdown[entry.id] != null && (
                             <span className="ml-2 font-sans text-xs text-ink-soft">
-                              maskiert in {countdown[entry.id]} s
+                              {formatTemplate(t.maskedIn, { seconds: countdown[entry.id] })}
                             </span>
                           )}
                         </p>
                       </div>
                       <div className="flex shrink-0 items-center gap-3">
                         <button type="button" className={actionCls} onClick={() => void reveal(entry)}>
-                          {revealed[entry.id] ? '🙈 Verbergen' : '👁 Anzeigen'}
+                          {revealed[entry.id] ? t.hide : t.reveal}
                         </button>
                         <button type="button" className={actionCls} onClick={() => void copy(entry)}>
                           {copiedId === entry.id ? (
-                            <span className="text-green-700">✓ Kopiert!</span>
+                            <span className="text-green-700">{t.copied}</span>
                           ) : (
-                            '📋 Kopieren'
+                            t.copy
                           )}
                         </button>
                         <button
@@ -270,6 +266,8 @@ const actionCls = 'text-xs font-semibold text-ink-soft hover:text-brand-700';
 // ============================================================
 // Eintrags-Modal: Typ-Dropdown → Label vorbelegt, Wert wird
 // client-seitig verschlüsselt bevor er die DB sieht.
+// (Typ-Labels aus der identity-vault-Lib sind DB-nahe Daten und
+// bleiben deutsch — sie werden als Eintrags-Label gespeichert.)
 // ============================================================
 
 function VaultEntryModal({
@@ -283,6 +281,9 @@ function VaultEntryModal({
   onClose: () => void;
   onSaved: (entry: VaultEntry) => void;
 }) {
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).profile.vault;
+  const tc = getDashboardDict(locale).common;
   const [entryType, setEntryType] = useState(editing?.entry_type ?? 'tax_id');
   const [label, setLabel] = useState(editing?.label ?? '');
   const [value, setValue] = useState('');
@@ -296,11 +297,11 @@ function VaultEntryModal({
   const handleSave = async () => {
     if (!userId || saving) return;
     if (!value.trim()) {
-      setError('Bitte einen Wert eingeben.');
+      setError(t.errValue);
       return;
     }
     if (entryType === 'custom' && !label.trim()) {
-      setError('Bitte eine Bezeichnung eingeben.');
+      setError(t.errLabel);
       return;
     }
     setSaving(true);
@@ -323,10 +324,10 @@ function VaultEntryModal({
         ? await supabase.from('user_vault_entries').update(payload).eq('id', editing.id).select().single()
         : await supabase.from('user_vault_entries').insert(payload).select().single();
 
-      if (dbErr || !data) throw new Error(dbErr?.message ?? 'Speichern fehlgeschlagen');
+      if (dbErr || !data) throw new Error(dbErr?.message ?? t.errSave);
       onSaved(data as VaultEntry);
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Fehler beim Verschlüsseln/Speichern');
+      setError(err instanceof Error ? err.message : t.errEncrypt);
     } finally {
       setSaving(false);
     }
@@ -337,26 +338,26 @@ function VaultEntryModal({
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
       role="dialog"
       aria-modal="true"
-      aria-label="Kennziffer hinzufügen"
+      aria-label={t.modalAdd}
     >
       <div className="relative w-full max-w-md rounded-2xl bg-white p-6">
         <button
           type="button"
           onClick={onClose}
-          aria-label="Schließen"
+          aria-label={tc.close}
           className="absolute right-4 top-4 text-ink-soft hover:text-ink"
         >
           <IconClose className="h-5 w-5" />
         </button>
         <h2 className="mb-4 text-lg font-semibold text-ink">
-          {editing ? 'Kennziffer bearbeiten' : 'Kennziffer hinzufügen'}
+          {editing ? t.modalEdit : t.modalAdd}
         </h2>
         <p className="mb-4 text-xs text-ink-soft">
-          Der Wert wird direkt in deinem Browser verschlüsselt (AES-GCM) und nur maskiert angezeigt.
+          {t.modalDescription}
         </p>
 
         <label className="block text-sm text-ink-soft">
-          Typ
+          {t.lblType}
           <select
             value={entryType}
             onChange={(e) => {
@@ -366,9 +367,9 @@ function VaultEntryModal({
             className={inputCls}
             disabled={Boolean(editing)}
           >
-            {VAULT_ENTRY_TYPES.map((t) => (
-              <option key={t.type} value={t.type}>
-                {t.label}
+            {VAULT_ENTRY_TYPES.map((vt) => (
+              <option key={vt.type} value={vt.type}>
+                {vt.label}
               </option>
             ))}
           </select>
@@ -376,36 +377,36 @@ function VaultEntryModal({
 
         {entryType === 'custom' && (
           <label className="mt-3 block text-sm text-ink-soft">
-            Bezeichnung
-            <input type="text" value={label} onChange={(e) => setLabel(e.target.value)} className={inputCls} placeholder="z. B. Kundennummer Stadtwerke" />
+            {t.lblName}
+            <input type="text" value={label} onChange={(e) => setLabel(e.target.value)} className={inputCls} placeholder={t.phName} />
           </label>
         )}
 
         <label className="mt-3 block text-sm text-ink-soft">
-          Wert
+          {t.lblValue}
           <input
             type="text"
             value={value}
             onChange={(e) => setValue(e.target.value)}
             className={inputCls}
-            placeholder={typeDef.hint ?? 'Wert eingeben'}
+            placeholder={typeDef.hint ?? t.phValue}
             autoFocus
           />
         </label>
 
         <label className="mt-3 block text-sm text-ink-soft">
-          Notiz (optional)
-          <input type="text" value={notes} onChange={(e) => setNotes(e.target.value)} className={inputCls} placeholder="z. B. Gültig bis 2029" />
+          {t.lblNotes}
+          <input type="text" value={notes} onChange={(e) => setNotes(e.target.value)} className={inputCls} placeholder={t.phNotes} />
         </label>
 
         {error && <p className="mt-3 text-xs text-red-600">{error}</p>}
 
         <div className="mt-5 flex gap-3">
           <ButtonAction type="button" onClick={handleSave} disabled={saving} className="flex-1">
-            {saving ? 'Verschlüssele & speichere…' : 'Speichern'}
+            {saving ? t.encryptingSaving : tc.save}
           </ButtonAction>
           <ButtonAction type="button" variant="secondary" onClick={onClose} className="flex-1">
-            Abbrechen
+            {tc.cancel}
           </ButtonAction>
         </div>
       </div>

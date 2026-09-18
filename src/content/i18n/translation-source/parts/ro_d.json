@@ -1,0 +1,84 @@
+{
+ "alg1": {
+  "meta": {
+   "title": "Cerere ALG1 | Antragsbruder",
+   "description": "Încarcă documente, răspunde la întrebări și depune cererea ALG1."
+  },
+  "index": {
+   "metaTitle": "ALG1 – verificare rapidă | Antragsbruder",
+   "metaDescription": "Verifică în 7 întrebări dacă ai dreptul la ALG1 și începe cererea.",
+   "title": "Depune cerere ALG1",
+   "subtitle": "Răspunde la 7 întrebări scurte – evaluăm șansele tale și începem cererea."
+  },
+  "flow": {
+   "loading": "Se încarcă…",
+   "documentsTitle": "Documentele tale",
+   "documentsText": "Încarcă cele mai importante documente – le citim automat.",
+   "backToDocuments": "← Înapoi la documente",
+   "continueToSummary": "Continuă la rezumat →",
+   "backToForm": "← Înapoi la formular",
+   "startApplication": "Începe cererea oficială ALG1 și încarcă documente",
+   "errorNotFound": "Cererea nu a fost găsită sau nu ai acces.",
+   "errorNoAccess": "Nu ai acces la această cerere."
+  },
+  "start": {
+   "loadingDraft": "Se încarcă schița…",
+   "draftLoaded": "Schița ta salvată a fost încărcată.",
+   "errorCreatingCase": "Dosarul nu a putut fi creat. Încearcă mai târziu.",
+   "errorCreatingApplication": "Cererea nu a putut fi creată: {{errorMessage}}",
+   "errorUpdatingDraft": "Schița nu a putut fi salvată: {{errorMessage}}"
+  },
+  "check": {
+   "questionProgress": "Întrebarea {{current}} din {{total}}",
+   "progressPercent": "{{progress}}%",
+   "back": "← Înapoi",
+   "questions": {
+    "termination_type": "Ce s-a întâmplat cu jobul tău?",
+    "insurance_period_months": "Câte luni ai fost asigurat obligatoriu în ultimele 28 luni?",
+    "registered_unemployed": "Te-ai înregistrat deja ca șomer?",
+    "available_hours_per_week": "Câte ore pe săptămână poți lucra?",
+    "actively_seeking": "Cauți activ un loc de muncă?",
+    "has_children": "Ai copii sub 18?",
+    "has_partner": "Trăiești cu un partener/o parteneră?",
+    "gross_salary": "Venitul brut lunar aproximativ al ultimelor 12 luni în €"
+   },
+   "termination": {
+    "EMPLOYER_TERMINATED": "Angajatorul a concediat",
+    "CONTRACT_END": "Contractul a expirat",
+    "SELF_QUIT": "Am demisionat singur",
+    "MUTUAL_AGREEMENT": "Acord de reziliere",
+    "EMPLOYER_INSOLVENT": "Angajatorul este insolvabil",
+    "HOURS_REDUCED": "Orele de muncă au fost reduse",
+    "OTHER": "Altul"
+   }
+  },
+  "checkResult": {
+   "likelyTitle": "Este foarte probabil să ai dreptul la ALG 1",
+   "unclearTitle": "Necesită verificare individuală – cererea este totuși recomandată",
+   "unlikelyTitle": "Nu există drept obișnuit la ALG1 conform evaluării curente",
+   "estimatedMonthly": "Suma lunară estimată",
+   "basis": "Baza: {{amount}} € brut",
+   "rateWithChild": "67% (cu copil)",
+   "rateWithoutChild": "60%",
+   "perMonth": "~ {{amount}} € / lună",
+   "perDay": "{{amount}} €/zi",
+   "basisLine": "Baza: {{basis}} € brut · rata: {{rate}} · {{daily}} €/zi",
+   "editAnswerAria": "Modifică răspunsul la „{{question}}“",
+   "yourAnswers": "Răspunsurile tale",
+   "change": "Modifică",
+   "nextSteps": "Următorii pași"
+  },
+  "erfolg": {
+   "metaTitle": "ALG1 – cerere trimisă | Antragsbruder",
+   "metaDescription": "Cererea ta ALG1 a fost pregătită și marcată ca gata.",
+   "pageTitle": "Cerere trimisă cu succes",
+   "headline": "Gata!",
+   "bodyPre": "Cererea ta ALG1 este pe deplin pregătită și marcată ca",
+   "bodyPost": ". Transferul către Agenția pentru Muncă și urmărirea stării vor urma într-o fază ulterioară.",
+   "hint1": "Înregistrează-te ca șomer cu cel puțin 3 luni înainte de sfârșitul contractului.",
+   "hint2": "Păstrează confirmarea cu numărul dosarului.",
+   "hint3": "ALG1 se plătește lunar în avans.",
+   "backLink": "Înapoi la ansamblu"
+  }
+ }
+}

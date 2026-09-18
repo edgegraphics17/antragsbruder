@@ -1,0 +1,150 @@
+{
+ "common": {
+  "save": "Salvează",
+  "saving": "Se salvează…",
+  "saved": "Modificările au fost salvate.",
+  "errorSaving": "Salvarea a eșuat. Încearcă din nou.",
+  "cancel": "Anulează",
+  "close": "Închide",
+  "delete": "Șterge",
+  "deleting": "Se șterge…",
+  "edit": "Editează",
+  "back": "Înapoi",
+  "next": "Continuă",
+  "previous": "Înapoi",
+  "loading": "Se încarcă…",
+  "error": "Ceva a mers greșit. Încearcă din nou.",
+  "retry": "Încearcă din nou",
+  "optional": "opțional",
+  "required": "câmp obligatoriu",
+  "upload": "Încarcă",
+  "uploading": "Se încarcă…",
+  "download": "Descarcă",
+  "search": "Caută",
+  "yes": "Da",
+  "no": "Nu",
+  "refresh": "Reîmprospătează",
+  "confirm": "Confirmă",
+  "skip": "Sari peste",
+  "notAvailable": "Indisponibil",
+  "open": "Deschide",
+  "new": "Nou"
+ },
+ "nav": {
+  "dashboard": "Panou",
+  "alg1": "ALG1",
+  "dokumente": "Documente",
+  "foerderungen": "Beneficii"
+ },
+ "sidebar": {
+  "logout": "Deconectare",
+  "backToSite": "Înapoi la site",
+  "guest": "Oaspete",
+  "navLabel": "Navigare panou"
+ },
+ "home": {
+  "metaTitle": "Panou — Antragsbruder",
+  "metaDescription": "Cererile tale în curs și beneficiile potrivite dintr-o privire.",
+  "greetingMorning": "Bună dimineața",
+  "greetingDay": "Bună ziua",
+  "greetingEvening": "Bună seara",
+  "fallbackUser": "Utilizator",
+  "summaryOneApp": "Ai {{apps}} cerere activă și {{benefits}} beneficii potrivite.",
+  "summaryManyApps": "Ai {{apps}} cereri active și {{benefits}} beneficii potrivite.",
+  "startFirst": "Începe prima ta cerere.",
+  "runningTitle": "Cereri în curs",
+  "noRunning": "Nicio cerere activă încă",
+  "startNow": "Începe acum",
+  "status": {
+   "DRAFT": "În lucru",
+   "IN_PROGRESS": "În lucru",
+   "DOCS_PENDING": "Documente lipsă",
+   "READY": "Gata de trimitere",
+   "SUBMITTED": "Trimis ✓",
+   "PROCESSING": "În verificare",
+   "APPROVED": "Aprobat 🎉",
+   "REJECTED": "Respins"
+  },
+  "alg1Title": "Ajutor de șomaj (ALG1)",
+  "applicationFallback": "Cerere",
+  "upTo": "Până la {{amount}} €/lună",
+  "createdAt": "Creat la {{date}}",
+  "viewStatus": "Vezi starea",
+  "continueWorking": "Continuă",
+  "possibleTitle": "Beneficii posibile",
+  "fillProfile": "Completează-ți profilul pentru a vedea beneficiile potrivite.",
+  "confidenceHigh": "Foarte probabil",
+  "confidencePossible": "Posibil",
+  "allBenefits": "Vezi toate beneficiile →",
+  "docsTresor": "Documente și seif",
+  "docsEmpty": "Încarcă documentele pentru a-ți finaliza cererea.",
+  "docsCountOne": "{{count}} document în seif.",
+  "docsCountMany": "{{count}} documente în seif.",
+  "goToTresor": "La seif",
+  "stepsProgress": "{{done}}/4 pași",
+  "timeline": {
+   "docs": {
+    "label": "Adaugă documente",
+    "description": "Încarcă concedierea, fluturașele de salariu și alte documente."
+   },
+   "data": {
+    "label": "Completează datele",
+    "description": "Răspunde la întrebări și introdu datele personale."
+   },
+   "submit": {
+    "label": "Depune cererea",
+    "description": "Verifică rezumatul și depune-l la agenție."
+   },
+   "receive": {
+    "label": "Primește ajutorul de șomaj",
+    "description": "Așteaptă decizia și primește prima plată."
+   }
+  }
+ },
+ "foerderungen": {
+  "metaTitle": "Beneficii — Antragsbruder",
+  "metaDescription": "Verificare a beneficiilor bazată pe reguli și datele tale.",
+  "title": "Radarul beneficiilor",
+  "subtitle": "{{matched}} din {{total}} beneficii corespund situației tale — pe baza profilului și seifului.",
+  "tabQualified": "🎯 Calificat pentru mine",
+  "tabPotential": "⚡ Verifică potențialul",
+  "tabExcluded": "🚫 Exclus",
+  "amountRange": "cca. {{min}}–{{max}} € / lună",
+  "amountFrom": "de la cca. {{min}} € / lună",
+  "amountUpTo": "până la cca. {{max}} € / lună",
+  "calcNow": "Calculează acum",
+  "viewAtOffice": "Vezi la birou",
+  "calcAvailable": "Calculator disponibil",
+  "authority": "Instituția responsabilă: {{authority}}",
+  "docsInVault": "{{present}} din {{total}} documente necesare în seif",
+  "unlockTitle": "Deblochează dreptul",
+  "noExcluded": "Niciun beneficiu nu este în mod clar exclus.",
+  "excludedInfo": "{{count}} beneficii corespund în mod clar profilului tău (ex. doar pentru studenți sau pensionari). Le ascundem.",
+  "noQualified": "Nimic în mod clar calificat încă — răspunde la întrebările de clarificare de mai sus sau completează-ți profilul de beneficii.",
+  "noPotential": "Niciun potențial deschis — răspunde la întrebările de clarificare pentru a debloca mai multe."
+ },
+ "antraege": {
+  "statusLabel": "Stare",
+  "status": {
+   "ACTIVE": "Activ",
+   "PAUSED": "Suspendat",
+   "COMPLETED": "Finalizat"
+  },
+  "deleteConfirm": "Sigur vrei să ștergi „{{filename}}“?",
+  "deleteFailed": "Ștergerea a eșuat",
+  "uploadedAt": "Încărcat la {{date}}",
+  "notFound": "Cererea nu a fost găsită",
+  "loadFailed": "Eroare la încărcare",
+  "statusChangeFailed": "Starea nu a putut fi schimbată",
+  "goBack": "Înapoi la ansamblu",
+  "uploadDocument": "Încarcă document",
+  "loadingCase": "Se încarcă cererea…",
+  "completedApplication": "Cerere finalizată",
+  "activeApplication": "Cerere activă",
+  "createdAt": "Creat la {{date}}",
+  "documentsTitle": "Documente",
+  "noDocuments": "Niciun document încă",
+  "noDocumentsHint": "Încarcă-ți documentele pentru a-ți avansa cererea.",
+  "uploadDocuments": "Încarcă documente"
+ }
+}

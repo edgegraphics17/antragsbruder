@@ -1,97 +1,44 @@
-import type { Locale } from "@/i18n/config";
-
 // ============================================================
-// DASHBOARD — Texte für Sidebar, Profil-Tab und später die
-// übrigen Dashboard-Views. Gleiche Fallback-Struktur wie
-// src/content/i18n/authPage.ts: Deutsch ist Source of Truth,
-// jede Sprache überschreibt nur ihre übersetzten Keys.
-//
-// Workflow für neue Übersetzungen:
-// 1. Key im `deDashboard`-Objekt anlegen (Source of Truth).
-// 2. `DashboardDict`-Typ aktualisiert sich automatisch.
-// 3. In `dictionaries[locale]` die übersetzten Keys ergänzen —
-//    alles Fehlende wird zur Laufzeit auf Deutsch ausgeliefert.
+// DASHBOARD-WÖRTERBUCH (v2)
+// - deDashboard (dashboard-de.ts, generiert aus fragments/*.json)
+//   ist die deutsche Source of Truth.
+// - Jede Sprache liegt als DeepPartial<DashboardDict> in
+//   dashboard-locales/<locale>.ts — fehlende Keys fallen zur
+//   Laufzeit auf Deutsch zurück.
+// - API bleibt stabil: getDashboardDict(locale) → DashboardDict.
 // ============================================================
 
-const deDashboard = {
-  nav: {
-    dashboard: "Dashboard",
-    alg1: "ALG1",
-    dokumente: "Dokumente",
-    foerderungen: "Förderungen",
-  },
-  sidebar: {
-    logout: "Abmelden",
-    backToSite: "Zur Website",
-    guest: "Gast",
-    navLabel: "Dashboard-Navigation",
-  },
-  profile: {
-    title: "Mein Profil",
-    noProfile: "Kein Profil gefunden.",
-    language: {
-      title: "Sprache",
-      description:
-        "Wähle die Sprache für dein Dashboard — die Einstellung wird in deinem Profil gespeichert.",
-      saving: "Speichern…",
-      saved: "Sprache gespeichert.",
-      error: "Sprache konnte nicht gespeichert werden.",
-    },
-    account: {
-      title: "Account & Sicherheit",
-      emailTitle: "E-Mail-Adresse",
-      emailDesc: "Änderung per Bestätigungslink (Sync automatisch per Trigger).",
-      changeEmail: "E-Mail ändern",
-      passwordTitle: "Passwort",
-      passwordDesc: "Mindestens 8 Zeichen.",
-      changePassword: "Passwort ändern",
-    },
-  },
-};
+import type { Locale } from '@/i18n/config';
+import { deepMerge, type DeepPartial } from './deep-merge';
+import deDashboard from './dashboard-de';
+import { enDict } from './dashboard-locales/en';
+import { arDict } from './dashboard-locales/ar';
+import { trDict } from './dashboard-locales/tr';
+import { ruDict } from './dashboard-locales/ru';
+import { ukDict } from './dashboard-locales/uk';
+import { plDict } from './dashboard-locales/pl';
+import { bgDict } from './dashboard-locales/bg';
+import { roDict } from './dashboard-locales/ro';
 
 export type DashboardDict = typeof deDashboard;
+export type PartialDashboardDict = DeepPartial<DashboardDict>;
 
-const enDashboard: DashboardDict = {
-  nav: {
-    dashboard: "Dashboard",
-    alg1: "ALG1",
-    dokumente: "Documents",
-    foerderungen: "Benefits",
-  },
-  sidebar: {
-    logout: "Log out",
-    backToSite: "Back to website",
-    guest: "Guest",
-    navLabel: "Dashboard navigation",
-  },
-  profile: {
-    title: "My profile",
-    noProfile: "No profile found.",
-    language: {
-      title: "Language",
-      description:
-        "Choose the language for your dashboard — the setting is saved to your profile.",
-      saving: "Saving…",
-      saved: "Language saved.",
-      error: "Language could not be saved.",
-    },
-    account: {
-      title: "Account & Security",
-      emailTitle: "Email address",
-      emailDesc: "Changed via confirmation link (synced automatically by trigger).",
-      changeEmail: "Change email",
-      passwordTitle: "Password",
-      passwordDesc: "At least 8 characters.",
-      changePassword: "Change password",
-    },
-  },
+// Registrierte Sprachen. Neue Sprache = Datei in dashboard-locales/
+// ergänzen und hier eintragen — unvollständige Dateien sind ok
+// (Fallback auf Deutsch pro Key).
+const dictionaries: Partial<Record<Locale, PartialDashboardDict>> = {
+  en: enDict,
+  ar: arDict,
+  tr: trDict,
+  ru: ruDict,
+  uk: ukDict,
+  pl: plDict,
+  bg: bgDict,
+  ro: roDict,
 };
 
-const dictionaries: Partial<Record<Locale, DashboardDict>> = {
-  en: enDashboard,
-};
-
-/** Dict für `locale`, fehlende Keys (ganze Sprachen inklusive) fallen auf Deutsch zurück. */
+/** Dict für `locale`; fehlende Keys (ganze Sprachen inklusive) fallen auf Deutsch zurück. */
 export function getDashboardDict(locale: Locale): DashboardDict {
-  return dictionaries[locale] ?? deDashboard;
+  const override = dictionaries[locale];
+  return override ? deepMerge(deDashboard, override) : deDashboard;
 }

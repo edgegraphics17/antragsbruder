@@ -1,0 +1,33 @@
+{
+  "common": {
+    "save": "Speichern",
+    "saving": "Speichern…",
+    "saved": "Änderungen gespeichert.",
+    "errorSaving": "Speichern fehlgeschlagen. Bitte versuche es erneut.",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "delete": "Löschen",
+    "deleting": "Wird gelöscht…",
+    "edit": "Bearbeiten",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "loading": "Wird geladen…",
+    "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+    "retry": "Erneut versuchen",
+    "optional": "optional",
+    "required": "Pflichtfeld",
+    "upload": "Hochladen",
+    "uploading": "Wird hochgeladen…",
+    "download": "Herunterladen",
+    "search": "Suchen",
+    "yes": "Ja",
+    "no": "Nein",
+    "refresh": "Aktualisieren",
+    "confirm": "Bestätigen",
+    "skip": "Überspringen",
+    "notAvailable": "Nicht verfügbar",
+    "open": "Öffnen",
+    "new": "Neu"
+  }
+}

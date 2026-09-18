@@ -4,6 +4,7 @@
 // FÖRDERUNGEN-RADAR — 3-Ebenen-Matching (Qualifiziert / Potenzial /
 // Ausgeschlossen) über die echte Benefit-Datenbank, mit 1-Klick-
 // Klärungsfragen und Dokumenten-Match-Chips aus dem Tresor.
+// Alle UI-Strings über getDashboardDict (i18n), Links locale-aware.
 // ============================================================
 
 import { useEffect, useMemo, useState } from 'react';
@@ -16,14 +17,15 @@ import {
   type RadarResult,
 } from '@/lib/benefits/radar';
 import { Skeleton, SkeletonForm } from '@/components/ui/Skeleton';
+import { localeHref } from '@/i18n/config';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
+import { formatTemplate } from '@/content/i18n/format';
 
 type Tab = 'qualified' | 'potential' | 'excluded';
 
-const TABS: { key: Tab; label: string }[] = [
-  { key: 'qualified', label: '🎯 Für mich qualifiziert' },
-  { key: 'potential', label: '⚡ Potenzial prüfen' },
-  { key: 'excluded', label: '🚫 Ausgeschlossen' },
-];
+// Tab-Reihenfolge; Labels aus dem Dict (foerderungen.tab*).
+const TABS: Tab[] = ['qualified', 'potential', 'excluded'];
 
 // CTA-Routen für Kern-Leistungen mit eigenem Rechner; sonst Amts-Link.
 const CALC_ROUTES: Record<string, string> = {
@@ -32,18 +34,28 @@ const CALC_ROUTES: Record<string, string> = {
   bafoeg: '/bafoegrechner',
 };
 
-function amountLabel(benefit: RadarResult['qualified'][number]['benefit']): string | null {
-  if (benefit.minMonthly && benefit.maxMonthly) return `ca. ${benefit.minMonthly}–${benefit.maxMonthly} € / Monat`;
-  if (benefit.minMonthly) return `ab ca. ${benefit.minMonthly} € / Monat`;
-  if (benefit.maxMonthly) return `bis ca. ${benefit.maxMonthly} € / Monat`;
+// Gesamtanzahl der Leistungen in der Benefit-Datenbank (für den Subtitle).
+const TOTAL_BENEFITS = 131;
+
+function amountLabel(
+  benefit: RadarResult['qualified'][number]['benefit'],
+  t: ReturnType<typeof getDashboardDict>['foerderungen'],
+): string | null {
+  if (benefit.minMonthly && benefit.maxMonthly)
+    return formatTemplate(t.amountRange, { min: benefit.minMonthly, max: benefit.maxMonthly });
+  if (benefit.minMonthly) return formatTemplate(t.amountFrom, { min: benefit.minMonthly });
+  if (benefit.maxMonthly) return formatTemplate(t.amountUpTo, { max: benefit.maxMonthly });
   return null;
 }
 
 function BenefitCard({ match }: { match: RadarResult['qualified'][number] }) {
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).foerderungen;
   const { benefit, docsPresent, docsMissing } = match;
-  const amount = amountLabel(benefit);
-  const ctaHref = (benefit.calcPossible && CALC_ROUTES[benefit.id]) || benefit.url || '/dokumente';
-  const ctaLabel = benefit.calcPossible && CALC_ROUTES[benefit.id] ? 'Jetzt berechnen' : 'Beim Amt ansehen';
+  const amount = amountLabel(benefit, t);
+  const calcRoute = (benefit.calcPossible && CALC_ROUTES[benefit.id]) || null;
+  const ctaHref = calcRoute ? localeHref(locale, calcRoute) : benefit.url || localeHref(locale, '/dokumente');
+  const ctaLabel = calcRoute ? t.calcNow : t.viewAtOffice;
 
   return (
     <div className="flex flex-col rounded-2xl border border-line-soft bg-paper p-5">
@@ -55,13 +67,13 @@ function BenefitCard({ match }: { match: RadarResult['qualified'][number] }) {
         )}
         {benefit.calcPossible && (
           <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-semibold text-green-700">
-            Rechner verfügbar
+            {t.calcAvailable}
           </span>
         )}
       </div>
       <h3 className="text-lg font-semibold text-ink">{benefit.name}</h3>
       {benefit.authority && (
-        <p className="mt-0.5 text-xs text-ink-soft">Zuständig: {benefit.authority}</p>
+        <p className="mt-0.5 text-xs text-ink-soft">{formatTemplate(t.authority, { authority: benefit.authority })}</p>
       )}
       {benefit.amountText && <p className="mt-1 text-sm text-ink-soft">{benefit.amountText}</p>}
       {amount && <p className="mt-1 text-sm font-medium text-brand-700">{amount}</p>}
@@ -69,7 +81,7 @@ function BenefitCard({ match }: { match: RadarResult['qualified'][number] }) {
       {benefit.requiredDocs.length > 0 && (
         <div className="mt-3">
           <p className="text-xs text-ink-soft">
-            {docsPresent.length} von {benefit.requiredDocs.length} Nachweisen im Tresor
+            {formatTemplate(t.docsInVault, { present: docsPresent.length, total: benefit.requiredDocs.length })}
           </p>
           <div className="mt-1.5 flex flex-wrap gap-1.5">
             {benefit.requiredDocs.map((label) => {
@@ -110,10 +122,12 @@ function ClarifyBar({
   onAnswer: (field: ClarifyQuestion['field'], value: string) => void;
   busy: boolean;
 }) {
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).foerderungen;
   if (questions.length === 0) return null;
   return (
     <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5">
-      <h3 className="mb-3 font-semibold text-ink">Anspruch freischalten</h3>
+      <h3 className="mb-3 font-semibold text-ink">{t.unlockTitle}</h3>
       <div className="space-y-4">
         {questions.map((q) => (
           <div key={q.field}>
@@ -141,6 +155,8 @@ function ClarifyBar({
 export function FoerderungenView() {
   const { user } = useAuth();
   const { profile, updateProfile } = useProfileStore();
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).foerderungen;
   const [docs, setDocs] = useState<{ document_role: string; filename: string }[]>([]);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<Tab>('qualified');
@@ -203,33 +219,40 @@ export function FoerderungenView() {
     potential: result.potential.length,
     excluded: result.excluded.length,
   };
+  const tabLabels: Record<Tab, string> = {
+    qualified: t.tabQualified,
+    potential: t.tabPotential,
+    excluded: t.tabExcluded,
+  };
   const visible = tab === 'qualified' ? result.qualified : tab === 'potential' ? result.potential : [];
 
   return (
     <div className="flex flex-col px-6 py-8">
       <div className="mx-auto w-full max-w-4xl">
-        <h1 className="text-2xl font-bold text-ink">Förderungs-Radar</h1>
+        <h1 className="text-2xl font-bold text-ink">{t.title}</h1>
         <p className="mb-6 mt-2 text-sm text-ink-soft">
-          {result.qualified.length + result.potential.length} von 131 Leistungen passen zu deiner
-          Lage — basierend auf Profil und Tresor.
+          {formatTemplate(t.subtitle, {
+            matched: result.qualified.length + result.potential.length,
+            total: TOTAL_BENEFITS,
+          })}
         </p>
 
         <ClarifyBar questions={result.questions} onAnswer={handleAnswer} busy={answering} />
 
         {/* Tabs mit Badges */}
         <div className="mb-6 flex flex-wrap gap-2">
-          {TABS.map((t) => (
+          {TABS.map((key) => (
             <button
-              key={t.key}
+              key={key}
               type="button"
-              onClick={() => setTab(t.key)}
+              onClick={() => setTab(key)}
               className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-                tab === t.key
+                tab === key
                   ? 'bg-brand-600 text-white'
                   : 'border border-line-soft bg-white text-ink-soft hover:text-ink'
               }`}
             >
-              {t.label} ({counts[t.key]})
+              {tabLabels[key]} ({counts[key]})
             </button>
           ))}
         </div>
@@ -237,14 +260,12 @@ export function FoerderungenView() {
         {tab === 'excluded' ? (
           <div className="rounded-2xl border border-line-soft bg-paper p-6 text-sm text-ink-soft">
             {counts.excluded === 0
-              ? 'Aktuell ist keine Leistung eindeutig ausgeschlossen.'
-              : `${counts.excluded} Leistungen sind laut Profil objektiv nicht zutreffend (z. B. nur für Studierende oder Rentner). Diese blenden wir aus.`}
+              ? t.noExcluded
+              : formatTemplate(t.excludedInfo, { count: counts.excluded })}
           </div>
         ) : visible.length === 0 ? (
           <div className="rounded-2xl border border-line-soft bg-paper p-8 text-center text-sm text-ink-soft">
-            {tab === 'qualified'
-              ? 'Noch nichts eindeutig Qualifiziertes — beantworte die Klärungsfragen oben oder fülle dein Förder-Profil aus.'
-              : 'Keine offenen Potenziale — beantworte die Klärungsfragen, um mehr freizuschalten.'}
+            {tab === 'qualified' ? t.noQualified : t.noPotential}
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

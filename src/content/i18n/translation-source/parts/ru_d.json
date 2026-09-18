@@ -1,0 +1,84 @@
+{
+ "alg1": {
+  "meta": {
+   "title": "Заявление ALG1 | Antragsbruder",
+   "description": "Загрузите документы, ответьте на вопросы и подайте заявление на ALG1."
+  },
+  "index": {
+   "metaTitle": "ALG1 — быстрая проверка | Antragsbruder",
+   "metaDescription": "Проверьте за 7 вопросов, есть ли у вас право на ALG1, и начните заявление.",
+   "title": "Подать на ALG1",
+   "subtitle": "Ответьте на 7 коротких вопросов — мы оценим ваши шансы и начнём заявление."
+  },
+  "flow": {
+   "loading": "Загрузка…",
+   "documentsTitle": "Ваши документы",
+   "documentsText": "Загрузите самые важные документы — мы читаем их автоматически.",
+   "backToDocuments": "← Назад к документам",
+   "continueToSummary": "Далее к сводке →",
+   "backToForm": "← Назад к форме",
+   "startApplication": "Начать официальное заявление на ALG1 и загрузить документы",
+   "errorNotFound": "Заявление не найдено или нет доступа.",
+   "errorNoAccess": "Нет доступа к этому заявлению."
+  },
+  "start": {
+   "loadingDraft": "Загрузка черновика…",
+   "draftLoaded": "Ваш сохранённый черновик загружен.",
+   "errorCreatingCase": "Не удалось создать дело. Попробуйте позже.",
+   "errorCreatingApplication": "Не удалось создать заявление: {{errorMessage}}",
+   "errorUpdatingDraft": "Не удалось сохранить черновик: {{errorMessage}}"
+  },
+  "check": {
+   "questionProgress": "Вопрос {{current}} из {{total}}",
+   "progressPercent": "{{progress}}%",
+   "back": "← Назад",
+   "questions": {
+    "termination_type": "Что произошло с вашей работой?",
+    "insurance_period_months": "Сколько месяцев за последние 28 месяцев вы были обязаны страховаться?",
+    "registered_unemployed": "Вы уже зарегистрировались как безработный?",
+    "available_hours_per_week": "Сколько часов в неделю вы можете работать?",
+    "actively_seeking": "Вы активно ищете работу?",
+    "has_children": "У вас есть дети до 18?",
+    "has_partner": "Вы живёте с партнёром/партнёршей?",
+    "gross_salary": "Примерный месячный валовой доход за последние 12 месяцев в €"
+   },
+   "termination": {
+    "EMPLOYER_TERMINATED": "Расторг работодатель",
+    "CONTRACT_END": "Договор истёк",
+    "SELF_QUIT": "Я уволился сам",
+    "MUTUAL_AGREEMENT": "Соглашение о расторжении",
+    "EMPLOYER_INSOLVENT": "Работодатель банкрот",
+    "HOURS_REDUCED": "Рабочие часы сократили",
+    "OTHER": "Другое"
+   }
+  },
+  "checkResult": {
+   "likelyTitle": "Очень вероятно, что вы имеете право на ALG 1",
+   "unclearTitle": "Нужна индивидуальная проверка — заявление всё равно рекомендуется",
+   "unlikelyTitle": "Обычного права на ALG1 по текущей оценке нет",
+   "estimatedMonthly": "Расчётная месячная сумма",
+   "basis": "Основа: {{amount}} € брутто",
+   "rateWithChild": "67% (с ребёнком)",
+   "rateWithoutChild": "60%",
+   "perMonth": "~ {{amount}} € / мес.",
+   "perDay": "{{amount}} €/день",
+   "basisLine": "Основа: {{basis}} € брутто · ставка: {{rate}} · {{daily}} €/день",
+   "editAnswerAria": "Изменить ответ на „{{question}}“",
+   "yourAnswers": "Ваши ответы",
+   "change": "Изменить",
+   "nextSteps": "Следующие шаги"
+  },
+  "erfolg": {
+   "metaTitle": "ALG1 — заявление подано | Antragsbruder",
+   "metaDescription": "Ваше заявление на ALG1 подготовлено и помечено как готовое.",
+   "pageTitle": "Заявление успешно подано",
+   "headline": "Готово!",
+   "bodyPre": "Ваше заявление на ALG1 полностью подготовлено и помечено как",
+   "bodyPost": ". Передача в ведомство по труду и отслеживание статуса будут позже.",
+   "hint1": "Зарегистрируйтесь как безработный минимум за 3 месяца до конца договора.",
+   "hint2": "Сохраните подтверждение с вашим номером дела.",
+   "hint3": "ALG1 выплачивается ежемесячно авансом.",
+   "backLink": "К обзору"
+  }
+ }
+}

@@ -1,0 +1,150 @@
+{
+ "common": {
+  "save": "Zapisz",
+  "saving": "Zapisywanie…",
+  "saved": "Zmiany zapisane.",
+  "errorSaving": "Zapisywanie nie powiodło się. Spróbuj ponownie.",
+  "cancel": "Anuluj",
+  "close": "Zamknij",
+  "delete": "Usuń",
+  "deleting": "Usuwanie…",
+  "edit": "Edytuj",
+  "back": "Wstecz",
+  "next": "Dalej",
+  "previous": "Wstecz",
+  "loading": "Ładowanie…",
+  "error": "Coś poszło nie tak. Spróbuj ponownie.",
+  "retry": "Spróbuj ponownie",
+  "optional": "opcjonalnie",
+  "required": "pole wymagane",
+  "upload": "Prześlij",
+  "uploading": "Przesyłanie…",
+  "download": "Pobierz",
+  "search": "Szukaj",
+  "yes": "Tak",
+  "no": "Nie",
+  "refresh": "Odśwież",
+  "confirm": "Potwierdź",
+  "skip": "Pomiń",
+  "notAvailable": "Niedostępne",
+  "open": "Otwórz",
+  "new": "Nowy"
+ },
+ "nav": {
+  "dashboard": "Panel",
+  "alg1": "ALG1",
+  "dokumente": "Dokumenty",
+  "foerderungen": "Świadczenia"
+ },
+ "sidebar": {
+  "logout": "Wyloguj się",
+  "backToSite": "Powrót na stronę",
+  "guest": "Gość",
+  "navLabel": "Nawigacja panelu"
+ },
+ "home": {
+  "metaTitle": "Panel — Antragsbruder",
+  "metaDescription": "Twoje bieżące wnioski i pasujące świadczenia w jednym spojrzeniu.",
+  "greetingMorning": "Dzień dobry (rano)",
+  "greetingDay": "Dzień dobry",
+  "greetingEvening": "Dobry wieczór",
+  "fallbackUser": "Użytkownik",
+  "summaryOneApp": "Masz {{apps}} aktywny wniosek i {{benefits}} pasujących świadczeń.",
+  "summaryManyApps": "Masz {{apps}} aktywne wnioski i {{benefits}} pasujących świadczeń.",
+  "startFirst": "Rozpocznij swój pierwszy wniosek.",
+  "runningTitle": "Bieżące wnioski",
+  "noRunning": "Jeszcze brak aktywnych wniosków",
+  "startNow": "Zacznij teraz",
+  "status": {
+   "DRAFT": "W toku",
+   "IN_PROGRESS": "W toku",
+   "DOCS_PENDING": "Brakuje dokumentów",
+   "READY": "Gotowe do wysłania",
+   "SUBMITTED": "Wysłane ✓",
+   "PROCESSING": "W trakcie sprawdzania",
+   "APPROVED": "Zatwierdzone 🎉",
+   "REJECTED": "Odrzucone"
+  },
+  "alg1Title": "Zasiłek dla bezrobotnych (ALG1)",
+  "applicationFallback": "Wniosek",
+  "upTo": "Do {{amount}} €/mies.",
+  "createdAt": "Utworzono {{date}}",
+  "viewStatus": "Zobacz status",
+  "continueWorking": "Kontynuuj",
+  "possibleTitle": "Możliwe świadczenia",
+  "fillProfile": "Wypełnij profil, aby zobaczyć pasujące świadczenia.",
+  "confidenceHigh": "Bardzo prawdopodobne",
+  "confidencePossible": "Możliwe",
+  "allBenefits": "Zobacz wszystkie świadczenia →",
+  "docsTresor": "Dokumenty i sejf",
+  "docsEmpty": "Prześlij dokumenty, aby dokończyć wniosek.",
+  "docsCountOne": "{{count}} dokument w sejfie.",
+  "docsCountMany": "{{count}} dokumenty w sejfie.",
+  "goToTresor": "Do sejfu",
+  "stepsProgress": "{{done}}/4 kroki",
+  "timeline": {
+   "docs": {
+    "label": "Dodaj dokumenty",
+    "description": "Prześlij wypowiedzenie, zaświadczenia o zarobkach i inne dokumenty."
+   },
+   "data": {
+    "label": "Wypełnij dane",
+    "description": "Odpowiedz na pytania i wpisz swoje dane osobowe."
+   },
+   "submit": {
+    "label": "Złóż wniosek",
+    "description": "Sprawdź podsumowanie i złóż je w urzędzie."
+   },
+   "receive": {
+    "label": "Otrzymaj zasiłek",
+    "description": "Czekaj na decyzję i otrzymaj pierwszą wypłatę."
+   }
+  }
+ },
+ "foerderungen": {
+  "metaTitle": "Świadczenia — Antragsbruder",
+  "metaDescription": "Kontrola świadczeń oparta na zasadach i Twoich danych.",
+  "title": "Radar świadczeń",
+  "subtitle": "{{matched}} z {{total}} świadczeń pasuje do Twojej sytuacji — na podstawie profilu i sejfu.",
+  "tabQualified": "🎯 Zakwalifikowany dla mnie",
+  "tabPotential": "⚡ Sprawdź potencjał",
+  "tabExcluded": "🚫 Wykluczone",
+  "amountRange": "ok. {{min}}–{{max}} € / mies.",
+  "amountFrom": "od ok. {{min}} € / mies.",
+  "amountUpTo": "do ok. {{max}} € / mies.",
+  "calcNow": "Oblicz teraz",
+  "viewAtOffice": "Zobacz w urzędzie",
+  "calcAvailable": "Dostępny kalkulator",
+  "authority": "Właściwy urząd: {{authority}}",
+  "docsInVault": "{{present}} z {{total}} wymaganych dokumentów w sejfie",
+  "unlockTitle": "Odblokuj uprawnienie",
+  "noExcluded": "Obecnie żadne świadczenie nie jest jednoznacznie wykluczone.",
+  "excludedInfo": "{{count}} świadczeń zdecydowanie nie dotyczy Twojego profilu (np. tylko dla studentów lub emerytów). Ukrywamy je.",
+  "noQualified": "Jeszcze nic jednoznacznie zakwalifikowanego — odpowiedz na pytania wyjaśniające powyżej lub wypełnij profil świadczeń.",
+  "noPotential": "Brak otwartych potencjałów — odpowiedz na pytania wyjaśniające, aby odblokować więcej."
+ },
+ "antraege": {
+  "statusLabel": "Status",
+  "status": {
+   "ACTIVE": "Aktywny",
+   "PAUSED": "Wstrzymany",
+   "COMPLETED": "Zakończony"
+  },
+  "deleteConfirm": "Naprawdę usunąć „{{filename}}“?",
+  "deleteFailed": "Usuwanie nie powiodło się",
+  "uploadedAt": "Przesłano {{date}}",
+  "notFound": "Nie znaleziono wniosku",
+  "loadFailed": "Błąd podczas ładowania",
+  "statusChangeFailed": "Nie udało się zmienić statusu",
+  "goBack": "Do przeglądu",
+  "uploadDocument": "Prześlij dokument",
+  "loadingCase": "Ładowanie wniosku…",
+  "completedApplication": "Zakończony wniosek",
+  "activeApplication": "Aktywny wniosek",
+  "createdAt": "Utworzono {{date}}",
+  "documentsTitle": "Dokumenty",
+  "noDocuments": "Jeszcze brak dokumentów",
+  "noDocumentsHint": "Prześlij swoje dokumenty, aby pchnąć wniosek do przodu.",
+  "uploadDocuments": "Prześlij dokumenty"
+ }
+}

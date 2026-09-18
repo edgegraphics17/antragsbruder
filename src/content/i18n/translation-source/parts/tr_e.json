@@ -1,0 +1,257 @@
+{
+ "alg1": {
+  "form": {
+   "sections": {
+    "Personendaten": "Kişisel veriler",
+    "Letzter Arbeitgeber": "Son işveren",
+    "Agentur für Arbeit": "İş Kurumu",
+    "Verfügbarkeit": "Uygunluk",
+    "Haushalt": "Hane",
+    "Finanzen": "Mali durum"
+   },
+   "pleaseSelect": "Lütfen seçin…",
+   "childrenAgesHint": "Çocukların yaşlarını virgülle ayırın, ör. „3, 7“",
+   "progressLabel": "İlerleme",
+   "autosaveNote": "Girdileriniz otomatik olarak kaydedilir.",
+   "savedIndicator": "🟢 Kaydedildi · {{time}}",
+   "savingIndicator": "⏳ Kaydediliyor…",
+   "saveNow": "Şimdi kaydet",
+   "fieldsCount": "Toplam {{total}} alan, {{visible}} tanesi görünür.",
+   "checkError": "— lütfen kontrol edin",
+   "fields": {
+    "firstName": {
+     "label": "Ad"
+    },
+    "lastName": {
+     "label": "Soyad"
+    },
+    "dateOfBirth": {
+     "label": "Doğum tarihi"
+    },
+    "street": {
+     "label": "Sokak & bina numarası"
+    },
+    "postcode": {
+     "label": "Posta kodu",
+     "placeholder": "ör. 10115"
+    },
+    "city": {
+     "label": "Şehir"
+    },
+    "phone": {
+     "label": "Telefon",
+     "placeholder": "ör. 030 12345678"
+    },
+    "email": {
+     "label": "E-posta",
+     "placeholder": "ör. max@ornek.com"
+    },
+    "nationality": {
+     "label": "Uyruk"
+    },
+    "taxId": {
+     "label": "Vergi kimlik no",
+     "placeholder": "ör. 12 34 56789 01",
+     "hint": "11 hane — ücret vergi belgenizde yer alır"
+    },
+    "iban": {
+     "label": "IBAN",
+     "placeholder": "ör. DE89 3704 0044 0532 0130 00",
+     "hint": "DE + 2 kontrol hanesi ile başlar"
+    },
+    "healthInsurance": {
+     "label": "Sağlık sigortası"
+    },
+    "employerName": {
+     "label": "İşverenin adı"
+    },
+    "employerAddress": {
+     "label": "İşverenin adresi"
+    },
+    "employmentStart": {
+     "label": "İşe başlama tarihi"
+    },
+    "employmentEnd": {
+     "label": "İş ilişkisinin sonu"
+    },
+    "contractType": {
+     "label": "Sözleşme türü"
+    },
+    "hoursPerWeek": {
+     "label": "Haftada saat"
+    },
+    "grossSalary": {
+     "label": "Brüt gelir (son ay)"
+    },
+    "taxClass": {
+     "label": "Vergi sınıfı"
+    },
+    "churchTax": {
+     "label": "Kilise vergisi"
+    },
+    "childrenAllowance": {
+     "label": "Çocuk indirimi"
+    },
+    "unemployedSince": {
+     "label": "İşsizlik başlangıcı (gelecek tarih de mümkün)"
+    },
+    "agencyLocation": {
+     "label": "Kurum lokasyonu"
+    },
+    "agencyReference": {
+     "label": "Dosya numarası (biliniyorsa)"
+    },
+    "fitForWork": {
+     "label": "Sağlık açısından çalışabilir"
+    },
+    "availableFor15h": {
+     "label": "Haftada en az 15 saat müsait"
+    },
+    "activelySeeking": {
+     "label": "Aktif olarak iş arıyor"
+    },
+    "restrictions": {
+     "label": "İş aramada kısıtlamalar"
+    },
+    "childrenCount": {
+     "label": "18 yaş altı çocuk sayısı"
+    },
+    "childrenAges": {
+     "label": "Çocukların yaşları (virgülle ayrılmış)",
+     "placeholder": "ör. 3, 7",
+     "hint": "2 çocuk için ör. „3, 7“"
+    },
+    "hasPartner": {
+     "label": "Hanedde partner"
+    },
+    "partnerUnemployed": {
+     "label": "Partner de işsiz"
+    },
+    "incomeSources": {
+     "label": "Mevcut gelir kaynakları"
+    },
+    "assetsOver15k": {
+     "label": "15.000 € üzeri varlık"
+    }
+   },
+   "options": {
+    "nationality": {
+     "DE": "Alman",
+     "EU": "AB vatandaşı",
+     "OTHER": "Diğer"
+    },
+    "contractType": {
+     "UNLIMITED": "Süresiz",
+     "LIMITED": "Süreli"
+    },
+    "taxClass": {
+     "I": "I",
+     "II": "II",
+     "III": "III",
+     "IV": "IV",
+     "V": "V",
+     "VI": "VI"
+    },
+    "restrictions": {
+     "NONE": "Yok",
+     "PHYSICAL": "Fiziksel kısıtlamalar",
+     "MENTAL": "Psikolojik kısıtlamalar",
+     "CARE": "Yakınlarına bakım"
+    },
+    "incomeSources": {
+     "NONE": "Yok",
+     "EMPLOYMENT": "İstihdam",
+     "ALG1": "ALG1",
+     "SICK_PAY": "Hastalık maaşı",
+     "CHILD_BENEFIT": "Çocuk parası",
+     "MAINTENANCE": "Nafaka",
+     "PARENTAL_ALLOWANCE": "Ebeveyn maaşı",
+     "PENSION": "Emekli maaşı",
+     "SELF_EMPLOYED": "Serbest meslek"
+    }
+   }
+  },
+  "summary": {
+   "title": "ALG1 başvurunuz",
+   "titleReadOnly": "ALG1 başvurunuz — güncel durum",
+   "titleEdit": "ALG1 başvurunuzun özeti",
+   "status": {
+    "SUBMITTED": {
+     "label": "Gönderildi",
+     "hint": "Başvurunuz Jobcenter'a ulaştı. Burada sizi bilgilendiriyor tutacağız."
+    },
+    "PROCESSING": {
+     "label": "İnceleniyor",
+     "hint": "İş Kurumu başvurunuzu inceliyor. Dosya numarası onayınızı hazır bulundurun."
+    },
+    "APPROVED": {
+     "label": "Onaylandı 🎉",
+     "hint": "İşsizlik maaşınız onaylandı — ödeme her ay peşin yapılır."
+    },
+    "REJECTED": {
+     "label": "Reddedildi",
+     "hint": "Başvurunuz reddedildi. Kararı kontrol edin — buna itiraz edebilirsiniz."
+    }
+   },
+   "missingHeading": "Henüz {{count}} bilgi eksik ({{issues}} doğrulama hatası):",
+   "addInfoBtn": "Bilgileri tamamla ({{sections}})",
+   "errRequired": "Lütfen doldurun — bu bilgi hâlâ eksik.",
+   "errTaxId": "Lütfen vergi kimlik numaranızı tam olarak 11 hane ile girin (ör. 12 34 56789 01).",
+   "errIban": "Lütfen geçerli bir IBAN girin (ör. DE89 3704 0044 0532 0130 00).",
+   "errPostcode": "Lütfen 5 haneli bir posta kodu girin (ör. 10115).",
+   "errEmail": "Lütfen geçerli bir e-posta adresi girin.",
+   "errDate": "Lütfen bir tarih seçin.",
+   "errIncomeSources": "Lütfen en az bir gelir kaynağı seçin (veya „Yok“).",
+   "errChildrenAges": "Lütfen çocukların yaşlarını virgülle ayırarak girin (ör. 3, 7).",
+   "errDefault": "Lütfen bu bilgiyi kontrol edin ve tamamlayın.",
+   "submitFailed": "Gönderim başarısız oldu",
+   "confirmedTitle": "Başvuru gönderildi (simülasyon)",
+   "confirmedPre": "Başvuru",
+   "confirmedPost": "olarak işaretlendi. İş Kurumu'na aktarım sonraki bir aşamada gerçekleşecek.",
+   "estimateLabel": "Tahmini aylık ALG1 tutarı",
+   "estimateLine": "Temel: {{basis}} € | oran: {{rate}} | gün: {{daily}} €",
+   "lblName": "Ad:",
+   "lblBirthDate": "Doğum tarihi:",
+   "lblAddress": "Adres:",
+   "lblEmail": "E-posta:",
+   "lblEmployer": "İşveren:",
+   "lblUnemployedSince": "İşsizlik başlangıcı:",
+   "lblGross": "Brüt:",
+   "lblTaxClass": "Vergi sınıfı:",
+   "lblChildren": "Çocuklar:",
+   "lblIban": "IBAN:",
+   "notesTitle": "Önemli notlar:",
+   "note1": "Sözleşmeniz bitmeden en geç 3 ay önce işsiz olarak kaydolun",
+   "note2": "Dosya numarası onayınızı saklayın",
+   "note3": "ALG1 her ay peşin ödenir",
+   "statusLabel": "Durum:",
+   "submitting": "Gönderiliyor…",
+   "submitBtn": "Başvuruyu gönder (simülasyon)"
+  },
+  "upload": {
+   "slots": {
+    "TERMINATION": {
+     "label": "İhbarname",
+     "description": "İş ilişkisinin sona ermesi"
+    },
+    "PAYSLIP": {
+     "label": "Son maaş bordrosu",
+     "description": "Brüt maaş kanıtı"
+    },
+    "ID_CARD": {
+     "label": "Kimlik kartı",
+     "description": "Ön ve arka yüz"
+    },
+    "OTHER": {
+     "label": "Ek belgeler",
+     "description": "İsteğe bağlı"
+    }
+   },
+   "required": "Zorunlu",
+   "bypassLabel": "Belgeleri daha sonra göndereceğim",
+   "continueBtn": "Sorulara devam et",
+   "uploading": "Yükleniyor…",
+   "dropzoneHint": "Tıklayın veya dosyayı buraya sürükleyin (PDF, JPG, PNG — maks. 10 MB)"
+  }
+ }
+}

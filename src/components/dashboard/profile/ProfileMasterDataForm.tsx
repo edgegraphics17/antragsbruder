@@ -3,6 +3,7 @@
 // Stammdaten: Vorname, Nachname, Geburtsdatum, Adresse (Straße, PLZ,
 // Stadt), Telefon — React-Hook-Form + Zod. PLZ-Autofill via
 // api.zippopotam.us bei 5-stelliger Eingabe.
+// Labels/Placeholders aus dem Dict (profile.masterData.*).
 
 import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
@@ -10,6 +11,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ProfileMasterDataSchema, type ProfileMasterData } from '@/lib/schemas/profile';
 import { useProfileStore } from '@/lib/stores/profile-store';
 import { ButtonAction } from '@/components/ui/Button';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
 
 interface Props {
   onEmailChange: () => void;
@@ -20,6 +23,9 @@ const inputCls =
 
 export function ProfileMasterDataForm({ onEmailChange }: Props) {
   const { profile, updateProfile } = useProfileStore();
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).profile.masterData;
+  const tAccount = getDashboardDict(locale).profile.account;
 
   const {
     register,
@@ -98,46 +104,46 @@ export function ProfileMasterDataForm({ onEmailChange }: Props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 rounded-2xl border border-line-soft bg-paper p-5">
-      <h2 className="font-semibold text-ink">Stammdaten</h2>
+      <h2 className="font-semibold text-ink">{t.title}</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <label className="text-sm text-ink-soft">
-          Vorname
+          {t.firstName}
           <input {...register('firstName')} type="text" className={inputCls} />
           {errors.firstName && <p className="mt-1 text-xs text-red-600">{errors.firstName.message}</p>}
         </label>
         <label className="text-sm text-ink-soft">
-          Nachname
+          {t.lastName}
           <input {...register('lastName')} type="text" className={inputCls} />
           {errors.lastName && <p className="mt-1 text-xs text-red-600">{errors.lastName.message}</p>}
         </label>
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <label className="text-sm text-ink-soft">
-          Geburtsdatum
+          {t.birthDate}
           <input {...register('birthDate')} type="date" className={inputCls} />
           {errors.birthDate && <p className="mt-1 text-xs text-red-600">{errors.birthDate.message}</p>}
         </label>
         <label className="text-sm text-ink-soft">
-          Telefon (optional)
+          {t.phone}
           <input {...register('phone')} type="tel" className={inputCls} />
           {errors.phone && <p className="mt-1 text-xs text-red-600">{errors.phone.message}</p>}
         </label>
       </div>
       <div className="grid grid-cols-3 gap-4">
         <label className="col-span-2 text-sm text-ink-soft">
-          Straße
+          {t.street}
           <input {...register('street')} type="text" placeholder="Musterstraße" className={inputCls} />
           {errors.street && <p className="mt-1 text-xs text-red-600">{errors.street.message}</p>}
         </label>
         <label className="text-sm text-ink-soft">
-          Hausnummer
+          {t.houseNumber}
           <input {...register('houseNumber')} type="text" placeholder="12b" className={inputCls} />
           {errors.houseNumber && <p className="mt-1 text-xs text-red-600">{errors.houseNumber.message}</p>}
         </label>
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <label className="text-sm text-ink-soft">
-          PLZ
+          {t.postcode}
           <input
             {...register('postcode')}
             type="text"
@@ -149,13 +155,13 @@ export function ProfileMasterDataForm({ onEmailChange }: Props) {
           {errors.postcode && <p className="mt-1 text-xs text-red-600">{errors.postcode.message}</p>}
         </label>
         <label className="text-sm text-ink-soft sm:col-span-2">
-          Stadt
-          <input {...register('city')} type="text" placeholder="Automatisch via PLZ" className={inputCls} />
+          {t.city}
+          <input {...register('city')} type="text" placeholder={t.cityAutofill} className={inputCls} />
           {errors.city && <p className="mt-1 text-xs text-red-600">{errors.city.message}</p>}
         </label>
       </div>
       <div className="border-t border-line-soft pt-4">
-        <span className="text-sm text-ink-soft">E-Mail</span>
+        <span className="text-sm text-ink-soft">{t.lblEmail}</span>
         <div className="mt-1 flex items-center justify-between gap-2">
           <p className="truncate text-sm font-medium text-ink">{profile.email}</p>
           <button
@@ -163,17 +169,17 @@ export function ProfileMasterDataForm({ onEmailChange }: Props) {
             onClick={onEmailChange}
             className="shrink-0 text-sm font-semibold text-brand-700 hover:text-brand-800"
           >
-            E-Mail ändern
+            {tAccount.changeEmail}
           </button>
         </div>
       </div>
       <div className="flex gap-3">
         <ButtonAction type="submit" disabled={!isDirty || isSubmitting} className="flex-1">
-          {isSubmitting ? 'Wird gespeichert…' : 'Speichern'}
+          {isSubmitting ? t.saving : t.save}
         </ButtonAction>
         {isDirty && (
           <ButtonAction type="button" variant="secondary" onClick={() => reset()} className="flex-1">
-            Verwerfen
+            {t.discard}
           </ButtonAction>
         )}
       </div>

@@ -5,6 +5,7 @@
 // debounced Cloud-Autosave (Stufe 2, 1s nach letzter Eingabe).
 // Datenverlust unmöglich: Jede Eingabe ist sofort im persist-Store,
 // spätestens 1s später in Supabase. Validierung löscht nie Eingaben.
+// Sektions-Titel/Feld-Labels aus dem Dict (alg1.form.*), Fallback Config.
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useAlg1Store } from '@/lib/alg1/store';
 import { FORM_CONFIG, getVisibleFields } from '@/lib/alg1/form-config';
@@ -13,8 +14,13 @@ import { supabase } from '@/lib/supabase';
 import { FieldInput } from './FieldInput';
 import { ButtonAction } from '@/components/ui/Button';
 import type { Alg1FormData } from '@/lib/types/alg1';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
+import { formatTemplate } from '@/content/i18n/format';
 
 export function Alg1Form() {
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).alg1.form;
   const {
     formState,
     progress,
@@ -62,22 +68,26 @@ export function Alg1Form() {
     () => [...new Set(visibleFields.map((f) => f.section))],
     [visibleFields],
   );
+  const sectionLabels = t.sections as unknown as Record<string, string>;
+  const fieldDicts = t.fields as unknown as Record<string, { label?: string }>;
 
   // Autosave-Indikator: 🟢 Gespeichert / ⏳ Speichert…
   const savedLabel = isSaving
-    ? '⏳ Speichert…'
+    ? t.savingIndicator
     : lastSavedAt
-      ? `🟢 Gespeichert · ${new Date(lastSavedAt).toLocaleTimeString('de-DE', {
-          hour: '2-digit',
-          minute: '2-digit',
-        })}`
+      ? formatTemplate(t.savedIndicator, {
+          time: new Date(lastSavedAt).toLocaleTimeString(locale === 'de' ? 'de-DE' : locale, {
+            hour: '2-digit',
+            minute: '2-digit',
+          }),
+        })
       : null;
 
   return (
     <div className="mx-auto max-w-2xl p-6">
       <div className="mb-6">
         <div className="mb-1 flex justify-between text-sm">
-          <span>Fortschritt</span>
+          <span>{t.progressLabel}</span>
           <span className="font-medium">{progress}%</span>
         </div>
         <div className="h-2 rounded-full bg-line-soft">
@@ -85,7 +95,7 @@ export function Alg1Form() {
         </div>
         <div className="mt-2 flex items-center justify-between">
           <span className="text-xs text-ink-soft">
-            Deine Eingaben werden automatisch gespeichert.
+            {t.autosaveNote}
           </span>
           {savedLabel && <span className="text-xs text-ink-soft">{savedLabel}</span>}
         </div>
@@ -93,21 +103,21 @@ export function Alg1Form() {
 
       {sections.map((section) => (
         <div key={section} className="mb-8">
-          <h3 className="mb-4 text-lg font-semibold">{section}</h3>
+          <h3 className="mb-4 text-lg font-semibold">{sectionLabels[section] ?? section}</h3>
           <div className="space-y-4">
             {visibleFields
               .filter((f) => f.section === section)
               .map((field) => (
                 <div key={field.key}>
                   <label className="mb-1 block text-sm text-ink-soft">
-                    {field.label}
+                    {fieldDicts[String(field.key)]?.label ?? field.label}
                     {field.required && (
                       <span className={errorKeys.includes(String(field.key)) ? 'text-red-600' : 'text-brand-700'}>
                         {' '}*
                       </span>
                     )}
                     {errorKeys.includes(String(field.key)) && (
-                      <span className="ml-2 text-xs font-medium text-red-600">— bitte prüfen</span>
+                      <span className="ml-2 text-xs font-medium text-red-600">{t.checkError}</span>
                     )}
                   </label>
                   <FieldInput
@@ -129,11 +139,11 @@ export function Alg1Form() {
         disabled={isSaving}
         className="mb-6"
       >
-        {isSaving ? 'Speichert…' : 'Jetzt speichern'}
+        {isSaving ? t.savingIndicator.replace('⏳ ', '') : t.saveNow}
       </ButtonAction>
 
       <p className="text-xs text-ink-soft">
-        {FORM_CONFIG.length} Felder insgesamt, {visibleFields.length} sichtbar.
+        {formatTemplate(t.fieldsCount, { total: FORM_CONFIG.length, visible: visibleFields.length })}
       </p>
     </div>
   );

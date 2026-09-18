@@ -1,0 +1,84 @@
+{
+ "alg1": {
+  "meta": {
+   "title": "ALG1 başvurusu | Antragsbruder",
+   "description": "Belgelerinizi yükleyin, soruları yanıtlayın ve ALG1 başvurunuzu gönderin."
+  },
+  "index": {
+   "metaTitle": "ALG1 — hızlı kontrol | Antragsbruder",
+   "metaDescription": "7 soruda ALG1 hakkınız olup olmadığını kontrol edin ve başvurunuzu başlatın.",
+   "title": "ALG1 başvurusu yap",
+   "subtitle": "7 kısa soruyu yanıtlayın — şansınızı değerlendiriyoruz ve başvurunuzu başlatıyoruz."
+  },
+  "flow": {
+   "loading": "Yükleniyor…",
+   "documentsTitle": "Belgeleriniz",
+   "documentsText": "En önemli belgeleri yükleyin — bunları otomatik olarak okuyoruz.",
+   "backToDocuments": "← Belgelere geri dön",
+   "continueToSummary": "Özete devam et →",
+   "backToForm": "← Formlara geri dön",
+   "startApplication": "Resmi ALG1 başvurusunu başlat & belge yükle",
+   "errorNotFound": "Başvuru bulunamadı veya erişim yok.",
+   "errorNoAccess": "Bu başvuruya erişim yok."
+  },
+  "start": {
+   "loadingDraft": "Taslak yükleniyor…",
+   "draftLoaded": "Kayıtlı taslağınız yüklendi.",
+   "errorCreatingCase": "Dosya oluşturulamadı. Lütfen daha sonra tekrar deneyin.",
+   "errorCreatingApplication": "Başvuru oluşturulamadı: {{errorMessage}}",
+   "errorUpdatingDraft": "Taslak kaydedilemedi: {{errorMessage}}"
+  },
+  "check": {
+   "questionProgress": "Soru {{current}}/{{total}}",
+   "progressPercent": "%{{progress}}",
+   "back": "← Geri",
+   "questions": {
+    "termination_type": "İşinize ne oldu?",
+    "insurance_period_months": "Son 28 ayda kaç ay zorunlu sigortalıydınız?",
+    "registered_unemployed": "Zaten işsiz olarak kaydoldunuz mu?",
+    "available_hours_per_week": "Haftada kaç saat çalışabilirsiniz?",
+    "actively_seeking": "Aktif olarak iş mi arıyorsunuz?",
+    "has_children": "18 yaş altı çocuğunuz var mı?",
+    "has_partner": "Bir partnerle birlikte mi yaşıyorsunuz?",
+    "gross_salary": "Son 12 ayın yaklaşık aylık brüt geliri (€)"
+   },
+   "termination": {
+    "EMPLOYER_TERMINATED": "İşveren feshetti",
+    "CONTRACT_END": "Sözleşme sona erdi",
+    "SELF_QUIT": "Kendim istifa ettim",
+    "MUTUAL_AGREEMENT": "Karşılıklı fesih sözleşmesi",
+    "EMPLOYER_INSOLVENT": "İşveren iflas etti",
+    "HOURS_REDUCED": "Çalışma saatleri azaltıldı",
+    "OTHER": "Diğer"
+   }
+  },
+  "checkResult": {
+   "likelyTitle": "Çok büyük olasılıkla ALG 1 hakkınız var",
+   "unclearTitle": "Bireysel inceleme gerekli — başvuru yine de önerilir",
+   "unlikelyTitle": "Mevcut değerlendirmeye göre düzenli ALG1 hakkı yok",
+   "estimatedMonthly": "Tahmini aylık tutar",
+   "basis": "Temel: {{amount}} € brüt",
+   "rateWithChild": "%67 (çocuklu)",
+   "rateWithoutChild": "%60",
+   "perMonth": "~ {{amount}} € / ay",
+   "perDay": "{{amount}} €/gün",
+   "basisLine": "Temel: {{basis}} € brüt · oran: {{rate}} · {{daily}} €/gün",
+   "editAnswerAria": "„{{question}}“ yanıtını değiştir",
+   "yourAnswers": "Yanıtlarınız",
+   "change": "Değiştir",
+   "nextSteps": "Sonraki adımlar"
+  },
+  "erfolg": {
+   "metaTitle": "ALG1 — başvuru gönderildi | Antragsbruder",
+   "metaDescription": "ALG1 başvurunuz hazırlandı ve hazır olarak işaretlendi.",
+   "pageTitle": "Başvuru başarıyla gönderildi",
+   "headline": "Tamamlandı!",
+   "bodyPre": "ALG1 başvurunuz tamamen hazırlandı ve",
+   "bodyPost": "olarak işaretlendi. İş Kurumu'na aktarım ve durum takibi sonraki bir aşamada gerçekleşecek.",
+   "hint1": "Sözleşmeniz bitmeden en geç 3 ay önce işsiz olarak kaydolun.",
+   "hint2": "Dosya numarası onayınızı saklayın.",
+   "hint3": "ALG1 her ay peşin ödenir.",
+   "backLink": "Genel bakışa dön"
+  }
+ }
+}

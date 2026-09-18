@@ -1,0 +1,150 @@
+{
+ "common": {
+  "save": "Сохранить",
+  "saving": "Сохранение…",
+  "saved": "Изменения сохранены.",
+  "errorSaving": "Не удалось сохранить. Попробуйте ещё раз.",
+  "cancel": "Отмена",
+  "close": "Закрыть",
+  "delete": "Удалить",
+  "deleting": "Удаление…",
+  "edit": "Изменить",
+  "back": "Назад",
+  "next": "Далее",
+  "previous": "Назад",
+  "loading": "Загрузка…",
+  "error": "Что-то пошло не так. Попробуйте ещё раз.",
+  "retry": "Попробовать снова",
+  "optional": "необязательно",
+  "required": "обязательное поле",
+  "upload": "Загрузить",
+  "uploading": "Загрузка…",
+  "download": "Скачать",
+  "search": "Поиск",
+  "yes": "Да",
+  "no": "Нет",
+  "refresh": "Обновить",
+  "confirm": "Подтвердить",
+  "skip": "Пропустить",
+  "notAvailable": "Недоступно",
+  "open": "Открыть",
+  "new": "Новый"
+ },
+ "nav": {
+  "dashboard": "Панель",
+  "alg1": "ALG1",
+  "dokumente": "Документы",
+  "foerderungen": "Пособия"
+ },
+ "sidebar": {
+  "logout": "Выйти",
+  "backToSite": "На сайт",
+  "guest": "Гость",
+  "navLabel": "Навигация панели"
+ },
+ "home": {
+  "metaTitle": "Панель — Antragsbruder",
+  "metaDescription": "Ваши текущие заявления и подходящие пособия одним взглядом.",
+  "greetingMorning": "Доброе утро",
+  "greetingDay": "Добрый день",
+  "greetingEvening": "Добрый вечер",
+  "fallbackUser": "Пользователь",
+  "summaryOneApp": "У вас {{apps}} активное заявление и {{benefits}} подходящих пособий.",
+  "summaryManyApps": "У вас {{apps}} активных заявлений и {{benefits}} подходящих пособий.",
+  "startFirst": "Начните своё первое заявление.",
+  "runningTitle": "Текущие заявления",
+  "noRunning": "Активных заявлений пока нет",
+  "startNow": "Начать сейчас",
+  "status": {
+   "DRAFT": "В работе",
+   "IN_PROGRESS": "В работе",
+   "DOCS_PENDING": "Не хватает документов",
+   "READY": "Готово к отправке",
+   "SUBMITTED": "Отправлено ✓",
+   "PROCESSING": "На проверке",
+   "APPROVED": "Одобрено 🎉",
+   "REJECTED": "Отклонено"
+  },
+  "alg1Title": "Пособие по безработице (ALG1)",
+  "applicationFallback": "Заявление",
+  "upTo": "До {{amount}} €/мес.",
+  "createdAt": "Создано {{date}}",
+  "viewStatus": "Посмотреть статус",
+  "continueWorking": "Продолжить",
+  "possibleTitle": "Возможные пособия",
+  "fillProfile": "Заполните профиль, чтобы увидеть подходящие пособия.",
+  "confidenceHigh": "Очень вероятно",
+  "confidencePossible": "Возможно",
+  "allBenefits": "Посмотреть все пособия →",
+  "docsTresor": "Документы и хранилище",
+  "docsEmpty": "Загрузите документы, чтобы завершить заявление.",
+  "docsCountOne": "{{count}} документ в хранилище.",
+  "docsCountMany": "{{count}} документов в хранилище.",
+  "goToTresor": "В хранилище",
+  "stepsProgress": "{{done}}/4 шага",
+  "timeline": {
+   "docs": {
+    "label": "Добавить документы",
+    "description": "Загрузите уведомление о расторжении, справки о зарплате и другие документы."
+   },
+   "data": {
+    "label": "Заполнить данные",
+    "description": "Ответьте на вопросы и введите личные данные."
+   },
+   "submit": {
+    "label": "Подать заявление",
+    "description": "Проверьте сводку и подайте в ведомство."
+   },
+   "receive": {
+    "label": "Получить пособие",
+    "description": "Дождитесь решения и получите первую выплату."
+   }
+  }
+ },
+ "foerderungen": {
+  "metaTitle": "Пособия — Antragsbruder",
+  "metaDescription": "Проверка пособий по правилам на основе ваших данных.",
+  "title": "Радар пособий",
+  "subtitle": "{{matched}} из {{total}} пособий подходят вашей ситуации — на основе профиля и хранилища.",
+  "tabQualified": "🎯 Мне подходит",
+  "tabPotential": "⚡ Проверить потенциал",
+  "tabExcluded": "🚫 Исключено",
+  "amountRange": "ок. {{min}}–{{max}} € / мес.",
+  "amountFrom": "от ок. {{min}} € / мес.",
+  "amountUpTo": "до ок. {{max}} € / мес.",
+  "calcNow": "Рассчитать сейчас",
+  "viewAtOffice": "Посмотреть в ведомстве",
+  "calcAvailable": "Есть калькулятор",
+  "authority": "Ответственное ведомство: {{authority}}",
+  "docsInVault": "{{present}} из {{total}} необходимых документов в хранилище",
+  "unlockTitle": "Открыть право",
+  "noExcluded": "Сейчас ни одно пособие явно не исключено.",
+  "excludedInfo": "{{count}} пособий точно не подходят по профилю (например, только для студентов или пенсионеров). Мы их скрываем.",
+  "noQualified": "Пока ничего однозначно подходящего — ответьте на уточняющие вопросы выше или заполните профиль пособий.",
+  "noPotential": "Нет открытых потенциалов — ответьте на уточняющие вопросы, чтобы открыть больше."
+ },
+ "antraege": {
+  "statusLabel": "Статус",
+  "status": {
+   "ACTIVE": "Активно",
+   "PAUSED": "Приостановлено",
+   "COMPLETED": "Завершено"
+  },
+  "deleteConfirm": "Действительно удалить „{{filename}}“?",
+  "deleteFailed": "Не удалось удалить",
+  "uploadedAt": "Загружено {{date}}",
+  "notFound": "Заявление не найдено",
+  "loadFailed": "Ошибка загрузки",
+  "statusChangeFailed": "Не удалось изменить статус",
+  "goBack": "К обзору",
+  "uploadDocument": "Загрузить документ",
+  "loadingCase": "Загрузка заявления…",
+  "completedApplication": "Завершённое заявление",
+  "activeApplication": "Активное заявление",
+  "createdAt": "Создано {{date}}",
+  "documentsTitle": "Документы",
+  "noDocuments": "Документов пока нет",
+  "noDocumentsHint": "Загрузите документы, чтобы продвинуть заявление.",
+  "uploadDocuments": "Загрузить документы"
+ }
+}

@@ -3,6 +3,7 @@
 // ============================================================
 // DASHBOARD-STARTSEITE — Timeline-unterstütztes Layout.
 // Amts-Readiness entfernt. Timeline angepinnt (sticky bottom).
+// Alle UI-Strings über getDashboardDict (i18n), Links locale-aware.
 // ============================================================
 
 import { useEffect, useMemo, useState } from 'react';
@@ -13,45 +14,30 @@ import { supabase } from '@/lib/supabase';
 import { getRecommendedBenefits, type BenefitMatch } from '@/lib/alg1/matching';
 import { readinessIndex } from '@/lib/benefits/radar';
 import { formatDate } from '@/lib/dashboard';
+import { localeHref } from '@/i18n/config';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
+import { formatTemplate } from '@/content/i18n/format';
 
 // In-Bearbeitung-Status laut applications-Constraint.
 const ACTIVE_STATUSES = ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY', 'SUBMITTED', 'PROCESSING'];
 
-// Status-Badges für die Antrags-Karten — gleiche optische Sprache wie
-// die Confidence-Badges bei den Förderungen (grün = positive Nachricht).
-const STATUS_BADGE: Record<string, { label: string; cls: string }> = {
-  DRAFT: { label: 'In Arbeit', cls: 'bg-brand-100 text-brand-700' },
-  IN_PROGRESS: { label: 'In Arbeit', cls: 'bg-brand-100 text-brand-700' },
-  DOCS_PENDING: { label: 'Dokumente fehlen', cls: 'bg-amber-100 text-amber-700' },
-  READY: { label: 'Bereit zur Einreichung', cls: 'bg-amber-100 text-amber-700' },
-  SUBMITTED: { label: 'Eingereicht ✓', cls: 'bg-green-100 text-green-700' },
-  PROCESSING: { label: 'In Prüfung', cls: 'bg-amber-100 text-amber-700' },
-  APPROVED: { label: 'Bewilligt 🎉', cls: 'bg-green-100 text-green-700' },
-  REJECTED: { label: 'Abgelehnt', cls: 'bg-red-100 text-red-700' },
+// Status-Badge-Farben für die Antrags-Karten — Labels kommen aus dem
+// Dict (home.status.<STATUS>), gleiche optische Sprache wie die
+// Confidence-Badges bei den Förderungen (grün = positive Nachricht).
+const STATUS_BADGE_CLS: Record<string, string> = {
+  DRAFT: 'bg-brand-100 text-brand-700',
+  IN_PROGRESS: 'bg-brand-100 text-brand-700',
+  DOCS_PENDING: 'bg-amber-100 text-amber-700',
+  READY: 'bg-amber-100 text-amber-700',
+  SUBMITTED: 'bg-green-100 text-green-700',
+  PROCESSING: 'bg-amber-100 text-amber-700',
+  APPROVED: 'bg-green-100 text-green-700',
+  REJECTED: 'bg-red-100 text-red-700',
 };
 
-const TIMELINE_STEPS = [
-  {
-    id: 'docs',
-    label: 'Dokumente hinzufügen',
-    description: 'Lade Kündigung, Gehaltsnachweise und andere Unterlagen hoch.',
-  },
-  {
-    id: 'data',
-    label: 'Daten ausfüllen',
-    description: 'Beantworte die Fragen und gib deine persönlichen Daten ein.',
-  },
-  {
-    id: 'submit',
-    label: 'Antrag einreichen',
-    description: 'Prüfe die Zusammenfassung und reiche den Antrag bei der Agentur ein.',
-  },
-  {
-    id: 'receive',
-    label: 'Arbeitslosengeld bekommen',
-    description: 'Warte auf den Bescheid und erhalte deine erste Zahlung.',
-  },
-] as const;
+// Timeline-Schritte: nur IDs im Code, Label/Beschreibung aus dem Dict.
+const TIMELINE_STEPS = ['docs', 'data', 'submit', 'receive'] as const;
 
 interface AppRecord {
   id: string;
@@ -104,11 +90,13 @@ function getTimelineState(app: AppRecord | null): TimelineState {
 export function DashboardHome() {
   const { user } = useAuth();
   const { profile, documents, loadDocuments } = useProfileStore();
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).home;
   const [applications, setApplications] = useState<AppRecord[]>([]);
   const [recommendations, setRecommendations] = useState<BenefitMatch[]>([]);
 
   const hour = new Date().getHours();
-  const greeting = hour < 11 ? 'Guten Morgen' : hour < 18 ? 'Guten Tag' : 'Guten Abend';
+  const greeting = hour < 11 ? t.greetingMorning : hour < 18 ? t.greetingDay : t.greetingEvening;
 
   useEffect(() => {
     if (!user) return;
@@ -144,7 +132,7 @@ export function DashboardHome() {
   const activeApplications = applications.filter((a) => ACTIVE_STATUSES.includes(a.status));
   const activeAlg1 = activeApplications.find((a) => a.benefit_type === 'ALG1') ?? null;
   const timeline = getTimelineState(activeAlg1);
-  const displayName = profile?.firstName || user?.email?.split('@')[0] || 'Nutzer';
+  const displayName = profile?.firstName || user?.email?.split('@')[0] || t.fallbackUser;
 
   return (
     <div className="mx-auto max-w-6xl p-6 md:p-8 md:pb-56">
@@ -155,8 +143,11 @@ export function DashboardHome() {
         </h1>
         <p className="mt-1 text-sm text-ink-soft">
           {activeApplications.length > 0
-            ? `Du hast ${activeApplications.length} aktive${activeApplications.length === 1 ? 'n Antrag' : ' Anträge'} und ${recommendations.length} passende Förderungen.`
-            : 'Starte deinen ersten Antrag.'}
+            ? formatTemplate(
+                activeApplications.length === 1 ? t.summaryOneApp : t.summaryManyApps,
+                { apps: activeApplications.length, benefits: recommendations.length },
+              )
+            : t.startFirst}
         </p>
       </div>
 
@@ -164,20 +155,21 @@ export function DashboardHome() {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {/* Laufende Anträge */}
         <div className="space-y-4 md:col-span-2">
-          <h2 className="text-lg font-semibold text-ink">Laufende Anträge</h2>
+          <h2 className="text-lg font-semibold text-ink">{t.runningTitle}</h2>
           {activeApplications.length === 0 ? (
             <div className="rounded-2xl border border-line-soft bg-paper p-8 text-center">
-              <p className="mb-4 text-ink-soft">Noch keine aktiven Anträge</p>
+              <p className="mb-4 text-ink-soft">{t.noRunning}</p>
               <Link
-                href="/alg1"
+                href={localeHref(locale, '/alg1')}
                 className="inline-block rounded-xl bg-brand-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-700"
               >
-                Jetzt starten
+                {t.startNow}
               </Link>
             </div>
           ) : (
             activeApplications.map((app) => {
-              const badge = STATUS_BADGE[app.status] ?? { label: app.status, cls: 'bg-brand-100 text-brand-700' };
+              const badgeCls = STATUS_BADGE_CLS[app.status] ?? 'bg-brand-100 text-brand-700';
+              const badgeLabel = t.status[app.status as keyof typeof t.status] ?? app.status;
               const submitted = ['SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(app.status);
               return (
                 <div
@@ -185,28 +177,30 @@ export function DashboardHome() {
                   className="rounded-2xl border border-line-soft bg-paper p-5"
                 >
                   <div className="mb-2 flex items-center gap-2">
-                    <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${badge.cls}`}>
-                      {badge.label}
+                    <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${badgeCls}`}>
+                      {badgeLabel}
                     </span>
                   </div>
                   <p className="font-semibold text-ink">
-                    {app.benefit_type === 'ALG1' ? 'Arbeitslosengeld (ALG1)' : app.benefit_type || 'Antrag'}
+                    {app.benefit_type === 'ALG1' ? t.alg1Title : app.benefit_type || t.applicationFallback}
                   </p>
                   {app.calculation_result?.amount != null && app.calculation_result.amount > 0 && (
                     <p className="mt-1 text-sm font-semibold text-brand-700">
-                      Bis zu {app.calculation_result.amount} €/Monat
+                      {formatTemplate(t.upTo, { amount: app.calculation_result.amount })}
                     </p>
                   )}
-                  <p className="mt-0.5 text-xs text-ink-soft">Erstellt am {formatDate(app.created_at)}</p>
+                  <p className="mt-0.5 text-xs text-ink-soft">
+                    {formatTemplate(t.createdAt, { date: formatDate(app.created_at) })}
+                  </p>
                   <Link
                     href={
                       app.benefit_type === 'ALG1'
-                        ? `/alg1/antrag?applicationId=${app.id}&stage=${submitted ? 'summary' : (app.last_stage ?? 'upload')}`
-                        : `/antraege/${app.case_id}`
+                        ? localeHref(locale, `/alg1/antrag?applicationId=${app.id}&stage=${submitted ? 'summary' : (app.last_stage ?? 'upload')}`)
+                        : localeHref(locale, `/antraege/${app.case_id}`)
                     }
                     className="mt-3 inline-block rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
                   >
-                    {submitted ? 'Status ansehen' : 'Weiterarbeiten'}
+                    {submitted ? t.viewStatus : t.continueWorking}
                   </Link>
                 </div>
               );
@@ -216,10 +210,10 @@ export function DashboardHome() {
 
         {/* Mögliche Förderungen */}
         <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-ink">Mögliche Förderungen</h2>
+          <h2 className="text-lg font-semibold text-ink">{t.possibleTitle}</h2>
           {recommendations.length === 0 ? (
             <div className="rounded-2xl border border-line-soft bg-paper p-8 text-center text-sm text-ink-soft">
-              Fülle dein Profil aus, um passende Förderungen zu sehen.
+              {t.fillProfile}
             </div>
           ) : (
             <>
@@ -231,7 +225,7 @@ export function DashboardHome() {
                         rec.confidence === 'HIGH' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
                       }`}
                     >
-                      {rec.confidence === 'HIGH' ? 'Sehr wahrscheinlich' : 'Möglich'}
+                      {rec.confidence === 'HIGH' ? t.confidenceHigh : t.confidencePossible}
                     </span>
                   </div>
                   <h3 className="font-semibold text-ink">{rec.title}</h3>
@@ -245,8 +239,8 @@ export function DashboardHome() {
                   </Link>
                 </div>
               ))}
-              <Link href="/foerderungen" className="block text-sm font-semibold text-brand-700 hover:underline">
-                Alle Förderungen ansehen →
+              <Link href={localeHref(locale, '/foerderungen')} className="block text-sm font-semibold text-brand-700 hover:underline">
+                {t.allBenefits}
               </Link>
             </>
           )}
@@ -257,18 +251,21 @@ export function DashboardHome() {
       <div className="mt-8 rounded-2xl border border-line-soft bg-paper p-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="min-w-[200px] flex-1">
-            <p className="text-sm font-semibold text-ink">Dokumente & Tresor</p>
+            <p className="text-sm font-semibold text-ink">{t.docsTresor}</p>
             <p className="mt-1 text-xs text-ink-soft">
               {documents.length === 0
-                ? 'Lade Unterlagen hoch, um deinen Antrag abzuschließen.'
-                : `${documents.length} Dokument${documents.length === 1 ? '' : 'e'} im Tresor.`}
+                ? t.docsEmpty
+                : formatTemplate(
+                    documents.length === 1 ? t.docsCountOne : t.docsCountMany,
+                    { count: documents.length },
+                  )}
             </p>
           </div>
           <Link
-            href="/dokumente"
+            href={localeHref(locale, '/dokumente')}
             className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
           >
-            Zum Tresor
+            {t.goToTresor}
           </Link>
         </div>
       </div>
@@ -292,19 +289,20 @@ export function DashboardHome() {
               </div>
             </div>
             <span className="shrink-0 text-xs font-semibold text-ink">
-              {timeline.completedSteps.length}/4 Schritte
+              {formatTemplate(t.stepsProgress, { done: timeline.completedSteps.length })}
             </span>
           </div>
 
           {/* Steps — nur Desktop */}
           <div className="hidden gap-2 md:mt-3 md:grid md:grid-cols-4 md:gap-4">
-            {TIMELINE_STEPS.map((step, idx) => {
+            {TIMELINE_STEPS.map((stepId, idx) => {
               const stepNum = idx + 1;
               const isCompleted = timeline.completedSteps.includes(stepNum);
               const isActive = timeline.activeStep === stepNum;
+              const step = t.timeline[stepId];
 
               return (
-                <div key={step.id} className="flex flex-col items-center text-center">
+                <div key={stepId} className="flex flex-col items-center text-center">
                   <div
                     className={`mb-1 flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold transition-colors md:h-8 md:w-8 ${
                       isCompleted
@@ -332,9 +330,9 @@ export function DashboardHome() {
           <div className="mt-3 hidden md:block">
             <p className="text-center text-xs text-ink-soft">
               <span className="font-semibold text-ink">
-                {TIMELINE_STEPS[timeline.activeStep - 1].label}:
+                {t.timeline[TIMELINE_STEPS[timeline.activeStep - 1]].label}:
               </span>{' '}
-              {TIMELINE_STEPS[timeline.activeStep - 1].description}
+              {t.timeline[TIMELINE_STEPS[timeline.activeStep - 1]].description}
             </p>
           </div>
         </div>

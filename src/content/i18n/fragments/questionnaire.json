@@ -1,0 +1,26 @@
+{
+  "questionnaire": {
+    "errorLoading": "Fehler beim Laden der Fragen",
+    "sensHighlySensitive": "Sehr privat",
+    "sensSensitive": "Privat",
+    "sensNormal": "Normal",
+    "unitHint": "Angabe in {{unit}}",
+    "yourAnswerPlaceholder": "Deine Angabe",
+    "lblColdRent": "Kaltmiete (Netto)",
+    "lblHeating": "Heizkosten",
+    "monthlyEuro": "Monatliche Angabe in Euro",
+    "privateContent": "Inhalt ist privat — anklicken um anzuzeigen",
+    "skipQuestion": "Diese Frage überspringen",
+    "continueWithoutAnswer": "Ohne Antwort weiter",
+    "loadingQuestions": "Fragen werden geladen…",
+    "allAnsweredTitle": "Alle Fragen beantwortet",
+    "allAnsweredText": "Wir haben alle notwendigen Informationen. Dein Antrag wird nun vorbereitet.",
+    "noMoreTitle": "Keine weiteren Fragen",
+    "noMoreText": "Es sind keine weiteren Fragen vonnöten. Du kannst jetzt deinen Antrag einreichen.",
+    "headingEyebrow": "Schritt-für-Schritt-Anleitung",
+    "headingTitle": "Deine Antragsdaten",
+    "headingLede": "Wir führen dich durch alle Fragen, die wir für deinen Antrag benötigen. Du kannst jede Frage überspringen.",
+    "stepOf": "Schritt {{current}} von {{total}}",
+    "showAnswerField": "Antwortfeld anzeigen"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "upload": {
+    "status": {
+      "pending": "Bereit zum Hochladen",
+      "uploading": "Wird hochgeladen…",
+      "uploaded": "Hochgeladen",
+      "parsing": "Wird gescannt…",
+      "done": "Gescannt",
+      "error": "Fehler"
+    },
+    "moreChars": "… (weitere Zeichen)",
+    "startOcr": "OCR starten",
+    "remove": "Entfernen",
+    "errorNoCase": "Kein Antrag vorhanden – bitte zuerst einen Antrag erstellen.",
+    "errorNoCaseShort": "Kein Antrag",
+    "errorUpload": "Upload fehlgeschlagen",
+    "errorOcr": "OCR fehlgeschlagen",
+    "welcome": "Willkommen, {{name}}",
+    "toApplication": "Zum Antrag",
+    "step1": "Dokument hochladen",
+    "step2": "Daten prüfen",
+    "title1": "Dein erster Antrag – Dokumente",
+    "subtitle1": "Lade deine Unterlagen hoch. Wir scannen sie und zeigen dir, was wir darin finden.",
+    "noCaseTitle": "Du hast noch keinen Antrag erstellt.",
+    "noCaseText": "Lege zuerst einen Antrag an, dann kannst du hier Unterlagen hochladen.",
+    "createApplication": "Antrag erstellen",
+    "dropHere": "Dateien hier ablegen",
+    "dropHereOr": "Dateien hier ablegen oder auswählen",
+    "dropHint": "PDF, JPG oder PNG – bis zu 10 MB pro Datei",
+    "filesCount": "Hochgeladene Dateien ({{count}})",
+    "uploadNow": "Jetzt hochladen",
+    "selectDocuments": "Unterlagen auswählen",
+    "title2": "Dokumente geprüft",
+    "subtitle2": "Wir haben deine Unterlagen gescannt. Schau dir die Ergebnisse unten an.",
+    "scannedCountOne": "{{count}} Dokument erfolgreich gescannt",
+    "scannedCountMany": "{{count}} Dokumente erfolgreich gescannt",
+    "noneScannedTitle": "Noch kein Dokument gescannt",
+    "noneScannedText": "Scann erst ein Dokument, um die Inhalte zu sehen."
+  }
+}

@@ -1,0 +1,257 @@
+{
+ "alg1": {
+  "form": {
+   "sections": {
+    "Personendaten": "Date personale",
+    "Letzter Arbeitgeber": "Ultimul angajator",
+    "Agentur für Arbeit": "Agenția pentru Muncă",
+    "Verfügbarkeit": "Disponibilitate",
+    "Haushalt": "Gospodărie",
+    "Finanzen": "Finanțe"
+   },
+   "pleaseSelect": "Vă rugăm selectați…",
+   "childrenAgesHint": "Vârstele copiilor separate prin virgulă, ex. „3, 7“",
+   "progressLabel": "Progres",
+   "autosaveNote": "Intrările tale sunt salvate automat.",
+   "savedIndicator": "🟢 Salvat · {{time}}",
+   "savingIndicator": "⏳ Se salvează…",
+   "saveNow": "Salvează acum",
+   "fieldsCount": "Total câmpuri: {{total}}, {{visible}} vizibile.",
+   "checkError": "– vă rugăm verificați",
+   "fields": {
+    "firstName": {
+     "label": "Prenume"
+    },
+    "lastName": {
+     "label": "Nume"
+    },
+    "dateOfBirth": {
+     "label": "Data nașterii"
+    },
+    "street": {
+     "label": "Strada și numărul"
+    },
+    "postcode": {
+     "label": "Cod poștal",
+     "placeholder": "ex. 10115"
+    },
+    "city": {
+     "label": "Oraș"
+    },
+    "phone": {
+     "label": "Telefon",
+     "placeholder": "ex. 030 12345678"
+    },
+    "email": {
+     "label": "E-mail",
+     "placeholder": "ex. max@example.com"
+    },
+    "nationality": {
+     "label": "Naționalitate"
+    },
+    "taxId": {
+     "label": "Cod fiscal",
+     "placeholder": "ex. 12 34 56789 01",
+     "hint": "11 cifre – se află pe declarația ta de impozit"
+    },
+    "iban": {
+     "label": "IBAN",
+     "placeholder": "ex. DE89 3704 0044 0532 0130 00",
+     "hint": "Începe cu DE + 2 cifre de control"
+    },
+    "healthInsurance": {
+     "label": "Asigurare medicală"
+    },
+    "employerName": {
+     "label": "Denumirea angajatorului"
+    },
+    "employerAddress": {
+     "label": "Adresa angajatorului"
+    },
+    "employmentStart": {
+     "label": "Începutul angajării"
+    },
+    "employmentEnd": {
+     "label": "Sfârșitul raporturilor de muncă"
+    },
+    "contractType": {
+     "label": "Tipul contractului"
+    },
+    "hoursPerWeek": {
+     "label": "Ore pe săptămână"
+    },
+    "grossSalary": {
+     "label": "Venit brut (ultima lună)"
+    },
+    "taxClass": {
+     "label": "Clasa de impozitare"
+    },
+    "churchTax": {
+     "label": "Impozit bisericesc"
+    },
+    "childrenAllowance": {
+     "label": "Deduceri pentru copii"
+    },
+    "unemployedSince": {
+     "label": "Șomer de la/de la (posibilă și dată viitoare)"
+    },
+    "agencyLocation": {
+     "label": "Locația agenției"
+    },
+    "agencyReference": {
+     "label": "Numărul dosarului (dacă este cunoscut)"
+    },
+    "fitForWork": {
+     "label": "Apt pentru muncă (sănătate)"
+    },
+    "availableFor15h": {
+     "label": "Disponibil cel puțin 15h/săpt."
+    },
+    "activelySeeking": {
+     "label": "Caută activ un loc de muncă"
+    },
+    "restrictions": {
+     "label": "Restricții în căutarea unui loc de muncă"
+    },
+    "childrenCount": {
+     "label": "Număr de copii sub 18"
+    },
+    "childrenAges": {
+     "label": "Vârstele copiilor (separate prin virgulă)",
+     "placeholder": "ex. 3, 7",
+     "hint": "La 2 copii ex. „3, 7“"
+    },
+    "hasPartner": {
+     "label": "Partener în gospodărie"
+    },
+    "partnerUnemployed": {
+     "label": "Partenerul este și el șomer"
+    },
+    "incomeSources": {
+     "label": "Surse curente de venit"
+    },
+    "assetsOver15k": {
+     "label": "Active peste 15.000 €"
+    }
+   },
+   "options": {
+    "nationality": {
+     "DE": "Germană",
+     "EU": "Cetățean UE",
+     "OTHER": "Altul"
+    },
+    "contractType": {
+     "UNLIMITED": "Nedeterminat",
+     "LIMITED": "Determinat"
+    },
+    "taxClass": {
+     "I": "I",
+     "II": "II",
+     "III": "III",
+     "IV": "IV",
+     "V": "V",
+     "VI": "VI"
+    },
+    "restrictions": {
+     "NONE": "Niciuna",
+     "PHYSICAL": "Restricții fizice",
+     "MENTAL": "Restricții psihice",
+     "CARE": "Îngrijire rude"
+    },
+    "incomeSources": {
+     "NONE": "Niciuna",
+     "EMPLOYMENT": "Angajare",
+     "ALG1": "ALG1",
+     "SICK_PAY": "Concediu medical",
+     "CHILD_BENEFIT": "Alocație copil",
+     "MAINTENANCE": "Pensie alimentară",
+     "PARENTAL_ALLOWANCE": "Alocație parentală",
+     "PENSION": "Pensie",
+     "SELF_EMPLOYED": "Activitate independentă"
+    }
+   }
+  },
+  "summary": {
+   "title": "Cererea ta ALG1",
+   "titleReadOnly": "Cererea ta ALG1 – starea curentă",
+   "titleEdit": "Rezumatul cererii tale ALG1",
+   "status": {
+    "SUBMITTED": {
+     "label": "Trimis",
+     "hint": "Cererea ta a fost primită de Jobcenter. Te vom ține la curent aici."
+    },
+    "PROCESSING": {
+     "label": "În verificare",
+     "hint": "Agenția pentru Muncă verifică cererea ta. Păstrează confirmarea cu numărul dosarului la îndemână."
+    },
+    "APPROVED": {
+     "label": "Aprobat 🎉",
+     "hint": "Ajutorul tău de șomaj a fost aprobat – plata se face lunar în avans."
+    },
+    "REJECTED": {
+     "label": "Respins",
+     "hint": "Cererea ta a fost respinsă. Verifică decizia – poți face contestație."
+    }
+   },
+   "missingHeading": "Încă lipsesc {{count}} date ({{issues}} erori de validare):",
+   "addInfoBtn": "Completează datele ({{sections}})",
+   "errRequired": "Vă rugăm completați – aceste date încă lipsesc.",
+   "errTaxId": "Introduceți codul fiscal exact cu 11 cifre (ex. 12 34 56789 01).",
+   "errIban": "Introduceți un IBAN valid (ex. DE89 3704 0044 0532 0130 00).",
+   "errPostcode": "Introduceți un cod poștal cu 5 cifre (ex. 10115).",
+   "errEmail": "Introduceți o adresă de e-mail validă.",
+   "errDate": "Selectați o dată.",
+   "errIncomeSources": "Selectați cel puțin o sursă de venit (sau „Niciuna“).",
+   "errChildrenAges": "Indicați vârstele copiilor separate prin virgulă (ex. 3, 7).",
+   "errDefault": "Verificați și completați aceste date.",
+   "submitFailed": "Trimiterea a eșuat",
+   "confirmedTitle": "Cerere trimisă (simulare)",
+   "confirmedPre": "Cererea este marcată ca",
+   "confirmedPost": ". Transferul către Agenția pentru Muncă va avea loc într-o fază ulterioară.",
+   "estimateLabel": "Suma lunară estimată ALG1",
+   "estimateLine": "Baza: {{basis}} € | rata: {{rate}} | ziua: {{daily}} €",
+   "lblName": "Nume:",
+   "lblBirthDate": "Data nașterii:",
+   "lblAddress": "Adresa:",
+   "lblEmail": "E-mail:",
+   "lblEmployer": "Angajator:",
+   "lblUnemployedSince": "Șomer de la:",
+   "lblGross": "Brut:",
+   "lblTaxClass": "Clasa de impozitare:",
+   "lblChildren": "Copiii:",
+   "lblIban": "IBAN:",
+   "notesTitle": "Observații importante:",
+   "note1": "Înregistrează-te ca șomer cu cel puțin 3 luni înainte de sfârșitul contractului",
+   "note2": "Păstrează confirmarea cu numărul dosarului",
+   "note3": "ALG1 se plătește lunar în avans",
+   "statusLabel": "Stare:",
+   "submitting": "Se trimite…",
+   "submitBtn": "Depune cererea (simulare)"
+  },
+  "upload": {
+   "slots": {
+    "TERMINATION": {
+     "label": "Act de concediere",
+     "description": "Încheierea raporturilor de muncă"
+    },
+    "PAYSLIP": {
+     "label": "Ultimul fluturas de salariu",
+     "description": "Dovada salariului brut"
+    },
+    "ID_CARD": {
+     "label": "Carte de identitate",
+     "description": "Fața și verso"
+    },
+    "OTHER": {
+     "label": "Documente suplimentare",
+     "description": "Opțional"
+    }
+   },
+   "required": "Obligatoriu",
+   "bypassLabel": "Voi prezenta documentele mai târziu",
+   "continueBtn": "Continuă la întrebări",
+   "uploading": "Se încarcă…",
+   "dropzoneHint": "Clic sau trage un fișier aici (PDF, JPG, PNG – max. 10 MB)"
+  }
+ }
+}

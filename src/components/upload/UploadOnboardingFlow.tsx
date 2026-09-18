@@ -19,6 +19,10 @@ import {
   IconDocument,
   IconFolder,
 } from '@/components/ui/icons';
+import { localeHref } from '@/i18n/config';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
+import { formatTemplate } from '@/content/i18n/format';
 
 // ── Doku-Karte ────────────────────────────────────────────
 
@@ -43,14 +47,10 @@ function FileCard({
   onParse: (item: FileItem) => void;
   onOpen: (url: string) => void;
 }) {
-  const statusLabel: Record<FileItem['status'], string> = {
-    pending: 'Bereit zum Hochladen',
-    uploading: 'Wird hochgeladen…',
-    uploaded: 'Hochgeladen',
-    parsing: 'Wird gescannt…',
-    done: 'Gescannt',
-    error: 'Fehler',
-  };
+  const locale = useLocaleFromPath();
+  const tu = getDashboardDict(locale).upload;
+  const tc = getDashboardDict(locale).common;
+  const statusLabel = tu.status as unknown as Record<FileItem['status'], string>;
 
   const statusVariant =
     item.status === 'done' ? 'text-brand-600' :
@@ -85,7 +85,7 @@ function FileCard({
           <div className="mt-3 max-h-32 overflow-auto rounded-xl border border-line-soft bg-ink-50 p-3 text-xs leading-relaxed text-ink-soft">
             <p>{item.ocrText.slice(0, 500)}</p>
             {item.ocrText.length > 500 && (
-              <p className="mt-1 text-brand-600">… (weitere Zeichen)</p>
+              <p className="mt-1 text-brand-600">{tu.moreChars}</p>
             )}
           </div>
         )}
@@ -112,7 +112,7 @@ function FileCard({
             size="sm"
             onClick={() => onParse(item)}
           >
-            OCR starten
+            {tu.startOcr}
           </ButtonAction>
         )}
         {item.status === 'done' && item.storagePath ? (
@@ -122,7 +122,7 @@ function FileCard({
             size="sm"
             onClick={() => onOpen(`/api/dashboard/documents?path=${encodeURIComponent(item.storagePath ?? '')}`)}
           >
-            Öffnen
+            {tc.open}
           </ButtonAction>
         ) : null}
         {(item.status === 'uploaded' || item.status === 'done' || item.status === 'error') && (
@@ -130,7 +130,7 @@ function FileCard({
             type="button"
             onClick={() => onRemove(item.id)}
             className="rounded-full p-1 text-ink-soft transition-colors hover:bg-brand-100 hover:text-brand-700"
-            title="Entfernen"
+            title={tu.remove}
           >
             <IconX className="h-4 w-4" />
           </button>
@@ -145,6 +145,8 @@ function FileCard({
 export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }) {
   const router = useRouter();
   const { user } = useAuth();
+  const locale = useLocaleFromPath();
+  const tu = getDashboardDict(locale).upload;
   const [step, setStep] = useState<1 | 2>(1);
   const [files, setFiles] = useState<FileItem[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -181,10 +183,10 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
     );
 
     if (!caseId) {
-      setError('Kein Antrag vorhanden – bitte zuerst einen Antrag erstellen.');
+      setError(tu.errorNoCase);
       setFiles((prev) =>
         prev.map((f) =>
-          f.id === item.id ? { ...f, status: 'error' as const, error: 'Kein Antrag' } : f,
+          f.id === item.id ? { ...f, status: 'error' as const, error: tu.errorNoCaseShort } : f,
         ),
       );
       return;
@@ -203,7 +205,7 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error ?? 'Upload fehlgeschlagen');
+        throw new Error(data.error ?? tu.errorUpload);
       }
 
       setFiles((prev) =>
@@ -214,7 +216,7 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
         ),
       );
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Upload fehlgeschlagen';
+      const msg = err instanceof Error ? err.message : tu.errorUpload;
       setFiles((prev) =>
         prev.map((f) =>
           f.id === item.id ? { ...f, status: 'error' as const, error: msg } : f,
@@ -255,7 +257,7 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
       const parseData = await parseRes.json();
 
       if (!parseRes.ok) {
-        throw new Error(parseData.error ?? 'OCR fehlgeschlagen');
+        throw new Error(parseData.error ?? tu.errorOcr);
       }
 
       setFiles((prev) =>
@@ -269,7 +271,7 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
         setStep(2);
       }
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'OCR fehlgeschlagen';
+      const msg = err instanceof Error ? err.message : tu.errorOcr;
       setFiles((prev) =>
         prev.map((f) =>
           f.id === item.id ? { ...f, status: 'error' as const, error: msg } : f,
@@ -323,14 +325,14 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
       {/* Kopfzeile */}
       <div className="mx-auto mb-4 flex w-full max-w-2xl items-center justify-between gap-3">
         <span className="text-sm font-semibold text-ink">
-          Willkommen, {user.email.split('@')[0]}
+          {formatTemplate(tu.welcome, { name: user.email.split('@')[0] })}
         </span>
         {caseId && (
           <a
-            href={`/antraege/${caseId}`}
+            href={localeHref(locale, `/antraege/${caseId}`)}
             className="rounded-full border border-line-soft bg-white px-3 py-1.5 text-xs font-semibold text-ink-soft transition-colors hover:bg-brand-50 hover:text-brand-700"
           >
-            Zum Antrag
+            {tu.toApplication}
           </a>
         )}
       </div>
@@ -356,11 +358,11 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
         </div>
         <div className="mt-2 flex items-center gap-2 text-xs">
           <span className={step === 1 ? 'font-semibold text-ink' : 'text-ink-soft'}>
-            Dokument hochladen
+            {tu.step1}
           </span>
           <span className="text-ink-soft">→</span>
           <span className={step === 2 ? 'font-semibold text-ink' : 'text-ink-soft'}>
-            Daten prüfen
+            {tu.step2}
           </span>
         </div>
       </div>
@@ -371,26 +373,26 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
           {step === 1 && (
             <>
               <div className="mb-8 text-center">
-                <h1 className="text-2xl font-bold text-ink">Dein erster Antrag – Dokumente</h1>
+                <h1 className="text-2xl font-bold text-ink">{tu.title1}</h1>
                 <p className="mt-2 text-sm text-ink-soft">
-                  Lade deine Unterlagen hoch. Wir scannen sie und zeigen dir, was wir darin finden.
+                  {tu.subtitle1}
                 </p>
               </div>
 
               {!hasCase && (
                 <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50/60 px-5 py-4 text-sm text-amber-900">
-                  <p className="font-semibold">Du hast noch keinen Antrag erstellt.</p>
+                  <p className="font-semibold">{tu.noCaseTitle}</p>
                   <p className="mt-1 text-amber-800">
-                    Lege zuerst einen Antrag an, dann kannst du hier Unterlagen hochladen.
+                    {tu.noCaseText}
                   </p>
                   <ButtonAction
                     type="button"
                     variant="outline"
                     size="sm"
                     className="mt-3"
-                    onClick={() => router.push('/dashboard')}
+                    onClick={() => router.push(localeHref(locale, '/dashboard'))}
                   >
-                    Antrag erstellen
+                    {tu.createApplication}
                   </ButtonAction>
                 </div>
               )}
@@ -417,10 +419,10 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
                 )}
                 <div>
                   <p className="text-sm font-semibold text-ink">
-                    {dragOver ? 'Dateien hier ablegen' : 'Dateien hier ablegen oder auswählen'}
+                    {dragOver ? tu.dropHere : tu.dropHereOr}
                   </p>
                   <p className="mt-1 text-xs text-ink-soft">
-                    PDF, JPG oder PNG – bis zu 10 MB pro Datei
+                    {tu.dropHint}
                   </p>
                 </div>
                 <input
@@ -436,7 +438,7 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
               {files.length > 0 && (
                 <div className="mt-6 flex flex-col gap-3">
                   <h2 className="text-sm font-semibold text-ink-soft uppercase tracking-wide">
-                    Hochgeladene Dateien ({files.length})
+                    {formatTemplate(tu.filesCount, { count: files.length })}
                   </h2>
                   {files.map((f) => (
                     <FileCard
@@ -459,7 +461,7 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
                     onClick={processPending}
                   >
                     <IconFileUp className="h-4 w-4" />
-                    Jetzt hochladen
+                    {tu.uploadNow}
                   </ButtonAction>
                 </div>
               )}
@@ -482,7 +484,7 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
                     onClick={handleDropareaClick}
                   >
                     <IconFileUp className="h-5 w-5" />
-                    Unterlagen auswählen
+                    {tu.selectDocuments}
                   </ButtonAction>
                 </div>
               )}
@@ -492,9 +494,9 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
           {step === 2 && (
             <>
               <div className="mb-8 text-center">
-                <h1 className="text-2xl font-bold text-ink">Dokumente geprüft</h1>
+                <h1 className="text-2xl font-bold text-ink">{tu.title2}</h1>
                 <p className="mt-2 text-sm text-ink-soft">
-                  Wir haben deine Unterlagen gescannt. Schau dir die Ergebnisse unten an.
+                  {tu.subtitle2}
                 </p>
               </div>
 
@@ -503,7 +505,7 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
                   <div className="flex items-center gap-3 rounded-2xl border border-brand-200 bg-brand-50/60 px-5 py-4 text-brand-900">
                     <IconCheckCircle className="h-5 w-5 text-brand-600" />
                     <p className="text-sm font-semibold">
-                      {doneCount} Dokument(e) erfolgreich gescannt
+                      {formatTemplate(doneCount === 1 ? tu.scannedCountOne : tu.scannedCountMany, { count: doneCount })}
                     </p>
                   </div>
 
@@ -520,9 +522,9 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
               ) : (
                 <div className="flex flex-col items-center justify-center rounded-3xl border border-line-soft bg-paper p-12 text-center">
                   <IconAlertTriangle className="h-12 w-12 text-amber-400" />
-                  <h2 className="mt-4 text-lg font-semibold text-ink">Noch kein Dokument gescannt</h2>
+                  <h2 className="mt-4 text-lg font-semibold text-ink">{tu.noneScannedTitle}</h2>
                   <p className="mt-2 max-w-sm text-sm text-ink-soft">
-                    Scann erst ein Dokument, um die Inhalte zu sehen.
+                    {tu.noneScannedText}
                   </p>
                 </div>
               )}
@@ -532,10 +534,10 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
                   type="button"
                   variant="primary"
                   size="lg"
-                  onClick={() => router.push(`/antraege/${caseId}`)}
+                  onClick={() => router.push(localeHref(locale, `/antraege/${caseId}`))}
                   disabled={!hasCase}
                 >
-                  Zum Antrag
+                  {tu.toApplication}
                   <IconArrowRight className="ml-1.5 h-4 w-4" />
                 </ButtonAction>
               </div>

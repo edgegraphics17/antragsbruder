@@ -1,5 +1,6 @@
 import { DashboardSidebar } from '@/components/dashboard/Sidebar';
 import { OnboardingModal } from '@/components/dashboard/OnboardingModal';
+import { LocaleSync } from '@/components/dashboard/LocaleSync';
 
 // Dashboard-Layout: Dunkle Sidebar (Desktop) / Top-Bar + Tab-Bar (Mobile).
 // Auth-Schutz passiert serverseitig in src/proxy.ts — dieses Layout
@@ -12,6 +13,7 @@ export default function DashboardLayout({
 }) {
   return (
     <div className="min-h-dvh bg-cream">
+      <LocaleSync />
       <DashboardSidebar />
       <OnboardingModal />
       <div className="lg:pl-64">

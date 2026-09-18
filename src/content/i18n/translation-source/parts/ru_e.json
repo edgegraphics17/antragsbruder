@@ -1,0 +1,257 @@
+{
+ "alg1": {
+  "form": {
+   "sections": {
+    "Personendaten": "Личные данные",
+    "Letzter Arbeitgeber": "Последний работодатель",
+    "Agentur für Arbeit": "Ведомство по труду",
+    "Verfügbarkeit": "Доступность",
+    "Haushalt": "Семья",
+    "Finanzen": "Финансы"
+   },
+   "pleaseSelect": "Пожалуйста, выберите…",
+   "childrenAgesHint": "Возраст детей через запятую, напр. „3, 7“",
+   "progressLabel": "Прогресс",
+   "autosaveNote": "Ваши данные сохраняются автоматически.",
+   "savedIndicator": "🟢 Сохранено · {{time}}",
+   "savingIndicator": "⏳ Сохранение…",
+   "saveNow": "Сохранить сейчас",
+   "fieldsCount": "Всего полей: {{total}}, видимых: {{visible}}.",
+   "checkError": "— проверьте",
+   "fields": {
+    "firstName": {
+     "label": "Имя"
+    },
+    "lastName": {
+     "label": "Фамилия"
+    },
+    "dateOfBirth": {
+     "label": "Дата рождения"
+    },
+    "street": {
+     "label": "Улица и номер дома"
+    },
+    "postcode": {
+     "label": "Индекс",
+     "placeholder": "напр. 10115"
+    },
+    "city": {
+     "label": "Город"
+    },
+    "phone": {
+     "label": "Телефон",
+     "placeholder": "напр. 030 12345678"
+    },
+    "email": {
+     "label": "Эл. почта",
+     "placeholder": "напр. max@example.com"
+    },
+    "nationality": {
+     "label": "Гражданство"
+    },
+    "taxId": {
+     "label": "Налоговый номер",
+     "placeholder": "напр. 12 34 56789 01",
+     "hint": "11 цифр — указаны в вашей справке о подоходном налоге"
+    },
+    "iban": {
+     "label": "IBAN",
+     "placeholder": "напр. DE89 3704 0044 0532 0130 00",
+     "hint": "Начинается с DE + 2 контрольные цифры"
+    },
+    "healthInsurance": {
+     "label": "Медицинская страховка"
+    },
+    "employerName": {
+     "label": "Название работодателя"
+    },
+    "employerAddress": {
+     "label": "Адрес работодателя"
+    },
+    "employmentStart": {
+     "label": "Дата начала работы"
+    },
+    "employmentEnd": {
+     "label": "Конец трудовых отношений"
+    },
+    "contractType": {
+     "label": "Тип договора"
+    },
+    "hoursPerWeek": {
+     "label": "Часов в неделю"
+    },
+    "grossSalary": {
+     "label": "Валовой доход (за последний месяц)"
+    },
+    "taxClass": {
+     "label": "Налоговый класс"
+    },
+    "churchTax": {
+     "label": "Церковный налог"
+    },
+    "childrenAllowance": {
+     "label": "Детские вычеты"
+    },
+    "unemployedSince": {
+     "label": "Безработный с/с (возможна и будущая дата)"
+    },
+    "agencyLocation": {
+     "label": "Адрес ведомства"
+    },
+    "agencyReference": {
+     "label": "Номер дела (если известен)"
+    },
+    "fitForWork": {
+     "label": "Способен работать по здоровью"
+    },
+    "availableFor15h": {
+     "label": "Доступен минимум 15 ч/нед."
+    },
+    "activelySeeking": {
+     "label": "Активно ищу работу"
+    },
+    "restrictions": {
+     "label": "Ограничения при поиске работы"
+    },
+    "childrenCount": {
+     "label": "Количество детей до 18"
+    },
+    "childrenAges": {
+     "label": "Возраст детей (через запятую)",
+     "placeholder": "напр. 3, 7",
+     "hint": "При 2 детях напр. „3, 7“"
+    },
+    "hasPartner": {
+     "label": "Партнёр в семье"
+    },
+    "partnerUnemployed": {
+     "label": "Партнёр тоже безработный"
+    },
+    "incomeSources": {
+     "label": "Текущие источники дохода"
+    },
+    "assetsOver15k": {
+     "label": "Активы свыше 15.000 €"
+    }
+   },
+   "options": {
+    "nationality": {
+     "DE": "Гражданин Германии",
+     "EU": "Гражданин ЕС",
+     "OTHER": "Другое"
+    },
+    "contractType": {
+     "UNLIMITED": "Бессрочный",
+     "LIMITED": "Срочный"
+    },
+    "taxClass": {
+     "I": "I",
+     "II": "II",
+     "III": "III",
+     "IV": "IV",
+     "V": "V",
+     "VI": "VI"
+    },
+    "restrictions": {
+     "NONE": "Нет",
+     "PHYSICAL": "Физические ограничения",
+     "MENTAL": "Психические ограничения",
+     "CARE": "Уход за близкими"
+    },
+    "incomeSources": {
+     "NONE": "Нет",
+     "EMPLOYMENT": "Работа по найму",
+     "ALG1": "ALG1",
+     "SICK_PAY": "Больничные выплаты",
+     "CHILD_BENEFIT": "Детские пособия",
+     "MAINTENANCE": "Алименты",
+     "PARENTAL_ALLOWANCE": "Родительское пособие",
+     "PENSION": "Пенсия",
+     "SELF_EMPLOYED": "Самозанятость"
+    }
+   }
+  },
+  "summary": {
+   "title": "Ваше заявление на ALG1",
+   "titleReadOnly": "Ваше заявление на ALG1 — текущий статус",
+   "titleEdit": "Сводка вашего заявления на ALG1",
+   "status": {
+    "SUBMITTED": {
+     "label": "Подано",
+     "hint": "Ваше заявление получено ведомством Jobcenter. Мы будем держать вас в курсе здесь."
+    },
+    "PROCESSING": {
+     "label": "На проверке",
+     "hint": "Ведомство по труду проверяет ваше заявление. Держите под рукой подтверждение номера дела."
+    },
+    "APPROVED": {
+     "label": "Одобрено 🎉",
+     "hint": "Ваше пособие по безработице одобрено — выплата происходит ежемесячно авансом."
+    },
+    "REJECTED": {
+     "label": "Отклонено",
+     "hint": "Ваше заявление отклонено. Проверьте решение — вы можете подать возражение."
+    }
+   },
+   "missingHeading": "Ещё не хватает {{count}} данных ({{issues}} ошибок проверки):",
+   "addInfoBtn": "Дополнить данные ({{sections}})",
+   "errRequired": "Пожалуйста, заполните — этих данных ещё не хватает.",
+   "errTaxId": "Введите налоговый номер ровно из 11 цифр (напр. 12 34 56789 01).",
+   "errIban": "Введите корректный IBAN (напр. DE89 3704 0044 0532 0130 00).",
+   "errPostcode": "Введите индекс из 5 цифр (напр. 10115).",
+   "errEmail": "Введите корректный адрес эл. почты.",
+   "errDate": "Выберите дату.",
+   "errIncomeSources": "Выберите хотя бы один источник дохода (или „Нет“).",
+   "errChildrenAges": "Укажите возраст детей через запятую (напр. 3, 7).",
+   "errDefault": "Проверьте и дополните эти данные.",
+   "submitFailed": "Отправка не удалась",
+   "confirmedTitle": "Заявление подано (симуляция)",
+   "confirmedPre": "Заявление помечено как",
+   "confirmedPost": ". Передача в ведомство по труду произойдёт позже.",
+   "estimateLabel": "Расчётная месячная сумма ALG1",
+   "estimateLine": "Основа: {{basis}} € | ставка: {{rate}} | день: {{daily}} €",
+   "lblName": "Имя:",
+   "lblBirthDate": "Дата рождения:",
+   "lblAddress": "Адрес:",
+   "lblEmail": "Эл. почта:",
+   "lblEmployer": "Работодатель:",
+   "lblUnemployedSince": "Безработный с:",
+   "lblGross": "Брутто:",
+   "lblTaxClass": "Налоговый класс:",
+   "lblChildren": "Дети:",
+   "lblIban": "IBAN:",
+   "notesTitle": "Важные заметки:",
+   "note1": "Зарегистрируйтесь как безработный минимум за 3 месяца до конца договора",
+   "note2": "Сохраните подтверждение номера дела",
+   "note3": "ALG1 выплачивается ежемесячно авансом",
+   "statusLabel": "Статус:",
+   "submitting": "Отправка…",
+   "submitBtn": "Подать заявление (симуляция)"
+  },
+  "upload": {
+   "slots": {
+    "TERMINATION": {
+     "label": "Уведомление об увольнении",
+     "description": "Прекращение трудовых отношений"
+    },
+    "PAYSLIP": {
+     "label": "Последняя справка о зарплате",
+     "description": "Подтверждение валовой зарплаты"
+    },
+    "ID_CARD": {
+     "label": "Удостоверение личности",
+     "description": "Лицевая и обратная сторона"
+    },
+    "OTHER": {
+     "label": "Дополнительные документы",
+     "description": "Необязательно"
+    }
+   },
+   "required": "Обязательно",
+   "bypassLabel": "Я передам документы позже",
+   "continueBtn": "Перейти к вопросам",
+   "uploading": "Загрузка…",
+   "dropzoneHint": "Нажмите или перетащите файл сюда (PDF, JPG, PNG — макс. 10 МБ)"
+  }
+ }
+}

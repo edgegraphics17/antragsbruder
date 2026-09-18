@@ -1,0 +1,175 @@
+{
+  "alg1": {
+    "form": {
+      "sections": {
+        "Agentur für Arbeit": "Agentur für Arbeit",
+        "Finanzen": "Finanzen",
+        "Haushalt": "Haushalt",
+        "Letzter Arbeitgeber": "Letzter Arbeitgeber",
+        "Personendaten": "Personendaten",
+        "Verfügbarkeit": "Verfügbarkeit"
+      },
+      "fields": {
+        "firstName": {
+          "label": "Vorname"
+        },
+        "lastName": {
+          "label": "Nachname"
+        },
+        "dateOfBirth": {
+          "label": "Geburtsdatum"
+        },
+        "street": {
+          "label": "Straße & Hausnummer"
+        },
+        "postcode": {
+          "label": "PLZ",
+          "placeholder": "z.B. 10115"
+        },
+        "city": {
+          "label": "Stadt"
+        },
+        "phone": {
+          "label": "Telefon",
+          "placeholder": "z.B. 030 12345678"
+        },
+        "email": {
+          "label": "E-Mail",
+          "placeholder": "z.B. max@beispiel.de"
+        },
+        "nationality": {
+          "label": "Staatsangehörigkeit"
+        },
+        "taxId": {
+          "label": "Steuer-ID",
+          "placeholder": "z.B. 12 34 56789 01",
+          "hint": "11 Ziffern – stehen auf deiner Lohnsteuerbescheinigung"
+        },
+        "iban": {
+          "label": "IBAN",
+          "placeholder": "z.B. DE89 3704 0044 0532 0130 00",
+          "hint": "Beginnt mit DE + 2 Prüfziffern"
+        },
+        "healthInsurance": {
+          "label": "Krankenversicherung"
+        },
+        "employerName": {
+          "label": "Name des Arbeitgebers"
+        },
+        "employerAddress": {
+          "label": "Adresse des Arbeitgebers"
+        },
+        "employmentStart": {
+          "label": "Einstellungsdatum"
+        },
+        "employmentEnd": {
+          "label": "Ende Arbeitsverhältnis"
+        },
+        "contractType": {
+          "label": "Vertragsart"
+        },
+        "hoursPerWeek": {
+          "label": "Stunden pro Woche"
+        },
+        "grossSalary": {
+          "label": "Bruttoeinkommen (letzter Monat)"
+        },
+        "taxClass": {
+          "label": "Steuerklasse"
+        },
+        "churchTax": {
+          "label": "Kirchensteuer"
+        },
+        "childrenAllowance": {
+          "label": "Kinderfreibeträge"
+        },
+        "unemployedSince": {
+          "label": "Arbeitslos seit/ab (auch zukünftiges Datum möglich)"
+        },
+        "agencyLocation": {
+          "label": "Agentur-Standort"
+        },
+        "agencyReference": {
+          "label": "Aktenzeichen (falls bekannt)"
+        },
+        "fitForWork": {
+          "label": "Gesundheitlich arbeitsfähig"
+        },
+        "availableFor15h": {
+          "label": "Mindestens 15h/Woche verfügbar"
+        },
+        "activelySeeking": {
+          "label": "Aktiv nach Arbeit suchend"
+        },
+        "restrictions": {
+          "label": "Einschränkungen bei der Arbeitssuche"
+        },
+        "childrenCount": {
+          "label": "Anzahl Kinder unter 18"
+        },
+        "childrenAges": {
+          "label": "Alter der Kinder (durch Komma getrennt)",
+          "placeholder": "z.B. 3, 7",
+          "hint": "Bei 2 Kindern also z.B. „3, 7“"
+        },
+        "hasPartner": {
+          "label": "Partner im Haushalt"
+        },
+        "partnerUnemployed": {
+          "label": "Partner ebenfalls arbeitslos"
+        },
+        "incomeSources": {
+          "label": "Aktuelle Einkommensquellen"
+        },
+        "assetsOver15k": {
+          "label": "Vermögen über 15.000 €"
+        }
+      },
+      "options": {
+        "nationality": {
+          "DE": "Deutsch",
+          "EU": "EU-Staatsangehörig",
+          "OTHER": "Sonstige"
+        },
+        "contractType": {
+          "UNLIMITED": "Unbefristet",
+          "LIMITED": "Befristet"
+        },
+        "taxClass": {
+          "I": "I",
+          "II": "II",
+          "III": "III",
+          "IV": "IV",
+          "V": "V",
+          "VI": "VI"
+        },
+        "restrictions": {
+          "NONE": "Keine",
+          "PHYSICAL": "Körperliche Einschränkungen",
+          "MENTAL": "Psychische Einschränkungen",
+          "CARE": "Pflege von Angehörigen"
+        },
+        "incomeSources": {
+          "NONE": "Keine",
+          "EMPLOYMENT": "Beschäftigung",
+          "ALG1": "ALG1",
+          "SICK_PAY": "Krankengeld",
+          "CHILD_BENEFIT": "Kindergeld",
+          "MAINTENANCE": "Unterhalt",
+          "PARENTAL_ALLOWANCE": "Elterngeld",
+          "PENSION": "Rente",
+          "SELF_EMPLOYED": "Selbstständig"
+        }
+      },
+      "pleaseSelect": "Bitte wählen…",
+      "childrenAgesHint": "Alter der Kinder mit Komma trennen, z.B. „3, 7“",
+      "progressLabel": "Fortschritt",
+      "autosaveNote": "Deine Eingaben werden automatisch gespeichert.",
+      "savedIndicator": "🟢 Gespeichert · {{time}}",
+      "savingIndicator": "⏳ Speichert…",
+      "saveNow": "Jetzt speichern",
+      "fieldsCount": "{{total}} Felder insgesamt, {{visible}} sichtbar.",
+      "checkError": "— bitte prüfen"
+    }
+  }
+}

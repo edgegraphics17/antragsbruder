@@ -12,6 +12,9 @@ import { factStore } from '@/engine/fact-store/FactStore';
 import { Container } from '@/components/ui/Container';
 import { ButtonAction } from '@/components/ui/Button';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
+import { formatTemplate } from '@/content/i18n/format';
 
 interface QuestionnaireFormProps {
   caseId: string;
@@ -49,6 +52,8 @@ function setCompositeValue(answer: AnswerValue | undefined, key: string, value: 
 }
 
 export function QuestionnaireForm({ caseId, onComplete, compact = false }: QuestionnaireFormProps) {
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).questionnaire;
   const [currentQuestion, setCurrentQuestion] = useState<QuestionState | null>(null);
   const [questionQueue, setQuestionQueue] = useState<QuestionState[]>([]);
   const [answers, setAnswers] = useState<Record<string, AnswerValue>>({});
@@ -85,7 +90,7 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
           setCurrentQuestion(mapped[0]);
         }
       } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : 'Fehler beim Laden der Fragen');
+        setError(err instanceof Error ? err.message : t.errorLoading);
       } finally {
         setIsLoading(false);
       }
@@ -187,8 +192,8 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
             sensitivity === 'SENSITIVE' ? 'bg-amber-100 text-amber-700' :
             'bg-brand-100 text-brand-700'
           }`}>
-            {sensitivity === 'HIGHLY_SENSITIVE' ? 'Sehr privat' :
-             sensitivity === 'SENSITIVE' ? 'Privat' : 'Normal'}
+            {sensitivity === 'HIGHLY_SENSITIVE' ? t.sensHighlySensitive :
+             sensitivity === 'SENSITIVE' ? t.sensSensitive : t.sensNormal}
           </div>
           <h3 className={`text-lg font-semibold text-ink ${compact ? 'text-base' : 'text-lg'}`}>
             {text}
@@ -284,7 +289,7 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
                 className="w-full rounded-xl border border-line-soft bg-paper px-4 py-3 text-ink focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-100"
               />
               {unit && (
-                <p className="mt-1 text-xs text-ink-soft">Angabe in {unit}</p>
+                <p className="mt-1 text-xs text-ink-soft">{formatTemplate(t.unitHint, { unit })}</p>
               )}
             </div>
           )}
@@ -294,7 +299,7 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
               type="text"
               value={(existingAnswer as string) ?? ''}
               onChange={(e) => handleAnswer(questionId, e.target.value || null)}
-              placeholder="Deine Angabe"
+              placeholder={t.yourAnswerPlaceholder}
               className="w-full rounded-xl border border-line-soft bg-paper px-4 py-3 text-ink focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-100"
             />
           )}
@@ -304,8 +309,8 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
               {writesTo.map((path, idx) => (
                 <div key={path} className="flex items-center gap-3">
                   <label className="w-48 shrink-0 text-sm text-ink-soft">
-                    {path === 'housing.cold_rent' ? 'Kaltmiete (Netto)' :
-                     path === 'housing.heating_costs' ? 'Heizkosten' : path}
+                    {path === 'housing.cold_rent' ? t.lblColdRent :
+                     path === 'housing.heating_costs' ? t.lblHeating : path}
                   </label>
                   <div className="relative w-full">
                     <span className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-soft">€</span>
@@ -322,7 +327,7 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
                   </div>
                 </div>
               ))}
-              <p className="text-xs text-ink-soft">Monatliche Angabe in Euro</p>
+              <p className="text-xs text-ink-soft">{t.monthlyEuro}</p>
             </div>
           )}
         </div>
@@ -338,7 +343,7 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
               <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
             </svg>
-            Inhalt ist privat — anklicken um anzuzeigen
+            {t.privateContent}
           </button>
         )}
 
@@ -352,7 +357,7 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
                 onClick={() => handleSkip(questionId)}
                 className="rounded-xl border border-line-soft bg-paper px-5 py-3 text-sm font-medium text-ink-soft transition-colors hover:bg-brand-50 hover:text-brand-700"
               >
-                Diese Frage überspringen
+                {t.skipQuestion}
               </button>
               <div className="flex gap-3">
                 {answerType === 'single_choice' && !options?.some((o) => existingAnswer === o.key) && (
@@ -361,7 +366,7 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
                     onClick={() => handleSkip(questionId)}
                     className="rounded-xl border border-line-soft bg-paper px-5 py-3 text-sm font-medium text-ink-soft transition-colors hover:bg-brand-50 hover:text-brand-700"
                   >
-                    Ohne Antwort weiter
+                    {t.continueWithoutAnswer}
                   </button>
                 )}
               </div>
@@ -378,7 +383,7 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
       <Container>
         <div className="flex flex-col items-center gap-4 py-16">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-brand-600 border-t-transparent" />
-          <p className="text-ink-soft">Fragen werden geladen…</p>
+          <p className="text-ink-soft">{t.loadingQuestions}</p>
         </div>
       </Container>
     );
@@ -406,9 +411,9 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
               <polyline points="22 4 12 14.01 9 11.01" />
             </svg>
           </div>
-          <h2 className="mt-6 text-2xl font-bold text-ink">Alle Fragen beantwortet</h2>
+          <h2 className="mt-6 text-2xl font-bold text-ink">{t.allAnsweredTitle}</h2>
           <p className="mt-3 text-ink-soft">
-            Wir haben alle notwendigen Informationen. Dein Antrag wird nun vorbereitet.
+            {t.allAnsweredText}
           </p>
         </div>
       </Container>
@@ -420,9 +425,9 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
     return (
       <Container>
         <div className="rounded-3xl border border-brand-200 bg-brand-50/50 p-12 text-center">
-          <h2 className="text-2xl font-bold text-ink">Keine weiteren Fragen</h2>
+          <h2 className="text-2xl font-bold text-ink">{t.noMoreTitle}</h2>
           <p className="mt-3 text-ink-soft">
-            Es sind keine weiteren Fragen vonnöten. Du kannst jetzt deinen Antrag einreichen.
+            {t.noMoreText}
           </p>
         </div>
       </Container>
@@ -439,9 +444,9 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
       {!compact && (
         <div className="mb-8">
           <SectionHeading
-            eyebrow="Schritt-für-Schritt-Anleitung"
-            title="Deine Antragsdaten"
-            lede="Wir führen dich durch alle Fragen, die wir für deinen Antrag benötigen. Du kannst jede Frage überspringen."
+            eyebrow={t.headingEyebrow}
+            title={t.headingTitle}
+            lede={t.headingLede}
           />
         </div>
       )}
@@ -450,7 +455,7 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
       <div className={`mb-6 rounded-xl bg-paper p-4 ${compact ? 'mb-4' : ''}`}>
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium text-ink">
-            Schritt {answeredCount + 1} von {totalQuestions}
+            {formatTemplate(t.stepOf, { current: answeredCount + 1, total: totalQuestions })}
           </span>
           <span className="text-sm font-medium text-brand-700">{displayProgress}%</span>
         </div>
@@ -475,7 +480,7 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
             onClick={() => setShowSensitive(true)}
             className="text-sm text-brand-600 hover:text-brand-700"
           >
-            Antwortfeld anzeigen
+            {t.showAnswerField}
           </button>
         </div>
       )}

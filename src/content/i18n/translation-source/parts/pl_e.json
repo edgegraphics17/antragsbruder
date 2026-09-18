@@ -1,0 +1,257 @@
+{
+ "alg1": {
+  "form": {
+   "sections": {
+    "Personendaten": "Dane osobowe",
+    "Letzter Arbeitgeber": "Ostatni pracodawca",
+    "Agentur für Arbeit": "Urząd pracy",
+    "Verfügbarkeit": "Dostępność",
+    "Haushalt": "Gospodarstwo domowe",
+    "Finanzen": "Finanse"
+   },
+   "pleaseSelect": "Proszę wybrać…",
+   "childrenAgesHint": "Podaj wiek dzieci po przecinku, np. „3, 7“",
+   "progressLabel": "Postęp",
+   "autosaveNote": "Twoje wpisy są zapisywane automatycznie.",
+   "savedIndicator": "🟢 Zapisano · {{time}}",
+   "savingIndicator": "⏳ Zapisywanie…",
+   "saveNow": "Zapisz teraz",
+   "fieldsCount": "Łącznie pól: {{total}}, widocznych: {{visible}}.",
+   "checkError": "— sprawdź",
+   "fields": {
+    "firstName": {
+     "label": "Imię"
+    },
+    "lastName": {
+     "label": "Nazwisko"
+    },
+    "dateOfBirth": {
+     "label": "Data urodzenia"
+    },
+    "street": {
+     "label": "Ulica i numer domu"
+    },
+    "postcode": {
+     "label": "Kod pocztowy",
+     "placeholder": "np. 10115"
+    },
+    "city": {
+     "label": "Miasto"
+    },
+    "phone": {
+     "label": "Telefon",
+     "placeholder": "np. 030 12345678"
+    },
+    "email": {
+     "label": "E-mail",
+     "placeholder": "np. max@przyklad.com"
+    },
+    "nationality": {
+     "label": "Obywatelstwo"
+    },
+    "taxId": {
+     "label": "Numer podatkowy",
+     "placeholder": "np. 12 34 56789 01",
+     "hint": "11 cyfr — znajdują się na Twojej karcie podatkowej"
+    },
+    "iban": {
+     "label": "IBAN",
+     "placeholder": "np. DE89 3704 0044 0532 0130 00",
+     "hint": "Zaczyna się od DE + 2 cyfry kontrolne"
+    },
+    "healthInsurance": {
+     "label": "Ubezpieczenie zdrowotne"
+    },
+    "employerName": {
+     "label": "Nazwa pracodawcy"
+    },
+    "employerAddress": {
+     "label": "Adres pracodawcy"
+    },
+    "employmentStart": {
+     "label": "Data rozpoczęcia pracy"
+    },
+    "employmentEnd": {
+     "label": "Koniec stosunku pracy"
+    },
+    "contractType": {
+     "label": "Rodzaj umowy"
+    },
+    "hoursPerWeek": {
+     "label": "Godzin tygodniowo"
+    },
+    "grossSalary": {
+     "label": "Dochód brutto (ostatni miesiąc)"
+    },
+    "taxClass": {
+     "label": "Klasa podatkowa"
+    },
+    "churchTax": {
+     "label": "Podatek kościelny"
+    },
+    "childrenAllowance": {
+     "label": "Ulgi na dzieci"
+    },
+    "unemployedSince": {
+     "label": "Bezrobotny od/na (możliwa także przyszła data)"
+    },
+    "agencyLocation": {
+     "label": "Lokalizacja urzędu"
+    },
+    "agencyReference": {
+     "label": "Numer sprawy (jeśli znany)"
+    },
+    "fitForWork": {
+     "label": "Zdolny do pracy (zdrowie)"
+    },
+    "availableFor15h": {
+     "label": "Dostępny co najmniej 15 h/tydz."
+    },
+    "activelySeeking": {
+     "label": "Aktywnie szukam pracy"
+    },
+    "restrictions": {
+     "label": "Ograniczenia w poszukiwaniu pracy"
+    },
+    "childrenCount": {
+     "label": "Liczba dzieci poniżej 18 lat"
+    },
+    "childrenAges": {
+     "label": "Wiek dzieci (po przecinku)",
+     "placeholder": "np. 3, 7",
+     "hint": "Przy 2 dzieciach np. „3, 7“"
+    },
+    "hasPartner": {
+     "label": "Partner w gospodarstwie"
+    },
+    "partnerUnemployed": {
+     "label": "Partner również bezrobotny"
+    },
+    "incomeSources": {
+     "label": "Obecne źródła dochodu"
+    },
+    "assetsOver15k": {
+     "label": "Majątek powyżej 15.000 €"
+    }
+   },
+   "options": {
+    "nationality": {
+     "DE": "Niemieckie",
+     "EU": "Obywatel UE",
+     "OTHER": "Inne"
+    },
+    "contractType": {
+     "UNLIMITED": "Na czas nieokreślony",
+     "LIMITED": "Na czas określony"
+    },
+    "taxClass": {
+     "I": "I",
+     "II": "II",
+     "III": "III",
+     "IV": "IV",
+     "V": "V",
+     "VI": "VI"
+    },
+    "restrictions": {
+     "NONE": "Brak",
+     "PHYSICAL": "Ograniczenia fizyczne",
+     "MENTAL": "Ograniczenia psychiczne",
+     "CARE": "Opieka nad bliskimi"
+    },
+    "incomeSources": {
+     "NONE": "Brak",
+     "EMPLOYMENT": "Zatrudnienie",
+     "ALG1": "ALG1",
+     "SICK_PAY": "Zasiłek chorobowy",
+     "CHILD_BENEFIT": "Zasiłek na dzieci",
+     "MAINTENANCE": "Alimenty",
+     "PARENTAL_ALLOWANCE": "Zasiłek rodzicielski",
+     "PENSION": "Emerytura",
+     "SELF_EMPLOYED": "Samozatrudnienie"
+    }
+   }
+  },
+  "summary": {
+   "title": "Twój wniosek ALG1",
+   "titleReadOnly": "Twój wniosek ALG1 — aktualny status",
+   "titleEdit": "Podsumowanie Twojego wniosku ALG1",
+   "status": {
+    "SUBMITTED": {
+     "label": "Złożony",
+     "hint": "Twój wniosek dotarł do urzędu Jobcenter. Będziemy Cię tu na bieżąco informować."
+    },
+    "PROCESSING": {
+     "label": "W trakcie sprawdzania",
+     "hint": "Urząd pracy sprawdza Twój wniosek. Miej pod ręką potwierdzenie numeru sprawy."
+    },
+    "APPROVED": {
+     "label": "Zatwierdzone 🎉",
+     "hint": "Twój zasiłek dla bezrobotnych został zatwierdzony — wypłata odbywa się co miesiąc z góry."
+    },
+    "REJECTED": {
+     "label": "Odrzucone",
+     "hint": "Twój wniosek został odrzucony. Sprawdź decyzję — możesz się od niej odwołać."
+    }
+   },
+   "missingHeading": "Wciąż brakuje {{count}} danych ({{issues}} błędów walidacji):",
+   "addInfoBtn": "Uzupełnij dane ({{sections}})",
+   "errRequired": "Proszę wypełnić — tych danych jeszcze brakuje.",
+   "errTaxId": "Wprowadź numer podatkowy z dokładnie 11 cyframi (np. 12 34 56789 01).",
+   "errIban": "Wprowadź poprawny IBAN (np. DE89 3704 0044 0532 0130 00).",
+   "errPostcode": "Wprowadź kod pocztowy z 5 cyframi (np. 10115).",
+   "errEmail": "Wprowadź poprawny adres e-mail.",
+   "errDate": "Wybierz datę.",
+   "errIncomeSources": "Wybierz co najmniej jedno źródło dochodu (lub „Brak“).",
+   "errChildrenAges": "Podaj wiek dzieci po przecinku (np. 3, 7).",
+   "errDefault": "Sprawdź i uzupełnij te dane.",
+   "submitFailed": "Złożenie nie powiodło się",
+   "confirmedTitle": "Wniosek złożony (symulacja)",
+   "confirmedPre": "Wniosek oznaczony jako",
+   "confirmedPost": ". Przekazanie do urzędu pracy nastąpi w późniejszej fazie.",
+   "estimateLabel": "Szacowana miesięczna kwota ALG1",
+   "estimateLine": "Podstawa: {{basis}} € | stawka: {{rate}} | dzień: {{daily}} €",
+   "lblName": "Imię i nazwisko:",
+   "lblBirthDate": "Data urodzenia:",
+   "lblAddress": "Adres:",
+   "lblEmail": "E-mail:",
+   "lblEmployer": "Pracodawca:",
+   "lblUnemployedSince": "Bezrobotny od:",
+   "lblGross": "Brutto:",
+   "lblTaxClass": "Klasa podatkowa:",
+   "lblChildren": "Dzieci:",
+   "lblIban": "IBAN:",
+   "notesTitle": "Ważne uwagi:",
+   "note1": "Zarejestruj się jako bezrobotny najpóźniej 3 miesiące przed końcem umowy",
+   "note2": "Zachowaj potwierdzenie numeru sprawy",
+   "note3": "ALG1 jest wypłacany co miesiąc z góry",
+   "statusLabel": "Status:",
+   "submitting": "Składanie…",
+   "submitBtn": "Złóż wniosek (symulacja)"
+  },
+  "upload": {
+   "slots": {
+    "TERMINATION": {
+     "label": "Wypowiedzenie",
+     "description": "Rozwiązanie stosunku pracy"
+    },
+    "PAYSLIP": {
+     "label": "Ostatnie zaświadczenie o zarobkach",
+     "description": "Potwierdzenie wynagrodzenia brutto"
+    },
+    "ID_CARD": {
+     "label": "Dowód osobisty",
+     "description": "Strona przednia i tylna"
+    },
+    "OTHER": {
+     "label": "Dodatkowe dokumenty",
+     "description": "Opcjonalnie"
+    }
+   },
+   "required": "Wymagane",
+   "bypassLabel": "Prześlę dokumenty później",
+   "continueBtn": "Dalej do pytań",
+   "uploading": "Przesyłanie…",
+   "dropzoneHint": "Kliknij lub przeciągnij plik tutaj (PDF, JPG, PNG — maks. 10 MB)"
+  }
+ }
+}

@@ -9,7 +9,7 @@ import { IconAlertTriangle } from '@/components/ui/icons';
 import { IconCheck } from '@/components/ui/icons';
 import { IconMail } from '@/components/ui/icons';
 import type { Locale } from '@/i18n/config';
-import { localeHref } from '@/i18n/config';
+import { isLocale, localeHref } from '@/i18n/config';
 import { commonDict } from '@/content/i18n/common';
 import { getAuthPageDict } from '@/content/i18n/authPage';
 
@@ -49,12 +49,28 @@ export function LoginForm({ locale }: LoginFormProps) {
       setSubmitting(false);
       if (ok) {
         setSuccess(true);
+        // Ziel-Sprache für den Redirect: bestehende Profilsprache gewinnt,
+        // sonst die Sprache der Login-Seite.
+        let redirectLocale: Locale = locale;
         // Profilsprache: Beim ersten Login aus der Seiten-Sprache übernehmen.
         // `.is(..., null)` stellt sicher, dass eine bewusst im Profil gewählte
         // Sprache nicht überschrieben wird. Fehler werden bewusst ignoriert.
         try {
           const { data: { user: loggedIn } } = await supabase.auth.getUser();
           if (loggedIn) {
+            // Bestehende Profilsprache hat Vorrang für den Redirect —
+            // so landet der Nutzer direkt in seiner gewählten Sprache.
+            const { data: prof } = await supabase
+              .from('profiles')
+              .select('preferred_locale')
+              .eq('id', loggedIn.id)
+              .maybeSingle();
+            if (prof?.preferred_locale && isLocale(prof.preferred_locale)) {
+              redirectLocale = prof.preferred_locale;
+            }
+            // Erste Wahl aus der Seiten-Sprache übernehmen. `.is(..., null)`
+            // stellt sicher, dass eine bewusst gewählte Sprache nicht
+            // überschrieben wird. Fehler werden bewusst ignoriert.
             void supabase
               .from('profiles')
               .update({ preferred_locale: locale })
@@ -69,14 +85,16 @@ export function LoginForm({ locale }: LoginFormProps) {
         let dash =
           nextParam && nextParam.startsWith('/')
             ? nextParam
-            : locale === 'de'
+            : redirectLocale === 'de'
               ? '/dashboard'
-              : `/${locale}/dashboard`;
+              : `/${redirectLocale}/dashboard`;
         // Admins landen direkt im Admin-Dashboard (Rolle serverseitig via RLS-RPC geprüft)
         if (!nextParam) {
           try {
             const { data: isAdmin } = await supabase.rpc('is_admin');
-            if (isAdmin) dash = locale === 'de' ? '/admin' : `/${locale}/admin`;
+            if (isAdmin) {
+              dash = redirectLocale === 'de' ? '/admin' : `/${redirectLocale}/admin`;
+            }
           } catch {
             // RPC nicht verfügbar → normaler Bürger-Flow
           }

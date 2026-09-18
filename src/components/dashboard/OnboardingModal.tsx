@@ -3,6 +3,8 @@
 // Onboarding-Modal: 4 Schritte (Lebenssituation, Wohnsituation, Kinder, PLZ).
 // Speichert direkt in profiles und schließt mit onboarding_completed /
 // onboarding_dismissed. Daten laufen über den globalen ProfileStore.
+// Fragen/Options-Labels kommen aus dem Dict (onboarding.*); das Mapping
+// DB-Enum → Dict-Key passiert hier im Code.
 
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/auth-context';
@@ -10,37 +12,41 @@ import { useProfileStore } from '@/lib/stores/profile-store';
 import { supabase } from '@/lib/supabase';
 import { IconClose } from '@/components/ui/icons';
 import { OnboardingStep } from './onboarding/OnboardingStep';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
+
+// DB-Enum-Werte → Dict-Keys je Schritt (Labels stehen im Fragment).
+const OPTION_KEYS: Record<string, Record<string, string>> = {
+  employmentStatus: {
+    EMPLOYED: 'employed',
+    SELF_EMPLOYED: 'selfEmployed',
+    UNEMPLOYED: 'unemployed',
+    STUDENT: 'student',
+    RETIRED: 'retired',
+    OTHER: 'other',
+  },
+  housingType: {
+    RENT: 'rent',
+    OWN: 'own',
+    PARENTS: 'parents',
+    OTHER: 'other',
+  },
+};
 
 const STEPS = [
-  {
-    key: 'employmentStatus',
-    question: 'Was beschreibt deine aktuelle Situation am besten?',
-    options: [
-      { value: 'EMPLOYED', label: 'Angestellt' },
-      { value: 'SELF_EMPLOYED', label: 'Selbstständig' },
-      { value: 'UNEMPLOYED', label: 'Kürzlich gekündigt / Arbeitslos' },
-      { value: 'STUDENT', label: 'Student / Azubi' },
-      { value: 'RETIRED', label: 'Rentner' },
-      { value: 'OTHER', label: 'Sonstiges' },
-    ],
-  },
-  {
-    key: 'housingType',
-    question: 'Wie wohnst du?',
-    options: [
-      { value: 'RENT', label: 'Miete' },
-      { value: 'OWN', label: 'Eigentum' },
-      { value: 'PARENTS', label: 'Bei Eltern / WG' },
-      { value: 'OTHER', label: 'Sonstiges' },
-    ],
-  },
-  { key: 'childrenCount', question: 'Hast du Kinder unter 18 im Haushalt?', isNumberInput: true },
-  { key: 'postcode', question: 'Wie ist deine Postleitzahl?', isTextInput: true },
+  { key: 'employmentStatus', section: 'situation' },
+  { key: 'housingType', section: 'housing' },
+  { key: 'childrenCount', section: 'children', isNumberInput: true },
+  { key: 'postcode', section: 'postcode', isTextInput: true },
 ] as const;
+
+type StepConfig = (typeof STEPS)[number];
 
 export function OnboardingModal() {
   const { user } = useAuth();
   const { profile, loadProfile } = useProfileStore();
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).onboarding;
   const [step, setStep] = useState(0);
   const [visible, setVisible] = useState(true);
   const [data, setData] = useState<Record<string, unknown>>({});
@@ -52,8 +58,18 @@ export function OnboardingModal() {
   // ProfileStore muss geladen sein, bevor wir den Status prüfen.
   if (!user || !profile || profile.onboardingCompleted || profile.onboardingDismissed) return null;
 
-  const current = STEPS[step];
+  const current: StepConfig = STEPS[step];
   const isLast = step === STEPS.length - 1;
+
+  const question = t[current.section].question;
+  const optionMap = OPTION_KEYS[current.key];
+  const options = optionMap
+    ? Object.entries(optionMap).map(([value, dictKey]) => ({
+        value,
+        // Typ: onboarding.situation/housing haben die Option-Keys als Strings.
+        label: (t[current.section] as unknown as Record<string, string>)[dictKey],
+      }))
+    : undefined;
 
   const handleNext = async (value: unknown) => {
     const next = { ...data, [current.key]: value };
@@ -87,7 +103,7 @@ export function OnboardingModal() {
         <button
           type="button"
           onClick={handleDismiss}
-          aria-label="Schließen"
+          aria-label={t.dismiss}
           className="absolute right-4 top-4 text-ink-soft hover:text-ink"
         >
           <IconClose className="h-5 w-5" />
@@ -95,8 +111,8 @@ export function OnboardingModal() {
         <OnboardingStep
           step={step}
           totalSteps={STEPS.length}
-          question={current.question}
-          options={'options' in current ? current.options : undefined}
+          question={question}
+          options={options}
           isNumberInput={'isNumberInput' in current}
           isTextInput={'isTextInput' in current}
           onNext={handleNext}

@@ -2,6 +2,8 @@
 
 // Förder-Profil: kurze Lebenslagen-Fragen (Wohnsituation, Kinder,
 // Erwerbsstatus) — RHF + Zod. Adresse/PLZ gehören zu den Stammdaten.
+// Labels + Options-Texte aus dem Dict (profile.eligibility.*); die
+// DB-Enum-Werte bleiben als Keys im Lookup-Objekt.
 
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -9,6 +11,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ProfileEligibilitySchema, type ProfileEligibilityData } from '@/lib/schemas/profile';
 import { useProfileStore } from '@/lib/stores/profile-store';
 import { ButtonAction } from '@/components/ui/Button';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
 
 const inputCls =
   'mt-1 w-full rounded-lg border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100';
@@ -26,6 +30,13 @@ const defaultValues = (profile: {
 
 export function ProfileEligibilityForm() {
   const { profile, updateProfile } = useProfileStore();
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).profile.eligibility;
+  // DB-Enum → Label (Texte im Fragment, Werte = DB-Enums)
+  const housingLabels = t.housing as unknown as Record<string, string>;
+  const employmentLabels = t.employment as unknown as Record<string, string>;
+  const housingValues = ['RENT', 'OWN', 'PARENTS', 'OTHER'] as const;
+  const employmentValues = ['EMPLOYED', 'SELF_EMPLOYED', 'UNEMPLOYED', 'STUDENT', 'APPRENTICE', 'RETIRED', 'OTHER'] as const;
 
   const {
     register,
@@ -59,29 +70,24 @@ export function ProfileEligibilityForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 rounded-2xl border border-line-soft bg-paper p-5">
-      <h2 className="font-semibold text-ink">Förder-Profil</h2>
-      <p className="text-xs text-ink-soft">Diese Angaben helfen uns, passende Förderungen vorzuschlagen.</p>
+      <h2 className="font-semibold text-ink">{t.title}</h2>
+      <p className="text-xs text-ink-soft">{t.description}</p>
 
       <label className="block text-sm text-ink-soft">
-        Wohnsituation
+        {t.housingType}
         <select {...register('housingType')} className={inputCls}>
-          <option value="RENT">Miete</option>
-          <option value="OWN">Eigentum</option>
-          <option value="PARENTS">Bei Eltern / WG</option>
-          <option value="OTHER">Sonstiges</option>
+          {housingValues.map((v) => (
+            <option key={v} value={v}>{housingLabels[v]}</option>
+          ))}
         </select>
       </label>
 
       <label className="block text-sm text-ink-soft">
-        Lebenssituation
+        {t.employmentStatus}
         <select {...register('employmentStatus')} className={inputCls}>
-          <option value="EMPLOYED">Angestellt</option>
-          <option value="SELF_EMPLOYED">Selbstständig</option>
-          <option value="UNEMPLOYED">Arbeitslos</option>
-          <option value="STUDENT">Student</option>
-          <option value="APPRENTICE">Azubi</option>
-          <option value="RETIRED">Rentner</option>
-          <option value="OTHER">Sonstiges</option>
+          {employmentValues.map((v) => (
+            <option key={v} value={v}>{employmentLabels[v]}</option>
+          ))}
         </select>
         {errors.employmentStatus && (
           <p className="mt-1 text-xs text-red-600">{errors.employmentStatus.message}</p>
@@ -89,18 +95,18 @@ export function ProfileEligibilityForm() {
       </label>
 
       <label className="block text-sm text-ink-soft">
-        Kinder unter 18 im Haushalt
+        {t.childrenCount}
         <input {...register('childrenCount', { valueAsNumber: true })} type="number" min={0} max={20} className={inputCls} />
         {errors.childrenCount && <p className="mt-1 text-xs text-red-600">{errors.childrenCount.message}</p>}
       </label>
 
       <div className="flex gap-3">
         <ButtonAction type="submit" disabled={!isDirty || isSubmitting} className="flex-1">
-          {isSubmitting ? 'Wird gespeichert…' : 'Speichern'}
+          {isSubmitting ? t.saving : t.save}
         </ButtonAction>
         {isDirty && (
           <ButtonAction type="button" variant="secondary" onClick={() => reset()} className="flex-1">
-            Verwerfen
+            {t.discard}
           </ButtonAction>
         )}
       </div>

@@ -1,0 +1,84 @@
+{
+ "alg1": {
+  "meta": {
+   "title": "ALG1 application | Antragsbruder",
+   "description": "Upload documents, answer questions and submit your ALG1 application."
+  },
+  "index": {
+   "metaTitle": "ALG1 — quick check | Antragsbruder",
+   "metaDescription": "Check in 7 questions whether you are entitled to ALG1 and start your application.",
+   "title": "Apply for ALG1",
+   "subtitle": "Answer 7 short questions — we assess your chances and start your application."
+  },
+  "flow": {
+   "loading": "Loading…",
+   "documentsTitle": "Your documents",
+   "documentsText": "Upload the most important documents — we read them automatically.",
+   "backToDocuments": "← Back to the documents",
+   "continueToSummary": "Continue to the summary →",
+   "backToForm": "← Back to the form",
+   "startApplication": "Start official ALG1 application & upload documents",
+   "errorNotFound": "Application not found or no access.",
+   "errorNoAccess": "No access to this application."
+  },
+  "start": {
+   "loadingDraft": "Loading draft…",
+   "draftLoaded": "Your saved draft has been loaded.",
+   "errorCreatingCase": "Case could not be created. Please try again later.",
+   "errorCreatingApplication": "Application could not be created: {{errorMessage}}",
+   "errorUpdatingDraft": "Draft could not be saved: {{errorMessage}}"
+  },
+  "check": {
+   "questionProgress": "Question {{current}} of {{total}}",
+   "progressPercent": "{{progress}}%",
+   "back": "← Back",
+   "questions": {
+    "termination_type": "What happened to your job?",
+    "insurance_period_months": "How many months were you subject to compulsory insurance in the last 28 months?",
+    "registered_unemployed": "Have you already registered as unemployed?",
+    "available_hours_per_week": "How many hours per week can you work?",
+    "actively_seeking": "Are you actively looking for work?",
+    "has_children": "Do you have children under 18?",
+    "has_partner": "Do you live with a partner?",
+    "gross_salary": "Approximate monthly gross income of the last 12 months in €"
+   },
+   "termination": {
+    "EMPLOYER_TERMINATED": "Employer terminated",
+    "CONTRACT_END": "Contract expired",
+    "SELF_QUIT": "I resigned myself",
+    "MUTUAL_AGREEMENT": "Mutual termination agreement",
+    "EMPLOYER_INSOLVENT": "Employer insolvent",
+    "HOURS_REDUCED": "Working hours were reduced",
+    "OTHER": "Other"
+   }
+  },
+  "checkResult": {
+   "likelyTitle": "You are very likely entitled to ALG 1",
+   "unclearTitle": "Individual review needed — application still recommended",
+   "unlikelyTitle": "No regular ALG1 entitlement according to the current assessment",
+   "estimatedMonthly": "Estimated monthly amount",
+   "basis": "Basis: {{amount}} € gross",
+   "rateWithChild": "67% (with child)",
+   "rateWithoutChild": "60%",
+   "perMonth": "~ {{amount}} € / month",
+   "perDay": "{{amount}} €/day",
+   "basisLine": "Basis: {{basis}} € gross · rate: {{rate}} · {{daily}} €/day",
+   "editAnswerAria": "Change answer to „{{question}}“",
+   "yourAnswers": "Your answers",
+   "change": "Change",
+   "nextSteps": "Next steps"
+  },
+  "erfolg": {
+   "metaTitle": "ALG1 — application submitted | Antragsbruder",
+   "metaDescription": "Your ALG1 application has been prepared and marked as ready.",
+   "pageTitle": "Application submitted successfully",
+   "headline": "Done!",
+   "bodyPre": "Your ALG1 application is fully prepared and marked as",
+   "bodyPost": ". The transfer to the Employment Agency and status tracking will follow in a later phase.",
+   "hint1": "Register as unemployed at least 3 months before your contract ends.",
+   "hint2": "Keep the confirmation with your reference number.",
+   "hint3": "ALG1 is paid monthly in advance.",
+   "backLink": "Back to the overview"
+  }
+ }
+}

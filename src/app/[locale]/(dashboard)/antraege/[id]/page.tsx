@@ -1,6 +1,7 @@
 // ============================================================
 // Seite: Case-Detail (Antragsübersicht mit Dokumentenliste)
 // /dashboard/[id]
+// Alle UI-Strings über getDashboardDict (i18n), Links locale-aware.
 // ============================================================
 
 'use client';
@@ -21,6 +22,10 @@ import {
 import { formatDate } from '@/lib/dashboard';
 import { QuestionnaireForm } from '@/components/questionnaire/QuestionnaireForm';
 import type { BenefitType } from '@/engine/types';
+import { localeHref } from '@/i18n/config';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
+import { formatTemplate } from '@/content/i18n/format';
 
 interface CaseData {
   id: string;
@@ -52,23 +57,20 @@ function StatusChangeDropdown({
   currentStatus: string;
   onChange: (status: string) => void;
 }) {
-  const labels: Record<string, string> = {
-    ACTIVE: 'Aktiv',
-    PAUSED: 'Pausiert',
-    COMPLETED: 'Abgeschlossen',
-  };
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).antraege;
   const options = ['ACTIVE', 'PAUSED', 'COMPLETED'] as const;
 
   return (
     <div className="flex items-center gap-2">
-      <label className="text-xs font-semibold text-ink-soft uppercase tracking-wide">Status</label>
+      <label className="text-xs font-semibold text-ink-soft uppercase tracking-wide">{t.statusLabel}</label>
       <select
         value={currentStatus}
         onChange={(e) => onChange(e.target.value)}
         className="rounded-xl border border-line-soft bg-white px-3 py-2 text-sm font-medium text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
       >
         {options.map((opt) => (
-          <option key={opt} value={opt}>{labels[opt]}</option>
+          <option key={opt} value={opt}>{t.status[opt]}</option>
         ))}
       </select>
     </div>
@@ -76,10 +78,13 @@ function StatusChangeDropdown({
 }
 
 function DocumentRow({ doc, onDelete }: { doc: DocRecord; onDelete: (id: string) => void }) {
+  const locale = useLocaleFromPath();
+  const tc = getDashboardDict(locale).common;
+  const t = getDashboardDict(locale).antraege;
   const [deleting, setDeleting] = useState(false);
 
   const handleDelete = async () => {
-    if (!confirm(`„${doc.filename}" wirklich löschen?`)) return;
+    if (!confirm(formatTemplate(t.deleteConfirm, { filename: doc.filename }))) return;
     setDeleting(true);
     try {
       const res = await fetch(
@@ -87,10 +92,10 @@ function DocumentRow({ doc, onDelete }: { doc: DocRecord; onDelete: (id: string)
         { method: 'DELETE' },
       );
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? 'Löschen fehlgeschlagen');
+      if (!res.ok) throw new Error(data.error ?? t.deleteFailed);
       onDelete(doc.id);
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Löschen fehlgeschlagen';
+      const msg = err instanceof Error ? err.message : t.deleteFailed;
       alert(msg);
     } finally {
       setDeleting(false);
@@ -121,7 +126,7 @@ function DocumentRow({ doc, onDelete }: { doc: DocRecord; onDelete: (id: string)
           </span>
         </div>
         <p className="mt-0.5 text-xs text-ink-soft">
-          Hochgeladen am {formatDate(doc.created_at)}
+          {formatTemplate(t.uploadedAt, { date: formatDate(doc.created_at) })}
         </p>
       </div>
 
@@ -135,7 +140,7 @@ function DocumentRow({ doc, onDelete }: { doc: DocRecord; onDelete: (id: string)
             download
           >
             <IconDownload className="h-3.5 w-3.5" />
-            Download
+            {tc.download}
           </a>
         )}
         <button
@@ -147,12 +152,12 @@ function DocumentRow({ doc, onDelete }: { doc: DocRecord; onDelete: (id: string)
           {deleting ? (
             <span className="flex items-center gap-1">
               <span className="h-3 w-3 animate-spin rounded-full border-2 border-red-400 border-t-transparent" />
-              Lös
+              {tc.deleting}
             </span>
           ) : (
             <>
               <IconTrash className="h-3.5 w-3.5" />
-              Löschen
+              {tc.delete}
             </>
           )}
         </button>
@@ -163,6 +168,9 @@ function DocumentRow({ doc, onDelete }: { doc: DocRecord; onDelete: (id: string)
 
 export default function CaseDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
+  const locale = useLocaleFromPath();
+  const tc = getDashboardDict(locale).common;
+  const t = getDashboardDict(locale).antraege;
   const [caseId, setCaseId] = useState<string | null>(null);
   const [caseData, setCaseData] = useState<CaseData | null>(null);
   const [documents, setDocuments] = useState<DocRecord[]>([]);
@@ -187,9 +195,9 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
 
         if (!res.ok) {
           if (res.status === 404) {
-            setError('Antrag nicht gefunden');
+            setError(t.notFound);
           } else {
-            throw new Error(data.error ?? 'Fehler beim Laden');
+            throw new Error(data.error ?? t.loadFailed);
           }
         }
 
@@ -199,7 +207,7 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
         }
       } catch (err: unknown) {
         if (mounted) {
-          setError(err instanceof Error ? err.message : 'Fehler');
+          setError(err instanceof Error ? err.message : tc.error);
         }
       } finally {
         if (mounted) setLoading(false);
@@ -222,10 +230,10 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
         body: JSON.stringify({ status: newStatus }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? 'Status konnte nicht geändert werden');
+      if (!res.ok) throw new Error(data.error ?? t.statusChangeFailed);
       setCaseData((prev) => (prev ? { ...prev, status: data.case.status } : prev));
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Fehler';
+      const msg = err instanceof Error ? err.message : tc.error;
       alert(msg);
     } finally {
       setStatusLoading(false);
@@ -245,11 +253,11 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
         <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={() => router.push('/dashboard')}
+            onClick={() => router.push(localeHref(locale, '/dashboard'))}
             className="flex items-center gap-1 rounded-full border border-line-soft px-3 py-1.5 text-xs font-semibold text-ink-soft transition-colors hover:bg-brand-50 hover:text-brand-700"
           >
             <IconArrowLeft className="h-3.5 w-3.5" />
-            Zur Übersicht
+            {t.goBack}
           </button>
         </div>
         <div className="flex items-center gap-3">
@@ -260,10 +268,10 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
             type="button"
             variant="secondary"
             size="sm"
-            onClick={() => router.push(`/dashboard/upload?caseId=${caseId}`)}
+            onClick={() => router.push(localeHref(locale, `/dashboard/upload?caseId=${caseId}`))}
           >
             <IconDocument className="h-4 w-4" />
-            Dokument hochladen
+            {t.uploadDocument}
           </ButtonAction>
         </div>
       </header>
@@ -274,7 +282,7 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
           {loading ? (
             <div className="flex flex-col items-center gap-3 py-12">
               <div className="h-6 w-6 animate-spin rounded-full border-2 border-brand-600 border-t-transparent" />
-              <p className="text-sm text-ink-soft">Antrag laden…</p>
+              <p className="text-sm text-ink-soft">{t.loadingCase}</p>
             </div>
           ) : error ? (
             <div className="flex flex-col items-center gap-4 rounded-2xl border border-red-200 bg-red-50 p-8 text-center">
@@ -284,10 +292,10 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
                 type="button"
                 variant="secondary"
                 size="md"
-                onClick={() => router.push('/dashboard')}
+                onClick={() => router.push(localeHref(locale, '/dashboard'))}
                 className="mt-2"
               >
-                Zur Übersicht
+                {t.goBack}
               </ButtonAction>
             </div>
           ) : caseData ? (
@@ -298,11 +306,11 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
                   <div>
                     <h1 className="text-xl font-bold text-ink">
                       {caseData.status === 'COMPLETED'
-                        ? 'Abgeschlossener Antrag'
-                        : 'Aktiver Antrag'}
+                        ? t.completedApplication
+                        : t.activeApplication}
                     </h1>
                     <p className="mt-1 text-sm text-ink-soft">
-                      Erstellt am {formatDate(caseData.created_at)}
+                      {formatTemplate(t.createdAt, { date: formatDate(caseData.created_at) })}
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
@@ -336,24 +344,24 @@ export default function CaseDetailPage({ params }: { params: Promise<{ id: strin
 
               {/* Dokumente */}
               <div className="mb-8">
-                <h2 className="mb-4 text-lg font-semibold text-ink">Dokumente</h2>
+                <h2 className="mb-4 text-lg font-semibold text-ink">{t.documentsTitle}</h2>
 
                 {documents.length === 0 ? (
                   <div className="flex flex-col items-center justify-center rounded-3xl border border-line-soft bg-paper p-12 text-center">
                     <IconFolder className="h-12 w-12 text-brand-300" />
-                    <h3 className="mt-4 text-lg font-semibold text-ink">Noch keine Unterlagen</h3>
+                    <h3 className="mt-4 text-lg font-semibold text-ink">{t.noDocuments}</h3>
                     <p className="mt-2 max-w-sm text-sm text-ink-soft">
-                      Lade deine Dokumente hoch, um deinen Antrag voranzutreiben.
+                      {t.noDocumentsHint}
                     </p>
                     <ButtonAction
                       type="button"
                       variant="primary"
                       size="md"
                       className="mt-6"
-                      onClick={() => router.push(`/dashboard/upload?caseId=${caseId}`)}
+                      onClick={() => router.push(localeHref(locale, `/dashboard/upload?caseId=${caseId}`))}
                     >
                       <IconDocument className="h-4 w-4" />
-                      Unterlagen hochladen
+                      {t.uploadDocuments}
                     </ButtonAction>
                   </div>
                 ) : (

@@ -1,0 +1,152 @@
+{
+  "profile": {
+    "masterData": {
+      "title": "Stammdaten",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "birthDate": "Geburtsdatum",
+      "phone": "Telefon (optional)",
+      "street": "Straße",
+      "houseNumber": "Hausnummer",
+      "postcode": "PLZ",
+      "city": "Stadt",
+      "save": "Speichern",
+      "saving": "Wird gespeichert…",
+      "discard": "Verwerfen",
+      "cityAutofill": "Automatisch via PLZ",
+      "lblEmail": "E-Mail"
+    },
+    "eligibility": {
+      "title": "Förder-Profil",
+      "description": "Diese Angaben helfen uns, passende Förderungen vorzuschlagen.",
+      "housingType": "Wohnsituation",
+      "employmentStatus": "Lebenssituation",
+      "childrenCount": "Kinder unter 18 im Haushalt",
+      "save": "Speichern",
+      "saving": "Wird gespeichert…",
+      "discard": "Verwerfen",
+      "housing": {
+        "RENT": "Miete",
+        "OWN": "Eigentum",
+        "PARENTS": "Bei Eltern / WG",
+        "OTHER": "Sonstiges"
+      },
+      "employment": {
+        "EMPLOYED": "Angestellt",
+        "SELF_EMPLOYED": "Selbstständig",
+        "UNEMPLOYED": "Arbeitslos",
+        "STUDENT": "Student",
+        "APPRENTICE": "Azubi",
+        "RETIRED": "Rentner",
+        "OTHER": "Sonstiges"
+      }
+    },
+    "vault": {
+      "title": "🔐 Bürokratie-Schlüsselbund",
+      "description": "Schneller Zugriff auf deine wichtigsten behördlichen Kennziffern — verschlüsselt, standardmäßig maskiert, mit einem Klick kopierbar.",
+      "add": "+ Nummer hinzufügen",
+      "loading": "Schlüsselbund wird geladen…",
+      "empty": "Noch keine Kennziffern gespeichert. Lege z. B. deine Steuer-ID an — einmal kopieren, überall einfügen.",
+      "reveal": "👁 Anzeigen",
+      "hide": "🙈 Verbergen",
+      "copy": "📋 Kopieren",
+      "copied": "✓ Kopiert!",
+      "delete": "Löschen",
+      "edit": "Bearbeiten",
+      "deleteConfirm": "„{{label}}“ wirklich löschen?",
+      "maskedIn": "maskiert in {{seconds}} s",
+      "errorDecrypt": "Dieser Eintrag wurde auf einem anderen Gerät/Geräteprofil verschlüsselt und ist hier nicht entschlüsselbar. Bitte trage ihn neu ein.",
+      "errorDecryptShort": "Nicht entschlüsselbar — bitte neu eintragen.",
+      "errValue": "Bitte einen Wert eingeben.",
+      "errLabel": "Bitte eine Bezeichnung eingeben.",
+      "errSave": "Speichern fehlgeschlagen",
+      "errEncrypt": "Fehler beim Verschlüsseln/Speichern",
+      "modalAdd": "Kennziffer hinzufügen",
+      "modalEdit": "Kennziffer bearbeiten",
+      "modalDescription": "Der Wert wird direkt in deinem Browser verschlüsselt (AES-GCM) und nur maskiert angezeigt.",
+      "lblType": "Typ",
+      "lblName": "Bezeichnung",
+      "lblValue": "Wert",
+      "lblNotes": "Notiz (optional)",
+      "phName": "z. B. Kundennummer Stadtwerke",
+      "phNotes": "z. B. Gültig bis 2029",
+      "phValue": "Wert eingeben",
+      "encryptingSaving": "Verschlüssele & speichere…",
+      "categories": {
+        "tax": "🏛 Steuern & Finanzen",
+        "social": "🛡 Sozialversicherung & Arbeit",
+        "health": "🏥 Gesundheit",
+        "id_card": "🪪 Ausweise",
+        "finance": "💶 Finanzen",
+        "other": "📁 Sonstiges"
+      }
+    },
+    "emailDialog": {
+      "title": "E-Mail-Adresse ändern",
+      "description": "Nach der Änderung erhältst du einen Bestätigungslink an die neue Adresse.",
+      "newEmail": "Neue E-Mail-Adresse",
+      "sendLink": "Bestätigungslink senden",
+      "sending": "Wird gesendet…",
+      "sendingStatus": "Sende Bestätigungslink…",
+      "error": "Fehler: {{message}}",
+      "sent": "Bestätigungslink gesendet. Bitte bestätige den Link in deiner neuen Mail."
+    },
+    "passwordDialog": {
+      "title": "Passwort ändern",
+      "newPassword": "Neues Passwort",
+      "confirmPassword": "Passwort wiederholen",
+      "save": "Passwort ändern",
+      "saving": "Wird gespeichert…",
+      "success": "✓ Passwort erfolgreich geändert.",
+      "error": "Fehler: {{message}}",
+      "errMinLength": "Fehler: Passwort muss mindestens 8 Zeichen haben.",
+      "errMismatch": "Fehler: Passwörter stimmen nicht überein."
+    },
+    "avatar": {
+      "change": "Ändern",
+      "upload": "Klicken um hochladen (JPG, PNG, WebP, max 10MB)",
+      "uploading": "Wird hochgeladen…",
+      "title": "Profilbild"
+    },
+    "avatarCrop": {
+      "title": "Profilbild zuschneiden",
+      "save": "Zuschneiden & Speichern",
+      "saving": "Wird verarbeitet…",
+      "cancel": "Abbrechen",
+      "zoom": "Zoom",
+      "errorLoad": "Bild konnte nicht geladen werden",
+      "errorBlob": "Blob-Erzeugung fehlgeschlagen",
+      "errorCanvas": "Canvas-Kontext nicht verfügbar",
+      "errorGeneric": "Zuschnitt fehlgeschlagen"
+    },
+    "metaTitle": "Mein Profil — Antragsbruder",
+    "metaDescription": "Verwalte deine Stammdaten, dein Förder-Profil und deine Sicherheitseinstellungen."
+  },
+  "onboarding": {
+    "dismiss": "Überspringen",
+    "next": "Weiter",
+    "finish": "Fertig",
+    "situation": {
+      "question": "Was beschreibt deine aktuelle Situation am besten?",
+      "employed": "Angestellt",
+      "selfEmployed": "Selbstständig",
+      "unemployed": "Kürzlich gekündigt / Arbeitslos",
+      "student": "Student / Azubi",
+      "retired": "Rentner",
+      "other": "Sonstiges"
+    },
+    "housing": {
+      "question": "Wie wohnst du?",
+      "rent": "Miete",
+      "own": "Eigentum",
+      "parents": "Bei Eltern / WG",
+      "other": "Sonstiges"
+    },
+    "children": {
+      "question": "Hast du Kinder unter 18 im Haushalt?"
+    },
+    "postcode": {
+      "question": "Wie ist deine Postleitzahl?"
+    }
+  }
+}

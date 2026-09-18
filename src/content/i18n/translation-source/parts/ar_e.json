@@ -1,0 +1,257 @@
+{
+ "alg1": {
+  "form": {
+   "sections": {
+    "Personendaten": "البيانات الشخصية",
+    "Letzter Arbeitgeber": "آخر صاحب عمل",
+    "Agentur für Arbeit": "وكالة العمل",
+    "Verfügbarkeit": "الجاهزية",
+    "Haushalt": "الأسرة",
+    "Finanzen": "المالية"
+   },
+   "pleaseSelect": "يرجى الاختيار…",
+   "childrenAgesHint": "افصل أعمار الأطفال بفواصل، مثلاً „3، 7“",
+   "progressLabel": "التقدم",
+   "autosaveNote": "يُحفظ إدخالك تلقائياً.",
+   "savedIndicator": "🟢 محفوظ · {{time}}",
+   "savingIndicator": "⏳ جارٍ الحفظ…",
+   "saveNow": "الحفظ الآن",
+   "fieldsCount": "{{total}} حقلاً في المجموع، {{visible}} مرئي.",
+   "checkError": "— يرجى التحقق",
+   "fields": {
+    "firstName": {
+     "label": "الاسم الأول"
+    },
+    "lastName": {
+     "label": "اسم العائلة"
+    },
+    "dateOfBirth": {
+     "label": "تاريخ الميلاد"
+    },
+    "street": {
+     "label": "الشارع ورقم المنزل"
+    },
+    "postcode": {
+     "label": "الرمز البريدي",
+     "placeholder": "مثلاً 10115"
+    },
+    "city": {
+     "label": "المدينة"
+    },
+    "phone": {
+     "label": "الهاتف",
+     "placeholder": "مثلاً 030 12345678"
+    },
+    "email": {
+     "label": "البريد الإلكتروني",
+     "placeholder": "مثلاً max@example.com"
+    },
+    "nationality": {
+     "label": "الجنسية"
+    },
+    "taxId": {
+     "label": "الرقم الضريبي",
+     "placeholder": "مثلاً 12 34 56789 01",
+     "hint": "11 رقماً — تجدها في شهادة ضريبة الأجور"
+    },
+    "iban": {
+     "label": "IBAN",
+     "placeholder": "مثلاً DE89 3704 0044 0532 0130 00",
+     "hint": "يبدأ بـ DE + رقمتا تحقق"
+    },
+    "healthInsurance": {
+     "label": "التأمين الصحي"
+    },
+    "employerName": {
+     "label": "اسم صاحب العمل"
+    },
+    "employerAddress": {
+     "label": "عنوان صاحب العمل"
+    },
+    "employmentStart": {
+     "label": "بداية العمل"
+    },
+    "employmentEnd": {
+     "label": "نهاية علاقة العمل"
+    },
+    "contractType": {
+     "label": "نوع العقد"
+    },
+    "hoursPerWeek": {
+     "label": "ساعات أسبوعياً"
+    },
+    "grossSalary": {
+     "label": "الدخل الإجمالي (الشهر الماضي)"
+    },
+    "taxClass": {
+     "label": "الفئة الضريبية"
+    },
+    "churchTax": {
+     "label": "ضريبة الكنيسة"
+    },
+    "childrenAllowance": {
+     "label": "إعفاءات الأطفال"
+    },
+    "unemployedSince": {
+     "label": "عاطل عن العمل منذ/من (تاريخ مستقبلي ممكن أيضاً)"
+    },
+    "agencyLocation": {
+     "label": "موقع الوكالة"
+    },
+    "agencyReference": {
+     "label": "رقم الملف (إن كان معروفاً)"
+    },
+    "fitForWork": {
+     "label": "لائق للعمل صحياً"
+    },
+    "availableFor15h": {
+     "label": "متاح 15 ساعة/أسبوع على الأقل"
+    },
+    "activelySeeking": {
+     "label": "يبحث بنشاط عن عمل"
+    },
+    "restrictions": {
+     "label": "قيود في البحث عن عمل"
+    },
+    "childrenCount": {
+     "label": "عدد الأطفال تحت 18"
+    },
+    "childrenAges": {
+     "label": "أعمار الأطفال (مفصولة بفواصل)",
+     "placeholder": "مثلاً 3، 7",
+     "hint": "مع طفلين مثلاً „3، 7“"
+    },
+    "hasPartner": {
+     "label": "شريك في الأسرة"
+    },
+    "partnerUnemployed": {
+     "label": "الشريك عاطل أيضاً"
+    },
+    "incomeSources": {
+     "label": "مصادر الدخل الحالية"
+    },
+    "assetsOver15k": {
+     "label": "أصول فوق 15,000 €"
+    }
+   },
+   "options": {
+    "nationality": {
+     "DE": "ألمانية",
+     "EU": "مواطن اتحاد أوروبي",
+     "OTHER": "أخرى"
+    },
+    "contractType": {
+     "UNLIMITED": "غير محدد المدة",
+     "LIMITED": "محدد المدة"
+    },
+    "taxClass": {
+     "I": "I",
+     "II": "II",
+     "III": "III",
+     "IV": "IV",
+     "V": "V",
+     "VI": "VI"
+    },
+    "restrictions": {
+     "NONE": "لا شيء",
+     "PHYSICAL": "قيود جسدية",
+     "MENTAL": "قيود نفسية",
+     "CARE": "رعاية أقارب"
+    },
+    "incomeSources": {
+     "NONE": "لا شيء",
+     "EMPLOYMENT": "عمل",
+     "ALG1": "ALG1",
+     "SICK_PAY": "إعانة مرضية",
+     "CHILD_BENEFIT": "بدل أطفال",
+     "MAINTENANCE": "نفقة",
+     "PARENTAL_ALLOWANCE": "بدل أبوة",
+     "PENSION": "معاش تقاعدي",
+     "SELF_EMPLOYED": "عمل حر"
+    }
+   }
+  },
+  "summary": {
+   "title": "طلب ALG1 الخاص بك",
+   "titleReadOnly": "طلب ALG1 الخاص بك — الحالة الحالية",
+   "titleEdit": "ملخص طلب ALG1 الخاص بك",
+   "status": {
+    "SUBMITTED": {
+     "label": "تم الإرسال",
+     "hint": "وصل طلبك إلى Jobcenter. سنبقيك على اطلاع هنا."
+    },
+    "PROCESSING": {
+     "label": "قيد الفحص",
+     "hint": "وكالة العمل تفحص طلبك. احتفظ بتأكيد رقم الملف جاهزاً."
+    },
+    "APPROVED": {
+     "label": "تمت الموافقة 🎉",
+     "hint": "تمت الموافقة على إعانة البطالة — يتم الدفع شهرياً مقدماً."
+    },
+    "REJECTED": {
+     "label": "مرفوض",
+     "hint": "تم رفض طلبك. راجع القرار — يمكنك تقديم اعتراض ضده."
+    }
+   },
+   "missingHeading": "لا تزال هناك {{count}} معلومات ناقصة ({{issues}} خطأ تحقق):",
+   "addInfoBtn": "إكمال البيانات ({{sections}})",
+   "errRequired": "يرجى التعبئة — هذه المعلومات لا تزال ناقصة.",
+   "errTaxId": "يرجى إدخال رقمك الضريبي بـ 11 رقماً بالضبط (مثلاً 12 34 56789 01).",
+   "errIban": "يرجى إدخال IBAN صالح (مثلاً DE89 3704 0044 0532 0130 00).",
+   "errPostcode": "يرجى إدخال رمز بريدي من 5 أرقام (مثلاً 10115).",
+   "errEmail": "يرجى إدخال بريد إلكتروني صالح.",
+   "errDate": "يرجى اختيار تاريخ.",
+   "errIncomeSources": "يرجى اختيار مصدر دخل واحد على الأقل (أو „لا شيء“).",
+   "errChildrenAges": "يرجى إدخال أعمار الأطفال مفصولة بفواصل (مثلاً 3، 7).",
+   "errDefault": "يرجى التحقق من هذه المعلومات وإكمالها.",
+   "submitFailed": "فشل الإرسال",
+   "confirmedTitle": "تم إرسال الطلب (محاكاة)",
+   "confirmedPre": "الطلب معلَّم كـ",
+   "confirmedPost": ". سيحدث النقل إلى وكالة العمل في مرحلة لاحقة.",
+   "estimateLabel": "مبلغ ALG1 الشهري التقديري",
+   "estimateLine": "الأساس: {{basis}} € | النسبة: {{rate}} | اليوم: {{daily}} €",
+   "lblName": "الاسم:",
+   "lblBirthDate": "تاريخ الميلاد:",
+   "lblAddress": "العنوان:",
+   "lblEmail": "البريد الإلكتروني:",
+   "lblEmployer": "صاحب العمل:",
+   "lblUnemployedSince": "عاطل منذ:",
+   "lblGross": "الإجمالي:",
+   "lblTaxClass": "الفئة الضريبية:",
+   "lblChildren": "الأطفال:",
+   "lblIban": "IBAN:",
+   "notesTitle": "ملاحظات مهمة:",
+   "note1": "سجّل نفسك كعاطل عن العمل قبل 3 أشهر على الأقل من انتهاء عقدك",
+   "note2": "احتفظ بتأكيد رقم الملف الخاص بك",
+   "note3": "يُدفع ALG1 شهرياً مقدماً",
+   "statusLabel": "الحالة:",
+   "submitting": "جارٍ الإرسال…",
+   "submitBtn": "إرسال الطلب (محاكاة)"
+  },
+  "upload": {
+   "slots": {
+    "TERMINATION": {
+     "label": "إشعار الفصل",
+     "description": "إنهاء علاقة العمل"
+    },
+    "PAYSLIP": {
+     "label": "آخر قسيمة راتب",
+     "description": "إثبات الراتب الإجمالي"
+    },
+    "ID_CARD": {
+     "label": "بطاقة الهوية",
+     "description": "الوجه الأمامي والخلفي"
+    },
+    "OTHER": {
+     "label": "مستندات إضافية",
+     "description": "اختياري"
+    }
+   },
+   "required": "إلزامي",
+   "bypassLabel": "سأرسل المستندات لاحقاً",
+   "continueBtn": "متابعة إلى الأسئلة",
+   "uploading": "جارٍ الرفع…",
+   "dropzoneHint": "انقر أو اسحب ملفاً إلى هنا (PDF، JPG، PNG — بحد أقصى 10 ميجابايت)"
+  }
+ }
+}

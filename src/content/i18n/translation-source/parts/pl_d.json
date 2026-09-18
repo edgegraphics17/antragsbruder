@@ -1,0 +1,84 @@
+{
+ "alg1": {
+  "meta": {
+   "title": "Wniosek ALG1 | Antragsbruder",
+   "description": "Prześlij dokumenty, odpowiedz na pytania i złóż wniosek ALG1."
+  },
+  "index": {
+   "metaTitle": "ALG1 — szybka kontrola | Antragsbruder",
+   "metaDescription": "Sprawdź w 7 pytaniach, czy masz prawo do ALG1, i rozpocznij wniosek.",
+   "title": "Złóż wniosek o ALG1",
+   "subtitle": "Odpowiedz na 7 krótkich pytań — ocenimy Twoje szanse i rozpocznemy wniosek."
+  },
+  "flow": {
+   "loading": "Ładowanie…",
+   "documentsTitle": "Twoje dokumenty",
+   "documentsText": "Prześlij najważniejsze dokumenty — odczytujemy je automatycznie.",
+   "backToDocuments": "← Wstecz do dokumentów",
+   "continueToSummary": "Dalej do podsumowania →",
+   "backToForm": "← Wstecz do formularza",
+   "startApplication": "Rozpocznij oficjalny wniosek ALG1 i prześlij dokumenty",
+   "errorNotFound": "Nie znaleziono wniosku lub brak dostępu.",
+   "errorNoAccess": "Brak dostępu do tego wniosku."
+  },
+  "start": {
+   "loadingDraft": "Ładowanie roboczej wersji…",
+   "draftLoaded": "Twój zapisany szkic został załadowany.",
+   "errorCreatingCase": "Nie udało się utworzyć sprawy. Spróbuj później.",
+   "errorCreatingApplication": "Nie udało się utworzyć wniosku: {{errorMessage}}",
+   "errorUpdatingDraft": "Nie udało się zapisać szkicu: {{errorMessage}}"
+  },
+  "check": {
+   "questionProgress": "Pytanie {{current}} z {{total}}",
+   "progressPercent": "{{progress}}%",
+   "back": "← Wstecz",
+   "questions": {
+    "termination_type": "Co stało się z Twoją pracą?",
+    "insurance_period_months": "Ile miesięcy w ciągu ostatnich 28 miesięcy byłeś objęty obowiązkowym ubezpieczeniem?",
+    "registered_unemployed": "Czy zarejestrowałeś się już jako bezrobotny?",
+    "available_hours_per_week": "Ile godzin tygodniowo możesz pracować?",
+    "actively_seeking": "Czy aktywnie szukasz pracy?",
+    "has_children": "Czy masz dzieci poniżej 18 lat?",
+    "has_partner": "Czy mieszkasz z partnerem/partnerką?",
+    "gross_salary": "Przybliżony miesięczny dochód brutto z ostatnich 12 miesięcy w €"
+   },
+   "termination": {
+    "EMPLOYER_TERMINATED": "Wypowiedział pracodawca",
+    "CONTRACT_END": "Umowa wygasła",
+    "SELF_QUIT": "Sam się zwolniłem",
+    "MUTUAL_AGREEMENT": "Porozumienie o rozwiązaniu umowy",
+    "EMPLOYER_INSOLVENT": "Pracodawca niewypłacalny",
+    "HOURS_REDUCED": "Czas pracy został skrócony",
+    "OTHER": "Inne"
+   }
+  },
+  "checkResult": {
+   "likelyTitle": "Bardzo prawdopodobne, że masz prawo do ALG 1",
+   "unclearTitle": "Wymagana indywidualna weryfikacja — wniosek mimo to zalecany",
+   "unlikelyTitle": "Brak zwykłego prawa do ALG1 według aktualnej oceny",
+   "estimatedMonthly": "Szacowana kwota miesięczna",
+   "basis": "Podstawa: {{amount}} € brutto",
+   "rateWithChild": "67% (z dzieckiem)",
+   "rateWithoutChild": "60%",
+   "perMonth": "~ {{amount}} € / mies.",
+   "perDay": "{{amount}} €/dzień",
+   "basisLine": "Podstawa: {{basis}} € brutto · stawka: {{rate}} · {{daily}} €/dzień",
+   "editAnswerAria": "Zmień odpowiedź na „{{question}}“",
+   "yourAnswers": "Twoje odpowiedzi",
+   "change": "Zmień",
+   "nextSteps": "Następne kroki"
+  },
+  "erfolg": {
+   "metaTitle": "ALG1 — wniosek złożony | Antragsbruder",
+   "metaDescription": "Twój wniosek ALG1 został przygotowany i oznaczony jako gotowy.",
+   "pageTitle": "Wniosek pomyślnie złożony",
+   "headline": "Gotowe!",
+   "bodyPre": "Twój wniosek ALG1 jest w pełni przygotowany i oznaczony jako",
+   "bodyPost": ". Przekazanie do urzędu pracy i śledzenie statusu nastąpi w późniejszej fazie.",
+   "hint1": "Zarejestruj się jako bezrobotny najpóźniej 3 miesiące przed końcem umowy.",
+   "hint2": "Zachowaj potwierdzenie z numerem sprawy.",
+   "hint3": "ALG1 jest wypłacany co miesiąc z góry.",
+   "backLink": "Powrót do przeglądu"
+  }
+ }
+}

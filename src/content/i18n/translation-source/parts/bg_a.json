@@ -1,0 +1,150 @@
+{
+ "common": {
+  "save": "Запази",
+  "saving": "Запазване…",
+  "saved": "Промените са запазени.",
+  "errorSaving": "Запазването не бе успешно. Опитайте отново.",
+  "cancel": "Отказ",
+  "close": "Затвори",
+  "delete": "Изтрий",
+  "deleting": "Изтриване…",
+  "edit": "Редактирай",
+  "back": "Назад",
+  "next": "Напред",
+  "previous": "Назад",
+  "loading": "Зареждане…",
+  "error": "Нещо се обърка. Опитайте отново.",
+  "retry": "Опитайте отново",
+  "optional": "по желание",
+  "required": "задължително поле",
+  "upload": "Качване",
+  "uploading": "Качване…",
+  "download": "Изтегляне",
+  "search": "Търсене",
+  "yes": "Да",
+  "no": "Не",
+  "refresh": "Обновяване",
+  "confirm": "Потвърди",
+  "skip": "Пропусни",
+  "notAvailable": "Няма налични",
+  "open": "Отвори",
+  "new": "Нов"
+ },
+ "nav": {
+  "dashboard": "Табло",
+  "alg1": "ALG1",
+  "dokumente": "Документи",
+  "foerderungen": "Помощи"
+ },
+ "sidebar": {
+  "logout": "Излез",
+  "backToSite": "Обратно към сайта",
+  "guest": "Гост",
+  "navLabel": "Навигация на таблото"
+ },
+ "home": {
+  "metaTitle": "Табло — Antragsbruder",
+  "metaDescription": "Вашите текущи заявления и подходящите помощи с един поглед.",
+  "greetingMorning": "Добро утро",
+  "greetingDay": "Добър ден",
+  "greetingEvening": "Добър вечер",
+  "fallbackUser": "Потребител",
+  "summaryOneApp": "Имате {{apps}} активно заявление и {{benefits}} подходящи помощи.",
+  "summaryManyApps": "Имате {{apps}} активни заявления и {{benefits}} подходящи помощи.",
+  "startFirst": "Започнете първото си заявление.",
+  "runningTitle": "Текущи заявления",
+  "noRunning": "Още няма активни заявления",
+  "startNow": "Започни сега",
+  "status": {
+   "DRAFT": "В ход",
+   "IN_PROGRESS": "В ход",
+   "DOCS_PENDING": "Липсват документи",
+   "READY": "Готово за изпращане",
+   "SUBMITTED": "Изпратено ✓",
+   "PROCESSING": "На проверка",
+   "APPROVED": "Одобрено 🎉",
+   "REJECTED": "Отхвърлено"
+  },
+  "alg1Title": "Помощ за безработни (ALG1)",
+  "applicationFallback": "Заявление",
+  "upTo": "До {{amount}} €/мес.",
+  "createdAt": "Създадено на {{date}}",
+  "viewStatus": "Виж статуса",
+  "continueWorking": "Продължи",
+  "possibleTitle": "Възможни помощи",
+  "fillProfile": "Попълнете профила си, за да видите подходящи помощи.",
+  "confidenceHigh": "Много вероятно",
+  "confidencePossible": "Възможно",
+  "allBenefits": "Виж всички помощи →",
+  "docsTresor": "Документи и трезор",
+  "docsEmpty": "Качете документите си, за да завършите заявлението.",
+  "docsCountOne": "{{count}} документ в трезора.",
+  "docsCountMany": "{{count}} документа в трезора.",
+  "goToTresor": "Към трезора",
+  "stepsProgress": "{{done}}/4 стъпки",
+  "timeline": {
+   "docs": {
+    "label": "Добави документи",
+    "description": "Качете писмото за прекратяване, заплатите и други документи."
+   },
+   "data": {
+    "label": "Попълни данни",
+    "description": "Отговорете на въпросите и въведете личните си данни."
+   },
+   "submit": {
+    "label": "Подай заявление",
+    "description": "Прегледай обобщението и го подай във ведомството."
+   },
+   "receive": {
+    "label": "Получи помощ",
+    "description": "Изчакай решението и получи първото си плащане."
+   }
+  }
+ },
+ "foerderungen": {
+  "metaTitle": "Помощи — Antragsbruder",
+  "metaDescription": "Проверка на помощите по правила въз основа на вашите данни.",
+  "title": "Радар на помощите",
+  "subtitle": "{{matched}} от {{total}} помощи отговарят на вашата ситуация — въз основа на профил и трезор.",
+  "tabQualified": "🎯 Квалифициран за мен",
+  "tabPotential": "⚡ Провери потенциала",
+  "tabExcluded": "🚫 Изключени",
+  "amountRange": "ок. {{min}}–{{max}} € / мес.",
+  "amountFrom": "от ок. {{min}} € / мес.",
+  "amountUpTo": "до ок. {{max}} € / мес.",
+  "calcNow": "Изчисли сега",
+  "viewAtOffice": "Виж във ведомството",
+  "calcAvailable": "Наличен калкулатор",
+  "authority": "Отговорно ведомство: {{authority}}",
+  "docsInVault": "{{present}} от {{total}} необходими документа в трезора",
+  "unlockTitle": "Отключи право",
+  "noExcluded": "В момента нито една помощ не е ясно изключена.",
+  "excludedInfo": "{{count}} помощи определено не се отнасят за вашия профил (напр. само за студенти или пенсионери). Скриваме ги.",
+  "noQualified": "Още нищо не е ясно квалифицирано — отговорете на уточняващите въпроси по-горе или попълнете профила за помощи.",
+  "noPotential": "Няма отворени потенциали — отговорете на уточняващите въпроси, за да отключите повече."
+ },
+ "antraege": {
+  "statusLabel": "Статус",
+  "status": {
+   "ACTIVE": "Активно",
+   "PAUSED": "Паузирано",
+   "COMPLETED": "Завършено"
+  },
+  "deleteConfirm": "Наистина ли да изтрия „{{filename}}“?",
+  "deleteFailed": "Изтриването не бе успешно",
+  "uploadedAt": "Качено на {{date}}",
+  "notFound": "Заявлението не е намерено",
+  "loadFailed": "Грешка при зареждане",
+  "statusChangeFailed": "Статусът не можа да бъде променен",
+  "goBack": "Към прегледа",
+  "uploadDocument": "Качване на документ",
+  "loadingCase": "Зареждане на заявлението…",
+  "completedApplication": "Завършено заявление",
+  "activeApplication": "Активно заявление",
+  "createdAt": "Създадено на {{date}}",
+  "documentsTitle": "Документи",
+  "noDocuments": "Още няма документи",
+  "noDocumentsHint": "Качете документите си, за да напредва заявлението.",
+  "uploadDocuments": "Качване на документи"
+ }
+}

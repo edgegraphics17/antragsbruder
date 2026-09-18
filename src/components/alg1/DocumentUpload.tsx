@@ -4,16 +4,19 @@
 // DB-Eintrag (PENDING) vor Storage-Upload, bei Fehler Rollback (Löschen),
 // danach Status PROCESSING. Pfad: ${userId}/${caseId}/${fileId}.${ext}.
 // Reload-sicher: Beim Mounten werden vorhandene Dokumente geladen.
+// Slot-Labels/Beschreibungen aus dem Dict (alg1.upload.slots.<ROLE>).
 import { useCallback, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth-context';
 import { DocumentSlot } from './upload/DocumentSlot';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
 
 const SLOTS = [
-  { role: 'TERMINATION', label: 'Kündigungsschreiben', description: 'Beendigung des Arbeitsverhältnisses', required: true },
-  { role: 'PAYSLIP', label: 'Letzter Lohnzettel', description: 'Brutto-Gehaltsnachweis', required: true },
-  { role: 'ID_CARD', label: 'Personalausweis', description: 'Vorder- und Rückseite', required: true },
-  { role: 'OTHER', label: 'Zusätzliche Unterlagen', description: 'Optional', required: false },
+  { role: 'TERMINATION', required: true },
+  { role: 'PAYSLIP', required: true },
+  { role: 'ID_CARD', required: true },
+  { role: 'OTHER', required: false },
 ] as const;
 
 interface DocumentRow {
@@ -35,6 +38,8 @@ export function DocumentUpload({
   onComplete: () => void;
 }) {
   const { user } = useAuth();
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).alg1.upload;
   const [files, setFiles] = useState<Record<string, DocumentRow>>({});
   const [loading, setLoading] = useState(true);
   const [bypass, setBypass] = useState(false);
@@ -130,14 +135,26 @@ export function DocumentUpload({
   return (
     <div className="space-y-4">
       <div className="space-y-3">
-        {SLOTS.map((slot) => (
-          <DocumentSlot key={slot.role} slot={slot} document={files[slot.role]} onUpload={handleUpload} onDelete={handleDelete} />
-        ))}
+        {SLOTS.map((slot) => {
+          const slotDict = t.slots[slot.role as keyof typeof t.slots];
+          return (
+            <DocumentSlot
+              key={slot.role}
+              role={slot.role}
+              label={slotDict.label}
+              description={slotDict.description}
+              required={slot.required}
+              document={files[slot.role]}
+              onUpload={handleUpload}
+              onDelete={handleDelete}
+            />
+          );
+        })}
       </div>
 
       <label className="flex items-center gap-2 text-sm text-ink-soft">
         <input type="checkbox" checked={bypass} onChange={(e) => setBypass(e.target.checked)} className="accent-brand-600" />
-        Ich reiche Unterlagen später nach
+        {t.bypassLabel}
       </label>
 
       <button
@@ -146,7 +163,7 @@ export function DocumentUpload({
         disabled={!canContinue}
         className="w-full rounded-xl bg-brand-600 py-3 font-semibold text-white transition-colors hover:bg-brand-700 disabled:opacity-50"
       >
-        Weiter zu den Fragen
+        {t.continueBtn}
       </button>
     </div>
   );

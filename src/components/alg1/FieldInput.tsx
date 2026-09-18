@@ -8,9 +8,13 @@
 //    damit Kommas beim Tippen nicht verschluckt werden)
 // Auto-Formatierung: taxId (12 34 56789 01), iban (4er-Gruppen).
 // Live-Validierung: pattern-Verstoß → rote Umrandung sofort.
+// Labels/Placeholders/Hints/Options-Texte aus dem Dict (alg1.form.*),
+// Fallback auf die deutsche FORM_CONFIG.
 import { useState } from 'react';
 import type { Alg1FormData } from '@/lib/types/alg1';
 import type { FormField } from '@/lib/alg1/form-config';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
 
 function baseClass(hasError: boolean) {
   return `w-full rounded-lg border px-4 py-3 text-base md:text-sm focus:outline-none ${
@@ -49,7 +53,18 @@ export function FieldInput({
   onChange: (key: keyof Alg1FormData, value: unknown) => void;
   hasError?: boolean;
 }) {
-  const { placeholder, pattern, hint } = field;
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).alg1.form;
+  const tc = getDashboardDict(locale).common;
+  const fieldDict = t.fields[field.key as keyof typeof t.fields] as
+    | { label?: string; placeholder?: string; hint?: string }
+    | undefined;
+  const optionsDict = t.options[field.key as keyof typeof t.options] as
+    | Record<string, string>
+    | undefined;
+  const { pattern } = field;
+  const placeholder = fieldDict?.placeholder ?? field.placeholder;
+  const hint = fieldDict?.hint ?? field.hint;
 
   // Live-Validierung: nur wenn etwas eingetragen ist
   const patternInvalid =
@@ -95,7 +110,7 @@ export function FieldInput({
               value === true ? 'border-brand-600 bg-brand-100 text-brand-800' : 'border-line'
             }`}
           >
-            Ja
+            {tc.yes}
           </button>
           <button
             type="button"
@@ -104,7 +119,7 @@ export function FieldInput({
               value === false ? 'border-brand-600 bg-brand-100 text-brand-800' : 'border-line'
             }`}
           >
-            Nein
+            {tc.no}
           </button>
         </div>
       );
@@ -133,7 +148,7 @@ export function FieldInput({
                   onChange={() => toggle(o.value)}
                   className="h-4 w-4 accent-[var(--accent,#2f6d68)]"
                 />
-                {o.label}
+                {optionsDict?.[o.value] ?? o.label}
               </label>
             ))}
           </div>
@@ -148,9 +163,9 @@ export function FieldInput({
             onChange={(e) => onChange(field.key, e.target.value === '' ? undefined : [e.target.value])}
             className={baseClass(invalid)}
           >
-            <option value="">Bitte wählen…</option>
+            <option value="">{t.pleaseSelect}</option>
             {field.options?.map((o) => (
-              <option key={o.value} value={o.value}>{o.label}</option>
+              <option key={o.value} value={o.value}>{optionsDict?.[o.value] ?? o.label}</option>
             ))}
           </select>
         );
@@ -161,9 +176,9 @@ export function FieldInput({
           onChange={(e) => onChange(field.key, e.target.value)}
           className={baseClass(invalid)}
         >
-          <option value="" disabled>Bitte wählen…</option>
+          <option value="" disabled>{t.pleaseSelect}</option>
           {field.options?.map((o) => (
-            <option key={o.value} value={o.value}>{o.label}</option>
+            <option key={o.value} value={o.value}>{optionsDict?.[o.value] ?? o.label}</option>
           ))}
         </select>
       );
@@ -219,6 +234,8 @@ function ChildrenAgesInput({
   onChange: (key: keyof Alg1FormData, value: unknown) => void;
   hasError: boolean;
 }) {
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).alg1.form;
   const asText = Array.isArray(value) ? (value as number[]).join(', ') : '';
   const [text, setText] = useState(asText);
   const [lastExternal, setLastExternal] = useState(asText);
@@ -230,11 +247,15 @@ function ChildrenAgesInput({
     setText(asText);
   }
 
+  const agesHint =
+    (t.fields.childrenAges as { placeholder?: string; hint?: string } | undefined)?.hint ??
+    t.childrenAgesHint;
+
   return (
     <div>
       <input
         type="text"
-        placeholder="z.B. 3, 7"
+        placeholder={(t.fields.childrenAges as { placeholder?: string } | undefined)?.placeholder}
         inputMode="numeric"
         value={text}
         onChange={(e) => {
@@ -248,7 +269,7 @@ function ChildrenAgesInput({
         }}
         className={baseClass(hasError)}
       />
-      <p className="mt-1 text-xs text-ink-soft">Alter der Kinder mit Komma trennen, z.B. „3, 7“</p>
+      <p className="mt-1 text-xs text-ink-soft">{agesHint}</p>
     </div>
   );
 }

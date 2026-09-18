@@ -4,6 +4,7 @@
 // Zoom-Regler und Canvas-Zuschnitt via src/lib/cropImage.ts.
 // Der Cropper-Container MUSS relative + feste Höhe haben, sonst rendert
 // react-easy-crop unsichtbar/schwarz (0×0-Kontext).
+// Texte aus dem Dict (profile.avatarCrop.*).
 
 import { useState, useCallback } from 'react';
 import Cropper, { type Area } from 'react-easy-crop';
@@ -11,6 +12,8 @@ import 'react-easy-crop/react-easy-crop.css';
 import { cropImage } from '@/lib/cropImage';
 import { ButtonAction } from '@/components/ui/Button';
 import { IconClose } from '@/components/ui/icons';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
 
 interface Props {
   open: boolean;
@@ -20,6 +23,9 @@ interface Props {
 }
 
 export function AvatarCropModal({ open, imageUrl, onComplete, onCancel }: Props) {
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).profile.avatarCrop;
+  const tc = getDashboardDict(locale).common;
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
@@ -37,8 +43,10 @@ export function AvatarCropModal({ open, imageUrl, onComplete, onCancel }: Props)
     try {
       const blob = await cropImage(imageUrl, croppedAreaPixels);
       onComplete(blob);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Zuschnitt fehlgeschlagen');
+    } catch {
+      // Fehlerdetails (z. B. aus cropImage.ts) nicht roh zeigen —
+      // einheitliche übersetzte Meldung.
+      setError(t.errorGeneric);
     } finally {
       setIsSaving(false);
     }
@@ -51,15 +59,15 @@ export function AvatarCropModal({ open, imageUrl, onComplete, onCancel }: Props)
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
       role="dialog"
       aria-modal="true"
-      aria-label="Profilbild zuschneiden"
+      aria-label={t.title}
     >
       <div className="max-h-[85dvh] w-[95vw] max-w-lg overflow-y-auto rounded-2xl bg-white p-6 sm:w-full">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-ink">Profilbild zuschneiden</h2>
+          <h2 className="text-lg font-semibold text-ink">{t.title}</h2>
           <button
             type="button"
             onClick={onCancel}
-            aria-label="Schließen"
+            aria-label={tc.close}
             className="text-ink-soft hover:text-ink"
           >
             <IconClose className="h-5 w-5" />
@@ -88,7 +96,7 @@ export function AvatarCropModal({ open, imageUrl, onComplete, onCancel }: Props)
         )}
 
         <label className="mt-4 block text-sm text-ink-soft">
-          Zoom
+          {t.zoom}
           <input
             type="range"
             min={1}
@@ -97,16 +105,16 @@ export function AvatarCropModal({ open, imageUrl, onComplete, onCancel }: Props)
             value={zoom}
             onChange={(e) => setZoom(Number(e.target.value))}
             className="mt-1 w-full accent-brand-600"
-            aria-label="Zoom"
+            aria-label={t.zoom}
           />
         </label>
 
         <div className="mt-4 flex gap-3">
           <ButtonAction type="button" onClick={handleSave} disabled={isSaving} className="flex-1">
-            {isSaving ? 'Wird verarbeitet…' : 'Zuschneiden & Speichern'}
+            {isSaving ? t.saving : t.save}
           </ButtonAction>
           <ButtonAction type="button" variant="secondary" onClick={onCancel} className="flex-1">
-            Abbrechen
+            {t.cancel}
           </ButtonAction>
         </div>
       </div>

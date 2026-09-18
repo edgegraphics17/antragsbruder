@@ -1,0 +1,257 @@
+{
+ "alg1": {
+  "form": {
+   "sections": {
+    "Personendaten": "Особисті дані",
+    "Letzter Arbeitgeber": "Останній роботодавець",
+    "Agentur für Arbeit": "Відомство праці",
+    "Verfügbarkeit": "Доступність",
+    "Haushalt": "Сім'я",
+    "Finanzen": "Фінанси"
+   },
+   "pleaseSelect": "Будь ласка, виберіть…",
+   "childrenAgesHint": "Вік дітей через кому, напр. „3, 7“",
+   "progressLabel": "Прогрес",
+   "autosaveNote": "Ваші дані зберігаються автоматично.",
+   "savedIndicator": "🟢 Збережено · {{time}}",
+   "savingIndicator": "⏳ Збереження…",
+   "saveNow": "Зберегти зараз",
+   "fieldsCount": "Всього полів: {{total}}, видимих: {{visible}}.",
+   "checkError": "— перевірте",
+   "fields": {
+    "firstName": {
+     "label": "Ім'я"
+    },
+    "lastName": {
+     "label": "Прізвище"
+    },
+    "dateOfBirth": {
+     "label": "Дата народження"
+    },
+    "street": {
+     "label": "Вулиця та номер будинку"
+    },
+    "postcode": {
+     "label": "Індекс",
+     "placeholder": "напр. 10115"
+    },
+    "city": {
+     "label": "Місто"
+    },
+    "phone": {
+     "label": "Телефон",
+     "placeholder": "напр. 030 12345678"
+    },
+    "email": {
+     "label": "Ел. пошта",
+     "placeholder": "напр. max@example.com"
+    },
+    "nationality": {
+     "label": "Громадянство"
+    },
+    "taxId": {
+     "label": "Податковий номер",
+     "placeholder": "напр. 12 34 56789 01",
+     "hint": "11 цифр — вказані у вашій довідці про податок на зарплату"
+    },
+    "iban": {
+     "label": "IBAN",
+     "placeholder": "напр. DE89 3704 0044 0532 0130 00",
+     "hint": "Починається з DE + 2 контрольні цифри"
+    },
+    "healthInsurance": {
+     "label": "Медичне страхування"
+    },
+    "employerName": {
+     "label": "Назва роботодавця"
+    },
+    "employerAddress": {
+     "label": "Адреса роботодавця"
+    },
+    "employmentStart": {
+     "label": "Дата початку роботи"
+    },
+    "employmentEnd": {
+     "label": "Кінець трудових відносин"
+    },
+    "contractType": {
+     "label": "Тип договору"
+    },
+    "hoursPerWeek": {
+     "label": "Годин на тиждень"
+    },
+    "grossSalary": {
+     "label": "Валовий дохід (за останній місяць)"
+    },
+    "taxClass": {
+     "label": "Податковий клас"
+    },
+    "churchTax": {
+     "label": "Церковний податок"
+    },
+    "childrenAllowance": {
+     "label": "Дитячі вирахування"
+    },
+    "unemployedSince": {
+     "label": "Безробітний з/з (можлива і майбутня дата)"
+    },
+    "agencyLocation": {
+     "label": "Адреса відомства"
+    },
+    "agencyReference": {
+     "label": "Номер справи (якщо відомий)"
+    },
+    "fitForWork": {
+     "label": "Здатний працювати за станом здоров'я"
+    },
+    "availableFor15h": {
+     "label": "Доступний мінімум 15 год/тиж."
+    },
+    "activelySeeking": {
+     "label": "Активно шукаю роботу"
+    },
+    "restrictions": {
+     "label": "Обмеження при пошуку роботи"
+    },
+    "childrenCount": {
+     "label": "Кількість дітей до 18"
+    },
+    "childrenAges": {
+     "label": "Вік дітей (через кому)",
+     "placeholder": "напр. 3, 7",
+     "hint": "При 2 дітях напр. „3, 7“"
+    },
+    "hasPartner": {
+     "label": "Партнер у сім'ї"
+    },
+    "partnerUnemployed": {
+     "label": "Партнер також безробітний"
+    },
+    "incomeSources": {
+     "label": "Поточні джерела доходу"
+    },
+    "assetsOver15k": {
+     "label": "Активи понад 15.000 €"
+    }
+   },
+   "options": {
+    "nationality": {
+     "DE": "Громадянин Німеччини",
+     "EU": "Громадянин ЄС",
+     "OTHER": "Інше"
+    },
+    "contractType": {
+     "UNLIMITED": "Безстроковий",
+     "LIMITED": "Строковий"
+    },
+    "taxClass": {
+     "I": "I",
+     "II": "II",
+     "III": "III",
+     "IV": "IV",
+     "V": "V",
+     "VI": "VI"
+    },
+    "restrictions": {
+     "NONE": "Немає",
+     "PHYSICAL": "Фізичні обмеження",
+     "MENTAL": "Психічні обмеження",
+     "CARE": "Догляд за близькими"
+    },
+    "incomeSources": {
+     "NONE": "Немає",
+     "EMPLOYMENT": "Робота за наймом",
+     "ALG1": "ALG1",
+     "SICK_PAY": "Лікарняні виплати",
+     "CHILD_BENEFIT": "Дитяча допомога",
+     "MAINTENANCE": "Аліменти",
+     "PARENTAL_ALLOWANCE": "Батьківська допомога",
+     "PENSION": "Пенсія",
+     "SELF_EMPLOYED": "Самозайнятість"
+    }
+   }
+  },
+  "summary": {
+   "title": "Ваша заява на ALG1",
+   "titleReadOnly": "Ваша заява на ALG1 — поточний статус",
+   "titleEdit": "Підсумок вашої заяви на ALG1",
+   "status": {
+    "SUBMITTED": {
+     "label": "Подано",
+     "hint": "Вашу заяву отримало відомство Jobcenter. Ми триматимемо вас у курсі тут."
+    },
+    "PROCESSING": {
+     "label": "На перевірці",
+     "hint": "Відомство праці перевіряє вашу заяву. Тримайте під рукою підтвердження номера справи."
+    },
+    "APPROVED": {
+     "label": "Схвалено 🎉",
+     "hint": "Вашу допомогу з безробіття схвалено — виплата відбувається щомісяця авансом."
+    },
+    "REJECTED": {
+     "label": "Відхилено",
+     "hint": "Вашу заяву відхилено. Перевірте рішення — ви можете подати заперечення."
+    }
+   },
+   "missingHeading": "Ще бракує {{count}} даних ({{issues}} помилок перевірки):",
+   "addInfoBtn": "Доповнити дані ({{sections}})",
+   "errRequired": "Будь ласка, заповніть — цих даних ще бракує.",
+   "errTaxId": "Введіть податковий номер рівно з 11 цифр (напр. 12 34 56789 01).",
+   "errIban": "Введіть коректний IBAN (напр. DE89 3704 0044 0532 0130 00).",
+   "errPostcode": "Введіть індекс із 5 цифр (напр. 10115).",
+   "errEmail": "Введіть коректну адресу ел. пошти.",
+   "errDate": "Виберіть дату.",
+   "errIncomeSources": "Виберіть принаймні одне джерело доходу (або „Немає“).",
+   "errChildrenAges": "Вкажіть вік дітей через кому (напр. 3, 7).",
+   "errDefault": "Перевірте та доповніть ці дані.",
+   "submitFailed": "Надсилання не вдалося",
+   "confirmedTitle": "Заяву подано (симуляція)",
+   "confirmedPre": "Заяву позначено як",
+   "confirmedPost": ". Передача у відомство праці відбудеться пізніше.",
+   "estimateLabel": "Розрахункова місячна сума ALG1",
+   "estimateLine": "Основа: {{basis}} € | ставка: {{rate}} | день: {{daily}} €",
+   "lblName": "Ім'я:",
+   "lblBirthDate": "Дата народження:",
+   "lblAddress": "Адреса:",
+   "lblEmail": "Ел. пошта:",
+   "lblEmployer": "Роботодавець:",
+   "lblUnemployedSince": "Безробітний з:",
+   "lblGross": "Брутто:",
+   "lblTaxClass": "Податковий клас:",
+   "lblChildren": "Діти:",
+   "lblIban": "IBAN:",
+   "notesTitle": "Важливі примітки:",
+   "note1": "Зареєструйтеся як безробітний мінімум за 3 місяці до кінця договору",
+   "note2": "Збережіть підтвердження номера справи",
+   "note3": "ALG1 виплачується щомісяця авансом",
+   "statusLabel": "Статус:",
+   "submitting": "Надсилання…",
+   "submitBtn": "Подати заяву (симуляція)"
+  },
+  "upload": {
+   "slots": {
+    "TERMINATION": {
+     "label": "Повідомлення про звільнення",
+     "description": "Припинення трудових відносин"
+    },
+    "PAYSLIP": {
+     "label": "Остання довідка про зарплату",
+     "description": "Підтвердження валової зарплати"
+    },
+    "ID_CARD": {
+     "label": "Посвідчення особи",
+     "description": "Лицьовий та зворотний бік"
+    },
+    "OTHER": {
+     "label": "Додаткові документи",
+     "description": "Необов'язково"
+    }
+   },
+   "required": "Обов'язково",
+   "bypassLabel": "Я передам документи пізніше",
+   "continueBtn": "Перейти до запитань",
+   "uploading": "Завантаження…",
+   "dropzoneHint": "Натисніть або перетягніть файл сюди (PDF, JPG, PNG — макс. 10 МБ)"
+  }
+ }
+}

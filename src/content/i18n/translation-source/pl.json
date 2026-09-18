@@ -1,0 +1,791 @@
+{
+ "common": {
+  "save": "Zapisz",
+  "saving": "Zapisywanie…",
+  "saved": "Zmiany zapisane.",
+  "errorSaving": "Zapisywanie nie powiodło się. Spróbuj ponownie.",
+  "cancel": "Anuluj",
+  "close": "Zamknij",
+  "delete": "Usuń",
+  "deleting": "Usuwanie…",
+  "edit": "Edytuj",
+  "back": "Wstecz",
+  "next": "Dalej",
+  "previous": "Wstecz",
+  "loading": "Ładowanie…",
+  "error": "Coś poszło nie tak. Spróbuj ponownie.",
+  "retry": "Spróbuj ponownie",
+  "optional": "opcjonalnie",
+  "required": "pole wymagane",
+  "upload": "Prześlij",
+  "uploading": "Przesyłanie…",
+  "download": "Pobierz",
+  "search": "Szukaj",
+  "yes": "Tak",
+  "no": "Nie",
+  "refresh": "Odśwież",
+  "confirm": "Potwierdź",
+  "skip": "Pomiń",
+  "notAvailable": "Niedostępne",
+  "open": "Otwórz",
+  "new": "Nowy"
+ },
+ "nav": {
+  "dashboard": "Panel",
+  "alg1": "ALG1",
+  "dokumente": "Dokumenty",
+  "foerderungen": "Świadczenia"
+ },
+ "sidebar": {
+  "logout": "Wyloguj się",
+  "backToSite": "Powrót na stronę",
+  "guest": "Gość",
+  "navLabel": "Nawigacja panelu"
+ },
+ "home": {
+  "metaTitle": "Panel — Antragsbruder",
+  "metaDescription": "Twoje bieżące wnioski i pasujące świadczenia w jednym spojrzeniu.",
+  "greetingMorning": "Dzień dobry (rano)",
+  "greetingDay": "Dzień dobry",
+  "greetingEvening": "Dobry wieczór",
+  "fallbackUser": "Użytkownik",
+  "summaryOneApp": "Masz {{apps}} aktywny wniosek i {{benefits}} pasujących świadczeń.",
+  "summaryManyApps": "Masz {{apps}} aktywne wnioski i {{benefits}} pasujących świadczeń.",
+  "startFirst": "Rozpocznij swój pierwszy wniosek.",
+  "runningTitle": "Bieżące wnioski",
+  "noRunning": "Jeszcze brak aktywnych wniosków",
+  "startNow": "Zacznij teraz",
+  "status": {
+   "DRAFT": "W toku",
+   "IN_PROGRESS": "W toku",
+   "DOCS_PENDING": "Brakuje dokumentów",
+   "READY": "Gotowe do wysłania",
+   "SUBMITTED": "Wysłane ✓",
+   "PROCESSING": "W trakcie sprawdzania",
+   "APPROVED": "Zatwierdzone 🎉",
+   "REJECTED": "Odrzucone"
+  },
+  "alg1Title": "Zasiłek dla bezrobotnych (ALG1)",
+  "applicationFallback": "Wniosek",
+  "upTo": "Do {{amount}} €/mies.",
+  "createdAt": "Utworzono {{date}}",
+  "viewStatus": "Zobacz status",
+  "continueWorking": "Kontynuuj",
+  "possibleTitle": "Możliwe świadczenia",
+  "fillProfile": "Wypełnij profil, aby zobaczyć pasujące świadczenia.",
+  "confidenceHigh": "Bardzo prawdopodobne",
+  "confidencePossible": "Możliwe",
+  "allBenefits": "Zobacz wszystkie świadczenia →",
+  "docsTresor": "Dokumenty i sejf",
+  "docsEmpty": "Prześlij dokumenty, aby dokończyć wniosek.",
+  "docsCountOne": "{{count}} dokument w sejfie.",
+  "docsCountMany": "{{count}} dokumenty w sejfie.",
+  "goToTresor": "Do sejfu",
+  "stepsProgress": "{{done}}/4 kroki",
+  "timeline": {
+   "docs": {
+    "label": "Dodaj dokumenty",
+    "description": "Prześlij wypowiedzenie, zaświadczenia o zarobkach i inne dokumenty."
+   },
+   "data": {
+    "label": "Wypełnij dane",
+    "description": "Odpowiedz na pytania i wpisz swoje dane osobowe."
+   },
+   "submit": {
+    "label": "Złóż wniosek",
+    "description": "Sprawdź podsumowanie i złóż je w urzędzie."
+   },
+   "receive": {
+    "label": "Otrzymaj zasiłek",
+    "description": "Czekaj na decyzję i otrzymaj pierwszą wypłatę."
+   }
+  }
+ },
+ "foerderungen": {
+  "metaTitle": "Świadczenia — Antragsbruder",
+  "metaDescription": "Kontrola świadczeń oparta na zasadach i Twoich danych.",
+  "title": "Radar świadczeń",
+  "subtitle": "{{matched}} z {{total}} świadczeń pasuje do Twojej sytuacji — na podstawie profilu i sejfu.",
+  "tabQualified": "🎯 Zakwalifikowany dla mnie",
+  "tabPotential": "⚡ Sprawdź potencjał",
+  "tabExcluded": "🚫 Wykluczone",
+  "amountRange": "ok. {{min}}–{{max}} € / mies.",
+  "amountFrom": "od ok. {{min}} € / mies.",
+  "amountUpTo": "do ok. {{max}} € / mies.",
+  "calcNow": "Oblicz teraz",
+  "viewAtOffice": "Zobacz w urzędzie",
+  "calcAvailable": "Dostępny kalkulator",
+  "authority": "Właściwy urząd: {{authority}}",
+  "docsInVault": "{{present}} z {{total}} wymaganych dokumentów w sejfie",
+  "unlockTitle": "Odblokuj uprawnienie",
+  "noExcluded": "Obecnie żadne świadczenie nie jest jednoznacznie wykluczone.",
+  "excludedInfo": "{{count}} świadczeń zdecydowanie nie dotyczy Twojego profilu (np. tylko dla studentów lub emerytów). Ukrywamy je.",
+  "noQualified": "Jeszcze nic jednoznacznie zakwalifikowanego — odpowiedz na pytania wyjaśniające powyżej lub wypełnij profil świadczeń.",
+  "noPotential": "Brak otwartych potencjałów — odpowiedz na pytania wyjaśniające, aby odblokować więcej."
+ },
+ "antraege": {
+  "statusLabel": "Status",
+  "status": {
+   "ACTIVE": "Aktywny",
+   "PAUSED": "Wstrzymany",
+   "COMPLETED": "Zakończony"
+  },
+  "deleteConfirm": "Naprawdę usunąć „{{filename}}“?",
+  "deleteFailed": "Usuwanie nie powiodło się",
+  "uploadedAt": "Przesłano {{date}}",
+  "notFound": "Nie znaleziono wniosku",
+  "loadFailed": "Błąd podczas ładowania",
+  "statusChangeFailed": "Nie udało się zmienić statusu",
+  "goBack": "Do przeglądu",
+  "uploadDocument": "Prześlij dokument",
+  "loadingCase": "Ładowanie wniosku…",
+  "completedApplication": "Zakończony wniosek",
+  "activeApplication": "Aktywny wniosek",
+  "createdAt": "Utworzono {{date}}",
+  "documentsTitle": "Dokumenty",
+  "noDocuments": "Jeszcze brak dokumentów",
+  "noDocumentsHint": "Prześlij swoje dokumenty, aby pchnąć wniosek do przodu.",
+  "uploadDocuments": "Prześlij dokumenty"
+ },
+ "profile": {
+  "metaTitle": "Mój profil — Antragsbruder",
+  "metaDescription": "Zarządzaj danymi osobowymi, profilem świadczeń i ustawieniami bezpieczeństwa.",
+  "title": "Mój profil",
+  "noProfile": "Nie znaleziono profilu.",
+  "language": {
+   "title": "Język",
+   "description": "Wybierz język panelu — ustawienie jest zapisywane w Twoim profilie.",
+   "saving": "Zapisywanie…",
+   "saved": "Język zapisany.",
+   "error": "Nie udało się zapisać języka."
+  },
+  "account": {
+   "title": "Konto i bezpieczeństwo",
+   "emailTitle": "Adres e-mail",
+   "emailDesc": "Zmiana przez link potwierdzający (automatyczna synchronizacja przez trigger).",
+   "changeEmail": "Zmień e-mail",
+   "passwordTitle": "Hasło",
+   "passwordDesc": "Minimum 8 znaków.",
+   "changePassword": "Zmień hasło"
+  },
+  "masterData": {
+   "title": "Dane osobowe",
+   "firstName": "Imię",
+   "lastName": "Nazwisko",
+   "birthDate": "Data urodzenia",
+   "phone": "Telefon (opcjonalnie)",
+   "street": "Ulica",
+   "houseNumber": "Numer domu",
+   "postcode": "Kod pocztowy",
+   "city": "Miasto",
+   "save": "Zapisz",
+   "saving": "Zapisywanie…",
+   "discard": "Odrzuć zmiany",
+   "cityAutofill": "Automatycznie po kodzie pocztowym",
+   "lblEmail": "E-mail"
+  },
+  "eligibility": {
+   "title": "Profil świadczeń",
+   "description": "Te informacje pomagają nam proponować pasujące świadczenia.",
+   "housingType": "Sytuacja mieszkaniowa",
+   "employmentStatus": "Sytuacja zawodowa",
+   "childrenCount": "Dzieci poniżej 18 lat w gospodarstwie",
+   "save": "Zapisz",
+   "saving": "Zapisywanie…",
+   "discard": "Odrzuć zmiany",
+   "housing": {
+    "RENT": "Wynajem",
+    "OWN": "Własność",
+    "PARENTS": "U rodziców / mieszkanie wspólne",
+    "OTHER": "Inne"
+   },
+   "employment": {
+    "EMPLOYED": "Zatrudniony",
+    "SELF_EMPLOYED": "Samozatrudniony",
+    "UNEMPLOYED": "Bezrobotny",
+    "STUDENT": "Student",
+    "APPRENTICE": "Uczeń zawodowy",
+    "RETIRED": "Emeryt",
+    "OTHER": "Inne"
+   }
+  },
+  "vault": {
+   "title": "🔐 Breloczek biurokracji",
+   "description": "Szybki dostęp do Twoich najważniejszych urzędowych numerów — zaszyfrowane, domyślnie zamaskowane, kopiowane jednym kliknięciem.",
+   "add": "+ Dodaj numer",
+   "loading": "Ładowanie breloczka…",
+   "empty": "Jeszcze brak zapisanych numerów. Dodaj np. swój numer podatkowy — skopiuj raz, wklej wszędzie.",
+   "reveal": "👁 Pokaż",
+   "hide": "🙈 Ukryj",
+   "copy": "📋 Kopiuj",
+   "copied": "✓ Skopiowano!",
+   "delete": "Usuń",
+   "edit": "Edytuj",
+   "deleteConfirm": "Naprawdę usunąć „{{label}}“?",
+   "maskedIn": "zamaskowane za {{seconds}} s",
+   "errorDecrypt": "Ten wpis został zaszyfrowany na innym urządzeniu/profilu urządzenia i nie można go tutaj odszyfrować. Wpisz go ponownie.",
+   "errorDecryptShort": "Nie można odszyfrować — wpisz ponownie.",
+   "errValue": "Wprowadź wartość.",
+   "errLabel": "Wprowadź nazwę.",
+   "errSave": "Zapisywanie nie powiodło się",
+   "errEncrypt": "Błąd szyfrowania/zapisywania",
+   "modalAdd": "Dodaj numer referencyjny",
+   "modalEdit": "Edytuj numer referencyjny",
+   "modalDescription": "Wartość jest szyfrowana bezpośrednio w Twojej przeglądarce (AES-GCM) i pokazywana tylko zamaskowana.",
+   "lblType": "Typ",
+   "lblName": "Nazwa",
+   "lblValue": "Wartość",
+   "lblNotes": "Notatka (opcjonalnie)",
+   "phName": "np. numer klienta miejskich zakładów",
+   "phNotes": "np. ważny do 2029",
+   "phValue": "Wprowadź wartość",
+   "encryptingSaving": "Szyfrowanie i zapisywanie…",
+   "categories": {
+    "tax": "🏛 Podatki i finanse",
+    "social": "🛡 Ubezpieczenie społeczne i praca",
+    "health": "🏥 Zdrowie",
+    "id_card": "🪪 Dokumenty tożsamości",
+    "finance": "💶 Finanse",
+    "other": "📁 Inne"
+   }
+  },
+  "emailDialog": {
+   "title": "Zmień adres e-mail",
+   "description": "Po zmianie otrzymasz link potwierdzający na nowy adres.",
+   "newEmail": "Nowy adres e-mail",
+   "sendLink": "Wyślij link potwierdzający",
+   "sending": "Wysyłanie…",
+   "sendingStatus": "Wysyłanie linku potwierdzającego…",
+   "error": "Błąd: {{message}}",
+   "sent": "Link potwierdzający wysłany. Potwierdź go w nowej skrzynce e-mail."
+  },
+  "passwordDialog": {
+   "title": "Zmień hasło",
+   "newPassword": "Nowe hasło",
+   "confirmPassword": "Powtórz hasło",
+   "save": "Zmień hasło",
+   "saving": "Zapisywanie…",
+   "success": "✓ Hasło zostało pomyślnie zmienione.",
+   "error": "Błąd: {{message}}",
+   "errMinLength": "Błąd: hasło musi mieć co najmniej 8 znaków.",
+   "errMismatch": "Błąd: hasła nie są zgodne."
+  },
+  "avatar": {
+   "title": "Zdjęcie profilowe",
+   "change": "Zmień",
+   "upload": "Kliknij, aby przesłać (JPG, PNG, WebP, maks. 10 MB)",
+   "uploading": "Przesyłanie…"
+  },
+  "avatarCrop": {
+   "title": "Przytnij zdjęcie profilowe",
+   "save": "Przytnij i zapisz",
+   "saving": "Przetwarzanie…",
+   "cancel": "Anuluj",
+   "zoom": "Powiększenie",
+   "errorLoad": "Nie udało się załadować obrazu",
+   "errorBlob": "Nie udało się utworzyć bloba",
+   "errorCanvas": "Kontekst canvas niedostępny",
+   "errorGeneric": "Przycinanie nie powiodło się"
+  }
+ },
+ "onboarding": {
+  "dismiss": "Pomiń",
+  "next": "Dalej",
+  "finish": "Gotowe",
+  "situation": {
+   "question": "Co najlepiej opisuje Twoją obecną sytuację?",
+   "employed": "Zatrudniony",
+   "selfEmployed": "Samozatrudniony",
+   "unemployed": "Niedawno zwolniony / bezrobotny",
+   "student": "Student / uczeń zawodowy",
+   "retired": "Emeryt",
+   "other": "Inne"
+  },
+  "housing": {
+   "question": "Jak mieszkasz?",
+   "rent": "Wynajem",
+   "own": "Własność",
+   "parents": "U rodziców / mieszkanie wspólne",
+   "other": "Inne"
+  },
+  "children": {
+   "question": "Czy masz dzieci poniżej 18 lat w gospodarstwie?"
+  },
+  "postcode": {
+   "question": "Jaki jest Twój kod pocztowy?"
+  }
+ },
+ "documents": {
+  "metaTitle": "Dokumenty — Antragsbruder",
+  "metaDescription": "Wszystkie dokumenty do wszystkich wniosków w jednym miejscu.",
+  "title": "Sejf obywatela",
+  "description": "Wszystkie urzędowe dokumenty w jednym miejscu — do wykorzystania we wszystkich wnioskach.",
+  "categoryLabel_all": "Wszystkie",
+  "categoryLabel_identity": "🪪 Tożsamość",
+  "categoryLabel_housing": "🏠 Mieszkanie",
+  "categoryLabel_income": "💼 Dochód",
+  "categoryLabel_other": "📁 Inne",
+  "categoryBadge_identity": "Tożsamość",
+  "categoryBadge_housing": "Mieszkanie",
+  "categoryBadge_income": "Dochód",
+  "categoryBadge_other": "Inne",
+  "status_DONE": "🟢 Zweryfikowany",
+  "status_PROCESSING": "🟡 W trakcie sprawdzania",
+  "status_PENDING": "🟡 W trakcie sprawdzania",
+  "status_ERROR": "Błąd",
+  "searchPlaceholder": "Szukaj dokumentu…",
+  "searchAria": "Szukaj dokumentów",
+  "emptyState_title": "Jeszcze brak dokumentów",
+  "emptyState_message": "Prześlij swoje dokumenty, aby zarządzać nimi tutaj w jednym miejscu.",
+  "emptyState_noResults_title": "Brak wyników",
+  "emptyState_noResults_message": "Żaden dokument nie pasuje do filtra ani wyszukiwania.",
+  "action_rename": "Kliknij, aby zmienić nazwę",
+  "action_preview": "👁 Podgląd",
+  "action_download": "Pobierz",
+  "action_delete": "🗑 Usuń",
+  "share_successTitle": "Pakiet utworzony ✓",
+  "share_successMessage": "Ważny 24 godziny. Zeskanuj kod QR lub skopiuj link.",
+  "share_linkCopied": "Skopiowano ✓",
+  "share_close": "Zamknij",
+  "shareBtnCount": "🔗 Udostępnij pakiet ({{count}})",
+  "shareBtn": "🔗 Udostępnij pakiet",
+  "shareCreating": "Tworzenie pakietu…",
+  "errCreatePackage": "Nie udało się utworzyć pakietu",
+  "errCreatePackageGeneric": "Błąd podczas tworzenia pakietu",
+  "deleteConfirm": "Naprawdę usunąć „{{filename}}“?",
+  "vaultSuffix": "sejf",
+  "renameAria": "Edytuj tytuł dokumentu",
+  "selectForPackageAria": "Wybierz {{filename}} do pakietu",
+  "invalidFile": "Nieprawidłowy plik",
+  "errRegister": "Nie udało się zarejestrować dokumentu",
+  "errStatusUpdate": "Nie udało się zaktualizować statusu",
+  "quickUploading": "Przesyłanie…",
+  "chooseFile": "Wybierz plik",
+  "errStatusUpdateModal": "Aktualizacja statusu nie powiodła się",
+  "titleForAria": "Tytuł dla {{name}}",
+  "removeAria": "Usuń {{name}}",
+  "uploadCount": "Prześlij {{count}}",
+  "upload_slot_personalID": "🪪 Dowód osobisty",
+  "upload_slot_payslip": "💼 Zaświadczenie o zarobkach",
+  "upload_slot_other": "📁 Inne",
+  "upload_button_upload": "Prześlij dokument",
+  "upload_button_uploading": "Przesyłanie…",
+  "upload_button_uploadAll": "prześlij",
+  "upload_button_cancel": "Anuluj",
+  "upload_button_done": "Gotowe",
+  "upload_modal_title": "Prześlij dokument",
+  "upload_modal_close": "Zamknij",
+  "upload_category_label": "Kategoria",
+  "upload_category_ID_CARD": "🪪 Tożsamość",
+  "upload_category_PAYSLIP": "💼 Dochód (zaświadczenie o zarobkach)",
+  "upload_category_BANK_STATEMENT": "🏦 Wyciąg bankowy",
+  "upload_category_TERMINATION": "📄 Wypowiedzenie",
+  "upload_category_CONTRACT": "📝 Umowa",
+  "upload_category_OTHER": "📁 Inne",
+  "upload_dropzone_text": "Przeciągnij pliki tutaj",
+  "upload_dropzone_or": "lub wybierz z komputera",
+  "upload_file_titlePlaceholder": "Tytuł dla",
+  "upload_file_remove": "usuń",
+  "upload_file_error": "Błąd",
+  "upload_file_uploading": "Przesyłanie…"
+ },
+ "upload": {
+  "metaTitle": "Przesyłanie – Antragsbruder",
+  "metaDescription": "Prześlij swoje dokumenty i rozpocznij wniosek.",
+  "status": {
+   "pending": "Gotowe do przesłania",
+   "uploading": "Przesyłanie…",
+   "uploaded": "Przesłane",
+   "parsing": "Skanowanie…",
+   "done": "Zeskanowane",
+   "error": "Błąd"
+  },
+  "moreChars": "… (więcej znaków)",
+  "startOcr": "Uruchom OCR",
+  "remove": "Usuń",
+  "errorNoCase": "Brak wniosku – najpierw utwórz wniosek.",
+  "errorNoCaseShort": "Brak wniosku",
+  "errorUpload": "Przesyłanie nie powiodło się",
+  "errorOcr": "OCR nie powiodło się",
+  "welcome": "Witaj, {{name}}",
+  "toApplication": "Do wniosku",
+  "step1": "Prześlij dokument",
+  "step2": "Sprawdź dane",
+  "title1": "Twój pierwszy wniosek – dokumenty",
+  "subtitle1": "Prześlij swoje dokumenty. Skanujemy je i pokazujemy, co w nich znajdujemy.",
+  "noCaseTitle": "Nie utworzyłeś jeszcze wniosku.",
+  "noCaseText": "Najpierw utwórz wniosek, potem możesz tutaj przesyłać dokumenty.",
+  "createApplication": "Utwórz wniosek",
+  "dropHere": "Upuść pliki tutaj",
+  "dropHereOr": "Upuść pliki tutaj lub wybierz je",
+  "dropHint": "PDF, JPG lub PNG – do 10 MB na plik",
+  "filesCount": "Przesłane pliki ({{count}})",
+  "uploadNow": "Prześlij teraz",
+  "selectDocuments": "Wybierz dokumenty",
+  "title2": "Dokumenty sprawdzone",
+  "subtitle2": "Zeskanowaliśmy Twoje dokumenty. Sprawdź wyniki poniżej.",
+  "scannedCountOne": "{{count}} dokument pomyślnie zeskanowany",
+  "scannedCountMany": "{{count}} dokumenty pomyślnie zeskanowane",
+  "noneScannedTitle": "Jeszcze żaden dokument nie został zeskanowany",
+  "noneScannedText": "Najpierw zeskanuj dokument, aby zobaczyć jego zawartość."
+ },
+ "questionnaire": {
+  "errorLoading": "Błąd podczas ładowania pytań",
+  "sensHighlySensitive": "Bardzo prywatne",
+  "sensSensitive": "Prywatne",
+  "sensNormal": "Normalne",
+  "unitHint": "Podaj w {{unit}}",
+  "yourAnswerPlaceholder": "Twoja odpowiedź",
+  "lblColdRent": "Czynsz netto (bez ogrzewania)",
+  "lblHeating": "Koszty ogrzewania",
+  "monthlyEuro": "Kwota miesięczna w euro",
+  "privateContent": "Treść jest prywatna — kliknij, aby pokazać",
+  "skipQuestion": "Pomiń to pytanie",
+  "continueWithoutAnswer": "Dalej bez odpowiedzi",
+  "loadingQuestions": "Ładowanie pytań…",
+  "allAnsweredTitle": "Wszystkie pytania z odpowiedziami",
+  "allAnsweredText": "Mamy wszystkie niezbędne informacje. Twój wniosek jest teraz przygotowywany.",
+  "noMoreTitle": "Nie ma więcej pytań",
+  "noMoreText": "Nie są potrzebne dalsze pytania. Możesz teraz złożyć wniosek.",
+  "headingEyebrow": "Przewodnik krok po kroku",
+  "headingTitle": "Dane Twojego wniosku",
+  "headingLede": "Przeprowadzimy Cię przez wszystkie pytania potrzebne do Twojego wniosku. Każde pytanie możesz pominąć.",
+  "stepOf": "Krok {{current}} z {{total}}",
+  "showAnswerField": "Pokaż pole odpowiedzi"
+ },
+ "alg1": {
+  "meta": {
+   "title": "Wniosek ALG1 | Antragsbruder",
+   "description": "Prześlij dokumenty, odpowiedz na pytania i złóż wniosek ALG1."
+  },
+  "index": {
+   "metaTitle": "ALG1 — szybka kontrola | Antragsbruder",
+   "metaDescription": "Sprawdź w 7 pytaniach, czy masz prawo do ALG1, i rozpocznij wniosek.",
+   "title": "Złóż wniosek o ALG1",
+   "subtitle": "Odpowiedz na 7 krótkich pytań — ocenimy Twoje szanse i rozpocznemy wniosek."
+  },
+  "flow": {
+   "loading": "Ładowanie…",
+   "documentsTitle": "Twoje dokumenty",
+   "documentsText": "Prześlij najważniejsze dokumenty — odczytujemy je automatycznie.",
+   "backToDocuments": "← Wstecz do dokumentów",
+   "continueToSummary": "Dalej do podsumowania →",
+   "backToForm": "← Wstecz do formularza",
+   "startApplication": "Rozpocznij oficjalny wniosek ALG1 i prześlij dokumenty",
+   "errorNotFound": "Nie znaleziono wniosku lub brak dostępu.",
+   "errorNoAccess": "Brak dostępu do tego wniosku."
+  },
+  "start": {
+   "loadingDraft": "Ładowanie roboczej wersji…",
+   "draftLoaded": "Twój zapisany szkic został załadowany.",
+   "errorCreatingCase": "Nie udało się utworzyć sprawy. Spróbuj później.",
+   "errorCreatingApplication": "Nie udało się utworzyć wniosku: {{errorMessage}}",
+   "errorUpdatingDraft": "Nie udało się zapisać szkicu: {{errorMessage}}"
+  },
+  "check": {
+   "questionProgress": "Pytanie {{current}} z {{total}}",
+   "progressPercent": "{{progress}}%",
+   "back": "← Wstecz",
+   "questions": {
+    "termination_type": "Co stało się z Twoją pracą?",
+    "insurance_period_months": "Ile miesięcy w ciągu ostatnich 28 miesięcy byłeś objęty obowiązkowym ubezpieczeniem?",
+    "registered_unemployed": "Czy zarejestrowałeś się już jako bezrobotny?",
+    "available_hours_per_week": "Ile godzin tygodniowo możesz pracować?",
+    "actively_seeking": "Czy aktywnie szukasz pracy?",
+    "has_children": "Czy masz dzieci poniżej 18 lat?",
+    "has_partner": "Czy mieszkasz z partnerem/partnerką?",
+    "gross_salary": "Przybliżony miesięczny dochód brutto z ostatnich 12 miesięcy w €"
+   },
+   "termination": {
+    "EMPLOYER_TERMINATED": "Wypowiedział pracodawca",
+    "CONTRACT_END": "Umowa wygasła",
+    "SELF_QUIT": "Sam się zwolniłem",
+    "MUTUAL_AGREEMENT": "Porozumienie o rozwiązaniu umowy",
+    "EMPLOYER_INSOLVENT": "Pracodawca niewypłacalny",
+    "HOURS_REDUCED": "Czas pracy został skrócony",
+    "OTHER": "Inne"
+   }
+  },
+  "checkResult": {
+   "likelyTitle": "Bardzo prawdopodobne, że masz prawo do ALG 1",
+   "unclearTitle": "Wymagana indywidualna weryfikacja — wniosek mimo to zalecany",
+   "unlikelyTitle": "Brak zwykłego prawa do ALG1 według aktualnej oceny",
+   "estimatedMonthly": "Szacowana kwota miesięczna",
+   "basis": "Podstawa: {{amount}} € brutto",
+   "rateWithChild": "67% (z dzieckiem)",
+   "rateWithoutChild": "60%",
+   "perMonth": "~ {{amount}} € / mies.",
+   "perDay": "{{amount}} €/dzień",
+   "basisLine": "Podstawa: {{basis}} € brutto · stawka: {{rate}} · {{daily}} €/dzień",
+   "editAnswerAria": "Zmień odpowiedź na „{{question}}“",
+   "yourAnswers": "Twoje odpowiedzi",
+   "change": "Zmień",
+   "nextSteps": "Następne kroki"
+  },
+  "erfolg": {
+   "metaTitle": "ALG1 — wniosek złożony | Antragsbruder",
+   "metaDescription": "Twój wniosek ALG1 został przygotowany i oznaczony jako gotowy.",
+   "pageTitle": "Wniosek pomyślnie złożony",
+   "headline": "Gotowe!",
+   "bodyPre": "Twój wniosek ALG1 jest w pełni przygotowany i oznaczony jako",
+   "bodyPost": ". Przekazanie do urzędu pracy i śledzenie statusu nastąpi w późniejszej fazie.",
+   "hint1": "Zarejestruj się jako bezrobotny najpóźniej 3 miesiące przed końcem umowy.",
+   "hint2": "Zachowaj potwierdzenie z numerem sprawy.",
+   "hint3": "ALG1 jest wypłacany co miesiąc z góry.",
+   "backLink": "Powrót do przeglądu"
+  },
+  "form": {
+   "sections": {
+    "Personendaten": "Dane osobowe",
+    "Letzter Arbeitgeber": "Ostatni pracodawca",
+    "Agentur für Arbeit": "Urząd pracy",
+    "Verfügbarkeit": "Dostępność",
+    "Haushalt": "Gospodarstwo domowe",
+    "Finanzen": "Finanse"
+   },
+   "pleaseSelect": "Proszę wybrać…",
+   "childrenAgesHint": "Podaj wiek dzieci po przecinku, np. „3, 7“",
+   "progressLabel": "Postęp",
+   "autosaveNote": "Twoje wpisy są zapisywane automatycznie.",
+   "savedIndicator": "🟢 Zapisano · {{time}}",
+   "savingIndicator": "⏳ Zapisywanie…",
+   "saveNow": "Zapisz teraz",
+   "fieldsCount": "Łącznie pól: {{total}}, widocznych: {{visible}}.",
+   "checkError": "— sprawdź",
+   "fields": {
+    "firstName": {
+     "label": "Imię"
+    },
+    "lastName": {
+     "label": "Nazwisko"
+    },
+    "dateOfBirth": {
+     "label": "Data urodzenia"
+    },
+    "street": {
+     "label": "Ulica i numer domu"
+    },
+    "postcode": {
+     "label": "Kod pocztowy",
+     "placeholder": "np. 10115"
+    },
+    "city": {
+     "label": "Miasto"
+    },
+    "phone": {
+     "label": "Telefon",
+     "placeholder": "np. 030 12345678"
+    },
+    "email": {
+     "label": "E-mail",
+     "placeholder": "np. max@przyklad.com"
+    },
+    "nationality": {
+     "label": "Obywatelstwo"
+    },
+    "taxId": {
+     "label": "Numer podatkowy",
+     "placeholder": "np. 12 34 56789 01",
+     "hint": "11 cyfr — znajdują się na Twojej karcie podatkowej"
+    },
+    "iban": {
+     "label": "IBAN",
+     "placeholder": "np. DE89 3704 0044 0532 0130 00",
+     "hint": "Zaczyna się od DE + 2 cyfry kontrolne"
+    },
+    "healthInsurance": {
+     "label": "Ubezpieczenie zdrowotne"
+    },
+    "employerName": {
+     "label": "Nazwa pracodawcy"
+    },
+    "employerAddress": {
+     "label": "Adres pracodawcy"
+    },
+    "employmentStart": {
+     "label": "Data rozpoczęcia pracy"
+    },
+    "employmentEnd": {
+     "label": "Koniec stosunku pracy"
+    },
+    "contractType": {
+     "label": "Rodzaj umowy"
+    },
+    "hoursPerWeek": {
+     "label": "Godzin tygodniowo"
+    },
+    "grossSalary": {
+     "label": "Dochód brutto (ostatni miesiąc)"
+    },
+    "taxClass": {
+     "label": "Klasa podatkowa"
+    },
+    "churchTax": {
+     "label": "Podatek kościelny"
+    },
+    "childrenAllowance": {
+     "label": "Ulgi na dzieci"
+    },
+    "unemployedSince": {
+     "label": "Bezrobotny od/na (możliwa także przyszła data)"
+    },
+    "agencyLocation": {
+     "label": "Lokalizacja urzędu"
+    },
+    "agencyReference": {
+     "label": "Numer sprawy (jeśli znany)"
+    },
+    "fitForWork": {
+     "label": "Zdolny do pracy (zdrowie)"
+    },
+    "availableFor15h": {
+     "label": "Dostępny co najmniej 15 h/tydz."
+    },
+    "activelySeeking": {
+     "label": "Aktywnie szukam pracy"
+    },
+    "restrictions": {
+     "label": "Ograniczenia w poszukiwaniu pracy"
+    },
+    "childrenCount": {
+     "label": "Liczba dzieci poniżej 18 lat"
+    },
+    "childrenAges": {
+     "label": "Wiek dzieci (po przecinku)",
+     "placeholder": "np. 3, 7",
+     "hint": "Przy 2 dzieciach np. „3, 7“"
+    },
+    "hasPartner": {
+     "label": "Partner w gospodarstwie"
+    },
+    "partnerUnemployed": {
+     "label": "Partner również bezrobotny"
+    },
+    "incomeSources": {
+     "label": "Obecne źródła dochodu"
+    },
+    "assetsOver15k": {
+     "label": "Majątek powyżej 15.000 €"
+    }
+   },
+   "options": {
+    "nationality": {
+     "DE": "Niemieckie",
+     "EU": "Obywatel UE",
+     "OTHER": "Inne"
+    },
+    "contractType": {
+     "UNLIMITED": "Na czas nieokreślony",
+     "LIMITED": "Na czas określony"
+    },
+    "taxClass": {
+     "I": "I",
+     "II": "II",
+     "III": "III",
+     "IV": "IV",
+     "V": "V",
+     "VI": "VI"
+    },
+    "restrictions": {
+     "NONE": "Brak",
+     "PHYSICAL": "Ograniczenia fizyczne",
+     "MENTAL": "Ograniczenia psychiczne",
+     "CARE": "Opieka nad bliskimi"
+    },
+    "incomeSources": {
+     "NONE": "Brak",
+     "EMPLOYMENT": "Zatrudnienie",
+     "ALG1": "ALG1",
+     "SICK_PAY": "Zasiłek chorobowy",
+     "CHILD_BENEFIT": "Zasiłek na dzieci",
+     "MAINTENANCE": "Alimenty",
+     "PARENTAL_ALLOWANCE": "Zasiłek rodzicielski",
+     "PENSION": "Emerytura",
+     "SELF_EMPLOYED": "Samozatrudnienie"
+    }
+   }
+  },
+  "summary": {
+   "title": "Twój wniosek ALG1",
+   "titleReadOnly": "Twój wniosek ALG1 — aktualny status",
+   "titleEdit": "Podsumowanie Twojego wniosku ALG1",
+   "status": {
+    "SUBMITTED": {
+     "label": "Złożony",
+     "hint": "Twój wniosek dotarł do urzędu Jobcenter. Będziemy Cię tu na bieżąco informować."
+    },
+    "PROCESSING": {
+     "label": "W trakcie sprawdzania",
+     "hint": "Urząd pracy sprawdza Twój wniosek. Miej pod ręką potwierdzenie numeru sprawy."
+    },
+    "APPROVED": {
+     "label": "Zatwierdzone 🎉",
+     "hint": "Twój zasiłek dla bezrobotnych został zatwierdzony — wypłata odbywa się co miesiąc z góry."
+    },
+    "REJECTED": {
+     "label": "Odrzucone",
+     "hint": "Twój wniosek został odrzucony. Sprawdź decyzję — możesz się od niej odwołać."
+    }
+   },
+   "missingHeading": "Wciąż brakuje {{count}} danych ({{issues}} błędów walidacji):",
+   "addInfoBtn": "Uzupełnij dane ({{sections}})",
+   "errRequired": "Proszę wypełnić — tych danych jeszcze brakuje.",
+   "errTaxId": "Wprowadź numer podatkowy z dokładnie 11 cyframi (np. 12 34 56789 01).",
+   "errIban": "Wprowadź poprawny IBAN (np. DE89 3704 0044 0532 0130 00).",
+   "errPostcode": "Wprowadź kod pocztowy z 5 cyframi (np. 10115).",
+   "errEmail": "Wprowadź poprawny adres e-mail.",
+   "errDate": "Wybierz datę.",
+   "errIncomeSources": "Wybierz co najmniej jedno źródło dochodu (lub „Brak“).",
+   "errChildrenAges": "Podaj wiek dzieci po przecinku (np. 3, 7).",
+   "errDefault": "Sprawdź i uzupełnij te dane.",
+   "submitFailed": "Złożenie nie powiodło się",
+   "confirmedTitle": "Wniosek złożony (symulacja)",
+   "confirmedPre": "Wniosek oznaczony jako",
+   "confirmedPost": ". Przekazanie do urzędu pracy nastąpi w późniejszej fazie.",
+   "estimateLabel": "Szacowana miesięczna kwota ALG1",
+   "estimateLine": "Podstawa: {{basis}} € | stawka: {{rate}} | dzień: {{daily}} €",
+   "lblName": "Imię i nazwisko:",
+   "lblBirthDate": "Data urodzenia:",
+   "lblAddress": "Adres:",
+   "lblEmail": "E-mail:",
+   "lblEmployer": "Pracodawca:",
+   "lblUnemployedSince": "Bezrobotny od:",
+   "lblGross": "Brutto:",
+   "lblTaxClass": "Klasa podatkowa:",
+   "lblChildren": "Dzieci:",
+   "lblIban": "IBAN:",
+   "notesTitle": "Ważne uwagi:",
+   "note1": "Zarejestruj się jako bezrobotny najpóźniej 3 miesiące przed końcem umowy",
+   "note2": "Zachowaj potwierdzenie numeru sprawy",
+   "note3": "ALG1 jest wypłacany co miesiąc z góry",
+   "statusLabel": "Status:",
+   "submitting": "Składanie…",
+   "submitBtn": "Złóż wniosek (symulacja)"
+  },
+  "upload": {
+   "slots": {
+    "TERMINATION": {
+     "label": "Wypowiedzenie",
+     "description": "Rozwiązanie stosunku pracy"
+    },
+    "PAYSLIP": {
+     "label": "Ostatnie zaświadczenie o zarobkach",
+     "description": "Potwierdzenie wynagrodzenia brutto"
+    },
+    "ID_CARD": {
+     "label": "Dowód osobisty",
+     "description": "Strona przednia i tylna"
+    },
+    "OTHER": {
+     "label": "Dodatkowe dokumenty",
+     "description": "Opcjonalnie"
+    }
+   },
+   "required": "Wymagane",
+   "bypassLabel": "Prześlę dokumenty później",
+   "continueBtn": "Dalej do pytań",
+   "uploading": "Przesyłanie…",
+   "dropzoneHint": "Kliknij lub przeciągnij plik tutaj (PDF, JPG, PNG — maks. 10 MB)"
+  }
+ }
+}

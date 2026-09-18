@@ -1,0 +1,791 @@
+{
+ "common": {
+  "save": "Salvează",
+  "saving": "Se salvează…",
+  "saved": "Modificările au fost salvate.",
+  "errorSaving": "Salvarea a eșuat. Încearcă din nou.",
+  "cancel": "Anulează",
+  "close": "Închide",
+  "delete": "Șterge",
+  "deleting": "Se șterge…",
+  "edit": "Editează",
+  "back": "Înapoi",
+  "next": "Continuă",
+  "previous": "Înapoi",
+  "loading": "Se încarcă…",
+  "error": "Ceva a mers greșit. Încearcă din nou.",
+  "retry": "Încearcă din nou",
+  "optional": "opțional",
+  "required": "câmp obligatoriu",
+  "upload": "Încarcă",
+  "uploading": "Se încarcă…",
+  "download": "Descarcă",
+  "search": "Caută",
+  "yes": "Da",
+  "no": "Nu",
+  "refresh": "Reîmprospătează",
+  "confirm": "Confirmă",
+  "skip": "Sari peste",
+  "notAvailable": "Indisponibil",
+  "open": "Deschide",
+  "new": "Nou"
+ },
+ "nav": {
+  "dashboard": "Panou",
+  "alg1": "ALG1",
+  "dokumente": "Documente",
+  "foerderungen": "Beneficii"
+ },
+ "sidebar": {
+  "logout": "Deconectare",
+  "backToSite": "Înapoi la site",
+  "guest": "Oaspete",
+  "navLabel": "Navigare panou"
+ },
+ "home": {
+  "metaTitle": "Panou — Antragsbruder",
+  "metaDescription": "Cererile tale în curs și beneficiile potrivite dintr-o privire.",
+  "greetingMorning": "Bună dimineața",
+  "greetingDay": "Bună ziua",
+  "greetingEvening": "Bună seara",
+  "fallbackUser": "Utilizator",
+  "summaryOneApp": "Ai {{apps}} cerere activă și {{benefits}} beneficii potrivite.",
+  "summaryManyApps": "Ai {{apps}} cereri active și {{benefits}} beneficii potrivite.",
+  "startFirst": "Începe prima ta cerere.",
+  "runningTitle": "Cereri în curs",
+  "noRunning": "Nicio cerere activă încă",
+  "startNow": "Începe acum",
+  "status": {
+   "DRAFT": "În lucru",
+   "IN_PROGRESS": "În lucru",
+   "DOCS_PENDING": "Documente lipsă",
+   "READY": "Gata de trimitere",
+   "SUBMITTED": "Trimis ✓",
+   "PROCESSING": "În verificare",
+   "APPROVED": "Aprobat 🎉",
+   "REJECTED": "Respins"
+  },
+  "alg1Title": "Ajutor de șomaj (ALG1)",
+  "applicationFallback": "Cerere",
+  "upTo": "Până la {{amount}} €/lună",
+  "createdAt": "Creat la {{date}}",
+  "viewStatus": "Vezi starea",
+  "continueWorking": "Continuă",
+  "possibleTitle": "Beneficii posibile",
+  "fillProfile": "Completează-ți profilul pentru a vedea beneficiile potrivite.",
+  "confidenceHigh": "Foarte probabil",
+  "confidencePossible": "Posibil",
+  "allBenefits": "Vezi toate beneficiile →",
+  "docsTresor": "Documente și seif",
+  "docsEmpty": "Încarcă documentele pentru a-ți finaliza cererea.",
+  "docsCountOne": "{{count}} document în seif.",
+  "docsCountMany": "{{count}} documente în seif.",
+  "goToTresor": "La seif",
+  "stepsProgress": "{{done}}/4 pași",
+  "timeline": {
+   "docs": {
+    "label": "Adaugă documente",
+    "description": "Încarcă concedierea, fluturașele de salariu și alte documente."
+   },
+   "data": {
+    "label": "Completează datele",
+    "description": "Răspunde la întrebări și introdu datele personale."
+   },
+   "submit": {
+    "label": "Depune cererea",
+    "description": "Verifică rezumatul și depune-l la agenție."
+   },
+   "receive": {
+    "label": "Primește ajutorul de șomaj",
+    "description": "Așteaptă decizia și primește prima plată."
+   }
+  }
+ },
+ "foerderungen": {
+  "metaTitle": "Beneficii — Antragsbruder",
+  "metaDescription": "Verificare a beneficiilor bazată pe reguli și datele tale.",
+  "title": "Radarul beneficiilor",
+  "subtitle": "{{matched}} din {{total}} beneficii corespund situației tale — pe baza profilului și seifului.",
+  "tabQualified": "🎯 Calificat pentru mine",
+  "tabPotential": "⚡ Verifică potențialul",
+  "tabExcluded": "🚫 Exclus",
+  "amountRange": "cca. {{min}}–{{max}} € / lună",
+  "amountFrom": "de la cca. {{min}} € / lună",
+  "amountUpTo": "până la cca. {{max}} € / lună",
+  "calcNow": "Calculează acum",
+  "viewAtOffice": "Vezi la birou",
+  "calcAvailable": "Calculator disponibil",
+  "authority": "Instituția responsabilă: {{authority}}",
+  "docsInVault": "{{present}} din {{total}} documente necesare în seif",
+  "unlockTitle": "Deblochează dreptul",
+  "noExcluded": "Niciun beneficiu nu este în mod clar exclus.",
+  "excludedInfo": "{{count}} beneficii corespund în mod clar profilului tău (ex. doar pentru studenți sau pensionari). Le ascundem.",
+  "noQualified": "Nimic în mod clar calificat încă — răspunde la întrebările de clarificare de mai sus sau completează-ți profilul de beneficii.",
+  "noPotential": "Niciun potențial deschis — răspunde la întrebările de clarificare pentru a debloca mai multe."
+ },
+ "antraege": {
+  "statusLabel": "Stare",
+  "status": {
+   "ACTIVE": "Activ",
+   "PAUSED": "Suspendat",
+   "COMPLETED": "Finalizat"
+  },
+  "deleteConfirm": "Sigur vrei să ștergi „{{filename}}“?",
+  "deleteFailed": "Ștergerea a eșuat",
+  "uploadedAt": "Încărcat la {{date}}",
+  "notFound": "Cererea nu a fost găsită",
+  "loadFailed": "Eroare la încărcare",
+  "statusChangeFailed": "Starea nu a putut fi schimbată",
+  "goBack": "Înapoi la ansamblu",
+  "uploadDocument": "Încarcă document",
+  "loadingCase": "Se încarcă cererea…",
+  "completedApplication": "Cerere finalizată",
+  "activeApplication": "Cerere activă",
+  "createdAt": "Creat la {{date}}",
+  "documentsTitle": "Documente",
+  "noDocuments": "Niciun document încă",
+  "noDocumentsHint": "Încarcă-ți documentele pentru a-ți avansa cererea.",
+  "uploadDocuments": "Încarcă documente"
+ },
+ "profile": {
+  "metaTitle": "Profilul meu — Antragsbruder",
+  "metaDescription": "Gestionează datele tale personale, profilul de beneficii și setările de securitate.",
+  "title": "Profilul meu",
+  "noProfile": "Profilul nu a fost găsit.",
+  "language": {
+   "title": "Limbă",
+   "description": "Alege limba pentru panou — setarea este salvată în profilul tău.",
+   "saving": "Se salvează…",
+   "saved": "Limba salvată.",
+   "error": "Limba nu a putut fi salvată."
+  },
+  "account": {
+   "title": "Cont și securitate",
+   "emailTitle": "Adresă de e-mail",
+   "emailDesc": "Schimbare prin link de confirmare (sincronizat automat prin trigger).",
+   "changeEmail": "Schimbă e-mailul",
+   "passwordTitle": "Parola",
+   "passwordDesc": "Cel puțin 8 caractere.",
+   "changePassword": "Schimbă parola"
+  },
+  "masterData": {
+   "title": "Date personale",
+   "firstName": "Prenume",
+   "lastName": "Nume",
+   "birthDate": "Data nașterii",
+   "phone": "Telefon (opțional)",
+   "street": "Strada",
+   "houseNumber": "Numărul casei",
+   "postcode": "Cod poștal",
+   "city": "Oraș",
+   "save": "Salvează",
+   "saving": "Se salvează…",
+   "discard": "Renunță la modificări",
+   "cityAutofill": "Automat prin cod poștal",
+   "lblEmail": "E-mail"
+  },
+  "eligibility": {
+   "title": "Profil de beneficii",
+   "description": "Aceste date ne ajută să sugerăm beneficii potrivite.",
+   "housingType": "Situația locativă",
+   "employmentStatus": "Situația profesională",
+   "childrenCount": "Copii sub 18 ani în gospodărie",
+   "save": "Salvează",
+   "saving": "Se salvează…",
+   "discard": "Renunță la modificări",
+   "housing": {
+    "RENT": "Chirie",
+    "OWN": "Proprietate",
+    "PARENTS": "La părinți / comună",
+    "OTHER": "Altul"
+   },
+   "employment": {
+    "EMPLOYED": "Angajat",
+    "SELF_EMPLOYED": "Independent",
+    "UNEMPLOYED": "Șomer",
+    "STUDENT": "Student",
+    "APPRENTICE": "Ucenic",
+    "RETIRED": "Pensionar",
+    "OTHER": "Altul"
+   }
+  },
+  "vault": {
+   "title": "🔐 Portcheia birocrației",
+   "description": "Acces rapid la cele mai importante numere oficiale tale — criptate, implicit mascate, copiate cu un singur clic.",
+   "add": "+ Adaugă număr",
+   "loading": "Se încarcă portcheia…",
+   "empty": "Niciun număr salvat încă. Adaugă de exemplu codul tău fiscal — copiază o dată, folosește oriunde.",
+   "reveal": "👁 Arată",
+   "hide": "🙈 Ascunde",
+   "copy": "📋 Copiază",
+   "copied": "✓ Copiat!",
+   "delete": "Șterge",
+   "edit": "Editează",
+   "deleteConfirm": "Sigur vrei să ștergi „{{label}}“?",
+   "maskedIn": "va fi mascat în {{seconds}} sec",
+   "errorDecrypt": "Această intrare a fost criptată pe alt dispozitiv/profil și nu poate fi decriptată aici. Introdu-o din nou.",
+   "errorDecryptShort": "Nu poate fi decriptat — introdu din nou.",
+   "errValue": "Introdu o valoare.",
+   "errLabel": "Introdu un nume.",
+   "errSave": "Salvarea a eșuat",
+   "errEncrypt": "Eroare la criptare/salvare",
+   "modalAdd": "Adaugă număr de referință",
+   "modalEdit": "Editează numărul de referință",
+   "modalDescription": "Valoarea este criptată direct în browserul tău (AES-GCM) și afișată doar mascată.",
+   "lblType": "Tip",
+   "lblName": "Nume",
+   "lblValue": "Valoare",
+   "lblNotes": "Notă (opțional)",
+   "phName": "ex. număr client utilități",
+   "phNotes": "ex. valabil până în 2029",
+   "phValue": "Introdu valoarea",
+   "encryptingSaving": "Criptare și salvare…",
+   "categories": {
+    "tax": "🏛 Taxe și finanțe",
+    "social": "🛡 Asigurări sociale și muncă",
+    "health": "🏥 Sănătate",
+    "id_card": "🪪 Acte de identitate",
+    "finance": "💶 Finanțe",
+    "other": "📁 Altele"
+   }
+  },
+  "emailDialog": {
+   "title": "Schimbă adresa de e-mail",
+   "description": "După schimbare vei primi un link de confirmare la noua adresă.",
+   "newEmail": "Noua adresă de e-mail",
+   "sendLink": "Trimite link de confirmare",
+   "sending": "Se trimite…",
+   "sendingStatus": "Trimiterea linkului de confirmare…",
+   "error": "Eroare: {{message}}",
+   "sent": "Link de confirmit trimis. Confirmă-l în noua ta căsuță poștală."
+  },
+  "passwordDialog": {
+   "title": "Schimbă parola",
+   "newPassword": "Noua parola",
+   "confirmPassword": "Confirmă parola",
+   "save": "Schimbă parola",
+   "saving": "Se salvează…",
+   "success": "✓ Parola a fost schimbată cu succes.",
+   "error": "Eroare: {{message}}",
+   "errMinLength": "Eroare: parola trebuie să aibă cel puțin 8 caractere.",
+   "errMismatch": "Eroare: parolele nu coincid."
+  },
+  "avatar": {
+   "title": "Poza de profil",
+   "change": "Schimbă",
+   "upload": "Clic pentru încărcare (JPG, PNG, WebP, max 10MB)",
+   "uploading": "Se încarcă…"
+  },
+  "avatarCrop": {
+   "title": "Decupează poza de profil",
+   "save": "Decupează și salvează",
+   "saving": "Se procesează…",
+   "cancel": "Anulează",
+   "zoom": "Mărire",
+   "errorLoad": "Imaginea nu a putut fi încărcată",
+   "errorBlob": "Nu s-a putut crea blob",
+   "errorCanvas": "Contextul canvas nu este disponibil",
+   "errorGeneric": "Decuparea a eșuat"
+  }
+ },
+ "onboarding": {
+  "dismiss": "Sari",
+  "next": "Continuă",
+  "finish": "Gata",
+  "situation": {
+   "question": "Ce descrie cel mai bine situația ta actuală?",
+   "employed": "Angajat",
+   "selfEmployed": "Independent",
+   "unemployed": "Demisionat recent / șomer",
+   "student": "Student / ucenic",
+   "retired": "Pensionar",
+   "other": "Altul"
+  },
+  "housing": {
+   "question": "Cum locuiești?",
+   "rent": "Chirie",
+   "own": "Proprietate",
+   "parents": "La părinți / comună",
+   "other": "Altul"
+  },
+  "children": {
+   "question": "Ai copii sub 18 ani în gospodărie?"
+  },
+  "postcode": {
+   "question": "Care este codul tău poștal?"
+  }
+ },
+ "documents": {
+  "metaTitle": "Documente — Antragsbruder",
+  "metaDescription": "Toate documentele pentru toate cererile într-un singur loc.",
+  "title": "Seiful cetățeanului",
+  "description": "Toate documentele oficiale într-un singur loc — utilizabile pentru toate cererile.",
+  "categoryLabel_all": "Toate",
+  "categoryLabel_identity": "🪪 Identitate",
+  "categoryLabel_housing": "🏠 Locuință",
+  "categoryLabel_income": "💼 Venit",
+  "categoryLabel_other": "📁 Altele",
+  "categoryBadge_identity": "Identitate",
+  "categoryBadge_housing": "Locuință",
+  "categoryBadge_income": "Venit",
+  "categoryBadge_other": "Altele",
+  "status_DONE": "🟢 Verificat",
+  "status_PROCESSING": "🟡 În verificare",
+  "status_PENDING": "🟡 În verificare",
+  "status_ERROR": "Eroare",
+  "searchPlaceholder": "Caută document…",
+  "searchAria": "Caută documente",
+  "emptyState_title": "Niciun document încă",
+  "emptyState_message": "Încarcă-ți documentele pentru a le gestiona aici într-un singur loc.",
+  "emptyState_noResults_title": "Niciun rezultat",
+  "emptyState_noResults_message": "Niciun document nu corespunde filtrului sau căutării.",
+  "action_rename": "Clic pentru redenumire",
+  "action_preview": "👁 Previzualizare",
+  "action_download": "Descarcă",
+  "action_delete": "🗑 Șterge",
+  "share_successTitle": "Pachet creat ✓",
+  "share_successMessage": "Valabil 24 de ore. Scanează codul QR sau copiază linkul.",
+  "share_linkCopied": "Copiat ✓",
+  "share_close": "Închide",
+  "shareBtnCount": "🔗 Distribuie pachetul ({{count}})",
+  "shareBtn": "🔗 Distribuie pachetul",
+  "shareCreating": "Creare pachet…",
+  "errCreatePackage": "Pachetul nu a putut fi creat",
+  "errCreatePackageGeneric": "Eroare la crearea pachetului",
+  "deleteConfirm": "Sigur vrei să ștergi „{{filename}}“?",
+  "vaultSuffix": "seif",
+  "renameAria": "Editează titlul documentului",
+  "selectForPackageAria": "Selectează {{filename}} pentru pachet",
+  "invalidFile": "Fișier invalid",
+  "errRegister": "Documentul nu a putut fi înregistrat",
+  "errStatusUpdate": "Starea nu a putut fi actualizată",
+  "quickUploading": "Se încarcă…",
+  "chooseFile": "Alege fișier",
+  "errStatusUpdateModal": "Actualizarea stării a eșuat",
+  "titleForAria": "Titlu pentru {{name}}",
+  "removeAria": "Elimină {{name}}",
+  "uploadCount": "Încarcă {{count}}",
+  "upload_slot_personalID": "🪪 Carte de identitate",
+  "upload_slot_payslip": "💼 Fluturas de salariu",
+  "upload_slot_other": "📁 Altele",
+  "upload_button_upload": "Încarcă document",
+  "upload_button_uploading": "Se încarcă…",
+  "upload_button_uploadAll": "încarcă",
+  "upload_button_cancel": "Anulează",
+  "upload_button_done": "Gata",
+  "upload_modal_title": "Încarcă document",
+  "upload_modal_close": "Închide",
+  "upload_category_label": "Categorie",
+  "upload_category_ID_CARD": "🪪 Identitate",
+  "upload_category_PAYSLIP": "💼 Venit (fluturas de salariu)",
+  "upload_category_BANK_STATEMENT": "🏦 Extras de cont",
+  "upload_category_TERMINATION": "📄 Concediere",
+  "upload_category_CONTRACT": "📝 Contract",
+  "upload_category_OTHER": "📁 Altele",
+  "upload_dropzone_text": "Trage fișierele aici",
+  "upload_dropzone_or": "sau alege de pe calculator",
+  "upload_file_titlePlaceholder": "Titlu pentru",
+  "upload_file_remove": "elimină",
+  "upload_file_error": "Eroare",
+  "upload_file_uploading": "Se încarcă…"
+ },
+ "upload": {
+  "metaTitle": "Încărcare – Antragsbruder",
+  "metaDescription": "Încarcă documentele și începe cererea.",
+  "status": {
+   "pending": "Gata de încărcare",
+   "uploading": "Se încarcă…",
+   "uploaded": "Încărcat",
+   "parsing": "Se scanează…",
+   "done": "Scanat",
+   "error": "Eroare"
+  },
+  "moreChars": "… (mai multe caractere)",
+  "startOcr": "Pornește OCR",
+  "remove": "Elimină",
+  "errorNoCase": "Nicio cerere – vă rugăm creați mai întâi o cerere.",
+  "errorNoCaseShort": "Nicio cerere",
+  "errorUpload": "Încărcarea a eșuat",
+  "errorOcr": "OCR a eșuat",
+  "welcome": "Bun venit, {{name}}",
+  "toApplication": "La cerere",
+  "step1": "Încarcă document",
+  "step2": "Verifică datele",
+  "title1": "Prima ta cerere – documente",
+  "subtitle1": "Încarcă-ți documentele. Le scanăm și îți aratăm ce găsim.",
+  "noCaseTitle": "Nu ați creat încă o cerere.",
+  "noCaseText": "Creați mai întâi o cerere, apoi puteți încărca documente aici.",
+  "createApplication": "Creare cerere",
+  "dropHere": "Aruncă fișierele aici",
+  "dropHereOr": "Aruncă fișierele aici sau alege-le",
+  "dropHint": "PDF, JPG sau PNG – până la 10 MB per fișier",
+  "filesCount": "Fișiere încărcate ({{count}})",
+  "uploadNow": "Încarcă acum",
+  "selectDocuments": "Alege documente",
+  "title2": "Documente verificate",
+  "subtitle2": "Am scanat documentele tale. Vezi rezultatele mai jos.",
+  "scannedCountOne": "{{count}} document scanat cu succes",
+  "scannedCountMany": "{{count}} documente scanate cu succes",
+  "noneScannedTitle": "Niciun document scanat încă",
+  "noneScannedText": "Scanează mai întâi un document pentru a vedea conținutul."
+ },
+ "questionnaire": {
+  "errorLoading": "Eroare la încărcarea întrebărilor",
+  "sensHighlySensitive": "Foarte privat",
+  "sensSensitive": "Privat",
+  "sensNormal": "Normal",
+  "unitHint": "Indică în {{unit}}",
+  "yourAnswerPlaceholder": "Răspunsul tău",
+  "lblColdRent": "Chirie netă (fără încălzire)",
+  "lblHeating": "Costuri de încălzire",
+  "monthlyEuro": "Sumă lunară în euro",
+  "privateContent": "Conținutul este privat – clic pentru a afișa",
+  "skipQuestion": "Sari peste această întrebare",
+  "continueWithoutAnswer": "Continuă fără răspuns",
+  "loadingQuestions": "Se încarcă întrebările…",
+  "allAnsweredTitle": "Toate întrebările au primit răspuns",
+  "allAnsweredText": "Avem toate informațiile necesare. Cererea ta este acum pregătită.",
+  "noMoreTitle": "Nu mai sunt întrebări",
+  "noMoreText": "Nu mai sunt necesare întrebări. Acum poți depune cererea.",
+  "headingEyebrow": "Ghid pas cu pas",
+  "headingTitle": "Datele cererii tale",
+  "headingLede": "Te vom ghida prin toate întrebările de care avem nevoie pentru cererea ta. Poți sări peste orice întrebare.",
+  "stepOf": "Pasul {{current}} din {{total}}",
+  "showAnswerField": "Afișează câmpul de răspuns"
+ },
+ "alg1": {
+  "meta": {
+   "title": "Cerere ALG1 | Antragsbruder",
+   "description": "Încarcă documente, răspunde la întrebări și depune cererea ALG1."
+  },
+  "index": {
+   "metaTitle": "ALG1 – verificare rapidă | Antragsbruder",
+   "metaDescription": "Verifică în 7 întrebări dacă ai dreptul la ALG1 și începe cererea.",
+   "title": "Depune cerere ALG1",
+   "subtitle": "Răspunde la 7 întrebări scurte – evaluăm șansele tale și începem cererea."
+  },
+  "flow": {
+   "loading": "Se încarcă…",
+   "documentsTitle": "Documentele tale",
+   "documentsText": "Încarcă cele mai importante documente – le citim automat.",
+   "backToDocuments": "← Înapoi la documente",
+   "continueToSummary": "Continuă la rezumat →",
+   "backToForm": "← Înapoi la formular",
+   "startApplication": "Începe cererea oficială ALG1 și încarcă documente",
+   "errorNotFound": "Cererea nu a fost găsită sau nu ai acces.",
+   "errorNoAccess": "Nu ai acces la această cerere."
+  },
+  "start": {
+   "loadingDraft": "Se încarcă schița…",
+   "draftLoaded": "Schița ta salvată a fost încărcată.",
+   "errorCreatingCase": "Dosarul nu a putut fi creat. Încearcă mai târziu.",
+   "errorCreatingApplication": "Cererea nu a putut fi creată: {{errorMessage}}",
+   "errorUpdatingDraft": "Schița nu a putut fi salvată: {{errorMessage}}"
+  },
+  "check": {
+   "questionProgress": "Întrebarea {{current}} din {{total}}",
+   "progressPercent": "{{progress}}%",
+   "back": "← Înapoi",
+   "questions": {
+    "termination_type": "Ce s-a întâmplat cu jobul tău?",
+    "insurance_period_months": "Câte luni ai fost asigurat obligatoriu în ultimele 28 luni?",
+    "registered_unemployed": "Te-ai înregistrat deja ca șomer?",
+    "available_hours_per_week": "Câte ore pe săptămână poți lucra?",
+    "actively_seeking": "Cauți activ un loc de muncă?",
+    "has_children": "Ai copii sub 18?",
+    "has_partner": "Trăiești cu un partener/o parteneră?",
+    "gross_salary": "Venitul brut lunar aproximativ al ultimelor 12 luni în €"
+   },
+   "termination": {
+    "EMPLOYER_TERMINATED": "Angajatorul a concediat",
+    "CONTRACT_END": "Contractul a expirat",
+    "SELF_QUIT": "Am demisionat singur",
+    "MUTUAL_AGREEMENT": "Acord de reziliere",
+    "EMPLOYER_INSOLVENT": "Angajatorul este insolvabil",
+    "HOURS_REDUCED": "Orele de muncă au fost reduse",
+    "OTHER": "Altul"
+   }
+  },
+  "checkResult": {
+   "likelyTitle": "Este foarte probabil să ai dreptul la ALG 1",
+   "unclearTitle": "Necesită verificare individuală – cererea este totuși recomandată",
+   "unlikelyTitle": "Nu există drept obișnuit la ALG1 conform evaluării curente",
+   "estimatedMonthly": "Suma lunară estimată",
+   "basis": "Baza: {{amount}} € brut",
+   "rateWithChild": "67% (cu copil)",
+   "rateWithoutChild": "60%",
+   "perMonth": "~ {{amount}} € / lună",
+   "perDay": "{{amount}} €/zi",
+   "basisLine": "Baza: {{basis}} € brut · rata: {{rate}} · {{daily}} €/zi",
+   "editAnswerAria": "Modifică răspunsul la „{{question}}“",
+   "yourAnswers": "Răspunsurile tale",
+   "change": "Modifică",
+   "nextSteps": "Următorii pași"
+  },
+  "erfolg": {
+   "metaTitle": "ALG1 – cerere trimisă | Antragsbruder",
+   "metaDescription": "Cererea ta ALG1 a fost pregătită și marcată ca gata.",
+   "pageTitle": "Cerere trimisă cu succes",
+   "headline": "Gata!",
+   "bodyPre": "Cererea ta ALG1 este pe deplin pregătită și marcată ca",
+   "bodyPost": ". Transferul către Agenția pentru Muncă și urmărirea stării vor urma într-o fază ulterioară.",
+   "hint1": "Înregistrează-te ca șomer cu cel puțin 3 luni înainte de sfârșitul contractului.",
+   "hint2": "Păstrează confirmarea cu numărul dosarului.",
+   "hint3": "ALG1 se plătește lunar în avans.",
+   "backLink": "Înapoi la ansamblu"
+  },
+  "form": {
+   "sections": {
+    "Personendaten": "Date personale",
+    "Letzter Arbeitgeber": "Ultimul angajator",
+    "Agentur für Arbeit": "Agenția pentru Muncă",
+    "Verfügbarkeit": "Disponibilitate",
+    "Haushalt": "Gospodărie",
+    "Finanzen": "Finanțe"
+   },
+   "pleaseSelect": "Vă rugăm selectați…",
+   "childrenAgesHint": "Vârstele copiilor separate prin virgulă, ex. „3, 7“",
+   "progressLabel": "Progres",
+   "autosaveNote": "Intrările tale sunt salvate automat.",
+   "savedIndicator": "🟢 Salvat · {{time}}",
+   "savingIndicator": "⏳ Se salvează…",
+   "saveNow": "Salvează acum",
+   "fieldsCount": "Total câmpuri: {{total}}, {{visible}} vizibile.",
+   "checkError": "– vă rugăm verificați",
+   "fields": {
+    "firstName": {
+     "label": "Prenume"
+    },
+    "lastName": {
+     "label": "Nume"
+    },
+    "dateOfBirth": {
+     "label": "Data nașterii"
+    },
+    "street": {
+     "label": "Strada și numărul"
+    },
+    "postcode": {
+     "label": "Cod poștal",
+     "placeholder": "ex. 10115"
+    },
+    "city": {
+     "label": "Oraș"
+    },
+    "phone": {
+     "label": "Telefon",
+     "placeholder": "ex. 030 12345678"
+    },
+    "email": {
+     "label": "E-mail",
+     "placeholder": "ex. max@example.com"
+    },
+    "nationality": {
+     "label": "Naționalitate"
+    },
+    "taxId": {
+     "label": "Cod fiscal",
+     "placeholder": "ex. 12 34 56789 01",
+     "hint": "11 cifre – se află pe declarația ta de impozit"
+    },
+    "iban": {
+     "label": "IBAN",
+     "placeholder": "ex. DE89 3704 0044 0532 0130 00",
+     "hint": "Începe cu DE + 2 cifre de control"
+    },
+    "healthInsurance": {
+     "label": "Asigurare medicală"
+    },
+    "employerName": {
+     "label": "Denumirea angajatorului"
+    },
+    "employerAddress": {
+     "label": "Adresa angajatorului"
+    },
+    "employmentStart": {
+     "label": "Începutul angajării"
+    },
+    "employmentEnd": {
+     "label": "Sfârșitul raporturilor de muncă"
+    },
+    "contractType": {
+     "label": "Tipul contractului"
+    },
+    "hoursPerWeek": {
+     "label": "Ore pe săptămână"
+    },
+    "grossSalary": {
+     "label": "Venit brut (ultima lună)"
+    },
+    "taxClass": {
+     "label": "Clasa de impozitare"
+    },
+    "churchTax": {
+     "label": "Impozit bisericesc"
+    },
+    "childrenAllowance": {
+     "label": "Deduceri pentru copii"
+    },
+    "unemployedSince": {
+     "label": "Șomer de la/de la (posibilă și dată viitoare)"
+    },
+    "agencyLocation": {
+     "label": "Locația agenției"
+    },
+    "agencyReference": {
+     "label": "Numărul dosarului (dacă este cunoscut)"
+    },
+    "fitForWork": {
+     "label": "Apt pentru muncă (sănătate)"
+    },
+    "availableFor15h": {
+     "label": "Disponibil cel puțin 15h/săpt."
+    },
+    "activelySeeking": {
+     "label": "Caută activ un loc de muncă"
+    },
+    "restrictions": {
+     "label": "Restricții în căutarea unui loc de muncă"
+    },
+    "childrenCount": {
+     "label": "Număr de copii sub 18"
+    },
+    "childrenAges": {
+     "label": "Vârstele copiilor (separate prin virgulă)",
+     "placeholder": "ex. 3, 7",
+     "hint": "La 2 copii ex. „3, 7“"
+    },
+    "hasPartner": {
+     "label": "Partener în gospodărie"
+    },
+    "partnerUnemployed": {
+     "label": "Partenerul este și el șomer"
+    },
+    "incomeSources": {
+     "label": "Surse curente de venit"
+    },
+    "assetsOver15k": {
+     "label": "Active peste 15.000 €"
+    }
+   },
+   "options": {
+    "nationality": {
+     "DE": "Germană",
+     "EU": "Cetățean UE",
+     "OTHER": "Altul"
+    },
+    "contractType": {
+     "UNLIMITED": "Nedeterminat",
+     "LIMITED": "Determinat"
+    },
+    "taxClass": {
+     "I": "I",
+     "II": "II",
+     "III": "III",
+     "IV": "IV",
+     "V": "V",
+     "VI": "VI"
+    },
+    "restrictions": {
+     "NONE": "Niciuna",
+     "PHYSICAL": "Restricții fizice",
+     "MENTAL": "Restricții psihice",
+     "CARE": "Îngrijire rude"
+    },
+    "incomeSources": {
+     "NONE": "Niciuna",
+     "EMPLOYMENT": "Angajare",
+     "ALG1": "ALG1",
+     "SICK_PAY": "Concediu medical",
+     "CHILD_BENEFIT": "Alocație copil",
+     "MAINTENANCE": "Pensie alimentară",
+     "PARENTAL_ALLOWANCE": "Alocație parentală",
+     "PENSION": "Pensie",
+     "SELF_EMPLOYED": "Activitate independentă"
+    }
+   }
+  },
+  "summary": {
+   "title": "Cererea ta ALG1",
+   "titleReadOnly": "Cererea ta ALG1 – starea curentă",
+   "titleEdit": "Rezumatul cererii tale ALG1",
+   "status": {
+    "SUBMITTED": {
+     "label": "Trimis",
+     "hint": "Cererea ta a fost primită de Jobcenter. Te vom ține la curent aici."
+    },
+    "PROCESSING": {
+     "label": "În verificare",
+     "hint": "Agenția pentru Muncă verifică cererea ta. Păstrează confirmarea cu numărul dosarului la îndemână."
+    },
+    "APPROVED": {
+     "label": "Aprobat 🎉",
+     "hint": "Ajutorul tău de șomaj a fost aprobat – plata se face lunar în avans."
+    },
+    "REJECTED": {
+     "label": "Respins",
+     "hint": "Cererea ta a fost respinsă. Verifică decizia – poți face contestație."
+    }
+   },
+   "missingHeading": "Încă lipsesc {{count}} date ({{issues}} erori de validare):",
+   "addInfoBtn": "Completează datele ({{sections}})",
+   "errRequired": "Vă rugăm completați – aceste date încă lipsesc.",
+   "errTaxId": "Introduceți codul fiscal exact cu 11 cifre (ex. 12 34 56789 01).",
+   "errIban": "Introduceți un IBAN valid (ex. DE89 3704 0044 0532 0130 00).",
+   "errPostcode": "Introduceți un cod poștal cu 5 cifre (ex. 10115).",
+   "errEmail": "Introduceți o adresă de e-mail validă.",
+   "errDate": "Selectați o dată.",
+   "errIncomeSources": "Selectați cel puțin o sursă de venit (sau „Niciuna“).",
+   "errChildrenAges": "Indicați vârstele copiilor separate prin virgulă (ex. 3, 7).",
+   "errDefault": "Verificați și completați aceste date.",
+   "submitFailed": "Trimiterea a eșuat",
+   "confirmedTitle": "Cerere trimisă (simulare)",
+   "confirmedPre": "Cererea este marcată ca",
+   "confirmedPost": ". Transferul către Agenția pentru Muncă va avea loc într-o fază ulterioară.",
+   "estimateLabel": "Suma lunară estimată ALG1",
+   "estimateLine": "Baza: {{basis}} € | rata: {{rate}} | ziua: {{daily}} €",
+   "lblName": "Nume:",
+   "lblBirthDate": "Data nașterii:",
+   "lblAddress": "Adresa:",
+   "lblEmail": "E-mail:",
+   "lblEmployer": "Angajator:",
+   "lblUnemployedSince": "Șomer de la:",
+   "lblGross": "Brut:",
+   "lblTaxClass": "Clasa de impozitare:",
+   "lblChildren": "Copiii:",
+   "lblIban": "IBAN:",
+   "notesTitle": "Observații importante:",
+   "note1": "Înregistrează-te ca șomer cu cel puțin 3 luni înainte de sfârșitul contractului",
+   "note2": "Păstrează confirmarea cu numărul dosarului",
+   "note3": "ALG1 se plătește lunar în avans",
+   "statusLabel": "Stare:",
+   "submitting": "Se trimite…",
+   "submitBtn": "Depune cererea (simulare)"
+  },
+  "upload": {
+   "slots": {
+    "TERMINATION": {
+     "label": "Act de concediere",
+     "description": "Încheierea raporturilor de muncă"
+    },
+    "PAYSLIP": {
+     "label": "Ultimul fluturas de salariu",
+     "description": "Dovada salariului brut"
+    },
+    "ID_CARD": {
+     "label": "Carte de identitate",
+     "description": "Fața și verso"
+    },
+    "OTHER": {
+     "label": "Documente suplimentare",
+     "description": "Opțional"
+    }
+   },
+   "required": "Obligatoriu",
+   "bypassLabel": "Voi prezenta documentele mai târziu",
+   "continueBtn": "Continuă la întrebări",
+   "uploading": "Se încarcă…",
+   "dropzoneHint": "Clic sau trage un fișier aici (PDF, JPG, PNG – max. 10 MB)"
+  }
+ }
+}

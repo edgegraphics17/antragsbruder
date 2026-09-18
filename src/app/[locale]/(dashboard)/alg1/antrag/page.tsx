@@ -3,23 +3,37 @@ import { redirect } from 'next/navigation';
 import { Alg1Flow } from '@/components/alg1/Alg1Flow';
 import { isAlg1Stage, type Alg1Stage } from '@/lib/alg1/store';
 import { createAuthServerClient } from '@/lib/auth-server';
-
-export const metadata: Metadata = {
-  title: 'ALG1-Antrag | Antragsbruder',
-  description: 'Unterlagen hochladen, Fragen beantworten und deinen ALG1-Antrag einreichen.',
-};
+import { getDashboardDict } from '@/content/i18n/dashboard';
+import { isLocale, defaultLocale, localeHref } from '@/i18n/config';
 
 // Auto-Resume: Ohne applicationId wird die neueste offene ALG1-Application
 // gesucht (Server-Query, RLS via Cookie-Client). Keine existiert → direkt
 // weiter zum Schnell-Check. Niemals eine Sackgassen-Meldung.
 // Der stage-Query-Param (aus „Weiterarbeiten“ im Dashboard) springt direkt
 // an die zuletzt bearbeitete Stage.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: rawLocale } = await params;
+  const locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
+  const t = getDashboardDict(locale).alg1.meta;
+  return {
+    title: t.title,
+    description: t.description,
+  };
+}
+
 export default async function Alg1AntragPage({
+  params,
   searchParams,
 }: {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{ applicationId?: string; stage?: string }>;
 }) {
-  const { applicationId, stage } = await searchParams;
+  const [{ locale: rawLocale }, { applicationId, stage }] = await Promise.all([params, searchParams]);
+  const locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
 
   if (applicationId) {
     return (
@@ -34,7 +48,7 @@ export default async function Alg1AntragPage({
   const { data } = await supabase.auth.getUser();
 
   if (!data.user) {
-    redirect('/anmelden');
+    redirect(localeHref(locale, '/anmelden'));
   }
 
   const { data: openApp } = await supabase
@@ -56,5 +70,5 @@ export default async function Alg1AntragPage({
     );
   }
 
-  redirect('/alg1');
+  redirect(localeHref(locale, '/alg1'));
 }

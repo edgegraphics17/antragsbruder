@@ -1,0 +1,150 @@
+{
+ "common": {
+  "save": "Зберегти",
+  "saving": "Збереження…",
+  "saved": "Зміни збережено.",
+  "errorSaving": "Не вдалося зберегти. Спробуйте ще раз.",
+  "cancel": "Скасувати",
+  "close": "Закрити",
+  "delete": "Видалити",
+  "deleting": "Видалення…",
+  "edit": "Редагувати",
+  "back": "Назад",
+  "next": "Далі",
+  "previous": "Назад",
+  "loading": "Завантаження…",
+  "error": "Щось пішло не так. Спробуйте ще раз.",
+  "retry": "Спробувати знову",
+  "optional": "необов'язково",
+  "required": "обов'язкове поле",
+  "upload": "Завантажити",
+  "uploading": "Завантаження…",
+  "download": "Завантажити файл",
+  "search": "Пошук",
+  "yes": "Так",
+  "no": "Ні",
+  "refresh": "Оновити",
+  "confirm": "Підтвердити",
+  "skip": "Пропустити",
+  "notAvailable": "Недоступно",
+  "open": "Відкрити",
+  "new": "Новий"
+ },
+ "nav": {
+  "dashboard": "Панель",
+  "alg1": "ALG1",
+  "dokumente": "Документи",
+  "foerderungen": "Допомога"
+ },
+ "sidebar": {
+  "logout": "Вийти",
+  "backToSite": "На сайт",
+  "guest": "Гість",
+  "navLabel": "Навігація панелі"
+ },
+ "home": {
+  "metaTitle": "Панель — Antragsbruder",
+  "metaDescription": "Ваші поточні заяви та відповідна допомога одним поглядом.",
+  "greetingMorning": "Доброго ранку",
+  "greetingDay": "Добрий день",
+  "greetingEvening": "Добрий вечір",
+  "fallbackUser": "Користувач",
+  "summaryOneApp": "У вас {{apps}} активна заява та {{benefits}} відповідної допомоги.",
+  "summaryManyApps": "У вас {{apps}} активних заяв та {{benefits}} відповідної допомоги.",
+  "startFirst": "Почніть свою першу заяву.",
+  "runningTitle": "Поточні заяви",
+  "noRunning": "Активних заяв поки немає",
+  "startNow": "Почати зараз",
+  "status": {
+   "DRAFT": "В роботі",
+   "IN_PROGRESS": "В роботі",
+   "DOCS_PENDING": "Бракує документів",
+   "READY": "Готово до надсилання",
+   "SUBMITTED": "Надіслано ✓",
+   "PROCESSING": "На перевірці",
+   "APPROVED": "Схвалено 🎉",
+   "REJECTED": "Відхилено"
+  },
+  "alg1Title": "Допомога з безробіття (ALG1)",
+  "applicationFallback": "Заява",
+  "upTo": "До {{amount}} €/міс.",
+  "createdAt": "Створено {{date}}",
+  "viewStatus": "Переглянути статус",
+  "continueWorking": "Продовжити",
+  "possibleTitle": "Можлива допомога",
+  "fillProfile": "Заповніть профіль, щоб побачити відповідну допомогу.",
+  "confidenceHigh": "Дуже ймовірно",
+  "confidencePossible": "Можливо",
+  "allBenefits": "Переглянути всю допомогу →",
+  "docsTresor": "Документи та сховище",
+  "docsEmpty": "Завантажте документи, щоб завершити заяву.",
+  "docsCountOne": "{{count}} документ у сховищі.",
+  "docsCountMany": "{{count}} документів у сховищі.",
+  "goToTresor": "До сховища",
+  "stepsProgress": "{{done}}/4 кроки",
+  "timeline": {
+   "docs": {
+    "label": "Додати документи",
+    "description": "Завантажте повідомлення про розірвання, довідки про зарплату та інші документи."
+   },
+   "data": {
+    "label": "Заповнити дані",
+    "description": "Дайте відповіді на запитання та введіть особисті дані."
+   },
+   "submit": {
+    "label": "Подати заяву",
+    "description": "Перевірте підсумок і подайте до відомства."
+   },
+   "receive": {
+    "label": "Отримати допомогу",
+    "description": "Дочекайтеся рішення та отримайте першу виплату."
+   }
+  }
+ },
+ "foerderungen": {
+  "metaTitle": "Допомога — Antragsbruder",
+  "metaDescription": "Перевірка допомоги за правилами на основі ваших даних.",
+  "title": "Радар допомоги",
+  "subtitle": "{{matched}} з {{total}} видів допомоги відповідають вашій ситуації — на основі профілю та сховища.",
+  "tabQualified": "🎯 Підходить мені",
+  "tabPotential": "⚡ Перевірити потенціал",
+  "tabExcluded": "🚫 Виключено",
+  "amountRange": "ок. {{min}}–{{max}} € / міс.",
+  "amountFrom": "від ок. {{min}} € / міс.",
+  "amountUpTo": "до ок. {{max}} € / міс.",
+  "calcNow": "Розрахувати зараз",
+  "viewAtOffice": "Переглянути у відомстві",
+  "calcAvailable": "Є калькулятор",
+  "authority": "Відповідальне відомство: {{authority}}",
+  "docsInVault": "{{present}} з {{total}} необхідних документів у сховищі",
+  "unlockTitle": "Відкрити право",
+  "noExcluded": "Наразі жодна допомога явно не виключена.",
+  "excludedInfo": "{{count}} видів допомоги точно не відповідають профілю (напр., лише для студентів чи пенсіонерів). Ми їх приховуємо.",
+  "noQualified": "Поки нічого однозначно не підходить — дайте відповіді на уточнювальні запитання вище або заповніть профіль допомоги.",
+  "noPotential": "Немає відкритих потенціалів — дайте відповіді на уточнювальні запитання, щоб відкрити більше."
+ },
+ "antraege": {
+  "statusLabel": "Статус",
+  "status": {
+   "ACTIVE": "Активна",
+   "PAUSED": "Призупинена",
+   "COMPLETED": "Завершена"
+  },
+  "deleteConfirm": "Дійсно видалити „{{filename}}“?",
+  "deleteFailed": "Не вдалося видалити",
+  "uploadedAt": "Завантажено {{date}}",
+  "notFound": "Заяву не знайдено",
+  "loadFailed": "Помилка завантаження",
+  "statusChangeFailed": "Не вдалося змінити статус",
+  "goBack": "До огляду",
+  "uploadDocument": "Завантажити документ",
+  "loadingCase": "Завантаження заяви…",
+  "completedApplication": "Завершена заява",
+  "activeApplication": "Активна заява",
+  "createdAt": "Створено {{date}}",
+  "documentsTitle": "Документи",
+  "noDocuments": "Документів поки немає",
+  "noDocumentsHint": "Завантажте документи, щоб просунути заяву.",
+  "uploadDocuments": "Завантажити документи"
+ }
+}

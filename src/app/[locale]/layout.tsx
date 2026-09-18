@@ -9,7 +9,8 @@ import { locales, localeMeta, isLocale, localeHref, defaultLocale, type Locale }
 
 const bodyFont = Inter({
   variable: "--font-body",
-  subsets: ["latin"],
+  // Cyrillic für ru/uk/bg, greek-deklinierte Locales via System-Fallback.
+  subsets: ["latin", "cyrillic", "cyrillic-ext", "latin-ext"],
   display: "swap",
 });
 

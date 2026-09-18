@@ -1,0 +1,150 @@
+{
+ "common": {
+  "save": "Save",
+  "saving": "Saving…",
+  "saved": "Changes saved.",
+  "errorSaving": "Saving failed. Please try again.",
+  "cancel": "Cancel",
+  "close": "Close",
+  "delete": "Delete",
+  "deleting": "Deleting…",
+  "edit": "Edit",
+  "back": "Back",
+  "next": "Continue",
+  "previous": "Back",
+  "loading": "Loading…",
+  "error": "Something went wrong. Please try again.",
+  "retry": "Try again",
+  "optional": "optional",
+  "required": "required",
+  "upload": "Upload",
+  "uploading": "Uploading…",
+  "download": "Download",
+  "search": "Search",
+  "yes": "Yes",
+  "no": "No",
+  "refresh": "Refresh",
+  "confirm": "Confirm",
+  "skip": "Skip",
+  "notAvailable": "Not available",
+  "open": "Open",
+  "new": "New"
+ },
+ "nav": {
+  "dashboard": "Dashboard",
+  "alg1": "ALG1",
+  "dokumente": "Documents",
+  "foerderungen": "Benefits"
+ },
+ "sidebar": {
+  "logout": "Log out",
+  "backToSite": "Back to website",
+  "guest": "Guest",
+  "navLabel": "Dashboard navigation"
+ },
+ "home": {
+  "metaTitle": "Dashboard — Antragsbruder",
+  "metaDescription": "Your ongoing applications and matching benefits at a glance.",
+  "greetingMorning": "Good morning",
+  "greetingDay": "Good day",
+  "greetingEvening": "Good evening",
+  "fallbackUser": "User",
+  "summaryOneApp": "You have {{apps}} active application and {{benefits}} matching benefits.",
+  "summaryManyApps": "You have {{apps}} active applications and {{benefits}} matching benefits.",
+  "startFirst": "Start your first application.",
+  "runningTitle": "Ongoing applications",
+  "noRunning": "No active applications yet",
+  "startNow": "Start now",
+  "status": {
+   "DRAFT": "In progress",
+   "IN_PROGRESS": "In progress",
+   "DOCS_PENDING": "Documents missing",
+   "READY": "Ready to submit",
+   "SUBMITTED": "Submitted ✓",
+   "PROCESSING": "Under review",
+   "APPROVED": "Approved 🎉",
+   "REJECTED": "Rejected"
+  },
+  "alg1Title": "Unemployment benefit (ALG1)",
+  "applicationFallback": "Application",
+  "upTo": "Up to {{amount}} €/month",
+  "createdAt": "Created on {{date}}",
+  "viewStatus": "View status",
+  "continueWorking": "Continue",
+  "possibleTitle": "Possible benefits",
+  "fillProfile": "Fill in your profile to see matching benefits.",
+  "confidenceHigh": "Very likely",
+  "confidencePossible": "Possible",
+  "allBenefits": "View all benefits →",
+  "docsTresor": "Documents & vault",
+  "docsEmpty": "Upload your documents to complete your application.",
+  "docsCountOne": "{{count}} document in the vault.",
+  "docsCountMany": "{{count}} documents in the vault.",
+  "goToTresor": "Go to vault",
+  "stepsProgress": "{{done}}/4 steps",
+  "timeline": {
+   "docs": {
+    "label": "Add documents",
+    "description": "Upload your termination letter, payslips and other documents."
+   },
+   "data": {
+    "label": "Fill in data",
+    "description": "Answer the questions and enter your personal details."
+   },
+   "submit": {
+    "label": "Submit application",
+    "description": "Review the summary and submit it to the agency."
+   },
+   "receive": {
+    "label": "Receive unemployment benefit",
+    "description": "Wait for the decision and receive your first payment."
+   }
+  }
+ },
+ "foerderungen": {
+  "metaTitle": "Benefits — Antragsbruder",
+  "metaDescription": "Rule-based benefit check based on your details.",
+  "title": "Benefits Radar",
+  "subtitle": "{{matched}} of {{total}} benefits match your situation — based on profile and vault.",
+  "tabQualified": "🎯 Qualified for me",
+  "tabPotential": "⚡ Check potential",
+  "tabExcluded": "🚫 Excluded",
+  "amountRange": "approx. {{min}}–{{max}} € / month",
+  "amountFrom": "from approx. {{min}} € / month",
+  "amountUpTo": "up to approx. {{max}} € / month",
+  "calcNow": "Calculate now",
+  "viewAtOffice": "View at the office",
+  "calcAvailable": "Calculator available",
+  "authority": "Responsible: {{authority}}",
+  "docsInVault": "{{present}} of {{total}} supporting documents in the vault",
+  "unlockTitle": "Unlock entitlement",
+  "noExcluded": "No benefit is currently clearly excluded.",
+  "excludedInfo": "{{count}} benefits clearly do not apply according to your profile (e.g. only for students or pensioners). We hide these.",
+  "noQualified": "Nothing clearly qualified yet — answer the clarification questions above or fill in your benefits profile.",
+  "noPotential": "No open potential — answer the clarification questions to unlock more."
+ },
+ "antraege": {
+  "statusLabel": "Status",
+  "status": {
+   "ACTIVE": "Active",
+   "PAUSED": "Paused",
+   "COMPLETED": "Completed"
+  },
+  "deleteConfirm": "Really delete „{{filename}}“?",
+  "deleteFailed": "Deleting failed",
+  "uploadedAt": "Uploaded on {{date}}",
+  "notFound": "Application not found",
+  "loadFailed": "Error while loading",
+  "statusChangeFailed": "Status could not be changed",
+  "goBack": "Back to overview",
+  "uploadDocument": "Upload document",
+  "loadingCase": "Loading application…",
+  "completedApplication": "Completed application",
+  "activeApplication": "Active application",
+  "createdAt": "Created on {{date}}",
+  "documentsTitle": "Documents",
+  "noDocuments": "No documents yet",
+  "noDocumentsHint": "Upload your documents to move your application forward.",
+  "uploadDocuments": "Upload documents"
+ }
+}

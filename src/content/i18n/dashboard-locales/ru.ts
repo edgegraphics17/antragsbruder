@@ -1,0 +1,795 @@
+// RU — Dashboard-Übersetzung (generiert aus translation-source/ru.json).
+// Fehlende Keys fallen zur Laufzeit auf Deutsch zurück (deepMerge).
+import type { PartialDashboardDict } from '../dashboard';
+
+export const ruDict: PartialDashboardDict = {
+  "common": {
+    "save": "Сохранить",
+    "saving": "Сохранение…",
+    "saved": "Изменения сохранены.",
+    "errorSaving": "Не удалось сохранить. Попробуйте ещё раз.",
+    "cancel": "Отмена",
+    "close": "Закрыть",
+    "delete": "Удалить",
+    "deleting": "Удаление…",
+    "edit": "Изменить",
+    "back": "Назад",
+    "next": "Далее",
+    "previous": "Назад",
+    "loading": "Загрузка…",
+    "error": "Что-то пошло не так. Попробуйте ещё раз.",
+    "retry": "Попробовать снова",
+    "optional": "необязательно",
+    "required": "обязательное поле",
+    "upload": "Загрузить",
+    "uploading": "Загрузка…",
+    "download": "Скачать",
+    "search": "Поиск",
+    "yes": "Да",
+    "no": "Нет",
+    "refresh": "Обновить",
+    "confirm": "Подтвердить",
+    "skip": "Пропустить",
+    "notAvailable": "Недоступно",
+    "open": "Открыть",
+    "new": "Новый"
+  },
+  "nav": {
+    "dashboard": "Панель",
+    "alg1": "ALG1",
+    "dokumente": "Документы",
+    "foerderungen": "Пособия"
+  },
+  "sidebar": {
+    "logout": "Выйти",
+    "backToSite": "На сайт",
+    "guest": "Гость",
+    "navLabel": "Навигация панели"
+  },
+  "home": {
+    "metaTitle": "Панель — Antragsbruder",
+    "metaDescription": "Ваши текущие заявления и подходящие пособия одним взглядом.",
+    "greetingMorning": "Доброе утро",
+    "greetingDay": "Добрый день",
+    "greetingEvening": "Добрый вечер",
+    "fallbackUser": "Пользователь",
+    "summaryOneApp": "У вас {{apps}} активное заявление и {{benefits}} подходящих пособий.",
+    "summaryManyApps": "У вас {{apps}} активных заявлений и {{benefits}} подходящих пособий.",
+    "startFirst": "Начните своё первое заявление.",
+    "runningTitle": "Текущие заявления",
+    "noRunning": "Активных заявлений пока нет",
+    "startNow": "Начать сейчас",
+    "status": {
+      "DRAFT": "В работе",
+      "IN_PROGRESS": "В работе",
+      "DOCS_PENDING": "Не хватает документов",
+      "READY": "Готово к отправке",
+      "SUBMITTED": "Отправлено ✓",
+      "PROCESSING": "На проверке",
+      "APPROVED": "Одобрено 🎉",
+      "REJECTED": "Отклонено"
+    },
+    "alg1Title": "Пособие по безработице (ALG1)",
+    "applicationFallback": "Заявление",
+    "upTo": "До {{amount}} €/мес.",
+    "createdAt": "Создано {{date}}",
+    "viewStatus": "Посмотреть статус",
+    "continueWorking": "Продолжить",
+    "possibleTitle": "Возможные пособия",
+    "fillProfile": "Заполните профиль, чтобы увидеть подходящие пособия.",
+    "confidenceHigh": "Очень вероятно",
+    "confidencePossible": "Возможно",
+    "allBenefits": "Посмотреть все пособия →",
+    "docsTresor": "Документы и хранилище",
+    "docsEmpty": "Загрузите документы, чтобы завершить заявление.",
+    "docsCountOne": "{{count}} документ в хранилище.",
+    "docsCountMany": "{{count}} документов в хранилище.",
+    "goToTresor": "В хранилище",
+    "stepsProgress": "{{done}}/4 шага",
+    "timeline": {
+      "docs": {
+        "label": "Добавить документы",
+        "description": "Загрузите уведомление о расторжении, справки о зарплате и другие документы."
+      },
+      "data": {
+        "label": "Заполнить данные",
+        "description": "Ответьте на вопросы и введите личные данные."
+      },
+      "submit": {
+        "label": "Подать заявление",
+        "description": "Проверьте сводку и подайте в ведомство."
+      },
+      "receive": {
+        "label": "Получить пособие",
+        "description": "Дождитесь решения и получите первую выплату."
+      }
+    }
+  },
+  "foerderungen": {
+    "metaTitle": "Пособия — Antragsbruder",
+    "metaDescription": "Проверка пособий по правилам на основе ваших данных.",
+    "title": "Радар пособий",
+    "subtitle": "{{matched}} из {{total}} пособий подходят вашей ситуации — на основе профиля и хранилища.",
+    "tabQualified": "🎯 Мне подходит",
+    "tabPotential": "⚡ Проверить потенциал",
+    "tabExcluded": "🚫 Исключено",
+    "amountRange": "ок. {{min}}–{{max}} € / мес.",
+    "amountFrom": "от ок. {{min}} € / мес.",
+    "amountUpTo": "до ок. {{max}} € / мес.",
+    "calcNow": "Рассчитать сейчас",
+    "viewAtOffice": "Посмотреть в ведомстве",
+    "calcAvailable": "Есть калькулятор",
+    "authority": "Ответственное ведомство: {{authority}}",
+    "docsInVault": "{{present}} из {{total}} необходимых документов в хранилище",
+    "unlockTitle": "Открыть право",
+    "noExcluded": "Сейчас ни одно пособие явно не исключено.",
+    "excludedInfo": "{{count}} пособий точно не подходят по профилю (например, только для студентов или пенсионеров). Мы их скрываем.",
+    "noQualified": "Пока ничего однозначно подходящего — ответьте на уточняющие вопросы выше или заполните профиль пособий.",
+    "noPotential": "Нет открытых потенциалов — ответьте на уточняющие вопросы, чтобы открыть больше."
+  },
+  "antraege": {
+    "statusLabel": "Статус",
+    "status": {
+      "ACTIVE": "Активно",
+      "PAUSED": "Приостановлено",
+      "COMPLETED": "Завершено"
+    },
+    "deleteConfirm": "Действительно удалить „{{filename}}“?",
+    "deleteFailed": "Не удалось удалить",
+    "uploadedAt": "Загружено {{date}}",
+    "notFound": "Заявление не найдено",
+    "loadFailed": "Ошибка загрузки",
+    "statusChangeFailed": "Не удалось изменить статус",
+    "goBack": "К обзору",
+    "uploadDocument": "Загрузить документ",
+    "loadingCase": "Загрузка заявления…",
+    "completedApplication": "Завершённое заявление",
+    "activeApplication": "Активное заявление",
+    "createdAt": "Создано {{date}}",
+    "documentsTitle": "Документы",
+    "noDocuments": "Документов пока нет",
+    "noDocumentsHint": "Загрузите документы, чтобы продвинуть заявление.",
+    "uploadDocuments": "Загрузить документы"
+  },
+  "profile": {
+    "metaTitle": "Мой профиль — Antragsbruder",
+    "metaDescription": "Управляйте личными данными, профилем пособий и настройками безопасности.",
+    "title": "Мой профиль",
+    "noProfile": "Профиль не найден.",
+    "language": {
+      "title": "Язык",
+      "description": "Выберите язык панели — настройка сохраняется в вашем профиле.",
+      "saving": "Сохранение…",
+      "saved": "Язык сохранён.",
+      "error": "Не удалось сохранить язык."
+    },
+    "account": {
+      "title": "Аккаунт и безопасность",
+      "emailTitle": "Эл. почта",
+      "emailDesc": "Изменение через ссылку подтверждения (синхронизируется триггером автоматически).",
+      "changeEmail": "Изменить эл. почту",
+      "passwordTitle": "Пароль",
+      "passwordDesc": "Минимум 8 символов.",
+      "changePassword": "Изменить пароль"
+    },
+    "masterData": {
+      "title": "Личные данные",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "birthDate": "Дата рождения",
+      "phone": "Телефон (необязательно)",
+      "street": "Улица",
+      "houseNumber": "Номер дома",
+      "postcode": "Индекс",
+      "city": "Город",
+      "save": "Сохранить",
+      "saving": "Сохранение…",
+      "discard": "Отменить изменения",
+      "cityAutofill": "Автоматически по индексу",
+      "lblEmail": "Эл. почта"
+    },
+    "eligibility": {
+      "title": "Профиль пособий",
+      "description": "Эти данные помогают нам предлагать подходящие пособия.",
+      "housingType": "Жилищная ситуация",
+      "employmentStatus": "Занятость",
+      "childrenCount": "Дети до 18 в семье",
+      "save": "Сохранить",
+      "saving": "Сохранение…",
+      "discard": "Отменить изменения",
+      "housing": {
+        "RENT": "Аренда",
+        "OWN": "Собственное жильё",
+        "PARENTS": "У родителей / в съёмной квартире",
+        "OTHER": "Другое"
+      },
+      "employment": {
+        "EMPLOYED": "Работаю по найму",
+        "SELF_EMPLOYED": "Самозанятый",
+        "UNEMPLOYED": "Безработный",
+        "STUDENT": "Студент",
+        "APPRENTICE": "Ученик на производстве",
+        "RETIRED": "Пенсионер",
+        "OTHER": "Другое"
+      }
+    },
+    "vault": {
+      "title": "🔐 Связка ключей бюрократии",
+      "description": "Быстрый доступ к вашим важнейшим официальным номерам — зашифровано, по умолчанию скрыто, копируется одним щелчком.",
+      "add": "+ Добавить номер",
+      "loading": "Загрузка связки ключей…",
+      "empty": "Пока нет сохранённых номеров. Например, добавьте свой налоговый номер — скопируйте один раз, вставляйте везде.",
+      "reveal": "👁 Показать",
+      "hide": "🙈 Скрыть",
+      "copy": "📋 Копировать",
+      "copied": "✓ Скопировано!",
+      "delete": "Удалить",
+      "edit": "Изменить",
+      "deleteConfirm": "Действительно удалить „{{label}}“?",
+      "maskedIn": "скроется через {{seconds}} с",
+      "errorDecrypt": "Эта запись была зашифрована на другом устройстве/профиле устройства и не может быть расшифрована здесь. Введите её заново.",
+      "errorDecryptShort": "Нельзя расшифровать — введите заново.",
+      "errValue": "Введите значение.",
+      "errLabel": "Введите название.",
+      "errSave": "Не удалось сохранить",
+      "errEncrypt": "Ошибка шифрования/сохранения",
+      "modalAdd": "Добавить справочный номер",
+      "modalEdit": "Изменить справочный номер",
+      "modalDescription": "Значение шифруется прямо в вашем браузере (AES-GCM) и показывается только скрытым.",
+      "lblType": "Тип",
+      "lblName": "Название",
+      "lblValue": "Значение",
+      "lblNotes": "Заметка (необязательно)",
+      "phName": "напр. номер клиента городской коммунальной службы",
+      "phNotes": "напр. действует до 2029",
+      "phValue": "Введите значение",
+      "encryptingSaving": "Шифрование и сохранение…",
+      "categories": {
+        "tax": "🏛 Налоги и финансы",
+        "social": "🛡 Соцстрахование и работа",
+        "health": "🏥 Здоровье",
+        "id_card": "🪪 Удостоверения",
+        "finance": "💶 Финансы",
+        "other": "📁 Другое"
+      }
+    },
+    "emailDialog": {
+      "title": "Изменить эл. почту",
+      "description": "После изменения вы получите ссылку подтверждения на новый адрес.",
+      "newEmail": "Новая эл. почта",
+      "sendLink": "Отправить ссылку подтверждения",
+      "sending": "Отправка…",
+      "sendingStatus": "Отправка ссылки подтверждения…",
+      "error": "Ошибка: {{message}}",
+      "sent": "Ссылка подтверждения отправлена. Подтвердите её в новом почтовом ящике."
+    },
+    "passwordDialog": {
+      "title": "Изменить пароль",
+      "newPassword": "Новый пароль",
+      "confirmPassword": "Повторите пароль",
+      "save": "Изменить пароль",
+      "saving": "Сохранение…",
+      "success": "✓ Пароль успешно изменён.",
+      "error": "Ошибка: {{message}}",
+      "errMinLength": "Ошибка: пароль должен содержать минимум 8 символов.",
+      "errMismatch": "Ошибка: пароли не совпадают."
+    },
+    "avatar": {
+      "title": "Фото профиля",
+      "change": "Изменить",
+      "upload": "Нажмите для загрузки (JPG, PNG, WebP, макс. 10 МБ)",
+      "uploading": "Загрузка…"
+    },
+    "avatarCrop": {
+      "title": "Обрезать фото профиля",
+      "save": "Обрезать и сохранить",
+      "saving": "Обработка…",
+      "cancel": "Отмена",
+      "zoom": "Масштаб",
+      "errorLoad": "Не удалось загрузить изображение",
+      "errorBlob": "Не удалось создать blob",
+      "errorCanvas": "Контекст canvas недоступен",
+      "errorGeneric": "Обрезка не удалась"
+    }
+  },
+  "onboarding": {
+    "dismiss": "Пропустить",
+    "next": "Далее",
+    "finish": "Готово",
+    "situation": {
+      "question": "Что лучше всего описывает вашу текущую ситуацию?",
+      "employed": "Работаю по найму",
+      "selfEmployed": "Самозанятый",
+      "unemployed": "Недавно уволился / безработный",
+      "student": "Студент / учащийся",
+      "retired": "Пенсионер",
+      "other": "Другое"
+    },
+    "housing": {
+      "question": "Как вы живёте?",
+      "rent": "Аренда",
+      "own": "Своё жильё",
+      "parents": "У родителей / в общей квартире",
+      "other": "Другое"
+    },
+    "children": {
+      "question": "Есть ли у вас дети до 18 в семье?"
+    },
+    "postcode": {
+      "question": "Какой у вас почтовый индекс?"
+    }
+  },
+  "documents": {
+    "metaTitle": "Документы — Antragsbruder",
+    "metaDescription": "Все документы для всех заявлений в одном месте.",
+    "title": "Хранилище гражданина",
+    "description": "Все официальные документы в одном месте — для всех заявлений.",
+    "categoryLabel_all": "Все",
+    "categoryLabel_identity": "🪪 Личность",
+    "categoryLabel_housing": "🏠 Жильё",
+    "categoryLabel_income": "💼 Доход",
+    "categoryLabel_other": "📁 Другое",
+    "categoryBadge_identity": "Личность",
+    "categoryBadge_housing": "Жильё",
+    "categoryBadge_income": "Доход",
+    "categoryBadge_other": "Другое",
+    "status_DONE": "🟢 Проверен",
+    "status_PROCESSING": "🟡 На проверке",
+    "status_PENDING": "🟡 На проверке",
+    "status_ERROR": "Ошибка",
+    "searchPlaceholder": "Поиск документа…",
+    "searchAria": "Искать документы",
+    "emptyState_title": "Документов пока нет",
+    "emptyState_message": "Загрузите свои документы, чтобы управлять ими здесь в одном месте.",
+    "emptyState_noResults_title": "Ничего не найдено",
+    "emptyState_noResults_message": "Ни один документ не соответствует фильтру или поиску.",
+    "action_rename": "Нажмите для переименования",
+    "action_preview": "👁 Предпросмотр",
+    "action_download": "Скачать",
+    "action_delete": "🗑 Удалить",
+    "share_successTitle": "Пакет создан ✓",
+    "share_successMessage": "Действует 24 часа. Отсканируйте QR-код или скопируйте ссылку.",
+    "share_linkCopied": "Скопировано ✓",
+    "share_close": "Закрыть",
+    "shareBtnCount": "🔗 Поделиться пакетом ({{count}})",
+    "shareBtn": "🔗 Поделиться пакетом",
+    "shareCreating": "Создание пакета…",
+    "errCreatePackage": "Не удалось создать пакет",
+    "errCreatePackageGeneric": "Ошибка создания пакета",
+    "deleteConfirm": "Действительно удалить „{{filename}}“?",
+    "vaultSuffix": "хранилище",
+    "renameAria": "Изменить название документа",
+    "selectForPackageAria": "Выбрать {{filename}} для пакета",
+    "invalidFile": "Недопустимый файл",
+    "errRegister": "Не удалось зарегистрировать документ",
+    "errStatusUpdate": "Не удалось обновить статус",
+    "quickUploading": "Загрузка…",
+    "chooseFile": "Выбрать файл",
+    "errStatusUpdateModal": "Не удалось обновить статус",
+    "titleForAria": "Название для {{name}}",
+    "removeAria": "Удалить {{name}}",
+    "uploadCount": "Загрузить {{count}}",
+    "upload_slot_personalID": "🪪 Удостоверение личности",
+    "upload_slot_payslip": "💼 Справка о зарплате",
+    "upload_slot_other": "📁 Другое",
+    "upload_button_upload": "Загрузить документ",
+    "upload_button_uploading": "Загрузка…",
+    "upload_button_uploadAll": "загрузить",
+    "upload_button_cancel": "Отмена",
+    "upload_button_done": "Готово",
+    "upload_modal_title": "Загрузить документ",
+    "upload_modal_close": "Закрыть",
+    "upload_category_label": "Категория",
+    "upload_category_ID_CARD": "🪪 Личность",
+    "upload_category_PAYSLIP": "💼 Доход (справка о зарплате)",
+    "upload_category_BANK_STATEMENT": "🏦 Выписка из банка",
+    "upload_category_TERMINATION": "📄 Уведомление об увольнении",
+    "upload_category_CONTRACT": "📝 Договор",
+    "upload_category_OTHER": "📁 Другое",
+    "upload_dropzone_text": "Перетащите файлы сюда",
+    "upload_dropzone_or": "или выберите на компьютере",
+    "upload_file_titlePlaceholder": "Название для",
+    "upload_file_remove": "удалить",
+    "upload_file_error": "Ошибка",
+    "upload_file_uploading": "Загрузка…"
+  },
+  "upload": {
+    "metaTitle": "Загрузка – Antragsbruder",
+    "metaDescription": "Загрузите документы и начните заявление.",
+    "status": {
+      "pending": "Готово к загрузке",
+      "uploading": "Загрузка…",
+      "uploaded": "Загружено",
+      "parsing": "Сканирование…",
+      "done": "Отсканировано",
+      "error": "Ошибка"
+    },
+    "moreChars": "… (ещё символы)",
+    "startOcr": "Запустить OCR",
+    "remove": "Удалить",
+    "errorNoCase": "Нет заявления – сначала создайте заявление.",
+    "errorNoCaseShort": "Нет заявления",
+    "errorUpload": "Ошибка загрузки",
+    "errorOcr": "Ошибка OCR",
+    "welcome": "Добро пожаловать, {{name}}",
+    "toApplication": "К заявлению",
+    "step1": "Загрузить документ",
+    "step2": "Проверить данные",
+    "title1": "Ваше первое заявление – документы",
+    "subtitle1": "Загрузите свои документы. Мы их сканируем и показываем, что находим.",
+    "noCaseTitle": "Вы ещё не создали заявление.",
+    "noCaseText": "Сначала создайте заявление, затем вы сможете загружать сюда документы.",
+    "createApplication": "Создать заявление",
+    "dropHere": "Перетащите файлы сюда",
+    "dropHereOr": "Перетащите файлы сюда или выберите",
+    "dropHint": "PDF, JPG или PNG – до 10 МБ на файл",
+    "filesCount": "Загруженные файлы ({{count}})",
+    "uploadNow": "Загрузить сейчас",
+    "selectDocuments": "Выбрать документы",
+    "title2": "Документы проверены",
+    "subtitle2": "Мы отсканировали ваши документы. Ознакомьтесь с результатами ниже.",
+    "scannedCountOne": "{{count}} документ успешно отсканирован",
+    "scannedCountMany": "{{count}} документов успешно отсканировано",
+    "noneScannedTitle": "Ещё ни один документ не отсканирован",
+    "noneScannedText": "Сначала отсканируйте документ, чтобы увидеть содержимое."
+  },
+  "questionnaire": {
+    "errorLoading": "Ошибка загрузки вопросов",
+    "sensHighlySensitive": "Очень личное",
+    "sensSensitive": "Личное",
+    "sensNormal": "Обычное",
+    "unitHint": "Укажите в {{unit}}",
+    "yourAnswerPlaceholder": "Ваш ответ",
+    "lblColdRent": "Чистая аренда (без отопления)",
+    "lblHeating": "Расходы на отопление",
+    "monthlyEuro": "Месячная сумма в евро",
+    "privateContent": "Содержимое личное — нажмите, чтобы показать",
+    "skipQuestion": "Пропустить этот вопрос",
+    "continueWithoutAnswer": "Продолжить без ответа",
+    "loadingQuestions": "Загрузка вопросов…",
+    "allAnsweredTitle": "На все вопросы отвечено",
+    "allAnsweredText": "У нас есть вся необходимая информация. Ваше заявление сейчас готовится.",
+    "noMoreTitle": "Вопросов больше нет",
+    "noMoreText": "Больше вопросов не требуется. Теперь вы можете подать заявление.",
+    "headingEyebrow": "Пошаговое руководство",
+    "headingTitle": "Данные вашего заявления",
+    "headingLede": "Мы проведём вас через все вопросы, нужные для вашего заявления. Любой вопрос можно пропустить.",
+    "stepOf": "Шаг {{current}} из {{total}}",
+    "showAnswerField": "Показать поле ответа"
+  },
+  "alg1": {
+    "meta": {
+      "title": "Заявление ALG1 | Antragsbruder",
+      "description": "Загрузите документы, ответьте на вопросы и подайте заявление на ALG1."
+    },
+    "index": {
+      "metaTitle": "ALG1 — быстрая проверка | Antragsbruder",
+      "metaDescription": "Проверьте за 7 вопросов, есть ли у вас право на ALG1, и начните заявление.",
+      "title": "Подать на ALG1",
+      "subtitle": "Ответьте на 7 коротких вопросов — мы оценим ваши шансы и начнём заявление."
+    },
+    "flow": {
+      "loading": "Загрузка…",
+      "documentsTitle": "Ваши документы",
+      "documentsText": "Загрузите самые важные документы — мы читаем их автоматически.",
+      "backToDocuments": "← Назад к документам",
+      "continueToSummary": "Далее к сводке →",
+      "backToForm": "← Назад к форме",
+      "startApplication": "Начать официальное заявление на ALG1 и загрузить документы",
+      "errorNotFound": "Заявление не найдено или нет доступа.",
+      "errorNoAccess": "Нет доступа к этому заявлению."
+    },
+    "start": {
+      "loadingDraft": "Загрузка черновика…",
+      "draftLoaded": "Ваш сохранённый черновик загружен.",
+      "errorCreatingCase": "Не удалось создать дело. Попробуйте позже.",
+      "errorCreatingApplication": "Не удалось создать заявление: {{errorMessage}}",
+      "errorUpdatingDraft": "Не удалось сохранить черновик: {{errorMessage}}"
+    },
+    "check": {
+      "questionProgress": "Вопрос {{current}} из {{total}}",
+      "progressPercent": "{{progress}}%",
+      "back": "← Назад",
+      "questions": {
+        "termination_type": "Что произошло с вашей работой?",
+        "insurance_period_months": "Сколько месяцев за последние 28 месяцев вы были обязаны страховаться?",
+        "registered_unemployed": "Вы уже зарегистрировались как безработный?",
+        "available_hours_per_week": "Сколько часов в неделю вы можете работать?",
+        "actively_seeking": "Вы активно ищете работу?",
+        "has_children": "У вас есть дети до 18?",
+        "has_partner": "Вы живёте с партнёром/партнёршей?",
+        "gross_salary": "Примерный месячный валовой доход за последние 12 месяцев в €"
+      },
+      "termination": {
+        "EMPLOYER_TERMINATED": "Расторг работодатель",
+        "CONTRACT_END": "Договор истёк",
+        "SELF_QUIT": "Я уволился сам",
+        "MUTUAL_AGREEMENT": "Соглашение о расторжении",
+        "EMPLOYER_INSOLVENT": "Работодатель банкрот",
+        "HOURS_REDUCED": "Рабочие часы сократили",
+        "OTHER": "Другое"
+      }
+    },
+    "checkResult": {
+      "likelyTitle": "Очень вероятно, что вы имеете право на ALG 1",
+      "unclearTitle": "Нужна индивидуальная проверка — заявление всё равно рекомендуется",
+      "unlikelyTitle": "Обычного права на ALG1 по текущей оценке нет",
+      "estimatedMonthly": "Расчётная месячная сумма",
+      "basis": "Основа: {{amount}} € брутто",
+      "rateWithChild": "67% (с ребёнком)",
+      "rateWithoutChild": "60%",
+      "perMonth": "~ {{amount}} € / мес.",
+      "perDay": "{{amount}} €/день",
+      "basisLine": "Основа: {{basis}} € брутто · ставка: {{rate}} · {{daily}} €/день",
+      "editAnswerAria": "Изменить ответ на „{{question}}“",
+      "yourAnswers": "Ваши ответы",
+      "change": "Изменить",
+      "nextSteps": "Следующие шаги"
+    },
+    "erfolg": {
+      "metaTitle": "ALG1 — заявление подано | Antragsbruder",
+      "metaDescription": "Ваше заявление на ALG1 подготовлено и помечено как готовое.",
+      "pageTitle": "Заявление успешно подано",
+      "headline": "Готово!",
+      "bodyPre": "Ваше заявление на ALG1 полностью подготовлено и помечено как",
+      "bodyPost": ". Передача в ведомство по труду и отслеживание статуса будут позже.",
+      "hint1": "Зарегистрируйтесь как безработный минимум за 3 месяца до конца договора.",
+      "hint2": "Сохраните подтверждение с вашим номером дела.",
+      "hint3": "ALG1 выплачивается ежемесячно авансом.",
+      "backLink": "К обзору"
+    },
+    "form": {
+      "sections": {
+        "Personendaten": "Личные данные",
+        "Letzter Arbeitgeber": "Последний работодатель",
+        "Agentur für Arbeit": "Ведомство по труду",
+        "Verfügbarkeit": "Доступность",
+        "Haushalt": "Семья",
+        "Finanzen": "Финансы"
+      },
+      "pleaseSelect": "Пожалуйста, выберите…",
+      "childrenAgesHint": "Возраст детей через запятую, напр. „3, 7“",
+      "progressLabel": "Прогресс",
+      "autosaveNote": "Ваши данные сохраняются автоматически.",
+      "savedIndicator": "🟢 Сохранено · {{time}}",
+      "savingIndicator": "⏳ Сохранение…",
+      "saveNow": "Сохранить сейчас",
+      "fieldsCount": "Всего полей: {{total}}, видимых: {{visible}}.",
+      "checkError": "— проверьте",
+      "fields": {
+        "firstName": {
+          "label": "Имя"
+        },
+        "lastName": {
+          "label": "Фамилия"
+        },
+        "dateOfBirth": {
+          "label": "Дата рождения"
+        },
+        "street": {
+          "label": "Улица и номер дома"
+        },
+        "postcode": {
+          "label": "Индекс",
+          "placeholder": "напр. 10115"
+        },
+        "city": {
+          "label": "Город"
+        },
+        "phone": {
+          "label": "Телефон",
+          "placeholder": "напр. 030 12345678"
+        },
+        "email": {
+          "label": "Эл. почта",
+          "placeholder": "напр. max@example.com"
+        },
+        "nationality": {
+          "label": "Гражданство"
+        },
+        "taxId": {
+          "label": "Налоговый номер",
+          "placeholder": "напр. 12 34 56789 01",
+          "hint": "11 цифр — указаны в вашей справке о подоходном налоге"
+        },
+        "iban": {
+          "label": "IBAN",
+          "placeholder": "напр. DE89 3704 0044 0532 0130 00",
+          "hint": "Начинается с DE + 2 контрольные цифры"
+        },
+        "healthInsurance": {
+          "label": "Медицинская страховка"
+        },
+        "employerName": {
+          "label": "Название работодателя"
+        },
+        "employerAddress": {
+          "label": "Адрес работодателя"
+        },
+        "employmentStart": {
+          "label": "Дата начала работы"
+        },
+        "employmentEnd": {
+          "label": "Конец трудовых отношений"
+        },
+        "contractType": {
+          "label": "Тип договора"
+        },
+        "hoursPerWeek": {
+          "label": "Часов в неделю"
+        },
+        "grossSalary": {
+          "label": "Валовой доход (за последний месяц)"
+        },
+        "taxClass": {
+          "label": "Налоговый класс"
+        },
+        "churchTax": {
+          "label": "Церковный налог"
+        },
+        "childrenAllowance": {
+          "label": "Детские вычеты"
+        },
+        "unemployedSince": {
+          "label": "Безработный с/с (возможна и будущая дата)"
+        },
+        "agencyLocation": {
+          "label": "Адрес ведомства"
+        },
+        "agencyReference": {
+          "label": "Номер дела (если известен)"
+        },
+        "fitForWork": {
+          "label": "Способен работать по здоровью"
+        },
+        "availableFor15h": {
+          "label": "Доступен минимум 15 ч/нед."
+        },
+        "activelySeeking": {
+          "label": "Активно ищу работу"
+        },
+        "restrictions": {
+          "label": "Ограничения при поиске работы"
+        },
+        "childrenCount": {
+          "label": "Количество детей до 18"
+        },
+        "childrenAges": {
+          "label": "Возраст детей (через запятую)",
+          "placeholder": "напр. 3, 7",
+          "hint": "При 2 детях напр. „3, 7“"
+        },
+        "hasPartner": {
+          "label": "Партнёр в семье"
+        },
+        "partnerUnemployed": {
+          "label": "Партнёр тоже безработный"
+        },
+        "incomeSources": {
+          "label": "Текущие источники дохода"
+        },
+        "assetsOver15k": {
+          "label": "Активы свыше 15.000 €"
+        }
+      },
+      "options": {
+        "nationality": {
+          "DE": "Гражданин Германии",
+          "EU": "Гражданин ЕС",
+          "OTHER": "Другое"
+        },
+        "contractType": {
+          "UNLIMITED": "Бессрочный",
+          "LIMITED": "Срочный"
+        },
+        "taxClass": {
+          "I": "I",
+          "II": "II",
+          "III": "III",
+          "IV": "IV",
+          "V": "V",
+          "VI": "VI"
+        },
+        "restrictions": {
+          "NONE": "Нет",
+          "PHYSICAL": "Физические ограничения",
+          "MENTAL": "Психические ограничения",
+          "CARE": "Уход за близкими"
+        },
+        "incomeSources": {
+          "NONE": "Нет",
+          "EMPLOYMENT": "Работа по найму",
+          "ALG1": "ALG1",
+          "SICK_PAY": "Больничные выплаты",
+          "CHILD_BENEFIT": "Детские пособия",
+          "MAINTENANCE": "Алименты",
+          "PARENTAL_ALLOWANCE": "Родительское пособие",
+          "PENSION": "Пенсия",
+          "SELF_EMPLOYED": "Самозанятость"
+        }
+      }
+    },
+    "summary": {
+      "title": "Ваше заявление на ALG1",
+      "titleReadOnly": "Ваше заявление на ALG1 — текущий статус",
+      "titleEdit": "Сводка вашего заявления на ALG1",
+      "status": {
+        "SUBMITTED": {
+          "label": "Подано",
+          "hint": "Ваше заявление получено ведомством Jobcenter. Мы будем держать вас в курсе здесь."
+        },
+        "PROCESSING": {
+          "label": "На проверке",
+          "hint": "Ведомство по труду проверяет ваше заявление. Держите под рукой подтверждение номера дела."
+        },
+        "APPROVED": {
+          "label": "Одобрено 🎉",
+          "hint": "Ваше пособие по безработице одобрено — выплата происходит ежемесячно авансом."
+        },
+        "REJECTED": {
+          "label": "Отклонено",
+          "hint": "Ваше заявление отклонено. Проверьте решение — вы можете подать возражение."
+        }
+      },
+      "missingHeading": "Ещё не хватает {{count}} данных ({{issues}} ошибок проверки):",
+      "addInfoBtn": "Дополнить данные ({{sections}})",
+      "errRequired": "Пожалуйста, заполните — этих данных ещё не хватает.",
+      "errTaxId": "Введите налоговый номер ровно из 11 цифр (напр. 12 34 56789 01).",
+      "errIban": "Введите корректный IBAN (напр. DE89 3704 0044 0532 0130 00).",
+      "errPostcode": "Введите индекс из 5 цифр (напр. 10115).",
+      "errEmail": "Введите корректный адрес эл. почты.",
+      "errDate": "Выберите дату.",
+      "errIncomeSources": "Выберите хотя бы один источник дохода (или „Нет“).",
+      "errChildrenAges": "Укажите возраст детей через запятую (напр. 3, 7).",
+      "errDefault": "Проверьте и дополните эти данные.",
+      "submitFailed": "Отправка не удалась",
+      "confirmedTitle": "Заявление подано (симуляция)",
+      "confirmedPre": "Заявление помечено как",
+      "confirmedPost": ". Передача в ведомство по труду произойдёт позже.",
+      "estimateLabel": "Расчётная месячная сумма ALG1",
+      "estimateLine": "Основа: {{basis}} € | ставка: {{rate}} | день: {{daily}} €",
+      "lblName": "Имя:",
+      "lblBirthDate": "Дата рождения:",
+      "lblAddress": "Адрес:",
+      "lblEmail": "Эл. почта:",
+      "lblEmployer": "Работодатель:",
+      "lblUnemployedSince": "Безработный с:",
+      "lblGross": "Брутто:",
+      "lblTaxClass": "Налоговый класс:",
+      "lblChildren": "Дети:",
+      "lblIban": "IBAN:",
+      "notesTitle": "Важные заметки:",
+      "note1": "Зарегистрируйтесь как безработный минимум за 3 месяца до конца договора",
+      "note2": "Сохраните подтверждение номера дела",
+      "note3": "ALG1 выплачивается ежемесячно авансом",
+      "statusLabel": "Статус:",
+      "submitting": "Отправка…",
+      "submitBtn": "Подать заявление (симуляция)"
+    },
+    "upload": {
+      "slots": {
+        "TERMINATION": {
+          "label": "Уведомление об увольнении",
+          "description": "Прекращение трудовых отношений"
+        },
+        "PAYSLIP": {
+          "label": "Последняя справка о зарплате",
+          "description": "Подтверждение валовой зарплаты"
+        },
+        "ID_CARD": {
+          "label": "Удостоверение личности",
+          "description": "Лицевая и обратная сторона"
+        },
+        "OTHER": {
+          "label": "Дополнительные документы",
+          "description": "Необязательно"
+        }
+      },
+      "required": "Обязательно",
+      "bypassLabel": "Я передам документы позже",
+      "continueBtn": "Перейти к вопросам",
+      "uploading": "Загрузка…",
+      "dropzoneHint": "Нажмите или перетащите файл сюда (PDF, JPG, PNG — макс. 10 МБ)"
+    }
+  }
+};

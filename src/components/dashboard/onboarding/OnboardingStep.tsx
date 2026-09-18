@@ -1,9 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
 
 // Onboarding-Einzelschritt: Options-Buttons, Ziffern-Buttons (0–5+)
 // oder Text-Input. Kontrollierte Inputs, kein Hardcoding im Modal.
+// Button-Texte/aria-Labels aus dem Dict (onboarding.*).
 
 interface Props {
   step: number;
@@ -20,6 +23,8 @@ interface Props {
 export function OnboardingStep({
   step, totalSteps, question, options, isNumberInput, isTextInput, onNext, onDismiss, isLast,
 }: Props) {
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).onboarding;
   const [value, setValue] = useState('');
   const [numberValue, setNumberValue] = useState(0);
 
@@ -80,7 +85,7 @@ export function OnboardingStep({
           value={value}
           onChange={(e) => setValue(e.target.value.replace(/\D/g, ''))}
           placeholder="12345"
-          aria-label="Postleitzahl"
+          aria-label={t.postcode.question}
           className="w-full rounded-lg border border-line-soft bg-white px-4 py-3 text-center text-lg text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
         />
       )}
@@ -91,7 +96,7 @@ export function OnboardingStep({
           onClick={onDismiss}
           className="text-sm text-ink-soft hover:text-ink"
         >
-          Überspringen
+          {t.dismiss}
         </button>
         {(isNumberInput || isTextInput) && (
           <button
@@ -100,7 +105,7 @@ export function OnboardingStep({
             disabled={isTextInput && value.length !== 5}
             className="rounded-xl bg-brand-600 px-6 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:opacity-50"
           >
-            {isLast ? 'Fertig' : 'Weiter'}
+            {isLast ? t.finish : t.next}
           </button>
         )}
       </div>

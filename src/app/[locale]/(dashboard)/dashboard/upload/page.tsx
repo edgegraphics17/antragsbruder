@@ -5,11 +5,20 @@
 
 import type { Metadata } from 'next';
 import { UploadOnboardingFlow } from '@/components/upload/UploadOnboardingFlow';
+import { getDashboardDict } from '@/content/i18n/dashboard';
+import { isLocale, defaultLocale } from '@/i18n/config';
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: rawLocale } = await params;
+  const locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
+  const t = getDashboardDict(locale).upload;
   return {
-    title: 'Upload – Antragsbruder',
-    description: 'Lade deine Unterlagen hoch und starte deinen Antrag.',
+    title: t.metaTitle,
+    description: t.metaDescription,
   };
 }
 

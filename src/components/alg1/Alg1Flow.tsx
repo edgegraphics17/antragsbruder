@@ -17,6 +17,9 @@ import { DocumentUpload } from './DocumentUpload';
 import { Alg1Form } from './Alg1Form';
 import { Summary } from './Summary';
 import type { Alg1Application } from '@/lib/types/alg1';
+import { localeHref } from '@/i18n/config';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
 
 export function Alg1Flow({
   applicationId,
@@ -28,6 +31,8 @@ export function Alg1Flow({
 }) {
   const router = useRouter();
   const { user } = useAuth();
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).alg1.flow;
   const [appMeta, setAppMeta] = useState<{ id: string; caseId: string; userId: string } | null>(
     null,
   );
@@ -66,12 +71,12 @@ export function Alg1Flow({
         .single();
       if (cancelled) return;
       if (err || !data) {
-        setError('Antrag nicht gefunden oder kein Zugriff.');
+        setError(t.errorNotFound);
         setReady(true);
         return;
       }
       if (data.user_id !== user.id) {
-        setError('Kein Zugriff auf diesen Antrag.');
+        setError(t.errorNoAccess);
         setReady(true);
         return;
       }
@@ -136,21 +141,21 @@ export function Alg1Flow({
   }, [applicationId, user, initialStage]);
 
   const handleConfirmed = () => {
-    router.push('/alg1/erfolg');
+    router.push(localeHref(locale, '/alg1/erfolg'));
   };
 
   const readOnly = ['SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(appStatus);
 
   if (error) return <p className="mx-auto max-w-lg p-6 text-sm text-red-600">{error}</p>;
   if (!ready || !appMeta)
-    return <p className="mx-auto max-w-lg p-6 text-sm text-ink-soft">Wird geladen…</p>;
+    return <p className="mx-auto max-w-lg p-6 text-sm text-ink-soft">{t.loading}</p>;
 
   if (stage === 'upload') {
     return (
       <div className="mx-auto max-w-2xl p-6">
-        <h2 className="mb-1 text-2xl font-bold">Deine Unterlagen</h2>
+        <h2 className="mb-1 text-2xl font-bold">{t.documentsTitle}</h2>
         <p className="mb-6 text-sm text-ink-soft">
-          Lade die wichtigsten Dokumente hoch — wir lesen sie automatisch aus.
+          {t.documentsText}
         </p>
         <DocumentUpload
           userId={appMeta.userId}
@@ -171,7 +176,7 @@ export function Alg1Flow({
             onClick={() => setStage('upload')}
             className="text-sm text-ink-soft transition-colors hover:text-brand-700"
           >
-            ← Zurück zu den Unterlagen
+            {t.backToDocuments}
           </button>
         </div>
         <Alg1Form />
@@ -181,7 +186,7 @@ export function Alg1Flow({
             onClick={() => setStage('summary')}
             className="text-sm text-brand-700 hover:underline"
           >
-            Weiter zur Zusammenfassung →
+            {t.continueToSummary}
           </button>
         </div>
       </div>
@@ -197,7 +202,7 @@ export function Alg1Flow({
             onClick={() => setStage('form')}
             className="text-sm text-ink-soft transition-colors hover:text-brand-700"
           >
-            ← Zurück zum Formular
+            {t.backToForm}
           </button>
         </div>
       )}

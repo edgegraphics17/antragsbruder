@@ -4,6 +4,7 @@
 // zeitgestempelten Dateinamen (avatar-<ts>.png), das Vorgängerbild wird aus
 // dem Bucket entfernt (kein Storage-Müll) und der neue Public-Link mit
 // Cache-Busting in profiles.avatar_url gespeichert.
+// Texte aus dem Dict (profile.avatar.*).
 
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
@@ -12,10 +13,14 @@ import { useAuth } from '@/lib/auth-context';
 import { useProfileStore } from '@/lib/stores/profile-store';
 import { IconPerson } from '@/components/ui/icons-person';
 import { AvatarCropModal } from './AvatarCropModal';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
 
 export function ProfileAvatarSection() {
   const { user } = useAuth();
   const { profile, setAvatar } = useProfileStore();
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).profile.avatar;
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [cropModalOpen, setCropModalOpen] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -101,12 +106,12 @@ export function ProfileAvatarSection() {
             <IconPerson className="h-10 w-10 text-brand-700" />
           )}
           <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100">
-            <span className="text-xs text-white">Ändern</span>
+            <span className="text-xs text-white">{t.change}</span>
           </div>
         </div>
         <div>
-          <p className="font-semibold text-ink">Profilbild</p>
-          <p className="text-xs text-ink-soft">Klicken um hochladen (JPG, PNG, WebP, max 10MB)</p>
+          <p className="font-semibold text-ink">{t.title}</p>
+          <p className="text-xs text-ink-soft">{t.upload}</p>
         </div>
       </div>
 

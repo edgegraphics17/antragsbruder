@@ -12,6 +12,10 @@ import { SchnellCheck, clearSchnellCheckCache } from '@/components/alg1/SchnellC
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth-context';
 import type { Alg1SchnellCheckResult, SchnellCheck as SchnellCheckData } from '@/lib/types/alg1';
+import { localeHref } from '@/i18n/config';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
+import { formatTemplate } from '@/content/i18n/format';
 
 interface Props {
   /** Wenn vorhanden → Resume-Modus: Antworten aus form_state laden */
@@ -23,6 +27,9 @@ const ACTIVE_STATUSES = ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY', 'PROCE
 export function Alg1Start({ applicationId: initialApplicationId }: Props) {
   const router = useRouter();
   const { user } = useAuth();
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).alg1.start;
+  const tc = getDashboardDict(locale).common;
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(Boolean(initialApplicationId));
@@ -98,11 +105,11 @@ export function Alg1Start({ applicationId: initialApplicationId }: Props) {
 
       setBusy(false);
       if (updateError) {
-        setError(`Entwurf konnte nicht gespeichert werden: ${updateError.message}`);
+        setError(formatTemplate(t.errorUpdatingDraft, { errorMessage: updateError.message }));
         return;
       }
       clearSchnellCheckCache();
-      router.push(`/alg1/antrag?applicationId=${applicationId}`);
+      router.push(localeHref(locale, `/alg1/antrag?applicationId=${applicationId}`));
       return;
     }
 
@@ -119,7 +126,7 @@ export function Alg1Start({ applicationId: initialApplicationId }: Props) {
 
     if (caseError || !caseRow) {
       setBusy(false);
-      setError('Case konnte nicht erstellt werden. Bitte später erneut versuchen.');
+      setError(t.errorCreatingCase);
       return;
     }
 
@@ -144,18 +151,22 @@ export function Alg1Start({ applicationId: initialApplicationId }: Props) {
     setBusy(false);
     if (appError || !appRow) {
       // appError.message für exaktes Feedback (z. B. RLS/Constraint-Fehler)
-      setError(`Antrag konnte nicht erstellt werden: ${appError?.message ?? 'Unbekannter Fehler'}`);
+      setError(
+        formatTemplate(t.errorCreatingApplication, {
+          errorMessage: appError?.message ?? tc.error,
+        }),
+      );
       return;
     }
 
     // Cache erst nach erfolgreichem Start leeren
     clearSchnellCheckCache();
-    router.push(`/alg1/antrag?applicationId=${appRow.id}`);
+    router.push(localeHref(locale, `/alg1/antrag?applicationId=${appRow.id}`));
   };
 
   if (loading) {
     return (
-      <div className="mx-auto max-w-lg p-8 text-center text-sm text-ink-soft">Entwurf wird geladen…</div>
+      <div className="mx-auto max-w-lg p-8 text-center text-sm text-ink-soft">{t.loadingDraft}</div>
     );
   }
 
@@ -165,7 +176,7 @@ export function Alg1Start({ applicationId: initialApplicationId }: Props) {
         <p className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-600">{error}</p>
       )}
       {applicationId && (
-        <p className="mb-4 text-sm text-ink-soft">Dein gespeicherter Entwurf wurde geladen.</p>
+        <p className="mb-4 text-sm text-ink-soft">{t.draftLoaded}</p>
       )}
       <SchnellCheck
         initialAnswers={existingAnswers}

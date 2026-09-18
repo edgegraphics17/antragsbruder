@@ -2,11 +2,15 @@
 
 // Account-Sicherheit: Passwort ändern für die eingeloggte Session —
 // supabase.auth.updateUser({ password }). Kein Token-Flow nötig.
+// Texte aus dem Dict (profile.passwordDialog.*).
 
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { IconClose } from '@/components/ui/icons';
 import { ButtonAction } from '@/components/ui/Button';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
+import { formatTemplate } from '@/content/i18n/format';
 
 interface Props {
   open: boolean;
@@ -14,6 +18,9 @@ interface Props {
 }
 
 export function PasswordChangeDialog({ open, onClose }: Props) {
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).profile.passwordDialog;
+  const tc = getDashboardDict(locale).common;
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [status, setStatus] = useState<string | null>(null);
@@ -24,11 +31,11 @@ export function PasswordChangeDialog({ open, onClose }: Props) {
   const handleSubmit = async () => {
     if (saving) return;
     if (password.length < 8) {
-      setStatus('Fehler: Passwort muss mindestens 8 Zeichen haben.');
+      setStatus(t.errMinLength);
       return;
     }
     if (password !== passwordConfirm) {
-      setStatus('Fehler: Passwörter stimmen nicht überein.');
+      setStatus(t.errMismatch);
       return;
     }
     setSaving(true);
@@ -37,9 +44,9 @@ export function PasswordChangeDialog({ open, onClose }: Props) {
     const { error } = await supabase.auth.updateUser({ password });
 
     if (error) {
-      setStatus(`Fehler: ${error.message}`);
+      setStatus(formatTemplate(t.error, { message: error.message }));
     } else {
-      setStatus('✓ Passwort erfolgreich geändert.');
+      setStatus(t.success);
       setPassword('');
       setPasswordConfirm('');
       setTimeout(onClose, 2000);
@@ -55,20 +62,20 @@ export function PasswordChangeDialog({ open, onClose }: Props) {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
       role="dialog"
       aria-modal="true"
-      aria-label="Passwort ändern"
+      aria-label={t.title}
     >
       <div className="relative max-h-[85dvh] w-[95vw] max-w-md overflow-y-auto rounded-2xl bg-white p-6 sm:w-full">
         <button
           type="button"
           onClick={onClose}
-          aria-label="Schließen"
+          aria-label={tc.close}
           className="absolute right-4 top-4 text-ink-soft hover:text-ink"
         >
           <IconClose className="h-5 w-5" />
         </button>
-        <h2 className="mb-4 text-lg font-semibold text-ink">Passwort ändern</h2>
+        <h2 className="mb-4 text-lg font-semibold text-ink">{t.title}</h2>
         <label className="block text-sm text-ink-soft">
-          Neues Passwort
+          {t.newPassword}
           <input
             type="password"
             value={password}
@@ -78,7 +85,7 @@ export function PasswordChangeDialog({ open, onClose }: Props) {
           />
         </label>
         <label className="mt-3 block text-sm text-ink-soft">
-          Passwort wiederholen
+          {t.confirmPassword}
           <input
             type="password"
             value={passwordConfirm}
@@ -98,7 +105,7 @@ export function PasswordChangeDialog({ open, onClose }: Props) {
           disabled={!password || !passwordConfirm || saving}
           className="mt-4 w-full"
         >
-          {saving ? 'Wird gespeichert…' : 'Passwort ändern'}
+          {saving ? t.saving : t.save}
         </ButtonAction>
       </div>
     </div>

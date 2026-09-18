@@ -1,0 +1,86 @@
+{
+  "alg1": {
+    "summary": {
+      "title": "Dein ALG1-Antrag",
+      "titleReadOnly": "Dein ALG1-Antrag — aktueller Stand",
+      "titleEdit": "Zusammenfassung deines ALG1-Antrags",
+      "status": {
+        "SUBMITTED": {
+          "label": "Eingereicht",
+          "hint": "Dein Antrag ist beim Jobcenter eingegangen. Wir halten dich hier auf dem Laufenden."
+        },
+        "PROCESSING": {
+          "label": "In Prüfung",
+          "hint": "Die Agentur für Arbeit prüft deinen Antrag. Halte deine Aktenzeichen-Bestätigung bereit."
+        },
+        "APPROVED": {
+          "label": "Bewilligt 🎉",
+          "hint": "Dein Arbeitslosengeld ist bewilligt — die Zahlung erfolgt monatlich im Voraus."
+        },
+        "REJECTED": {
+          "label": "Abgelehnt",
+          "hint": "Dein Antrag wurde abgelehnt. Prüfe den Bescheid — dagegen kannst du Widerspruch einlegen."
+        }
+      },
+      "missingHeading": "Es fehlen noch {{count}} Angaben ({{issues}} Prüffehler):",
+      "addInfoBtn": "Angaben ergänzen ({{sections}})",
+      "errRequired": "Bitte ausfüllen – diese Angabe fehlt noch.",
+      "errTaxId": "Bitte gib deine Steuer-ID mit genau 11 Ziffern ein (z.B. 12 34 56789 01).",
+      "errIban": "Bitte gib eine gültige IBAN ein (z.B. DE89 3704 0044 0532 0130 00).",
+      "errPostcode": "Bitte gib eine PLZ mit 5 Ziffern ein (z.B. 10115).",
+      "errEmail": "Bitte gib eine gültige E-Mail-Adresse ein.",
+      "errDate": "Bitte wähle ein Datum aus.",
+      "errIncomeSources": "Bitte wähle mindestens eine Einkommensquelle aus (oder „Keine“).",
+      "errChildrenAges": "Bitte gib das Alter der Kinder an, durch Komma getrennt (z.B. 3, 7).",
+      "errDefault": "Bitte prüfe und ergänze diese Angabe.",
+      "submitFailed": "Einreichung fehlgeschlagen",
+      "confirmedTitle": "Antrag eingereicht (Simulation)",
+      "confirmedPre": "Der Antrag ist als",
+      "confirmedPost": "markiert. Die Übertragung an die Agentur für Arbeit erfolgt in einer späteren Phase.",
+      "estimateLabel": "Geschätzte monatliche ALG1-Höhe",
+      "estimateLine": "Basis: {{basis}} € | Satz: {{rate}} | Tag: {{daily}} €",
+      "lblName": "Name:",
+      "lblBirthDate": "Geburtsdatum:",
+      "lblAddress": "Adresse:",
+      "lblEmail": "E-Mail:",
+      "lblEmployer": "Arbeitgeber:",
+      "lblUnemployedSince": "Arbeitslos seit:",
+      "lblGross": "Brutto:",
+      "lblTaxClass": "Steuerklasse:",
+      "lblChildren": "Kinder:",
+      "lblIban": "IBAN:",
+      "notesTitle": "Wichtige Hinweise:",
+      "note1": "Melde dich spätestens 3 Monate vor Vertragsende als arbeitslos",
+      "note2": "Behalte deine Aktenzeichen-Bestätigung",
+      "note3": "ALG1 wird monatlich im Voraus gezahlt",
+      "statusLabel": "Status:",
+      "submitting": "Wird eingereicht…",
+      "submitBtn": "Antrag einreichen (Simulation)"
+    },
+    "upload": {
+      "slots": {
+        "TERMINATION": {
+          "label": "Kündigungsschreiben",
+          "description": "Beendigung des Arbeitsverhältnisses"
+        },
+        "PAYSLIP": {
+          "label": "Letzter Lohnzettel",
+          "description": "Brutto-Gehaltsnachweis"
+        },
+        "ID_CARD": {
+          "label": "Personalausweis",
+          "description": "Vorder- und Rückseite"
+        },
+        "OTHER": {
+          "label": "Zusätzliche Unterlagen",
+          "description": "Optional"
+        }
+      },
+      "required": "Pflicht",
+      "bypassLabel": "Ich reiche Unterlagen später nach",
+      "continueBtn": "Weiter zu den Fragen",
+      "uploading": "Wird hochgeladen…",
+      "dropzoneHint": "Klicken oder Datei hierher ziehen (PDF, JPG, PNG — max. 10 MB)"
+    }
+  }
+}

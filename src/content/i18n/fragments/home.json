@@ -1,0 +1,107 @@
+{
+  "home": {
+    "metaTitle": "Dashboard — Antragsbruder",
+    "metaDescription": "Deine laufenden Anträge und passenden Förderungen auf einen Blick.",
+    "greetingMorning": "Guten Morgen",
+    "greetingDay": "Guten Tag",
+    "greetingEvening": "Guten Abend",
+    "fallbackUser": "Nutzer",
+    "summaryOneApp": "Du hast {{apps}} aktiven Antrag und {{benefits}} passende Förderungen.",
+    "summaryManyApps": "Du hast {{apps}} aktive Anträge und {{benefits}} passende Förderungen.",
+    "startFirst": "Starte deinen ersten Antrag.",
+    "runningTitle": "Laufende Anträge",
+    "noRunning": "Noch keine aktiven Anträge",
+    "startNow": "Jetzt starten",
+    "status": {
+      "DRAFT": "In Arbeit",
+      "IN_PROGRESS": "In Arbeit",
+      "DOCS_PENDING": "Dokumente fehlen",
+      "READY": "Bereit zur Einreichung",
+      "SUBMITTED": "Eingereicht ✓",
+      "PROCESSING": "In Prüfung",
+      "APPROVED": "Bewilligt 🎉",
+      "REJECTED": "Abgelehnt"
+    },
+    "alg1Title": "Arbeitslosengeld (ALG1)",
+    "applicationFallback": "Antrag",
+    "upTo": "Bis zu {{amount}} €/Monat",
+    "createdAt": "Erstellt am {{date}}",
+    "viewStatus": "Status ansehen",
+    "continueWorking": "Weiterarbeiten",
+    "possibleTitle": "Mögliche Förderungen",
+    "fillProfile": "Fülle dein Profil aus, um passende Förderungen zu sehen.",
+    "confidenceHigh": "Sehr wahrscheinlich",
+    "confidencePossible": "Möglich",
+    "allBenefits": "Alle Förderungen ansehen →",
+    "docsTresor": "Dokumente & Tresor",
+    "docsEmpty": "Lade Unterlagen hoch, um deinen Antrag abzuschließen.",
+    "docsCountOne": "{{count}} Dokument im Tresor.",
+    "docsCountMany": "{{count}} Dokumente im Tresor.",
+    "goToTresor": "Zum Tresor",
+    "stepsProgress": "{{done}}/4 Schritte",
+    "timeline": {
+      "docs": {
+        "label": "Dokumente hinzufügen",
+        "description": "Lade Kündigung, Gehaltsnachweise und andere Unterlagen hoch."
+      },
+      "data": {
+        "label": "Daten ausfüllen",
+        "description": "Beantworte die Fragen und gib deine persönlichen Daten ein."
+      },
+      "submit": {
+        "label": "Antrag einreichen",
+        "description": "Prüfe die Zusammenfassung und reiche den Antrag bei der Agentur ein."
+      },
+      "receive": {
+        "label": "Arbeitslosengeld bekommen",
+        "description": "Warte auf den Bescheid und erhalte deine erste Zahlung."
+      }
+    }
+  },
+  "foerderungen": {
+    "metaTitle": "Förderungen — Antragsbruder",
+    "metaDescription": "Regelbasierte Förderprüfung basierend auf deinen Angaben.",
+    "title": "Förderungs-Radar",
+    "subtitle": "{{matched}} von {{total}} Leistungen passen zu deiner Lage — basierend auf Profil und Tresor.",
+    "tabQualified": "🎯 Für mich qualifiziert",
+    "tabPotential": "⚡ Potenzial prüfen",
+    "tabExcluded": "🚫 Ausgeschlossen",
+    "amountRange": "ca. {{min}}–{{max}} € / Monat",
+    "amountFrom": "ab ca. {{min}} € / Monat",
+    "amountUpTo": "bis ca. {{max}} € / Monat",
+    "calcNow": "Jetzt berechnen",
+    "viewAtOffice": "Beim Amt ansehen",
+    "calcAvailable": "Rechner verfügbar",
+    "authority": "Zuständig: {{authority}}",
+    "docsInVault": "{{present}} von {{total}} Nachweisen im Tresor",
+    "unlockTitle": "Anspruch freischalten",
+    "noExcluded": "Aktuell ist keine Leistung eindeutig ausgeschlossen.",
+    "excludedInfo": "{{count}} Leistungen sind laut Profil objektiv nicht zutreffend (z. B. nur für Studierende oder Rentner). Diese blenden wir aus.",
+    "noQualified": "Noch nichts eindeutig Qualifiziertes — beantworte die Klärungsfragen oben oder fülle dein Förder-Profil aus.",
+    "noPotential": "Keine offenen Potenziale — beantworte die Klärungsfragen, um mehr freizuschalten."
+  },
+  "antraege": {
+    "statusLabel": "Status",
+    "status": {
+      "ACTIVE": "Aktiv",
+      "PAUSED": "Pausiert",
+      "COMPLETED": "Abgeschlossen"
+    },
+    "deleteConfirm": "„{{filename}}“ wirklich löschen?",
+    "deleteFailed": "Löschen fehlgeschlagen",
+    "uploadedAt": "Hochgeladen am {{date}}",
+    "notFound": "Antrag nicht gefunden",
+    "loadFailed": "Fehler beim Laden",
+    "statusChangeFailed": "Status konnte nicht geändert werden",
+    "goBack": "Zur Übersicht",
+    "uploadDocument": "Dokument hochladen",
+    "loadingCase": "Antrag laden…",
+    "completedApplication": "Abgeschlossener Antrag",
+    "activeApplication": "Aktiver Antrag",
+    "createdAt": "Erstellt am {{date}}",
+    "documentsTitle": "Dokumente",
+    "noDocuments": "Noch keine Unterlagen",
+    "noDocumentsHint": "Lade deine Dokumente hoch, um deinen Antrag voranzutreiben.",
+    "uploadDocuments": "Unterlagen hochladen"
+  }
+}

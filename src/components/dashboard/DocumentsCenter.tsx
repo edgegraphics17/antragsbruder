@@ -16,16 +16,14 @@ import { DocumentUploadSchema, type DocumentEntry, type DocumentRole } from '@/l
 import { IconDocText, IconDocument, IconDownload, IconFileUp, IconX } from '@/components/ui/icons';
 import { ButtonAction } from '@/components/ui/Button';
 import { IdentityVault } from './profile/IdentityVault';
+import { localeHref } from '@/i18n/config';
+import { useLocaleFromPath } from '@/i18n/use-locale';
+import { getDashboardDict } from '@/content/i18n/dashboard';
+import { formatTemplate } from '@/content/i18n/format';
 
 type Category = 'all' | 'identity' | 'housing' | 'income' | 'other';
 
-const CATEGORY_TABS: { key: Category; label: string }[] = [
-  { key: 'all', label: 'Alle' },
-  { key: 'identity', label: '🪪 Identität' },
-  { key: 'housing', label: '🏠 Wohnen' },
-  { key: 'income', label: '💼 Einkommen' },
-  { key: 'other', label: '📁 Sonstiges' },
-];
+const CATEGORY_TABS: Category[] = ['all', 'identity', 'housing', 'income', 'other'];
 
 const CATEGORY_BADGE: Record<string, string> = {
   identity: 'bg-purple-50 text-purple-700',
@@ -34,22 +32,17 @@ const CATEGORY_BADGE: Record<string, string> = {
   other: 'bg-neutral-100 text-neutral-600',
 };
 
-const CATEGORY_LABEL: Record<string, string> = {
-  identity: 'Identität',
-  housing: 'Wohnen',
-  income: 'Einkommen',
-  other: 'Sonstiges',
-};
-
-function statusPill(status: DocumentEntry['status']) {
+function StatusPill({ status }: { status: DocumentEntry['status'] }) {
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).documents;
   switch (status) {
     case 'DONE':
-      return <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">🟢 Verifiziert</span>;
+      return <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">{t.status_DONE}</span>;
     case 'PROCESSING':
     case 'PENDING':
-      return <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">🟡 In Prüfung</span>;
+      return <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">{t.status_PROCESSING}</span>;
     case 'ERROR':
-      return <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">Fehler</span>;
+      return <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">{t.status_ERROR}</span>;
   }
 }
 
@@ -65,6 +58,9 @@ interface DocumentsCenterProps {
 
 export function DocumentsCenter({ userId }: DocumentsCenterProps) {
   const { user } = useAuth();
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).documents;
+  const tc = getDashboardDict(locale).common;
   const { documents, loadDocuments, addDocument, removeDocument, updateDocument } = useProfileStore();
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
@@ -135,13 +131,13 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
         body: JSON.stringify({ documentIds: [...selection] }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? 'Paket konnte nicht erstellt werden');
+      if (!res.ok) throw new Error(data.error ?? t.errCreatePackage);
       const url = `${window.location.origin}/teilen/${data.token}`;
       setShareLink(url);
       const QR = (await import('qrcode')).default;
       setShareQr(await QR.toDataURL(url, { width: 200, margin: 1 }));
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Fehler beim Erstellen des Pakets');
+      setError(err instanceof Error ? err.message : t.errCreatePackageGeneric);
     } finally {
       setShareBusy(false);
     }
@@ -168,7 +164,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
   };
 
   const handleDelete = async (doc: DocumentEntry) => {
-    if (!window.confirm(`„${doc.filename}" wirklich löschen?`)) return;
+    if (!window.confirm(formatTemplate(t.deleteConfirm, { filename: doc.filename }))) return;
     const { error: delErr } = await supabase.from('documents_meta').delete().eq('id', doc.id);
     if (delErr) {
       setError(delErr.message);
@@ -193,15 +189,16 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
   };
 
   const actionCls = 'text-xs font-semibold text-ink-soft hover:text-brand-700 disabled:opacity-40';
+  const catLabels = t as unknown as Record<Category, string>;
 
   return (
     <div className="mx-auto flex min-h-[calc(100dvh-1rem)] max-w-6xl flex-col gap-5 p-6 md:p-8">
       {/* ── Header (kompakt) ────────────────────────────────── */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl font-bold text-ink">Bürger-Tresor</h1>
+          <h1 className="text-xl font-bold text-ink">{t.title}</h1>
           <p className="text-sm text-ink-soft">
-            Alle behördlichen Nachweise an einem Ort — für alle Anträge nutzbar.
+            {t.description}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -212,7 +209,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
             disabled={selection.size === 0 || shareBusy}
             onClick={handleShare}
           >
-            {shareBusy ? 'Erstelle Paket…' : `🔗 Paket teilen${selection.size > 0 ? ` (${selection.size})` : ''}`}
+            {shareBusy ? t.shareCreating : selection.size > 0 ? formatTemplate(t.shareBtnCount, { count: selection.size }) : t.shareBtn}
           </ButtonAction>
           <ButtonAction
             type="button"
@@ -221,7 +218,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
             onClick={() => setUploadOpen(true)}
           >
             <IconFileUp className="h-4 w-4" />
-            Dokument hochladen
+            {t.upload_button_upload}
           </ButtonAction>
         </div>
       </div>
@@ -231,34 +228,34 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
       {/* ── Schnell-Upload (Tresor-Slots) ───────────────────── */}
       {effectiveUserId && (
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-          <QuickUploadSlot label="🪪 Personalausweis" role="ID_CARD" userId={effectiveUserId} onUploaded={addDocument} />
-          <QuickUploadSlot label="💼 Gehaltsnachweis" role="PAYSLIP" userId={effectiveUserId} onUploaded={addDocument} />
-          <QuickUploadSlot label="📁 Sonstiges" role="OTHER" userId={effectiveUserId} onUploaded={addDocument} />
+          <QuickUploadSlot label={t.upload_slot_personalID} role="ID_CARD" userId={effectiveUserId} onUploaded={addDocument} />
+          <QuickUploadSlot label={t.upload_slot_payslip} role="PAYSLIP" userId={effectiveUserId} onUploaded={addDocument} />
+          <QuickUploadSlot label={t.upload_slot_other} role="OTHER" userId={effectiveUserId} onUploaded={addDocument} />
         </div>
       )}
 
       {/* ── Filter- und Suchleiste ──────────────────────────── */}
       <div className="flex flex-wrap items-center gap-2">
-        {CATEGORY_TABS.map((t) => (
+        {CATEGORY_TABS.map((catKey) => (
           <button
-            key={t.key}
+            key={catKey}
             type="button"
-            onClick={() => setCategory(t.key)}
+            onClick={() => setCategory(catKey)}
             className={`rounded-full px-3.5 py-1.5 text-sm font-semibold transition-colors ${
-              category === t.key
+              category === catKey
                 ? 'bg-brand-600 text-white'
                 : 'border border-line-soft bg-white text-ink-soft hover:text-ink'
             }`}
           >
-            {t.label} ({counts[t.key]})
+            {catLabels[catKey]} ({counts[catKey]})
           </button>
         ))}
         <input
           type="search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Dokument suchen…"
-          aria-label="Dokumente durchsuchen"
+          placeholder={t.searchPlaceholder}
+          aria-label={t.searchAria}
           className="ml-auto w-full max-w-xs rounded-xl border border-line-soft bg-white px-4 py-2 text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
         />
       </div>
@@ -268,12 +265,12 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
         <div className="flex flex-col items-center justify-center rounded-3xl border border-line-soft bg-paper p-12 text-center">
           <IconDocument className="h-12 w-12 text-brand-300" />
           <h2 className="mt-4 text-xl font-semibold text-ink">
-            {documents.length === 0 ? 'Noch keine Dokumente' : 'Keine Treffer'}
+            {documents.length === 0 ? t.emptyState_title : t.emptyState_noResults_title}
           </h2>
           <p className="mt-2 max-w-sm text-sm text-ink-soft">
             {documents.length === 0
-              ? 'Lade deine Unterlagen hoch, um sie hier an einem Ort zu verwalten.'
-              : 'Kein Dokument passt zu Filter oder Suche.'}
+              ? t.emptyState_message
+              : t.emptyState_noResults_message}
           </p>
         </div>
       ) : (
@@ -291,7 +288,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
                   type="checkbox"
                   checked={selection.has(doc.id)}
                   onChange={() => toggleSelection(doc.id)}
-                  aria-label={`${doc.filename} für Paket auswählen`}
+                  aria-label={formatTemplate(t.selectForPackageAria, { filename: doc.filename })}
                   className="h-4 w-4 shrink-0 accent-brand-600"
                 />
                 {isPdf ? (
@@ -312,7 +309,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
                         if (e.key === 'Escape') setRenamingId(null);
                       }}
                       className="w-full max-w-sm rounded-lg border border-brand-300 bg-white px-2 py-1 text-base font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-brand-100"
-                      aria-label="Dokumenttitel bearbeiten"
+                      aria-label={t.renameAria}
                     />
                   ) : (
                     <button
@@ -322,7 +319,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
                         setRenameValue(doc.title ?? doc.filename);
                       }}
                       className="group flex items-center gap-1.5 text-left"
-                      title="Klicken zum Umbenennen"
+                      title={t.action_rename}
                     >
                       <span className="truncate text-base font-semibold text-ink">
                         {doc.title ?? doc.filename}
@@ -335,28 +332,28 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
                   <p className="mt-0.5 truncate text-xs text-ink-soft/70">
                     {doc.filename}
                     {doc.file_size != null && ` · ${formatSize(doc.file_size)}`}
-                    {` · ${new Date(doc.created_at).toLocaleDateString('de-DE')}`}
-                    {doc.application_id == null && ' · Tresor'}
+                    {` · ${new Date(doc.created_at).toLocaleDateString(locale === 'de' ? 'de-DE' : locale)}`}
+                    {doc.application_id == null && ` · ${t.vaultSuffix}`}
                   </p>
                 </div>
                 <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${CATEGORY_BADGE[cat]}`}>
-                  {CATEGORY_LABEL[cat]}
+                  {t[`categoryBadge_${cat}` as keyof typeof t]}
                 </span>
-                {statusPill(doc.status)}
+                {<StatusPill status={doc.status} />}
                 <div className="flex shrink-0 items-center gap-3">
                   <button type="button" className={actionCls} onClick={() => void handlePreview(doc)}>
-                    👁 Vorschau
+                    {t.action_preview}
                   </button>
                   <button type="button" className={actionCls} onClick={() => void handleDownload(doc)}>
                     <IconDownload className="mr-0.5 inline h-3 w-3" />
-                    Download
+                    {t.action_download}
                   </button>
                   <button
                     type="button"
                     className="text-xs font-semibold text-red-600 hover:text-red-800"
                     onClick={() => void handleDelete(doc)}
                   >
-                    🗑 Löschen
+                    {t.action_delete}
                   </button>
                 </div>
               </div>
@@ -380,12 +377,12 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
           role="dialog"
           aria-modal="true"
-          aria-label="Paket teilen"
+          aria-label={t.shareBtn}
         >
           <div className="w-full max-w-md rounded-2xl bg-white p-6 text-center">
-            <h2 className="text-lg font-semibold text-ink">Paket erstellt ✓</h2>
+            <h2 className="text-lg font-semibold text-ink">{t.share_successTitle}</h2>
             <p className="mt-1 text-sm text-ink-soft">
-              Gültig für 24 Stunden. Per QR-Code scannen oder Link kopieren.
+              {t.share_successMessage}
             </p>
             {shareQr && (
               // eslint-disable-next-line @next/next/no-img-element
@@ -407,10 +404,10 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
                 }}
                 className="flex-1"
               >
-                {copied ? 'Kopiert ✓' : '🔗 Link kopieren'}
+                {copied ? t.share_linkCopied : t.shareBtn}
               </ButtonAction>
               <ButtonAction type="button" variant="secondary" onClick={closeShare} className="flex-1">
-                Schließen
+                {tc.close}
               </ButtonAction>
             </div>
           </div>
@@ -440,6 +437,8 @@ function QuickUploadSlot({
   userId: string;
   onUploaded: (doc: DocumentEntry) => void;
 }) {
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).documents;
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
 
@@ -450,7 +449,7 @@ function QuickUploadSlot({
 
     const parsed = DocumentUploadSchema.safeParse({ role, file });
     if (!parsed.success) {
-      setUploadError(parsed.error.issues[0]?.message ?? 'Ungültige Datei');
+      setUploadError(parsed.error.issues[0]?.message ?? t.invalidFile);
       return;
     }
     setUploadError(null);
@@ -478,7 +477,7 @@ function QuickUploadSlot({
       .single();
 
     if (metaErr || !meta) {
-      setUploadError(metaErr?.message ?? 'Dokument konnte nicht registriert werden');
+      setUploadError(metaErr?.message ?? t.errRegister);
       setUploading(false);
       return;
     }
@@ -502,7 +501,7 @@ function QuickUploadSlot({
       .single();
 
     if (updateErr || !updated) {
-      setUploadError('Status konnte nicht aktualisiert werden');
+      setUploadError(t.errStatusUpdate);
       setUploading(false);
       return;
     }
@@ -517,11 +516,11 @@ function QuickUploadSlot({
       {uploading ? (
         <div className="flex items-center gap-2">
           <div className="h-3 w-3 animate-spin rounded-full border-2 border-brand-600 border-t-transparent" />
-          <span className="text-xs text-ink-soft">Upload…</span>
+          <span className="text-xs text-ink-soft">{t.quickUploading}</span>
         </div>
       ) : (
         <label className="block cursor-pointer text-xs font-semibold text-brand-700 hover:underline">
-          Datei auswählen
+          {t.chooseFile}
           <input
             type="file"
             className="hidden"
@@ -567,6 +566,9 @@ function UploadModal({
   onClose: () => void;
   onUploaded: (doc: DocumentEntry) => void;
 }) {
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).documents;
+  const tc = getDashboardDict(locale).common;
   const [role, setRole] = useState<DocumentRole>('OTHER');
   const [files, setFiles] = useState<PendingFile[]>([]);
   const [dragOver, setDragOver] = useState(false);
@@ -588,7 +590,7 @@ function UploadModal({
       setFiles((prev) =>
         prev.map((f) =>
           f.id === pending.id
-            ? { ...f, status: 'error' as const, error: parsed.error.issues[0]?.message ?? 'Ungültige Datei' }
+            ? { ...f, status: 'error' as const, error: parsed.error.issues[0]?.message ?? t.invalidFile }
             : f,
         ),
       );
@@ -645,7 +647,7 @@ function UploadModal({
 
     if (updateErr || !updated) {
       setFiles((prev) =>
-        prev.map((f) => (f.id === pending.id ? { ...f, status: 'error' as const, error: 'Status-Update fehlgeschlagen' } : f)),
+        prev.map((f) => (f.id === pending.id ? { ...f, status: 'error' as const, error: t.errStatusUpdateModal } : f)),
       );
       return false;
     }
@@ -673,15 +675,15 @@ function UploadModal({
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
       role="dialog"
       aria-modal="true"
-      aria-label="Dokument hochladen"
+      aria-label={t.upload_modal_title}
     >
       <div className="flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-xl">
         <div className="flex items-center justify-between border-b border-line-soft px-5 py-4">
-          <h2 className="text-lg font-semibold text-ink">Dokument hochladen</h2>
+          <h2 className="text-lg font-semibold text-ink">{t.upload_modal_title}</h2>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Schließen"
+            aria-label={tc.close}
             className="rounded-lg p-1 text-ink-soft hover:bg-neutral-100 hover:text-ink"
           >
             <IconX className="h-5 w-5" />
@@ -707,10 +709,10 @@ function UploadModal({
           >
             <IconFileUp className="h-8 w-8 text-brand-400" />
             <p className="mt-2 text-sm font-medium text-ink">
-              Dateien hierher ziehen
+              {t.upload_dropzone_text}
             </p>
             <label className="mt-2 cursor-pointer text-xs font-semibold text-brand-700 hover:underline">
-              oder vom Computer auswählen
+              {t.upload_dropzone_or}
               <input
                 type="file"
                 multiple
@@ -727,7 +729,7 @@ function UploadModal({
           {/* Kategorie */}
           <div>
             <label htmlFor="upload-role" className="mb-1 block text-xs font-semibold text-ink-soft">
-              Kategorie
+              {t.upload_category_label}
             </label>
             <select
               id="upload-role"
@@ -737,7 +739,7 @@ function UploadModal({
             >
               {UPLOAD_ROLE_OPTIONS.map((o) => (
                 <option key={o.value} value={o.value}>
-                  {o.label}
+                  {t[`upload_category_${o.value}` as keyof typeof t] ?? o.label}
                 </option>
               ))}
             </select>
@@ -759,7 +761,7 @@ function UploadModal({
                       onChange={(e) =>
                         setFiles((prev) => prev.map((p) => (p.id === f.id ? { ...p, title: e.target.value } : p)))
                       }
-                      aria-label={`Titel für ${f.file.name}`}
+                      aria-label={formatTemplate(t.titleForAria, { name: f.file.name })}
                       className="w-full rounded-md border border-transparent bg-transparent px-1.5 py-0.5 text-sm font-semibold text-ink hover:border-line-soft focus:border-brand-300 focus:bg-white focus:outline-none"
                     />
                     <p className="mt-0.5 truncate px-1.5 text-xs text-ink-soft/70">
@@ -772,14 +774,14 @@ function UploadModal({
                   {f.status === 'done' && <span className="shrink-0 text-xs font-semibold text-green-700">✓</span>}
                   {f.status === 'error' && (
                     <span className="shrink-0 text-xs font-semibold text-red-600" title={f.error}>
-                      Fehler
+                      {t.upload_file_error}
                     </span>
                   )}
                   {(f.status === 'pending' || f.status === 'error') && (
                     <button
                       type="button"
                       onClick={() => setFiles((prev) => prev.filter((p) => p.id !== f.id))}
-                      aria-label={`${f.file.name} entfernen`}
+                      aria-label={formatTemplate(t.removeAria, { name: f.file.name })}
                       className="shrink-0 rounded p-1 text-ink-soft hover:bg-neutral-100 hover:text-ink"
                     >
                       <IconX className="h-3.5 w-3.5" />
@@ -798,10 +800,10 @@ function UploadModal({
             disabled={busy || pendingCount === 0}
             className="flex-1"
           >
-            {busy ? 'Lade hoch…' : `${pendingCount} hochladen`}
+            {busy ? t.upload_button_uploading : formatTemplate(t.uploadCount, { count: pendingCount })}
           </ButtonAction>
           <ButtonAction type="button" variant="secondary" onClick={onClose} className="flex-1">
-            {doneCount > 0 ? 'Fertig' : 'Abbrechen'}
+            {doneCount > 0 ? t.upload_button_done : tc.cancel}
           </ButtonAction>
         </div>
       </div>

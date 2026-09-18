@@ -1,0 +1,791 @@
+{
+ "common": {
+  "save": "Kaydet",
+  "saving": "Kaydediliyor…",
+  "saved": "Değişiklikler kaydedildi.",
+  "errorSaving": "Kaydetme başarısız oldu. Lütfen tekrar deneyin.",
+  "cancel": "İptal",
+  "close": "Kapat",
+  "delete": "Sil",
+  "deleting": "Siliniyor…",
+  "edit": "Düzenle",
+  "back": "Geri",
+  "next": "Devam",
+  "previous": "Geri",
+  "loading": "Yükleniyor…",
+  "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
+  "retry": "Tekrar dene",
+  "optional": "isteğe bağlı",
+  "required": "zorunlu",
+  "upload": "Yükle",
+  "uploading": "Yükleniyor…",
+  "download": "İndir",
+  "search": "Ara",
+  "yes": "Evet",
+  "no": "Hayır",
+  "refresh": "Yenile",
+  "confirm": "Onayla",
+  "skip": "Atla",
+  "notAvailable": "Mevcut değil",
+  "open": "Aç",
+  "new": "Yeni"
+ },
+ "nav": {
+  "dashboard": "Panel",
+  "alg1": "ALG1",
+  "dokumente": "Belgeler",
+  "foerderungen": "Destekler"
+ },
+ "sidebar": {
+  "logout": "Çıkış yap",
+  "backToSite": "Web sitesine dön",
+  "guest": "Misafir",
+  "navLabel": "Panel gezinmesi"
+ },
+ "home": {
+  "metaTitle": "Panel — Antragsbruder",
+  "metaDescription": "Devam eden başvurularınız ve size uygun destekler bir bakışta.",
+  "greetingMorning": "Günaydın",
+  "greetingDay": "İyi günler",
+  "greetingEvening": "İyi akşamlar",
+  "fallbackUser": "Kullanıcı",
+  "summaryOneApp": "{{apps}} aktif başvurunuz ve {{benefits}} size uygun destek var.",
+  "summaryManyApps": "{{apps}} aktif başvurunuz ve {{benefits}} size uygun destek var.",
+  "startFirst": "İlk başvurunuzu başlatın.",
+  "runningTitle": "Devam eden başvurular",
+  "noRunning": "Henüz aktif başvuru yok",
+  "startNow": "Hemen başla",
+  "status": {
+   "DRAFT": "Devam ediyor",
+   "IN_PROGRESS": "Devam ediyor",
+   "DOCS_PENDING": "Belgeler eksik",
+   "READY": "Gönderime hazır",
+   "SUBMITTED": "Gönderildi ✓",
+   "PROCESSING": "İnceleniyor",
+   "APPROVED": "Onaylandı 🎉",
+   "REJECTED": "Reddedildi"
+  },
+  "alg1Title": "İşsizlik maaşı (ALG1)",
+  "applicationFallback": "Başvuru",
+  "upTo": "Ayda {{amount}} €'ya kadar",
+  "createdAt": "Oluşturulma: {{date}}",
+  "viewStatus": "Durumu gör",
+  "continueWorking": "Devam et",
+  "possibleTitle": "Olası destekler",
+  "fillProfile": "Size uygun destekleri görmek için profilinizi doldurun.",
+  "confidenceHigh": "Çok muhtemel",
+  "confidencePossible": "Mümkün",
+  "allBenefits": "Tüm destekleri gör →",
+  "docsTresor": "Belgeler & kasa",
+  "docsEmpty": "Başvurunuzu tamamlamak için belgelerinizi yükleyin.",
+  "docsCountOne": "Kasada {{count}} belge var.",
+  "docsCountMany": "Kasada {{count}} belge var.",
+  "goToTresor": "Kasaya git",
+  "stepsProgress": "{{done}}/4 adım",
+  "timeline": {
+   "docs": {
+    "label": "Belge ekle",
+    "description": "İhbarnamesi, maaş bordroları ve diğer belgeleri yükleyin."
+   },
+   "data": {
+    "label": "Verileri doldur",
+    "description": "Soruları yanıtlayın ve kişisel bilgilerinizi girin."
+   },
+   "submit": {
+    "label": "Başvuruyu gönder",
+    "description": "Özeti kontrol edin ve kuruma gönderin."
+   },
+   "receive": {
+    "label": "İşsizlik maaşını al",
+    "description": "Kararı bekleyin ve ilk ödemenizi alın."
+   }
+  }
+ },
+ "foerderungen": {
+  "metaTitle": "Destekler — Antragsbruder",
+  "metaDescription": "Bilgilerinize dayalı kural tabanlı destek kontrolü.",
+  "title": "Destek Radarı",
+  "subtitle": "{{total}} desteğin {{matched}} tanesi durumunuza uyuyor — profil ve kasaya dayalı.",
+  "tabQualified": "🎯 Benim için uygun",
+  "tabPotential": "⚡ Potansiyeli kontrol et",
+  "tabExcluded": "🚫 Hariç",
+  "amountRange": "yaklaşık {{min}}–{{max}} € / ay",
+  "amountFrom": "ayda yaklaşık {{min}} €'dan",
+  "amountUpTo": "ayda yaklaşık {{max}} €'ya kadar",
+  "calcNow": "Şimdi hesapla",
+  "viewAtOffice": "Kurumda görüntüle",
+  "calcAvailable": "Hesaplayıcı mevcut",
+  "authority": "Sorumlu kurum: {{authority}}",
+  "docsInVault": "Kasada {{total}} gerekli belgeden {{present}} tanesi mevcut",
+  "unlockTitle": "Hakki aç",
+  "noExcluded": "Şu anda açıkça hariç tutulan bir destek yok.",
+  "excludedInfo": "{{count}} destek profilinize göre açıkça uymuyor (ör. sadece öğrenciler veya emekliler için). Bunları gizliyoruz.",
+  "noQualified": "Henüz net bir uygunluk yok — yukarıdaki açıklayıcı soruları yanıtlayın veya destek profilinizi doldurun.",
+  "noPotential": "Açık potansiyel yok — daha fazlasını açmak için açıklayıcı soruları yanıtlayın."
+ },
+ "antraege": {
+  "statusLabel": "Durum",
+  "status": {
+   "ACTIVE": "Aktif",
+   "PAUSED": "Duraklatıldı",
+   "COMPLETED": "Tamamlandı"
+  },
+  "deleteConfirm": "„{{filename}}“ gerçekten silinsin mi?",
+  "deleteFailed": "Silme başarısız oldu",
+  "uploadedAt": "Yüklenme: {{date}}",
+  "notFound": "Başvuru bulunamadı",
+  "loadFailed": "Yükleme hatası",
+  "statusChangeFailed": "Durum değiştirilemedi",
+  "goBack": "Genel bakışa dön",
+  "uploadDocument": "Belge yükle",
+  "loadingCase": "Başvuru yükleniyor…",
+  "completedApplication": "Tamamlanmış başvuru",
+  "activeApplication": "Aktif başvuru",
+  "createdAt": "Oluşturulma: {{date}}",
+  "documentsTitle": "Belgeler",
+  "noDocuments": "Henüz belge yok",
+  "noDocumentsHint": "Başvurunuzu ilerletmek için belgelerinizi yükleyin.",
+  "uploadDocuments": "Belge yükle"
+ },
+ "profile": {
+  "metaTitle": "Profilim — Antragsbruder",
+  "metaDescription": "Kişisel verilerinizi, destek profilinizi ve güvenlik ayarlarınızı yönetin.",
+  "title": "Profilim",
+  "noProfile": "Profil bulunamadı.",
+  "language": {
+   "title": "Dil",
+   "description": "Panonuz için dili seçin — ayar profilinize kaydedilir.",
+   "saving": "Kaydediliyor…",
+   "saved": "Dil kaydedildi.",
+   "error": "Dil kaydedilemedi."
+  },
+  "account": {
+   "title": "Hesap & Güvenlik",
+   "emailTitle": "E-posta adresi",
+   "emailDesc": "Onay bağlantısıyla değiştirilir (trigger ile otomatik senkronize edilir).",
+   "changeEmail": "E-postayı değiştir",
+   "passwordTitle": "Şifre",
+   "passwordDesc": "En az 8 karakter.",
+   "changePassword": "Şifreyi değiştir"
+  },
+  "masterData": {
+   "title": "Kişisel veriler",
+   "firstName": "Ad",
+   "lastName": "Soyad",
+   "birthDate": "Doğum tarihi",
+   "phone": "Telefon (isteğe bağlı)",
+   "street": "Sokak",
+   "houseNumber": "Bina numarası",
+   "postcode": "Posta kodu",
+   "city": "Şehir",
+   "save": "Kaydet",
+   "saving": "Kaydediliyor…",
+   "discard": "Geri al",
+   "cityAutofill": "Posta kodu ile otomatik",
+   "lblEmail": "E-posta"
+  },
+  "eligibility": {
+   "title": "Destek profili",
+   "description": "Bu bilgiler size uygun destekleri önermemize yardımcı olur.",
+   "housingType": "Konut durumu",
+   "employmentStatus": "Çalışma durumu",
+   "childrenCount": "Hanedde 18 yaş altı çocuk",
+   "save": "Kaydet",
+   "saving": "Kaydediliyor…",
+   "discard": "Geri al",
+   "housing": {
+    "RENT": "Kira",
+    "OWN": "Mülk",
+    "PARENTS": "Ailede / paylaşımlı ev",
+    "OTHER": "Diğer"
+   },
+   "employment": {
+    "EMPLOYED": "Çalışıyor",
+    "SELF_EMPLOYED": "Serbest meslek",
+    "UNEMPLOYED": "İşsiz",
+    "STUDENT": "Öğrenci",
+    "APPRENTICE": "Çırak",
+    "RETIRED": "Emekli",
+    "OTHER": "Diğer"
+   }
+  },
+  "vault": {
+   "title": "🔐 Bürokrasi anahtarlığı",
+   "description": "En önemli resmi referans numaralarınıza hızlı erişim — şifreli, varsayılan olarak maskeli, tek tıkla kopyalanabilir.",
+   "add": "+ Numara ekle",
+   "loading": "Anahtarlık yükleniyor…",
+   "empty": "Henüz referans numarası kaydedilmedi. Örneğin vergi kimlik numaranızı ekleyin — bir kez kopyala, her yere yapıştır.",
+   "reveal": "👁 Göster",
+   "hide": "🙈 Gizle",
+   "copy": "📋 Kopyala",
+   "copied": "✓ Kopyalandı!",
+   "delete": "Sil",
+   "edit": "Düzenle",
+   "deleteConfirm": "„{{label}}“ gerçekten silinsin mi?",
+   "maskedIn": "{{seconds}} s içinde maskelenecek",
+   "errorDecrypt": "Bu kayıt başka bir cihazda/cihaz profilinde şifrelendi ve burada çözülemiyor. Lütfen yeniden girin.",
+   "errorDecryptShort": "Çözülemiyor — lütfen yeniden girin.",
+   "errValue": "Lütfen bir değer girin.",
+   "errLabel": "Lütfen bir ad girin.",
+   "errSave": "Kaydetme başarısız",
+   "errEncrypt": "Şifreleme/kaydetme hatası",
+   "modalAdd": "Referans numarası ekle",
+   "modalEdit": "Referans numarasını düzenle",
+   "modalDescription": "Değer doğrudan tarayıcınızda şifrelenir (AES-GCM) ve yalnızca maskeli gösterilir.",
+   "lblType": "Tür",
+   "lblName": "Ad",
+   "lblValue": "Değer",
+   "lblNotes": "Not (isteğe bağlı)",
+   "phName": "ör. elektrik idaresi müşteri numarası",
+   "phNotes": "ör. 2029'a kadar geçerli",
+   "phValue": "Değer girin",
+   "encryptingSaving": "Şifreleniyor & kaydediliyor…",
+   "categories": {
+    "tax": "🏛 Vergiler & mali",
+    "social": "🛡 Sosyal sigorta & iş",
+    "health": "🏥 Sağlık",
+    "id_card": "🪪 Kimlikler",
+    "finance": "💶 Mali",
+    "other": "📁 Diğer"
+   }
+  },
+  "emailDialog": {
+   "title": "E-posta adresini değiştir",
+   "description": "Değişiklikten sonra yeni adresinize bir onay bağlantısı gönderilir.",
+   "newEmail": "Yeni e-posta adresi",
+   "sendLink": "Onay bağlantısı gönder",
+   "sending": "Gönderiliyor…",
+   "sendingStatus": "Onay bağlantısı gönderiliyor…",
+   "error": "Hata: {{message}}",
+   "sent": "Onay bağlantısı gönderildi. Lütfen yeni e-posta adresinizdeki bağlantıyı onaylayın."
+  },
+  "passwordDialog": {
+   "title": "Şifreyi değiştir",
+   "newPassword": "Yeni şifre",
+   "confirmPassword": "Şifreyi tekrarla",
+   "save": "Şifreyi değiştir",
+   "saving": "Kaydediliyor…",
+   "success": "✓ Şifre başarıyla değiştirildi.",
+   "error": "Hata: {{message}}",
+   "errMinLength": "Hata: şifre en az 8 karakter olmalıdır.",
+   "errMismatch": "Hata: şifreler eşleşmiyor."
+  },
+  "avatar": {
+   "title": "Profil fotoğrafı",
+   "change": "Değiştir",
+   "upload": "Yüklemek için tıklayın (JPG, PNG, WebP, maks 10MB)",
+   "uploading": "Yükleniyor…"
+  },
+  "avatarCrop": {
+   "title": "Profil fotoğrafını kırp",
+   "save": "Kırp & kaydet",
+   "saving": "İşleniyor…",
+   "cancel": "İptal",
+   "zoom": "Yakınlaştırma",
+   "errorLoad": "Görsel yüklenemedi",
+   "errorBlob": "Blob oluşturulamadı",
+   "errorCanvas": "Canvas bağlamı mevcut değil",
+   "errorGeneric": "Kırpma başarısız oldu"
+  }
+ },
+ "onboarding": {
+  "dismiss": "Atla",
+  "next": "Devam",
+  "finish": "Tamam",
+  "situation": {
+   "question": "Mevcut durumunuzu en iyi hangisi tanımlıyor?",
+   "employed": "Çalışıyor",
+   "selfEmployed": "Serbest meslek",
+   "unemployed": "Yakın zamanda işten çıktı / işsiz",
+   "student": "Öğrenci / çırak",
+   "retired": "Emekli",
+   "other": "Diğer"
+  },
+  "housing": {
+   "question": "Nerede yaşıyorsunuz?",
+   "rent": "Kira",
+   "own": "Mülk",
+   "parents": "Ailede / paylaşımlı ev",
+   "other": "Diğer"
+  },
+  "children": {
+   "question": "Hanedde 18 yaş altı çocuğunuz var mı?"
+  },
+  "postcode": {
+   "question": "Posta kodunuz nedir?"
+  }
+ },
+ "documents": {
+  "metaTitle": "Belgeler — Antragsbruder",
+  "metaDescription": "Tüm başvurular için tüm belgeler tek bir yerde.",
+  "title": "Vatandaş kasası",
+  "description": "Tüm resmi kayıtlar tek bir yerde — tüm başvurular için kullanılabilir.",
+  "categoryLabel_all": "Tümü",
+  "categoryLabel_identity": "🪪 Kimlik",
+  "categoryLabel_housing": "🏠 Konut",
+  "categoryLabel_income": "💼 Gelir",
+  "categoryLabel_other": "📁 Diğer",
+  "categoryBadge_identity": "Kimlik",
+  "categoryBadge_housing": "Konut",
+  "categoryBadge_income": "Gelir",
+  "categoryBadge_other": "Diğer",
+  "status_DONE": "🟢 Doğrulandı",
+  "status_PROCESSING": "🟡 İnceleniyor",
+  "status_PENDING": "🟡 İnceleniyor",
+  "status_ERROR": "Hata",
+  "searchPlaceholder": "Belge ara…",
+  "searchAria": "Belgelerde ara",
+  "emptyState_title": "Henüz belge yok",
+  "emptyState_message": "Belgelerinizi burada tek bir yerde yönetmek için yükleyin.",
+  "emptyState_noResults_title": "Sonuç yok",
+  "emptyState_noResults_message": "Filtre veya aramaya uyan belge yok.",
+  "action_rename": "Yeniden adlandırmak için tıklayın",
+  "action_preview": "👁 Önizleme",
+  "action_download": "İndir",
+  "action_delete": "🗑 Sil",
+  "share_successTitle": "Paket oluşturuldu ✓",
+  "share_successMessage": "24 saat geçerlidir. QR kodu tarayın veya bağlantıyı kopyalayın.",
+  "share_linkCopied": "Kopyalandı ✓",
+  "share_close": "Kapat",
+  "shareBtnCount": "🔗 Paketi paylaş ({{count}})",
+  "shareBtn": "🔗 Paketi paylaş",
+  "shareCreating": "Paket oluşturuluyor…",
+  "errCreatePackage": "Paket oluşturulamadı",
+  "errCreatePackageGeneric": "Paket oluşturma hatası",
+  "deleteConfirm": "„{{filename}}“ gerçekten silinsin mi?",
+  "vaultSuffix": "kasa",
+  "renameAria": "Belge başlığını düzenle",
+  "selectForPackageAria": "{{filename}} paket için seç",
+  "invalidFile": "Geçersiz dosya",
+  "errRegister": "Belge kaydedilemedi",
+  "errStatusUpdate": "Durum güncellenemedi",
+  "quickUploading": "Yükleniyor…",
+  "chooseFile": "Dosya seç",
+  "errStatusUpdateModal": "Durum güncellemesi başarısız oldu",
+  "titleForAria": "{{name}} için başlık",
+  "removeAria": "{{name}} kaldır",
+  "uploadCount": "{{count}} yükle",
+  "upload_slot_personalID": "🪪 Kimlik kartı",
+  "upload_slot_payslip": "💼 Maaş bordrosu",
+  "upload_slot_other": "📁 Diğer",
+  "upload_button_upload": "Belge yükle",
+  "upload_button_uploading": "Yükleniyor…",
+  "upload_button_uploadAll": "yükle",
+  "upload_button_cancel": "İptal",
+  "upload_button_done": "Tamam",
+  "upload_modal_title": "Belge yükle",
+  "upload_modal_close": "Kapat",
+  "upload_category_label": "Kategori",
+  "upload_category_ID_CARD": "🪪 Kimlik",
+  "upload_category_PAYSLIP": "💼 Gelir (maaş bordrosu)",
+  "upload_category_BANK_STATEMENT": "🏦 Banka ekstresi",
+  "upload_category_TERMINATION": "📄 İhbarname",
+  "upload_category_CONTRACT": "📝 Sözleşme",
+  "upload_category_OTHER": "📁 Diğer",
+  "upload_dropzone_text": "Dosyaları buraya sürükleyin",
+  "upload_dropzone_or": "veya bilgisayardan seçin",
+  "upload_file_titlePlaceholder": "Şunun için başlık",
+  "upload_file_remove": "kaldır",
+  "upload_file_error": "Hata",
+  "upload_file_uploading": "Yükleme…"
+ },
+ "upload": {
+  "metaTitle": "Yükleme – Antragsbruder",
+  "metaDescription": "Belgelerinizi yükleyin ve başvurunuzu başlatın.",
+  "status": {
+   "pending": "Yüklenmeye hazır",
+   "uploading": "Yükleniyor…",
+   "uploaded": "Yüklendi",
+   "parsing": "Taranıyor…",
+   "done": "Taranandı",
+   "error": "Hata"
+  },
+  "moreChars": "… (daha fazla karakter)",
+  "startOcr": "OCR başlat",
+  "remove": "Kaldır",
+  "errorNoCase": "Başvuru yok – lütfen önce bir başvuru oluşturun.",
+  "errorNoCaseShort": "Başvuru yok",
+  "errorUpload": "Yükleme başarısız oldu",
+  "errorOcr": "OCR başarısız oldu",
+  "welcome": "Hoş geldiniz, {{name}}",
+  "toApplication": "Başvuruya git",
+  "step1": "Belge yükle",
+  "step2": "Verileri kontrol et",
+  "title1": "İlk başvurunuz – belgeler",
+  "subtitle1": "Belgelerinizi yükleyin. Bizleri tarar ve ne bulduğumuzu size gösteriyoruz.",
+  "noCaseTitle": "Henüz bir başvuru oluşturmadınız.",
+  "noCaseText": "Önce bir başvuru oluşturun, ardından buraya belge yükleyebilirsiniz.",
+  "createApplication": "Başvuru oluştur",
+  "dropHere": "Dosyaları buraya bırakın",
+  "dropHereOr": "Dosyaları buraya bırakın veya seçin",
+  "dropHint": "PDF, JPG veya PNG – dosya başına en fazla 10 MB",
+  "filesCount": "Yüklenen dosyalar ({{count}})",
+  "uploadNow": "Şimdi yükle",
+  "selectDocuments": "Belge seç",
+  "title2": "Belgeler kontrol edildi",
+  "subtitle2": "Belgelerinizi taradık. Sonuçları aşağıda kontrol edin.",
+  "scannedCountOne": "{{count}} belge başarıyla tarandı",
+  "scannedCountMany": "{{count}} belge başarıyla tarandı",
+  "noneScannedTitle": "Henüz belge taranmadı",
+  "noneScannedText": "İçeriği görmek için önce bir belge tarayın."
+ },
+ "questionnaire": {
+  "errorLoading": "Sorular yüklenirken hata oluştu",
+  "sensHighlySensitive": "Çok özel",
+  "sensSensitive": "Özel",
+  "sensNormal": "Normal",
+  "unitHint": "{{unit}} cinsinden belirtin",
+  "yourAnswerPlaceholder": "Yanıtınız",
+  "lblColdRent": "Net kira (ısıtma hariç)",
+  "lblHeating": "Isıtma masrafları",
+  "monthlyEuro": "Aylık tutar euro olarak",
+  "privateContent": "İçerik özeldir — göstermek için tıklayın",
+  "skipQuestion": "Bu soruyu atla",
+  "continueWithoutAnswer": "Yanıt vermeden devam et",
+  "loadingQuestions": "Sorular yükleniyor…",
+  "allAnsweredTitle": "Tüm sorular yanıtlandı",
+  "allAnsweredText": "Gerekli tüm bilgilere sahibiz. Başvurunuz şimdi hazırlanıyor.",
+  "noMoreTitle": "Başka soru yok",
+  "noMoreText": "Başka soruya gerek yok. Artık başvurunuzu gönderebilirsiniz.",
+  "headingEyebrow": "Adım adım rehber",
+  "headingTitle": "Başvuru verileriniz",
+  "headingLede": "Başvurunuz için ihtiyacımız olan tüm sorularda size rehberlik ediyoruz. Her soruyu atlayabilirsiniz.",
+  "stepOf": "Adım {{current}}/{{total}}",
+  "showAnswerField": "Yanıt alanını göster"
+ },
+ "alg1": {
+  "meta": {
+   "title": "ALG1 başvurusu | Antragsbruder",
+   "description": "Belgelerinizi yükleyin, soruları yanıtlayın ve ALG1 başvurunuzu gönderin."
+  },
+  "index": {
+   "metaTitle": "ALG1 — hızlı kontrol | Antragsbruder",
+   "metaDescription": "7 soruda ALG1 hakkınız olup olmadığını kontrol edin ve başvurunuzu başlatın.",
+   "title": "ALG1 başvurusu yap",
+   "subtitle": "7 kısa soruyu yanıtlayın — şansınızı değerlendiriyoruz ve başvurunuzu başlatıyoruz."
+  },
+  "flow": {
+   "loading": "Yükleniyor…",
+   "documentsTitle": "Belgeleriniz",
+   "documentsText": "En önemli belgeleri yükleyin — bunları otomatik olarak okuyoruz.",
+   "backToDocuments": "← Belgelere geri dön",
+   "continueToSummary": "Özete devam et →",
+   "backToForm": "← Formlara geri dön",
+   "startApplication": "Resmi ALG1 başvurusunu başlat & belge yükle",
+   "errorNotFound": "Başvuru bulunamadı veya erişim yok.",
+   "errorNoAccess": "Bu başvuruya erişim yok."
+  },
+  "start": {
+   "loadingDraft": "Taslak yükleniyor…",
+   "draftLoaded": "Kayıtlı taslağınız yüklendi.",
+   "errorCreatingCase": "Dosya oluşturulamadı. Lütfen daha sonra tekrar deneyin.",
+   "errorCreatingApplication": "Başvuru oluşturulamadı: {{errorMessage}}",
+   "errorUpdatingDraft": "Taslak kaydedilemedi: {{errorMessage}}"
+  },
+  "check": {
+   "questionProgress": "Soru {{current}}/{{total}}",
+   "progressPercent": "%{{progress}}",
+   "back": "← Geri",
+   "questions": {
+    "termination_type": "İşinize ne oldu?",
+    "insurance_period_months": "Son 28 ayda kaç ay zorunlu sigortalıydınız?",
+    "registered_unemployed": "Zaten işsiz olarak kaydoldunuz mu?",
+    "available_hours_per_week": "Haftada kaç saat çalışabilirsiniz?",
+    "actively_seeking": "Aktif olarak iş mi arıyorsunuz?",
+    "has_children": "18 yaş altı çocuğunuz var mı?",
+    "has_partner": "Bir partnerle birlikte mi yaşıyorsunuz?",
+    "gross_salary": "Son 12 ayın yaklaşık aylık brüt geliri (€)"
+   },
+   "termination": {
+    "EMPLOYER_TERMINATED": "İşveren feshetti",
+    "CONTRACT_END": "Sözleşme sona erdi",
+    "SELF_QUIT": "Kendim istifa ettim",
+    "MUTUAL_AGREEMENT": "Karşılıklı fesih sözleşmesi",
+    "EMPLOYER_INSOLVENT": "İşveren iflas etti",
+    "HOURS_REDUCED": "Çalışma saatleri azaltıldı",
+    "OTHER": "Diğer"
+   }
+  },
+  "checkResult": {
+   "likelyTitle": "Çok büyük olasılıkla ALG 1 hakkınız var",
+   "unclearTitle": "Bireysel inceleme gerekli — başvuru yine de önerilir",
+   "unlikelyTitle": "Mevcut değerlendirmeye göre düzenli ALG1 hakkı yok",
+   "estimatedMonthly": "Tahmini aylık tutar",
+   "basis": "Temel: {{amount}} € brüt",
+   "rateWithChild": "%67 (çocuklu)",
+   "rateWithoutChild": "%60",
+   "perMonth": "~ {{amount}} € / ay",
+   "perDay": "{{amount}} €/gün",
+   "basisLine": "Temel: {{basis}} € brüt · oran: {{rate}} · {{daily}} €/gün",
+   "editAnswerAria": "„{{question}}“ yanıtını değiştir",
+   "yourAnswers": "Yanıtlarınız",
+   "change": "Değiştir",
+   "nextSteps": "Sonraki adımlar"
+  },
+  "erfolg": {
+   "metaTitle": "ALG1 — başvuru gönderildi | Antragsbruder",
+   "metaDescription": "ALG1 başvurunuz hazırlandı ve hazır olarak işaretlendi.",
+   "pageTitle": "Başvuru başarıyla gönderildi",
+   "headline": "Tamamlandı!",
+   "bodyPre": "ALG1 başvurunuz tamamen hazırlandı ve",
+   "bodyPost": "olarak işaretlendi. İş Kurumu'na aktarım ve durum takibi sonraki bir aşamada gerçekleşecek.",
+   "hint1": "Sözleşmeniz bitmeden en geç 3 ay önce işsiz olarak kaydolun.",
+   "hint2": "Dosya numarası onayınızı saklayın.",
+   "hint3": "ALG1 her ay peşin ödenir.",
+   "backLink": "Genel bakışa dön"
+  },
+  "form": {
+   "sections": {
+    "Personendaten": "Kişisel veriler",
+    "Letzter Arbeitgeber": "Son işveren",
+    "Agentur für Arbeit": "İş Kurumu",
+    "Verfügbarkeit": "Uygunluk",
+    "Haushalt": "Hane",
+    "Finanzen": "Mali durum"
+   },
+   "pleaseSelect": "Lütfen seçin…",
+   "childrenAgesHint": "Çocukların yaşlarını virgülle ayırın, ör. „3, 7“",
+   "progressLabel": "İlerleme",
+   "autosaveNote": "Girdileriniz otomatik olarak kaydedilir.",
+   "savedIndicator": "🟢 Kaydedildi · {{time}}",
+   "savingIndicator": "⏳ Kaydediliyor…",
+   "saveNow": "Şimdi kaydet",
+   "fieldsCount": "Toplam {{total}} alan, {{visible}} tanesi görünür.",
+   "checkError": "— lütfen kontrol edin",
+   "fields": {
+    "firstName": {
+     "label": "Ad"
+    },
+    "lastName": {
+     "label": "Soyad"
+    },
+    "dateOfBirth": {
+     "label": "Doğum tarihi"
+    },
+    "street": {
+     "label": "Sokak & bina numarası"
+    },
+    "postcode": {
+     "label": "Posta kodu",
+     "placeholder": "ör. 10115"
+    },
+    "city": {
+     "label": "Şehir"
+    },
+    "phone": {
+     "label": "Telefon",
+     "placeholder": "ör. 030 12345678"
+    },
+    "email": {
+     "label": "E-posta",
+     "placeholder": "ör. max@ornek.com"
+    },
+    "nationality": {
+     "label": "Uyruk"
+    },
+    "taxId": {
+     "label": "Vergi kimlik no",
+     "placeholder": "ör. 12 34 56789 01",
+     "hint": "11 hane — ücret vergi belgenizde yer alır"
+    },
+    "iban": {
+     "label": "IBAN",
+     "placeholder": "ör. DE89 3704 0044 0532 0130 00",
+     "hint": "DE + 2 kontrol hanesi ile başlar"
+    },
+    "healthInsurance": {
+     "label": "Sağlık sigortası"
+    },
+    "employerName": {
+     "label": "İşverenin adı"
+    },
+    "employerAddress": {
+     "label": "İşverenin adresi"
+    },
+    "employmentStart": {
+     "label": "İşe başlama tarihi"
+    },
+    "employmentEnd": {
+     "label": "İş ilişkisinin sonu"
+    },
+    "contractType": {
+     "label": "Sözleşme türü"
+    },
+    "hoursPerWeek": {
+     "label": "Haftada saat"
+    },
+    "grossSalary": {
+     "label": "Brüt gelir (son ay)"
+    },
+    "taxClass": {
+     "label": "Vergi sınıfı"
+    },
+    "churchTax": {
+     "label": "Kilise vergisi"
+    },
+    "childrenAllowance": {
+     "label": "Çocuk indirimi"
+    },
+    "unemployedSince": {
+     "label": "İşsizlik başlangıcı (gelecek tarih de mümkün)"
+    },
+    "agencyLocation": {
+     "label": "Kurum lokasyonu"
+    },
+    "agencyReference": {
+     "label": "Dosya numarası (biliniyorsa)"
+    },
+    "fitForWork": {
+     "label": "Sağlık açısından çalışabilir"
+    },
+    "availableFor15h": {
+     "label": "Haftada en az 15 saat müsait"
+    },
+    "activelySeeking": {
+     "label": "Aktif olarak iş arıyor"
+    },
+    "restrictions": {
+     "label": "İş aramada kısıtlamalar"
+    },
+    "childrenCount": {
+     "label": "18 yaş altı çocuk sayısı"
+    },
+    "childrenAges": {
+     "label": "Çocukların yaşları (virgülle ayrılmış)",
+     "placeholder": "ör. 3, 7",
+     "hint": "2 çocuk için ör. „3, 7“"
+    },
+    "hasPartner": {
+     "label": "Hanedde partner"
+    },
+    "partnerUnemployed": {
+     "label": "Partner de işsiz"
+    },
+    "incomeSources": {
+     "label": "Mevcut gelir kaynakları"
+    },
+    "assetsOver15k": {
+     "label": "15.000 € üzeri varlık"
+    }
+   },
+   "options": {
+    "nationality": {
+     "DE": "Alman",
+     "EU": "AB vatandaşı",
+     "OTHER": "Diğer"
+    },
+    "contractType": {
+     "UNLIMITED": "Süresiz",
+     "LIMITED": "Süreli"
+    },
+    "taxClass": {
+     "I": "I",
+     "II": "II",
+     "III": "III",
+     "IV": "IV",
+     "V": "V",
+     "VI": "VI"
+    },
+    "restrictions": {
+     "NONE": "Yok",
+     "PHYSICAL": "Fiziksel kısıtlamalar",
+     "MENTAL": "Psikolojik kısıtlamalar",
+     "CARE": "Yakınlarına bakım"
+    },
+    "incomeSources": {
+     "NONE": "Yok",
+     "EMPLOYMENT": "İstihdam",
+     "ALG1": "ALG1",
+     "SICK_PAY": "Hastalık maaşı",
+     "CHILD_BENEFIT": "Çocuk parası",
+     "MAINTENANCE": "Nafaka",
+     "PARENTAL_ALLOWANCE": "Ebeveyn maaşı",
+     "PENSION": "Emekli maaşı",
+     "SELF_EMPLOYED": "Serbest meslek"
+    }
+   }
+  },
+  "summary": {
+   "title": "ALG1 başvurunuz",
+   "titleReadOnly": "ALG1 başvurunuz — güncel durum",
+   "titleEdit": "ALG1 başvurunuzun özeti",
+   "status": {
+    "SUBMITTED": {
+     "label": "Gönderildi",
+     "hint": "Başvurunuz Jobcenter'a ulaştı. Burada sizi bilgilendiriyor tutacağız."
+    },
+    "PROCESSING": {
+     "label": "İnceleniyor",
+     "hint": "İş Kurumu başvurunuzu inceliyor. Dosya numarası onayınızı hazır bulundurun."
+    },
+    "APPROVED": {
+     "label": "Onaylandı 🎉",
+     "hint": "İşsizlik maaşınız onaylandı — ödeme her ay peşin yapılır."
+    },
+    "REJECTED": {
+     "label": "Reddedildi",
+     "hint": "Başvurunuz reddedildi. Kararı kontrol edin — buna itiraz edebilirsiniz."
+    }
+   },
+   "missingHeading": "Henüz {{count}} bilgi eksik ({{issues}} doğrulama hatası):",
+   "addInfoBtn": "Bilgileri tamamla ({{sections}})",
+   "errRequired": "Lütfen doldurun — bu bilgi hâlâ eksik.",
+   "errTaxId": "Lütfen vergi kimlik numaranızı tam olarak 11 hane ile girin (ör. 12 34 56789 01).",
+   "errIban": "Lütfen geçerli bir IBAN girin (ör. DE89 3704 0044 0532 0130 00).",
+   "errPostcode": "Lütfen 5 haneli bir posta kodu girin (ör. 10115).",
+   "errEmail": "Lütfen geçerli bir e-posta adresi girin.",
+   "errDate": "Lütfen bir tarih seçin.",
+   "errIncomeSources": "Lütfen en az bir gelir kaynağı seçin (veya „Yok“).",
+   "errChildrenAges": "Lütfen çocukların yaşlarını virgülle ayırarak girin (ör. 3, 7).",
+   "errDefault": "Lütfen bu bilgiyi kontrol edin ve tamamlayın.",
+   "submitFailed": "Gönderim başarısız oldu",
+   "confirmedTitle": "Başvuru gönderildi (simülasyon)",
+   "confirmedPre": "Başvuru",
+   "confirmedPost": "olarak işaretlendi. İş Kurumu'na aktarım sonraki bir aşamada gerçekleşecek.",
+   "estimateLabel": "Tahmini aylık ALG1 tutarı",
+   "estimateLine": "Temel: {{basis}} € | oran: {{rate}} | gün: {{daily}} €",
+   "lblName": "Ad:",
+   "lblBirthDate": "Doğum tarihi:",
+   "lblAddress": "Adres:",
+   "lblEmail": "E-posta:",
+   "lblEmployer": "İşveren:",
+   "lblUnemployedSince": "İşsizlik başlangıcı:",
+   "lblGross": "Brüt:",
+   "lblTaxClass": "Vergi sınıfı:",
+   "lblChildren": "Çocuklar:",
+   "lblIban": "IBAN:",
+   "notesTitle": "Önemli notlar:",
+   "note1": "Sözleşmeniz bitmeden en geç 3 ay önce işsiz olarak kaydolun",
+   "note2": "Dosya numarası onayınızı saklayın",
+   "note3": "ALG1 her ay peşin ödenir",
+   "statusLabel": "Durum:",
+   "submitting": "Gönderiliyor…",
+   "submitBtn": "Başvuruyu gönder (simülasyon)"
+  },
+  "upload": {
+   "slots": {
+    "TERMINATION": {
+     "label": "İhbarname",
+     "description": "İş ilişkisinin sona ermesi"
+    },
+    "PAYSLIP": {
+     "label": "Son maaş bordrosu",
+     "description": "Brüt maaş kanıtı"
+    },
+    "ID_CARD": {
+     "label": "Kimlik kartı",
+     "description": "Ön ve arka yüz"
+    },
+    "OTHER": {
+     "label": "Ek belgeler",
+     "description": "İsteğe bağlı"
+    }
+   },
+   "required": "Zorunlu",
+   "bypassLabel": "Belgeleri daha sonra göndereceğim",
+   "continueBtn": "Sorulara devam et",
+   "uploading": "Yükleniyor…",
+   "dropzoneHint": "Tıklayın veya dosyayı buraya sürükleyin (PDF, JPG, PNG — maks. 10 MB)"
+  }
+ }
+}

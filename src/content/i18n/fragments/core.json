@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "alg1": "ALG1",
+    "dokumente": "Dokumente",
+    "foerderungen": "Förderungen"
+  },
+  "sidebar": {
+    "logout": "Abmelden",
+    "backToSite": "Zur Website",
+    "guest": "Gast",
+    "navLabel": "Dashboard-Navigation"
+  },
+  "profile": {
+    "title": "Mein Profil",
+    "noProfile": "Kein Profil gefunden.",
+    "language": {
+      "title": "Sprache",
+      "description": "Wähle die Sprache für dein Dashboard — die Einstellung wird in deinem Profil gespeichert.",
+      "saving": "Speichern…",
+      "saved": "Sprache gespeichert.",
+      "error": "Sprache konnte nicht gespeichert werden."
+    },
+    "account": {
+      "title": "Account & Sicherheit",
+      "emailTitle": "E-Mail-Adresse",
+      "emailDesc": "Änderung per Bestätigungslink (Sync automatisch per Trigger).",
+      "changeEmail": "E-Mail ändern",
+      "passwordTitle": "Passwort",
+      "passwordDesc": "Mindestens 8 Zeichen.",
+      "changePassword": "Passwort ändern"
+    }
+  }
+}

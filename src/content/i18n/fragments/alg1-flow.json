@@ -1,0 +1,84 @@
+{
+  "alg1": {
+    "flow": {
+      "loading": "Wird geladen…",
+      "documentsTitle": "Deine Unterlagen",
+      "documentsText": "Lade die wichtigsten Dokumente hoch — wir lesen sie automatisch aus.",
+      "backToDocuments": "← Zurück zu den Unterlagen",
+      "continueToSummary": "Weiter zur Zusammenfassung →",
+      "backToForm": "← Zurück zum Formular",
+      "startApplication": "Offiziellen ALG1-Antrag starten & Unterlagen hochladen",
+      "errorNotFound": "Antrag nicht gefunden oder kein Zugriff.",
+      "errorNoAccess": "Kein Zugriff auf diesen Antrag."
+    },
+    "start": {
+      "loadingDraft": "Entwurf wird geladen…",
+      "draftLoaded": "Dein gespeicherter Entwurf wurde geladen.",
+      "errorCreatingCase": "Case konnte nicht erstellt werden. Bitte später erneut versuchen.",
+      "errorCreatingApplication": "Antrag konnte nicht erstellt werden: {{errorMessage}}",
+      "errorUpdatingDraft": "Entwurf konnte nicht gespeichert werden: {{errorMessage}}"
+    },
+    "check": {
+      "questionProgress": "Frage {{current}} von {{total}}",
+      "progressPercent": "{{progress}}%",
+      "back": "← Zurück",
+      "questions": {
+        "termination_type": "Was ist mit deinem Job passiert?",
+        "insurance_period_months": "Wie viele Monate warst du in den letzten 28 Monaten versicherungspflichtig?",
+        "registered_unemployed": "Hast du dich bereits arbeitslos gemeldet?",
+        "available_hours_per_week": "Wie viele Stunden pro Woche kannst du arbeiten?",
+        "actively_seeking": "Suchst du aktiv nach Arbeit?",
+        "has_children": "Hast du Kinder unter 18?",
+        "has_partner": "Lebst du mit einem Partner/einer Partnerin zusammen?",
+        "gross_salary": "Ungefähres monatliches Bruttoeinkommen der letzten 12 Monate in €"
+      },
+      "termination": {
+        "EMPLOYER_TERMINATED": "Arbeitgeber hat gekündigt",
+        "CONTRACT_END": "Vertrag ist ausgelaufen",
+        "SELF_QUIT": "Ich habe selbst gekündigt",
+        "MUTUAL_AGREEMENT": "Aufhebungsvertrag",
+        "EMPLOYER_INSOLVENT": "Arbeitgeber insolvent",
+        "HOURS_REDUCED": "Arbeitszeit wurde reduziert",
+        "OTHER": "Sonstiges"
+      }
+    },
+    "checkResult": {
+      "likelyTitle": "Du hast sehr wahrscheinlich Anspruch auf ALG 1",
+      "unclearTitle": "Einzelfallprüfung nötig — Antrag trotzdem empfohlen",
+      "unlikelyTitle": "Kein regulärer ALG1-Anspruch nach aktueller Einschätzung",
+      "estimatedMonthly": "Geschätzte monatliche Höhe",
+      "basis": "Basis: {{amount}} € brutto",
+      "rateWithChild": "67 % (mit Kind)",
+      "rateWithoutChild": "60 %",
+      "perMonth": "~ {{amount}} € / Monat",
+      "perDay": "{{amount}} €/Tag",
+      "yourAnswers": "Deine Antworten",
+      "change": "Ändern",
+      "nextSteps": "Nächste Schritte",
+      "basisLine": "Basis: {{basis}} € brutto · Leistungssatz: {{rate}} · {{daily}} €/Tag",
+      "editAnswerAria": "Antwort zu \"{{question}}\" ändern"
+    },
+    "meta": {
+      "title": "ALG1-Antrag | Antragsbruder",
+      "description": "Unterlagen hochladen, Fragen beantworten und deinen ALG1-Antrag einreichen."
+    },
+    "erfolg": {
+      "metaTitle": "ALG1 — Antrag eingereicht | Antragsbruder",
+      "metaDescription": "Dein ALG1-Antrag wurde vorbereitet und als bereit markiert.",
+      "pageTitle": "Antrag erfolgreich eingereicht",
+      "headline": "Geschafft!",
+      "bodyPre": "Dein ALG1-Antrag ist vollständig vorbereitet und als",
+      "bodyPost": "markiert. Die Übertragung an die Agentur für Arbeit und die Statusverfolgung folgen in einer späteren Phase.",
+      "hint1": "Melde dich spätestens 3 Monate vor Vertragsende arbeitslos.",
+      "hint2": "Behalte die Bestätigung mit deinem Aktenzeichen.",
+      "hint3": "ALG1 wird monatlich im Voraus gezahlt.",
+      "backLink": "Zurück zur Übersicht"
+    },
+    "index": {
+      "metaTitle": "ALG1 — Schnell-Check | Antragsbruder",
+      "metaDescription": "Prüfe in 7 Fragen, ob du ALG1-Anspruch hast, und starte deinen Antrag.",
+      "title": "ALG1 beantragen",
+      "subtitle": "Beantworte 7 kurze Fragen — wir prüfen deine Chancen und starten deinen Antrag."
+    }
+  }
+}

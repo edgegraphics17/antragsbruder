@@ -1,0 +1,257 @@
+{
+ "alg1": {
+  "form": {
+   "sections": {
+    "Personendaten": "Personal data",
+    "Letzter Arbeitgeber": "Last employer",
+    "Agentur für Arbeit": "Employment Agency",
+    "Verfügbarkeit": "Availability",
+    "Haushalt": "Household",
+    "Finanzen": "Finances"
+   },
+   "pleaseSelect": "Please select…",
+   "childrenAgesHint": "Separate the children's ages with commas, e.g. „3, 7“",
+   "progressLabel": "Progress",
+   "autosaveNote": "Your entries are saved automatically.",
+   "savedIndicator": "🟢 Saved · {{time}}",
+   "savingIndicator": "⏳ Saving…",
+   "saveNow": "Save now",
+   "fieldsCount": "{{total}} fields in total, {{visible}} visible.",
+   "checkError": "— please check",
+   "fields": {
+    "firstName": {
+     "label": "First name"
+    },
+    "lastName": {
+     "label": "Last name"
+    },
+    "dateOfBirth": {
+     "label": "Date of birth"
+    },
+    "street": {
+     "label": "Street & house number"
+    },
+    "postcode": {
+     "label": "Postcode",
+     "placeholder": "e.g. 10115"
+    },
+    "city": {
+     "label": "City"
+    },
+    "phone": {
+     "label": "Phone",
+     "placeholder": "e.g. 030 12345678"
+    },
+    "email": {
+     "label": "Email",
+     "placeholder": "e.g. max@example.com"
+    },
+    "nationality": {
+     "label": "Nationality"
+    },
+    "taxId": {
+     "label": "Tax ID",
+     "placeholder": "e.g. 12 34 56789 01",
+     "hint": "11 digits — they are on your wage tax statement"
+    },
+    "iban": {
+     "label": "IBAN",
+     "placeholder": "e.g. DE89 3704 0044 0532 0130 00",
+     "hint": "Starts with DE + 2 check digits"
+    },
+    "healthInsurance": {
+     "label": "Health insurance"
+    },
+    "employerName": {
+     "label": "Name of employer"
+    },
+    "employerAddress": {
+     "label": "Employer's address"
+    },
+    "employmentStart": {
+     "label": "Start of employment"
+    },
+    "employmentEnd": {
+     "label": "End of employment"
+    },
+    "contractType": {
+     "label": "Contract type"
+    },
+    "hoursPerWeek": {
+     "label": "Hours per week"
+    },
+    "grossSalary": {
+     "label": "Gross income (last month)"
+    },
+    "taxClass": {
+     "label": "Tax class"
+    },
+    "churchTax": {
+     "label": "Church tax"
+    },
+    "childrenAllowance": {
+     "label": "Child allowances"
+    },
+    "unemployedSince": {
+     "label": "Unemployed since/from (future dates also possible)"
+    },
+    "agencyLocation": {
+     "label": "Agency location"
+    },
+    "agencyReference": {
+     "label": "Reference number (if known)"
+    },
+    "fitForWork": {
+     "label": "Fit for work (health)"
+    },
+    "availableFor15h": {
+     "label": "Available at least 15h/week"
+    },
+    "activelySeeking": {
+     "label": "Actively seeking work"
+    },
+    "restrictions": {
+     "label": "Restrictions in the job search"
+    },
+    "childrenCount": {
+     "label": "Number of children under 18"
+    },
+    "childrenAges": {
+     "label": "Ages of the children (comma-separated)",
+     "placeholder": "e.g. 3, 7",
+     "hint": "With 2 children, e.g. „3, 7“"
+    },
+    "hasPartner": {
+     "label": "Partner in household"
+    },
+    "partnerUnemployed": {
+     "label": "Partner also unemployed"
+    },
+    "incomeSources": {
+     "label": "Current sources of income"
+    },
+    "assetsOver15k": {
+     "label": "Assets over 15,000 €"
+    }
+   },
+   "options": {
+    "nationality": {
+     "DE": "German",
+     "EU": "EU citizen",
+     "OTHER": "Other"
+    },
+    "contractType": {
+     "UNLIMITED": "Permanent",
+     "LIMITED": "Fixed-term"
+    },
+    "taxClass": {
+     "I": "I",
+     "II": "II",
+     "III": "III",
+     "IV": "IV",
+     "V": "V",
+     "VI": "VI"
+    },
+    "restrictions": {
+     "NONE": "None",
+     "PHYSICAL": "Physical restrictions",
+     "MENTAL": "Mental restrictions",
+     "CARE": "Caring for relatives"
+    },
+    "incomeSources": {
+     "NONE": "None",
+     "EMPLOYMENT": "Employment",
+     "ALG1": "ALG1",
+     "SICK_PAY": "Sickness benefit",
+     "CHILD_BENEFIT": "Child benefit",
+     "MAINTENANCE": "Maintenance",
+     "PARENTAL_ALLOWANCE": "Parental allowance",
+     "PENSION": "Pension",
+     "SELF_EMPLOYED": "Self-employed"
+    }
+   }
+  },
+  "summary": {
+   "title": "Your ALG1 application",
+   "titleReadOnly": "Your ALG1 application — current status",
+   "titleEdit": "Summary of your ALG1 application",
+   "status": {
+    "SUBMITTED": {
+     "label": "Submitted",
+     "hint": "Your application has been received by the Jobcenter. We will keep you updated here."
+    },
+    "PROCESSING": {
+     "label": "Under review",
+     "hint": "The Employment Agency is reviewing your application. Keep your reference number confirmation ready."
+    },
+    "APPROVED": {
+     "label": "Approved 🎉",
+     "hint": "Your unemployment benefit has been approved — payment is made monthly in advance."
+    },
+    "REJECTED": {
+     "label": "Rejected",
+     "hint": "Your application was rejected. Check the decision — you can lodge an objection against it."
+    }
+   },
+   "missingHeading": "There are still {{count}} details missing ({{issues}} validation errors):",
+   "addInfoBtn": "Add details ({{sections}})",
+   "errRequired": "Please fill in — this detail is still missing.",
+   "errTaxId": "Please enter your tax ID with exactly 11 digits (e.g. 12 34 56789 01).",
+   "errIban": "Please enter a valid IBAN (e.g. DE89 3704 0044 0532 0130 00).",
+   "errPostcode": "Please enter a postcode with 5 digits (e.g. 10115).",
+   "errEmail": "Please enter a valid email address.",
+   "errDate": "Please select a date.",
+   "errIncomeSources": "Please select at least one source of income (or „None“).",
+   "errChildrenAges": "Please enter the children's ages, separated by commas (e.g. 3, 7).",
+   "errDefault": "Please check and complete this detail.",
+   "submitFailed": "Submission failed",
+   "confirmedTitle": "Application submitted (simulation)",
+   "confirmedPre": "The application is marked as",
+   "confirmedPost": ". The transfer to the Employment Agency will take place in a later phase.",
+   "estimateLabel": "Estimated monthly ALG1 amount",
+   "estimateLine": "Basis: {{basis}} € | rate: {{rate}} | day: {{daily}} €",
+   "lblName": "Name:",
+   "lblBirthDate": "Date of birth:",
+   "lblAddress": "Address:",
+   "lblEmail": "Email:",
+   "lblEmployer": "Employer:",
+   "lblUnemployedSince": "Unemployed since:",
+   "lblGross": "Gross:",
+   "lblTaxClass": "Tax class:",
+   "lblChildren": "Children:",
+   "lblIban": "IBAN:",
+   "notesTitle": "Important notes:",
+   "note1": "Register as unemployed at least 3 months before your contract ends",
+   "note2": "Keep your reference number confirmation",
+   "note3": "ALG1 is paid monthly in advance",
+   "statusLabel": "Status:",
+   "submitting": "Submitting…",
+   "submitBtn": "Submit application (simulation)"
+  },
+  "upload": {
+   "slots": {
+    "TERMINATION": {
+     "label": "Termination letter",
+     "description": "End of employment"
+    },
+    "PAYSLIP": {
+     "label": "Last payslip",
+     "description": "Gross salary proof"
+    },
+    "ID_CARD": {
+     "label": "ID card",
+     "description": "Front and back"
+    },
+    "OTHER": {
+     "label": "Additional documents",
+     "description": "Optional"
+    }
+   },
+   "required": "Required",
+   "bypassLabel": "I will submit documents later",
+   "continueBtn": "Continue to the questions",
+   "uploading": "Uploading…",
+   "dropzoneHint": "Click or drag a file here (PDF, JPG, PNG — max. 10 MB)"
+  }
+ }
+}

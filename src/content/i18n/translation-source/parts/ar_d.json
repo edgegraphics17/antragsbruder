@@ -1,0 +1,84 @@
+{
+ "alg1": {
+  "meta": {
+   "title": "طلب ALG1 | Antragsbruder",
+   "description": "ارفع المستندات، أجب عن الأسئلة وأرسل طلب ALG1 الخاص بك."
+  },
+  "index": {
+   "metaTitle": "ALG1 — فحص سريع | Antragsbruder",
+   "metaDescription": "تحقق في 7 أسئلة مما إذا كنت تملك حق ALG1 وابدأ طلبك.",
+   "title": "التقديم على ALG1",
+   "subtitle": "أجب عن 7 أسئلة قصيرة — نقيم فرصك ونبدأ طلبك."
+  },
+  "flow": {
+   "loading": "جارٍ التحميل…",
+   "documentsTitle": "مستنداتك",
+   "documentsText": "ارفع أهم المستندات — نقرأها تلقائياً.",
+   "backToDocuments": "← رجوع إلى المستندات",
+   "continueToSummary": "متابعة إلى الملخص →",
+   "backToForm": "← رجوع إلى النموذج",
+   "startApplication": "بدء طلب ALG1 رسمي ورفع المستندات",
+   "errorNotFound": "الطلب غير موجود أو لا توجد صلاحية وصول.",
+   "errorNoAccess": "لا توجد صلاحية وصول إلى هذا الطلب."
+  },
+  "start": {
+   "loadingDraft": "جارٍ تحميل المسودة…",
+   "draftLoaded": "تم تحميل مسودتك المحفوظة.",
+   "errorCreatingCase": "تعذر إنشاء الملف. حاول لاحقاً.",
+   "errorCreatingApplication": "تعذر إنشاء الطلب: {{errorMessage}}",
+   "errorUpdatingDraft": "تعذر حفظ المسودة: {{errorMessage}}"
+  },
+  "check": {
+   "questionProgress": "السؤال {{current}} من {{total}}",
+   "progressPercent": "{{progress}}%",
+   "back": "← رجوع",
+   "questions": {
+    "termination_type": "ماذا حدث لعملك؟",
+    "insurance_period_months": "كم شهراً كنت مؤمَّناً إلزامياً خلال آخر 28 شهراً؟",
+    "registered_unemployed": "هل سجّلت نفسك بالفعل كعاطل عن العمل؟",
+    "available_hours_per_week": "كم ساعة أسبوعياً يمكنك العمل؟",
+    "actively_seeking": "هل تبحث بنشاط عن عمل؟",
+    "has_children": "هل لديك أطفال تحت 18؟",
+    "has_partner": "هل تعيش مع شريك/شريكة؟",
+    "gross_salary": "الدخل الإجمالي الشهري التقريبي لآخر 12 شهراً باليورو"
+   },
+   "termination": {
+    "EMPLOYER_TERMINATED": "فصل صاحب العمل",
+    "CONTRACT_END": "انتهى العقد",
+    "SELF_QUIT": "استقلت بنفسي",
+    "MUTUAL_AGREEMENT": "عقد فصل بالتراضي",
+    "EMPLOYER_INSOLVENT": "إفلاس صاحب العمل",
+    "HOURS_REDUCED": "تم تخفيض ساعات العمل",
+    "OTHER": "أخرى"
+   }
+  },
+  "checkResult": {
+   "likelyTitle": "من المرجح جداً أن لديك حقاً في ALG 1",
+   "unclearTitle": "يلزم فحص فردي — لا يزال التقديم موصى به",
+   "unlikelyTitle": "لا يوجد حق منتظم في ALG1 وفق التقييم الحالي",
+   "estimatedMonthly": "المبلغ الشهري التقديري",
+   "basis": "الأساس: {{amount}} € إجمالي",
+   "rateWithChild": "67% (مع طفل)",
+   "rateWithoutChild": "60%",
+   "perMonth": "~ {{amount}} € / شهر",
+   "perDay": "{{amount}} €/يوم",
+   "basisLine": "الأساس: {{basis}} € إجمالي · النسبة: {{rate}} · {{daily}} €/يوم",
+   "editAnswerAria": "تغيير الإجابة على „{{question}}“",
+   "yourAnswers": "إجاباتك",
+   "change": "تغيير",
+   "nextSteps": "الخطوات التالية"
+  },
+  "erfolg": {
+   "metaTitle": "ALG1 — تم إرسال الطلب | Antragsbruder",
+   "metaDescription": "تم إعداد طلب ALG1 الخاص بك ووضع علامة جاهز عليه.",
+   "pageTitle": "تم إرسال الطلب بنجاح",
+   "headline": "أنجزته!",
+   "bodyPre": "طلب ALG1 الخاص بك مُعد بالكامل ومعلَّم كـ",
+   "bodyPost": ". سيحدث النقل إلى وكالة العمل وتتبع الحالة في مرحلة لاحقة.",
+   "hint1": "سجّل نفسك كعاطل عن العمل قبل 3 أشهر على الأقل من انتهاء عقدك.",
+   "hint2": "احتفظ بتأكيد رقم الملف الخاص بك.",
+   "hint3": "يُدفع ALG1 شهرياً مقدماً.",
+   "backLink": "العودة إلى النظرة العامة"
+  }
+ }
+}

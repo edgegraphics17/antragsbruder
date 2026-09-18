@@ -1,0 +1,150 @@
+{
+ "common": {
+  "save": "Kaydet",
+  "saving": "Kaydediliyor…",
+  "saved": "Değişiklikler kaydedildi.",
+  "errorSaving": "Kaydetme başarısız oldu. Lütfen tekrar deneyin.",
+  "cancel": "İptal",
+  "close": "Kapat",
+  "delete": "Sil",
+  "deleting": "Siliniyor…",
+  "edit": "Düzenle",
+  "back": "Geri",
+  "next": "Devam",
+  "previous": "Geri",
+  "loading": "Yükleniyor…",
+  "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
+  "retry": "Tekrar dene",
+  "optional": "isteğe bağlı",
+  "required": "zorunlu",
+  "upload": "Yükle",
+  "uploading": "Yükleniyor…",
+  "download": "İndir",
+  "search": "Ara",
+  "yes": "Evet",
+  "no": "Hayır",
+  "refresh": "Yenile",
+  "confirm": "Onayla",
+  "skip": "Atla",
+  "notAvailable": "Mevcut değil",
+  "open": "Aç",
+  "new": "Yeni"
+ },
+ "nav": {
+  "dashboard": "Panel",
+  "alg1": "ALG1",
+  "dokumente": "Belgeler",
+  "foerderungen": "Destekler"
+ },
+ "sidebar": {
+  "logout": "Çıkış yap",
+  "backToSite": "Web sitesine dön",
+  "guest": "Misafir",
+  "navLabel": "Panel gezinmesi"
+ },
+ "home": {
+  "metaTitle": "Panel — Antragsbruder",
+  "metaDescription": "Devam eden başvurularınız ve size uygun destekler bir bakışta.",
+  "greetingMorning": "Günaydın",
+  "greetingDay": "İyi günler",
+  "greetingEvening": "İyi akşamlar",
+  "fallbackUser": "Kullanıcı",
+  "summaryOneApp": "{{apps}} aktif başvurunuz ve {{benefits}} size uygun destek var.",
+  "summaryManyApps": "{{apps}} aktif başvurunuz ve {{benefits}} size uygun destek var.",
+  "startFirst": "İlk başvurunuzu başlatın.",
+  "runningTitle": "Devam eden başvurular",
+  "noRunning": "Henüz aktif başvuru yok",
+  "startNow": "Hemen başla",
+  "status": {
+   "DRAFT": "Devam ediyor",
+   "IN_PROGRESS": "Devam ediyor",
+   "DOCS_PENDING": "Belgeler eksik",
+   "READY": "Gönderime hazır",
+   "SUBMITTED": "Gönderildi ✓",
+   "PROCESSING": "İnceleniyor",
+   "APPROVED": "Onaylandı 🎉",
+   "REJECTED": "Reddedildi"
+  },
+  "alg1Title": "İşsizlik maaşı (ALG1)",
+  "applicationFallback": "Başvuru",
+  "upTo": "Ayda {{amount}} €'ya kadar",
+  "createdAt": "Oluşturulma: {{date}}",
+  "viewStatus": "Durumu gör",
+  "continueWorking": "Devam et",
+  "possibleTitle": "Olası destekler",
+  "fillProfile": "Size uygun destekleri görmek için profilinizi doldurun.",
+  "confidenceHigh": "Çok muhtemel",
+  "confidencePossible": "Mümkün",
+  "allBenefits": "Tüm destekleri gör →",
+  "docsTresor": "Belgeler & kasa",
+  "docsEmpty": "Başvurunuzu tamamlamak için belgelerinizi yükleyin.",
+  "docsCountOne": "Kasada {{count}} belge var.",
+  "docsCountMany": "Kasada {{count}} belge var.",
+  "goToTresor": "Kasaya git",
+  "stepsProgress": "{{done}}/4 adım",
+  "timeline": {
+   "docs": {
+    "label": "Belge ekle",
+    "description": "İhbarnamesi, maaş bordroları ve diğer belgeleri yükleyin."
+   },
+   "data": {
+    "label": "Verileri doldur",
+    "description": "Soruları yanıtlayın ve kişisel bilgilerinizi girin."
+   },
+   "submit": {
+    "label": "Başvuruyu gönder",
+    "description": "Özeti kontrol edin ve kuruma gönderin."
+   },
+   "receive": {
+    "label": "İşsizlik maaşını al",
+    "description": "Kararı bekleyin ve ilk ödemenizi alın."
+   }
+  }
+ },
+ "foerderungen": {
+  "metaTitle": "Destekler — Antragsbruder",
+  "metaDescription": "Bilgilerinize dayalı kural tabanlı destek kontrolü.",
+  "title": "Destek Radarı",
+  "subtitle": "{{total}} desteğin {{matched}} tanesi durumunuza uyuyor — profil ve kasaya dayalı.",
+  "tabQualified": "🎯 Benim için uygun",
+  "tabPotential": "⚡ Potansiyeli kontrol et",
+  "tabExcluded": "🚫 Hariç",
+  "amountRange": "yaklaşık {{min}}–{{max}} € / ay",
+  "amountFrom": "ayda yaklaşık {{min}} €'dan",
+  "amountUpTo": "ayda yaklaşık {{max}} €'ya kadar",
+  "calcNow": "Şimdi hesapla",
+  "viewAtOffice": "Kurumda görüntüle",
+  "calcAvailable": "Hesaplayıcı mevcut",
+  "authority": "Sorumlu kurum: {{authority}}",
+  "docsInVault": "Kasada {{total}} gerekli belgeden {{present}} tanesi mevcut",
+  "unlockTitle": "Hakki aç",
+  "noExcluded": "Şu anda açıkça hariç tutulan bir destek yok.",
+  "excludedInfo": "{{count}} destek profilinize göre açıkça uymuyor (ör. sadece öğrenciler veya emekliler için). Bunları gizliyoruz.",
+  "noQualified": "Henüz net bir uygunluk yok — yukarıdaki açıklayıcı soruları yanıtlayın veya destek profilinizi doldurun.",
+  "noPotential": "Açık potansiyel yok — daha fazlasını açmak için açıklayıcı soruları yanıtlayın."
+ },
+ "antraege": {
+  "statusLabel": "Durum",
+  "status": {
+   "ACTIVE": "Aktif",
+   "PAUSED": "Duraklatıldı",
+   "COMPLETED": "Tamamlandı"
+  },
+  "deleteConfirm": "„{{filename}}“ gerçekten silinsin mi?",
+  "deleteFailed": "Silme başarısız oldu",
+  "uploadedAt": "Yüklenme: {{date}}",
+  "notFound": "Başvuru bulunamadı",
+  "loadFailed": "Yükleme hatası",
+  "statusChangeFailed": "Durum değiştirilemedi",
+  "goBack": "Genel bakışa dön",
+  "uploadDocument": "Belge yükle",
+  "loadingCase": "Başvuru yükleniyor…",
+  "completedApplication": "Tamamlanmış başvuru",
+  "activeApplication": "Aktif başvuru",
+  "createdAt": "Oluşturulma: {{date}}",
+  "documentsTitle": "Belgeler",
+  "noDocuments": "Henüz belge yok",
+  "noDocumentsHint": "Başvurunuzu ilerletmek için belgelerinizi yükleyin.",
+  "uploadDocuments": "Belge yükle"
+ }
+}
