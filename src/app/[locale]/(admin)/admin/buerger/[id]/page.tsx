@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { createAuthServerClient } from '@/lib/auth-server';
 import { StatusBadge } from '@/components/admin/ui';
-import { DocumentPreviewButton } from '@/components/admin/AdminClient';
+import { DocumentPreviewButton, NoteForm } from '@/components/admin/AdminClient';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,7 +19,7 @@ export default async function AdminBuergerDetailPage({
   const { locale, id } = await params;
   const supabase = createAuthServerClient();
 
-  const [{ data: profile }, { data: apps }, { data: docs }] = await Promise.all([
+  const [{ data: profile }, { data: apps }, { data: docs }, { data: notes }] = await Promise.all([
     supabase.from('profiles').select('*').eq('id', id).maybeSingle(),
     supabase
       .from('applications')
@@ -30,6 +30,12 @@ export default async function AdminBuergerDetailPage({
       .from('documents_meta')
       .select('id, filename, title, document_role, status, file_size, mime_type, created_at')
       .eq('user_id', id)
+      .order('created_at', { ascending: false }),
+    supabase
+      .from('admin_notes')
+      .select('id, admin_id, body, created_at')
+      .eq('target_type', 'citizen')
+      .eq('target_id', id)
       .order('created_at', { ascending: false }),
   ]);
   if (!profile) notFound();
@@ -131,6 +137,21 @@ export default async function AdminBuergerDetailPage({
           <p className="mt-3 text-[11px] text-ink-soft">
             Jeder Dokumentzugriff wird protokolliert (Audit-Log). Signed URLs sind 60 Sekunden gültig.
           </p>
+        </section>
+
+        {/* Interne Notizen */}
+        <section className="rounded-2xl border border-line-soft bg-paper p-5 lg:col-span-2">
+          <h2 className="text-sm font-semibold text-ink">Interne Notizen ({(notes ?? []).length})</h2>
+          <NoteForm targetType="citizen" targetId={id} />
+          <ul className="mt-3 space-y-2">
+            {(notes ?? []).map((n) => (
+              <li key={n.id} className="rounded-xl bg-cream p-3">
+                <p className="whitespace-pre-wrap text-sm text-ink">{n.body}</p>
+                <p className="mt-1 text-[11px] text-ink-soft">{fmtDate(n.created_at)}</p>
+              </li>
+            ))}
+            {(notes ?? []).length === 0 && <li className="text-xs text-ink-soft">Noch keine Notizen.</li>}
+          </ul>
         </section>
       </div>
     </div>

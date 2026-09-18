@@ -8,6 +8,7 @@ const NAV = [
   { href: '/admin', label: 'Übersicht' },
   { href: '/admin/buerger', label: 'Bürger' },
   { href: '/admin/antraege', label: 'Anträge' },
+  { href: '/admin/audit', label: 'Audit-Log' },
 ] as const;
 
 export function AdminSidebar({ locale }: { locale: string }) {

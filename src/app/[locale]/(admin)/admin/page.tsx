@@ -4,7 +4,7 @@
 // ============================================================
 import Link from 'next/link';
 import { createAuthServerClient } from '@/lib/auth-server';
-import { AutoRefresh } from '@/components/admin/AdminClient';
+import { AutoRefresh, TaskQuickForm, TaskToggle } from '@/components/admin/AdminClient';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,7 +19,7 @@ export default async function AdminOverviewPage({
   const adminHref = (path: string) => `/${locale}${path}`;
   const supabase = createAuthServerClient();
 
-  const [{ count: userCount }, { data: apps }, { data: readyApps }] = await Promise.all([
+  const [{ count: userCount }, { data: apps }, { data: readyApps }, { data: openTasks }] = await Promise.all([
     supabase.from('profiles').select('id', { count: 'exact', head: true }),
     supabase.from('applications').select('id, user_id, status, benefit_type, updated_at'),
     supabase
@@ -27,6 +27,13 @@ export default async function AdminOverviewPage({
       .select('id, user_id, status, benefit_type, updated_at')
       .eq('status', 'READY')
       .order('updated_at', { ascending: false })
+      .limit(20),
+    // Offene Aufgaben: überfällige & fällige zuerst, ohne Fälligkeit zuletzt
+    supabase
+      .from('admin_tasks')
+      .select('id, title, due_date, done, target_id')
+      .eq('done', false)
+      .order('due_date', { ascending: true, nullsFirst: false })
       .limit(20),
   ]);
 
@@ -51,6 +58,48 @@ export default async function AdminOverviewPage({
       <div className="mb-6 flex flex-wrap items-baseline justify-between gap-2">
         <h1 className="text-2xl font-bold text-ink">Admin-Übersicht</h1>
         <p className="text-xs text-ink-soft">Aktualisiert alle 30 Sekunden</p>
+      </div>
+
+      {/* Aufgaben & Fristen */}
+      <div className="mb-6 rounded-2xl border border-line-soft bg-paper p-5">
+        <div className="mb-3 flex items-center justify-between">
+          <h2 className="text-sm font-semibold text-ink">
+            Aufgaben &amp; Fristen ({(openTasks ?? []).length} offen)
+          </h2>
+          <Link href="/de/admin/audit" className="text-xs font-semibold text-brand-700 hover:underline">
+            Audit-Log →
+          </Link>
+        </div>
+        <TaskQuickForm />
+        <ul className="mt-3 space-y-1.5">
+          {(openTasks ?? []).map((t) => {
+            const overdue = t.due_date ? t.due_date < new Date().toISOString().slice(0, 10) : false;
+            return (
+              <li key={t.id} className="flex items-center gap-2.5 rounded-xl bg-cream px-3 py-2">
+                <TaskToggle taskId={t.id} done={false} />
+                <span className={`flex-1 text-sm ${overdue ? 'font-semibold text-red-700' : 'text-ink'}`}>
+                  {t.title}
+                </span>
+                {t.due_date && (
+                  <span className={`whitespace-nowrap text-xs ${overdue ? 'font-semibold text-red-600' : 'text-ink-soft'}`}>
+                    {overdue ? 'überfällig' : 'fällig'} {new Date(t.due_date).toLocaleDateString('de-DE')}
+                  </span>
+                )}
+                {t.target_id && (
+                  <Link
+                    href={`/de/admin/antraege/${t.target_id}`}
+                    className="shrink-0 text-xs font-semibold text-brand-700 hover:underline"
+                  >
+                    Antrag →
+                  </Link>
+                )}
+              </li>
+            );
+          })}
+          {(openTasks ?? []).length === 0 && (
+            <li className="text-xs text-ink-soft">Keine offenen Aufgaben.</li>
+          )}
+        </ul>
       </div>
 
       {/* KPIs */}

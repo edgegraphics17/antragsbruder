@@ -8,6 +8,7 @@
 //      Key verlässt den Server nie; der Admin-Check HIER ist die
 //      eigentliche Sicherheitsgrenze).
 // ============================================================
+import { revalidatePath } from 'next/cache';
 import { requireAdmin } from '@/lib/admin';
 import { createServiceClient } from '@/lib/supabase-service';
 
@@ -41,8 +42,11 @@ export async function generateAdminDocumentUrl(documentId: string): Promise<stri
   return data.signedUrl;
 }
 
-// Erlaubte Statusübergänge — bewusst restriktiv, kein freier Flow.
-const ALLOWED_TRANSITIONS: Record<string, string[]> = {
+// ------------------------------------------------------------
+// Status-Übergänge (Phase 2): Vorwärts freigegeben, RÜCKWÄRTS nur
+// mit Pflicht-Kommentar (Begründung geht ins Audit-Log).
+// ------------------------------------------------------------
+const FORWARD_TRANSITIONS: Record<string, string[]> = {
   DRAFT: [],
   IN_PROGRESS: ['READY'],
   DOCS_PENDING: ['READY'],
@@ -53,10 +57,21 @@ const ALLOWED_TRANSITIONS: Record<string, string[]> = {
   REJECTED: [],
 };
 
-export async function updateApplicationStatus(
+// Ein Schritt zurück ist erlaubt — aber NUR mit Begründung.
+const BACKWARD_TRANSITIONS: Record<string, string> = {
+  READY: 'DOCS_PENDING',
+  SUBMITTED: 'READY',
+  PROCESSING: 'SUBMITTED',
+  DOCS_PENDING: 'IN_PROGRESS',
+};
+
+export type TransitionResult = { ok: true } | { ok: false; error: string };
+
+export async function transitionApplication(
   applicationId: string,
   nextStatus: string,
-): Promise<{ ok: true } | { ok: false; error: string }> {
+  comment?: string,
+): Promise<TransitionResult> {
   const admin = await requireAdmin();
   const service = createServiceClient();
 
@@ -67,9 +82,16 @@ export async function updateApplicationStatus(
     .single();
   if (appError || !app) return { ok: false, error: 'Antrag nicht gefunden.' };
 
-  const allowed = ALLOWED_TRANSITIONS[app.status] ?? [];
-  if (!allowed.includes(nextStatus)) {
-    return { ok: false, error: `Übergang ${app.status} → ${nextStatus} ist nicht erlaubt.` };
+  const from = app.status as string;
+  const isForward = (FORWARD_TRANSITIONS[from] ?? []).includes(nextStatus);
+  const isBackward = BACKWARD_TRANSITIONS[from] === nextStatus;
+  const trimmedComment = comment?.trim() ?? '';
+
+  if (!isForward && !isBackward) {
+    return { ok: false, error: `Übergang ${from} → ${nextStatus} ist nicht erlaubt.` };
+  }
+  if (isBackward && trimmedComment.length < 3) {
+    return { ok: false, error: 'Ein Rückschritt braucht eine Begründung (mindestens 3 Zeichen).' };
   }
 
   const { error: updateError } = await service
@@ -83,8 +105,93 @@ export async function updateApplicationStatus(
     action: 'UPDATE_APPLICATION_STATUS',
     target_table: 'applications',
     target_id: applicationId,
-    metadata: { from: app.status, to: nextStatus },
+    metadata: {
+      from,
+      to: nextStatus,
+      direction: isBackward ? 'backward' : 'forward',
+      ...(trimmedComment ? { comment: trimmedComment } : {}),
+    },
   });
 
+  revalidatePath(`/de/admin/antraege/${applicationId}`);
+  revalidatePath('/de/admin/antraege');
+  revalidatePath('/de/admin');
+  return { ok: true };
+}
+
+// ------------------------------------------------------------
+// Interne Notizen (niemals für Bürger sichtbar)
+// ------------------------------------------------------------
+export async function addAdminNote(
+  targetType: 'application' | 'citizen',
+  targetId: string,
+  body: string,
+): Promise<TransitionResult> {
+  const admin = await requireAdmin();
+  const service = createServiceClient();
+
+  const trimmed = body.trim();
+  if (trimmed.length === 0) return { ok: false, error: 'Notiz ist leer.' };
+
+  const { error } = await service.from('admin_notes').insert({
+    target_type: targetType,
+    target_id: targetId,
+    admin_id: admin.id,
+    body: trimmed,
+  });
+  if (error) return { ok: false, error: error.message };
+
+  await service.from('admin_audit_log').insert({
+    admin_id: admin.id,
+    action: 'ADD_NOTE',
+    target_table: targetType === 'application' ? 'applications' : 'profiles',
+    target_id: targetId,
+  });
+
+  revalidatePath('/de/admin/antraege/' + targetId);
+  revalidatePath('/de/admin/buerger/' + targetId);
+  return { ok: true };
+}
+
+// ------------------------------------------------------------
+// Aufgaben & Fristen
+// ------------------------------------------------------------
+export async function createAdminTask(
+  title: string,
+  dueDate?: string,
+  applicationId?: string,
+): Promise<TransitionResult> {
+  const admin = await requireAdmin();
+  const service = createServiceClient();
+
+  const trimmed = title.trim();
+  if (trimmed.length === 0) return { ok: false, error: 'Aufgabe braucht einen Titel.' };
+
+  const { error } = await service.from('admin_tasks').insert({
+    title: trimmed,
+    due_date: dueDate?.trim() || null,
+    target_type: applicationId ? 'application' : null,
+    target_id: applicationId || null,
+    created_by: admin.id,
+  });
+  if (error) return { ok: false, error: error.message };
+
+  revalidatePath('/de/admin');
+  revalidatePath('/de/admin/antraege/' + applicationId);
+  return { ok: true };
+}
+
+export async function toggleAdminTask(taskId: string, done: boolean): Promise<TransitionResult> {
+  await requireAdmin();
+  const service = createServiceClient();
+
+  const { error } = await service
+    .from('admin_tasks')
+    .update({ done, done_at: done ? new Date().toISOString() : null })
+    .eq('id', taskId);
+  if (error) return { ok: false, error: error.message };
+
+  revalidatePath('/de/admin');
+  revalidatePath('/de/admin/antraege');
   return { ok: true };
 }

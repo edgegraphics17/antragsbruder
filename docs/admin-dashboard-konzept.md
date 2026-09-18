@@ -32,7 +32,22 @@
   Status-Filter + Suche), `/admin/antraege/[id]` (Formulardaten mit Copy-Helfern,
   Engine-Daten, Berechnung, JSON-Export, Dokument-Preview mit Audit, Status-Aktionen).
 - **Server Actions** (`src/app/actions/admin-actions.ts`): `generateAdminDocumentUrl`
-  (60 s + Audit), `updateApplicationStatus` (Whitelist-Übergänge + Audit).
+  (60 s + Audit), `transitionApplication` (Whitelist-Übergänge + Audit; Rückschritt nur
+  mit Pflicht-Begründung), `addAdminNote`, `createAdminTask`, `toggleAdminTask`.
+
+### Phase 2 — umgesetzt (18.09.2026, Migration `20260918_admin_operations.sql` live)
+
+- **Status-Flow mit Rückschritten**: ein Schritt zurück (z. B. READY → DOCS_PENDING)
+  erfordert eine Begründung (min. 3 Zeichen), die mit `direction: 'backward'` ins
+  Audit-Log geht. Vorwärts wie bisher; Whitelist serverseitig erzwungen.
+- **Interne Notizen** (`admin_notes`, RLS nur Admin): an Antrag und Bürger,
+  niemals für Bürger sichtbar; Anlegen ebenfalls auditiert (`ADD_NOTE`).
+- **Aufgaben & Fristen** (`admin_tasks`): Panel auf der Übersicht (überfällige rot),
+  Anlegen mit Fälligkeit, abhakbar; auf Antrag-Detail anlegbar und verknüpft
+  (`target_id` → „Antrag →"-Sprunglink).
+- **Audit-Ansicht `/admin/audit`**: alle Einträge mit Admin, Aktion, Details
+  (Statuswechsel inkl. Richtung + Begründung, Dateiname bei Dokument-Zugriffen),
+  paginiert 50/Seite.
 
 ## 1. Ziel & Leitbild
 

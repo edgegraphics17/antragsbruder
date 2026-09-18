@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { createAuthServerClient } from '@/lib/auth-server';
 import { StatusBadge, prettifyKey, prettifyValue } from '@/components/admin/ui';
-import { CopyField, DocumentPreviewButton, JsonExportButton, StatusActions } from '@/components/admin/AdminClient';
+import { CopyField, DocumentPreviewButton, JsonExportButton, NoteForm, StatusActions, TaskQuickForm } from '@/components/admin/AdminClient';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,13 +29,25 @@ export default async function AdminAntragDetailPage({
     .maybeSingle();
   if (!app) notFound();
 
-  const [{ data: profile }, { data: docs }] = await Promise.all([
+  const [{ data: profile }, { data: docs }, { data: notes }, { data: openTasks }] = await Promise.all([
     supabase.from('profiles').select('*').eq('id', app.user_id).maybeSingle(),
     supabase
       .from('documents_meta')
       .select('id, filename, title, document_role, status, file_size, mime_type, created_at')
       .eq('user_id', app.user_id)
       .order('created_at', { ascending: false }),
+    supabase
+      .from('admin_notes')
+      .select('id, admin_id, body, created_at')
+      .eq('target_type', 'application')
+      .eq('target_id', app.id)
+      .order('created_at', { ascending: false }),
+    supabase
+      .from('admin_tasks')
+      .select('id, title, due_date, done')
+      .eq('target_id', app.id)
+      .eq('done', false)
+      .order('due_date', { ascending: true }),
   ]);
 
   const name = [profile?.first_name, profile?.last_name].filter(Boolean).join(' ') || profile?.email || 'Unbekannt';
@@ -124,8 +136,35 @@ export default async function AdminAntragDetailPage({
           <h2 className="mb-3 text-sm font-semibold text-ink">Status-Aktionen</h2>
           <StatusActions applicationId={app.id} status={app.status} />
           <p className="mt-3 text-[11px] text-ink-soft">
-            Übergänge nur wie im Flow definiert (READY → SUBMITTED → PROCESSING). Jede Änderung landet im Audit-Log.
+            Vorwärts per Klick; ein Schritt zurück nur mit Begründung. Jede Änderung landet im Audit-Log.
           </p>
+        </section>
+
+        {/* Notizen + Aufgaben */}
+        <section className="rounded-2xl border border-line-soft bg-paper p-5">
+          <h2 className="text-sm font-semibold text-ink">Interne Notizen ({(notes ?? []).length})</h2>
+          <NoteForm targetType="application" targetId={app.id} />
+          <ul className="mt-3 space-y-2">
+            {(notes ?? []).map((n) => (
+              <li key={n.id} className="rounded-xl bg-cream p-3">
+                <p className="whitespace-pre-wrap text-sm text-ink">{n.body}</p>
+                <p className="mt-1 text-[11px] text-ink-soft">{fmtDate(n.created_at)}</p>
+              </li>
+            ))}
+            {(notes ?? []).length === 0 && <li className="text-xs text-ink-soft">Noch keine Notizen.</li>}
+          </ul>
+
+          <h2 className="mt-5 text-sm font-semibold text-ink">Offene Aufgaben zu diesem Antrag ({(openTasks ?? []).length})</h2>
+          <TaskQuickForm applicationId={app.id} />
+          <ul className="mt-2 space-y-1.5">
+            {(openTasks ?? []).map((t) => (
+              <li key={t.id} className="rounded-xl bg-cream px-3 py-2 text-sm text-ink">
+                {t.title}
+                {t.due_date && <span className="ml-2 text-xs text-ink-soft">fällig {fmtDate(t.due_date)}</span>}
+              </li>
+            ))}
+            {(openTasks ?? []).length === 0 && <li className="text-xs text-ink-soft">Keine offenen Aufgaben.</li>}
+          </ul>
         </section>
 
         {/* Dokumente */}
