@@ -11,27 +11,23 @@ import { IconMail } from '@/components/ui/icons';
 import type { Locale } from '@/i18n/config';
 import { localeHref } from '@/i18n/config';
 import { commonDict } from '@/content/i18n/common';
+import { getAuthPageDict } from '@/content/i18n/authPage';
 
 interface LoginFormProps {
   locale: Locale;
 }
 
-const LANGUAGES = [
-  { value: 'de', label: 'Deutsch' },
-  { value: 'en', label: 'English' },
-] as const;
-
 export function LoginForm({ locale }: LoginFormProps) {
   const router = useRouter();
   const { login, signup, loading, error, clearError } = useAuth();
   const t = commonDict[locale].auth;
+  const p = getAuthPageDict(locale);
 
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [selectedLocale, setSelectedLocale] = useState(locale);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -53,6 +49,21 @@ export function LoginForm({ locale }: LoginFormProps) {
       setSubmitting(false);
       if (ok) {
         setSuccess(true);
+        // Profilsprache: Beim ersten Login aus der Seiten-Sprache übernehmen.
+        // `.is(..., null)` stellt sicher, dass eine bewusst im Profil gewählte
+        // Sprache nicht überschrieben wird. Fehler werden bewusst ignoriert.
+        try {
+          const { data: { user: loggedIn } } = await supabase.auth.getUser();
+          if (loggedIn) {
+            void supabase
+              .from('profiles')
+              .update({ preferred_locale: locale })
+              .eq('id', loggedIn.id)
+              .is('preferred_locale', null);
+          }
+        } catch {
+          // Nicht kritisch — Login darf nicht daran scheitern.
+        }
         // ?next= hat Vorrang (gesetzt vom Proxy bei umgeleiteten Dashboard-Routen)
         const nextParam = new URLSearchParams(window.location.search).get('next');
         let dash =
@@ -73,7 +84,7 @@ export function LoginForm({ locale }: LoginFormProps) {
         router.push(dash);
       }
     } else {
-      const res = await signup(email, password, selectedLocale, name || undefined);
+      const res = await signup(email, password, locale, name || undefined);
       setSubmitting(false);
       if (res.success) {
         setSuccess(true);
@@ -109,7 +120,7 @@ export function LoginForm({ locale }: LoginFormProps) {
         <p className="text-center text-sm text-ink-soft">
           {t.haveAccount}{' '}
           <a
-            href={localeHref(locale, '/de/anmelden')}
+            href={localeHref(locale, '/anmelden')}
             className="font-semibold text-brand-700 underline underline-offset-2 hover:text-brand-800"
           >
             {t.login}
@@ -168,7 +179,7 @@ export function LoginForm({ locale }: LoginFormProps) {
               />
             </div>
             {email && !emailOk && (
-              <p className="text-xs text-red-600">Ungültiges E-Mail-Format</p>
+              <p className="text-xs text-red-600">{p.invalidEmailFormat}</p>
             )}
           </div>
 
@@ -184,7 +195,7 @@ export function LoginForm({ locale }: LoginFormProps) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
-              placeholder="Dein Passwort"
+              placeholder={p.passwordPlaceholder}
             />
             {password && !passOk && (
               <p className="text-xs text-red-600">{t.passwordTooShort}</p>
@@ -228,7 +239,7 @@ export function LoginForm({ locale }: LoginFormProps) {
             <p className="mt-1">
               {t.noAccount}{' '}
               <a
-                href={localeHref(locale, '/de/konto-erstellen')}
+                href={localeHref(locale, '/konto-erstellen')}
                 className="font-semibold text-brand-700 underline underline-offset-2 hover:text-brand-800"
               >
                 {t.createAccountButton}
@@ -314,35 +325,6 @@ export function LoginForm({ locale }: LoginFormProps) {
             {confirmPassword && !passMatch && (
               <p className="text-xs text-red-600">{t.passwordsDontMatch}</p>
             )}
-          </div>
-
-          {/* Locale-Auswahl: Deutsch / English als Toggle */}
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold text-ink">{t.localeLabel}</label>
-            <div className="flex rounded-xl border border-line-soft bg-white p-1">
-              <button
-                type="button"
-                onClick={() => setSelectedLocale('de')}
-                className={`flex-1 rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
-                  selectedLocale === 'de'
-                    ? 'bg-brand-600 text-white shadow-sm'
-                    : 'text-ink-soft hover:text-ink hover:bg-brand-50'
-                }`}
-              >
-                {t.localeDe}
-              </button>
-              <button
-                type="button"
-                onClick={() => setSelectedLocale('en')}
-                className={`flex-1 rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
-                  selectedLocale === 'en'
-                    ? 'bg-brand-600 text-white shadow-sm'
-                    : 'text-ink-soft hover:text-ink hover:bg-brand-50'
-                }`}
-              >
-                {t.localeEn}
-              </button>
-            </div>
           </div>
 
           {error && (

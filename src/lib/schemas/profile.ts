@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { Locale } from '@/i18n/config';
 
 // ============================================================
 // PROFIL-SCHEMAS — Single Source of Truth für RHF + Zod.
@@ -114,6 +115,8 @@ export interface UserProfile {
   childrenCount: number;
   employmentStatus: string | null;
   avatarUrl: string | null;
+  /** Profilsprache (spaltenname: preferred_locale) — null bis erstmals gesetzt. */
+  preferredLocale: Locale | null;
   onboardingCompleted: boolean;
   onboardingDismissed: boolean;
 }

@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { supabase } from '@/lib/supabase';
+import type { Locale } from '@/i18n/config';
 import type { DocumentEntry, UserProfile } from '../schemas/profile';
 
 interface ProfileStore {
@@ -39,6 +40,7 @@ export function mapDbToProfile(data: Record<string, unknown>): UserProfile {
     childrenCount: (data.children_count as number) ?? 0,
     employmentStatus: (data.employment_status as string) ?? null,
     avatarUrl: (data.avatar_url as string) ?? null,
+    preferredLocale: (data.preferred_locale as Locale) ?? null,
     onboardingCompleted: Boolean(data.onboarding_completed),
     onboardingDismissed: Boolean(data.onboarding_dismissed),
   };
@@ -99,6 +101,7 @@ export const useProfileStore = create<ProfileStore>((set) => ({
     if (updates.housingType !== undefined) dbUpdates.housing_type = updates.housingType;
     if (updates.childrenCount !== undefined) dbUpdates.children_count = updates.childrenCount;
     if (updates.employmentStatus !== undefined) dbUpdates.employment_status = updates.employmentStatus;
+    if (updates.preferredLocale !== undefined) dbUpdates.preferred_locale = updates.preferredLocale;
     const { error } = await supabase.from('profiles').update(dbUpdates).eq('id', userId);
     if (error) {
       set({ error: error.message });

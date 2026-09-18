@@ -8,6 +8,7 @@ import { IconAlertTriangle, IconCheck, IconMail } from '@/components/ui/icons';
 import type { Locale } from '@/i18n/config';
 import { localeHref } from '@/i18n/config';
 import { commonDict } from '@/content/i18n/common';
+import { getAuthPageDict } from '@/content/i18n/authPage';
 
 interface RegisterFormProps {
   locale: Locale;
@@ -17,12 +18,12 @@ export function RegisterForm({ locale }: RegisterFormProps) {
   const router = useRouter();
   const { signup, loading, error, clearError } = useAuth();
   const t = commonDict[locale].auth;
+  const p = getAuthPageDict(locale);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [selectedLocale, setSelectedLocale] = useState(locale);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -36,7 +37,7 @@ export function RegisterForm({ locale }: RegisterFormProps) {
     clearError();
     setSubmitting(true);
     setSuccess(false);
-    const res = await signup(email, password, selectedLocale, name || undefined);
+    const res = await signup(email, password, locale, name || undefined);
     setSubmitting(false);
     if (res.success) {
       setSuccess(true);
@@ -66,7 +67,7 @@ export function RegisterForm({ locale }: RegisterFormProps) {
         <p className="text-center text-sm text-ink-soft">
           {t.haveAccount}{' '}
           <a
-            href={localeHref(locale, '/de/anmelden')}
+            href={localeHref(locale, '/anmelden')}
             className="font-semibold text-brand-700 underline underline-offset-2 hover:text-brand-800"
           >
             {t.login}
@@ -88,7 +89,7 @@ export function RegisterForm({ locale }: RegisterFormProps) {
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
-          placeholder="Max Mustermann"
+          placeholder={p.namePlaceholder}
         />
       </div>
 
@@ -110,7 +111,7 @@ export function RegisterForm({ locale }: RegisterFormProps) {
           />
         </div>
         {email && !emailOk && (
-          <p className="text-xs text-red-600">Ungültiges E-Mail-Format</p>
+          <p className="text-xs text-red-600">{p.invalidEmailFormat}</p>
         )}
       </div>
 
@@ -127,7 +128,7 @@ export function RegisterForm({ locale }: RegisterFormProps) {
           onChange={(e) => setPassword(e.target.value)}
           minLength={6}
           className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
-          placeholder="Mindestens 6 Zeichen"
+          placeholder={p.newPasswordPlaceholder}
         />
         {password && !passOk && (
           <p className="text-xs text-red-600">{t.passwordTooShort}</p>
@@ -146,39 +147,11 @@ export function RegisterForm({ locale }: RegisterFormProps) {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
-          placeholder="Passwort bestätigen"
+          placeholder={p.confirmPasswordPlaceholder}
         />
         {confirmPassword && !passMatch && (
           <p className="text-xs text-red-600">{t.passwordsDontMatch}</p>
         )}
-      </div>
-
-      <div className="flex flex-col gap-1.5">
-        <label className="text-sm font-semibold text-ink">{t.localeLabel}</label>
-        <div className="flex rounded-xl border border-line-soft bg-white p-1">
-          <button
-            type="button"
-            onClick={() => setSelectedLocale('de')}
-            className={`flex-1 rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
-              selectedLocale === 'de'
-                ? 'bg-brand-600 text-white shadow-sm'
-                : 'text-ink-soft hover:text-ink hover:bg-brand-50'
-            }`}
-          >
-            {t.localeDe}
-          </button>
-          <button
-            type="button"
-            onClick={() => setSelectedLocale('en')}
-            className={`flex-1 rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
-              selectedLocale === 'en'
-                ? 'bg-brand-600 text-white shadow-sm'
-                : 'text-ink-soft hover:text-ink hover:bg-brand-50'
-            }`}
-          >
-            {t.localeEn}
-          </button>
-        </div>
       </div>
 
       {error && (
@@ -210,7 +183,7 @@ export function RegisterForm({ locale }: RegisterFormProps) {
       <p className="text-center text-sm text-ink-soft">
         {t.haveAccount}{' '}
         <a
-          href={localeHref(locale, '/de/anmelden')}
+          href={localeHref(locale, '/anmelden')}
           className="font-semibold text-brand-700 underline underline-offset-2 hover:text-brand-800"
         >
           {t.login}

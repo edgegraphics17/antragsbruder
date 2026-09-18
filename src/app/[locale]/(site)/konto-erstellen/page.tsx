@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { Locale } from '@/i18n/config';
-import { commonDict } from '@/content/i18n/common';
+import { isLocale, defaultLocale, localeHref } from '@/i18n/config';
+import { getAuthPageDict } from '@/content/i18n/authPage';
 import { RegisterForm } from '@/components/auth/RegisterForm';
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/ui/SectionHeading';
@@ -12,34 +13,34 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
+  const t = getAuthPageDict(isLocale(locale) ? locale : defaultLocale);
   return {
-    title: 'Konto erstellen — Antragsbruder',
-    description: 'Erstelle dein kostenloses Antragsbruder-Konto, um deine Anträge und Unterlagen zu verwalten.',
+    title: `${t.signupTitle} — Antragsbruder`,
+    description: t.signupLede,
   };
 }
 
 export default async function RegisterPage({ params }: PageProps) {
-  const { locale } = await params;
+  const { locale: rawLocale } = await params;
+  const locale = (isLocale(rawLocale) ? rawLocale : defaultLocale) as Locale;
+  const t = getAuthPageDict(locale);
 
   return (
     <Container className="flex min-h-[calc(100dvh-6rem)] items-center justify-center px-4 py-16">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-ink">Konto erstellen</h1>
-          <p className="mt-2 text-ink-soft">
-            Registriere kostenlos und verwalte deine Anträge.
-          </p>
+          <SectionHeading eyebrow={t.badge} title={t.signupTitle} lede={t.signupLede} />
         </div>
 
         <div className="rounded-3xl border border-line-soft bg-paper p-6 shadow-lg">
-          <RegisterForm locale={locale as Locale} />
+          <RegisterForm locale={locale} />
         </div>
 
         <p className="mt-6 text-center text-xs text-ink-soft">
-          Du hast schon ein Konto?{' '}
-          <Link href="/de/anmelden"><a className="font-semibold text-brand-700 underline underline-offset-2 hover:text-brand-800">
-            Jetzt anmelden
-          </a></Link>
+          {t.alreadyAccount}{' '}
+          <Link href={localeHref(locale, '/anmelden')} className="font-semibold text-brand-700 underline underline-offset-2 hover:text-brand-800">
+            {t.signInNow}
+          </Link>
         </p>
       </div>
     </Container>

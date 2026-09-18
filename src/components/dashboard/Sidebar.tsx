@@ -22,19 +22,26 @@ import {
   IconSettings,
 } from '@/components/ui/icons';
 import { IconPerson } from '@/components/ui/icons-person';
+import { getDashboardDict } from '@/content/i18n/dashboard';
+import { localeHref, type Locale } from '@/i18n/config';
+import { useLocaleFromPath } from '@/i18n/use-locale';
 
 type NavItem = {
   href: string;
-  label: string;
+  /** Key in DashboardDict.nav */
+  labelKey: 'dashboard' | 'alg1' | 'dokumente' | 'foerderungen';
   icon: React.ComponentType<{ className?: string }>;
 };
 
 const NAV_ITEMS: NavItem[] = [
-  { href: '/dashboard', label: 'Übersicht', icon: IconFolder },
-  { href: '/alg1', label: 'ALG1', icon: IconCoin },
-  { href: '/dokumente', label: 'Dokumente', icon: IconDocument },
-  { href: '/foerderungen', label: 'Förderungen', icon: IconSpark },
+  { href: '/dashboard', labelKey: 'dashboard', icon: IconFolder },
+  { href: '/alg1', labelKey: 'alg1', icon: IconCoin },
+  { href: '/dokumente', labelKey: 'dokumente', icon: IconDocument },
+  { href: '/foerderungen', labelKey: 'foerderungen', icon: IconSpark },
 ];
+
+/** Aktuelles Locale aus der URL ableiten (Dashboard-URLs sind unprefixed = de). */
+const useLocale = useLocaleFromPath;
 
 function isActive(pathname: string, href: string): boolean {
   if (href === '/dashboard') {
@@ -46,6 +53,8 @@ function isActive(pathname: string, href: string): boolean {
 function SidebarContent() {
   const pathname = usePathname();
   const router = useRouter();
+  const locale = useLocale();
+  const dict = getDashboardDict(locale);
   const { user, logout } = useAuth();
   const { profile, loadProfile } = useProfileStore();
 
@@ -73,12 +82,12 @@ function SidebarContent() {
 
   const handleLogout = async () => {
     await logout();
-    router.push('/anmelden');
+    router.push(localeHref(locale, '/anmelden'));
   };
 
   const displayName = profile?.firstName
     ? `${profile.firstName} ${profile.lastName ?? ''}`.trim()
-    : user?.email?.split('@')[0] ?? 'Gast';
+    : user?.email?.split('@')[0] ?? dict.sidebar.guest;
 
   return (
     <div className="flex h-full flex-col bg-brand-950 text-white">
@@ -89,7 +98,7 @@ function SidebarContent() {
 
       {/* Profil-Widget */}
       <Link
-        href="/profil"
+        href={localeHref(locale, '/profil')}
         className="mx-4 mb-4 flex items-center gap-3 rounded-2xl bg-white/5 px-4 py-3 transition-colors hover:bg-white/10"
       >
         <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-600">
@@ -108,14 +117,14 @@ function SidebarContent() {
       </Link>
 
       {/* Navigation */}
-      <nav className="flex flex-col gap-1 px-4" aria-label="Dashboard-Navigation">
+      <nav className="flex flex-col gap-1 px-4" aria-label={dict.sidebar.navLabel}>
         {NAV_ITEMS.map((item) => {
           const active = isActive(pathname, item.href);
           const Icon = item.icon;
           return (
             <Link
               key={item.href}
-              href={item.href}
+              href={localeHref(locale, item.href)}
               aria-current={active ? 'page' : undefined}
               className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
                 active
@@ -124,7 +133,7 @@ function SidebarContent() {
               }`}
             >
               <Icon className="h-4 w-4 shrink-0" />
-              {item.label}
+              {dict.nav[item.labelKey]}
             </Link>
           );
         })}
@@ -137,13 +146,13 @@ function SidebarContent() {
           onClick={handleLogout}
           className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-left text-sm font-medium text-white/70 transition-colors hover:bg-white/5 hover:text-white"
         >
-          Abmelden
+          {dict.sidebar.logout}
         </button>
         <Link
-          href="/"
+          href={localeHref(locale, '/')}
           className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-white/40 transition-colors hover:text-white/70"
         >
-          Zur Website
+          {dict.sidebar.backToSite}
           <IconArrowRight className="h-3.5 w-3.5" />
         </Link>
       </div>
@@ -153,6 +162,8 @@ function SidebarContent() {
 
 export function DashboardSidebar() {
   const pathname = usePathname();
+  const locale = useLocale();
+  const dict = getDashboardDict(locale);
 
   return (
     <>
@@ -168,7 +179,7 @@ export function DashboardSidebar() {
 
       {/* Mobile Tab-Bar */}
       <nav
-        aria-label="Dashboard-Navigation"
+        aria-label={dict.sidebar.navLabel}
         className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-line-soft bg-white/95 pb-[calc(0.5rem+env(safe-area-inset-bottom))] backdrop-blur-sm lg:hidden"
       >
         {NAV_ITEMS.map((item) => {
@@ -177,14 +188,14 @@ export function DashboardSidebar() {
           return (
             <Link
               key={item.href}
-              href={item.href}
+              href={localeHref(locale, item.href)}
               aria-current={active ? 'page' : undefined}
               className={`flex min-h-14 flex-col items-center justify-center gap-0.5 px-1 py-2 text-[10px] font-medium transition-colors ${
                 active ? 'text-brand-700' : 'text-ink-soft'
               }`}
             >
               <Icon className="h-5 w-5" />
-              {item.label}
+              {dict.nav[item.labelKey]}
             </Link>
           );
         })}

@@ -15,7 +15,7 @@ import { readinessIndex } from '@/lib/benefits/radar';
 import { formatDate } from '@/lib/dashboard';
 
 // In-Bearbeitung-Status laut applications-Constraint.
-const ACTIVE_STATUSES = ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY', 'PROCESSING'];
+const ACTIVE_STATUSES = ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY', 'SUBMITTED', 'PROCESSING'];
 
 const TIMELINE_STEPS = [
   {
