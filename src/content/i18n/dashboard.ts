@@ -15,7 +15,7 @@ import type { Locale } from "@/i18n/config";
 
 const deDashboard = {
   nav: {
-    dashboard: "Übersicht",
+    dashboard: "Dashboard",
     alg1: "ALG1",
     dokumente: "Dokumente",
     foerderungen: "Förderungen",
@@ -53,7 +53,7 @@ export type DashboardDict = typeof deDashboard;
 
 const enDashboard: DashboardDict = {
   nav: {
-    dashboard: "Overview",
+    dashboard: "Dashboard",
     alg1: "ALG1",
     dokumente: "Documents",
     foerderungen: "Benefits",

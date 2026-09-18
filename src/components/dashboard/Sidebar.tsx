@@ -9,7 +9,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/auth-context';
 import { useProfileStore } from '@/lib/stores/profile-store';
 import { supabase } from '@/lib/supabase';
@@ -57,6 +57,36 @@ function SidebarContent() {
   const dict = getDashboardDict(locale);
   const { user, logout } = useAuth();
   const { profile, loadProfile } = useProfileStore();
+
+  // ALG1-Smartlink: Zeigt der Nutzer einen ALG1-Antrag, springt der
+  // Sidebar-Klick direkt zum aktuellen Stand (letzte Stage bzw.
+  // Status-Ansicht bei eingereichten Anträgen).
+  const [alg1Href, setAlg1Href] = useState<string | null>(null);
+  useEffect(() => {
+    if (!user) return;
+    void (async () => {
+      const { data } = await supabase
+        .from('applications')
+        .select('id, status, last_stage')
+        .eq('user_id', user.id)
+        .eq('benefit_type', 'ALG1')
+        .order('updated_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      if (!data) {
+        setAlg1Href('/alg1');
+        return;
+      }
+      const inProgress = ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY'].includes(
+        data.status as string,
+      );
+      setAlg1Href(
+        inProgress
+          ? `/alg1/antrag?applicationId=${data.id}&stage=${data.last_stage ?? 'upload'}`
+          : `/alg1/antrag?applicationId=${data.id}&stage=summary`,
+      );
+    })();
+  }, [user]);
 
   useEffect(() => {
     if (user && !profile) loadProfile(user.id);
@@ -121,10 +151,12 @@ function SidebarContent() {
         {NAV_ITEMS.map((item) => {
           const active = isActive(pathname, item.href);
           const Icon = item.icon;
+          const href =
+            item.href === '/alg1' ? localeHref(locale, alg1Href ?? '/alg1') : localeHref(locale, item.href);
           return (
             <Link
               key={item.href}
-              href={localeHref(locale, item.href)}
+              href={href}
               aria-current={active ? 'page' : undefined}
               className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
                 active

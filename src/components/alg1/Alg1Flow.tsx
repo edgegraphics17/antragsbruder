@@ -31,6 +31,7 @@ export function Alg1Flow({
   const [appMeta, setAppMeta] = useState<{ id: string; caseId: string; userId: string } | null>(
     null,
   );
+  const [appStatus, setAppStatus] = useState<string>('DRAFT');
   const [ready, setReady] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const stage = useAlg1Store((s) => s.stage);
@@ -94,7 +95,13 @@ export function Alg1Flow({
       // Stage-Priorität: Query-Param > localStorage > DB last_stage > upload
       const persistedStage = sameDraft ? persisted.stage : null;
       const dbStage = (data.last_stage as Alg1Stage | null) ?? 'upload';
-      const resolved = initialStage ?? persistedStage ?? dbStage;
+      const submitted = ['SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(
+        data.status as string,
+      );
+      // Eingereichte Anträge sind read-only: immer auf der Zusammenfassung
+      // landen (Status-Ansicht), unabhängig von Param/localStorage.
+      const resolved = submitted ? 'summary' : (initialStage ?? persistedStage ?? dbStage);
+      setAppStatus(data.status as string);
       useAlg1Store.getState().resumeFromDb(app, {
         stage: isAlg1Stage(resolved) ? resolved : 'upload',
         keepLocal: sameDraft,
@@ -131,6 +138,8 @@ export function Alg1Flow({
   const handleConfirmed = () => {
     router.push('/alg1/erfolg');
   };
+
+  const readOnly = ['SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(appStatus);
 
   if (error) return <p className="mx-auto max-w-lg p-6 text-sm text-red-600">{error}</p>;
   if (!ready || !appMeta)
@@ -181,16 +190,18 @@ export function Alg1Flow({
 
   return (
     <div>
-      <div className="mx-auto max-w-2xl px-6 pt-4">
-        <button
-          type="button"
-          onClick={() => setStage('form')}
-          className="text-sm text-ink-soft transition-colors hover:text-brand-700"
-        >
-          ← Zurück zum Formular
-        </button>
-      </div>
-      <Summary onConfirmed={handleConfirmed} />
+      {!readOnly && (
+        <div className="mx-auto max-w-2xl px-6 pt-4">
+          <button
+            type="button"
+            onClick={() => setStage('form')}
+            className="text-sm text-ink-soft transition-colors hover:text-brand-700"
+          >
+            ← Zurück zum Formular
+          </button>
+        </div>
+      )}
+      <Summary onConfirmed={handleConfirmed} readOnly={readOnly} status={appStatus} />
     </div>
   );
 }

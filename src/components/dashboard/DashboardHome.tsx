@@ -17,6 +17,19 @@ import { formatDate } from '@/lib/dashboard';
 // In-Bearbeitung-Status laut applications-Constraint.
 const ACTIVE_STATUSES = ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY', 'SUBMITTED', 'PROCESSING'];
 
+// Status-Badges für die Antrags-Karten — gleiche optische Sprache wie
+// die Confidence-Badges bei den Förderungen (grün = positive Nachricht).
+const STATUS_BADGE: Record<string, { label: string; cls: string }> = {
+  DRAFT: { label: 'In Arbeit', cls: 'bg-brand-100 text-brand-700' },
+  IN_PROGRESS: { label: 'In Arbeit', cls: 'bg-brand-100 text-brand-700' },
+  DOCS_PENDING: { label: 'Dokumente fehlen', cls: 'bg-amber-100 text-amber-700' },
+  READY: { label: 'Bereit zur Einreichung', cls: 'bg-amber-100 text-amber-700' },
+  SUBMITTED: { label: 'Eingereicht ✓', cls: 'bg-green-100 text-green-700' },
+  PROCESSING: { label: 'In Prüfung', cls: 'bg-amber-100 text-amber-700' },
+  APPROVED: { label: 'Bewilligt 🎉', cls: 'bg-green-100 text-green-700' },
+  REJECTED: { label: 'Abgelehnt', cls: 'bg-red-100 text-red-700' },
+};
+
 const TIMELINE_STEPS = [
   {
     id: 'docs',
@@ -163,35 +176,41 @@ export function DashboardHome() {
               </Link>
             </div>
           ) : (
-            activeApplications.map((app) => (
-              <div
-                key={app.id}
-                className="flex items-center justify-between gap-3 rounded-2xl border border-line-soft bg-paper p-5"
-              >
-                <div className="min-w-0">
-                  <p className="truncate font-semibold text-ink">
+            activeApplications.map((app) => {
+              const badge = STATUS_BADGE[app.status] ?? { label: app.status, cls: 'bg-brand-100 text-brand-700' };
+              const submitted = ['SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(app.status);
+              return (
+                <div
+                  key={app.id}
+                  className="rounded-2xl border border-line-soft bg-paper p-5"
+                >
+                  <div className="mb-2 flex items-center gap-2">
+                    <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${badge.cls}`}>
+                      {badge.label}
+                    </span>
+                  </div>
+                  <p className="font-semibold text-ink">
                     {app.benefit_type === 'ALG1' ? 'Arbeitslosengeld (ALG1)' : app.benefit_type || 'Antrag'}
                   </p>
-                  <p className="text-xs text-ink-soft">Erstellt am {formatDate(app.created_at)}</p>
                   {app.calculation_result?.amount != null && app.calculation_result.amount > 0 && (
-                    <p className="mt-0.5 text-xs font-medium text-brand-700">
-                      ca. {app.calculation_result.amount} €
-                      {app.calculation_result.unit === 'EUR_MONTH' ? ' / Monat' : ''}
+                    <p className="mt-1 text-sm font-semibold text-brand-700">
+                      Bis zu {app.calculation_result.amount} €/Monat
                     </p>
                   )}
+                  <p className="mt-0.5 text-xs text-ink-soft">Erstellt am {formatDate(app.created_at)}</p>
+                  <Link
+                    href={
+                      app.benefit_type === 'ALG1'
+                        ? `/alg1/antrag?applicationId=${app.id}&stage=${submitted ? 'summary' : (app.last_stage ?? 'upload')}`
+                        : `/antraege/${app.case_id}`
+                    }
+                    className="mt-3 inline-block rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+                  >
+                    {submitted ? 'Status ansehen' : 'Weiterarbeiten'}
+                  </Link>
                 </div>
-                <Link
-                  href={
-                    app.benefit_type === 'ALG1'
-                      ? `/alg1/antrag?applicationId=${app.id}&stage=${app.last_stage ?? 'upload'}`
-                      : `/antraege/${app.case_id}`
-                  }
-                  className="shrink-0 rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
-                >
-                  Weiterarbeiten
-                </Link>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
 

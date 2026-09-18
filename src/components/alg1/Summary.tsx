@@ -11,7 +11,40 @@ import { useAlg1Store } from '@/lib/alg1/store';
 import { FORM_CONFIG } from '@/lib/alg1/form-config';
 import { ButtonAction } from '@/components/ui/Button';
 
-export function Summary({ onConfirmed }: { onConfirmed?: () => void }) {
+// Status-Texte für eingereichte Anträge (Read-only-Ansicht).
+const STATUS_META: Record<string, { label: string; hint: string; cls: string }> = {
+  SUBMITTED: {
+    label: 'Eingereicht',
+    hint: 'Dein Antrag ist beim Jobcenter eingegangen. Wir halten dich hier auf dem Laufenden.',
+    cls: 'border-green-300 bg-green-50 text-green-800',
+  },
+  PROCESSING: {
+    label: 'In Prüfung',
+    hint: 'Die Agentur für Arbeit prüft deinen Antrag. Halte deine Aktenzeichen-Bestätigung bereit.',
+    cls: 'border-amber-300 bg-amber-50 text-amber-800',
+  },
+  APPROVED: {
+    label: 'Bewilligt 🎉',
+    hint: 'Dein Arbeitslosengeld ist bewilligt — die Zahlung erfolgt monatlich im Voraus.',
+    cls: 'border-green-300 bg-green-50 text-green-800',
+  },
+  REJECTED: {
+    label: 'Abgelehnt',
+    hint: 'Dein Antrag wurde abgelehnt. Prüfe den Bescheid — dagegen kannst du Widerspruch einlegen.',
+    cls: 'border-red-300 bg-red-50 text-red-800',
+  },
+};
+
+export function Summary({
+  onConfirmed,
+  readOnly = false,
+  status = 'DRAFT',
+}: {
+  onConfirmed?: () => void;
+  /** Eingereichte Anträge: reine Status-Ansicht ohne Bearbeitung. */
+  readOnly?: boolean;
+  status?: string;
+}) {
   const { formState, submitAll, isSaving, validationErrors, setStage } = useAlg1Store();
   const [confirmed, setConfirmed] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -19,6 +52,19 @@ export function Summary({ onConfirmed }: { onConfirmed?: () => void }) {
   const parsed = Alg1FormSchema.safeParse(formState);
 
   if (!parsed.success) {
+    // Eingereichte Anträge: keine Validierungs-Fehlermesse — Status-Banner reicht.
+    if (readOnly) {
+      const meta = STATUS_META[status] ?? STATUS_META.SUBMITTED;
+      return (
+        <div className="mx-auto max-w-2xl space-y-4 p-6">
+          <h2 className="text-2xl font-bold">Dein ALG1-Antrag</h2>
+          <div className={`rounded-xl border p-4 text-sm ${meta.cls}`}>
+            <p className="font-semibold">{meta.label}</p>
+            <p className="mt-1">{meta.hint}</p>
+          </div>
+        </div>
+      );
+    }
     // Fehlende Felder → betroffene Abschnitte → direkter Sprung zurück (Stand bleibt)
     const missingKeys = [...new Set(parsed.error.issues.map((i) => String(i.path[0])))];
     const missingSections = [
@@ -117,9 +163,13 @@ export function Summary({ onConfirmed }: { onConfirmed?: () => void }) {
     );
   }
 
+  const statusMeta = STATUS_META[status] ?? STATUS_META.SUBMITTED;
+
   return (
     <div className="mx-auto max-w-2xl space-y-6 p-6">
-      <h2 className="text-2xl font-bold">Zusammenfassung deines ALG1-Antrags</h2>
+      <h2 className="text-2xl font-bold">
+        {readOnly ? 'Dein ALG1-Antrag — aktueller Stand' : 'Zusammenfassung deines ALG1-Antrags'}
+      </h2>
 
       <div className="rounded-xl bg-brand-100 p-6">
         <p className="text-sm text-ink-soft">Geschätzte monatliche ALG1-Höhe</p>
@@ -151,15 +201,24 @@ export function Summary({ onConfirmed }: { onConfirmed?: () => void }) {
         </ul>
       </div>
 
-      {(submitError || validationErrors.length > 0) && (
-        <p className="rounded-lg bg-red-50 p-3 text-xs text-red-600">
-          {submitError ?? validationErrors.join('; ')}
-        </p>
-      )}
+      {readOnly ? (
+        <div className={`rounded-xl border p-4 text-sm ${statusMeta.cls}`}>
+          <p className="font-semibold">Status: {statusMeta.label}</p>
+          <p className="mt-1">{statusMeta.hint}</p>
+        </div>
+      ) : (
+        <>
+          {(submitError || validationErrors.length > 0) && (
+            <p className="rounded-lg bg-red-50 p-3 text-xs text-red-600">
+              {submitError ?? validationErrors.join('; ')}
+            </p>
+          )}
 
-      <ButtonAction onClick={() => void handleSubmit()} disabled={isSaving} className="w-full rounded-xl py-4 text-lg">
-        {isSaving ? 'Wird eingereicht…' : 'Antrag einreichen (Simulation)'}
-      </ButtonAction>
+          <ButtonAction onClick={() => void handleSubmit()} disabled={isSaving} className="w-full rounded-xl py-4 text-lg">
+            {isSaving ? 'Wird eingereicht…' : 'Antrag einreichen (Simulation)'}
+          </ButtonAction>
+        </>
+      )}
     </div>
   );
 }
