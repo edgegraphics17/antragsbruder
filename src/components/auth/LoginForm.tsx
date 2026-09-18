@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
+import { supabase } from '@/lib/supabase';
 import { ButtonAction } from '@/components/ui/Button';
 import { IconAlertTriangle } from '@/components/ui/icons';
 import { IconCheck } from '@/components/ui/icons';
@@ -54,12 +55,21 @@ export function LoginForm({ locale }: LoginFormProps) {
         setSuccess(true);
         // ?next= hat Vorrang (gesetzt vom Proxy bei umgeleiteten Dashboard-Routen)
         const nextParam = new URLSearchParams(window.location.search).get('next');
-        const dash =
+        let dash =
           nextParam && nextParam.startsWith('/')
             ? nextParam
             : locale === 'de'
-            ? '/dashboard'
-            : `/${locale}/dashboard`;
+              ? '/dashboard'
+              : `/${locale}/dashboard`;
+        // Admins landen direkt im Admin-Dashboard (Rolle serverseitig via RLS-RPC geprüft)
+        if (!nextParam) {
+          try {
+            const { data: isAdmin } = await supabase.rpc('is_admin');
+            if (isAdmin) dash = locale === 'de' ? '/admin' : `/${locale}/admin`;
+          } catch {
+            // RPC nicht verfügbar → normaler Bürger-Flow
+          }
+        }
         router.push(dash);
       }
     } else {
