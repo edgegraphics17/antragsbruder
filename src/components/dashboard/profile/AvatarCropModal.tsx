@@ -24,6 +24,7 @@ export function AvatarCropModal({ open, imageUrl, onComplete, onCancel }: Props)
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const onCropComplete = useCallback((_: Area, croppedPixels: Area) => {
     setCroppedAreaPixels(croppedPixels);
@@ -32,9 +33,12 @@ export function AvatarCropModal({ open, imageUrl, onComplete, onCancel }: Props)
   const handleSave = async () => {
     if (!imageUrl || !croppedAreaPixels || isSaving) return;
     setIsSaving(true);
+    setError(null);
     try {
       const blob = await cropImage(imageUrl, croppedAreaPixels);
       onComplete(blob);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Zuschnitt fehlgeschlagen');
     } finally {
       setIsSaving(false);
     }
@@ -76,6 +80,12 @@ export function AvatarCropModal({ open, imageUrl, onComplete, onCancel }: Props)
             onCropComplete={onCropComplete}
           />
         </div>
+
+        {error && (
+          <p role="alert" className="mt-2 text-sm text-red-600">
+            {error}
+          </p>
+        )}
 
         <label className="mt-4 block text-sm text-ink-soft">
           Zoom

@@ -21,7 +21,7 @@ const securityHeaders = [
       // 'unsafe-eval' ist für Next.js Server-Rendering und einige Libs erforderlich.
       // Für Prod: Überprüfen, ob durchngehen ohne 'unsafe-eval' möglich.
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: https:",
+      "img-src 'self' data: blob: https:",
       "font-src 'self' https://fonts.gstatic.com",
       "connect-src 'self' https://*.supabase.co https://*.supabase.co/ https://*.resend.com wss: https://*.vercel-integrations.com",
       "frame-ancestors 'none'",
