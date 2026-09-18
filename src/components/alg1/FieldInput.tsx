@@ -107,7 +107,11 @@ export function FieldInput({
             type="button"
             onClick={() => onChange(field.key, true)}
             className={`flex-1 rounded-lg border py-3 text-sm ${
-              value === true ? 'border-brand-600 bg-brand-100 text-brand-800' : 'border-line'
+              value === true
+                ? 'border-brand-600 bg-brand-100 text-brand-800'
+                : hasError
+                  ? 'border-red-500 bg-red-50'
+                  : 'border-line'
             }`}
           >
             {tc.yes}
@@ -116,7 +120,11 @@ export function FieldInput({
             type="button"
             onClick={() => onChange(field.key, false)}
             className={`flex-1 rounded-lg border py-3 text-sm ${
-              value === false ? 'border-brand-600 bg-brand-100 text-brand-800' : 'border-line'
+              value === false
+                ? 'border-brand-600 bg-brand-100 text-brand-800'
+                : hasError
+                  ? 'border-red-500 bg-red-50'
+                  : 'border-line'
             }`}
           >
             {tc.no}

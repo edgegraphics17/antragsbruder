@@ -13,6 +13,8 @@ import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth-context';
 import { useProfileStore } from '@/lib/stores/profile-store';
 import { useAlg1Store, isAlg1Stage, type Alg1Stage } from '@/lib/alg1/store';
+import { Alg1FormSchema } from '@/lib/schemas/alg1';
+import { getVisibleFields } from '@/lib/alg1/form-config';
 import { DocumentUpload } from './DocumentUpload';
 import { Alg1Form } from './Alg1Form';
 import { Summary } from './Summary';
@@ -144,6 +146,29 @@ export function Alg1Flow({
     router.push(localeHref(locale, '/alg1/erfolg'));
   };
 
+  // „Weiter“ validiert VOR dem Stage-Wechsel: Bei Fehlern bleibt der Nutzer
+  // im Formular — die Fehlerfelder werden rot markiert und das erste Fehlerfeld
+  // wird angesprungen + gepulst (siehe Alg1Form errorKeys-Effekt). Keine
+  // separate Fehlerbox mehr. Nur bei validem Stand geht es zur Zusammenfassung.
+  const handleContinueToSummary = () => {
+    const s = useAlg1Store.getState();
+    const parsed = Alg1FormSchema.safeParse(s.formState);
+    if (!parsed.success) {
+      const visibleKeys = new Set(getVisibleFields(s.formState).map((f) => String(f.key)));
+      const missingKeys = [
+        ...new Set(
+          parsed.error.issues
+            .map((issue) => String(issue.path[0]))
+            .filter((key) => visibleKeys.has(key)),
+        ),
+      ];
+      s.setErrorKeys(missingKeys);
+      return; // Bleibt im Formular; Alg1Form scrollt zum ersten Fehlerfeld
+    }
+    s.setErrorKeys([]);
+    setStage('summary');
+  };
+
   const readOnly = ['SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(appStatus);
 
   if (error) return <p className="mx-auto max-w-lg p-6 text-sm text-red-600">{error}</p>;
@@ -183,8 +208,8 @@ export function Alg1Flow({
         <div className="mx-auto max-w-2xl px-6 pb-10">
           <button
             type="button"
-            onClick={() => setStage('summary')}
-            className="text-sm text-brand-700 hover:underline"
+            onClick={handleContinueToSummary}
+            className="w-full rounded-xl bg-brand-600 py-4 text-base font-semibold text-white transition-colors hover:bg-brand-700"
           >
             {t.continueToSummary}
           </button>

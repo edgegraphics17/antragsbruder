@@ -70,7 +70,9 @@ export const Alg1FormSchema = z.object({
   childrenCount: z.number().min(0).max(20),
   childrenAges: z.array(z.number().min(0).max(17)),
   hasPartner: z.boolean(),
-  partnerUnemployed: z.boolean(),
+  // Konditional: nur Pflicht, wenn ein Partner im Haushalt ist (showIf in
+  // FORM_CONFIG blendet das Feld sonst aus → undefined ist dann VALID).
+  partnerUnemployed: z.boolean().optional(),
 
   // Finanzen
   incomeSources: z.array(z.enum([
@@ -78,7 +80,22 @@ export const Alg1FormSchema = z.object({
     'MAINTENANCE', 'PARENTAL_ALLOWANCE', 'PENSION', 'SELF_EMPLOYED', 'NONE',
   ])),
   assetsOver15k: z.boolean(),
-});
+})
+  .superRefine((data, ctx) => {
+    // Bedingte Pflicht: partnerUnemployed nur anfordern, wenn hasPartner === true.
+    // (Fix: ohne hasPartner darf das Feld undefined bleiben — vorher blockierte
+    //  der harte Boolean-Pflichtwert Antragsteller ohne Partner, vgl. Fall
+    //  „Partner ebenfalls arbeitslos“ trotz Partner = Nein.)
+    if (data.hasPartner === true && typeof data.partnerUnemployed !== 'boolean') {
+      ctx.addIssue({
+        code: 'invalid_type',
+        expected: 'boolean',
+        received: 'undefined',
+        path: ['partnerUnemployed'],
+        message: 'Bitte ausfüllen — diese Angabe fehlt noch.',
+      });
+    }
+  });
 
 // Progress wird NICHT über Zod-Keys berechnet!
 // Siehe calculateProgress() in form-config.ts (Slice 4).

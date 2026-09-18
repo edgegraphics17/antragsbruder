@@ -71,6 +71,21 @@ export function Alg1Form() {
   const sectionLabels = t.sections as unknown as Record<string, string>;
   const fieldDicts = t.fields as unknown as Record<string, { label?: string }>;
 
+  // Fehler-Navigation: Wenn errorKeys gesetzt werden (z.B. nach „Weiter“ oder
+  // „Angaben ergänzen“), scrollt das Formular zum ersten Fehlerfeld und pulst
+  // es kurz rot — der Nutzer sieht sofort, WO das Problem liegt.
+  useEffect(() => {
+    if (errorKeys.length === 0) return;
+    const el = document.getElementById(`alg1-field-${errorKeys[0]}`);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.classList.remove('alg1-field-flash');
+    void el.offsetWidth; // Animation neu starten
+    el.classList.add('alg1-field-flash');
+    const timer = setTimeout(() => el.classList.remove('alg1-field-flash'), 2000);
+    return () => clearTimeout(timer);
+  }, [errorKeys]);
+
   // Autosave-Indikator: 🟢 Gespeichert / ⏳ Speichert…
   const savedLabel = isSaving
     ? t.savingIndicator
@@ -108,7 +123,7 @@ export function Alg1Form() {
             {visibleFields
               .filter((f) => f.section === section)
               .map((field) => (
-                <div key={field.key}>
+                <div key={field.key} id={`alg1-field-${String(field.key)}`}>
                   <label className="mb-1 block text-sm text-ink-soft">
                     {fieldDicts[String(field.key)]?.label ?? field.label}
                     {field.required && (
