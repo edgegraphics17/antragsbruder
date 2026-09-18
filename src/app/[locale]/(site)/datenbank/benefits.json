@@ -336,16 +336,11 @@
       "landwirtschaft-investitionen",
       "junglandwirte-einkommensstuetzung",
       "tierhaltung-umbau",
-      "umweltprogramme-fakt",
-      "forstwirtschaft",
-      "biologischer-bau"
+      "umweltprogramme-fakt"
     ],
     "incompatible_with": [],
     "related_benefits": [
-      "landwirtschaft-investitionen",
-      "forstwirtschaft",
-      "umweltprogramme",
-      "regional-agrarfoerderung"
+      "landwirtschaft-investitionen"
     ],
     "user_content": {
       "short_explanation": "Die GAK ist das Hauptinstrument der deutschen Agrarstrukturförderung – sie unterstützt Investitionen, ländliche Entwicklung und Naturschutz.",
@@ -394,7 +389,8 @@
       "ELER-Mittel werden über Nationalen Strategieplan abgerufen"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "alleinerziehendenentlastungsbetrag",
@@ -533,14 +529,12 @@
     ],
     "compatible_with": [
       "kinderfreibetrag",
-      "kindergeld",
-      "unterhaltsfreibetrag"
+      "kindergeld"
     ],
     "incompatible_with": [],
     "related_benefits": [
       "kinderfreibetrag",
-      "kindergeld",
-      "unterhaltsfreibetrag"
+      "kindergeld"
     ],
     "reduces": [],
     "user_content": {
@@ -773,7 +767,8 @@
       "Allgemeine Wartezeit: 5 Jahre (60 Monate)"
     ],
     "created_at": "2026-09-09",
-    "updated_at": "2026-09-09"
+    "updated_at": "2026-09-09",
+    "valid_until": null
   },
   {
     "id": "anerkennung_abschluss",
@@ -965,7 +960,8 @@
       "Seit 2020: Erleichterungen durch Fachkräfteeinwanderungsgesetz"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "arbeitnehmerförderung",
@@ -1107,9 +1103,7 @@
     "compatible_with": [
       "weiterbildung"
     ],
-    "incompatible_with": [
-      "bildungsgutschein"
-    ],
+    "incompatible_with": [],
     "related_benefits": [
       "weiterbildung",
       "qualifizierungschancengesetz"
@@ -1348,7 +1342,8 @@
       "SGB III als Rechtsgrundlage"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "valid_until": null
   },
   {
     "id": "arbeitsmarktzugang",
@@ -1547,7 +1542,8 @@
       "Asylbewerber: Arbeitserlaubnis frühestens nach 3 Monaten"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "arbeitsmedizinische_vorsorge",
@@ -2121,7 +2117,8 @@
       "Erleichterungen für Fachkräfte mit anerkannter Qualifikation"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "aufstiegsbafoeg",
@@ -2294,11 +2291,11 @@
       "bildungskredit_kfw"
     ],
     "incompatible_with": [
-      "berufsausbildungsbeihilfe_bab"
+      "ausbildungsförderung"
     ],
     "related_benefits": [
       "bafoeg",
-      "berufsausbildungsbeihilfe_bab",
+      "ausbildungsförderung",
       "bildungskredit_kfw",
       "weiterbildungsfoerderung"
     ],
@@ -2475,9 +2472,7 @@
     ],
     "compatible_with": [],
     "incompatible_with": [],
-    "related_benefits": [
-      "gruenderpraemie"
-    ],
+    "related_benefits": [],
     "reduces": [],
     "user_content": {
       "short_explanation": "Das Aufstiegs-BAföG fördert berufliche Aufstiegsfortbildungen wie Meister-, Fachwirt- oder Betriebswirteausbildungen.",
@@ -2665,16 +2660,12 @@
       "§ 2 BAföG (freiwillige Leistungsarten)",
       "Verordnung über die Berufsausbildungsbeihilfe (BAB-V)"
     ],
-    "compatible_with": [
-      "bildungsgutschein",
-      "ausbildungspraemie"
-    ],
+    "compatible_with": [],
     "incompatible_with": [
       "bafoeg"
     ],
     "related_benefits": [
-      "berufseinstieg",
-      "einstiegsqualifizierung"
+      "berufseinstieg"
     ],
     "reduces": [],
     "user_content": {
@@ -3158,18 +3149,16 @@
       "kindergeld",
       "kinderzuschlag",
       "wohngeld",
-      "steuererstattung",
       "bildungskredit_kfw"
     ],
     "incompatible_with": [
-      "berufsausbildungsbeihilfe_bab",
+      "ausbildungsförderung",
       "aufstiegsbafoeg"
     ],
     "related_benefits": [
-      "berufsausbildungsbeihilfe_bab",
+      "ausbildungsförderung",
       "aufstiegsbafoeg",
-      "bildungskredit_kfw",
-      "deutschlandstipendium"
+      "bildungskredit_kfw"
     ],
     "reduces": [],
     "user_content": {
@@ -3368,7 +3357,9 @@
       "KfW 455 Fördermittel sind aktuell ausgeschöpft (hohe Nachfrage)."
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "beratung_migranten",
@@ -3562,7 +3553,8 @@
       "Förderrichtlinie MBE seit 2023 aktualisiert"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "berufliche_reha",
@@ -3704,7 +3696,6 @@
     ],
     "incompatible_with": [],
     "related_benefits": [
-      "berufsunfähigkeitsversicherung_staat",
       "beschaeftigungsförderung"
     ],
     "reduces": [],
@@ -3761,227 +3752,6 @@
     "confidence": "high",
     "verification_status": "verified",
     "notes": [],
-    "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
-  },
-  {
-    "id": "berufsausbildungsbeihilfe_bab",
-    "official_name": "Berufsausbildungsbeihilfe (BAB)",
-    "aliases": [
-      "BAB",
-      "Ausbildungsbeihilbe",
-      "Berufsausbildungszuschuss",
-      "BAB-Förderung"
-    ],
-    "former_names": [],
-    "type": "education_benefit",
-    "status": "verified",
-    "category": "Studium & Bildung",
-    "subcategory": "Förderung beruflicher Ausbildung",
-    "level": "federal",
-    "regions": [
-      "all"
-    ],
-    "provider": {
-      "name": "Bundesagentur für Arbeit",
-      "authority": "Agentur für Arbeit (örtlich zuständig)",
-      "url": "https://www.arbeitsagentur.de/bildung/ausbildung/berufsausbildungsbeihilfe-bab",
-      "phone": "0800-4-555500"
-    },
-    "target_groups": [
-      "Auszubildende in betrieblicher Ausbildung",
-      "Teilnehmende an berufsvorbereitenden Bildungsmaßnahmen",
-      "Auszubildende in außerbetrieblicher Ausbildung"
-    ],
-    "life_situations": [
-      "ausbildung",
-      "arbeit_arbeitnehmer"
-    ],
-    "eligibility": {
-      "rules": [
-        {
-          "rule_id": "bab_ausbildung_betrieblich",
-          "description": "Betriebliche Berufsausbildung mit Anspruch auf Arbeitslosengeld vor Ausbildungsbeginn",
-          "condition": "arbeitslosengeld_anspruch_vor_ausbildungsbeginn",
-          "required": false,
-          "category": "status"
-        },
-        {
-          "rule_id": "bab_ausbildung_auswaerts",
-          "description": "Ausbildung außerhalb des Elternhauses (Nicht bei Eltern wohnend)",
-          "condition": "nicht_bei_eltern_wohnend",
-          "required": true,
-          "category": "household"
-        },
-        {
-          "rule_id": "bab_ausbildung_foerderungsfaehig",
-          "description": "Förderungsfähige Berufsausbildung (mindestens 2 Jahre, anerkannter Beruf)",
-          "condition": "anerkannter_beruf AND dauer >= 2_jahre",
-          "required": true,
-          "category": "status"
-        },
-        {
-          "rule_id": "bab_kein_bafoeg",
-          "description": "Kein Anspruch auf BAföG (BAB ist Nachfolgeleistung)",
-          "condition": "kein_bafoeg_anspruch",
-          "required": true,
-          "category": "status"
-        },
-        {
-          "rule_id": "bab_einkommen",
-          "description": "Einkommensprüfung: Einkommen der Eltern/Auszubildenden wird angerechnet",
-          "condition": "einkommen <= bedarfssatz_plus_freibetraege",
-          "required": false,
-          "category": "income"
-        }
-      ],
-      "income_rules": [
-        {
-          "applies_to": "Elterneinkommen",
-          "threshold": 0,
-          "threshold_type": "monthly",
-          "free_allowance": 0,
-          "last_updated": "2025-01-01"
-        }
-      ],
-      "asset_rules": {
-        "threshold": 0,
-        "exemptions": [],
-        "last_updated": "2025-01-01"
-      },
-      "special_conditions": [
-        "Ausbildung im Ausland möglich (bestimmte Voraussetzungen)",
-        "Ausbildung in überbetrieblichen Bildungsstätten",
-        "Ausbildung bei öffentlichen Trägern"
-      ]
-    },
-    "calculation": {
-      "method": "Bedarfssatz minus anrechenbare Einkommen",
-      "steps": [
-        {
-          "step": 1,
-          "description": "Bedarfssatz bestimmen",
-          "value": "380€ (bei Eltern) bis 822€ (nicht bei Eltern) + Fahrtkosten bis 476€",
-          "note": "Bedarfssätze variieren je nach Schulart und Wohnsituation"
-        },
-        {
-          "step": 2,
-          "description": "Einkommen anrechnen",
-          "value": "Einkommen der Eltern und des Auszubildenden wird angerechnet"
-        },
-        {
-          "step": 3,
-          "description": "Fahrtkosten hinzufügen",
-          "value": "Bis zu 476€ für Fahrtkosten zur Ausbildungsstätte"
-        }
-      ],
-      "min_amount": 1,
-      "max_amount": 822,
-      "typical_amount": "300€-600€ pro Monat",
-      "frequency": "monthly",
-      "calculator_possible": true,
-      "manual_review_needed": false
-    },
-    "amount": {
-      "description": "BAB-Höchstsatz: 822€ monatlich (nicht bei Eltern wohnend) + Fahrtkosten bis 476€",
-      "min_monthly": 1,
-      "max_monthly": 822,
-      "one_time": 0,
-      "depends_on": [
-        "Einkommen der Eltern",
-        "Eigenes Einkommen",
-        "Wohnsituation",
-        "Fahrtkosten"
-      ]
-    },
-    "application": {
-      "method": "Persönlich oder schriftlich bei der Agentur für Arbeit",
-      "url": "https://www.arbeitsagentur.de/bildung/ausbildung/berufsausbildungsbeihilfe-bab",
-      "forms": [
-        "Antrag auf Berufsausbildungsbeihilfe (BAB)"
-      ],
-      "required_documents": [
-        "Antragsformular",
-        "Ausbildungsvertrag",
-        "Schulzeugnis",
-        "Mietvertrag",
-        "Einkommensnachweise",
-        "Krankenversicherungsnachweis"
-      ],
-      "processing_time": "4-6 Wochen",
-      "deadlines": {
-        "description": "Antrag vor Ausbildungsbeginn stellen",
-        "note": "Rückwirkend nur 1 Monat möglich"
-      }
-    },
-    "legal_basis": [
-      "§ 56 SGB III",
-      "§§ 74-75 SGB III",
-      "Berufsausbildungsbeihilferichtlinie"
-    ],
-    "compatible_with": [
-      "wohngeld",
-      "kindergeld",
-      "kinderzuschlag"
-    ],
-    "incompatible_with": [
-      "bafoeg",
-      "aufstiegsbafoeg"
-    ],
-    "related_benefits": [
-      "bafoeg",
-      "aufstiegsbafoeg",
-      "bildungsgutschein"
-    ],
-    "reduces": [],
-    "user_content": {
-      "short_explanation": "Die Berufsausbildungsbeihilfe (BAB) unterstützt Auszubildende finanziell, wenn sie nicht bei den Eltern wohnen und keinen BAföG-Anspruch haben.",
-      "for_whom": "Auszubildende in einer betrieblichen oder außerbetrieblichen Berufsausbildung, die nicht bei ihren Eltern wohnen und keine BAföG-Förderung erhalten.",
-      "requirements": "Förderungsfähige Berufsausbildung (mindestens 2 Jahre), nicht bei Eltern wohnend, kein BAföG-Anspruch, Einkommen überschreitet Bedarf nicht.",
-      "how_much": "Bis zu 822€ pro Monat (nicht bei Eltern wohnend). Bei Eltern wohnend bis zu 380€. Zusätzlich können Fahrtkosten bis zu 476€ erstattet werden.",
-      "how_calculated": "Der Bedarf (Bedarfssatz) minus das anrechenbare Einkommen der Eltern und des Auszubildenden. Die Höhe hängt von der Wohnsituation und den Fahrtkosten ab.",
-      "documents_needed": "Antragsformular, Ausbildungsvertrag, Schulzeugnis, Mietvertrag, Einkommensnachweise der Eltern, Krankenversicherungsnachweis.",
-      "where_to_apply": "Agentur für Arbeit am Wohnort oder am Ausbildungsort.",
-      "deadlines": "Antrag vor Ausbildungsbeginn stellen. Rückwirkend nur 1 Monat möglich.",
-      "faq": [
-        {
-          "question": "Kann ich BAB und BAföG kombinieren?",
-          "answer": "Nein, BAB und BAföG schließen sich gegenseitig aus. BAB ist eine Nachfolgeleistung für Auszubildende ohne BAföG-Anspruch."
-        },
-        {
-          "question": "Gibt es BAB auch für Ausbildung im Ausland?",
-          "answer": "Ja, unter bestimmten Voraussetzungen. Die Ausbildung muss in einem EU/EWR-Staat oder der Schweiz stattfinden und anerkannt sein."
-        },
-        {
-          "question": "Wie lange wird BAB gezahlt?",
-          "answer": "Für die Dauer der Berufsausbildung, maximal 3 Jahre (bei Verlängerung der Ausbildungszeit entsprechend)."
-        }
-      ]
-    },
-    "official_sources": [
-      {
-        "url": "https://www.arbeitsagentur.de/bildung/ausbildung/berufsausbildungsbeihilfe-bab",
-        "title": "Berufsausbildungsbeihilfe (BAB) - Bundesagentur für Arbeit",
-        "organization": "Bundesagentur für Arbeit",
-        "last_verified": "2026-09-08",
-        "type": "authority"
-      },
-      {
-        "url": "https://www.gesetze-im-internet.de/sgb_3/__56.html",
-        "title": "§ 56 SGB III - Berufsausbildungsbeihilfe",
-        "organization": "Bundesministerium der Justiz",
-        "last_verified": "2026-09-08",
-        "type": "law"
-      }
-    ],
-    "last_verified": "2026-09-08",
-    "valid_from": "2024-01-01",
-    "valid_until": null,
-    "confidence": "high",
-    "verification_status": "verified",
-    "notes": [
-      "BAB ist eine Leistung der Arbeitsförderung (SGB III). Sie richtet sich an Auszubildende ohne BAföG-Anspruch. Die Bedarfssätze werden regelmäßig angepasst."
-    ],
     "created_at": "2026-09-08",
     "updated_at": "2026-09-08"
   },
@@ -4532,9 +4302,7 @@
     ],
     "incompatible_with": [],
     "related_benefits": [
-      "landwirtschaft-investitionen",
-      "junglandwirte",
-      "biologischer-bau"
+      "landwirtschaft-investitionen"
     ],
     "user_content": {
       "short_explanation": "Die Förderung der Betriebsberatung unterstützt Landwirte bei der fachlichen Beratung – von der Betriebsführung bis zum Umweltschutz.",
@@ -4583,7 +4351,8 @@
       "Obergrenze von 3.000 Euro pro Betrieb und Jahr"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "bildungskredit_kfw",
@@ -4747,7 +4516,7 @@
       "stipendien"
     ],
     "incompatible_with": [
-      "berufsausbildungsbeihilfe_bab"
+      "ausbildungsförderung"
     ],
     "related_benefits": [
       "bafoeg",
@@ -4967,7 +4736,9 @@
       "Lernförderung: bis 150€/Monat"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "biologischer-bau-foerderung",
@@ -5120,15 +4891,10 @@
       "landwirtschaft-investitionen",
       "junglandwirte-einkommensstuetzung",
       "umweltprogramme-fakt",
-      "tierhaltung-umbau",
-      "betriebsberatung"
+      "tierhaltung-umbau"
     ],
     "incompatible_with": [],
-    "related_benefits": [
-      "umweltprogramme",
-      "junglandwirte",
-      "betriebsberatung"
-    ],
+    "related_benefits": [],
     "user_content": {
       "short_explanation": "Die Förderung des ökologischen Landbaus unterstützt Betriebe bei der Umstellung und Beibehaltung von Bio-Bewirtschaftung.",
       "for_whom": "Ökologisch wirtschaftende Betriebe, Betriebe in Umstellung, Bio-Verbände (Bioland, Demeter, Naturland).",
@@ -5176,7 +4942,8 @@
       "Umstellungsberatung mit bis zu 50 % gefördert (max. 4.000 Euro)"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "buergergeld",
@@ -5401,7 +5168,9 @@
       "Vermögensfreibetrag 40.000€ im 1. Jahr, dann 15.000€"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "deutschkurs",
@@ -5583,7 +5352,8 @@
       "BAMF-Integrationskurse sind speziell für Neuzugewanderte konzipiert"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "digitalbonus",
@@ -5956,7 +5726,8 @@
       "Duldung wird in der Regel für 3-6 Monate erteilt und verlängert"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "ehegattensplitting",
@@ -6305,7 +6076,9 @@
       "KfW-Programm 300 für Familien, 124 für alle, 308 für Bestandserwerb."
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "einstiegsgeld",
@@ -6660,7 +6433,6 @@
       "BAnz AT 19.06.2026 B3"
     ],
     "compatible_with": [
-      "photovoltaik",
       "klimaschutz-beratung"
     ],
     "incompatible_with": [],
@@ -7055,8 +6827,7 @@
     ],
     "compatible_with": [
       "elterngeld",
-      "kindergeld",
-      "teilzeitarbeit"
+      "kindergeld"
     ],
     "incompatible_with": [
       "arbeitslosengeld-i"
@@ -7267,13 +7038,7 @@
       "KfW-Programm 261/262 (Wohngebäude Kredit)",
       "EnEG, EnEV, GEG"
     ],
-    "compatible_with": [
-      "gebaeude-daemmung",
-      "photovoltaik",
-      "waermepumpe",
-      "heizungstausch",
-      "solarthermie"
-    ],
+    "compatible_with": [],
     "incompatible_with": [],
     "related_benefits": [
       "energieschuldenberatung",
@@ -7485,7 +7250,9 @@
       "BEG wurde 2024/2025 reformiert. Heizungsförderung ab 2027 geändert."
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "energieschuldenberatung",
@@ -7607,13 +7374,7 @@
       "Caritas/Diakonie Satzungen",
       "Sozialgesetzbuch (SGB)"
     ],
-    "compatible_with": [
-      "photovoltaik",
-      "energieeffizienz",
-      "gebaeude-daemmung",
-      "waermepumpe",
-      "elektromobilitaet"
-    ],
+    "compatible_with": [],
     "incompatible_with": [],
     "related_benefits": [
       "energieschuldenberatung",
@@ -8004,14 +7765,9 @@
       "§ 21 EEG (Einspeisevergütung für Biomasse)",
       "Solarspitzengesetz 2025"
     ],
-    "compatible_with": [
-      "photovoltaik",
-      "energieeffizienz",
-      "gebaeude-daemmung"
-    ],
+    "compatible_with": [],
     "incompatible_with": [],
     "related_benefits": [
-      "photovoltaik",
       "energieschuldenberatung"
     ],
     "reduces": [],
@@ -8064,191 +7820,6 @@
       "EEG-Vergütungssätze werden monatlich angepasst.",
       "Solarspitzengesetz 2025: Keine Vergütung bei negativen Börsenpreisen.",
       "Marktprämie als Alternative zur festen Einspeisevergütung möglich."
-    ],
-    "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
-  },
-  {
-    "id": "erwerbsminderung",
-    "official_name": "Erwerbsminderungsrente",
-    "aliases": [
-      "EM-Rente",
-      "Rente wegen Erwerbsminderung",
-      "Berufsunfähigkeitsrente"
-    ],
-    "former_names": [],
-    "type": "disability_benefit",
-    "status": "verified",
-    "category": "Rente & Vorsorge",
-    "subcategory": "Erwerbsminderung",
-    "level": "federal",
-    "regions": [
-      "all"
-    ],
-    "provider": {
-      "name": "Deutsche Rentenversicherung",
-      "authority": "Deutsche Rentenversicherung Bund",
-      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Erwerbsminderungsrente/Erwerbsminderungsrente",
-      "phone": "0800 1000 4800"
-    },
-    "target_groups": [
-      "Versicherte mit verminderter Erwerbsfähigkeit",
-      "Menschen die nicht mehr voll arbeiten können"
-    ],
-    "life_situations": [
-      "kann_nicht_arbeiten",
-      "gesundheit",
-      "behinderung"
-    ],
-    "eligibility": {
-      "rules": [
-        {
-          "rule_id": "em-r1",
-          "description": "Voll erwerbsgemindert: weniger als 3 Stunden täglich in irgendeiner Tätigkeit arbeitsfähig",
-          "condition": "voll_erwerbsgemindert",
-          "required": true,
-          "category": "health"
-        },
-        {
-          "rule_id": "em-r2",
-          "description": "Teilweise erwerbsgemindert: 3-6 Stunden täglich arbeitsfähig",
-          "condition": "teilweise_erwerbsgemindert",
-          "required": false,
-          "category": "health"
-        },
-        {
-          "rule_id": "em-r3",
-          "description": "Wartezeit von 5 Jahren erfüllt (mindestens 36 Monate Pflichtbeiträge in letzten 5 Jahren)",
-          "condition": "wartezeit_5_jahre",
-          "required": true,
-          "category": "status"
-        },
-        {
-          "rule_id": "em-r4",
-          "description": "Erwerbsminderung ist voraussichtlich dauerhaft",
-          "condition": "dauerhaft",
-          "required": true,
-          "category": "health"
-        }
-      ],
-      "special_conditions": [
-        "Zuschlag seit Juli 2024 für EM-Renten die 2001-2018 begonnen haben (7,5% oder 4,5% ab Dez 2025)"
-      ]
-    },
-    "calculation": {
-      "method": "Wie Altersrente, aber mit Zurechnungszeit bis zum 65. Lebensjahr",
-      "steps": [
-        {
-          "step": 1,
-          "description": "Persönliche Entgeltpunkte ermitteln"
-        },
-        {
-          "step": 2,
-          "description": "Zurechnungszeit bis 65. Lebensjahr hinzufügen"
-        },
-        {
-          "step": 3,
-          "description": "Rentenartfaktor (1,0 für volle EM, 0,5 für teilweise EM)"
-        },
-        {
-          "step": 4,
-          "description": "Abschlag von 0,3% pro Monat vor 65. Lebensjahr (max 10,8%)"
-        },
-        {
-          "step": 5,
-          "description": "Zuschlag ab Dezember 2025: 7,5% oder 4,5% der Entgeltpunkte"
-        }
-      ],
-      "frequency": "monthly",
-      "calculator_possible": true,
-      "manual_review_needed": true
-    },
-    "amount": {
-      "description": "Abhängig von Entgeltpunkten, Versicherungsdauer und Zurechnungszeit",
-      "depends_on": [
-        "entgeltpunkte",
-        "versicherungsjahre",
-        "alter",
-        "art_der_minderung"
-      ]
-    },
-    "application": {
-      "method": "Online oder schriftlich bei der Deutschen Rentenversicherung",
-      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Rentenarten-und-Leistungen/Erwerbsminderungsrente/Erwerbsminderungsrente",
-      "forms": [
-        "Antrag auf Rente wegen voller Erwerbsminderung",
-        "Antrag auf Rente wegen teilweiser Erwerbsminderung"
-      ],
-      "required_documents": [
-        "Personalausweis",
-        "Rentenversicherungsnummer",
-        "Ärztliche Befunde",
-        "Arbeitsunfähigkeitsbescheinigungen",
-        "Angaben zur Berufstätigkeit"
-      ],
-      "processing_time": "ca. 3-6 Monate"
-    },
-    "legal_basis": [
-      "§§ 43-63 SGB VI",
-      "§ 307j SGB VI (Zuschlag)",
-      "§ 253a SGB VI (Zurechnungszeit)"
-    ],
-    "compatible_with": [
-      "sozialhilfe",
-      "hinterbliebenenleistungen"
-    ],
-    "incompatible_with": [
-      "arbeitslosengeld-i"
-    ],
-    "related_benefits": [
-      "sozialversicherung",
-      "sozialhilfe",
-      "reha"
-    ],
-    "user_content": {
-      "short_explanation": "Die Erwerbsminderungsrente wird gezahlt, wenn Sie aufgrund von Krankheit nicht mehr voll oder teilweise arbeiten können.",
-      "for_whom": "Für Versicherte, die aufgrund gesundheitlicher Probleme nicht mehr in der Lage sind, mindestens 3 Stunden (voll) oder 6 Stunden (teilweise) täglich zu arbeiten.",
-      "requirements": "Sie müssen die Wartezeit von 5 Jahren erfüllt haben, voll oder teilweise erwerbsgemindert sein und die Minderung muss voraussichtlich dauerhaft sein.",
-      "how_much": "Hängt von Ihren Entgeltpunkten und der Versicherungsdauer ab. Durch die Zurechnungszeit bis 65 wird die Rente höher. Zuschlag seit 2024.",
-      "how_calculated": "Wie die Altersrente, aber mit Zurechnungszeit bis zum 65. Lebensjahr. Abschlag von 0,3% pro Monat vor 65 (max 10,8%).",
-      "documents_needed": "Ärztliche Befunde, Arbeitsunfähigkeitsbescheinigungen, Rentenversicherungsnummer",
-      "where_to_apply": "Bei der Deutschen Rentenversicherung (online oder schriftlich)",
-      "deadlines": "Keine spezifischen Fristen, aber Antrag schnellzeitig stellen.",
-      "faq": [
-        {
-          "question": "Was ist der Unterschied zwischen voller und teilweiser EM?",
-          "answer": "Voll: weniger als 3 Stunden arbeitsfähig. Teilweise: 3-6 Stunden arbeitsfähig. Volle EM = volle Rente, teilweise EM = halbe Rente."
-        },
-        {
-          "question": "Gibt es einen Zuschlag?",
-          "answer": "Ja, seit Juli 2024 erhalten EM-Renten, die 2001-2018 begonnen haben, einen Zuschlag. Ab Dezember 2025 wird dieser in die Rente integriert."
-        }
-      ]
-    },
-    "official_sources": [
-      {
-        "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informations/Rentenarten-und-Leistungen/Erwerbsminderungsrente/Erwerbsminderungsrente",
-        "title": "Erwerbsminderungsrenten",
-        "organization": "Deutsche Rentenversicherung",
-        "last_verified": "2026-09-08",
-        "type": "agency"
-      },
-      {
-        "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/EM-Rente-Verbesserung/em-verbesserungsgesetz_node",
-        "title": "EM-Rente Verbesserungsgesetz",
-        "organization": "Deutsche Rentenversicherung",
-        "last_verified": "2026-09-08",
-        "type": "agency"
-      }
-    ],
-    "last_verified": "2026-09-08",
-    "valid_from": "2026-09-08",
-    "confidence": "high",
-    "verification_status": "verified",
-    "notes": [
-      "Zuschlag seit Juli 2024 (7,5% oder 4,5% ab Dez 2025)",
-      "Zurechnungszeit bis 65. Lebensjahr",
-      "Abschlag max 10,8%"
     ],
     "created_at": "2026-09-08",
     "updated_at": "2026-09-08"
@@ -8397,9 +7968,7 @@
       "§ 241 SGB VI (Erwerbsminderungsrenten)",
       "§ 242 SGB VI (Zuschlag)"
     ],
-    "compatible_with": [
-      "hinzuverdienst"
-    ],
+    "compatible_with": [],
     "incompatible_with": [
       "altersrente"
     ],
@@ -8454,7 +8023,8 @@
       "Reha geht vor Rente - § 9 SGB VI"
     ],
     "created_at": "2026-09-09",
-    "updated_at": "2026-09-09"
+    "updated_at": "2026-09-09",
+    "valid_until": null
   },
   {
     "id": "existenzgruenderkredit",
@@ -8805,14 +8375,11 @@
     "compatible_with": [
       "junglandwirte-einkommensstuetzung",
       "landwirtschaft-investitionen",
-      "biologischer-bau-foerderung",
-      "betriebsberatung"
+      "biologischer-bau-foerderung"
     ],
     "incompatible_with": [],
     "related_benefits": [
-      "junglandwirte",
-      "landwirtschaft-investitionen",
-      "betriebsberatung"
+      "landwirtschaft-investitionen"
     ],
     "user_content": {
       "short_explanation": "Die Existenzgründungsförderung unterstützt Junglandwirte bei der Niederlassung – mit Zuschüssen von bis zu 100.000 Euro.",
@@ -8861,7 +8428,8 @@
       "Kombination mit Junglandwirte-Einkommensstützung möglich"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "familienleistungen_steuer",
@@ -9198,15 +8766,12 @@
       "Pflegezeitgesetz (PflegeZG)"
     ],
     "compatible_with": [
-      "pflegezeit",
-      "elternzeit",
-      "teilzeitarbeit"
+      "elternzeit"
     ],
     "incompatible_with": [
       "arbeitslosengeld-i"
     ],
     "related_benefits": [
-      "pflegezeit",
       "elternzeit",
       "pflegegeld"
     ],
@@ -9466,7 +9031,8 @@
       "Visumverfahren bei der Auslandsvertretung im Heimatland"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "forstwirtschaft-foerderung",
@@ -9622,8 +9188,6 @@
     ],
     "incompatible_with": [],
     "related_benefits": [
-      "agrarförderung",
-      "umweltprogramme",
       "landwirtschaft-investitionen"
     ],
     "user_content": {
@@ -9680,7 +9244,8 @@
       "Landesforstgesetze regeln Details je Bundesland"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "gebaeude-daemmung-foerderung",
@@ -9828,12 +9393,7 @@
       "Gebäudeenergiegesetz (GEG)",
       "§ 35c EStG (Steuerliche Förderung)"
     ],
-    "compatible_with": [
-      "photovoltaik",
-      "waermepumpe",
-      "heizungstausch",
-      "energieeffizienz"
-    ],
+    "compatible_with": [],
     "incompatible_with": [],
     "related_benefits": [
       "energieschuldenberatung"
@@ -10399,12 +9959,10 @@
       "§ 94 SGB III"
     ],
     "compatible_with": [
-      "gruendercoaching",
-      "kfw_gruenderkredit"
+      "gruendercoaching"
     ],
     "incompatible_with": [
-      "einstiegsgeld",
-      "arbeitslosengeld"
+      "einstiegsgeld"
     ],
     "related_benefits": [
       "einstiegsgeld",
@@ -10659,7 +10217,9 @@
       "Regelbedarfe 2024/2025/2026 unverändert"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "handwerkerleistungen",
@@ -11371,13 +10931,11 @@
       "§ 60 SGB V (Zuzahlungen)"
     ],
     "compatible_with": [
-      "psychotherapie",
-      "arzneimittel"
+      "psychotherapie"
     ],
     "incompatible_with": [],
     "related_benefits": [
       "psychotherapie",
-      "arzneimittel",
       "hilfsmittel"
     ],
     "reduces": [],
@@ -11428,7 +10986,8 @@
       "Blankoverordnung für Physio/Ergo möglich"
     ],
     "created_at": "2026-09-09",
-    "updated_at": "2026-09-09"
+    "updated_at": "2026-09-09",
+    "valid_until": null
   },
   {
     "id": "heizungstausch-foerderung",
@@ -11574,12 +11133,7 @@
       "Gebäude-Modernisierungsgesetz (GModG)",
       "KfW-Programm 458 (Heizungsförderung)"
     ],
-    "compatible_with": [
-      "gebaeude-daemmung",
-      "photovoltaik",
-      "waermepumpe",
-      "energieeffizienz"
-    ],
+    "compatible_with": [],
     "incompatible_with": [],
     "related_benefits": [
       "energieschuldenberatung"
@@ -11942,13 +11496,13 @@
       "§§ 46-76 SGB VI"
     ],
     "compatible_with": [
-      "erwerbsminderung",
+      "erwerbsminderungsrente",
       "sozialhilfe"
     ],
     "incompatible_with": [],
     "related_benefits": [
       "sozialversicherung",
-      "erwerbsminderung"
+      "erwerbsminderungsrente"
     ],
     "user_content": {
       "short_explanation": "Hinterbliebenenrenten unterstützen Sie finanziell, wenn Ihr Ehepartner, Lebenspartner oder Elternteil verstorben ist.",
@@ -11996,7 +11550,9 @@
       "Einkommensanrechnung: 40% über Freibetrag"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "hinterbliebenenrente",
@@ -12135,9 +11691,7 @@
       "§ 47 SGB VI (Witwen- und Witwerrente)",
       "§ 48 SGB VI (Waisenrente)"
     ],
-    "compatible_with": [
-      "waise"
-    ],
+    "compatible_with": [],
     "incompatible_with": [],
     "related_benefits": [
       "altersrente",
@@ -12190,7 +11744,8 @@
       "Mindestalter für große Rente 2026: 46 Jahre 6 Monate"
     ],
     "created_at": "2026-09-09",
-    "updated_at": "2026-09-09"
+    "updated_at": "2026-09-09",
+    "valid_until": null
   },
   {
     "id": "humanitärer_aufnahme",
@@ -12378,7 +11933,8 @@
       "Aufenthaltstitel nach § 25 Abs. 2 AufenthG (subsidiärer Schutz)"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "industriekammerausbildung",
@@ -12533,13 +12089,13 @@
       "IHK-Gesetz"
     ],
     "compatible_with": [
-      "berufsausbildungsbeihilfe_bab",
+      "ausbildungsförderung",
       "bafoeg",
       "weiterbildungsfoerderung"
     ],
     "incompatible_with": [],
     "related_benefits": [
-      "berufsausbildungsbeihilfe_bab",
+      "ausbildungsförderung",
       "bafoeg",
       "weiterbildungsfoerderung"
     ],
@@ -12787,7 +12343,8 @@
       "Seit 2024: Teilnahmeberechtigung auch für bestimmte EU-Bürger mit Bezug zu Deutschland"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "investitionszuschuss",
@@ -13092,8 +12649,7 @@
     "incompatible_with": [],
     "related_benefits": [
       "landwirtschaft-investitionen",
-      "existenzgruendung-landwirtschaft",
-      "betriebsberatung"
+      "existenzgruendung-landwirtschaft"
     ],
     "user_content": {
       "short_explanation": "Die Junglandwirte-Einkommensstützung ist eine jährliche Prämie für Landwirte unter 40 Jahren, die sich erstmals niedergelassen haben.",
@@ -13142,7 +12698,8 @@
       "Kombination mit nationaler Existenzgründungsförderung möglich"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "kindererziehungszeiten",
@@ -13326,7 +12883,8 @@
       "Automatische Anrechnung bei Rentenantrag"
     ],
     "created_at": "2026-09-09",
-    "updated_at": "2026-09-09"
+    "updated_at": "2026-09-09",
+    "valid_until": null
   },
   {
     "id": "kinderfreibetrag",
@@ -13466,13 +13024,11 @@
     ],
     "compatible_with": [
       "kindergeld",
-      "unterhaltsfreibetrag",
       "alleinerziehendenentlastungsbetrag"
     ],
     "incompatible_with": [],
     "related_benefits": [
       "kindergeld",
-      "unterhaltsfreibetrag",
       "bafoeg"
     ],
     "reduces": [],
@@ -14064,7 +13620,9 @@
       "Mindesteinkommen: 600€/900€ brutto"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "kirchensteuer",
@@ -14367,13 +13925,7 @@
       "Verbraucherzentrale Satzung",
       "Richtlinie zur Förderung von Energieberatung"
     ],
-    "compatible_with": [
-      "photovoltaik",
-      "energieeffizienz",
-      "gebaeude-daemmung",
-      "waermepumpe",
-      "elektromobilitaet"
-    ],
+    "compatible_with": [],
     "incompatible_with": [],
     "related_benefits": [
       "energieschuldenberatung"
@@ -14540,7 +14092,7 @@
     "related_benefits": [
       "sozialversicherung",
       "reha",
-      "erwerbsminderung"
+      "erwerbsminderungsrente"
     ],
     "user_content": {
       "short_explanation": "Das Krankengeld ersetzt Ihr Gehalt, wenn Sie länger als 6 Wochen krankgeschrieben sind.",
@@ -14588,7 +14140,9 @@
       "70% Brutto, max 90% Netto"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "kurzarbeitergeld",
@@ -14922,9 +14476,7 @@
     "compatible_with": [
       "verhinderungspflege"
     ],
-    "incompatible_with": [
-      "vollstationaere_pflege"
-    ],
+    "incompatible_with": [],
     "related_benefits": [
       "verhinderungspflege",
       "pflegegeld"
@@ -14976,7 +14528,8 @@
       "Seit 1. Juli 2025 gemeinsamer Jahresbetrag"
     ],
     "created_at": "2026-09-09",
-    "updated_at": "2026-09-09"
+    "updated_at": "2026-09-09",
+    "valid_until": null
   },
   {
     "id": "landwirtschaft-investitionen",
@@ -15144,16 +14697,10 @@
     "compatible_with": [
       "junglandwirte-einkommensstuetzung",
       "tierhaltung-umbau",
-      "biologischer-bau-foerderung",
-      "betriebsberatung"
+      "biologischer-bau-foerderung"
     ],
     "incompatible_with": [],
-    "related_benefits": [
-      "junglandwirte",
-      "tierhaltung",
-      "forstwirtschaft",
-      "biologischer-bau"
-    ],
+    "related_benefits": [],
     "user_content": {
       "short_explanation": "Die Investitionsförderung unterstützt landwirtschaftliche Betriebe bei Modernisierungen, Stallbau, Maschinenkauf und Dauerkulturen mit Zuschüssen von bis zu 50 %.",
       "for_whom": "Landwirte und Landwirtinnen, die in ihren Betrieb investieren möchten – besonders Junglandwirte profitieren von Zuschlägen.",
@@ -15208,7 +14755,8 @@
       "Junglandwirte erhalten zusätzlichen Zuschuss von bis zu 10 % (max. 20.000 Euro)"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "lastenzuschuss",
@@ -15342,8 +14890,7 @@
       "unterhaltsvorschuss"
     ],
     "incompatible_with": [
-      "buergergeld",
-      "grundsicherung"
+      "buergergeld"
     ],
     "related_benefits": [
       "wohngeld",
@@ -15393,7 +14940,9 @@
       "Lastenzuschuss ist rechtlich identisch mit Mietzuschuss, nur für Eigentümer."
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "medizinische_versorgung_flüchtlinge",
@@ -15589,7 +15138,8 @@
       "Psychotherapie: nur in Ausnahmefällen möglich"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "mietpreisbremse",
@@ -15720,7 +15270,9 @@
       "Mietpreisbremse wurde bis 31.12.2029 verlängert. Landesrechtliche Verordnungen erforderlich."
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "mietzuschuss",
@@ -15835,8 +15387,7 @@
       "unterhaltsvorschuss"
     ],
     "incompatible_with": [
-      "buergergeld",
-      "grundsicherung"
+      "buergergeld"
     ],
     "related_benefits": [
       "wohngeld",
@@ -15883,7 +15434,9 @@
       "Mietzuschuss ist die praktische Umsetzung des Wohgeldes für Mieter."
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "mindestlohn",
@@ -16419,8 +15972,7 @@
       "kindergeld",
       "elterngeld",
       "elternzeit",
-      "bildungspaket",
-      "mutterschaftsrichtlinien"
+      "bildungspaket"
     ],
     "reduces": [],
     "official_sources": [
@@ -16458,7 +16010,18 @@
       "Studentinnen und Selbstständige in der freiwilligen GKV haben unter bestimmten Bedingungen ebenfalls Anspruch"
     ],
     "created_at": "2026-09-09",
-    "updated_at": "2026-09-09"
+    "updated_at": "2026-09-09",
+    "user_content": {
+      "short_explanation": "Das Mutterschaftsgeld ist eine Leistung der gesetzlichen Krankenversicherung (nicht des Staates direkt, sondern einer Selbstverwaltungskörperschaft)",
+      "for_whom": "",
+      "requirements": "",
+      "how_much": "",
+      "how_calculated": "",
+      "documents_needed": "",
+      "where_to_apply": "",
+      "deadlines": "",
+      "faq": []
+    }
   },
   {
     "id": "mutterschaftsvorsorge",
@@ -16764,7 +16327,9 @@
       "Förderzeitraum für Effizienzhaus 55 verlängert bis 31.12.2026."
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "pflegebeihilfe",
@@ -17100,7 +16665,8 @@
       "Kann mehrfach in Anspruch genommen werden"
     ],
     "created_at": "2026-09-09",
-    "updated_at": "2026-09-09"
+    "updated_at": "2026-09-09",
+    "valid_until": null
   },
   {
     "id": "pflegegeld",
@@ -17643,7 +17209,8 @@
       "Gilt für Pflegezeit (6 Monate) und Familienpflegezeit (24 Monate)"
     ],
     "created_at": "2026-09-09",
-    "updated_at": "2026-09-09"
+    "updated_at": "2026-09-09",
+    "valid_until": null
   },
   {
     "id": "photovoltaik-foerderung",
@@ -17786,15 +17353,9 @@
       "KfW-Programm 270 (Erneuerbare Energien - Standard)",
       "KfW-Programm 275 (Erneuerbare Energien - Speicher)"
     ],
-    "compatible_with": [
-      "gebaeude-daemmung",
-      "energieeffizienz",
-      "waermepumpe",
-      "solarthermie"
-    ],
+    "compatible_with": [],
     "incompatible_with": [],
     "related_benefits": [
-      "erneuerbare-energien",
       "energieschuldenberatung"
     ],
     "reduces": [],
@@ -18010,13 +17571,13 @@
     ],
     "compatible_with": [
       "bafoeg",
-      "berufsausbildungsbeihilfe_bab",
+      "ausbildungsförderung",
       "stipendien"
     ],
     "incompatible_with": [],
     "related_benefits": [
       "bafoeg",
-      "berufsausbildungsbeihilfe_bab",
+      "ausbildungsförderung",
       "stipendien"
     ],
     "reduces": [],
@@ -18217,8 +17778,7 @@
     ],
     "incompatible_with": [],
     "related_benefits": [
-      "heilmittel",
-      "arztbehandlung"
+      "heilmittel"
     ],
     "reduces": [],
     "user_content": {
@@ -18261,7 +17821,8 @@
       "GKV-Spitzenverband Reformen 2026 beachten"
     ],
     "created_at": "2026-09-09",
-    "updated_at": "2026-09-09"
+    "updated_at": "2026-09-09",
+    "valid_until": null
   },
   {
     "id": "qualifizierungschancengesetz",
@@ -18578,13 +18139,13 @@
     ],
     "compatible_with": [
       "sozialversicherung",
-      "erwerbsminderung",
+      "erwerbsminderungsrente",
       "sozialhilfe"
     ],
     "incompatible_with": [],
     "related_benefits": [
       "sozialversicherung",
-      "erwerbsminderung",
+      "erwerbsminderungsrente",
       "krankengeld"
     ],
     "user_content": {
@@ -18633,7 +18194,9 @@
       "Übergangsgeld: 68% des Bruttoentgelts"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "rehabilitation",
@@ -18960,7 +18523,8 @@
       "Auch Videoberatung möglich"
     ],
     "created_at": "2026-09-09",
-    "updated_at": "2026-09-09"
+    "updated_at": "2026-09-09",
+    "valid_until": null
   },
   {
     "id": "sanierung_zuschuss",
@@ -19059,8 +18623,7 @@
     ],
     "compatible_with": [
       "energiesanierung",
-      "barrierefrei_umbauen",
-      "denkmalschutz"
+      "barrierefrei_umbauen"
     ],
     "incompatible_with": [],
     "related_benefits": [
@@ -19112,7 +18675,9 @@
       "KfW 461 ist der Tilgungszuschuss für Komplettsanierung."
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "schangerschaftsleistungen",
@@ -19462,14 +19027,12 @@
     ],
     "compatible_with": [
       "bafoeg",
-      "berufsausbildungsbeihilfe_bab",
-      "schuelerbefoerderung"
+      "ausbildungsförderung"
     ],
     "incompatible_with": [],
     "related_benefits": [
       "bafoeg",
-      "berufsausbildungsbeihilfe_bab",
-      "schuelerbefoerderung"
+      "ausbildungsförderung"
     ],
     "reduces": [],
     "user_content": {
@@ -19693,9 +19256,7 @@
       "beratung_migranten",
       "medizinische_versorgung_flüchtlinge"
     ],
-    "incompatible_with": [
-      "arbeitsmarktzugang (teilweise)"
-    ],
+    "incompatible_with": [],
     "related_benefits": [
       "beratung_migranten",
       "medizinische_versorgung_flüchtlinge"
@@ -19760,7 +19321,8 @@
       "Regelsätze werden jährlich angepasst"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "schwerbehinderung",
@@ -20080,12 +19642,7 @@
       "Richtlinie zur Förderung von Maßnahmen zur Nutzung erneuerbaren Energien im Wärmebereich (BMWi)",
       "§ 35c EStG (Steuerbonus)"
     ],
-    "compatible_with": [
-      "photovoltaik",
-      "waermepumpe",
-      "heizungstausch",
-      "energieeffizienz"
-    ],
+    "compatible_with": [],
     "incompatible_with": [],
     "related_benefits": [
       "energieschuldenberatung"
@@ -20480,8 +20037,7 @@
       "§§ 27-29 SGB XII (Regelbedarfe)"
     ],
     "compatible_with": [
-      "bildungspaket",
-      "hilfe-zur-pflege"
+      "bildungspaket"
     ],
     "incompatible_with": [
       "buergergeld",
@@ -20489,7 +20045,6 @@
     ],
     "related_benefits": [
       "buergergeld",
-      "hilfe-zur-pflege",
       "grundsicherung-arbeitsuchende"
     ],
     "user_content": {
@@ -20537,7 +20092,9 @@
       "Nachrangprinzip: andere Hilfen zuerst"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "sozialversicherung",
@@ -20642,7 +20199,7 @@
     "compatible_with": [
       "arbeitslosengeld-i",
       "krankengeld",
-      "erwerbsminderung",
+      "erwerbsminderungsrente",
       "hinterbliebenenleistungen",
       "reha"
     ],
@@ -20650,7 +20207,7 @@
     "related_benefits": [
       "arbeitslosengeld-i",
       "krankengeld",
-      "erwerbsminderung",
+      "erwerbsminderungsrente",
       "hinterbliebenenleistungen",
       "reha"
     ],
@@ -20699,7 +20256,9 @@
       "Beitragssätze 2024/2025"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "spendenabzug",
@@ -21132,7 +20691,8 @@
       "Gebühr: 255€ (Erwachsene), 51€ (minderjährige Kinder)"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "steuer_familie",
@@ -21697,7 +21257,7 @@
       "kinderzuschlag"
     ],
     "incompatible_with": [
-      "berufsausbildungsbeihilfe_bab"
+      "ausbildungsförderung"
     ],
     "related_benefits": [
       "bafoeg",
@@ -22103,9 +21663,7 @@
     ],
     "incompatible_with": [],
     "related_benefits": [
-      "landwirtschaft-investitionen",
-      "umweltprogramme",
-      "biologischer-bau"
+      "landwirtschaft-investitionen"
     ],
     "user_content": {
       "short_explanation": "Das Bundesprogramm fördert den Umbau von Tierhaltungsanlagen mit bis zu 60 % Zuschuss – für mehr Tierwohl und Umweltschutz.",
@@ -22154,7 +21712,8 @@
       "Förderung laufender Mehrkosten parallel möglich"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "umschulung",
@@ -22515,11 +22074,7 @@
       "tierhaltung-umbau"
     ],
     "incompatible_with": [],
-    "related_benefits": [
-      "biologischer-bau",
-      "tierhaltung",
-      "agrarförderung"
-    ],
+    "related_benefits": [],
     "user_content": {
       "short_explanation": "Agrarumweltprogramme belohnen Landwirte für umweltfreundliche Praktiken wie Blühstreifen, extensive Bewirtschaftung und Naturschutz.",
       "for_whom": "Landwirte, die freiwillig über die gesetzlichen Anforderungen hinaus Umwelt- und Klimaschutzmaßnahmen umsetzen.",
@@ -22567,7 +22122,8 @@
       "Freiwillige Teilnahme mit 5-jähriger Verpflichtung"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": []
   },
   {
     "id": "unterhalt",
@@ -22928,7 +22484,9 @@
       "ca. 855.000 Kinder erhalten UV (2024)"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "verhinderungspflege",
@@ -23404,14 +22962,12 @@
     ],
     "compatible_with": [
       "kindergeld",
-      "unterhalt",
-      "jugendhilfe"
+      "unterhalt"
     ],
     "incompatible_with": [],
     "related_benefits": [
       "adoption",
-      "unterhalt",
-      "jugendhilfe"
+      "unterhalt"
     ],
     "reduces": [],
     "user_content": {
@@ -23618,12 +23174,7 @@
       "§ 35c EStG (Steuerbonus)",
       "Gesetz zur Förderung der Energieeffizienz (EnEfG)"
     ],
-    "compatible_with": [
-      "gebaeude-daemmung",
-      "photovoltaik",
-      "heizungstausch",
-      "energieeffizienz"
-    ],
+    "compatible_with": [],
     "incompatible_with": [],
     "related_benefits": [
       "energieschuldenberatung"
@@ -24057,16 +23608,15 @@
     ],
     "compatible_with": [
       "aufstiegsbafoeg",
-      "bildungskredit_kfw",
-      "steuererstattung"
+      "bildungskredit_kfw"
     ],
     "incompatible_with": [
-      "berufsausbildungsbeihilfe_bab"
+      "ausbildungsförderung"
     ],
     "related_benefits": [
       "aufstiegsbafoeg",
       "bildungskredit_kfw",
-      "berufsausbildungsbeihilfe_bab"
+      "ausbildungsförderung"
     ],
     "reduces": [],
     "user_content": {
@@ -24662,7 +24212,9 @@
       "Einkommensgrenzen variieren je nach Bundesland."
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "wohngeld",
@@ -24831,7 +24383,9 @@
       "Wohngeld-Plus Novelle 2024/2025"
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "wohngeld_alleinerziehende",
@@ -24969,8 +24523,7 @@
       "bafoeg"
     ],
     "incompatible_with": [
-      "buergergeld",
-      "grundsicherung"
+      "buergergeld"
     ],
     "related_benefits": [
       "wohngeld",
@@ -25021,7 +24574,9 @@
       "Alleinerziehende haben Anspruch auf Freibetrag nach § 17 WoGG."
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
   },
   {
     "id": "wohnraumfoerderung",
@@ -25142,8 +24697,7 @@
     ],
     "compatible_with": [
       "wohngeld",
-      "wohnberechtigungsschein",
-      "kfw_foerderung"
+      "wohnberechtigungsschein"
     ],
     "incompatible_with": [],
     "related_benefits": [
@@ -25195,6 +24749,1995 @@
       "Bund stellt 2022-2026 insgesamt 14,5 Mrd Euro für Wohnraumförderung bereit."
     ],
     "created_at": "2026-09-08",
-    "updated_at": "2026-09-08"
+    "updated_at": "2026-09-08",
+    "reduces": [],
+    "valid_until": null
+  },
+  {
+    "id": "riester-rente",
+    "official_name": "Riester-Rente (Altersvorsorgezulage)",
+    "aliases": [
+      "Riester-Förderung",
+      "Altersvorsorgezulage"
+    ],
+    "former_names": [],
+    "type": "pension_schemes",
+    "status": "verified",
+    "category": "Rente & Vorsorge",
+    "subcategory": "Private Vorsorge",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "Zulagenstelle der Deutschen Rentenversicherung",
+      "authority": "BMF / BMAS",
+      "url": "https://www.gesetze-im-internet.de/altzertg/",
+      "phone": null
+    },
+    "target_groups": [
+      "Pflichtversicherte der gesetzlichen Rentenversicherung",
+      "Beamte",
+      "Arbeitnehmer mit Zulagenberechtigung"
+    ],
+    "life_situations": [
+      "alte",
+      "altersvorsorge",
+      "rente",
+      "familie"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "riester-rente-001",
+          "description": "Unmittelbar Zulagenberechtigte",
+          "condition": "Pflichtversichert in der gesetzlichen Rentenversicherung",
+          "required": true,
+          "category": "personal"
+        },
+        {
+          "rule_id": "riester-rente-001",
+          "description": "Eigenbeitrag erforderlich",
+          "condition": "Sockelbeitrag (2026: mind. 5% des Vorjahres-Bruttoeinkommens, min. Eigenbeitrag)",
+          "required": true,
+          "category": "income"
+        },
+        {
+          "rule_id": "riester-rente-001",
+          "description": "Zertifizierter Vertrag",
+          "condition": "Altersvorsorgevertrag mit Zertifizierung nach AltZertG",
+          "required": true,
+          "category": "status"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": [
+        "Grundzulage 2026: 175 EUR/Jahr",
+        "Kinderzulage 185/220/300 EUR je Kind",
+        "Berufseinsteiger-Bonus 200 EUR",
+        "Max. Steuerbegünstigung 2.100 EUR/Jahr (Sonderausgabenabzug)"
+      ]
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 175,
+      "max_amount": 2100,
+      "typical_amount": "Individuell",
+      "frequency": "one_time",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "Zulagen: 175 EUR Grundzulage + bis 300 EUR Kinderzulage je Kind/Jahr; Steuerlicher Sonderausgabenabzug bis 2.100 EUR",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": null,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.gesetze-im-internet.de/altzertg/",
+      "forms": [],
+      "required_documents": [
+        "Steuer-ID",
+        "Versicherungsnummer",
+        "Nachweis Eigenbeitrag"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "Jährlicher Zulagenantrag",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "§§ 79 ff. EStG",
+      "AltZertG"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Geförderte private Altersvorsorge mit Zulagen und Steuervorteilen",
+      "for_whom": "Zulagenberechtigte in der gesetzlichen Rentenversicherung",
+      "requirements": "Pflichtversicherung, zertifizierter Vertrag, Mindesteigenbeitrag",
+      "how_much": "Zulagen: 175 EUR Grundzulage + bis 300 EUR Kinderzulage je Kind/Jahr; Steuerlicher Sonderausgabenabzug bis 2.100 EUR",
+      "how_calculated": "Individuell",
+      "documents_needed": "Steuer-ID, Versicherungsnummer, Nachweis Eigenbeitrag",
+      "where_to_apply": "Zulagenstelle der DRV (über den Anbieter)",
+      "deadlines": "Jährlicher Zulagenantrag",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.gesetze-im-internet.de/altzertg/",
+        "title": "AltZertG - Gesetze im Internet",
+        "organization": "BMF / BMAS",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [
+      "Günstigerprüfung gegen steuerlichen Sonderausgabenabzug",
+      "Schulabgänger mit Riester-Vertrag automatisch förderberechtigt"
+    ],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "ruerup-rente",
+    "official_name": "Rürup-Rente (Basisrente)",
+    "aliases": [
+      "Basisrente",
+      "Rürup-Vertrag"
+    ],
+    "former_names": [],
+    "type": "pension_schemes",
+    "status": "verified",
+    "category": "Rente & Vorsorge",
+    "subcategory": "Private Vorsorge",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "BZSt (Zertifizierung) / Anbieter",
+      "authority": "BMF",
+      "url": "https://www.gesetze-im-internet.de/estg/__10.html",
+      "phone": null
+    },
+    "target_groups": [
+      "Selbstständige",
+      "Freiberufler",
+      "Besserverdiener",
+      "Nicht pflichtversicherte Personen"
+    ],
+    "life_situations": [
+      "alte",
+      "altersvorsorge",
+      "rente",
+      "arbeit_selbststaendig",
+      "einkommen_nicht_genug"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "ruerup-rente-001",
+          "description": "Zertifizierter Basisrentenvertrag",
+          "condition": "Vertrag nach § 5a AltZertG zertifiziert",
+          "required": true,
+          "category": "status"
+        },
+        {
+          "rule_id": "ruerup-rente-001",
+          "description": "Leibrente",
+          "condition": "Auszahlung als lebenslange Leibrente ab 62",
+          "required": true,
+          "category": "status"
+        },
+        {
+          "rule_id": "ruerup-rente-001",
+          "description": "Sonderausgabenabzug",
+          "condition": "100% der Beiträge abziehbar (2026: bis 29.344 EUR Singles / 58.688 EUR Verheiratete)",
+          "required": true,
+          "category": "income"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 0,
+      "max_amount": 29344,
+      "typical_amount": "Individuell",
+      "frequency": "one_time",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "100% Sonderausgabenabzug der Beiträge (2026: bis 29.344 EUR / 58.688 EUR), Hartz-IV-geschützt",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": null,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.gesetze-im-internet.de/estg/__10.html",
+      "forms": [],
+      "required_documents": [
+        "Steuerbescheid",
+        "Vertragsunterlagen"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "Steuervorteil über Jahressteuererklärung",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "§ 10 Abs. 1 Nr. 2, Abs. 2 EStG",
+      "AltZertG"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Steuergünstige private Altersvorsorge besonders für Selbstständige",
+      "for_whom": "Selbstständige und Gutverdiener ohne Riester-Anspruch",
+      "requirements": "Zertifizierter Basisrentenvertrag, Auszahlung als lebenslange Leibrente",
+      "how_much": "100% Sonderausgabenabzug der Beiträge (2026: bis 29.344 EUR / 58.688 EUR), Hartz-IV-geschützt",
+      "how_calculated": "Individuell",
+      "documents_needed": "Steuerbescheid, Vertragsunterlagen",
+      "where_to_apply": "BZSt (Zertifizierung) / Anbieter (Vertragsabschluss)",
+      "deadlines": "Steuervorteil über Jahressteuererklärung",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.gesetze-im-internet.de/estg/__10.html",
+        "title": "§ 10 EStG - Gesetze im Internet",
+        "organization": "BMF",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "betriebliche-altersvorsorge",
+    "official_name": "Betriebliche Altersvorsorge (bAV) mit Arbeitgeberzuschuss",
+    "aliases": [
+      "bAV",
+      "Direktversicherung",
+      "Entgeltumwandlung"
+    ],
+    "former_names": [],
+    "type": "pension_schemes",
+    "status": "verified",
+    "category": "Rente & Vorsorge",
+    "subcategory": "Betriebliche Vorsorge",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "Arbeitgeber / Pensionskasse / Versicherung",
+      "authority": "BMAS",
+      "url": "https://www.gesetze-im-internet.de/betravg/",
+      "phone": null
+    },
+    "target_groups": [
+      "Sozialversicherungspflichtig Beschäftigte",
+      "Auszubildende"
+    ],
+    "life_situations": [
+      "arbeit_arbeitnehmer",
+      "altersvorsorge",
+      "rente",
+      "pendeln"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "betriebliche-altersvorsorge-001",
+          "description": "Anspruch auf Entgeltumwandlung",
+          "condition": "Arbeitnehmer kann vom Arbeitgeber Umwandlung verlangen (§ 1a BetrAVG)",
+          "required": true,
+          "category": "personal"
+        },
+        {
+          "rule_id": "betriebliche-altersvorsorge-001",
+          "description": "Arbeitgeberzuschuss",
+          "condition": "Arbeitgeber zahlt mind. 15% der umgewandelten Beiträge (pflichtversicherte AN)",
+          "required": true,
+          "category": "income"
+        },
+        {
+          "rule_id": "betriebliche-altersvorsorge-001",
+          "description": "Zusage",
+          "condition": "Schriftliche Zusage des Arbeitgebers erforderlich",
+          "required": true,
+          "category": "status"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 0,
+      "max_amount": 960,
+      "typical_amount": "Individuell",
+      "frequency": "one_time",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "15% Arbeitgeberzuschuss zur Entgeltumwandlung (2026: bis 79,92 EUR/Monat), steuer- und sozialabgabenfrei bis 8% BBG",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": null,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.gesetze-im-internet.de/betravg/",
+      "forms": [],
+      "required_documents": [
+        "Antrag Entgeltumwandlung",
+        "Sozialversicherungsnummer"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "Keine feste Frist",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "§§ 1a, 1b BetrAVG",
+      "§ 19 Abs. 2 SGB IV"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Arbeitgeberfinanzierte Altersvorsorge mit gesetzlichem Zuschuss",
+      "for_whom": "Sozialversicherungspflichtig Beschäftigte und Azubis",
+      "requirements": "Beschäftigungsverhältnis, Entgeltumwandlung, schriftliche Zusage",
+      "how_much": "15% Arbeitgeberzuschuss zur Entgeltumwandlung (2026: bis 79,92 EUR/Monat), steuer- und sozialabgabenfrei bis 8% BBG",
+      "how_calculated": "Individuell",
+      "documents_needed": "Antrag Entgeltumwandlung, Sozialversicherungsnummer",
+      "where_to_apply": "Arbeitgeber (Personalabteilung)",
+      "deadlines": "Keine feste Frist",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.gesetze-im-internet.de/betravg/",
+        "title": "BetrAVG - Gesetze im Internet",
+        "organization": "BMAS",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "grundrente",
+    "official_name": "Grundrente (Aufstockungsbetrag nach § 76a SGB VI)",
+    "aliases": [
+      "Aufstockungsbetrag",
+      "Grundrentenzeiten"
+    ],
+    "former_names": [],
+    "type": "pension_schemes",
+    "status": "verified",
+    "category": "Rente & Vorsorge",
+    "subcategory": "Rentenzuschlag",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "Deutsche Rentenversicherung",
+      "authority": "BMAS",
+      "url": "https://www.gesetze-im-internet.de/sgb_6/__76a.html",
+      "phone": null
+    },
+    "target_groups": [
+      "Langjährig Versicherte mit kleinen Renten",
+      "Geringverdiener im Alter"
+    ],
+    "life_situations": [
+      "rente",
+      "senior",
+      "einkommen_nicht_genug"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "grundrente-001",
+          "description": "Grundrentenzeiten",
+          "condition": "mind. 33 Jahre Pflichtbeitragszeiten / sonstige Zeiten",
+          "required": true,
+          "category": "personal"
+        },
+        {
+          "rule_id": "grundrente-001",
+          "description": "Einkommensprüfung",
+          "condition": "Zufluss oberhalb der Freibeträge (2026: 963 EUR Singles / 1.860 EUR Paare monatlich)",
+          "required": true,
+          "category": "income"
+        },
+        {
+          "rule_id": "grundrente-001",
+          "description": "Wohnsitz",
+          "condition": "Wohnsitz in Deutschland",
+          "required": true,
+          "category": "status"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 0,
+      "max_amount": 475,
+      "typical_amount": "Individuell",
+      "frequency": "monthly",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "Aufstockung bis max. 475 EUR/Monat (Ost: 479 EUR) je Grundrentenzeit",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": null,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.gesetze-im-internet.de/sgb_6/__76a.html",
+      "forms": [],
+      "required_documents": [
+        "Versicherungsverlauf",
+        "Einkommensnachweise",
+        "Steuerbescheid"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "Automatische Prüfung bei Rentenantrag",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "§ 76a SGB VI"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Rentenzuschlag für langjährig Versicherte mit kleiner Rente",
+      "for_whom": "Langjährig Versicherte (mind. 33 Jahre) mit niedriger Rente",
+      "requirements": "33 Jahre Grundrentenzeiten, Einkommen unter Freibeträgen",
+      "how_much": "Aufstockung bis max. 475 EUR/Monat (Ost: 479 EUR) je Grundrentenzeit",
+      "how_calculated": "Individuell",
+      "documents_needed": "Versicherungsverlauf, Einkommensnachweise, Steuerbescheid",
+      "where_to_apply": "Deutsche Rentenversicherung",
+      "deadlines": "Automatische Prüfung bei Rentenantrag",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.gesetze-im-internet.de/sgb_6/__76a.html",
+        "title": "§ 76a SGB VI - Gesetze im Internet",
+        "organization": "BMAS",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [
+      "Automatische Prüfung bei Rentenantrag (Durchführungsanspruch seit 2021)"
+    ],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "auslandsbafoeg",
+    "official_name": "BAföG für Ausbildung im Ausland (Auslands-BAföG)",
+    "aliases": [
+      "Auslandsförderung",
+      "§ 5 BAföG"
+    ],
+    "former_names": [],
+    "type": "social_benefit",
+    "status": "verified",
+    "category": "Studium & Bildung",
+    "subcategory": "Auslandsförderung",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "BAföG-Amt (zuständiges Bundesland)",
+      "authority": "BMBF",
+      "url": "https://www.gesetze-im-internet.de/baf_g/__5.html",
+      "phone": null
+    },
+    "target_groups": [
+      "Studierende im Ausland",
+      "Auszubildende im Ausland"
+    ],
+    "life_situations": [
+      "student",
+      "studium",
+      "ausland"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "auslandsbafoeg-001",
+          "description": "Mindestdauer",
+          "condition": "mind. 6-monatige Ausbildung oder ein zusammenhängender Ausbildungsabschnitt im Ausland",
+          "required": true,
+          "category": "status"
+        },
+        {
+          "rule_id": "auslandsbafoeg-001",
+          "description": "Vordiplom/2 Studienjahre",
+          "condition": "mind. 2 Semester Studium in Deutschland (bei Studium im Ausland)",
+          "required": true,
+          "category": "personal"
+        },
+        {
+          "rule_id": "auslandsbafoeg-001",
+          "description": "Einkommens- und Vermögensgrenzen",
+          "condition": "Wie Inlands-BAföG, erhöhte Bedarfssätze",
+          "required": true,
+          "category": "income"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 0,
+      "max_amount": 8600,
+      "typical_amount": "Individuell",
+      "frequency": "monthly",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "Bedarfssatz wie Inlands-BAföG + Auslandszuschläge (bis 5.600 EUR Studiengebühren + Reisekosten + Auslands-Krankenversicherung + ggf. Sprachkurs)",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": null,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.gesetze-im-internet.de/baf_g/__5.html",
+      "forms": [],
+      "required_documents": [
+        "Einschreibebescheinigung",
+        "Einkommensnachweise",
+        "Studien-/Praktikumsplan"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "6 Monate vor Auslandsaufenthalt",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "§ 5 BAföG"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Auslandsstudium und Auslandspraktikum mit erhöhten BAföG-Sätzen",
+      "for_whom": "Studierende und Schüler mit Auslandsaufenthalt ab 6 Monaten",
+      "requirements": "Auslandsaufenthalt ab 6 Monaten, 2 abgeschlossene Studienjahre (bei Studium)",
+      "how_much": "Bedarfssatz wie Inlands-BAföG + Auslandszuschläge (bis 5.600 EUR Studiengebühren + Reisekosten + Auslands-Krankenversicherung + ggf. Sprachkurs)",
+      "how_calculated": "Individuell",
+      "documents_needed": "Einschreibebescheinigung, Einkommensnachweise, Studien-/Praktikumsplan",
+      "where_to_apply": "BAföG-Amt des Bundeslands (zuständig nach Zielregion)",
+      "deadlines": "6 Monate vor Auslandsaufenthalt",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.gesetze-im-internet.de/baf_g/__5.html",
+        "title": "§ 5 BAföG - Gesetze im Internet",
+        "organization": "BMBF",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "forschungszulage",
+    "official_name": "Forschungszulage (FZulG)",
+    "aliases": [
+      "F&E-Förderung",
+      "Forschungsförderung steuerlich",
+      "FZulG"
+    ],
+    "former_names": [],
+    "type": "social_benefit",
+    "status": "verified",
+    "category": "Steuern & Finanzen",
+    "subcategory": "Innovationsförderung",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "BZSt / Finanzamt",
+      "authority": "BMF",
+      "url": "https://www.gesetze-im-internet.de/fzulg/BJNR276310019.html",
+      "phone": null
+    },
+    "target_groups": [
+      "KMU",
+      "Steuerpflichtige Unternehmen mit FuE-Tätigkeit"
+    ],
+    "life_situations": [
+      "arbeit_selbststaendig",
+      "unternehmen",
+      "gründung",
+      "existenzgründung",
+      "klimaschutz"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "forschungszulage-001",
+          "description": "Förderfähige FuE-Tätigkeit",
+          "condition": "Antrag auf Bescheinigung vor Projektbeginn bei der Bescheinigungsstelle",
+          "required": true,
+          "category": "status"
+        },
+        {
+          "rule_id": "forschungszulage-001",
+          "description": "Bemessungsgrundlage",
+          "condition": "25% Zulage auf förderfähige Personalkosten (KMU: 35%)",
+          "required": true,
+          "category": "income"
+        },
+        {
+          "rule_id": "forschungszulage-001",
+          "description": "Höchstbemessungsgrundlage",
+          "condition": "max. 10 Mio. EUR/Jahr (ab 2026: 12 Mio. EUR)",
+          "required": true,
+          "category": "status"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 0,
+      "max_amount": 3500000,
+      "typical_amount": "Individuell",
+      "frequency": "one_time",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "25% Forschungszulage auf Bemessungsgrundlage (KMU: bis 35%); max. Bemessungsgrundlage 10 Mio. EUR/Jahr (2026: 12 Mio. EUR)",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": null,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.gesetze-im-internet.de/fzulg/BJNR276310019.html",
+      "forms": [],
+      "required_documents": [
+        "Antrag auf Bescheinigung (FuE-Projektbeschreibung)",
+        "Wirtschaftsjahr-Nachweise"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "Bescheinigung vor Projektbeginn; Antrag mit Steuererklärung",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "FZulG"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Steuerliche Förderung von Forschung und Entwicklung (25-35% Zuschuss)",
+      "for_whom": "Unternehmen (auch KMU und Start-ups) mit Forschungsvorhaben",
+      "requirements": "Antragsbescheinigung vor Projektbeginn, förderfähige FuE-Tätigkeit in Deutschland",
+      "how_much": "25% Forschungszulage auf Bemessungsgrundlage (KMU: bis 35%); max. Bemessungsgrundlage 10 Mio. EUR/Jahr (2026: 12 Mio. EUR)",
+      "how_calculated": "Individuell",
+      "documents_needed": "Antrag auf Bescheinigung (FuE-Projektbeschreibung), Wirtschaftsjahr-Nachweise",
+      "where_to_apply": "BZSt (Bescheinigung) / Finanzamt (Zulage)",
+      "deadlines": "Bescheinigung vor Projektbeginn; Antrag mit Steuererklärung",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.gesetze-im-internet.de/fzulg/BJNR276310019.html",
+        "title": "FZulG - Gesetze im Internet",
+        "organization": "BMF",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [
+      "Wachstumschancengesetz: Erhöhung auf 35% für KMU (ab 28.03.2024)",
+      "Ab 2026: 12 Mio. EUR Bemessungsgrundlage + Betriebskosten pauschal"
+    ],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "insolvenzgeld",
+    "official_name": "Insolvenzgeld",
+    "aliases": [
+      "Insolvenzgeld Anspruch",
+      "Arbeitgeberinsolvenz"
+    ],
+    "former_names": [],
+    "type": "social_benefit",
+    "status": "verified",
+    "category": "Arbeit & Beschäftigung",
+    "subcategory": "Insolvenzschutz",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "Agentur für Arbeit",
+      "authority": "BMAS",
+      "url": "https://www.gesetze-im-internet.de/sgb_3/__165.html",
+      "phone": null
+    },
+    "target_groups": [
+      "Arbeitnehmer bei Insolvenz des Arbeitgebers"
+    ],
+    "life_situations": [
+      "job_lost",
+      "arbeit_arbeitnehmer",
+      "einkommen_nicht_genug",
+      "arbeitslosigkeit"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "insolvenzgeld-001",
+          "description": "Insolvenzereignis",
+          "condition": "Eröffnung/Abweisung des Insolvenzverfahrens oder Betriebseinstellung",
+          "required": true,
+          "category": "status"
+        },
+        {
+          "rule_id": "insolvenzgeld-001",
+          "description": "Offene Forderungen",
+          "condition": "Lohn-/Gehaltsansprüche aus letzten 3 Monaten vor dem Insolvenzereignis",
+          "required": true,
+          "category": "income"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 0,
+      "max_amount": null,
+      "typical_amount": "Individuell",
+      "frequency": "one_time",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "Netto-Lohn/Gehalt für max. 3 Monate vor dem Insolvenzereignis",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": true,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.gesetze-im-internet.de/sgb_3/__165.html",
+      "forms": [],
+      "required_documents": [
+        "Insolvenzgeld-Antrag",
+        "Arbeitsvertrag",
+        "Lohnabrechnungen",
+        "Insolvenzbescheid"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "2 Monate nach Aufforderung durch die Agentur",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "§§ 165 ff. SGB III"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Übernahme offener Lohnforderungen bei Arbeitgeber-Insolvenz",
+      "for_whom": "Arbeitnehmer, deren Arbeitgeber insolvent ist",
+      "requirements": "Insolvenzereignis, offene Lohnansprüche der letzten 3 Monate",
+      "how_much": "Netto-Lohn/Gehalt für max. 3 Monate vor dem Insolvenzereignis",
+      "how_calculated": "Individuell",
+      "documents_needed": "Insolvenzgeld-Antrag, Arbeitsvertrag, Lohnabrechnungen, Insolvenzbescheid",
+      "where_to_apply": "Agentur für Arbeit (Antrag durch AN oder Insolvenzverwalter)",
+      "deadlines": "2 Monate nach Aufforderung durch die Agentur",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.gesetze-im-internet.de/sgb_3/__165.html",
+        "title": "§ 165 SGB III - Gesetze im Internet",
+        "organization": "BMAS",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "avgs-vermittlungsgutschein",
+    "official_name": "Vermittlungsgutschein (AVGS) der Agentur für Arbeit",
+    "aliases": [
+      "AVGS",
+      "Vermittlungsgutschein"
+    ],
+    "former_names": [],
+    "type": "social_benefit",
+    "status": "verified",
+    "category": "Arbeit & Beschäftigung",
+    "subcategory": "Vermittlung",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "Agentur für Arbeit / Jobcenter",
+      "authority": "BMAS",
+      "url": "https://www.gesetze-im-internet.de/sgb_3/__45.html",
+      "phone": null
+    },
+    "target_groups": [
+      "Arbeitslose",
+      "Bürgergeld-Empfänger"
+    ],
+    "life_situations": [
+      "arbeitslosigkeit",
+      "job_lost",
+      "einkommen_nicht_genug",
+      "arbeit_arbeitnehmer"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "avgs-vermittlungsgutschein-001",
+          "description": "Anspruchsberechtigt",
+          "condition": "Bezug von ALG I oder Bürgergeld",
+          "required": true,
+          "category": "status"
+        },
+        {
+          "rule_id": "avgs-vermittlungsgutschein-001",
+          "description": "Vermittlungshemmnisse",
+          "condition": "Erwerbslosigkeit und individuelle Vermittlungshemmnisse",
+          "required": true,
+          "category": "personal"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 0,
+      "max_amount": 2500,
+      "typical_amount": "Individuell",
+      "frequency": "one_time",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "Vermittlungsgutschein bis 2.500 EUR pro Vermittlung durch private Vermittler",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": true,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.gesetze-im-internet.de/sgb_3/__45.html",
+      "forms": [],
+      "required_documents": [
+        "Aktivierungs- und Vermittlungsgutschein",
+        "Nachweis ALG I/Bürgergeld"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "Während des Leistungsbezugs",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "§ 45 SGB III",
+      "§ 16 SGB II"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Gutschein für private Arbeitsvermittlung bei Erwerbslosigkeit",
+      "for_whom": "Arbeitslose mit ALG I- oder Bürgergeld-Bezug",
+      "requirements": "Leistungsbezug, Vermittlungshemmnisse",
+      "how_much": "Vermittlungsgutschein bis 2.500 EUR pro Vermittlung durch private Vermittler",
+      "how_calculated": "Individuell",
+      "documents_needed": "Aktivierungs- und Vermittlungsgutschein, Nachweis ALG I/Bürgergeld",
+      "where_to_apply": "Agentur für Arbeit / Jobcenter",
+      "deadlines": "Während des Leistungsbezugs",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.gesetze-im-internet.de/sgb_3/__45.html",
+        "title": "§ 45 SGB III - Gesetze im Internet",
+        "organization": "BMAS",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "exist-gruenderstipendium",
+    "official_name": "EXIST-Gründerstipendium",
+    "aliases": [
+      "EXIST",
+      "Gründungsstipendium"
+    ],
+    "former_names": [],
+    "type": "social_benefit",
+    "status": "verified",
+    "category": "Existenzgründung",
+    "subcategory": "Stipendien",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "EXIST / BMWK",
+      "authority": "BMWK",
+      "url": "https://www.exist.de/",
+      "phone": null
+    },
+    "target_groups": [
+      "Studierende",
+      "Absolventen",
+      "Wissenschaftler"
+    ],
+    "life_situations": [
+      "gründung",
+      "existenzgründung",
+      "unternehmen",
+      "student"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "exist-gruenderstipendium-001",
+          "description": "Hochschulnähe",
+          "condition": "Gründungsvorhaben an einer Hochschule oder Forschungseinrichtung",
+          "required": true,
+          "category": "status"
+        },
+        {
+          "rule_id": "exist-gruenderstipendium-001",
+          "description": "Qualifikation",
+          "condition": "Studium abgeschlossen, in Arbeit oder kürzlich beendet (max. 12 Monate)",
+          "required": true,
+          "category": "personal"
+        },
+        {
+          "rule_id": "exist-gruenderstipendium-001",
+          "description": "Innovationscharakter",
+          "condition": "Technologieorientiertes oder wissensbasiertes Gründungsvorhaben",
+          "required": true,
+          "category": "status"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 1000,
+      "max_amount": 3000,
+      "typical_amount": "Individuell",
+      "frequency": "monthly",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "1.000-3.000 EUR/Monat (je nach Qualifikation) + 150 EUR/Kind + Sachausgaben bis 30.000 EUR (Team)",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": null,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.exist.de/",
+      "forms": [],
+      "required_documents": [
+        "Gründungskonzept",
+        "Qualifikationsnachweise",
+        "Lebenslauf",
+        "Ideenpapier"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "Jährliche Antragsrunden (siehe exist.de)",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "Richtlinie EXIST – Förderung fundierter Gründungsausbildung"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Stipendium für technologieorientierte Gründungsvorhaben an Hochschulen",
+      "for_whom": "Studierende, Absolventen und wissenschaftliche Mitarbeiter",
+      "requirements": "Hochschulnahe Gründung, innovatives Vorhaben",
+      "how_much": "1.000-3.000 EUR/Monat (je nach Qualifikation) + 150 EUR/Kind + Sachausgaben bis 30.000 EUR (Team)",
+      "how_calculated": "Individuell",
+      "documents_needed": "Gründungskonzept, Qualifikationsnachweise, Lebenslauf, Ideenpapier",
+      "where_to_apply": "EXIST-Vertragshochschule",
+      "deadlines": "Jährliche Antragsrunden (siehe exist.de)",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.exist.de/",
+        "title": "EXIST-Gründerstipendium",
+        "organization": "BMWK",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "kfw-unternehmerkredit",
+    "official_name": "KfW-Unternehmerkredit (037/047)",
+    "aliases": [
+      "KfW 037",
+      "KfW 047"
+    ],
+    "former_names": [],
+    "type": "social_benefit",
+    "status": "verified",
+    "category": "Existenzgründung",
+    "subcategory": "Finanzierung",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "KfW Bankengruppe",
+      "authority": "BMWK",
+      "url": "https://www.kfw.de/inlandsfoerderung/Unternehmen/Erweitern-und-Festigen/F%C3%B6rderprodukte/KfW-Unternehmerkredit-(037-047)/",
+      "phone": null
+    },
+    "target_groups": [
+      "KMU",
+      "Bestehende Unternehmen ab 5 Jahren am Markt"
+    ],
+    "life_situations": [
+      "unternehmen",
+      "arbeit_selbststaendig",
+      "landwirtschaft",
+      "klimaschutz"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "kfw-unternehmerkredit-001",
+          "description": "Marktpräsenz",
+          "condition": "Unternehmen besteht mind. 5 Jahre am Markt",
+          "required": true,
+          "category": "status"
+        },
+        {
+          "rule_id": "kfw-unternehmerkredit-001",
+          "description": "KMU-Definition",
+          "condition": "Weniger als 250 MA und max. 50 Mio. EUR Umsatz (KMU-Definition EU)",
+          "required": true,
+          "category": "status"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 0,
+      "max_amount": 25000000,
+      "typical_amount": "Individuell",
+      "frequency": "one_time",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "Bis zu 25 Mio. EUR Kredit über durchleitende Hausbank",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": true,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.kfw.de/inlandsfoerderung/Unternehmen/Erweitern-und-Festigen/F%C3%B6rderprodukte/KfW-Unternehmerkredit-(037-047)/",
+      "forms": [],
+      "required_documents": [
+        "Investitionsplan",
+        "Bilanz/Jahresabschluss",
+        "Hausbank-Antrag"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "Keine feste Frist",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "KfW-Gesetz",
+      "Allgemeine Bestimmungen der KfW"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Zinsgünstiger Investitionskredit für etablierte KMU über die Hausbank",
+      "for_whom": "Bestehende Unternehmen (mind. 5 Jahre)",
+      "requirements": "5 Jahre am Markt, Hausbank-Mittlung",
+      "how_much": "Bis zu 25 Mio. EUR Kredit über durchleitende Hausbank",
+      "how_calculated": "Individuell",
+      "documents_needed": "Investitionsplan, Bilanz/Jahresabschluss, Hausbank-Antrag",
+      "where_to_apply": "Über die Hausbank bei der KfW",
+      "deadlines": "Keine feste Frist",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.kfw.de/inlandsfoerderung/Unternehmen/Erweitern-und-Festigen/F%C3%B6rderprodukte/KfW-Unternehmerkredit-(037-047)/",
+        "title": "KfW-Unternehmerkredit (037/047)",
+        "organization": "BMWK",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "erp-gruenderkredit-nachfolge",
+    "official_name": "ERP-Förderkredit Gründung und Nachfolge (077)",
+    "aliases": [
+      "KfW 077",
+      "ERP 077"
+    ],
+    "former_names": [],
+    "type": "social_benefit",
+    "status": "verified",
+    "category": "Existenzgründung",
+    "subcategory": "Finanzierung",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "KfW Bankengruppe",
+      "authority": "BMWK",
+      "url": "https://www.kfw.de/inlandsfoerderung/Unternehmen/Gr%C3%BCndung-und-Nachfolge/F%C3%B6rderprodukte/ERP-F%C3%B6rderkredit-Gr%C3%BCndung-und-Nachfolge-(077)/",
+      "phone": null
+    },
+    "target_groups": [
+      "Existenzgründer",
+      "Übernehmende bei Unternehmensnachfolge",
+      "Junge Unternehmen"
+    ],
+    "life_situations": [
+      "gründung",
+      "existenzgründung",
+      "unternehmen"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "erp-gruenderkredit-nachfolge-001",
+          "description": "Gründung/Nachfolge",
+          "condition": "Gründung, Unternehmensübernahme oder Unternehmen jünger als 5 Jahre",
+          "required": true,
+          "category": "status"
+        },
+        {
+          "rule_id": "erp-gruenderkredit-nachfolge-001",
+          "description": "Bürgschaft",
+          "condition": "Bürgschaftsbank-Garantie von bis zu 80% der Kreditsumme erforderlich",
+          "required": true,
+          "category": "status"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 0,
+      "max_amount": 500000,
+      "typical_amount": "Individuell",
+      "frequency": "one_time",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "Bis zu 500.000 EUR Kredit über die Hausbank (mit Bürgschaftsbank-Garantie bis 80%)",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": true,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.kfw.de/inlandsfoerderung/Unternehmen/Gr%C3%BCndung-und-Nachfolge/F%C3%B6rderprodukte/ERP-F%C3%B6rderkredit-Gr%C3%BCndung-und-Nachfolge-(077)/",
+      "forms": [],
+      "required_documents": [
+        "Businessplan",
+        "Finanzierungsplan",
+        "Hausbank-Antrag"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "Keine feste Frist",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "ERP-Sondervermögensgesetz"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Kredit bis 500.000 EUR für Gründung, Nachfolge und junge Unternehmen",
+      "for_whom": "Gründer, Nachfolger und junge Unternehmen",
+      "requirements": "Existenzgründung oder Unternehmensnachfolge, Bürgschaftsbank-Garantie",
+      "how_much": "Bis zu 500.000 EUR Kredit über die Hausbank (mit Bürgschaftsbank-Garantie bis 80%)",
+      "how_calculated": "Individuell",
+      "documents_needed": "Businessplan, Finanzierungsplan, Hausbank-Antrag",
+      "where_to_apply": "Über die Hausbank bei der KfW",
+      "deadlines": "Keine feste Frist",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.kfw.de/inlandsfoerderung/Unternehmen/Gr%C3%BCndung-und-Nachfolge/F%C3%B6rderprodukte/ERP-F%C3%B6rderkredit-Gr%C3%BCndung-und-Nachfolge-(077)/",
+        "title": "ERP-Förderkredit Gründung und Nachfolge (077)",
+        "organization": "BMWK",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "festzuschuss-zahnersatz",
+    "official_name": "Festzuschuss Zahnersatz (GKV)",
+    "aliases": [
+      "Zahnzuschuss",
+      "Zahnersatzförderung"
+    ],
+    "former_names": [],
+    "type": "social_benefit",
+    "status": "verified",
+    "category": "Gesundheit",
+    "subcategory": "Zahnärztliche Versorgung",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "Gesetzliche Krankenkasse",
+      "authority": "BMG",
+      "url": "https://www.gesetze-im-internet.de/sgb_5/__28.html",
+      "phone": null
+    },
+    "target_groups": [
+      "Pflichtversicherte",
+      "Freiwillig Versicherte (Analog)"
+    ],
+    "life_situations": [
+      "gesundheit"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "festzuschuss-zahnersatz-001",
+          "description": "GKV-Mitgliedschaft",
+          "condition": "Mitglied der gesetzlichen Krankenversicherung",
+          "required": true,
+          "category": "status"
+        },
+        {
+          "rule_id": "festzuschuss-zahnersatz-001",
+          "description": "Regelfall",
+          "condition": "Zahnärztliche Behandlung entspricht Regelversorgung",
+          "required": true,
+          "category": "status"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 0,
+      "max_amount": null,
+      "typical_amount": "Individuell",
+      "frequency": "one_time",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "Festzuschuss 60% der Regelversorgung (befundbezogen); +20% Bonus bei regelmäßigem Bonusheft (85%)",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": true,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.gesetze-im-internet.de/sgb_5/__28.html",
+      "forms": [],
+      "required_documents": [
+        "Heil- und Kostenplan",
+        "Zahnarztkarte",
+        "Nachweis Bonusheft"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "Vor der Behandlung",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "§ 28 SGB V"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Krankenkassenzuschuss zu Zahnersatz (60-85%)",
+      "for_whom": "GKV-Mitglieder mit Zahnersatz-Bedarf",
+      "requirements": "GKV-Mitgliedschaft, vorliegender Heil- und Kostenplan",
+      "how_much": "Festzuschuss 60% der Regelversorgung (befundbezogen); +20% Bonus bei regelmäßigem Bonusheft (85%)",
+      "how_calculated": "Individuell",
+      "documents_needed": "Heil- und Kostenplan, Zahnarztkarte, Nachweis Bonusheft",
+      "where_to_apply": "Gesetzliche Krankenkasse",
+      "deadlines": "Vor der Behandlung",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.gesetze-im-internet.de/sgb_5/__28.html",
+        "title": "§ 28 SGB V - Gesetze im Internet",
+        "organization": "BMG",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "belastungsgrenze-zuzahlung",
+    "official_name": "Belastungsgrenze für Zuzahlungen (GKV)",
+    "aliases": [
+      "Zuzahlungsobergrenze",
+      "Belastungsgrenze"
+    ],
+    "former_names": [],
+    "type": "social_benefit",
+    "status": "verified",
+    "category": "Gesundheit",
+    "subcategory": "Entlastung",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "Gesetzliche Krankenkasse",
+      "authority": "BMG",
+      "url": "https://www.gesetze-im-internet.de/sgb_5/__62.html",
+      "phone": null
+    },
+    "target_groups": [
+      "GKV-Versicherte",
+      "Familien mit Kindern"
+    ],
+    "life_situations": [
+      "gesundheit",
+      "familie"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "belastungsgrenze-zuzahlung-001",
+          "description": "GKV-Mitgliedschaft",
+          "condition": "Gesetzlich versichert",
+          "required": true,
+          "category": "status"
+        },
+        {
+          "rule_id": "belastungsgrenze-zuzahlung-001",
+          "description": "Zuzahlungsnachweise",
+          "condition": "Nachweis der Zuzahlungen im Kalenderjahr",
+          "required": true,
+          "category": "status"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 0,
+      "max_amount": null,
+      "typical_amount": "Individuell",
+      "frequency": "one_time",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "Max. 2% des Bruttojahreseinkommens (1% für chronisch Kranke), danach Befreiung für den Rest des Jahres",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": true,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.gesetze-im-internet.de/sgb_5/__62.html",
+      "forms": [],
+      "required_documents": [
+        "Zuzahlungsquittungen",
+        "Einkommensnachweis",
+        "Chroniker-Bescheinigung"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "Antrag im laufenden Kalenderjahr",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "§ 62 SGB V"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Befreiung von Zuzahlungen bei Überschreiten der Belastungsgrenze",
+      "for_whom": "GKV-Versicherte mit hohen Zuzahlungen",
+      "requirements": "Nachweis der Belastungsgrenze (2% / 1% chronisch Kranke)",
+      "how_much": "Max. 2% des Bruttojahreseinkommens (1% für chronisch Kranke), danach Befreiung für den Rest des Jahres",
+      "how_calculated": "Individuell",
+      "documents_needed": "Zuzahlungsquittungen, Einkommensnachweis, Chroniker-Bescheinigung",
+      "where_to_apply": "Gesetzliche Krankenkasse",
+      "deadlines": "Antrag im laufenden Kalenderjahr",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.gesetze-im-internet.de/sgb_5/__62.html",
+        "title": "§ 62 SGB V - Gesetze im Internet",
+        "organization": "BMG",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "haeusliche-krankenpflege",
+    "official_name": "Häusliche Krankenpflege (§ 37 SGB V)",
+    "aliases": [
+      "Krankenpflege zu Hause",
+      "HKP"
+    ],
+    "former_names": [],
+    "type": "social_benefit",
+    "status": "verified",
+    "category": "Gesundheit",
+    "subcategory": "Pflege",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "Gesetzliche Krankenkasse",
+      "authority": "BMG",
+      "url": "https://www.gesetze-im-internet.de/sgb_5/__37.html",
+      "phone": null
+    },
+    "target_groups": [
+      "GKV-Versicherte",
+      "Pflegebedürftige"
+    ],
+    "life_situations": [
+      "gesundheit",
+      "pflege_angehoeriger",
+      "pflege"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "haeusliche-krankenpflege-001",
+          "description": "Ärztliche Verordnung",
+          "condition": "Verordnung der Häuslichen Krankenpflege durch Arzt",
+          "required": true,
+          "category": "status"
+        },
+        {
+          "rule_id": "haeusliche-krankenpflege-001",
+          "description": "Behandlungspflege",
+          "condition": "Behandlungspflege erforderlich, um Krankenhausverlegung zu vermeiden",
+          "required": true,
+          "category": "personal"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 0,
+      "max_amount": null,
+      "typical_amount": "Individuell",
+      "frequency": "daily",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "Vollkosten der Behandlungspflege (max. 4 Wochen), bei häuslicher Intensivpflege unbegrenzt",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": null,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.gesetze-im-internet.de/sgb_5/__37.html",
+      "forms": [],
+      "required_documents": [
+        "Ärztliche Verordnung",
+        "Krankenkassenkarte"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "Vor Beginn der Pflege",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "§ 37 SGB V"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Kostenübernahme häuslicher Krankenpflege nach Krankenhaus oder als Alternative",
+      "for_whom": "GKV-Versicherte mit Verordnungsbedarf",
+      "requirements": "Ärztliche Verordnung, Behandlungspflege zur Vermeidung eines Krankenhausaufenthalts",
+      "how_much": "Vollkosten der Behandlungspflege (max. 4 Wochen), bei häuslicher Intensivpflege unbegrenzt",
+      "how_calculated": "Individuell",
+      "documents_needed": "Ärztliche Verordnung, Krankenkassenkarte",
+      "where_to_apply": "Gesetzliche Krankenkasse",
+      "deadlines": "Vor Beginn der Pflege",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.gesetze-im-internet.de/sgb_5/__37.html",
+        "title": "§ 37 SGB V - Gesetze im Internet",
+        "organization": "BMG",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "krankenfahrkosten",
+    "official_name": "Kostenübernahme von Krankenfahrten (§ 60 SGB V)",
+    "aliases": [
+      "Fahrkosten",
+      "Krankenfahrt",
+      "Krankentransport"
+    ],
+    "former_names": [],
+    "type": "social_benefit",
+    "status": "verified",
+    "category": "Gesundheit",
+    "subcategory": "Mobilität",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "Gesetzliche Krankenkasse",
+      "authority": "BMG",
+      "url": "https://www.gesetze-im-internet.de/sgb_5/__60.html",
+      "phone": null
+    },
+    "target_groups": [
+      "GKV-Versicherte",
+      "Schwerbehinderte",
+      "Dialysepatienten"
+    ],
+    "life_situations": [
+      "gesundheit",
+      "behinderung"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "krankenfahrkosten-001",
+          "description": "Indikation",
+          "condition": "Medizinische Notwendigkeit der Fahrt (z. B. Dialyse, Strahlentherapie)",
+          "required": true,
+          "category": "status"
+        },
+        {
+          "rule_id": "krankenfahrkosten-001",
+          "description": "Zuzahlung",
+          "condition": "10% je Fahrt, min. 5 EUR, max. 10 EUR pro Fahrt",
+          "required": true,
+          "category": "income"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 0,
+      "max_amount": null,
+      "typical_amount": "Individuell",
+      "frequency": "one_time",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "Vollkosten der zumutbaren Fahrt (z. B. Taxi) abzüglich Zuzahlung 10% (min. 5, max. 10 EUR)",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": true,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.gesetze-im-internet.de/sgb_5/__60.html",
+      "forms": [],
+      "required_documents": [
+        "Ärztliche Verordnung",
+        "Fahrtennachweis"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "Vor der Fahrt beantragen",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "§ 60 SGB V"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Krankenkasse übernimmt Fahrten zu Behandlungen (mit Zuzahlung)",
+      "for_whom": "GKV-Versicherte mit medizinisch notwendigen Fahrten",
+      "requirements": "Ärztliche Verordnung der Notwendigkeit",
+      "how_much": "Vollkosten der zumutbaren Fahrt (z. B. Taxi) abzüglich Zuzahlung 10% (min. 5, max. 10 EUR)",
+      "how_calculated": "Individuell",
+      "documents_needed": "Ärztliche Verordnung, Fahrtennachweis",
+      "where_to_apply": "Gesetzliche Krankenkasse",
+      "deadlines": "Vor der Fahrt beantragen",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.gesetze-im-internet.de/sgb_5/__60.html",
+        "title": "§ 60 SGB V - Gesetze im Internet",
+        "organization": "BMG",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
+  },
+  {
+    "id": "bundesfreiwilligendienst",
+    "official_name": "Bundesfreiwilligendienst (BFD)",
+    "aliases": [
+      "BFD",
+      "Bufdi"
+    ],
+    "former_names": [],
+    "type": "social_benefit",
+    "status": "verified",
+    "category": "Arbeit & Beschäftigung",
+    "subcategory": "Freiwilligendienste",
+    "level": "federal",
+    "regions": [
+      "all"
+    ],
+    "provider": {
+      "name": "Bundesamt für Familie und zivilgesellschaftliche Aufgaben (BAFzA)",
+      "authority": "BMFSFJ",
+      "url": "https://www.bundesfreiwilligendienst.de/",
+      "phone": null
+    },
+    "target_groups": [
+      "Erwachsene jeden Alters (ab Schulende)"
+    ],
+    "life_situations": [
+      "arbeit_arbeitnehmer",
+      "weiterbildung",
+      "gesundheit"
+    ],
+    "eligibility": {
+      "rules": [
+        {
+          "rule_id": "bundesfreiwilligendienst-001",
+          "description": "Mindestalter",
+          "condition": "Ab Schulabschluss (i. d. R. 16+), keine Altersgrenze",
+          "required": true,
+          "category": "personal"
+        },
+        {
+          "rule_id": "bundesfreiwilligendienst-001",
+          "description": "Einsatzdauer",
+          "condition": "Mindestens 6 Monate (in der Regel 12-18 Monate)",
+          "required": true,
+          "category": "status"
+        },
+        {
+          "rule_id": "bundesfreiwilligendienst-001",
+          "description": "Einsatzstelle",
+          "condition": "Anerkannte Einsatzstelle (soziale, ökologische, kulturelle Bereiche)",
+          "required": true,
+          "category": "status"
+        }
+      ],
+      "income_rules": [],
+      "special_conditions": []
+    },
+    "calculation": {
+      "method": "Individuell nach Förderbestimmungen",
+      "steps": [],
+      "min_amount": 0,
+      "max_amount": 620,
+      "typical_amount": "Individuell",
+      "frequency": "monthly",
+      "calculator_possible": false,
+      "manual_review_needed": false
+    },
+    "amount": {
+      "description": "Taschengeld (2026: bis 620 EUR/Monat) + Beiträge zur Sozialversicherung + Kindergeldanspruch bleibt",
+      "min_monthly": null,
+      "max_monthly": null,
+      "one_time": null,
+      "depends_on": []
+    },
+    "application": {
+      "method": "Schriftlich beim zuständigen Amt",
+      "url": "https://www.bundesfreiwilligendienst.de/",
+      "forms": [],
+      "required_documents": [
+        "Ausweis",
+        "Bewerbung bei Einsatzstelle",
+        "Anmeldung über BAFzA"
+      ],
+      "processing_time": "Individuell",
+      "deadlines": {
+        "description": "Ganzjährig mögliche Aufnahme",
+        "note": null
+      }
+    },
+    "legal_basis": [
+      "BFD-Gesetz (BFDG)"
+    ],
+    "compatible_with": [],
+    "incompatible_with": [],
+    "related_benefits": [],
+    "reduces": [],
+    "user_content": {
+      "short_explanation": "Freiwilligendienst für alle Altersgruppen mit Taschengeld und Sozialversicherung",
+      "for_whom": "Erwachsene jeden Alters (auch als Lücke zwischen Schule und Studium/Beruf)",
+      "requirements": "Abgeschlossene Schulpflicht, anerkannte Einsatzstelle",
+      "how_much": "Taschengeld (2026: bis 620 EUR/Monat) + Beiträge zur Sozialversicherung + Kindergeldanspruch bleibt",
+      "how_calculated": "Individuell",
+      "documents_needed": "Ausweis, Bewerbung bei Einsatzstelle, Anmeldung über BAFzA",
+      "where_to_apply": "Direkt bei einer Einsatzstelle (via BAFzA-Portal)",
+      "deadlines": "Ganzjährig mögliche Aufnahme",
+      "faq": []
+    },
+    "official_sources": [
+      {
+        "url": "https://www.bundesfreiwilligendienst.de/",
+        "title": "Bundesfreiwilligendienst (BFD)",
+        "organization": "BMFSFJ",
+        "last_verified": "2026-09-18",
+        "type": "official"
+      }
+    ],
+    "last_verified": "2026-09-18",
+    "valid_from": "2026-01-01",
+    "valid_until": null,
+    "confidence": "high",
+    "verification_status": "verified",
+    "notes": [],
+    "created_at": "2026-09-18",
+    "updated_at": "2026-09-18"
   }
 ]
