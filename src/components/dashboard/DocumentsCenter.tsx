@@ -13,7 +13,17 @@ import { useAuth } from '@/lib/auth-context';
 import { useProfileStore } from '@/lib/stores/profile-store';
 import { roleToCategory } from '@/lib/benefits/radar';
 import { DocumentUploadSchema, type DocumentEntry, type DocumentRole } from '@/lib/schemas/profile';
-import { IconDocText, IconDocument, IconDownload, IconFileUp, IconX } from '@/components/ui/icons';
+import {
+  IconBriefcase,
+  IconDocText,
+  IconDocument,
+  IconDownload,
+  IconFileUp,
+  IconFolder,
+  IconHome,
+  IconShield,
+  IconX,
+} from '@/components/ui/icons';
 import { ButtonAction } from '@/components/ui/Button';
 import { IdentityVault } from './profile/IdentityVault';
 import { localeHref } from '@/i18n/config';
@@ -24,13 +34,6 @@ import { formatTemplate } from '@/content/i18n/format';
 type Category = 'all' | 'identity' | 'housing' | 'income' | 'other';
 
 const CATEGORY_TABS: Category[] = ['all', 'identity', 'housing', 'income', 'other'];
-
-const CATEGORY_BADGE: Record<string, string> = {
-  identity: 'bg-purple-50 text-purple-700',
-  housing: 'bg-blue-50 text-blue-700',
-  income: 'bg-green-50 text-green-700',
-  other: 'bg-neutral-100 text-neutral-600',
-};
 
 function StatusPill({ status }: { status: DocumentEntry['status'] }) {
   const locale = useLocaleFromPath();
@@ -50,6 +53,20 @@ function formatSize(bytes: number | null): string {
   if (bytes == null) return '';
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+// Kategorie-Icon statt Text-Badge (Farben wie bisherige Badges)
+const CATEGORY_ICON: Record<string, { Icon: typeof IconShield; cls: string }> = {
+  identity: { Icon: IconShield, cls: 'bg-purple-50 text-purple-700' },
+  housing: { Icon: IconHome, cls: 'bg-blue-50 text-blue-700' },
+  income: { Icon: IconBriefcase, cls: 'bg-green-50 text-green-700' },
+  other: { Icon: IconFolder, cls: 'bg-neutral-100 text-neutral-600' },
+};
+
+function isImageDoc(doc: DocumentEntry): boolean {
+  if (doc.mime_type?.startsWith('image/')) return true;
+  const ext = doc.filename.split('.').pop()?.toLowerCase() ?? '';
+  return ['jpg', 'jpeg', 'png', 'webp'].includes(ext);
 }
 
 interface DocumentsCenterProps {
@@ -73,6 +90,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
   const [renamingId, setRenamingId] = useState<string | null>(null);
   const [renameValue, setRenameValue] = useState('');
   const [uploadOpen, setUploadOpen] = useState(false);
+  const [previewDoc, setPreviewDoc] = useState<DocumentEntry | null>(null);
 
   const effectiveUserId = userId ?? user?.id ?? null;
 
@@ -149,18 +167,22 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
   };
 
   const handlePreview = async (doc: DocumentEntry) => {
-    const url = await getSignedUrl(doc.storage_path);
-    if (url) window.open(url, '_blank', 'noopener');
+    setPreviewDoc(doc);
   };
 
   const handleDownload = async (doc: DocumentEntry) => {
     const url = await getSignedUrl(doc.storage_path);
-    if (url) {
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = doc.filename;
-      a.click();
-    }
+    if (!url) return;
+    // Blob-Download: `download`-Attribut greift nur same-origin → Datei
+    // landet zuverlässig im Download-Ordner des Browsers statt als Tab.
+    const res = await fetch(url);
+    const blob = await res.blob();
+    const objectUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = objectUrl;
+    a.download = doc.filename;
+    a.click();
+    URL.revokeObjectURL(objectUrl);
   };
 
   const handleDelete = async (doc: DocumentEntry) => {
@@ -189,7 +211,6 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
   };
 
   const actionCls = 'text-xs font-semibold text-ink-soft hover:text-brand-700 disabled:opacity-40';
-  const catLabels = t as unknown as Record<Category, string>;
 
   return (
     <div className="mx-auto flex min-h-[calc(100dvh-1rem)] max-w-6xl flex-col gap-5 p-6 md:p-8">
@@ -225,15 +246,6 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
 
       {error && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-600">{error}</p>}
 
-      {/* ── Schnell-Upload (Tresor-Slots) ───────────────────── */}
-      {effectiveUserId && (
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-          <QuickUploadSlot label={t.upload_slot_personalID} role="ID_CARD" userId={effectiveUserId} onUploaded={addDocument} />
-          <QuickUploadSlot label={t.upload_slot_payslip} role="PAYSLIP" userId={effectiveUserId} onUploaded={addDocument} />
-          <QuickUploadSlot label={t.upload_slot_other} role="OTHER" userId={effectiveUserId} onUploaded={addDocument} />
-        </div>
-      )}
-
       {/* ── Filter- und Suchleiste ──────────────────────────── */}
       <div className="flex flex-wrap items-center gap-2">
         {CATEGORY_TABS.map((catKey) => (
@@ -247,7 +259,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
                 : 'border border-line-soft bg-white text-ink-soft hover:text-ink'
             }`}
           >
-            {catLabels[catKey]} ({counts[catKey]})
+            {t[`categoryLabel_${catKey}` as keyof typeof t]} ({counts[catKey]})
           </button>
         ))}
         <input
@@ -277,8 +289,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
         <div className="flex flex-col gap-2">
           {filtered.map((doc) => {
             const cat = roleToCategory(doc.document_role);
-            const extension = doc.filename.split('.').pop()?.toLowerCase();
-            const isPdf = extension === 'pdf';
+            const catIcon = CATEGORY_ICON[cat] ?? CATEGORY_ICON.other;
             return (
               <div
                 key={doc.id}
@@ -291,11 +302,7 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
                   aria-label={formatTemplate(t.selectForPackageAria, { filename: doc.filename })}
                   className="h-4 w-4 shrink-0 accent-brand-600"
                 />
-                {isPdf ? (
-                  <IconDocText className="h-6 w-6 shrink-0 text-red-500" />
-                ) : (
-                  <IconDocument className="h-6 w-6 shrink-0 text-brand-500" />
-                )}
+                <DocThumb doc={doc} />
                 <div className="min-w-0 flex-1">
                   {renamingId === doc.id ? (
                     <input
@@ -336,8 +343,12 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
                     {doc.application_id == null && ` · ${t.vaultSuffix}`}
                   </p>
                 </div>
-                <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${CATEGORY_BADGE[cat]}`}>
-                  {t[`categoryBadge_${cat}` as keyof typeof t]}
+                <span
+                  className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${catIcon.cls}`}
+                  title={t[`categoryBadge_${cat}` as keyof typeof t]}
+                  aria-label={t[`categoryBadge_${cat}` as keyof typeof t]}
+                >
+                  <catIcon.Icon className="h-4 w-4" />
                 </span>
                 {<StatusPill status={doc.status} />}
                 <div className="flex shrink-0 items-center gap-3">
@@ -369,6 +380,11 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
           onClose={() => setUploadOpen(false)}
           onUploaded={addDocument}
         />
+      )}
+
+      {/* ── Vorschau-Modal (Bild/PDF inline statt neuem Tab) ──── */}
+      {previewDoc && (
+        <PreviewModal doc={previewDoc} onClose={() => setPreviewDoc(null)} onDownload={handleDownload} />
       )}
 
       {/* ── Share-Modal (QR + Link) ─────────────────────────── */}
@@ -423,113 +439,119 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
 }
 
 // ============================================================
-// Schnell-Upload-Slot: DB-First (documents_meta) → Storage → DONE
+// DocThumb: Vorschaubild für Bilder (signierte URL), sonst Icon.
 // ============================================================
 
-function QuickUploadSlot({
-  label,
-  role,
-  userId,
-  onUploaded,
+function DocThumb({ doc }: { doc: DocumentEntry }) {
+  const isImage = isImageDoc(doc);
+  const [url, setUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!isImage) return;
+    let active = true;
+    void supabase.storage.from('documents').createSignedUrl(doc.storage_path, 300).then(({ data }) => {
+      if (active && data?.signedUrl) setUrl(data.signedUrl);
+    });
+    return () => {
+      active = false;
+    };
+  }, [doc.storage_path, isImage]);
+
+  if (isImage) {
+    return url ? (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={url}
+        alt=""
+        loading="lazy"
+        className="h-10 w-10 shrink-0 rounded-lg border border-line-soft object-cover"
+      />
+    ) : (
+      <div className="h-10 w-10 shrink-0 animate-pulse rounded-lg border border-line-soft bg-neutral-100" />
+    );
+  }
+  if (doc.filename.toLowerCase().endsWith('.pdf')) {
+    return <IconDocText className="h-6 w-6 shrink-0 text-red-500" />;
+  }
+  return <IconDocument className="h-6 w-6 shrink-0 text-brand-500" />;
+}
+
+// ============================================================
+// PreviewModal: Bild inline, PDF im iframe — kein neuer Tab.
+// ============================================================
+
+function PreviewModal({
+  doc,
+  onClose,
+  onDownload,
 }: {
-  label: string;
-  role: DocumentRole;
-  userId: string;
-  onUploaded: (doc: DocumentEntry) => void;
+  doc: DocumentEntry;
+  onClose: () => void;
+  onDownload: (doc: DocumentEntry) => Promise<void>;
 }) {
   const locale = useLocaleFromPath();
   const t = getDashboardDict(locale).documents;
-  const [uploading, setUploading] = useState(false);
-  const [uploadError, setUploadError] = useState<string | null>(null);
+  const tc = getDashboardDict(locale).common;
+  const [url, setUrl] = useState<string | null>(null);
+  const [failed, setFailed] = useState(false);
 
-  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    e.target.value = '';
-    if (!file) return;
-
-    const parsed = DocumentUploadSchema.safeParse({ role, file });
-    if (!parsed.success) {
-      setUploadError(parsed.error.issues[0]?.message ?? t.invalidFile);
-      return;
-    }
-    setUploadError(null);
-    setUploading(true);
-
-    // 1. DB-First: Meta-Zeile reservieren (Tresor: kein Case, kein Antrag)
-    const fileId = crypto.randomUUID();
-    const ext = (file.name.split('.').pop() ?? 'bin').toLowerCase();
-    const filePath = `${userId}/global/${fileId}.${ext}`;
-
-    const { data: meta, error: metaErr } = await supabase
-      .from('documents_meta')
-      .insert({
-        user_id: userId,
-        application_id: null,
-        document_role: role,
-        title: file.name,
-        storage_path: filePath,
-        filename: file.name,
-        file_size: file.size,
-        mime_type: file.type,
-        status: 'PENDING',
-      })
-      .select()
-      .single();
-
-    if (metaErr || !meta) {
-      setUploadError(metaErr?.message ?? t.errRegister);
-      setUploading(false);
-      return;
-    }
-
-    // 2. Storage-Upload
-    const { error: storageErr } = await supabase.storage.from('documents').upload(filePath, file);
-
-    if (storageErr) {
-      await supabase.from('documents_meta').delete().eq('id', meta.id); // Rollback
-      setUploadError(storageErr.message);
-      setUploading(false);
-      return;
-    }
-
-    // 3. Status auf DONE
-    const { data: updated, error: updateErr } = await supabase
-      .from('documents_meta')
-      .update({ status: 'DONE' })
-      .eq('id', meta.id)
-      .select()
-      .single();
-
-    if (updateErr || !updated) {
-      setUploadError(t.errStatusUpdate);
-      setUploading(false);
-      return;
-    }
-
-    onUploaded(updated as DocumentEntry);
-    setUploading(false);
-  };
+  useEffect(() => {
+    let active = true;
+    void supabase.storage.from('documents').createSignedUrl(doc.storage_path, 300).then(({ data }) => {
+      if (!active) return;
+      if (data?.signedUrl) setUrl(data.signedUrl);
+      else setFailed(true);
+    });
+    return () => {
+      active = false;
+    };
+  }, [doc.storage_path]);
 
   return (
-    <div className="rounded-xl border border-dashed border-line-soft bg-paper p-3">
-      <p className="mb-2 text-sm font-medium text-ink">{label}</p>
-      {uploading ? (
-        <div className="flex items-center gap-2">
-          <div className="h-3 w-3 animate-spin rounded-full border-2 border-brand-600 border-t-transparent" />
-          <span className="text-xs text-ink-soft">{t.quickUploading}</span>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label={t.action_preview}
+    >
+      <div className="flex max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-xl">
+        <div className="flex items-center justify-between border-b border-line-soft px-5 py-4">
+          <h2 className="truncate text-base font-semibold text-ink">{doc.title ?? doc.filename}</h2>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label={tc.close}
+            className="rounded-lg p-1 text-ink-soft hover:bg-neutral-100 hover:text-ink"
+          >
+            <IconX className="h-5 w-5" />
+          </button>
         </div>
-      ) : (
-        <label className="block cursor-pointer text-xs font-semibold text-brand-700 hover:underline">
-          {t.chooseFile}
-          <input
-            type="file"
-            className="hidden"
-            onChange={handleUpload}
-            accept=".pdf,.jpg,.jpeg,.png,.webp"
-          />
-        </label>
-      )}
-      {uploadError && <p className="mt-2 text-xs text-red-600">{uploadError}</p>}
+
+        <div className="flex min-h-[50vh] items-center justify-center overflow-auto bg-neutral-50 px-5 py-4">
+          {failed ? (
+            <p className="text-sm text-red-600">{t.preview_error}</p>
+          ) : url == null ? (
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-brand-600 border-t-transparent" />
+          ) : isImageDoc(doc) ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={url} alt={doc.title ?? doc.filename} className="max-h-[65vh] max-w-full rounded-xl object-contain" />
+          ) : doc.filename.toLowerCase().endsWith('.pdf') ? (
+            <iframe src={url} title={doc.title ?? doc.filename} className="h-[65vh] w-full rounded-xl border border-line-soft bg-white" />
+          ) : (
+            <p className="text-sm text-ink-soft">{t.preview_error}</p>
+          )}
+        </div>
+
+        <div className="flex gap-3 border-t border-line-soft px-5 py-4">
+          <ButtonAction type="button" onClick={() => void onDownload(doc)} className="flex-1">
+            <IconDownload className="mr-1 inline h-4 w-4" />
+            {t.action_download}
+          </ButtonAction>
+          <ButtonAction type="button" variant="secondary" onClick={onClose} className="flex-1">
+            {tc.close}
+          </ButtonAction>
+        </div>
+      </div>
     </div>
   );
 }
