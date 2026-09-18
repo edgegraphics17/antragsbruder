@@ -4,7 +4,6 @@
 // ============================================================
 import Link from 'next/link';
 import { createAuthServerClient } from '@/lib/auth-server';
-import { StatusBadge } from '@/components/admin/ui';
 import { AutoRefresh } from '@/components/admin/AdminClient';
 
 export const dynamic = 'force-dynamic';
@@ -76,19 +75,6 @@ export default async function AdminOverviewPage({
         </div>
       </div>
 
-      {/* Status-Verteilung */}
-      <div className="mt-6 rounded-2xl border border-line-soft bg-paper p-5">
-        <h2 className="mb-3 text-sm font-semibold text-ink">Anträge nach Status</h2>
-        <div className="flex flex-wrap gap-2">
-          {Object.keys(STATUS_ORDER).map((s) => (
-            <span key={s} className="inline-flex items-center gap-1.5 rounded-full bg-cream px-3 py-1 text-xs">
-              <StatusBadge status={s} />
-              <span className="font-bold text-ink">{byStatus[s] ?? 0}</span>
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* Bereit zur Übertragung */}
       <div className="mt-6 rounded-2xl border border-line-soft bg-paper p-5">
         <div className="mb-3 flex items-center justify-between">
@@ -123,5 +109,3 @@ export default async function AdminOverviewPage({
     </div>
   );
 }
-
-const STATUS_ORDER = ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY', 'SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'];
