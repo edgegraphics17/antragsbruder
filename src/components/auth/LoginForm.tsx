@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/supabase';
 import { ButtonAction } from '@/components/ui/Button';
-import { IconAlertTriangle } from '@/components/ui/icons';
+import { IconAlertTriangle, IconEye, IconEyeOff } from '@/components/ui/icons';
 import { IconCheck } from '@/components/ui/icons';
 import { IconMail } from '@/components/ui/icons';
 import type { Locale } from '@/i18n/config';
@@ -30,6 +30,9 @@ export function LoginForm({ locale }: LoginFormProps) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [showPw, setShowPw] = useState(false);
+
+  const basePath = locale === 'de' ? '' : `/${locale}`;
 
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const passOk = password.length >= 6;
@@ -111,8 +114,8 @@ export function LoginForm({ locale }: LoginFormProps) {
   };
 
   const forgotPassword = () => {
-    // Placeholder: zeigt Toast, dass Funktion in Kürze verfügbar
-    alert(t.forgotSoon);
+    // Richtige Reset-Flow-Seite (E-Mail-Formular → Reset-Link → neues Passwort)
+    window.location.href = `${basePath}/passwort-vergessen`;
   };
 
   if (success && !isLogin) {
@@ -205,16 +208,26 @@ export function LoginForm({ locale }: LoginFormProps) {
             <label htmlFor="login-password" className="text-sm font-semibold text-ink">
               {t.passwordLabel}
             </label>
-            <input
-              id="login-password"
-              type="password"
-              required
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
-              placeholder={p.passwordPlaceholder}
-            />
+            <div className="relative">
+              <input
+                id="login-password"
+                type={showPw ? 'text' : 'password'}
+                required
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full rounded-xl border border-line-soft bg-white pl-4 pr-11 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+                placeholder={p.passwordPlaceholder}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPw((v) => !v)}
+                aria-label={showPw ? 'Passwort verbergen' : 'Passwort anzeigen'}
+                className="absolute end-3 top-1/2 -translate-y-1/2 rounded p-0.5 text-ink-soft transition-colors hover:text-brand-700"
+              >
+                {showPw ? <IconEyeOff className="h-4 w-4" /> : <IconEye className="h-4 w-4" />}
+              </button>
+            </div>
             {password && !passOk && (
               <p className="text-xs text-red-600">{t.passwordTooShort}</p>
             )}
@@ -310,17 +323,27 @@ export function LoginForm({ locale }: LoginFormProps) {
             <label htmlFor="register-password" className="text-sm font-semibold text-ink">
               {t.passwordLabel}
             </label>
-            <input
-              id="register-password"
-              type="password"
-              required
-              autoComplete="new-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              minLength={6}
-              className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
-              placeholder="Mindestens 6 Zeichen"
-            />
+            <div className="relative">
+              <input
+                id="register-password"
+                type={showPw ? 'text' : 'password'}
+                required
+                autoComplete="new-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                minLength={6}
+                className="w-full rounded-xl border border-line-soft bg-white pl-4 pr-11 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+                placeholder="Mindestens 6 Zeichen"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPw((v) => !v)}
+                aria-label={showPw ? 'Passwort verbergen' : 'Passwort anzeigen'}
+                className="absolute end-3 top-1/2 -translate-y-1/2 rounded p-0.5 text-ink-soft transition-colors hover:text-brand-700"
+              >
+                {showPw ? <IconEyeOff className="h-4 w-4" /> : <IconEye className="h-4 w-4" />}
+              </button>
+            </div>
             {password && !passOk && (
               <p className="text-xs text-red-600">{t.passwordTooShort}</p>
             )}
@@ -330,16 +353,26 @@ export function LoginForm({ locale }: LoginFormProps) {
             <label htmlFor="register-confirm" className="text-sm font-semibold text-ink">
               {t.confirmPasswordLabel}
             </label>
-            <input
-              id="register-confirm"
-              type="password"
-              required
-              autoComplete="new-password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full rounded-xl border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
-              placeholder="Passwort bestätigen"
-            />
+            <div className="relative">
+              <input
+                id="register-confirm"
+                type={showPw ? 'text' : 'password'}
+                required
+                autoComplete="new-password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full rounded-xl border border-line-soft bg-white pl-4 pr-11 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+                placeholder="Passwort bestätigen"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPw((v) => !v)}
+                aria-label={showPw ? 'Passwort verbergen' : 'Passwort anzeigen'}
+                className="absolute end-3 top-1/2 -translate-y-1/2 rounded p-0.5 text-ink-soft transition-colors hover:text-brand-700"
+              >
+                {showPw ? <IconEyeOff className="h-4 w-4" /> : <IconEye className="h-4 w-4" />}
+              </button>
+            </div>
             {confirmPassword && !passMatch && (
               <p className="text-xs text-red-600">{t.passwordsDontMatch}</p>
             )}

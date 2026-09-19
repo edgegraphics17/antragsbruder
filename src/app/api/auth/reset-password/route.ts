@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     }
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/update-password`,
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/passwort-zuruecksetzen`,
     });
 
     if (error) {
@@ -53,7 +53,7 @@ export async function GET(request: Request) {
   try {
     const supabase = createAuthServerClient();
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/update-password`,
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/passwort-zuruecksetzen`,
     });
 
     if (error) {
