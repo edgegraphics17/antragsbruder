@@ -28,11 +28,28 @@ export interface Case {
   legalReferenceDate: string; // ISO date — Regeln werden nach diesem Datum selektiert
   createdAt: string;
   updatedAt: string;
+  userId?: string | null;
+  assessmentMonth?: string; // YYYY-MM — für welchen Monat gerechnet wird
+  applicationDate?: string | null; // ISO date — wann tatsächlich beantragt wurde
+  entryType?: CaseEntryType;
+  activeModules?: string[];
+  calculationQuality?: AmountQuality;
 }
+
+// Drei Zeitachsen sind getrennt zu halten (Playbook §4.1):
+// 1. legalReferenceDate — welche Rechtsversion gilt?
+// 2. assessmentMonth   — für welchen Monat wird gerechnet?
+// 3. applicationDate   — wann wurde tatsächlich beantragt?
+export type CaseEntryType =
+  | 'LIFE_EVENT'
+  | 'GENERAL_CHECK'
+  | 'DIRECT_CALCULATOR'
+  | 'CRISIS'
+  | 'BENEFIT_GRUNDSICHERUNG';
 
 // === PERSONS & HOUSEHOLD ====================================
 
-export type PersonRole = 'APPLICANT' | 'PARTNER' | 'CHILD';
+export type PersonRole = 'APPLICANT' | 'PARTNER' | 'CHILD' | 'PARENT' | 'OTHER';
 
 export interface Person {
   id: string;
@@ -41,6 +58,9 @@ export interface Person {
   relationshipToApplicant?: string;
   nationality?: string;
   residence?: string;
+  livesInHousehold?: boolean;
+  householdMembership?: boolean;
+  provisionalBgMembership?: boolean;
 }
 
 // === CANONICAL FACT STORE ===================================
@@ -375,4 +395,63 @@ export interface LegalParameter {
   jurisdiction: string;
   sourceId: string;
   lastVerified: string;
+}
+
+// === LEGAL SOURCES (Playbook §35 Source Registry) ============
+
+export interface LegalSource {
+  sourceId: string;
+  type: 'LAW' | 'PARAMETER' | 'ADMIN_PRACTICE' | 'CASE_LAW';
+  title: string;
+  publisher?: string;
+  url?: string;
+  retrievedAt: string; // ISO date — wann die Quelle verifiziert wurde
+  jurisdiction: string;
+  status: 'ACTIVE' | 'ARCHIVED';
+}
+
+// === RELATIONSHIPS & HOUSEHOLD RESOLVER (GS-DEV-004) =========
+
+export type RelationshipType =
+  | 'SPOUSE'
+  | 'REGISTERED_PARTNER'
+  | 'UNMARRIED_PARTNER'
+  | 'CHILD'
+  | 'PARENT'
+  | 'SIBLING'
+  | 'OTHER_RELATIVE'
+  | 'ROOMMATE'
+  | 'OTHER';
+
+export interface Relationship {
+  id: string;
+  caseId: string;
+  fromPersonId: string; // Person, zu der die Beziehung beschrieben wird (i. d. R. Antragsteller)
+  toPersonId: string; // die andere Person
+  type: RelationshipType;
+  cohabitsWithApplicant?: boolean; // lebt dauerhaft/überwiegend in derselben Wohnung
+  validFrom?: string;
+  validTo?: string | null;
+  sourceType: SourceType;
+  collectedAt: string;
+}
+
+export type HouseholdMembership =
+  | 'BG' // definitive Bedarfsgemeinschaft
+  | 'PROVISIONAL_BG' // vorläufig — abhängige Werte (z. B. U25-Eigen deckung) müssen geprüft werden
+  | 'NOT_BG'
+  | 'REVIEW_REQUIRED'; // Zugehörigkeit fachlich unklar (z. B. Eltern-/Verwandten-Konstellation)
+
+export interface HouseholdMemberDecision {
+  personId: string;
+  membership: HouseholdMembership;
+  reason: string; // audit-fähige Begründung (z. B. "§ 7 Abs. 3 Nr. 1 SGB II")
+  derivedFromFacts: string[]; // fact paths, aus denen die Entscheidung stammt
+}
+
+export interface HouseholdResolution {
+  applicantPersonId: string;
+  members: HouseholdMemberDecision[];
+  reviewRequired: boolean;
+  reviewReasons: string[]; // z. B. Eltern-/Verwandten-Konstellation (§ 9 Abs. 5)
 }

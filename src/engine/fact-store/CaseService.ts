@@ -2,9 +2,10 @@
 // CASE SERVICE — Supabase + localStorage Fallback
 // ============================================================
 
-import type { Case, LifeEvent } from '../types';
+import type { Case, LifeEvent, CaseEntryType } from '../types';
 import { supabase } from '@/lib/supabase';
 import { v4 as uuidv4 } from 'uuid';
+import { factStore } from './FactStore';
 
 const STORAGE_KEY = 'antragsbruder_cases';
 
@@ -46,7 +47,10 @@ export class CaseService {
     }
   }
 
-  async createCase(lifeEvents: LifeEvent[] = ['JOB_LOSS']): Promise<Case> {
+  async createCase(
+    lifeEvents: LifeEvent[] = ['JOB_LOSS'],
+    options: { entryType?: CaseEntryType; assessmentMonth?: string; userId?: string } = {}
+  ): Promise<Case> {
     const now = new Date().toISOString();
     const caseData: Case = {
       id: uuidv4(),
@@ -55,6 +59,10 @@ export class CaseService {
       legalReferenceDate: new Date().toISOString().split('T')[0],
       createdAt: now,
       updatedAt: now,
+      entryType: options.entryType ?? 'LIFE_EVENT',
+      assessmentMonth: options.assessmentMonth,
+      userId: options.userId ?? null,
+      activeModules: [],
     };
 
     if (this.useSupabase) {
@@ -63,6 +71,10 @@ export class CaseService {
         status: caseData.status,
         life_events: caseData.lifeEvents,
         legal_reference_date: caseData.legalReferenceDate,
+        entry_type: caseData.entryType,
+        assessment_month: caseData.assessmentMonth ?? null,
+        user_id: caseData.userId ?? null,
+        active_modules: caseData.activeModules ?? [],
         created_at: caseData.createdAt,
         updated_at: caseData.updatedAt,
       });
@@ -76,6 +88,24 @@ export class CaseService {
     const cases = getLocalCases();
     cases.set(caseData.id, caseData);
     saveLocalCases(cases);
+
+    // Entry-Kontext als Fakt säen — der GS-Fragenpool koppelt an
+    // case.entry_type = BENEFIT_GRUNDSICHERUNG (GS-DEV-003).
+    if (options.entryType === 'BENEFIT_GRUNDSICHERUNG') {
+      try {
+        await factStore.storeFacts(caseData.id, [
+          {
+            path: 'case.entry_type',
+            value: 'BENEFIT_GRUNDSICHERUNG',
+            sourceType: 'SYSTEM_DERIVED',
+            confidence: 1.0,
+            confirmedByUser: false,
+          },
+        ]);
+      } catch (error) {
+        console.warn('Entry-Type-Fact konnte nicht gesät werden:', error);
+      }
+    }
 
     return caseData;
   }

@@ -4,6 +4,7 @@
 
 import type { Question, Fact } from '../types';
 import { factStore } from '../fact-store/FactStore';
+import { GRUNDSICHERUNG_QUESTIONS } from './grundsicherung-questions';
 
 // Jobverlust-Fragen definieren
 const JOB_LOSS_QUESTIONS: Question[] = [
@@ -267,8 +268,15 @@ const JOB_LOSS_QUESTIONS: Question[] = [
 export class QuestionEngine {
   private questions: Map<string, Question> = new Map();
 
-  constructor() {
-    this.registerQuestions(JOB_LOSS_QUESTIONS);
+  constructor(questionSets?: Question[][]) {
+    // Ohne Frage-Sets: Standard-Navigator-Pool (Jobverlust-Flow).
+    // Mit Frage-Sets: NUR die übergebenen Sets (z. B. GS-Fragenpool) —
+    // getrennte Eligibility-Queues pro Rechner-Flow.
+    if (questionSets && questionSets.length > 0) {
+      for (const set of questionSets) this.registerQuestions(set);
+    } else {
+      this.registerQuestions(JOB_LOSS_QUESTIONS);
+    }
   }
 
   registerQuestions(questions: Question[]): void {
@@ -351,3 +359,8 @@ export class QuestionEngine {
 }
 
 export const questionEngine = new QuestionEngine();
+
+// Grundsicherungs-Flow (GS-DEV-003): eigener Eligibility-Queue-Stamm mit dem
+// GS-Fragenpool. Wird vom Grundsicherungsrechner benutzt, sobald dessen
+// Navigator-Flow an den MasterOrchestrator angebunden wird.
+export const gsQuestionEngine = new QuestionEngine([GRUNDSICHERUNG_QUESTIONS]);

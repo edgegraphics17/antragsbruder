@@ -1,18 +1,14 @@
 // ============================================================
 // GRUNDSICHERUNG ENGINE — Grundsicherung für Arbeitsuchende (async)
+// Regelbedarfe kommen aus der LegalParameterRegistry (GS-DEV-002) —
+// keine Beträge direkt im Berechnungscode (Playbook §10).
 // ============================================================
 
 import { BaseBenefitEngine } from './BaseBenefitEngine';
+import { legalParameterRegistry } from '../legal-registry';
 import type { BenefitResult, BenefitStatus, CalculationResult } from '../types';
 
-const REGELBEDARF = {
-  stufe1: 563,
-  stufe2: 506,
-  stufe3: 451,
-  stufe4: 471,
-  stufe5: 390,
-  stufe6: 357,
-};
+const RBS_FALLBACK_2026 = { stufe1: 563, stufe2: 506, stufe3: 451, stufe4: 471, stufe5: 390, stufe6: 357 };
 
 export class GrundsicherungEngine extends BaseBenefitEngine {
   readonly benefitType = 'GRUNDSICHERUNG';
@@ -26,6 +22,7 @@ export class GrundsicherungEngine extends BaseBenefitEngine {
     const reasons: string[] = [];
     const blockingFacts: string[] = [];
     const unresolvedQuestions: string[] = [];
+    const today = new Date().toISOString().split('T')[0];
 
     const available = await this.getFactValue(caseId, 'work_capacity.available_15h');
     if (!available) {
@@ -51,12 +48,14 @@ export class GrundsicherungEngine extends BaseBenefitEngine {
 
     let regelbedarf = 0;
     if (structure === 'ALONE' || structure === 'WITH_OTHERS') {
-      regelbedarf = REGELBEDARF.stufe1;
+      regelbedarf = legalParameterRegistry.getValue('RBS_1', today) ?? RBS_FALLBACK_2026.stufe1;
     } else if (structure === 'WITH_PARTNER' || structure === 'WITH_PARTNER_KIDS') {
-      regelbedarf = REGELBEDARF.stufe2 * 2;
+      const rbs2 =
+        legalParameterRegistry.getValue('RBS_2', today) ?? RBS_FALLBACK_2026.stufe2;
+      regelbedarf = rbs2 * 2;
     }
 
-    regelbedarf += childrenCount * REGELBEDARF.stufe5;
+    regelbedarf += childrenCount * (legalParameterRegistry.getValue('RBS_5', today) ?? RBS_FALLBACK_2026.stufe5);
     const kdu = coldRent + heatingCosts;
     const gesamtbedarf = regelbedarf + kdu;
 

@@ -9,12 +9,14 @@ export type * from './types';
 export { caseService } from './fact-store/CaseService';
 export { factStore } from './fact-store/FactStore';
 export { ruleRegistry, ruleEngine } from './rule-engine';
-export { questionEngine } from './question-engine/QuestionEngine';
+export { questionEngine, gsQuestionEngine } from './question-engine/QuestionEngine';
 export { crisisEngine } from './crisis-engine/CrisisEngine';
 export { benefitEngineRegistry } from './benefit-engines/BenefitEngineRegistry';
 export { actionEngine } from './action-engine/ActionEngine';
 export { resultAggregator } from './result-aggregator/ResultAggregator';
 export { masterOrchestrator } from './MasterOrchestrator';
+export { resolveHousehold, bgPersonIds, ageAt } from './household-resolver';
+export { legalParameterRegistry, ensureLegalParametersSeeded, LEGAL_SOURCES } from './legal-registry';
 
 // Re-exports for convenience
 export { RuleRegistry } from './rule-engine/RuleRegistry';
