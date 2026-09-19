@@ -14,7 +14,6 @@ vi.mock('../../src/lib/supabase', () => {
   // Filters müssen pro Query-Instanz wirken: jede makeTableClient-Instanz
   // merkt sich seine Filter in einer Closure.
   function makeTableClient(table: string) {
-    let pending: Row[] | null = null;
     let insertRows: Row[] | null = null;
     const filters: { col: string; op: string; value: unknown }[] = [];
 
