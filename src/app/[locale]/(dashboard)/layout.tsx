@@ -1,5 +1,4 @@
 import { DashboardSidebar } from '@/components/dashboard/Sidebar';
-import { OnboardingModal } from '@/components/dashboard/OnboardingModal';
 import { LocaleSync } from '@/components/dashboard/LocaleSync';
 import type { Metadata } from 'next';
 
@@ -21,7 +20,6 @@ export default function DashboardLayout({
     <div className="min-h-dvh bg-cream">
       <LocaleSync />
       <DashboardSidebar />
-      <OnboardingModal />
       <div className="lg:pl-64">
         {/* Zentrierte Content-Breite: keine Überdehnung auf Widescreen */}
         <main className="mx-auto w-full max-w-6xl min-h-dvh px-4 pb-[calc(7rem+env(safe-area-inset-bottom))] md:px-6 lg:pb-0 lg:py-2">

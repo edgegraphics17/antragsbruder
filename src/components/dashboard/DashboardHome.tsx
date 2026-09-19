@@ -6,18 +6,18 @@
 // Alle UI-Strings über getDashboardDict (i18n), Links locale-aware.
 // ============================================================
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { useProfileStore } from '@/lib/stores/profile-store';
 import { supabase } from '@/lib/supabase';
 import { getRecommendedBenefits, type BenefitMatch } from '@/lib/alg1/matching';
-import { readinessIndex } from '@/lib/benefits/radar';
 import { formatDate } from '@/lib/dashboard';
 import { localeHref } from '@/i18n/config';
 import { useLocaleFromPath } from '@/i18n/use-locale';
 import { getDashboardDict } from '@/content/i18n/dashboard';
 import { formatTemplate } from '@/content/i18n/format';
+import { ApplicationTimeline, type TimelineState } from './ApplicationTimeline';
 
 // In-Bearbeitung-Status laut applications-Constraint.
 const ACTIVE_STATUSES = ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY', 'SUBMITTED', 'PROCESSING'];
@@ -36,8 +36,8 @@ const STATUS_BADGE_CLS: Record<string, string> = {
   REJECTED: 'bg-red-100 text-red-700',
 };
 
-// Timeline-Schritte: nur IDs im Code, Label/Beschreibung aus dem Dict.
-const TIMELINE_STEPS = ['docs', 'data', 'submit', 'receive'] as const;
+// Timeline-Schritte: IDs + Status-Mapping leben in ApplicationTimeline /
+// getTimelineState — Labels/Beschreibungen aus dem Dict (home.timeline).
 
 interface AppRecord {
   id: string;
@@ -47,11 +47,6 @@ interface AppRecord {
   created_at: string;
   last_stage: string | null;
   calculation_result: { amount?: number; unit?: string } | null;
-}
-
-interface TimelineState {
-  activeStep: number; // 1-4
-  completedSteps: number[];
 }
 
 function getTimelineState(app: AppRecord | null): TimelineState {
@@ -116,26 +111,30 @@ export function DashboardHome() {
     if (user) void loadDocuments(user.id);
   }, [user, loadDocuments]);
 
-  const readiness = useMemo(
-    () =>
-      readinessIndex(
-        {
-          employmentStatus: profile?.employmentStatus ?? null,
-          housingType: profile?.housingType ?? null,
-          childrenCount: profile ? profile.childrenCount : null,
-        },
-        documents.map((d) => ({ document_role: d.document_role, filename: d.filename })),
-      ),
-    [profile, documents],
-  );
-
   const activeApplications = applications.filter((a) => ACTIVE_STATUSES.includes(a.status));
   const activeAlg1 = activeApplications.find((a) => a.benefit_type === 'ALG1') ?? null;
   const timeline = getTimelineState(activeAlg1);
+
+  // Startbildschirm ohne Ballast: Tresor-Balken und Fortschritts-Footer
+  // erscheinen erst, wenn tatsächlich ein Antrag läuft.
+  const showJourney = activeApplications.length > 0;
+  const journeyApp = activeApplications[0] ?? null;
+  const timelineHeader = journeyApp
+    ? {
+        title:
+          journeyApp.benefit_type === 'ALG1'
+            ? t.alg1Title
+            : journeyApp.benefit_type || t.applicationFallback,
+        statusLabel: t.status[journeyApp.status as keyof typeof t.status] ?? journeyApp.status,
+        badgeCls: STATUS_BADGE_CLS[journeyApp.status] ?? 'bg-brand-100 text-brand-700',
+      }
+    : null;
   const displayName = profile?.firstName || user?.email?.split('@')[0] || t.fallbackUser;
 
   return (
-    <div className="mx-auto max-w-6xl p-6 md:p-8 md:pb-56">
+    <div
+      className={`mx-auto max-w-6xl p-6 md:p-8 ${showJourney ? 'pb-56 md:pb-64' : ''}`}
+    >
       {/* Gruß */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-ink" suppressHydrationWarning>
@@ -247,96 +246,34 @@ export function DashboardHome() {
         </div>
       </div>
 
-      {/* Dokumente-Schnellzugriff */}
-      <div className="mt-8 rounded-2xl border border-line-soft bg-paper p-6">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="min-w-[200px] flex-1">
-            <p className="text-sm font-semibold text-ink">{t.docsTresor}</p>
-            <p className="mt-1 text-xs text-ink-soft">
-              {documents.length === 0
-                ? t.docsEmpty
-                : formatTemplate(
-                    documents.length === 1 ? t.docsCountOne : t.docsCountMany,
-                    { count: documents.length },
-                  )}
-            </p>
-          </div>
-          <Link
-            href={localeHref(locale, '/dokumente')}
-            className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
-          >
-            {t.goToTresor}
-          </Link>
-        </div>
-      </div>
-
-      {/* TIMELINE — Mobile: statisch & kompakt am Seitenende (eine Zeile: Balken + Schritt X/Y).
-          Desktop (md+): wie bisher fixiert am unteren Rand, rechts neben der Sidebar. */}
-      <div className="border-t border-line-soft bg-paper/95 backdrop-blur-md md:fixed md:inset-x-0 md:bottom-0 md:z-50 lg:left-64">
-        <div className="mx-auto max-w-6xl px-4 py-3 md:px-6 md:py-5">
-          {/* Fortschrittsbalken */}
-          <div className="flex items-center gap-3">
-            <div className="flex-1">
-              <div className="h-2 w-full overflow-hidden rounded-full bg-brand-100">
-                <div
-                  className="h-full rounded-full bg-brand-600 transition-all duration-500"
-                  style={{ width: `${(timeline.completedSteps.length / 4) * 100}%` }}
-                  role="progressbar"
-                  aria-valuenow={timeline.completedSteps.length}
-                  aria-valuemin={0}
-                  aria-valuemax={4}
-                />
-              </div>
+      {/* Dokumente-Schnellzugriff — nur bei laufendem Antrag */}
+      {showJourney && (
+        <div className="mt-8 rounded-2xl border border-line-soft bg-paper p-6">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="min-w-[200px] flex-1">
+              <p className="text-sm font-semibold text-ink">{t.docsTresor}</p>
+              <p className="mt-1 text-xs text-ink-soft">
+                {documents.length === 0
+                  ? t.docsEmpty
+                  : formatTemplate(
+                      documents.length === 1 ? t.docsCountOne : t.docsCountMany,
+                      { count: documents.length },
+                    )}
+              </p>
             </div>
-            <span className="shrink-0 text-xs font-semibold text-ink">
-              {formatTemplate(t.stepsProgress, { done: timeline.completedSteps.length })}
-            </span>
-          </div>
-
-          {/* Steps — nur Desktop */}
-          <div className="hidden gap-2 md:mt-3 md:grid md:grid-cols-4 md:gap-4">
-            {TIMELINE_STEPS.map((stepId, idx) => {
-              const stepNum = idx + 1;
-              const isCompleted = timeline.completedSteps.includes(stepNum);
-              const isActive = timeline.activeStep === stepNum;
-              const step = t.timeline[stepId];
-
-              return (
-                <div key={stepId} className="flex flex-col items-center text-center">
-                  <div
-                    className={`mb-1 flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold transition-colors md:h-8 md:w-8 ${
-                      isCompleted
-                        ? 'bg-brand-600 text-white'
-                        : isActive
-                          ? 'bg-brand-100 text-brand-700 ring-2 ring-brand-600'
-                          : 'bg-ink-100 text-ink-soft'
-                    }`}
-                  >
-                    {isCompleted ? '✓' : stepNum}
-                  </div>
-                  <p
-                    className={`text-[10px] font-medium leading-tight md:text-xs ${
-                      isActive ? 'text-ink' : isCompleted ? 'text-ink-soft' : 'text-ink-soft/60'
-                    }`}
-                  >
-                    {step.label}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Desktop: Beschreibung des aktiven Schritts — mittig unten zentriert */}
-          <div className="mt-3 hidden md:block">
-            <p className="text-center text-xs text-ink-soft">
-              <span className="font-semibold text-ink">
-                {t.timeline[TIMELINE_STEPS[timeline.activeStep - 1]].label}:
-              </span>{' '}
-              {t.timeline[TIMELINE_STEPS[timeline.activeStep - 1]].description}
-            </p>
+            <Link
+              href={localeHref(locale, '/dokumente')}
+              className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+            >
+              {t.goToTresor}
+            </Link>
           </div>
         </div>
-      </div>
+      )}
+
+      {/* Fortschritts-Footer — nur bei laufendem Antrag (schwebende Karte,
+          Desktop fixiert unten rechts neben der Sidebar, Mobile kompakt). */}
+      {showJourney && <ApplicationTimeline timeline={timeline} header={timelineHeader} />}
     </div>
   );
 }
