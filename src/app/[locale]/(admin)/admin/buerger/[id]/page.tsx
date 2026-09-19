@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { createAuthServerClient } from '@/lib/auth-server';
 import { StatusBadge } from '@/components/admin/ui';
-import { DocumentPreviewButton, NoteForm } from '@/components/admin/AdminClient';
+import { DocumentPreviewButton, DocumentDownloadButton, NoteForm } from '@/components/admin/AdminClient';
 
 export const dynamic = 'force-dynamic';
 
@@ -129,7 +129,10 @@ export default async function AdminBuergerDetailPage({
                       {d.status}
                     </p>
                   </div>
-                  <DocumentPreviewButton documentId={d.id} label="Ansehen" />
+                  <div className="flex shrink-0 flex-wrap items-center gap-2">
+                    <DocumentPreviewButton documentId={d.id} label="Ansehen" />
+                    <DocumentDownloadButton documentId={d.id} />
+                  </div>
                 </li>
               ))}
             </ul>

@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { createAuthServerClient } from '@/lib/auth-server';
 import { StatusBadge, prettifyKey, prettifyValue } from '@/components/admin/ui';
-import { CopyField, DocumentPreviewButton, JsonExportButton, NoteForm, StatusActions, TaskQuickForm } from '@/components/admin/AdminClient';
+import { CopyField, DocumentPreviewButton, DocumentDownloadButton, JsonExportButton, NoteForm, StatusActions, TaskQuickForm } from '@/components/admin/AdminClient';
 
 export const dynamic = 'force-dynamic';
 
@@ -183,7 +183,10 @@ export default async function AdminAntragDetailPage({
                       {fmtDate(d.created_at)} · {d.status}
                     </p>
                   </div>
-                  <DocumentPreviewButton documentId={d.id} label="Ansehen" />
+                  <div className="flex shrink-0 flex-wrap items-center gap-2">
+                    <DocumentPreviewButton documentId={d.id} label="Ansehen" />
+                    <DocumentDownloadButton documentId={d.id} />
+                  </div>
                 </li>
               ))}
             </ul>

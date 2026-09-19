@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   generateAdminDocumentUrl,
+  generateAdminDocumentDownload,
   transitionApplication,
   addAdminNote,
   createAdminTask,
@@ -128,6 +129,45 @@ export function DocumentPreviewButton({ documentId, label }: { documentId: strin
         className="rounded-lg border border-line-soft bg-white px-3 py-1.5 text-xs font-semibold text-ink transition-colors hover:bg-brand-50 hover:text-brand-700 disabled:opacity-50"
       >
         {busy ? 'Öffne…' : `👁 ${label}`}
+      </button>
+      {error && <span className="text-xs text-red-600">{error}</span>}
+    </span>
+  );
+}
+
+// --- Dokument-Download: Signed URL holen, als Blob mit Originalnamen speichern
+export function DocumentDownloadButton({ documentId }: { documentId: string }) {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const download = async () => {
+    setBusy(true);
+    setError(null);
+    try {
+      const { url, filename } = await generateAdminDocumentDownload(documentId);
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Download fehlgeschlagen (${res.status})`);
+      const blob = await res.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = objectUrl;
+      a.download = filename || 'dokument';
+      a.click();
+      URL.revokeObjectURL(objectUrl);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Fehler');
+    } finally {
+      setBusy(false);
+    }
+  };
+  return (
+    <span className="inline-flex items-center gap-2">
+      <button
+        type="button"
+        onClick={download}
+        disabled={busy}
+        className="rounded-lg border border-line-soft bg-white px-3 py-1.5 text-xs font-semibold text-ink transition-colors hover:bg-brand-50 hover:text-brand-700 disabled:opacity-50"
+      >
+        {busy ? 'Lädt…' : '⬇ Download'}
       </button>
       {error && <span className="text-xs text-red-600">{error}</span>}
     </span>

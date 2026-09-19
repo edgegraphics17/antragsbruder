@@ -42,6 +42,36 @@ export async function generateAdminDocumentUrl(documentId: string): Promise<stri
   return data.signedUrl;
 }
 
+// Dokument-Download: wie Preview, aber mit Dateinamen für den Browser-
+// Download (damit die Datei unter ihrem Originalnamen landet). Jeder
+// Download wird ebenfalls als eigener Audit-Eintrag protokolliert.
+export async function generateAdminDocumentDownload(documentId: string): Promise<{ url: string; filename: string }> {
+  const admin = await requireAdmin();
+  const service = createServiceClient();
+
+  const { data: doc, error: docError } = await service
+    .from('documents_meta')
+    .select('id, storage_path, filename')
+    .eq('id', documentId)
+    .single();
+  if (docError || !doc) throw new Error('Dokument nicht gefunden.');
+
+  const { data, error } = await service.storage
+    .from('documents')
+    .createSignedUrl(doc.storage_path, 60);
+  if (error || !data) throw new Error(`Signed URL fehlgeschlagen: ${error?.message ?? 'unbekannt'}`);
+
+  await service.from('admin_audit_log').insert({
+    admin_id: admin.id,
+    action: 'DOWNLOAD_DOCUMENT',
+    target_table: 'documents_meta',
+    target_id: documentId,
+    metadata: { filename: doc.filename },
+  });
+
+  return { url: data.signedUrl, filename: doc.filename };
+}
+
 // ------------------------------------------------------------
 // Status-Übergänge (Phase 2): Vorwärts freigegeben, RÜCKWÄRTS nur
 // mit Pflicht-Kommentar (Begründung geht ins Audit-Log).
