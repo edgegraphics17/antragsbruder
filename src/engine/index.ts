@@ -8,6 +8,7 @@ export type * from './types';
 // Services
 export { caseService } from './fact-store/CaseService';
 export { factStore } from './fact-store/FactStore';
+export { personService } from './fact-store/PersonService';
 export { ruleRegistry, ruleEngine } from './rule-engine';
 export { questionEngine, gsQuestionEngine } from './question-engine/QuestionEngine';
 export { crisisEngine } from './crisis-engine/CrisisEngine';

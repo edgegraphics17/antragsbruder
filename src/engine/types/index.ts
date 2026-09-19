@@ -54,7 +54,7 @@ export type PersonRole = 'APPLICANT' | 'PARTNER' | 'CHILD' | 'PARENT' | 'OTHER';
 export interface Person {
   id: string;
   role: PersonRole;
-  dateOfBirth: string;
+  dateOfBirth?: string;
   relationshipToApplicant?: string;
   nationality?: string;
   residence?: string;

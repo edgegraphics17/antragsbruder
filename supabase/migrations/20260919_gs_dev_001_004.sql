@@ -2,11 +2,13 @@
 -- GS-DEV-001 bis GS-DEV-004 (Grundsicherungsrechner v1.0)
 -- Playbook: Antragsbruder – Grundsicherungsrechner MASTER PLAYBOOK v1.0
 -- Stand: 2026-09-19
+-- In der Live-DB angewendet als Migration "gs_dev_001_004"
+-- (Supabase MCP, 2026-09-19) — deckungsgleich mit dieser Datei.
 --
 -- GS-DEV-001: Case-Erweiterung (drei getrennte Zeitachsen,
 --             Entry-Type, aktive Module, Berechnungsqualität)
 -- GS-DEV-004: persons + relationships (Household/BG Resolver)
--- GS-DEV-002: legal_parameters + legal_sources (Source/Parameter Registry)
+-- GS-DEV-002: legal_sources + Seed (legal_parameters existiert bereits)
 -- ============================================================
 
 -- ------------------------------------------------------------
@@ -116,14 +118,16 @@ insert into legal_sources (source_id, type, title, publisher, url, retrieved_at,
 on conflict (source_id) do nothing;
 
 -- ------------------------------------------------------------
--- RLS: konservativ — Owner-basiert wie die 20260917-Härtung.
--- Neue Tabellen haben zunächst KEINE Public-Policies.
+-- RLS — Lektion vom 17.09.: nie RLS ohne passende Policies aktivieren.
+-- persons/relationships: Owner-basiert (authenticated) PLUS Public-
+-- Insert/Select/Update analog zu facts, damit der anonymous-first GS-Flow
+-- über den Anon-Client funktioniert (Delete nur Owner).
 -- ------------------------------------------------------------
 alter table persons enable row level security;
 alter table relationships enable row level security;
-alter table legal_parameters enable row level security;
 alter table legal_sources enable row level security;
 
+-- persons
 drop policy if exists "Users manage own persons" on persons;
 create policy "Users manage own persons" on persons
   for all using (
@@ -131,7 +135,17 @@ create policy "Users manage own persons" on persons
   ) with check (
     exists (select 1 from cases c where c.id = persons.case_id and c.user_id = auth.uid())
   );
+drop policy if exists "Allow public read on persons" on persons;
+create policy "Allow public read on persons" on persons
+  for select using (true);
+drop policy if exists "Allow public insert on persons" on persons;
+create policy "Allow public insert on persons" on persons
+  for insert with check (true);
+drop policy if exists "Allow public update on persons" on persons;
+create policy "Allow public update on persons" on persons
+  for update using (true);
 
+-- relationships
 drop policy if exists "Users manage own relationships" on relationships;
 create policy "Users manage own relationships" on relationships
   for all using (
@@ -139,12 +153,49 @@ create policy "Users manage own relationships" on relationships
   ) with check (
     exists (select 1 from cases c where c.id = relationships.case_id and c.user_id = auth.uid())
   );
+drop policy if exists "Allow public read on relationships" on relationships;
+create policy "Allow public read on relationships" on relationships
+  for select using (true);
+drop policy if exists "Allow public insert on relationships" on relationships;
+create policy "Allow public insert on relationships" on relationships
+  for insert with check (true);
+drop policy if exists "Allow public update on relationships" on relationships;
+create policy "Allow public update on relationships" on relationships
+  for update using (true);
 
--- Legal-Daten sind öffentlich lesbar (amtliche Quellen, keine Personendaten)
-drop policy if exists "Legal parameters public read" on legal_parameters;
-create policy "Legal parameters public read" on legal_parameters
+-- legal_sources: öffentliche amtliche Quellen, nur lesbar
+drop policy if exists "Allow public read on legal_sources" on legal_sources;
+create policy "Allow public read on legal_sources" on legal_sources
   for select using (true);
 
-drop policy if exists "Legal sources public read" on legal_sources;
-create policy "Legal sources public read" on legal_sources
-  for select using (true);
+-- ------------------------------------------------------------
+-- Anonymous-first GS-Erstecheck (Playbook §30.4): pseudonyme/temporäre
+-- Cases ausschließlich für den Grundsicherungsrechner-Flow.
+-- Alle anderen Cases bleiben über "Users manage own cases" geschützt.
+-- (In der Live-DB als Migration "gs_anonymous_first_check_cases".)
+-- ------------------------------------------------------------
+drop policy if exists "Anonymous GS-Erstecheck insert" on cases;
+create policy "Anonymous GS-Erstecheck insert" on cases
+  for insert with check (
+    entry_type = 'BENEFIT_GRUNDSICHERUNG' and user_id is null
+  );
+
+drop policy if exists "Anonymous GS-Erstecheck read" on cases;
+create policy "Anonymous GS-Erstecheck read" on cases
+  for select using (
+    entry_type = 'BENEFIT_GRUNDSICHERUNG' and user_id is null
+  );
+
+drop policy if exists "Anonymous GS-Erstecheck update" on cases;
+create policy "Anonymous GS-Erstecheck update" on cases
+  for update using (
+    entry_type = 'BENEFIT_GRUNDSICHERUNG' and user_id is null
+  ) with check (
+    entry_type = 'BENEFIT_GRUNDSICHERUNG' and user_id is null
+  );
+
+drop policy if exists "Anonymous GS-Erstecheck delete" on cases;
+create policy "Anonymous GS-Erstecheck delete" on cases
+  for delete using (
+    entry_type = 'BENEFIT_GRUNDSICHERUNG' and user_id is null
+  );
