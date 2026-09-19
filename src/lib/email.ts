@@ -18,7 +18,7 @@ if (resendKey) {
 
 const FROM_EMAIL = process.env.EMAIL_FROM_ADDRESS || 'noreply@antragsbruder.de';
 const FROM_NAME = process.env.EMAIL_FROM_NAME || 'Antragsbruder';
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://antragsbruder.de';
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://www.antragsbruder.de';
 
 export type EmailPayload = {
   to: string;
