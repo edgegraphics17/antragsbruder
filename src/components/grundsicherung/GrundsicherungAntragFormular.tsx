@@ -1,9 +1,11 @@
 'use client';
 
 // ============================================================
-// GRUNDSICHERUNG ANTRAGSFORMULAR — Vollständige Antragsdaten
-// Schematisch getrieben über GS_ANTRAG_SECTIONS. Validierung mit
-// fehlenden Pflichtfeldern je Abschnitt (kein Fortschritt über Lücken).
+// GRUNDSICHERUNG ANTRAGSFORMULAR — amtliche Struktur (Hauptantrag HA 04/2026)
+// Schematisch getrieben über GS_ANTRAG_SECTIONS inkl. Skip-Logik (showIf)
+// und generischen Repeatern (Kinder, frühere Arbeitgeber, Entgeltersatz-
+// leistungen, frühere Leistungsbezüge). Validierung mit fehlenden
+// Pflichtfeldern je Abschnitt — kein Fortschritt über Lücken.
 // ============================================================
 
 import { useMemo } from 'react';
@@ -14,21 +16,40 @@ import {
   visibleFields,
   isPlausibleIban,
   type GsAntragData,
-  type GsAntragChildData,
   type GsFieldDef,
+  type GsSectionDef,
 } from '@/lib/grundsicherung/antrag-form';
 
 const inputBase =
   'w-full rounded-lg border border-line-soft bg-white px-3 py-2 text-sm text-ink focus:border-brand-700 focus:outline-none';
 
+/** Repeater-Abschnitte erscheinen nur, wenn der Trigger im Vergangenheits-Abschnitt Ja ist */
+const CONDITIONAL_SECTIONS: Record<string, { when: string; is: unknown }> = {
+  fruehere_leistungen: { when: 'receivedBenefitsLast3Years', is: true },
+  fruehere_arbeitgeber: { when: 'employedLast5Years', is: true },
+  entgeltersatz: { when: 'receivedReplacementBenefits', is: true },
+};
+
+function sectionVisible(section: GsSectionDef, data: Partial<GsAntragData>): boolean {
+  const cond = CONDITIONAL_SECTIONS[section.id];
+  if (!cond) return true;
+  return (data as unknown as Record<string, unknown>)[cond.when] === cond.is;
+}
+
+function isBlank(v: unknown): boolean {
+  return v === undefined || v === null || v === '';
+}
+
+function repeaterKey(repeater: NonNullable<GsSectionDef['repeater']>): string {
+  return repeater;
+}
+
 export function GrundsicherungAntragFormular({
   onBack,
   onContinue,
-  quickCheckChildCount,
 }: {
   onBack: () => void;
   onContinue: () => void;
-  quickCheckChildCount: number;
 }) {
   const antrag = useGsStore((s) => s.antrag);
   const setAntrag = useGsStore((s) => s.setAntrag);
@@ -38,20 +59,35 @@ export function GrundsicherungAntragFormular({
 
   const set = (patch: Partial<GsAntragData>) => setAntrag(patch);
 
-  const setChild = (i: number, patch: Partial<GsAntragChildData>) => {
-    const children = [...(antrag.children ?? [])];
-    children[i] = { ...children[i], ...patch };
-    set({ children });
+  const setItem = (
+    repeater: NonNullable<GsSectionDef['repeater']>,
+    i: number,
+    patch: Record<string, unknown>
+  ) => {
+    const key = repeaterKey(repeater);
+    const list = [
+      ...(((antrag as unknown as Record<string, unknown[]>)[key] ?? []) as Record<string, unknown>[]),
+    ];
+    list[i] = { ...list[i], ...patch };
+    set({ [key]: list } as unknown as Partial<GsAntragData>);
   };
 
-  const addChild = () => {
-    set({ children: [...(antrag.children ?? []), {}] });
+  const addItem = (repeater: NonNullable<GsSectionDef['repeater']>) => {
+    const key = repeaterKey(repeater);
+    const list = [
+      ...(((antrag as unknown as Record<string, unknown[]>)[key] ?? []) as Record<string, unknown>[]),
+    ];
+    list.push({});
+    set({ [key]: list } as unknown as Partial<GsAntragData>);
   };
 
-  const removeChild = (i: number) => {
-    const children = [...(antrag.children ?? [])];
-    children.splice(i, 1);
-    set({ children });
+  const removeItem = (repeater: NonNullable<GsSectionDef['repeater']>, i: number) => {
+    const key = repeaterKey(repeater);
+    const list = [
+      ...(((antrag as unknown as Record<string, unknown[]>)[key] ?? []) as Record<string, unknown>[]),
+    ];
+    list.splice(i, 1);
+    set({ [key]: list } as unknown as Partial<GsAntragData>);
   };
 
   const ibanInvalid =
@@ -64,8 +100,9 @@ export function GrundsicherungAntragFormular({
       <header>
         <h1 className="text-2xl font-bold text-ink">Dein Antragsformular</h1>
         <p className="mt-1 text-sm text-ink-soft">
-          Alle Angaben, die für einen vollständigen formlosen Grundsicherungsantrag nötig sind.
-          Gespeicherte Angaben aus dem Schnell-Check sind bereits übernommen.
+          Alle Angaben des amtlichen Hauptantrags Grundsicherungsgeld (Jobcenter-HA 04/2026) —
+          nur die Fragen, die für deine Situation relevant sind. Angaben aus dem Schnell-Check
+          sind bereits übernommen.
         </p>
       </header>
 
@@ -89,54 +126,59 @@ export function GrundsicherungAntragFormular({
         </div>
       )}
 
-      {GS_ANTRAG_SECTIONS.map((section) => {
-        if (section.repeater === 'children') {
-          const children = antrag.children ?? [];
-          const showAdd = children.length > 0 || quickCheckChildCount > 0;
+      {GS_ANTRAG_SECTIONS.filter((s) => sectionVisible(s, antrag)).map((section) => {
+        if (section.repeater) {
+          const repeater = section.repeater;
+          const key = repeaterKey(repeater);
+          const items = [
+            ...(((antrag as unknown as Record<string, unknown[]>)[key] ?? []) as Record<string, unknown>[]),
+          ];
+          const sectionMissing = missing[section.id] ?? [];
           return (
             <section key={section.id} className="space-y-4 rounded-2xl border border-line-soft bg-white p-5">
               <div>
                 <h2 className="font-semibold text-ink">{section.title}</h2>
                 {section.description && <p className="mt-1 text-xs text-ink-soft">{section.description}</p>}
               </div>
-              {children.map((child, i) => (
+              {items.map((item, i) => (
                 <div key={i} className="rounded-xl bg-cream/60 p-4">
                   <div className="mb-3 flex items-center justify-between">
-                    <span className="text-sm font-bold text-ink">Kind {i + 1}</span>
+                    <span className="text-sm font-bold text-ink">Eintrag {i + 1}</span>
                     <button
                       type="button"
-                      onClick={() => removeChild(i)}
+                      onClick={() => removeItem(repeater, i)}
                       className="text-xs font-semibold text-red-600 hover:underline"
                     >
                       Entfernen
                     </button>
                   </div>
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                    {visibleFields(section, antrag, child).map((f) => (
+                    {visibleFields(section, antrag, item).map((f) => (
                       <Field
                         key={f.key}
                         field={f}
-                        value={(child as unknown as Record<string, unknown>)[f.key]}
-                        onChange={(v) => setChild(i, { [f.key]: v } as Partial<GsAntragChildData>)}
-                        error={
-                          (missing[section.id] ?? []).some((m) => m.startsWith(`Kind ${i + 1}:`)) &&
-                          isBlank((child as unknown as Record<string, unknown>)[f.key]) &&
-                          f.required
-                        }
+                        value={item[f.key]}
+                        onChange={(v) => setItem(repeater, i, { [f.key]: v })}
+                        error={sectionMissing.length > 0 && f.required && isBlank(item[f.key])}
                       />
                     ))}
                   </div>
                 </div>
               ))}
-              {showAdd && (
-                <button
-                  type="button"
-                  onClick={addChild}
-                  className="rounded-lg bg-cream px-3 py-2 text-sm font-semibold text-ink hover:bg-cream/70"
-                >
-                  + Kind hinzufügen
-                </button>
+              {sectionMissing.length > 0 && (
+                <ul className="list-disc space-y-1 pl-5 text-xs text-red-600">
+                  {sectionMissing.map((m) => (
+                    <li key={m}>{m}</li>
+                  ))}
+                </ul>
               )}
+              <button
+                type="button"
+                onClick={() => addItem(repeater)}
+                className="rounded-lg bg-cream px-3 py-2 text-sm font-semibold text-ink hover:bg-cream/70"
+              >
+                + Eintrag hinzufügen
+              </button>
             </section>
           );
         }
@@ -145,8 +187,11 @@ export function GrundsicherungAntragFormular({
         const sectionHasGap = (missing[section.id] ?? []).length > 0;
         return (
           <section key={section.id} className="space-y-4 rounded-2xl border border-line-soft bg-white p-5">
-            <h2 className="font-semibold text-ink">{section.title}</h2>
-            {section.id === 'konto' && ibanInvalid && (
+            <div>
+              <h2 className="font-semibold text-ink">{section.title}</h2>
+              {section.description && <p className="mt-1 text-xs text-ink-soft">{section.description}</p>}
+            </div>
+            {section.id === 'konto_ids' && ibanInvalid && (
               <p className="text-xs font-medium text-red-600">Diese IBAN sieht nicht vollständig aus.</p>
             )}
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -188,10 +233,6 @@ export function GrundsicherungAntragFormular({
   );
 }
 
-function isBlank(v: unknown): boolean {
-  return v === undefined || v === null || v === '';
-}
-
 function Field({
   field,
   value,
@@ -206,13 +247,16 @@ function Field({
   const spanFull =
     field.type === 'checkbox' ||
     (field.hint !== undefined && field.hint.length > 40) ||
-    field.type === 'text' && field.key === 'signatureName';
+    (field.type === 'text' && field.key === 'signatureName');
 
   return (
     <label className={`block ${spanFull ? 'sm:col-span-2' : ''}`}>
       <span className={`mb-1 block text-sm font-medium ${error ? 'text-red-600' : 'text-ink'}`}>
         {field.label}
         {field.required && ' *'}
+        {field.formField && (
+          <span className="ml-1 text-[10px] font-normal text-ink-soft">(Feld {field.formField})</span>
+        )}
       </span>
       {field.type === 'checkbox' ? (
         <input
@@ -222,11 +266,7 @@ function Field({
           className="h-4 w-4 rounded border-line-soft text-brand-600 focus:ring-brand-600"
         />
       ) : field.type === 'select' ? (
-        <select
-          value={(value as string) ?? ''}
-          onChange={(e) => onChange(e.target.value)}
-          className={inputBase}
-        >
+        <select value={(value as string) ?? ''} onChange={(e) => onChange(e.target.value)} className={inputBase}>
           <option value="" disabled>
             —
           </option>

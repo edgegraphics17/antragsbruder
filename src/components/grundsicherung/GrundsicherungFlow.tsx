@@ -11,11 +11,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAuth } from '@/lib/auth-context';
 import { useGsStore, isGsStage, type GsStage } from '@/lib/grundsicherung/store';
 import {
-  GS_ANTRAG_SECTIONS,
-  missingRequiredFields,
-  visibleFields,
-  isPlausibleIban,
-  type GsAntragData,
+  requiredAnlagen,
   type GsAntragChildData,
 } from '@/lib/grundsicherung/antrag-form';
 import { caseService } from '@/engine';
@@ -25,8 +21,6 @@ import { GrundsicherungAntragFormular } from '@/components/grundsicherung/Grunds
 import { getDashboardDict } from '@/content/i18n/dashboard';
 import { useLocaleFromPath } from '@/i18n/use-locale';
 import { localeHref } from '@/i18n/config';
-
-const STAGES: GsStage[] = ['angaben', 'ergebnis', 'formular', 'unterlagen', 'einreichen'];
 
 const STATUS_LABELS: Record<string, string> = {
   VERY_LIKELY_RELEVANT: 'Sehr wahrscheinlich relevant',
@@ -630,22 +624,18 @@ export function GrundsicherungFlow({
           }
           store.setStage('unterlagen');
         }}
-        quickCheckChildCount={(form.children ?? []).length}
       />
     );
   }
 
   // --- Stage: UNTERLAGEN ---
   if (store.stage === 'unterlagen') {
-    const docs = [
-      { key: 'id', needed: true },
-      { key: 'income', needed: (form.applicant as { incomeEmploymentNet?: number } | undefined)?.incomeEmploymentNet !== undefined },
-      { key: 'rent', needed: true },
-      { key: 'heating', needed: true },
-      { key: 'assets', needed: ((form.applicant as { assets?: number } | undefined)?.assets ?? 0) > 0 },
-      { key: 'kindergeld', needed: (form.children ?? []).some((c) => c.kindergeld) },
-      { key: 'maintenance', needed: Boolean((form.children ?? []).length) },
-    ];
+    // Pflicht-Anlagen automatisch aus den Antragsdaten abgeleitet
+    // (Hauptantrag Abschnitt H + Trigger in A–G).
+    const anlagenListe = requiredAnlagen(
+      store.antrag,
+      (form.children ?? []).map((c) => c.age).filter((a) => typeof a === 'number')
+    );
     return (
       <div className="mx-auto max-w-2xl space-y-6">
         <header>
@@ -654,15 +644,16 @@ export function GrundsicherungFlow({
         </header>
 
         <section className="rounded-2xl border border-line-soft bg-white p-5">
+          <h2 className="mb-3 font-semibold text-ink">
+            Erforderliche Anlagen & Nachweise ({anlagenListe.length})
+          </h2>
           <ul className="space-y-2">
-            {docs
-              .filter((d) => d.needed)
-              .map((d) => (
-                <li key={d.key} className="flex items-center gap-3 rounded-xl bg-cream/60 p-3 text-sm text-ink">
-                  <span className="h-2 w-2 rounded-full bg-brand-600" />
-                  {dict.unterlagen.docs[d.key as keyof typeof dict.unterlagen.docs]}
-                </li>
-              ))}
+            {anlagenListe.map((anlage) => (
+              <li key={anlage} className="flex items-start gap-3 rounded-xl bg-cream/60 p-3 text-sm text-ink">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-brand-600" />
+                {anlage}
+              </li>
+            ))}
           </ul>
           <a
             href={localeHref(locale, '/dokumente')}

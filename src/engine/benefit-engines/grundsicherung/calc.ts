@@ -220,7 +220,6 @@ export function calculateGrundsicherung(input: GsCalcInput): GsCalcResult {
     };
   }
 
-  const applicant = input.persons.find((p) => p.role === 'APPLICANT');
   const partner = input.persons.find((p) => p.role === 'PARTNER' && !p.selfSufficient);
 
   if (input.workCapacityOver3h === 'NO' && !partner) {
