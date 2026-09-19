@@ -1,6 +1,9 @@
 export const site = {
   name: "Antragsbruder",
-  domain: "antragsbruder.de",
+  // www-Subdomain: Vercel leitet die Apex-Domain per 308 auf www weiter —
+  // Canonicals/hreflang/Sitemap/JSON-LD müssen auf die real ausgelieferte
+  // Host-URL zeigen, sonst wählt Google einen anderen Canonical (Duplicate-Content-Risiko).
+  domain: "www.antragsbruder.de",
   claim: "Papierkram? Schick ihn deinem Antragsbruder.",
   contactEmail: "info@antragsbruder.de",
   supportEmail: "info@antragsbruder.de",
