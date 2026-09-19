@@ -7,6 +7,7 @@ import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { TrustBox } from "@/components/seo/TrustBox";
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { ClusterPageContent, ContentBlock } from "@/content/wohngeld-cluster";
+import { site, editor } from "@/content/site";
 import { articleJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo/jsonld";
 
 /**
@@ -87,7 +88,8 @@ export function ClusterArticle({ content }: { content: ClusterPageContent }) {
             path: pagePath,
             datePublished: content.legalStand,
             dateModified: content.lastReviewed,
-            reviewer: undefined,
+            author: `Redaktion ${site.name} (${editor.name})`,
+            reviewer: `${editor.name}, ${editor.role}`,
           }),
           breadcrumbJsonLd(content.breadcrumb),
           faqJsonLd(content.faqs),

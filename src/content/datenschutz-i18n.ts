@@ -4,8 +4,6 @@ export type Dict = {
   metaTitle: string;
   metaDescription: (siteName: string) => string;
   pageTitle: string;
-  noticeTitle: string;
-  noticeText: (siteName: string) => string;
   section1Heading: string;
   emailLabel: string;
   section2Heading: string;
@@ -34,11 +32,8 @@ export type Dict = {
 export const dict: Record<Locale, Dict> = {
   de: {
     metaTitle: "Datenschutz",
-    metaDescription: (siteName) => `Datenschutzerklärung von ${siteName} – Entwurf, juristisch zu prüfen.`,
+    metaDescription: (siteName) => `Datenschutzerklärung von ${siteName}`,
     pageTitle: "Datenschutzerklärung",
-    noticeTitle: "Rechtlicher Hinweis",
-    noticeText: (siteName) =>
-      `Dies ist ein strukturierter Entwurf einer Datenschutzerklärung auf Basis der DSGVO. Er ist vor Veröffentlichung durch eine fachkundige, rechtliche Prüfung zu bestätigen und um die tatsächlichen technischen und organisatorischen Details von ${siteName} zu ergänzen.`,
     section1Heading: "1. Verantwortlicher",
     emailLabel: "E-Mail:",
     section2Heading: "2. Grundsätze der Datenverarbeitung",
@@ -78,11 +73,8 @@ export const dict: Record<Locale, Dict> = {
   },
   en: {
     metaTitle: "Privacy Policy",
-    metaDescription: (siteName) => `Privacy policy of ${siteName} – draft, subject to legal review.`,
+    metaDescription: (siteName) => `Privacy policy of ${siteName}`,
     pageTitle: "Privacy Policy",
-    noticeTitle: "Legal notice",
-    noticeText: (siteName) =>
-      `This is a structured draft of a privacy policy based on the GDPR (DSGVO). It must be confirmed by a qualified legal review before publication and supplemented with the actual technical and organisational details of ${siteName}.`,
     section1Heading: "1. Data controller",
     emailLabel: "Email:",
     section2Heading: "2. Principles of data processing",
@@ -122,11 +114,8 @@ export const dict: Record<Locale, Dict> = {
   },
   ar: {
     metaTitle: "سياسة الخصوصية",
-    metaDescription: (siteName) => `سياسة الخصوصية الخاصة بـ ${siteName} – مسودة، تخضع للمراجعة القانونية.`,
+    metaDescription: (siteName) => `سياسة الخصوصية الخاصة بـ ${siteName}`,
     pageTitle: "سياسة الخصوصية",
-    noticeTitle: "ملاحظة قانونية",
-    noticeText: (siteName) =>
-      `هذه مسودة منظمة لسياسة خصوصية مبنية على اللائحة العامة لحماية البيانات (DSGVO/GDPR). يجب تأكيدها من خلال مراجعة قانونية متخصصة قبل النشر، وتكميلها بالتفاصيل التقنية والتنظيمية الفعلية لـ ${siteName}.`,
     section1Heading: "1. الجهة المسؤولة",
     emailLabel: "البريد الإلكتروني:",
     section2Heading: "2. مبادئ معالجة البيانات",
@@ -166,11 +155,8 @@ export const dict: Record<Locale, Dict> = {
   },
   tr: {
     metaTitle: "Gizlilik Politikası",
-    metaDescription: (siteName) => `${siteName} gizlilik politikası – taslak, hukuki incelemeye tabidir.`,
+    metaDescription: (siteName) => `${siteName} gizlilik politikası`,
     pageTitle: "Gizlilik Politikası",
-    noticeTitle: "Yasal uyarı",
-    noticeText: (siteName) =>
-      `Bu, GDPR/DSGVO (Genel Veri Koruma Tüzüğü) esas alınarak hazırlanmış yapılandırılmış bir gizlilik politikası taslağıdır. Yayınlanmadan önce uzman bir hukuki inceleme ile onaylanmalı ve ${siteName}'in gerçek teknik ve organizasyonel detaylarıyla tamamlanmalıdır.`,
     section1Heading: "1. Veri sorumlusu",
     emailLabel: "E-posta:",
     section2Heading: "2. Veri işleme ilkeleri",
@@ -210,11 +196,8 @@ export const dict: Record<Locale, Dict> = {
   },
   ru: {
     metaTitle: "Политика конфиденциальности",
-    metaDescription: (siteName) => `Политика конфиденциальности ${siteName} – проект, подлежит юридической проверке.`,
+    metaDescription: (siteName) => `Политика конфиденциальности ${siteName}`,
     pageTitle: "Политика конфиденциальности",
-    noticeTitle: "Юридическое примечание",
-    noticeText: (siteName) =>
-      `Это структурированный проект политики конфиденциальности на основе GDPR (DSGVO). Перед публикацией он должен быть подтверждён квалифицированной юридической проверкой и дополнен фактическими техническими и организационными деталями ${siteName}.`,
     section1Heading: "1. Ответственный за обработку данных",
     emailLabel: "Эл. почта:",
     section2Heading: "2. Принципы обработки данных",
@@ -254,11 +237,8 @@ export const dict: Record<Locale, Dict> = {
   },
   uk: {
     metaTitle: "Політика конфіденційності",
-    metaDescription: (siteName) => `Політика конфіденційності ${siteName} – проєкт, підлягає юридичній перевірці.`,
+    metaDescription: (siteName) => `Політика конфіденційності ${siteName}`,
     pageTitle: "Політика конфіденційності",
-    noticeTitle: "Юридичне зауваження",
-    noticeText: (siteName) =>
-      `Це структурований проєкт політики конфіденційності на основі GDPR (DSGVO). Перед публікацією він має бути підтверджений кваліфікованою юридичною перевіркою та доповнений фактичними технічними й організаційними деталями ${siteName}.`,
     section1Heading: "1. Відповідальний за обробку даних",
     emailLabel: "Ел. пошта:",
     section2Heading: "2. Принципи обробки даних",
@@ -298,11 +278,8 @@ export const dict: Record<Locale, Dict> = {
   },
   pl: {
     metaTitle: "Polityka prywatności",
-    metaDescription: (siteName) => `Polityka prywatności ${siteName} – projekt, wymaga weryfikacji prawnej.`,
+    metaDescription: (siteName) => `Polityka prywatności ${siteName}`,
     pageTitle: "Polityka prywatności",
-    noticeTitle: "Informacja prawna",
-    noticeText: (siteName) =>
-      `To jest ustrukturyzowany projekt polityki prywatności oparty na RODO (DSGVO). Przed publikacją musi zostać potwierdzony przez fachową weryfikację prawną oraz uzupełniony o rzeczywiste dane techniczne i organizacyjne ${siteName}.`,
     section1Heading: "1. Administrator danych",
     emailLabel: "E-mail:",
     section2Heading: "2. Zasady przetwarzania danych",
@@ -342,11 +319,8 @@ export const dict: Record<Locale, Dict> = {
   },
   bg: {
     metaTitle: "Политика за поверителност",
-    metaDescription: (siteName) => `Политика за поверителност на ${siteName} – проект, подлежи на правна проверка.`,
+    metaDescription: (siteName) => `Политика за поверителност на ${siteName}`,
     pageTitle: "Политика за поверителност",
-    noticeTitle: "Правно указание",
-    noticeText: (siteName) =>
-      `Това е структуриран проект на политика за поверителност, изготвен въз основа на ОРЗД (DSGVO/GDPR). Преди публикуване той трябва да бъде потвърден чрез компетентна правна проверка и допълнен с действителните технически и организационни данни на ${siteName}.`,
     section1Heading: "1. Администратор на данни",
     emailLabel: "Имейл:",
     section2Heading: "2. Принципи на обработка на данните",
@@ -386,11 +360,8 @@ export const dict: Record<Locale, Dict> = {
   },
   ro: {
     metaTitle: "Politica de confidențialitate",
-    metaDescription: (siteName) => `Politica de confidențialitate a ${siteName} – proiect, supus verificării juridice.`,
+    metaDescription: (siteName) => `Politica de confidențialitate a ${siteName}`,
     pageTitle: "Politica de confidențialitate",
-    noticeTitle: "Notă juridică",
-    noticeText: (siteName) =>
-      `Acesta este un proiect structurat al unei politici de confidențialitate bazat pe GDPR (DSGVO). Trebuie confirmat printr-o verificare juridică de specialitate înainte de publicare și completat cu detaliile tehnice și organizatorice reale ale ${siteName}.`,
     section1Heading: "1. Operatorul de date",
     emailLabel: "E-mail:",
     section2Heading: "2. Principiile prelucrării datelor",

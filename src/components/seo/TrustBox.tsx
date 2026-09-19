@@ -1,5 +1,5 @@
 import type { SourceLink } from "@/lib/seo/jsonld";
-import { site } from "@/content/site";
+import { site, legal, editor } from "@/content/site";
 import Link from "next/link";
 
 export type TrustBoxProps = {
@@ -11,9 +11,9 @@ export type TrustBoxProps = {
   legalBasis: string;
   /** Primärquellen (Bundesministerium, Gesetzesportal etc.). */
   sources: SourceLink[];
-  /** Verfasser (Default: Antragsbruder Redaktion). */
+  /** Verfasser (Default: Redaktion mit benanntem Redakteur). */
   author?: string;
-  /** Fachlicher Prüfer, falls vorhanden. */
+  /** Fachlicher Prüfer (Default: Betreiber als verantwortlicher Prüfer). */
   reviewer?: string;
 };
 
@@ -27,8 +27,8 @@ export function TrustBox({
   lastReviewed,
   legalBasis,
   sources,
-  author = `Redaktion ${site.name}`,
-  reviewer,
+  author = `Redaktion ${site.name} (${editor.name})`,
+  reviewer = `${editor.name}, ${editor.role} · ${legal.companyName}`,
 }: TrustBoxProps) {
   const formatDate = (iso: string) =>
     new Date(`${iso}T12:00:00Z`).toLocaleDateString("de-DE", {

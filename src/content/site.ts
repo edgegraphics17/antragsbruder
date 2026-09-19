@@ -9,14 +9,20 @@ export const site = {
     "Antragsbruder hilft dir, Behördenbriefe, Anträge und Papierkram zu verstehen, zu organisieren und vorzubereiten – einfach, digital und menschlich.",
 };
 
-// Platzhalter für Unternehmensangaben – vor Veröffentlichung durch echte,
-// geprüfte Daten ersetzen (Impressumspflicht nach § 5 DDG).
-export const legalPlaceholder = {
-  companyName: "Antragsbruder [Rechtsform, z. B. GmbH] (Platzhalter)",
-  owner: "[Name der vertretungsberechtigten Person] (Platzhalter)",
-  street: "[Straße und Hausnummer] (Platzhalter)",
-  zipCity: "[PLZ und Ort] (Platzhalter)",
-  register: "[Registergericht und Registernummer, falls vorhanden] (Platzhalter)",
-  vatId: "[USt-IdNr., falls vorhanden] (Platzhalter)",
-  phone: "[Telefonnummer] (Platzhalter)",
+// Unternehmensangaben – Taswiq Media (Einzelunternehmen), Inhaber Karim Azzaoui.
+// Pflichtangaben nach § 5 DDG: Telefon ist nicht erforderlich (E-Mail genügt für
+// die schnelle elektronische Kontaktaufnahme); ein Handelsregistereintrag
+// besteht bei einem Einzelunternehmen nicht; eine USt-IdNr. ist nicht vorhanden.
+export const legal = {
+  companyName: "Taswiq Media (Einzelunternehmen)",
+  owner: "Karim Azzaoui",
+  street: "Taunusanlage 8",
+  zipCity: "60329 Frankfurt am Main",
+  country: "Deutschland",
+  email: "info@antragsbruder.de",
+};
+
+export const editor = {
+  name: "Karim Azzaoui",
+  role: "Betreiber & Redaktion",
 };

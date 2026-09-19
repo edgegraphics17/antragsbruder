@@ -59,12 +59,11 @@ Diese Datei ist die operative Abhak-Liste. Jeder Punkt ist erst abgehakt, wenn e
 
 ---
 
-## Verbleibende offene Punkte (nicht blockierend, zum Nachziehen)
+## Verbleibende offene Punkte — Status 19.09.2026 (Abend)
 
-1. **Echte Impressums-/AGB-Daten** — rechtliche Pflichtangaben (Rechtsform, Name, Adresse, Register) müssen vom Betreiber geliefert werden; Seiten zeigen bis dahin transparente Platzhalter-Hinweise.
-2. **Fachlicher Reviewer** — TrustBox unterstützt reviewer-Feld bereits; sobald ein realer Fachprüfer benannt ist, in TrustBox + Article-Schema (`reviewedBy`) eintragen. Tabelle `content_reviewers` in Supabase ist angelegt.
-3. **Migration auf Live-DB anwenden** — `20260919_seo_content_pages.sql` muss noch gegen das Supabase-Projekt ausgeführt werden (Supabase MCP oder SQL-Editor).
-4. **GSC/Bing Webmaster** — Sitemap einreichen, Indexierung beobachten (User-Aufgabe).
+1. **✅ ERLEDIGT — Echte Unternehmensdaten**: Impressum/AGB/Datenschutz mit Taswiq Media (Einzelunternehmen), Karim Azzaoui, Taunusanlage 8, 60329 Frankfurt am Main (PLZ verifiziert). Platzhalter-/Entwurfs-Formulierungen aus allen 9 Sprachversionen entfernt. Hinweis: Telefon nicht angegeben (§ 5 DDG: E-Mail genügt); Register/USt-IdNr. entfallen (Einzelunternehmen ohne Handelsregister, keine USt-IdNr. vorhanden). AGB/Datenschutz sind Textentwürfe — finale Rechtsprüfung durch Fachanwalt empfohlen, aber keine Platzhalter mehr.
+2. **✅ ERLEDIGT — Redakteur/Reviewer**: Karim Azzaoui (Betreiber & Redaktion) in TrustBox + Article-Schema (`author`/`reviewedBy`) verankert; als Reviewer in Supabase `content_reviewers` geseedet. Sobald ein externer Fachprüfer benannt wird: TrustBox-Reviewer + `content_reviewers` erweitern.
+3. **✅ ERLEDIGT — Migration live**: `seo_content_pages` via Supabase MCP angewendet und verifiziert (beide Tabellen, RLS aktiv, 4 Policies, Seed Karim Azzaoui). Lokale Migrationsdatei `20260919_seo_content_pages.sql` deckungsgleich.
+4. **⚙️ USER-AUFGABE — GSC/Bing**: Alle technischen Vorarbeiten erledigt (Verification via `NEXT_PUBLIC_GSC_VERIFICATION`/`NEXT_PUBLIC_BING_VERIFICATION`-Env-Vars, IndexNow-Key-Datei live). Exakte Schritt-für-Schritt-Anleitung: **docs/SEARCH_CONSOLE_SETUP.md**.
 5. **Sprint 2+3 des Wohngeld-Clusters** — Hoehe, Mietstufen (Lookup-Daten vorhanden: `src/content/mietstufen-data.json`), Bearbeitungszeit, Rentner, Studenten, Arbeitslos, Alleinerziehend, Lastenzuschuss.
 6. **Cluster 2/3** — Grundsicherungsgeld (inkl. Bürgergeld-Übergangsseite), BAföG — gleiche Architektur via `wohngeld-cluster.ts`-Muster kopierbar.
-7. **Search Console nach Migration beobachten** — Redirects sind aktiv, alte Rechner-URLs aus dem Index verdrängen lassen.

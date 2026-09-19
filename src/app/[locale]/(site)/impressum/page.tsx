@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
-import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { LegalSection } from "@/components/ui/LegalSection";
-import { legalPlaceholder, site } from "@/content/site";
+import { legal, site } from "@/content/site";
 import { locales, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 import { dict } from "@/content/impressum-i18n";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -22,6 +21,12 @@ export async function generateMetadata({
   return buildPageMetadata({ locale, path: "/impressum", title: t.metaTitle, description: t.metaDescription });
 }
 
+// Impressum nach § 5 DDG. Hinweise zur Vollständigkeit:
+// - Telefon: nicht Pflicht, sofern eine schnelle elektronische Kontaktaufnahme
+//   über die E-Mail-Adresse möglich ist (§ 5 Abs. 1 Nr. 2 DDG).
+// - Registergericht: ein Einzelunternehmen ohne kaufmännische Einrichtung ist
+//   nicht handelsregisterpflichtig – daher kein Registereintrag angegeben.
+// - USt-IdNr.: nur anzugeben, wenn vorhanden – hier nicht vorhanden.
 export default async function ImpressumPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params;
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
@@ -33,45 +38,32 @@ export default async function ImpressumPage({ params }: { params: Promise<{ loca
         <h1 className="font-display text-4xl font-bold tracking-tight text-ink">{t.pageTitle}</h1>
         <p className="mt-4 text-sm text-ink-soft">{t.subtitle}</p>
 
-        <DisclaimerBox title={t.placeholderTitle} className="mt-8">
-          {t.placeholderText}
-        </DisclaimerBox>
-
         <div className="mt-8">
           <LegalSection title={t.anbieterHeading}>
-            <p>{legalPlaceholder.companyName}</p>
-            <p>{legalPlaceholder.street}</p>
-            <p>{legalPlaceholder.zipCity}</p>
+            <p>{legal.companyName}</p>
+            <p>{legal.owner}</p>
+            <p>{legal.street}</p>
+            <p>{legal.zipCity}</p>
+            <p>{legal.country}</p>
           </LegalSection>
 
           <LegalSection title={t.vertretenDurchHeading}>
-            <p>{legalPlaceholder.owner}</p>
+            <p>{legal.owner}</p>
           </LegalSection>
 
           <LegalSection title={t.kontaktHeading}>
             <p>
-              {t.phoneLabel} {legalPlaceholder.phone}
-            </p>
-            <p>
               {t.emailLabel}{" "}
-              <a href={`mailto:${site.contactEmail}`} className="text-brand-800 underline">
-                {site.contactEmail}
+              <a href={`mailto:${legal.email}`} className="text-brand-800 underline">
+                {legal.email}
               </a>
             </p>
           </LegalSection>
 
-          <LegalSection title={t.registerHeading}>
-            <p>{legalPlaceholder.register}</p>
-          </LegalSection>
-
-          <LegalSection title={t.vatHeading}>
-            <p>{legalPlaceholder.vatId}</p>
-          </LegalSection>
-
           <LegalSection title={t.responsibleHeading}>
-            <p>{legalPlaceholder.owner}</p>
-            <p>{legalPlaceholder.street}</p>
-            <p>{legalPlaceholder.zipCity}</p>
+            <p>{legal.owner}</p>
+            <p>{legal.street}</p>
+            <p>{legal.zipCity}</p>
           </LegalSection>
 
           <LegalSection title={t.disputeHeading}>

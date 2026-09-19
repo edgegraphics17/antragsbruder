@@ -1,9 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
-import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { LegalSection } from "@/components/ui/LegalSection";
-import { legalPlaceholder, site } from "@/content/site";
+import { legal, site } from "@/content/site";
 import { locales, isLocale, defaultLocale, localeHref, type Locale } from "@/i18n/config";
 import { dict } from "@/content/agb-i18n";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -33,13 +32,9 @@ export default async function AgbPage({ params }: { params: Promise<{ locale: st
       <Container className="max-w-3xl py-16 sm:py-20">
         <h1 className="font-display text-4xl font-bold tracking-tight text-ink">{t.pageTitle}</h1>
 
-        <DisclaimerBox title={t.noticeTitle} className="mt-8">
-          {t.noticeText}
-        </DisclaimerBox>
-
         <div className="mt-8">
           <LegalSection title={t.s1Heading}>
-            <p>{t.s1Text(legalPlaceholder.companyName, site.name)}</p>
+            <p>{t.s1Text(legal.companyName, site.name)}</p>
           </LegalSection>
 
           <LegalSection title={t.s2Heading}>

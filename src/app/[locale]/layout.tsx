@@ -3,7 +3,7 @@ import { Inter, Baloo_2 } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { AuthLayoutWrapper } from "@/components/auth/AuthLayoutWrapper";
-import { site } from "@/content/site";
+import { site, legal } from "@/content/site";
 import { commonDict } from "@/content/i18n/common";
 import { locales, localeMeta, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 
@@ -71,10 +71,28 @@ export async function generateMetadata({
       title: site.name,
       description: t.meta.description,
     },
+    // Search-Console-/Bing-Verifizierung (URL-Präfix-Property):
+    // Tokens werden per Umgebungsvariable gesetzt (Vercel → Project → Settings →
+    // Environment Variables). Für Domain-Properties genügt die DNS-TXT-Prüfung
+    // (siehe docs/SEARCH_CONSOLE_SETUP.md) – dann können die Variablen leer bleiben.
+    ...(process.env.NEXT_PUBLIC_GSC_VERIFICATION || process.env.NEXT_PUBLIC_BING_VERIFICATION
+      ? {
+          verification: {
+            ...(process.env.NEXT_PUBLIC_GSC_VERIFICATION
+              ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION }
+              : {}),
+            ...(process.env.NEXT_PUBLIC_BING_VERIFICATION
+              ? { other: { "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION } }
+              : {}),
+          },
+        }
+      : {}),
   };
 }
 
 // Organization + WebSite als JSON-LD: Entity-Grundlage für Google & LLMs (GEO).
+// legalName + founder + address verankern die reale Betreiber-Entität
+// (Taswiq Media, Karim Azzaoui) für konsistentes Entity-Understanding.
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -82,9 +100,22 @@ const organizationJsonLd = {
       "@type": "Organization",
       "@id": `https://${site.domain}/#organization`,
       name: site.name,
+      legalName: legal.companyName,
       url: `https://${site.domain}`,
       email: site.contactEmail,
       description: site.description,
+      founder: {
+        "@type": "Person",
+        name: legal.owner,
+        jobTitle: "Inhaber",
+      },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: legal.street,
+        addressLocality: "Frankfurt am Main",
+        postalCode: "60329",
+        addressCountry: "DE",
+      },
     },
     {
       "@type": "WebSite",

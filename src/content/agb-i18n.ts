@@ -4,8 +4,6 @@ export type Dict = {
   metaTitle: string;
   metaDescription: (siteName: string) => string;
   pageTitle: string;
-  noticeTitle: string;
-  noticeText: string;
   s1Heading: string;
   s1Text: (companyName: string, siteName: string) => string;
   s2Heading: string;
@@ -37,10 +35,8 @@ export type Dict = {
 export const dict: Record<Locale, Dict> = {
   de: {
     metaTitle: "AGB",
-    metaDescription: (siteName) => `Allgemeine Geschäftsbedingungen von ${siteName} – Entwurf, juristisch zu prüfen.`,
+    metaDescription: (siteName) => `Allgemeine Geschäftsbedingungen von ${siteName}`,
     pageTitle: "Allgemeine Geschäftsbedingungen",
-    noticeTitle: "Rechtlicher Hinweis",
-    noticeText: "Dies ist ein strukturierter Entwurf. Er ist vor Veröffentlichung durch eine fachkundige, rechtliche Prüfung zu bestätigen.",
     s1Heading: "§ 1 Geltungsbereich",
     s1Text: (companyName, siteName) =>
       `Diese Allgemeinen Geschäftsbedingungen gelten für alle Leistungen von ${companyName} (im Folgenden „${siteName}“) gegenüber Verbraucherinnen und Verbrauchern im Zusammenhang mit der Nutzung unserer Website und unserer administrativen Unterstützungsleistungen.`,
@@ -63,7 +59,7 @@ export const dict: Record<Locale, Dict> = {
     s6LinkText: "Was wir nicht sind",
     s6TextAfter: ".",
     s7Heading: "§ 7 Widerrufsrecht",
-    s7Text: "Verbraucherinnen und Verbrauchern steht grundsätzlich ein gesetzliches Widerrufsrecht zu. Die konkrete Widerrufsbelehrung wird vor Veröffentlichung final formuliert und ergänzt.",
+    s7Text: "Ob Verbraucherinnen und Verbraucher ein gesetzliches Widerrufsrecht haben und wie es auszuüben ist, richtet sich nach den Umständen des jeweiligen Vertrags.",
     s8Heading: "§ 8 Haftung",
     s8Text: (siteName) =>
       `${siteName} haftet unbeschränkt für Vorsatz und grobe Fahrlässigkeit sowie nach den Vorschriften des Produkthaftungsgesetzes. Im Übrigen haftet ${siteName} nur bei Verletzung wesentlicher Vertragspflichten, begrenzt auf den vorhersehbaren, vertragstypischen Schaden.`,
@@ -76,10 +72,8 @@ export const dict: Record<Locale, Dict> = {
   },
   en: {
     metaTitle: "Terms and Conditions",
-    metaDescription: (siteName) => `General Terms and Conditions of ${siteName} – draft, subject to legal review.`,
+    metaDescription: (siteName) => `General Terms and Conditions of ${siteName}`,
     pageTitle: "General Terms and Conditions",
-    noticeTitle: "Legal notice",
-    noticeText: "This is a structured draft. It must be confirmed by a qualified legal review before publication.",
     s1Heading: "Section 1 Scope",
     s1Text: (companyName, siteName) =>
       `These General Terms and Conditions apply to all services provided by ${companyName} (hereinafter “${siteName}”) to consumers in connection with the use of our website and our administrative support services. These Terms are governed by German law.`,
@@ -102,7 +96,7 @@ export const dict: Record<Locale, Dict> = {
     s6LinkText: "What we are not",
     s6TextAfter: ".",
     s7Heading: "Section 7 Right of withdrawal",
-    s7Text: "Consumers generally have a statutory right of withdrawal under German law. The specific withdrawal instructions will be finalised and added before publication.",
+    s7Text: "Whether consumers have a statutory right of withdrawal and how it is exercised depends on the circumstances of the individual contract.",
     s8Heading: "Section 8 Liability",
     s8Text: (siteName) =>
       `${siteName} is liable without limitation for intent and gross negligence, as well as under the provisions of the German Product Liability Act. Otherwise, ${siteName} is only liable for breach of material contractual obligations, limited to the foreseeable damage typical for this type of contract.`,
@@ -115,10 +109,8 @@ export const dict: Record<Locale, Dict> = {
   },
   ar: {
     metaTitle: "الشروط والأحكام العامة",
-    metaDescription: (siteName) => `الشروط والأحكام العامة لـ ${siteName} – مسودة، تخضع للمراجعة القانونية.`,
+    metaDescription: (siteName) => `الشروط والأحكام العامة لـ ${siteName}`,
     pageTitle: "الشروط والأحكام العامة",
-    noticeTitle: "ملاحظة قانونية",
-    noticeText: "هذه مسودة منظمة. يجب تأكيدها من خلال مراجعة قانونية متخصصة قبل النشر.",
     s1Heading: "المادة 1 نطاق التطبيق",
     s1Text: (companyName, siteName) =>
       `تسري هذه الشروط والأحكام العامة على جميع الخدمات التي تقدمها ${companyName} (يُشار إليها فيما يلي بـ«${siteName}») للمستهلكين فيما يتعلق باستخدام موقعنا الإلكتروني وخدماتنا الإدارية المساندة. يخضع هذا الاتفاق للقانون الألماني.`,
@@ -141,7 +133,7 @@ export const dict: Record<Locale, Dict> = {
     s6LinkText: "ما لا نقوم به",
     s6TextAfter: ".",
     s7Heading: "المادة 7 حق الانسحاب",
-    s7Text: "يتمتع المستهلكون عمومًا بحق قانوني في الانسحاب بموجب القانون الألماني. سيتم صياغة تعليمات الانسحاب التفصيلية وإضافتها بشكل نهائي قبل النشر.",
+    s7Text: "ما إذا كان للمستهلكين حق قانوني في الانسحاب وكيفية ممارسته يتوقف على ظروف العقد المعني.",
     s8Heading: "المادة 8 المسؤولية",
     s8Text: (siteName) =>
       `تتحمل ${siteName} مسؤولية غير محدودة عن التعمد والإهمال الجسيم وكذلك وفقًا لأحكام قانون المسؤولية عن المنتجات الألماني. وفيما عدا ذلك، لا تُسأل ${siteName} إلا عن الإخلال بالالتزامات التعاقدية الجوهرية، محدودة بالضرر المتوقع والنمطي لهذا النوع من العقود.`,
@@ -154,10 +146,8 @@ export const dict: Record<Locale, Dict> = {
   },
   tr: {
     metaTitle: "Genel İşlem Koşulları",
-    metaDescription: (siteName) => `${siteName} Genel İşlem Koşulları – taslak, hukuki incelemeye tabidir.`,
+    metaDescription: (siteName) => `${siteName} Genel İşlem Koşulları`,
     pageTitle: "Genel İşlem Koşulları",
-    noticeTitle: "Yasal uyarı",
-    noticeText: "Bu, yapılandırılmış bir taslaktır. Yayınlanmadan önce uzman bir hukuki inceleme ile onaylanmalıdır.",
     s1Heading: "§ 1 Uygulama alanı",
     s1Text: (companyName, siteName) =>
       `Bu Genel İşlem Koşulları, web sitemizin kullanımı ve idari destek hizmetlerimizle bağlantılı olarak ${companyName} (bundan böyle “${siteName}” olarak anılacaktır) tarafından tüketicilere sunulan tüm hizmetler için geçerlidir. Bu koşullar Alman hukukuna tabidir.`,
@@ -180,7 +170,7 @@ export const dict: Record<Locale, Dict> = {
     s6LinkText: "Ne olmadığımız",
     s6TextAfter: ".",
     s7Heading: "§ 7 Cayma hakkı",
-    s7Text: "Tüketiciler, Alman hukuku uyarınca genel olarak yasal bir cayma hakkına sahiptir. Somut cayma bildirimi, yayınlanmadan önce nihai olarak hazırlanacak ve eklenecektir.",
+    s7Text: "Tüketicilerin yasal cayma hakkı olup olmadığı ve bunun nasıl kullanılacağı, ilgili sözleşmenin koşullarına bağlıdır.",
     s8Heading: "§ 8 Sorumluluk",
     s8Text: (siteName) =>
       `${siteName}, kasıt ve ağır ihmalden ve Alman Ürün Sorumluluğu Kanunu hükümlerinden sınırsız olarak sorumludur. Bunun dışında ${siteName}, yalnızca temel sözleşme yükümlülüklerinin ihlali halinde ve bu tür bir sözleşme için öngörülebilir, tipik zararla sınırlı olarak sorumludur.`,
@@ -193,10 +183,8 @@ export const dict: Record<Locale, Dict> = {
   },
   ru: {
     metaTitle: "Общие условия",
-    metaDescription: (siteName) => `Общие условия ${siteName} – проект, подлежит юридической проверке.`,
+    metaDescription: (siteName) => `Общие условия ${siteName}`,
     pageTitle: "Общие условия",
-    noticeTitle: "Юридическое примечание",
-    noticeText: "Это структурированный проект. Перед публикацией он должен быть подтверждён квалифицированной юридической проверкой.",
     s1Heading: "§ 1 Сфера применения",
     s1Text: (companyName, siteName) =>
       `Настоящие Общие условия распространяются на все услуги, предоставляемые ${companyName} (далее — «${siteName}») потребителям в связи с использованием нашего сайта и наших услуг по административной поддержке. Настоящие условия регулируются законодательством Германии.`,
@@ -219,7 +207,7 @@ export const dict: Record<Locale, Dict> = {
     s6LinkText: "«Чем мы не являемся»",
     s6TextAfter: ".",
     s7Heading: "§ 7 Право на отказ от договора",
-    s7Text: "Потребители, как правило, имеют предусмотренное законом право на отказ от договора согласно законодательству Германии. Конкретная инструкция об отказе будет окончательно сформулирована и добавлена перед публикацией.",
+    s7Text: "Наличие у потребителей предусмотренного законом права на отказ от договора и порядок его осуществления зависят от обстоятельств соответствующего договора.",
     s8Heading: "§ 8 Ответственность",
     s8Text: (siteName) =>
       `${siteName} несёт неограниченную ответственность за умысел и грубую неосторожность, а также согласно положениям немецкого Закона об ответственности за качество продукции. В остальном ${siteName} несёт ответственность только за нарушение существенных договорных обязательств, ограниченную предвидимым, типичным для данного вида договора ущербом.`,
@@ -232,10 +220,8 @@ export const dict: Record<Locale, Dict> = {
   },
   uk: {
     metaTitle: "Загальні умови",
-    metaDescription: (siteName) => `Загальні умови ${siteName} – проєкт, підлягає юридичній перевірці.`,
+    metaDescription: (siteName) => `Загальні умови ${siteName}`,
     pageTitle: "Загальні умови",
-    noticeTitle: "Юридичне зауваження",
-    noticeText: "Це структурований проєкт. Перед публікацією він має бути підтверджений кваліфікованою юридичною перевіркою.",
     s1Heading: "§ 1 Сфера застосування",
     s1Text: (companyName, siteName) =>
       `Ці Загальні умови поширюються на всі послуги, що надаються ${companyName} (далі — «${siteName}») споживачам у зв'язку з використанням нашого сайту та наших послуг з адміністративної підтримки. Ці умови регулюються законодавством Німеччини.`,
@@ -258,7 +244,7 @@ export const dict: Record<Locale, Dict> = {
     s6LinkText: "«Чим ми не є»",
     s6TextAfter: ".",
     s7Heading: "§ 7 Право на відмову від договору",
-    s7Text: "Споживачі, як правило, мають передбачене законом право на відмову від договору згідно з законодавством Німеччини. Конкретна інструкція про відмову буде остаточно сформульована та додана перед публікацією.",
+    s7Text: "Наявність у споживачів передбаченого законом права на відмову від договору та порядок його здійснення залежать від обставин відповідного договору.",
     s8Heading: "§ 8 Відповідальність",
     s8Text: (siteName) =>
       `${siteName} несе необмежену відповідальність за умисел і грубу необережність, а також відповідно до положень німецького Закону про відповідальність за якість продукції. В іншому ${siteName} відповідає лише за порушення суттєвих договірних зобов'язань, обмежену передбачуваною, типовою для такого договору шкодою.`,
@@ -271,10 +257,8 @@ export const dict: Record<Locale, Dict> = {
   },
   pl: {
     metaTitle: "Regulamin",
-    metaDescription: (siteName) => `Regulamin (Ogólne Warunki Handlowe) ${siteName} – projekt, wymaga weryfikacji prawnej.`,
+    metaDescription: (siteName) => `Regulamin (Ogólne Warunki Handlowe) ${siteName}`,
     pageTitle: "Ogólne Warunki Handlowe",
-    noticeTitle: "Informacja prawna",
-    noticeText: "To jest ustrukturyzowany projekt. Przed publikacją musi zostać potwierdzony przez fachową weryfikację prawną.",
     s1Heading: "§ 1 Zakres obowiązywania",
     s1Text: (companyName, siteName) =>
       `Niniejsze Ogólne Warunki Handlowe obowiązują dla wszystkich usług świadczonych przez ${companyName} (zwaną dalej „${siteName}”) na rzecz konsumentów w związku z korzystaniem z naszej strony internetowej oraz naszych usług wsparcia administracyjnego. Warunki te podlegają prawu niemieckiemu.`,
@@ -297,7 +281,7 @@ export const dict: Record<Locale, Dict> = {
     s6LinkText: "Czym nie jesteśmy",
     s6TextAfter: ".",
     s7Heading: "§ 7 Prawo odstąpienia od umowy",
-    s7Text: "Konsumentom przysługuje co do zasady ustawowe prawo odstąpienia od umowy zgodnie z prawem niemieckim. Konkretne pouczenie o odstąpieniu zostanie ostatecznie sformułowane i dodane przed publikacją.",
+    s7Text: "To, czy konsumenci mają ustawowe prawo odstąpienia od umowy i w jaki sposób mogą z niego korzystać, zależy od okoliczności danej umowy.",
     s8Heading: "§ 8 Odpowiedzialność",
     s8Text: (siteName) =>
       `${siteName} odpowiada bez ograniczeń za umyślne działanie i rażące niedbalstwo, a także zgodnie z przepisami niemieckiej ustawy o odpowiedzialności za produkt. Poza tym ${siteName} odpowiada wyłącznie za naruszenie istotnych obowiązków umownych, ograniczone do przewidywalnej, typowej dla tego rodzaju umowy szkody.`,
@@ -310,10 +294,8 @@ export const dict: Record<Locale, Dict> = {
   },
   bg: {
     metaTitle: "Общи условия",
-    metaDescription: (siteName) => `Общи условия на ${siteName} – проект, подлежи на правна проверка.`,
+    metaDescription: (siteName) => `Общи условия на ${siteName}`,
     pageTitle: "Общи условия",
-    noticeTitle: "Правно указание",
-    noticeText: "Това е структуриран проект. Той трябва да бъде потвърден чрез компетентна правна проверка преди публикуване.",
     s1Heading: "§ 1 Обхват на приложение",
     s1Text: (companyName, siteName) =>
       `Настоящите Общи условия се прилагат за всички услуги, предоставяни от ${companyName} (наричана по-долу „${siteName}“) на потребители във връзка с използването на нашия уебсайт и услугите ни за административна подкрепа. Настоящите условия се уреждат от германското право.`,
@@ -336,7 +318,7 @@ export const dict: Record<Locale, Dict> = {
     s6LinkText: "„Какво не сме“",
     s6TextAfter: ".",
     s7Heading: "§ 7 Право на отказ",
-    s7Text: "Потребителите по принцип разполагат със законово право на отказ съгласно германското право. Конкретните указания за отказ ще бъдат окончателно формулирани и добавени преди публикуване.",
+    s7Text: "Наличието на законово право на отказ за потребителите и начинът на упражняването му зависят от обстоятелствата на съответния договор.",
     s8Heading: "§ 8 Отговорност",
     s8Text: (siteName) =>
       `${siteName} носи неограничена отговорност за умисъл и груба небрежност, както и съгласно разпоредбите на германския Закон за отговорност за вреди, причинени от стоки. Извън това ${siteName} носи отговорност само при нарушение на съществени договорни задължения, ограничена до предвидимата, типична за този вид договор вреда.`,
@@ -349,10 +331,8 @@ export const dict: Record<Locale, Dict> = {
   },
   ro: {
     metaTitle: "Termeni și condiții",
-    metaDescription: (siteName) => `Termenii și condițiile generale ale ${siteName} – proiect, supus verificării juridice.`,
+    metaDescription: (siteName) => `Termenii și condițiile generale ale ${siteName}`,
     pageTitle: "Termeni și condiții generale",
-    noticeTitle: "Notă juridică",
-    noticeText: "Acesta este un proiect structurat. Trebuie confirmat printr-o verificare juridică de specialitate înainte de publicare.",
     s1Heading: "§ 1 Domeniu de aplicare",
     s1Text: (companyName, siteName) =>
       `Acești Termeni și condiții generale se aplică tuturor serviciilor furnizate de ${companyName} (denumită în continuare „${siteName}”) consumatorilor, în legătură cu utilizarea site-ului nostru și a serviciilor noastre de asistență administrativă. Acești termeni sunt guvernați de legislația germană.`,
@@ -375,7 +355,7 @@ export const dict: Record<Locale, Dict> = {
     s6LinkText: "„Ce nu suntem”",
     s6TextAfter: ".",
     s7Heading: "§ 7 Dreptul de retragere",
-    s7Text: "Consumatorii beneficiază, în principiu, de un drept legal de retragere conform legislației germane. Instrucțiunile concrete privind retragerea vor fi formulate definitiv și adăugate înainte de publicare.",
+    s7Text: "Dacă consumatorii beneficiază de un drept legal de retragere și modul în care acesta este exercitat depind de circumstanțele contractului respectiv.",
     s8Heading: "§ 8 Răspundere",
     s8Text: (siteName) =>
       `${siteName} răspunde nelimitat pentru intenție și neglijență gravă, precum și în conformitate cu prevederile Legii germane privind răspunderea pentru produse. În rest, ${siteName} răspunde doar pentru încălcarea obligațiilor contractuale esențiale, limitat la prejudiciul previzibil, tipic pentru acest tip de contract.`,
