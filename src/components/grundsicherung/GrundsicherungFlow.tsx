@@ -10,14 +10,23 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAuth } from '@/lib/auth-context';
 import { useGsStore, isGsStage, type GsStage } from '@/lib/grundsicherung/store';
+import {
+  GS_ANTRAG_SECTIONS,
+  missingRequiredFields,
+  visibleFields,
+  isPlausibleIban,
+  type GsAntragData,
+  type GsAntragChildData,
+} from '@/lib/grundsicherung/antrag-form';
 import { caseService } from '@/engine';
 import type { GsCalcResult } from '@/engine/benefit-engines/grundsicherung';
 import type { GsFormStateFacts } from '@/engine/benefit-engines/grundsicherung/facts';
+import { GrundsicherungAntragFormular } from '@/components/grundsicherung/GrundsicherungAntragFormular';
 import { getDashboardDict } from '@/content/i18n/dashboard';
 import { useLocaleFromPath } from '@/i18n/use-locale';
 import { localeHref } from '@/i18n/config';
 
-const STAGES: GsStage[] = ['angaben', 'ergebnis', 'unterlagen', 'einreichen'];
+const STAGES: GsStage[] = ['angaben', 'ergebnis', 'formular', 'unterlagen', 'einreichen'];
 
 const STATUS_LABELS: Record<string, string> = {
   VERY_LIKELY_RELEVANT: 'Sehr wahrscheinlich relevant',
@@ -588,13 +597,41 @@ export function GrundsicherungFlow({
           </button>
           <button
             type="button"
-            onClick={() => store.setStage('unterlagen')}
+            onClick={() => {
+              // Kinder aus dem Schnell-Check ins Antragsformular vorbefüllen
+              const qc = (form.children ?? []) as { age: number; incomeNet?: number; kindergeld?: boolean }[];
+              const antragChildren = useGsStore.getState().antrag.children ?? [];
+              const next: GsAntragChildData[] = qc.map((c, i) => ({
+                ...(antragChildren[i] ?? {}),
+                livesInHousehold: antragChildren[i]?.livesInHousehold ?? true,
+                kindergeld: antragChildren[i]?.kindergeld ?? Boolean(c.kindergeld),
+                ownIncomeNet: antragChildren[i]?.ownIncomeNet ?? c.incomeNet,
+              }));
+              if (next.length > 0) useGsStore.getState().setAntrag({ children: next });
+              store.setStage('formular');
+            }}
             className="flex-1 rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700"
           >
             {dict.ergebnis.continue}
           </button>
         </div>
       </div>
+    );
+  }
+
+  // --- Stage: FORMULAR (vollständige Antragsdaten) ---
+  if (store.stage === 'formular') {
+    return (
+      <GrundsicherungAntragFormular
+        onBack={() => store.setStage('ergebnis')}
+        onContinue={() => {
+          if (user && useGsStore.getState().caseId) {
+            void useGsStore.getState().saveToCloud(user.id, useGsStore.getState().caseId!);
+          }
+          store.setStage('unterlagen');
+        }}
+        quickCheckChildCount={(form.children ?? []).length}
+      />
     );
   }
 
@@ -639,7 +676,7 @@ export function GrundsicherungFlow({
         <div className="flex gap-3">
           <button
             type="button"
-            onClick={() => store.setStage('ergebnis')}
+            onClick={() => store.setStage('formular')}
             className="rounded-xl bg-cream px-4 py-3 font-semibold text-ink hover:bg-cream/70"
           >
             {t.back}

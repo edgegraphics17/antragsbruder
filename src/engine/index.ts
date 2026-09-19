@@ -18,6 +18,7 @@ export { resultAggregator } from './result-aggregator/ResultAggregator';
 export { masterOrchestrator } from './MasterOrchestrator';
 export { resolveHousehold, bgPersonIds, ageAt } from './household-resolver';
 export { legalParameterRegistry, ensureLegalParametersSeeded, LEGAL_SOURCES } from './legal-registry';
+export { resolveKduRule, KDU_RULES_2026 } from './kdu/kdu-rules-2026';
 
 // Re-exports for convenience
 export { RuleRegistry } from './rule-engine/RuleRegistry';

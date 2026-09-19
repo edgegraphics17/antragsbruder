@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button, ButtonAction } from "@/components/ui/Button";
 import { IconCheck } from "@/components/ui/icons";
 import { languages, dict, mietstufeOptions, type LangCode } from "@/content/grundsicherung-i18n";
-import { calculateGrundsicherung, KINDERGELD_DEFAULT, type CalcResult } from "@/content/grundsicherung-calc";
+import { KINDERGELD_DEFAULT, type CalcResult } from "@/content/grundsicherung-calc";
 import { localeHref } from "@/i18n/config";
 import { searchLocation, stufeToTier, type LocationMatch, type Tier } from "@/content/mietstufen-lookup";
 
@@ -71,6 +71,8 @@ export function GrundsicherungCalculator({ locale }: { locale: LangCode }) {
   const [vermoegen, setVermoegen] = useState("0");
 
   const [result, setResult] = useState<CalcResult | null>(null);
+  const [engineNotes, setEngineNotes] = useState<string[]>([]);
+  const [calculating, setCalculating] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
 
   const resolvedMietstufeIdx = manualOverride
@@ -161,31 +163,98 @@ export function GrundsicherungCalculator({ locale }: { locale: LangCode }) {
     setStep(3);
   }
 
-  function calculate() {
+  async function calculate() {
     setError(null);
-    const res = calculateGrundsicherung({
-      hasPartner,
-      ageApplicant: Number(ageApplicant) || 0,
-      agePartner: Number(agePartner) || 0,
-      kidAges,
-      singleParent,
-      pregnant,
-      disability,
-      kaltmiete: Number(kaltmiete) || 0,
-      heizkosten: Number(heizkosten) || 0,
-      mietstufeIdx: resolvedMietstufeIdx ?? 2,
-      knowsOfficialLimit: knowsOfficial,
-      officialLimit: Number(officialLimit) || 0,
-      applicantErwerb: Number(applicantErwerb) || 0,
-      applicantSonst: Number(applicantSonst) || 0,
-      partnerErwerb: Number(partnerErwerb) || 0,
-      partnerSonst: Number(partnerSonst) || 0,
-      childIncomes: childIncomes.map((v) => Number(v) || 0),
-      vermoegen: Number(vermoegen) || 0,
-    });
-    setResult(res);
-    setShowDetails(false);
-    setStep(4);
+    setCalculating(true);
+    try {
+      // Rechtsbewertung läuft auf der Engine (API) — keine Rechtslogik im
+      // Frontend (Playbook §2). Mapping UI-State → Engine-Formular.
+      const res = await fetch("/api/rechner/grundsicherung/evaluate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          form: {
+            applicant: {
+              age: Number(ageApplicant) || 0,
+              pregnant,
+              singleParent: singleParent && kidAges.length > 0,
+              assets: Number(vermoegen) || 0,
+              incomeEmploymentNet: Number(applicantErwerb) || 0,
+              incomeOtherNet: Number(applicantSonst) || 0,
+              workCapacityOver3h: "YES",
+              residenceCenterOfLife: "YES",
+            },
+            partner: hasPartner
+              ? {
+                  exists: true,
+                  age: Number(agePartner) || 0,
+                  incomeEmploymentNet: Number(partnerErwerb) || 0,
+                  incomeOtherNet: Number(partnerSonst) || 0,
+                }
+              : undefined,
+            children: kidAges.map((age, i) => ({
+              age,
+              incomeNet: (Number(childIncomes[i]) || 0) === KINDERGELD_DEFAULT ? 0 : Number(childIncomes[i]) || 0,
+              kindergeld: (Number(childIncomes[i]) || 0) === KINDERGELD_DEFAULT,
+            })),
+            housing: {
+              coldRent: Number(kaltmiete) || 0,
+              heating: Number(heizkosten) || 0,
+              postcode: selectedLocation?.plz,
+              kduLimitKnown: knowsOfficial,
+              kduLimit: Number(officialLimit) || 0,
+            },
+          },
+        }),
+      });
+      const json = (await res.json()) as {
+        result?: import("@/engine/benefit-engines/grundsicherung").GsCalcResult;
+      };
+      if (!res.ok || !json.result) throw new Error("evaluate failed");
+      const r = json.result;
+
+      // Engine-Ergebnis → Legacy-Display-Shape (die Komponente bleibt, die
+      // Rechtslogik kommt jetzt aus der Engine)
+      setResult({
+        eligible: r.status !== "RATHER_NOT_APPLICABLE" && r.status !== "NOT_APPLICABLE",
+        amount: r.amount,
+        householdSize: r.bgSize,
+        regelbedarfGesamt: r.persons.reduce((s, p) => s + p.regelbedarf, 0),
+        mehrbedarf: r.persons.reduce((s, p) => s + p.mehrbedarf, 0),
+        kdu: r.kdu.allowed,
+        kduCapped: r.kdu.capped,
+        angemessenheitsgrenze: r.kdu.limitUsed ?? 0,
+        usedOfficialLimit: r.kdu.limitUsed != null,
+        gesamtbedarf: r.totalNeed,
+        anrechenbaresEinkommen: r.totalIncome,
+        schonvermoegenGesamt: r.persons.reduce((s, p) => s + p.assetAllowance, 0),
+        vermoegen: r.persons.reduce((s, p) => s + p.assets, 0),
+        vermoegenOk: r.persons.every((p) => p.assetsOk !== false),
+        applicantHasNoErwerb: (r.persons.find((p) => p.role === "APPLICANT")?.incomeEmploymentNet ?? 0) <= 0,
+        partnerHasNoErwerb: hasPartner && !(r.persons.find((p) => p.personId === "partner")?.incomeEmploymentNet),
+        hasKvPvHinweis: r.status === "VERY_LIKELY_RELEVANT" || r.status === "FURTHER_REVIEW_REQUIRED",
+      });
+      // Verständliche Hinweise aus der Engine (z. B. KdU-Quelle, Erwerbsfähigkeit)
+      const notes: string[] = [];
+      if (r.kdu.municipality && r.kdu.limitUsed) {
+        notes.push(`Angemessenheitsgrenze ${r.kdu.municipality}: ${r.kdu.limitUsed.toLocaleString("de-DE")} € Bruttokaltmiete (Quelle: Jobcenter ${r.kdu.municipality})`);
+      } else if (!r.kdu.limitUsed) {
+        notes.push("Für diesen Wohnort ist keine örtliche Angemessenheitsgrenze hinterlegt — die Wohnkosten wurden unverkürzt gerechnet und die Bewertung ist vorläufig.");
+      }
+      if (r.persons.some((p) => p.freibetragEmployment > 0)) {
+        notes.push("Erwerbstätigenfreibeträge nach § 11b SGB II sind berücksichtigt.");
+      }
+      if (disability) {
+        notes.push("Behinderungsbedingter Mehrbedarf (§ 21 Abs. 4 SGB II) ist hier nicht automatisch eingerechnet — er hängt an bestimmten Teilhabe-/Eingliederungsleistungen.");
+      }
+      setEngineNotes(notes);
+      setShowDetails(false);
+      setStep(4);
+    } catch {
+      setError("Berechnung fehlgeschlagen. Bitte später erneut versuchen.");
+    } finally {
+      setCalculating(false);
+    }
   }
 
   function restart() {
@@ -711,8 +780,8 @@ export function GrundsicherungCalculator({ locale }: { locale: LangCode }) {
               <ButtonAction variant="secondary" size="lg" className="sm:flex-1" onClick={() => setStep(2)}>
                 {t.back}
               </ButtonAction>
-              <ButtonAction size="lg" className="sm:flex-1" onClick={calculate}>
-                {t.calculate}
+              <ButtonAction size="lg" className="sm:flex-1" disabled={calculating} onClick={() => void calculate()}>
+                {calculating ? "…" : t.calculate}
               </ButtonAction>
             </div>
           </div>
@@ -782,6 +851,17 @@ export function GrundsicherungCalculator({ locale }: { locale: LangCode }) {
               <div className="rounded-2xl border border-brand-700/30 bg-cream px-4 py-3 text-xs leading-relaxed text-ink-soft">
                 {t.kvpvNote}
               </div>
+            ) : null}
+
+            {engineNotes.length > 0 ? (
+              <ul className="space-y-1.5">
+                {engineNotes.map((note, i) => (
+                  <li key={i} className="flex items-start gap-2 text-xs leading-relaxed text-ink-soft">
+                    <IconCheck className="mt-0.5 h-3 w-3 shrink-0 text-brand-700" />
+                    {note}
+                  </li>
+                ))}
+              </ul>
             ) : null}
 
             <div className="rounded-3xl border border-brand-700/30 bg-brand-50 p-5 sm:p-6">

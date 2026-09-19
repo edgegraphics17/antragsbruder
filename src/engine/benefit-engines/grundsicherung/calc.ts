@@ -19,6 +19,7 @@
 // ============================================================
 
 import { legalParameterRegistry } from '../../legal-registry';
+import { resolveKduRule } from '../../kdu/kdu-rules-2026';
 
 // --- § 11b Abs. 3 SGB II (Gesetzestext-Konstanten) ---
 const GRUND_ABSETZBETRAG = 100;
@@ -58,9 +59,11 @@ export interface GsHousingInput {
   coldRent?: number;
   operatingCosts?: number;
   heating?: number;
-  /** Örtliche Angemessenheitsgrenze (Kaltmiete) bekannt? */
+  /** Örtliche Angemessenheitsgrenze (Bruttokaltmiete) bekannt? */
   kduLimitKnown?: boolean;
   kduLimit?: number;
+  /** PLZ der Wohnung — löst die lokale KdU-Regel auf, wenn kduLimitKnown=false */
+  postcode?: string;
   decentralizedHotWater?: boolean;
   /** Hidden Claim (GS-F18): fällige Heiz-/Betriebskosten-Nachzahlung im Prüfmonat */
   annualBillDue?: number;
@@ -115,7 +118,7 @@ export interface GsCalcResult {
   persons: GsPersonResult[];
   totalNeed: number;
   totalIncome: number;
-  kdu: { allowed: number; capped: boolean; limitUsed: number | null; heating: number; qualityIssue: boolean };
+  kdu: { allowed: number; capped: boolean; limitUsed: number | null; heating: number; qualityIssue: boolean; municipality?: string; sourceUrl?: string };
   openIssues: string[];
   actions: GsAction[];
   reasonCodes: string[];
@@ -346,6 +349,8 @@ export function calculateGrundsicherung(input: GsCalcInput): GsCalcResult {
   let capped = false;
   let limitUsed: number | null = null;
   let kduQualityIssue = false;
+  let kduMunicipality: string | undefined;
+  let kduSourceUrl: string | undefined;
 
   if (input.housing.kduLimitKnown && input.housing.kduLimit && input.housing.kduLimit > 0) {
     limitUsed = input.housing.kduLimit;
@@ -362,10 +367,27 @@ export function calculateGrundsicherung(input: GsCalcInput): GsCalcResult {
     // Härtefallprüfung (§ 22 Abs. 1 Satz 4 ff.) als offener Punkt
     openIssues.push('KDU_HAERTEFALL_PRUEFUNG_OFFEN');
   } else {
-    // Keine lokale Angemessenheitsgrenze → KEIN erfundener Betrag (Playbook §12.3)
-    kduAllowed = unterkunft;
-    kduQualityIssue = true;
-    openIssues.push('KDU_LOCAL_RULE_MISSING');
+    // Lokale Regel über PLZ auflösen (KDU Local Rule Store, Playbook §12.3)
+    const resolved = resolveKduRule(input.housing.postcode, bgPersons.length, onDate);
+    if (resolved) {
+      limitUsed = resolved.abstractColdCostLimit;
+      kduMunicipality = resolved.rule.municipality;
+      kduSourceUrl = resolved.rule.sourceUrl;
+      const obergrenze = limitUsed * 1.5;
+      if (unterkunft > obergrenze) {
+        kduAllowed = obergrenze;
+        capped = true;
+        openIssues.push('KDU_UEBER_1_5X_OBERGRENZE');
+      } else {
+        kduAllowed = unterkunft;
+      }
+      openIssues.push('KDU_HAERTEFALL_PRUEFUNG_OFFEN');
+    } else {
+      // Keine lokale Angemessenheitsgrenze → KEIN erfundener Betrag (Playbook §12.3)
+      kduAllowed = unterkunft;
+      kduQualityIssue = true;
+      openIssues.push('KDU_LOCAL_RULE_MISSING');
+    }
   }
   totalNeed += kduAllowed + heating;
 
@@ -467,6 +489,8 @@ export function calculateGrundsicherung(input: GsCalcInput): GsCalcResult {
       limitUsed,
       heating: round2(heating),
       qualityIssue: kduQualityIssue,
+      municipality: kduMunicipality,
+      sourceUrl: kduSourceUrl,
     },
     openIssues,
     actions,

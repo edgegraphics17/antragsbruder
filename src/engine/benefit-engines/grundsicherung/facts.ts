@@ -116,6 +116,7 @@ export function factsToCalcInput(facts: FlatFacts, legalReferenceDate: string): 
       heating: num(facts['housing.heating_costs']),
       kduLimitKnown: bool(facts['housing.kdu_limit_known']),
       kduLimit: num(facts['housing.kdu_limit']),
+      postcode: str(facts['housing.postcode']),
       decentralizedHotWater: bool(facts['housing.decentralized_hot_water']),
       annualBillDue: num(facts['housing.annual_bill_amount']),
     },
@@ -165,6 +166,7 @@ export interface GsFormStateFacts {
     heating?: number;
     kduLimitKnown?: boolean;
     kduLimit?: number;
+    postcode?: string;
     decentralizedHotWater?: boolean;
     annualBillDue?: number;
   };
