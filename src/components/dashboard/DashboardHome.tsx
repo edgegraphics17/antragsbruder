@@ -6,12 +6,15 @@
 // Alle UI-Strings über getDashboardDict (i18n), Links locale-aware.
 // ============================================================
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { useProfileStore } from '@/lib/stores/profile-store';
 import { supabase } from '@/lib/supabase';
-import { getRecommendedBenefits, type BenefitMatch } from '@/lib/alg1/matching';
+import {
+  matchBenefits,
+  type RadarMatch,
+} from '@/lib/benefits/radar';
 import { formatDate } from '@/lib/dashboard';
 import { localeHref } from '@/i18n/config';
 import { useLocaleFromPath } from '@/i18n/use-locale';
@@ -34,6 +37,14 @@ const STATUS_BADGE_CLS: Record<string, string> = {
   PROCESSING: 'bg-amber-100 text-amber-700',
   APPROVED: 'bg-green-100 text-green-700',
   REJECTED: 'bg-red-100 text-red-700',
+};
+
+// CTA-Routen für Kern-Leistungen mit eigenem Rechner (wie FoerderungenView);
+// sonst Amts-Link aus der Benefit-Datenbank.
+const CALC_ROUTES: Record<string, string> = {
+  wohngeld: '/wohngeld/rechner',
+  buergergeld: '/grundsicherungsrechner',
+  bafoeg: '/bafoegrechner',
 };
 
 // Timeline-Schritte: IDs + Status-Mapping leben in ApplicationTimeline /
@@ -87,8 +98,22 @@ export function DashboardHome() {
   const { profile, documents, loadDocuments } = useProfileStore();
   const locale = useLocaleFromPath();
   const t = getDashboardDict(locale).home;
+  const ft = getDashboardDict(locale).foerderungen;
   const [applications, setApplications] = useState<AppRecord[]>([]);
-  const [recommendations, setRecommendations] = useState<BenefitMatch[]>([]);
+
+  // Förderungs-Radar (3-Ebenen-Matching, identisch zur /foerderungen-Seite).
+  const radar = useMemo(
+    () =>
+      matchBenefits(
+        {
+          employmentStatus: profile?.employmentStatus ?? null,
+          housingType: profile?.housingType ?? null,
+          childrenCount: profile ? profile.childrenCount : null,
+        },
+        documents.map((d) => ({ document_role: d.document_role, filename: d.filename })),
+      ),
+    [profile, documents],
+  );
 
   const hour = new Date().getHours();
   const greeting = hour < 11 ? t.greetingMorning : hour < 18 ? t.greetingDay : t.greetingEvening;
@@ -102,10 +127,9 @@ export function DashboardHome() {
         .eq('user_id', user.id)
         .order('updated_at', { ascending: false });
       setApplications(data ?? []);
-      setRecommendations(getRecommendedBenefits(profile, data ?? []));
     };
     load();
-  }, [user, profile]);
+  }, [user]);
 
   useEffect(() => {
     if (user) void loadDocuments(user.id);
@@ -156,7 +180,7 @@ export function DashboardHome() {
           {activeApplications.length > 0
             ? formatTemplate(
                 activeApplications.length === 1 ? t.summaryOneApp : t.summaryManyApps,
-                { apps: activeApplications.length, benefits: recommendations.length },
+                { apps: activeApplications.length, benefits: radar.qualified.length + radar.potential.length },
               )
             : t.startFirst}
         </p>
@@ -219,37 +243,49 @@ export function DashboardHome() {
           )}
         </div>
 
-        {/* Mögliche Förderungen */}
+        {/* Mögliche Förderungen — Radar (qualified + potential) */}
         <div className="space-y-4">
           <h2 className="text-lg font-semibold text-ink">{t.possibleTitle}</h2>
-          {recommendations.length === 0 ? (
+          {radar.qualified.length + radar.potential.length === 0 ? (
             <div className="rounded-2xl border border-line-soft bg-paper p-8 text-center text-sm text-ink-soft">
               {t.fillProfile}
             </div>
           ) : (
             <>
-              {recommendations.slice(0, 3).map((rec) => (
-                <div key={rec.id} className="rounded-2xl border border-line-soft bg-paper p-5">
-                  <div className="mb-2 flex items-center gap-2">
-                    <span
-                      className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
-                        rec.confidence === 'HIGH' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
-                      }`}
+              {[...radar.qualified, ...radar.potential].slice(0, 3).map((rec) => {
+                const calcRoute = (rec.benefit.calcPossible && CALC_ROUTES[rec.benefit.id]) || null;
+                const href =
+                  calcRoute
+                    ? localeHref(locale, calcRoute)
+                    : rec.benefit.url || localeHref(locale, '/foerderungen');
+                return (
+                  <div key={rec.benefit.id} className="rounded-2xl border border-line-soft bg-paper p-5">
+                    <div className="mb-2 flex items-center gap-2">
+                      <span
+                        className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
+                          radar.qualified.some((q) => q.benefit.id === rec.benefit.id)
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-amber-100 text-amber-700'
+                        }`}
+                      >
+                        {radar.qualified.some((q) => q.benefit.id === rec.benefit.id)
+                          ? t.confidenceHigh
+                          : t.confidencePossible}
+                      </span>
+                    </div>
+                    <h3 className="font-semibold text-ink">{rec.benefit.name}</h3>
+                    {rec.benefit.amountText && (
+                      <p className="mt-1 text-sm text-ink-soft">{rec.benefit.amountText}</p>
+                    )}
+                    <Link
+                      href={href}
+                      className="mt-3 inline-block rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
                     >
-                      {rec.confidence === 'HIGH' ? t.confidenceHigh : t.confidencePossible}
-                    </span>
+                      {calcRoute ? ft.calcNow : ft.viewAtOffice}
+                    </Link>
                   </div>
-                  <h3 className="font-semibold text-ink">{rec.title}</h3>
-                  <p className="mt-1 text-sm text-ink-soft">{rec.description}</p>
-                  <p className="mt-1 text-xs text-brand-700">{rec.maxAmount}</p>
-                  <Link
-                    href={rec.ctaHref}
-                    className="mt-3 inline-block rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
-                  >
-                    {rec.ctaLabel}
-                  </Link>
-                </div>
-              ))}
+                );
+              })}
               <Link href={localeHref(locale, '/foerderungen')} className="block text-sm font-semibold text-brand-700 hover:underline">
                 {t.allBenefits}
               </Link>
