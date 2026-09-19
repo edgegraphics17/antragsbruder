@@ -119,6 +119,18 @@ export function DashboardHome() {
   // erscheinen erst, wenn tatsächlich ein Antrag läuft.
   const showJourney = activeApplications.length > 0;
   const journeyApp = activeApplications[0] ?? null;
+  const journeySubmitted = journeyApp
+    ? ['SUBMITTED', 'PROCESSING'].includes(journeyApp.status)
+    : false;
+  // Klickbarer aktiver Schritt führt genau dorthin, wo der Antrag steht
+  // (gleiche Resume-Logik wie die "Weiterarbeiten"-Karte oben).
+  const journeyContinueHref = journeyApp
+    ? journeyApp.benefit_type === 'ALG1'
+      ? `/alg1/antrag?applicationId=${journeyApp.id}&stage=${
+          journeySubmitted ? 'summary' : (journeyApp.last_stage ?? 'upload')
+        }`
+      : `/antraege/${journeyApp.case_id}`
+    : null;
   const timelineHeader = journeyApp
     ? {
         title:
@@ -273,7 +285,14 @@ export function DashboardHome() {
 
       {/* Fortschritts-Footer — nur bei laufendem Antrag (schwebende Karte,
           Desktop fixiert unten rechts neben der Sidebar, Mobile kompakt). */}
-      {showJourney && <ApplicationTimeline timeline={timeline} header={timelineHeader} />}
+      {showJourney && (
+        <ApplicationTimeline
+          timeline={timeline}
+          header={timelineHeader}
+          activeHref={journeyContinueHref ? localeHref(locale, journeyContinueHref) : null}
+          submitted={journeySubmitted}
+        />
+      )}
     </div>
   );
 }

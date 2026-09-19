@@ -788,6 +788,8 @@ const deDashboard = {
     "docsCountMany": "{{count}} Dokumente im Tresor.",
     "goToTresor": "Zum Tresor",
     "stepsProgress": "{{done}}/4 Schritte",
+    "submittedTitle": "Antrag eingereicht ✓",
+    "submittedText": "Dein Antrag ist raus — wir warten auf die Rückmeldung der Behörde. Du siehst den Status hier und bekommst eine E-Mail, sobald etwas passiert.",
     "timeline": {
       "docs": {
         "label": "Dokumente hinzufügen",
