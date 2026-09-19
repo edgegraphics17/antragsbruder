@@ -29,7 +29,7 @@ const TABS: Tab[] = ['qualified', 'potential', 'excluded'];
 
 // CTA-Routen für Kern-Leistungen mit eigenem Rechner; sonst Amts-Link.
 const CALC_ROUTES: Record<string, string> = {
-  wohngeld: '/wohngeldrechner',
+  wohngeld: '/wohngeld/rechner',
   buergergeld: '/grundsicherungsrechner',
   bafoeg: '/bafoegrechner',
 };

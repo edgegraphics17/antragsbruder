@@ -7,6 +7,9 @@ import Image from "next/image";
 import { faqGroups } from "@/content/faq";
 import { dict } from "@/content/faq-i18n";
 import { locales, isLocale, defaultLocale, localeHref, type Locale } from "@/i18n/config";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+import { faqJsonLd } from "@/lib/seo/jsonld";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -20,7 +23,7 @@ export async function generateMetadata({
   const { locale: raw } = await params;
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
   const t = dict[locale];
-  return { title: t.metaTitle, description: t.metaDescription };
+  return buildPageMetadata({ locale, path: "/faq", title: t.metaTitle, description: t.metaDescription });
 }
 
 export default async function FaqPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -29,8 +32,12 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
   const t = dict[locale];
   const groups = faqGroups[locale];
 
+  // FAQPage-Schema nur, weil alle Fragen + Antworten sichtbar im Accordion stehen.
+  const allFaqItems = groups.flatMap((g) => g.items);
+
   return (
     <>
+      <JsonLd data={faqJsonLd(allFaqItems)} />
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[38%] sm:block" aria-hidden="true">
           <Image

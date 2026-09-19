@@ -36,7 +36,7 @@ const ALL_BENEFITS: BenefitMatch[] = [
     maxAmount: 'Bis zu 350 €/Monat',
     confidence: 'HIGH',
     ctaLabel: 'Berechnen',
-    ctaHref: '/wohngeldrechner',
+    ctaHref: '/wohngeld/rechner',
     tags: ['RENT'],
   },
   {

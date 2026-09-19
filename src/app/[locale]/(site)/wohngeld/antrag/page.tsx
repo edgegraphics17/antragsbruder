@@ -7,6 +7,7 @@ import { IconCheck, IconCoin, IconDocument, IconShield } from "@/components/ui/i
 import { locales, localeHref, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 import { antragDict } from "@/content/wohngeld-antrag-i18n";
 import { dict as calculatorDict } from "@/content/wohngeld-i18n";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -20,7 +21,7 @@ export async function generateMetadata({
   const { locale: raw } = await params;
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
   const t = antragDict[locale];
-  return { title: t.title, description: t.lede };
+  return buildPageMetadata({ locale, path: "/wohngeld/antrag", title: t.title, description: t.lede });
 }
 
 const trustIcons = [IconShield, IconCoin, IconDocument];
@@ -50,7 +51,7 @@ export default async function WohngeldAntragPage({
       : ""
   }`;
   const ctaHref = localeHref(locale, summaryHref);
-  const calculatorHref = localeHref(locale, "/wohngeldrechner");
+  const calculatorHref = localeHref(locale, "/wohngeld/rechner");
 
   return (
     <>

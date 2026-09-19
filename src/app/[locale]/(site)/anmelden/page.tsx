@@ -6,6 +6,7 @@ import { LoginForm } from '@/components/auth/LoginForm';
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import Link from 'next/link';
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -19,10 +20,12 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = getAuthPageDict(isLocale(locale) ? locale : defaultLocale);
-  return {
-    title: `${t.signInNow} — Antragsbruder`,
+  return buildPageMetadata({
+    locale: isLocale(locale) ? locale : defaultLocale,
+    path: "/anmelden",
+    title: t.signInNow,
     description: t.signInLede,
-  };
+  });
 }
 
 export default async function LoginPage({ params }: PageProps) {

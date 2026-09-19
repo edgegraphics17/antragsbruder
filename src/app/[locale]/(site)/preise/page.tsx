@@ -8,6 +8,7 @@ import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { pricingTiers } from "@/content/pricing";
 import { dict } from "@/content/preise-i18n";
 import { locales, isLocale, defaultLocale, localeHref, type Locale } from "@/i18n/config";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -21,7 +22,7 @@ export async function generateMetadata({
   const { locale: raw } = await params;
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
   const t = dict[locale];
-  return { title: t.metaTitle, description: t.metaDescription };
+  return buildPageMetadata({ locale, path: "/preise", title: t.metaTitle, description: t.metaDescription });
 }
 
 export default async function PreisePage({ params }: { params: Promise<{ locale: string }> }) {

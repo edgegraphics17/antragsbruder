@@ -6,6 +6,7 @@ import { RegisterForm } from '@/components/auth/RegisterForm';
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import Link from 'next/link';
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -14,10 +15,12 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = getAuthPageDict(isLocale(locale) ? locale : defaultLocale);
-  return {
-    title: `${t.signupTitle} — Antragsbruder`,
+  return buildPageMetadata({
+    locale: isLocale(locale) ? locale : defaultLocale,
+    path: "/konto-erstellen",
+    title: t.signupTitle,
     description: t.signupLede,
-  };
+  });
 }
 
 export default async function RegisterPage({ params }: PageProps) {

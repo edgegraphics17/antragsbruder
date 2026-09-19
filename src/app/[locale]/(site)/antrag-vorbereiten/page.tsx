@@ -7,6 +7,7 @@ import { ProcessFlow } from "@/components/sections/ProcessFlow";
 import { CTASection } from "@/components/sections/CTASection";
 import { locales, localeHref, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 import { dict } from "@/content/antrag-vorbereiten-i18n";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -20,7 +21,7 @@ export async function generateMetadata({
   const { locale: raw } = await params;
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
   const t = dict[locale];
-  return { title: t.metaTitle, description: t.metaDescription };
+  return buildPageMetadata({ locale, path: "/antrag-vorbereiten", title: t.metaTitle, description: t.metaDescription });
 }
 
 export default async function AntragVorbereitenPage({ params }: { params: Promise<{ locale: string }> }) {

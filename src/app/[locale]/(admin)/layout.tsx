@@ -8,6 +8,12 @@ import { notFound, redirect } from 'next/navigation';
 import { isLocale, localeHref } from '@/i18n/config';
 import { getAdminUser } from '@/lib/admin';
 import { AdminMobileNav, AdminSidebar } from '@/components/admin/AdminSidebar';
+import type { Metadata } from 'next';
+
+// Admin-Bereich: niemals indexieren.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default async function AdminLayout({
   children,

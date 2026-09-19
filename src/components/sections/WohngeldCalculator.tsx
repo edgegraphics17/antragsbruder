@@ -20,14 +20,22 @@ const tierStyles: Record<Tier, string> = {
   teuer: "bg-brand-700 text-white",
 };
 
-export function WohngeldCalculator({ locale }: { locale: LangCode }) {
+export function WohngeldCalculator({
+  locale,
+  headingLevel = "h1",
+}: {
+  locale: LangCode;
+  /** Auf Content-Seiten (z. B. Pillar-Page) "h2" setzen, damit die Seite
+   * exakt eine H1 behält (SEO Definition of Done). */
+  headingLevel?: "h1" | "h2";
+}) {
   const router = useRouter();
   const lang = locale;
   const t = dict[lang];
   const langMeta = languages.find((l) => l.code === lang)!;
 
   function changeLanguage(next: string) {
-    router.push(localeHref(next as LangCode, "/wohngeldrechner"));
+    router.push(localeHref(next as LangCode, "/wohngeld/rechner"));
   }
 
   const [step, setStep] = useState<Step>(1);
@@ -124,14 +132,14 @@ export function WohngeldCalculator({ locale }: { locale: LangCode }) {
   }
 
   const ctaHref = useMemo(() => {
-    if (!result) return localeHref(lang, "/wohngeldrechner/antrag");
+    if (!result) return localeHref(lang, "/wohngeld/antrag");
     const params = new URLSearchParams({
       betrag: String(result.amount),
       haushalt: String(result.householdSize),
       miete: String(rentNum),
       einkommen: String(incomeNum),
     });
-    return `${localeHref(lang, "/wohngeldrechner/antrag")}?${params.toString()}`;
+    return `${localeHref(lang, "/wohngeld/antrag")}?${params.toString()}`;
   }, [result, rentNum, incomeNum, lang]);
 
   const totalSteps = 2;
@@ -159,7 +167,11 @@ export function WohngeldCalculator({ locale }: { locale: LangCode }) {
 
       <div className="mb-8 text-center">
         <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-brand-700">{t.eyebrow}</p>
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">{t.title}</h1>
+        {headingLevel === "h1" ? (
+          <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">{t.title}</h1>
+        ) : (
+          <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">{t.title}</h2>
+        )}
         <p className="mt-3 text-base leading-relaxed text-ink-soft">{t.lede}</p>
       </div>
 

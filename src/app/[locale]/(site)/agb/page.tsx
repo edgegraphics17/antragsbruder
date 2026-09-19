@@ -6,6 +6,7 @@ import { LegalSection } from "@/components/ui/LegalSection";
 import { legalPlaceholder, site } from "@/content/site";
 import { locales, isLocale, defaultLocale, localeHref, type Locale } from "@/i18n/config";
 import { dict } from "@/content/agb-i18n";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -19,7 +20,7 @@ export async function generateMetadata({
   const { locale: raw } = await params;
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
   const t = dict[locale];
-  return { title: t.metaTitle, description: t.metaDescription(site.name) };
+  return buildPageMetadata({ locale, path: "/agb", title: t.metaTitle, description: t.metaDescription(site.name) });
 }
 
 export default async function AgbPage({ params }: { params: Promise<{ locale: string }> }) {

@@ -5,6 +5,7 @@ import { LegalSection } from "@/components/ui/LegalSection";
 import { legalPlaceholder, site } from "@/content/site";
 import { locales, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 import { dict } from "@/content/impressum-i18n";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -18,7 +19,7 @@ export async function generateMetadata({
   const { locale: raw } = await params;
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
   const t = dict[locale];
-  return { title: t.metaTitle, description: t.metaDescription };
+  return buildPageMetadata({ locale, path: "/impressum", title: t.metaTitle, description: t.metaDescription });
 }
 
 export default async function ImpressumPage({ params }: { params: Promise<{ locale: string }> }) {

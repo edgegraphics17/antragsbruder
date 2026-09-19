@@ -49,6 +49,9 @@ const routeRedirects: [string, string][] = [
   ["/partner", "/kontakt?thema=partner"],
   ["/ueber-uns", "/wer-wir-sind"],
   ["/was-wir-nicht-sind", "/wer-wir-sind"],
+  // SEO-Cluster-Migration Wohngeld (STEP3 §18): flache Rechner-URLs → Cluster-Struktur.
+  ["/wohngeldrechner", "/wohngeld/rechner"],
+  ["/wohngeldrechner/antrag", "/wohngeld/antrag"],
 ];
 
 const nextConfig: NextConfig = {

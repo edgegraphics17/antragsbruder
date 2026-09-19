@@ -5,6 +5,7 @@ import { IntakeForm } from "@/components/sections/IntakeForm";
 import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { locales, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 import { dict } from "@/content/hilfe-starten-i18n";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -18,7 +19,7 @@ export async function generateMetadata({
   const { locale: raw } = await params;
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
   const t = dict[locale];
-  return { title: t.metaTitle, description: t.metaDescription };
+  return buildPageMetadata({ locale, path: "/hilfe-starten", title: t.metaTitle, description: t.metaDescription });
 }
 
 export default async function HilfeStartenPage({

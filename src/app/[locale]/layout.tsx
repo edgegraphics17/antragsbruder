@@ -5,7 +5,7 @@ import "../globals.css";
 import { AuthLayoutWrapper } from "@/components/auth/AuthLayoutWrapper";
 import { site } from "@/content/site";
 import { commonDict } from "@/content/i18n/common";
-import { locales, localeMeta, isLocale, localeHref, defaultLocale, type Locale } from "@/i18n/config";
+import { locales, localeMeta, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 
 const bodyFont = Inter({
   variable: "--font-body",
@@ -44,12 +44,12 @@ export async function generateMetadata({
   const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
   const t = commonDict[locale];
 
-  const languages: Record<string, string> = {};
-  for (const l of locales) {
-    languages[l] = localeHref(l, "/");
-  }
-
   const defaultTitle = `${site.name} – ${t.footer.claim}`;
+
+  // WICHTIG: KEIN alternates-Export auf Root-Ebene. Ein hier gesetzter
+  // Canonical würde auf ALLE Unterseiten vererben (Canonical-to-Home-Bug).
+  // Self-Canonicals + hreflang kommen pro Seite aus buildPageMetadata()
+  // (src/lib/seo/metadata.ts).
 
   return {
     metadataBase: new URL(`https://${site.domain}`),
@@ -58,10 +58,6 @@ export async function generateMetadata({
       template: `%s – ${site.name}`,
     },
     description: t.meta.description,
-    alternates: {
-      canonical: localeHref(locale, "/"),
-      languages,
-    },
     openGraph: {
       title: defaultTitle,
       description: t.meta.description,
@@ -77,6 +73,29 @@ export async function generateMetadata({
     },
   };
 }
+
+// Organization + WebSite als JSON-LD: Entity-Grundlage für Google & LLMs (GEO).
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `https://${site.domain}/#organization`,
+      name: site.name,
+      url: `https://${site.domain}`,
+      email: site.contactEmail,
+      description: site.description,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `https://${site.domain}/#website`,
+      url: `https://${site.domain}`,
+      name: site.name,
+      inLanguage: "de-DE",
+      publisher: { "@id": `https://${site.domain}/#organization` },
+    },
+  ],
+};
 
 // Root-Layout: Nur HTML-Gerüst, Fonts, AuthProvider und Locale-Validierung.
 // Navbar/Footer liegen im (site) Route Group Layout, das Dashboard-Layout
@@ -96,6 +115,11 @@ export default async function RootLayout({
   return (
     <html lang={locale} dir={dir}>
       <body className={`${bodyFont.variable} ${headingFont.variable} antialiased`}>
+        <script
+          type="application/ld+json"
+          // Statisches Entity-Markup, keine Nutzerdaten – dangerouslySetInnerHTML hier sicher.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <AuthLayoutWrapper>{children}</AuthLayoutWrapper>
       </body>
     </html>

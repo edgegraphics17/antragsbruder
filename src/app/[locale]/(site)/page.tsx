@@ -12,11 +12,24 @@ import { site } from "@/content/site";
 import { languages } from "@/content/wohngeld-i18n";
 import { dict } from "@/content/home-i18n";
 import { locales, localeHref, isLocale, defaultLocale, type Locale } from "@/i18n/config";
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 const pillarIcons = [IconSpark, IconFolder, IconMail];
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
+  // Title bleibt bewusst leer → Root-Default-Title greift (kein doppeltes Suffix).
+  return buildPageMetadata({ locale, path: "/" });
 }
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -109,7 +122,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </p>
               </div>
               <p className="mt-1 text-xs text-ink-soft">{t.wohngeldCaption}</p>
-              <Button href={href("/wohngeldrechner")} size="md" className="mt-6">
+              <Button href={href("/wohngeld/rechner")} size="md" className="mt-6">
                 {t.wohngeldCta}
               </Button>
             </div>

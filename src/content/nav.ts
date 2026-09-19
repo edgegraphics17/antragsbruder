@@ -35,7 +35,7 @@ const structure: StructureGroup[] = [
   {
     key: "tools",
     items: [
-      { key: "wohngeldRechner", href: "/wohngeldrechner" },
+      { key: "wohngeldRechner", href: "/wohngeld/rechner" },
       { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
       { key: "bafoegRechner", href: "/bafoegrechner" },
       { key: "alg1Rechner", href: "/alg1" },
@@ -62,7 +62,7 @@ const footerStructure: Record<"produkt" | "unternehmen" | "legal", StructureLink
     { key: "unterlagenCheck", href: "/unterlagen-check" },
     { key: "papierkramOrdnen", href: "/papierkram-ordnen" },
     { key: "pricing", href: "/preise" },
-    { key: "wohngeldRechner", href: "/wohngeldrechner" },
+    { key: "wohngeldRechner", href: "/wohngeld/rechner" },
     { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
     { key: "bafoegRechner", href: "/bafoegrechner" },
   ],
