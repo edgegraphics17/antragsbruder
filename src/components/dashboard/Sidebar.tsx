@@ -29,15 +29,28 @@ import { useLocaleFromPath } from '@/i18n/use-locale';
 type NavItem = {
   href: string;
   /** Key in DashboardDict.nav */
-  labelKey: 'dashboard' | 'alg1' | 'dokumente' | 'foerderungen';
+  labelKey:
+    | 'dashboard'
+    | 'alg1'
+    | 'dokumente'
+    | 'foerderungen'
+    | 'services'
+    | 'grundsicherung'
+    | 'wohngeld';
   icon: React.ComponentType<{ className?: string }>;
 };
 
 const NAV_ITEMS: NavItem[] = [
   { href: '/dashboard', labelKey: 'dashboard', icon: IconFolder },
-  { href: '/alg1', labelKey: 'alg1', icon: IconCoin },
   { href: '/dokumente', labelKey: 'dokumente', icon: IconDocument },
   { href: '/foerderungen', labelKey: 'foerderungen', icon: IconSpark },
+];
+
+// Services-Kategorie: direkter Zugriff auf die Antrags-Tools
+const SERVICE_ITEMS: NavItem[] = [
+  { href: '/alg1', labelKey: 'alg1', icon: IconCoin },
+  { href: '/grundsicherung', labelKey: 'grundsicherung', icon: IconDocument },
+  { href: '/wohngeld/antrag', labelKey: 'wohngeld', icon: IconCoin },
 ];
 
 /** Aktuelles Locale aus der URL ableiten (Dashboard-URLs sind unprefixed = de). */
@@ -84,6 +97,34 @@ function SidebarContent() {
         inProgress
           ? `/alg1/antrag?applicationId=${data.id}&stage=${data.last_stage ?? 'upload'}`
           : `/alg1/antrag?applicationId=${data.id}&stage=summary`,
+      );
+    })();
+  }, [user]);
+
+  // Grundsicherungs-Smartlink (gleiche Logik wie ALG1)
+  const [gsHref, setGsHref] = useState<string | null>(null);
+  useEffect(() => {
+    if (!user) return;
+    void (async () => {
+      const { data } = await supabase
+        .from('applications')
+        .select('id, status, last_stage')
+        .eq('user_id', user.id)
+        .eq('benefit_type', 'GRUNDSICHERUNG')
+        .order('updated_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      if (!data) {
+        setGsHref('/grundsicherung');
+        return;
+      }
+      const inProgress = ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY'].includes(
+        data.status as string,
+      );
+      setGsHref(
+        inProgress
+          ? `/grundsicherung?applicationId=${data.id}&stage=${data.last_stage ?? 'angaben'}`
+          : `/grundsicherung?applicationId=${data.id}&stage=einreichen`,
       );
     })();
   }, [user]);
@@ -147,12 +188,40 @@ function SidebarContent() {
       </Link>
 
       {/* Navigation */}
-      <nav className="flex flex-col gap-1 px-4" aria-label={dict.sidebar.navLabel}>
+      <nav className="flex flex-1 flex-col gap-1 overflow-y-auto px-4 py-2" aria-label={dict.sidebar.navLabel}>
         {NAV_ITEMS.map((item) => {
           const active = isActive(pathname, item.href);
           const Icon = item.icon;
+          return (
+            <Link
+              key={item.href}
+              href={localeHref(locale, item.href)}
+              aria-current={active ? 'page' : undefined}
+              className={`flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
+                active
+                  ? 'bg-brand-600 text-white'
+                  : 'text-white/70 hover:bg-white/5 hover:text-white'
+              }`}
+            >
+              <Icon className="h-4 w-4 shrink-0" />
+              {dict.nav[item.labelKey]}
+            </Link>
+          );
+        })}
+
+        {/* Services — direkter Zugriff auf die Antrags-Tools */}
+        <div className="mt-4 mb-1 px-4 text-[10px] font-semibold uppercase tracking-wider text-white/40">
+          {dict.nav.services}
+        </div>
+        {SERVICE_ITEMS.map((item) => {
+          const active = isActive(pathname, item.href);
+          const Icon = item.icon;
           const href =
-            item.href === '/alg1' ? localeHref(locale, alg1Href ?? '/alg1') : localeHref(locale, item.href);
+            item.href === '/alg1'
+              ? localeHref(locale, alg1Href ?? '/alg1')
+              : item.href === '/grundsicherung'
+                ? localeHref(locale, gsHref ?? '/grundsicherung')
+                : localeHref(locale, item.href);
           return (
             <Link
               key={item.href}

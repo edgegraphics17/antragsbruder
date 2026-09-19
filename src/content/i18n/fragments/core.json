@@ -3,7 +3,10 @@
     "dashboard": "Dashboard",
     "alg1": "ALG1",
     "dokumente": "Dokumente",
-    "foerderungen": "Förderungen"
+    "foerderungen": "Förderungen",
+    "services": "Services",
+    "grundsicherung": "Grundsicherung",
+    "wohngeld": "Wohngeld"
   },
   "sidebar": {
     "logout": "Abmelden",

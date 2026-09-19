@@ -16,10 +16,10 @@ export default async function AdminAntraegePage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ status?: string; q?: string }>;
+  searchParams: Promise<{ status?: string; q?: string; benefit?: string }>;
 }) {
   const { locale } = await params;
-  const { status, q } = await searchParams;
+  const { status, q, benefit } = await searchParams;
   const supabase = createAuthServerClient();
 
   let query = supabase
@@ -28,6 +28,7 @@ export default async function AdminAntraegePage({
     .order('updated_at', { ascending: false })
     .limit(200);
   if (status && FILTER_STATUSES.includes(status)) query = query.eq('status', status);
+  if (benefit) query = query.eq('benefit_type', benefit);
   const { data: apps } = await query;
 
   // Namen nachziehen (eine Sammel-Query)
