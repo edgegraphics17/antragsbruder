@@ -37,7 +37,8 @@ const routes: {
   { path: "/impressum", priority: 0.3, changeFrequency: "monthly" },
   { path: "/datenschutz", priority: 0.3, changeFrequency: "monthly" },
   { path: "/agb", priority: 0.3, changeFrequency: "monthly" },
-  // Wohngeld-Content-Cluster: DE-only (Phase 1 der Mehrsprachigkeit).
+  // Wohngeld-Content-Cluster + Blog: DE-only (Phase 1 der Mehrsprachigkeit).
+  { path: "/blog", priority: 0.8, changeFrequency: "weekly", deOnly: true },
   { path: "/wohngeld", priority: 0.9, changeFrequency: "weekly", deOnly: true },
   { path: "/wohngeld/voraussetzungen", priority: 0.8, changeFrequency: "monthly", deOnly: true },
   { path: "/wohngeld/einkommensgrenze", priority: 0.8, changeFrequency: "monthly", deOnly: true },

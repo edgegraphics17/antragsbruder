@@ -11,11 +11,19 @@ import { warumPillars } from "@/content/pillars";
 import { site } from "@/content/site";
 import { languages } from "@/content/wohngeld-i18n";
 import { dict } from "@/content/home-i18n";
+import { commonDict } from "@/content/i18n/common";
+import { blogPosts } from "@/content/blog";
+import Link from "next/link";
 import { locales, localeHref, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
 const pillarIcons = [IconSpark, IconFolder, IconMail];
+
+// Die 3 neuesten Blog-Artikel für den Startseiten-Teaser (nach Prüfdatum).
+const latestBlogPosts = [...blogPosts]
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .slice(0, 3);
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -246,6 +254,45 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </ol>
         </Container>
       </section>
+
+      {/* BLOG-TEASER: neueste Ratgeber (nur im Default-Locale, da der Blog DE-only ist) */}
+      {locale === defaultLocale && (
+        <section aria-labelledby="blog-teaser">
+          <Container className="py-16 sm:py-20">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <SectionHeading
+                eyebrow={commonDict.de.blogTeaser.eyebrow}
+                title={commonDict.de.blogTeaser.title}
+              />
+              <Button href="/blog" variant="secondary" size="md">
+                {commonDict.de.blogTeaser.cta}
+              </Button>
+            </div>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {latestBlogPosts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/${post.slug}`}
+                  className="group flex flex-col rounded-3xl border border-line-soft bg-white p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-700 hover:shadow-lg hover:shadow-brand-950/5"
+                >
+                  <span className="w-fit rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold text-brand-800">
+                    {post.category.label}
+                  </span>
+                  <h3 className="font-display mt-4 text-lg font-bold leading-snug text-ink group-hover:text-brand-800">
+                    {post.title}
+                  </h3>
+                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink-soft">
+                    {post.excerpt}
+                  </p>
+                  <span className="mt-4 text-sm font-semibold text-brand-700 group-hover:underline">
+                    Weiterlesen →
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* FINAL CTA */}
       <CTASection

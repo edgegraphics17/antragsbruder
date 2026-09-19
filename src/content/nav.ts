@@ -48,6 +48,7 @@ const structure: StructureGroup[] = [
       { key: "pricing", href: "/preise" },
       { key: "ueberUns", href: "/wer-wir-sind" },
       { key: "faq", href: "/faq" },
+      { key: "blog", href: "/blog" },
       { key: "datenbank", href: "/datenbank" },
     ],
   },
@@ -69,6 +70,7 @@ const footerStructure: Record<"produkt" | "unternehmen" | "legal", StructureLink
   unternehmen: [
     { key: "ueberUns", href: "/wer-wir-sind" },
     { key: "howItWorks", href: "/so-funktionierts" },
+    { key: "blog", href: "/blog" },
     { key: "faq", href: "/faq" },
     { key: "kontakt", href: "/kontakt" },
   ],

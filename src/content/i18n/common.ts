@@ -3,6 +3,7 @@ import type { Locale } from "@/i18n/config";
 export type CommonDict = {
   nav: Record<string, string>;
   navDescriptions: Record<string, string>;
+  blogTeaser: { eyebrow: string; title: string; cta: string };
   buttons: { kontakt: string; papierkramHochladen: string };
   auth: {
     emailLabel: string;
@@ -131,6 +132,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Grundsicherungsgeld-Rechner",
       pricing: "Preise",
       faq: "FAQ",
+      blog: "Blog",
       ueberUns: "Wer wir sind",
       kontakt: "Kontakt",
       impressum: "Impressum",
@@ -151,8 +153,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Regelbedarf, Miete & Vermögen prüfen",
       ueberUns: "Wer hinter Antragsbruder steht",
       faq: "Antworten auf häufige Fragen",
+      blog: "Ratgeber zu Leistungen, Anträgen und Behörden",
       kontakt: "Schreib uns, wenn du nicht weiterkommst",
     },
+    blogTeaser: { eyebrow: "Aus dem Blog", title: "Wissen, das dich weiterbringt", cta: "Zum Blog" },
     buttons: { kontakt: "Kontakt", papierkramHochladen: "Papierkram hochladen" },
     heroVisual: {
       senderLabel: "Original",
@@ -282,6 +286,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Basic Income Calculator",
       pricing: "Pricing",
       faq: "FAQ",
+      blog: "Blog",
       ueberUns: "Who we are",
       kontakt: "Contact",
       impressum: "Legal notice",
@@ -302,8 +307,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Check your standard rate, rent & assets",
       ueberUns: "Who's behind Antragsbruder",
       faq: "Answers to common questions",
+      blog: "Guides on benefits, applications and authorities",
       kontakt: "Write to us if you're stuck",
     },
+    blogTeaser: { eyebrow: "From the blog", title: "Knowledge that moves you forward", cta: "Go to the blog" },
     buttons: { kontakt: "Contact", papierkramHochladen: "Upload your paperwork" },
     heroVisual: {
       senderLabel: "Original letter",
@@ -432,6 +439,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "حاسبة إعانة المعيشة الأساسية",
       pricing: "الأسعار",
       faq: "الأسئلة الشائعة",
+      blog: "المدونة",
       ueberUns: "من نحن",
       kontakt: "تواصل معنا",
       impressum: "بيانات الناشر",
@@ -452,8 +460,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "تحقق من الاحتياج الأساسي والإيجار والممتلكات",
       ueberUns: "من يقف وراء أنتراغسبرودر",
       faq: "إجابات على الأسئلة الشائعة",
+      blog: "أدلة حول المزايا والتطبيقات والسلطات",
       kontakt: "راسلنا إذا واجهت صعوبة",
     },
+    blogTeaser: { eyebrow: "من المدونة", title: "معرفة تدفعك للأمام", cta: "إلى المدونة" },
     buttons: { kontakt: "تواصل معنا", papierkramHochladen: "ارفع مستنداتك" },
     heroVisual: {
       senderLabel: "الخطاب الأصلي",
@@ -582,6 +592,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Temel Gelir Hesaplayıcısı",
       pricing: "Fiyatlar",
       faq: "SSS",
+      blog: "Blog",
       ueberUns: "Biz kimiz",
       kontakt: "İletişim",
       impressum: "Yasal bilgiler",
@@ -602,8 +613,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Temel ihtiyaç, kira ve varlıkları kontrol et",
       ueberUns: "Antragsbruder'ın arkasında kim var",
       faq: "Sık sorulan sorulara yanıtlar",
+      blog: "Destekler, başvurular ve resmi kurumlar hakkında rehberler",
       kontakt: "Takıldıysan bize yaz",
     },
+    blogTeaser: { eyebrow: "Blogdan", title: "Seni ileriye taşıyan bilgi", cta: "Bloğa git" },
     buttons: { kontakt: "İletişim", papierkramHochladen: "Belgelerini yükle" },
     heroVisual: {
       senderLabel: "Orijinal mektup",
@@ -732,6 +745,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Калькулятор базового дохода",
       pricing: "Цены",
       faq: "Вопросы и ответы",
+      blog: "Блог",
       ueberUns: "Кто мы",
       kontakt: "Контакты",
       impressum: "Выходные данные",
@@ -752,8 +766,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Проверьте базовую потребность, аренду и имущество",
       ueberUns: "Кто стоит за Antragsbruder",
       faq: "Ответы на частые вопросы",
+      blog: "Руководства по пособиям, заявлениям и ведомствам",
       kontakt: "Напишите нам, если не получается",
     },
+    blogTeaser: { eyebrow: "Из блога", title: "Знания, которые двигают вас вперёд", cta: "Перейти в блог" },
     buttons: { kontakt: "Контакты", papierkramHochladen: "Загрузить документы" },
     heroVisual: {
       senderLabel: "Оригинал письма",
@@ -882,6 +898,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Калькулятор базового доходу",
       pricing: "Ціни",
       faq: "Питання та відповіді",
+      blog: "Блог",
       ueberUns: "Хто ми",
       kontakt: "Контакти",
       impressum: "Вихідні дані",
@@ -902,8 +919,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Перевірте базову потребу, оренду та майно",
       ueberUns: "Хто стоїть за Antragsbruder",
       faq: "Відповіді на часті запитання",
+      blog: "Посібники з допомоги, заяв та відомств",
       kontakt: "Напишіть нам, якщо щось незрозуміло",
     },
+    blogTeaser: { eyebrow: "З блогу", title: "Знання, що рухають вас уперед", cta: "До блогу" },
     buttons: { kontakt: "Контакти", papierkramHochladen: "Завантажити документи" },
     heroVisual: {
       senderLabel: "Оригінал листа",
@@ -1032,6 +1051,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Kalkulator świadczenia podstawowego",
       pricing: "Cennik",
       faq: "FAQ",
+      blog: "Blog",
       ueberUns: "Kim jesteśmy",
       kontakt: "Kontakt",
       impressum: "Dane rejestrowe",
@@ -1052,8 +1072,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Sprawdź stawkę podstawową, czynsz i majątek",
       ueberUns: "Kto stoi za Antragsbruder",
       faq: "Odpowiedzi na częste pytania",
+      blog: "Poradniki o świadczeniach, wnioskach i urzędach",
       kontakt: "Napisz do nas, jeśli utknąłeś",
     },
+    blogTeaser: { eyebrow: "Z bloga", title: "Wiedza, która Cię pociągnie naprzód", cta: "Przejdź do bloga" },
     buttons: { kontakt: "Kontakt", papierkramHochladen: "Prześlij dokumenty" },
     heroVisual: {
       senderLabel: "Oryginał pisma",
@@ -1182,6 +1204,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Калкулатор за основен доход",
       pricing: "Цени",
       faq: "Въпроси и отговори",
+      blog: "Блог",
       ueberUns: "Кои сме ние",
       kontakt: "Контакт",
       impressum: "Данни за издателя",
@@ -1202,8 +1225,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Проверете основната нужда, наема и имуществото",
       ueberUns: "Кой стои зад Antragsbruder",
       faq: "Отговори на често задавани въпроси",
+      blog: "Ръководства за помощи, заявления и институции",
       kontakt: "Пишете ни, ако не се справяте",
     },
+    blogTeaser: { eyebrow: "От блога", title: "Знания, които ви придвижват напред", cta: "Към блога" },
     buttons: { kontakt: "Контакт", papierkramHochladen: "Качи документите си" },
     heroVisual: {
       senderLabel: "Оригинално писмо",
@@ -1332,6 +1357,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Calculator venit minim garantat",
       pricing: "Prețuri",
       faq: "Întrebări frecvente",
+      blog: "Blog",
       ueberUns: "Cine suntem",
       kontakt: "Contact",
       impressum: "Date de identificare",
@@ -1352,8 +1378,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       grundsicherungRechner: "Verifică necesarul de bază, chiria și averea",
       ueberUns: "Cine se află în spatele Antragsbruder",
       faq: "Răspunsuri la întrebări frecvente",
+      blog: "Ghiduri despre prestații, cereri și autorități",
       kontakt: "Scrie-ne dacă te-ai blocat",
     },
+    blogTeaser: { eyebrow: "Din blog", title: "Cunoștințe care te duc mai departe", cta: "Mergi la blog" },
     buttons: { kontakt: "Contact", papierkramHochladen: "Încarcă documentele" },
     heroVisual: {
       senderLabel: "Scrisoarea originală",
