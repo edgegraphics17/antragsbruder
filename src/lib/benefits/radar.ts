@@ -282,6 +282,14 @@ function signalsFor(profile: RadarProfile): { known: Set<string>; unknownFields:
   } else if (!profile.housingType) {
     unknownFields.add('housing');
   }
+  // Förder-Profil wohnform-Answer gewinnt über das Basis-Profil-Feld.
+  // MIETFREI mappt bewusst auf KEINE Wohnkosten-Signale (mietfrei = keine
+  // Miete/Belastung → Wohngeld-Leistungen via Wohnkosten-Tags unpassend).
+  const wohnform = typeof profile.facts?.['wohnform'] === 'string' ? (profile.facts['wohnform'] as string) : null;
+  if (wohnform) {
+    if (HOUSING_SIGNALS[wohnform]) HOUSING_SIGNALS[wohnform].forEach((s) => known.add(s));
+    unknownFields.delete('housing');
+  }
   if (hasChildren(profile)) {
     CHILDREN_SIGNALS.forEach((s) => known.add(s));
   } else if (profile.childrenCount == null && profile.facts?.['kinder_unter_18'] == null) {

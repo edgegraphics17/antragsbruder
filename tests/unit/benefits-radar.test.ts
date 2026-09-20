@@ -115,8 +115,8 @@ describe("Förder-Profil — adaptive Engine", () => {
   it("Miet-Frage erscheint nur bei Wohnform Miete", () => {
     const rentQs = relevantOpenQuestions(2, { wohnform: "RENT" }).map((q) => q.id);
     const ownQs = relevantOpenQuestions(2, { wohnform: "OWN" }).map((q) => q.id);
-    expect(rentQs).toContain("miete_brutto");
-    expect(ownQs).not.toContain("miete_brutto");
+    expect(rentQs).toContain("kaltmiete");
+    expect(ownQs).not.toContain("kaltmiete");
     expect(ownQs).toContain("belastung_monatlich");
   });
 
@@ -153,6 +153,25 @@ describe("Förder-Profil — adaptive Engine", () => {
       if (q.fact === "wohnform") facts[q.fact] = "RENT";
     }
     expect(bogenComplete(2, facts)).toBe(true);
+  });
+
+  it("Wohnform-Verzweigung: mietfrei → KEINE Kostenfragen; Miete → Kaltmiete/Nebenkosten/Heizung getrennt", () => {
+    const mietfreiQs = relevantOpenQuestions(2, { wohnform: "MIETFREI" }).map((q) => q.id);
+    expect(mietfreiQs).not.toContain("kaltmiete");
+    expect(mietfreiQs).not.toContain("nebenkosten");
+    expect(mietfreiQs).not.toContain("heizkosten");
+    expect(mietfreiQs).not.toContain("belastung_monatlich");
+
+    const rentQs = relevantOpenQuestions(2, { wohnform: "RENT" }).map((q) => q.id);
+    expect(rentQs).toContain("kaltmiete");
+    expect(rentQs).toContain("nebenkosten");
+    expect(rentQs).toContain("heizkosten");
+    expect(rentQs).not.toContain("belastung_monatlich");
+    expect(rentQs).toContain("wohnkosten_druecken");
+
+    const ownQs = relevantOpenQuestions(2, { wohnform: "OWN" }).map((q) => q.id);
+    expect(ownQs).toContain("belastung_monatlich");
+    expect(ownQs).not.toContain("kaltmiete");
   });
 
   it("jede Frage gehört zu einem Bogen 1-3 und hat validen Aufbau", () => {
