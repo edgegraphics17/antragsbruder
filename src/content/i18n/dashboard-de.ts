@@ -758,7 +758,7 @@ const deDashboard = {
       "q3work": "Könntest du gesundheitlich grundsätzlich mindestens 3 Stunden am Tag arbeiten?",
       "q3followup": "Lebt eine Person mit dir zusammen, die grundsätzlich mindestens 3 Stunden täglich arbeiten könnte (z. B. Partner/in oder Elternteil)?",
       "q4Title": "4. Haushalt",
-      "q4household": "Wer lebt normalerweise mit dir zusammen?",
+      "q4household": "Wer lebt mit dir zusammen?",
       "hhAlone": "Ich wohne allein",
       "hhPartner": "Partner/in",
       "hhChildren": "Kind/er",

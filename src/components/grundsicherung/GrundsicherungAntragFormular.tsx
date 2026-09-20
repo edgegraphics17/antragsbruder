@@ -215,7 +215,15 @@ export function GrundsicherungAntragFormular({
                   key={f.key}
                   field={f}
                   value={data[f.key]}
-                  onChange={(v) => set({ [f.key]: v } as Partial<GsAntragData>)}
+                  onChange={(v) => {
+                    const patchData = { [f.key]: v } as Partial<GsAntragData>;
+                    // Auto-Fill: Geburtsland übernimmt sich in die Staatsangehörigkeit,
+                    // solange dort nichts eingetragen ist.
+                    if (f.key === 'birthCountry' && typeof v === 'string' && v.trim() && isBlank(data.nationality)) {
+                      patchData.nationality = v.trim();
+                    }
+                    set(patchData);
+                  }}
                   error={showErrors && f.required && isBlank(data[f.key])}
                 />
               ))}

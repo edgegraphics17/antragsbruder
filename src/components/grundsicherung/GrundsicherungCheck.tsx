@@ -95,8 +95,8 @@ export function GrundsicherungCheckQuestionnaire({
         <TriField
           label={t.q2residence}
           value={state.residenceCenterOfLife}
-          labels={{ yes: 'Ja', no: 'Nein', unknown: 'Unsicher' }}
-          onChange={(v) => patch({ residenceCenterOfLife: v })}
+          labels={{ yes: 'Ja', no: 'Nein' }}
+          onChange={(v) => patch({ residenceCenterOfLife: v === 'UNKNOWN' ? undefined : v })}
         />
       </section>
 
@@ -218,8 +218,15 @@ export function GrundsicherungCheckQuestionnaire({
           <CheckRow
             label={t.hhOthers}
             checked={household.others}
-            onChange={(v) => patch({ household: { ...household, others: v } })}
+            onChange={(v) => patch({ household: { ...household, others: v }, othersCount: v ? (state.othersCount ?? 1) : undefined })}
           />
+          {household.others && (
+            <NumberField
+              label="Anzahl der Personen"
+              value={state.othersCount}
+              onChange={(v) => patch({ othersCount: v })}
+            />
+          )}
         </div>
       </section>
 
@@ -554,15 +561,16 @@ function TriField({
   onChange,
 }: {
   label: string;
-  value: TriState;
-  labels: { yes: string; no: string; unknown: string };
+  value: TriState | undefined;
+  labels: { yes: string; no: string; unknown?: string };
   onChange: (v: TriState) => void;
 }) {
+  const values: TriState[] = labels.unknown ? ['YES', 'NO', 'UNKNOWN'] : ['YES', 'NO'];
   return (
     <div>
       <span className={labelCls}>{label}</span>
       <div className="grid grid-cols-3 gap-2">
-        {(['YES', 'NO', 'UNKNOWN'] as TriState[]).map((v) => (
+        {values.map((v) => (
           <button
             key={v}
             type="button"

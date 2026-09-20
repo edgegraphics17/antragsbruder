@@ -47,7 +47,7 @@ export interface GsCheckState {
   /** 1. Geburtsdatum (ISO YYYY-MM-DD) — Engine beurteilt die Altersgrenze selbst */
   dateOfBirth?: string;
   /** 2. Lebensmittelpunkt in Deutschland? */
-  residenceCenterOfLife: TriState;
+  residenceCenterOfLife?: TriState;
   /** 3. Mindestens 3 h täglich arbeitsfähig? */
   workCapacityOver3h: TriState;
   /** Follow-up bei workCapacity = NO: lebt eine erwerbsfähige Person im Haushalt? */
@@ -62,6 +62,8 @@ export interface GsCheckState {
   };
   partnerAge?: number;
   childAges: number[];
+  /** Anzahl der sonstigen Personen im Haushalt (nur wenn household.others) */
+  othersCount?: number;
   /** 5. Geld zum Leben (grobe Monatsbeträge) */
   income: GsCheckIncome;
   housing: {

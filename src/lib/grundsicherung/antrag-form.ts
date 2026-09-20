@@ -108,11 +108,10 @@ export interface GsAntragData {
   hasGuardian?: boolean; // 22
   guardianNote?: string; // 22
 
-  // ===== B. Nationalität / Aufenthalt (Felder 23–28) =====
+  // ===== B. Nationalität / Aufenthalt (Felder 23–25, 27–28) =====
   hasResidenceTitle?: boolean; // 23
   receivesAsylbLG?: boolean; // 24
   asylblgUntil?: string; // 25
-  azrNumber?: string; // 26
   verpflichtungserklaerung?: boolean; // 27
   originCountryId?: string; // 28
 
@@ -172,7 +171,6 @@ export interface GsAntragData {
 
   // ===== Jobcenter / Konto =====
   jobcenterCity?: string;
-  bankName?: string;
   email?: string;
 
   // ===== I. Erklärung (Felder 82–84) =====
@@ -322,7 +320,6 @@ export const GS_ANTRAG_SECTIONS: GsSectionDef[] = [
         type: 'text',
         showIf: (d) => d.hasGuardian === true,
       },
-      { key: 'bankName', label: 'Bank (optional)', type: 'text' },
     ],
   },
 
@@ -354,13 +351,6 @@ export const GS_ANTRAG_SECTIONS: GsSectionDef[] = [
         label: 'Bis wann erhältst du Asylbewerberleistungen?',
         type: 'date',
         showIf: (d) => d.receivesAsylbLG === true,
-      },
-      {
-        formField: '26',
-        key: 'azrNumber',
-        label: 'Ausländerzentralregistriernummer (falls vorhanden)',
-        type: 'text',
-        showIf: isNonGerman,
       },
       {
         formField: '27',
