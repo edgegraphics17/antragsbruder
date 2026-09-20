@@ -40,6 +40,8 @@ export interface GsSectionDef {
   description?: string;
   /** Abschnitt gehört zu einem wiederholbaren Datensatz */
   repeater?: 'children' | 'pastEmployers' | 'replacementBenefits' | 'pastBenefits';
+  /** Abschnitt nur anzeigen/validieren, wenn die Bedingung greift */
+  showIf?: (data: Record<string, unknown>) => boolean;
   fields: GsFieldDef[];
 }
 
