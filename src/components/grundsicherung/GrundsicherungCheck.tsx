@@ -21,11 +21,18 @@ import {
 import type { GsFormStateFacts } from '@/engine/benefit-engines/grundsicherung/facts';
 import { getDashboardDict } from '@/content/i18n/dashboard';
 import { useLocaleFromPath } from '@/i18n/use-locale';
+import { ButtonAction } from '@/components/ui/Button';
 
-const sectionCls = 'space-y-4 rounded-2xl border border-line-soft bg-white p-5';
-const labelCls = 'mb-1 block text-sm font-medium text-ink';
+// Design-Sprache des Wohngeld-Flows (Referenz-UI): Karten in bg-paper,
+// Labels in ink-soft, Felder mit Fokus-Ring, Auswahl-Pillen aktiv gefüllt.
+const sectionCls = 'space-y-4 rounded-2xl border border-line-soft bg-paper p-5';
+const labelCls = 'mb-1 block text-sm text-ink-soft';
 const inputCls =
-  'w-full rounded-lg border border-line-soft bg-white px-3 py-2 text-sm text-ink focus:border-brand-700 focus:outline-none';
+  'mt-1 w-full rounded-lg border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100';
+const pillOn = 'border-brand-600 bg-brand-600 text-white';
+const pillOff = 'border-line-soft bg-white text-ink hover:border-brand-400';
+const pill = (active: boolean, size = 'px-3 py-2.5') =>
+  `rounded-xl border text-sm font-semibold transition-colors ${size} ${active ? pillOn : pillOff}`;
 
 export const emptyCheck: GsCheckState = {
   residenceCenterOfLife: 'UNKNOWN',
@@ -69,9 +76,9 @@ export function GrundsicherungCheckQuestionnaire({
   const { household, income, housing, special } = state;
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
+    <div className="space-y-6">
       <header>
-        <h1 className="text-2xl font-bold text-ink">{t.title}</h1>
+        <h2 className="text-lg font-semibold text-ink">{t.title}</h2>
         <p className="mt-1 text-sm text-ink-soft">{t.intro}</p>
       </header>
 
@@ -214,7 +221,7 @@ export function GrundsicherungCheckQuestionnaire({
             <button
               type="button"
               onClick={() => patch({ childAges: [...state.childAges, 0] })}
-              className="rounded-lg bg-cream px-3 py-2 text-sm font-semibold text-ink hover:bg-cream/70"
+              className="rounded-xl border border-line-soft bg-white px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-brand-400"
             >
               {t.addChild}
             </button>
@@ -320,11 +327,7 @@ export function GrundsicherungCheckQuestionnaire({
               key={key}
               type="button"
               onClick={() => patch({ housing: { ...housing, type: key } })}
-              className={`rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
-                (housing.type ?? 'RENT') === key
-                  ? 'border-brand-700 bg-brand-50 font-semibold text-brand-800'
-                  : 'border-line-soft bg-white text-ink hover:bg-cream'
-              }`}
+              className={pill((housing.type ?? 'RENT') === key)}
             >
               {label}
             </button>
@@ -514,11 +517,7 @@ export function GrundsicherungCheckQuestionnaire({
                     key={key}
                     type="button"
                     onClick={() => patch({ assetsKind: key })}
-                    className={`rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
-                      state.assetsKind === key
-                        ? 'border-brand-700 bg-brand-50 font-semibold text-brand-800'
-                        : 'border-line-soft bg-white text-ink hover:bg-cream'
-                    }`}
+                    className={pill(state.assetsKind === key)}
                   >
                     {label}
                   </button>
@@ -599,11 +598,7 @@ export function GrundsicherungCheckQuestionnaire({
                     key={key}
                     type="button"
                     onClick={() => patch({ singleParentCare: key })}
-                    className={`rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
-                      state.singleParentCare === key
-                        ? 'border-brand-700 bg-brand-50 font-semibold text-brand-800'
-                        : 'border-line-soft bg-white text-ink hover:bg-cream'
-                    }`}
+                    className={pill(state.singleParentCare === key)}
                   >
                     {label}
                   </button>
@@ -641,14 +636,9 @@ export function GrundsicherungCheckQuestionnaire({
 
       {error && <p className="text-sm font-medium text-red-600">{error}</p>}
 
-      <button
-        type="button"
-        disabled={submitting}
-        onClick={onSubmit}
-        className="w-full rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white transition-colors hover:bg-brand-700 disabled:opacity-50"
-      >
+      <ButtonAction className="w-full" disabled={submitting} onClick={onSubmit}>
         {submitting ? t.calculating : t.submit}
-      </button>
+      </ButtonAction>
     </div>
   );
 }
@@ -692,9 +682,9 @@ export function GrundsicherungCheckResultView({
         : t.resultNotText;
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
+    <div className="space-y-6">
       <header>
-        <h1 className="text-2xl font-bold text-ink">{t.title}</h1>
+        <h2 className="text-lg font-semibold text-ink">{t.title}</h2>
       </header>
 
       <section className={`rounded-2xl border p-6 ${style}`}>
@@ -745,13 +735,9 @@ export function GrundsicherungCheckResultView({
       </section>
 
       {result.outcome !== 'NOT_APPLICABLE' && onContinue && (
-        <button
-          type="button"
-          onClick={onContinue}
-          className="w-full rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700"
-        >
+        <ButtonAction className="w-full" onClick={onContinue}>
           {continueLabel ?? t.continueToApplication}
-        </button>
+        </ButtonAction>
       )}
 
       <button
@@ -885,11 +871,7 @@ function TriField({
             key={v}
             type="button"
             onClick={() => onChange(v)}
-            className={`rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
-              value === v
-                ? 'border-brand-700 bg-brand-50 font-semibold text-brand-800'
-                : 'border-line-soft bg-white text-ink hover:bg-cream'
-            }`}
+            className={pill(value === v)}
           >
             {labels[v === 'YES' ? 'yes' : v === 'NO' ? 'no' : 'unknown']}
           </button>
@@ -933,15 +915,10 @@ function YesNoRow({
   /** Dritte Option „Unsicher" (z. B. Antrag-Status im Fälligkeitsmonat) */
   tri?: boolean;
 }) {
-  const btn = (active: boolean) =>
-    `rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
-      active
-        ? 'border-brand-700 bg-brand-50 font-semibold text-brand-800'
-        : 'border-line-soft bg-white text-ink hover:bg-cream'
-    }`;
+  const btn = (active: boolean) => pill(active);
   return (
     <div
-      className="flex items-center justify-between gap-3 rounded-xl border border-line-soft bg-white px-3 py-2"
+      className="flex items-center justify-between gap-3 rounded-xl border border-line-soft bg-paper px-3 py-2"
       role="group"
       aria-label={label}
     >

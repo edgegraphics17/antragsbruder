@@ -30,6 +30,7 @@ import { checkToFormStatePrefill } from '@/components/grundsicherung/Grundsicher
 import { GrundsicherungCheck } from '@/components/grundsicherung/GrundsicherungCheck';
 import { GrundsicherungAntragFormular } from '@/components/grundsicherung/GrundsicherungAntragFormular';
 import { GsUnterlagenUpload } from '@/components/grundsicherung/GsUnterlagenUpload';
+import { Button, ButtonAction } from '@/components/ui/Button';
 import type { GsUploadedDoc } from '@/lib/grundsicherung/store';
 import { getDashboardDict } from '@/content/i18n/dashboard';
 import { useLocaleFromPath } from '@/i18n/use-locale';
@@ -336,10 +337,12 @@ export function GrundsicherungFlow({
   const showTabs = !(store.stage === 'einreichen' && store.submitted);
 
   // Tab-Leiste über jeder Stage (versteckt auf der Bestätigungs-Seite).
+  // Design + Reihenfolge identisch zum Wohngeld-Flow (Referenz-UI): gleiche
+  // Pillen-Tabs, ✓-Zustand grün, freies Hin- und Herspringen.
   const withTabs = (node: React.ReactNode) => (
-    <>
+    <div className="space-y-6">
       {showTabs && (
-        <div className="mx-auto flex max-w-2xl gap-2 px-4 pt-6">
+        <div className="flex flex-wrap gap-2">
           {stageTabs.map((t) => (
             <button
               key={t.stage}
@@ -348,7 +351,7 @@ export function GrundsicherungFlow({
                 useGsStore.getState().setStage(t.stage);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className={`flex-1 rounded-xl border px-3 py-3 text-xs font-semibold transition-colors sm:text-sm ${
+              className={`min-w-[7.5rem] flex-1 rounded-xl border px-3 py-3 text-sm font-semibold transition-colors sm:px-4 ${
                 store.stage === t.stage
                   ? 'border-brand-600 bg-brand-600 text-white'
                   : t.done
@@ -363,7 +366,7 @@ export function GrundsicherungFlow({
         </div>
       )}
       {node}
-    </>
+    </div>
   );
 
   const submit = useCallback(async () => {
@@ -436,8 +439,8 @@ export function GrundsicherungFlow({
     // Reload mit stage=ergebnis: gespeicherten Snapshot zeigen (keine
     // stille Neuberechnung — der Nutzer sieht den letzten Stand).
     return withTabs(
-      <div className="mx-auto max-w-2xl space-y-6">
-        <h1 className="text-2xl font-bold text-ink">{dict.ergebnis.title}</h1>
+      <div className="space-y-6">
+        <h2 className="text-lg font-semibold text-ink">{dict.ergebnis.title}</h2>
         {store.result ? (
           <section className="rounded-2xl bg-brand-950 p-6 text-white">
             <p className="text-sm text-white/60">{dict.ergebnis.amountLabel}</p>
@@ -453,13 +456,9 @@ export function GrundsicherungFlow({
         ) : (
           <p className="text-sm text-ink-soft">{dict.angaben.intro}</p>
         )}
-        <button
-          type="button"
-          onClick={() => store.setStage('check')}
-          className="rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700"
-        >
+        <ButtonAction variant="secondary" onClick={() => store.setStage('check')}>
           {t.back}
-        </button>
+        </ButtonAction>
       </div>
     );
   }
@@ -467,10 +466,8 @@ export function GrundsicherungFlow({
   if (store.stage === 'ergebnis' && fullResult) {
     const r = fullResult;
     return withTabs(
-      <div className="mx-auto max-w-2xl space-y-6">
-        <header>
-          <h1 className="text-2xl font-bold text-ink">{dict.ergebnis.title}</h1>
-        </header>
+      <div className="space-y-6">
+        <h2 className="text-lg font-semibold text-ink">{dict.ergebnis.title}</h2>
 
         <section className="rounded-2xl bg-brand-950 p-6 text-white">
           <p className="text-sm text-white/60">{dict.ergebnis.amountLabel}</p>
@@ -492,7 +489,7 @@ export function GrundsicherungFlow({
         </section>
 
         {r.actions.length > 0 && (
-          <section className="rounded-2xl border border-line-soft bg-white p-5">
+          <section className="rounded-2xl border border-line-soft bg-paper p-5">
             <h2 className="mb-3 font-semibold text-ink">{dict.ergebnis.actionsLabel}</h2>
             <ol className="space-y-3">
               {r.actions.map((a, i) => (
@@ -511,7 +508,7 @@ export function GrundsicherungFlow({
         )}
 
         {r.openIssues.length > 0 && (
-          <section className="rounded-2xl border border-line-soft bg-white p-5">
+          <section className="rounded-2xl border border-line-soft bg-paper p-5">
             <h2 className="mb-2 font-semibold text-ink">{dict.ergebnis.openIssuesLabel}</h2>
             <ul className="list-disc space-y-1 pl-5 text-sm text-ink-soft">
               {r.openIssues.map((issue) => (
@@ -521,7 +518,7 @@ export function GrundsicherungFlow({
           </section>
         )}
 
-        <section className="rounded-2xl border border-line-soft bg-white p-5">
+        <section className="rounded-2xl border border-line-soft bg-paper p-5">
           <h2 className="mb-3 font-semibold text-ink">{dict.ergebnis.breakdownLabel}</h2>
           <dl className="space-y-2 text-sm">
             {r.persons.map((p) => (
@@ -563,16 +560,9 @@ export function GrundsicherungFlow({
           <p className="mt-3 text-xs text-ink-soft">{dict.ergebnis.disclaimer}</p>
         </section>
 
-        <div className="flex gap-3">
-          <button
-            type="button"
-            onClick={() => store.setStage('check')}
-            className="rounded-xl bg-cream px-4 py-3 font-semibold text-ink hover:bg-cream/70"
-          >
-            {t.back}
-          </button>
-          <button
-            type="button"
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <ButtonAction
+            className="flex-1"
             onClick={() => {
               // Kinder aus dem Schnell-Check ins Antragsformular vorbefüllen
               const qc = (form.children ?? []) as { age: number; incomeNet?: number; kindergeld?: boolean }[];
@@ -586,10 +576,12 @@ export function GrundsicherungFlow({
               if (next.length > 0) useGsStore.getState().setAntrag({ children: next });
               store.setStage('formular');
             }}
-            className="flex-1 rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700"
           >
             {dict.ergebnis.continue}
-          </button>
+          </ButtonAction>
+          <ButtonAction variant="secondary" onClick={() => store.setStage('check')}>
+            {t.back}
+          </ButtonAction>
         </div>
       </div>
     );
@@ -599,7 +591,6 @@ export function GrundsicherungFlow({
   if (store.stage === 'formular') {
     return withTabs(
       <GrundsicherungAntragFormular
-        onBack={() => store.setStage('ergebnis')}
         onContinue={() => {
           if (user && useGsStore.getState().caseId) {
             void useGsStore.getState().saveToCloud(user.id, useGsStore.getState().caseId!);
@@ -614,13 +605,13 @@ export function GrundsicherungFlow({
   if (store.stage === 'unterlagen') {
     const submitting = calculating;
     return withTabs(
-      <div className="mx-auto max-w-2xl space-y-6">
+      <div className="space-y-6">
         <header>
-          <h1 className="text-2xl font-bold text-ink">{dict.unterlagen.title}</h1>
+          <h2 className="text-lg font-semibold text-ink">{dict.unterlagen.title}</h2>
           <p className="mt-1 text-sm text-ink-soft">{dict.unterlagen.intro}</p>
         </header>
 
-        <section className="rounded-2xl border border-line-soft bg-white p-5">
+        <section className="rounded-2xl border border-line-soft bg-paper p-5">
           <h2 className="mb-3 font-semibold text-ink">
             Erforderliche Anlagen & Nachweise ({anlagenListe.length})
           </h2>
@@ -653,26 +644,21 @@ export function GrundsicherungFlow({
 
         {error && <p className="text-sm font-medium text-red-600">{error}</p>}
 
-        <div className="flex gap-3">
-          <button
-            type="button"
-            onClick={() => store.setStage('formular')}
-            className="rounded-xl bg-cream px-4 py-3 font-semibold text-ink hover:bg-cream/70"
-          >
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <ButtonAction variant="secondary" onClick={() => store.setStage('formular')}>
             {t.back}
-          </button>
-          <button
-            type="button"
+          </ButtonAction>
+          <ButtonAction
+            className="flex-1"
             disabled={docsUploading || submitting || docsUnvollstaendig}
             onClick={() => void submit()}
-            className="flex-1 rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700 disabled:opacity-50"
           >
             {docsUploading || submitting
               ? 'Wird eingereicht …'
               : docsUnvollstaendig
                 ? `Dokumente fehlen (${fehlendeAnlagen.length})`
                 : dict.einreichen.submit}
-          </button>
+          </ButtonAction>
         </div>
       </div>
     );
@@ -681,27 +667,24 @@ export function GrundsicherungFlow({
   // --- Stage: EINREICHEN ---
   const submitted = store.submitted;
   return withTabs(
-    <div className="mx-auto max-w-2xl space-y-6">
+    <div className="space-y-6">
       {submitted ? (
         <>
           <header>
-            <h1 className="text-2xl font-bold text-ink">{dict.einreichen.submittedTitle}</h1>
+            <h2 className="text-lg font-semibold text-ink">{dict.einreichen.submittedTitle}</h2>
             <p className="mt-2 text-sm text-ink-soft">{dict.einreichen.submittedText}</p>
           </header>
-          <a
-            href={localeHref(locale, '/antraege')}
-            className="inline-block rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700"
-          >
+          <Button href={localeHref(locale, '/antraege')}>
             {dict.einreichen.toApplications}
-          </a>
+          </Button>
         </>
       ) : (
         <>
           <header>
-            <h1 className="text-2xl font-bold text-ink">{dict.einreichen.title}</h1>
+            <h2 className="text-lg font-semibold text-ink">{dict.einreichen.title}</h2>
           </header>
 
-          <section className="rounded-2xl border border-line-soft bg-white p-5">
+          <section className="rounded-2xl border border-line-soft bg-paper p-5">
             <h2 className="mb-2 font-semibold text-ink">{dict.einreichen.infoTitle}</h2>
             <p className="text-sm text-ink-soft">{dict.einreichen.infoText}</p>
           </section>
@@ -733,106 +716,22 @@ export function GrundsicherungFlow({
             </section>
           )}
 
-          <div className="flex gap-3">
-            <button
-              type="button"
-              onClick={() => store.setStage('unterlagen')}
-              className="rounded-xl bg-cream px-4 py-3 font-semibold text-ink hover:bg-cream/70"
-            >
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <ButtonAction variant="secondary" onClick={() => store.setStage('unterlagen')}>
               {t.back}
-            </button>
-            <button
-              type="button"
+            </ButtonAction>
+            <ButtonAction
+              className="flex-1"
               disabled={docsUnvollstaendig}
               onClick={() => void submit()}
-              className="flex-1 rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700 disabled:opacity-50"
             >
               {docsUnvollstaendig
                 ? `Dokumente fehlen (${fehlendeAnlagen.length})`
                 : dict.einreichen.submit}
-            </button>
+            </ButtonAction>
           </div>
         </>
       )}
     </div>
-  );
-}
-
-// --- kleine Formular-Bausteine ---
-
-function NumberField({
-  label,
-  value,
-  onChange,
-}: {
-  label: string;
-  value?: number;
-  onChange: (v: number | undefined) => void;
-}) {
-  return (
-    <label className="block">
-      <span className="mb-1 block text-sm font-medium text-ink">{label}</span>
-      <input
-        type="number"
-        min={0}
-        value={value ?? ''}
-        onChange={(e) => onChange(e.target.value === '' ? undefined : Number(e.target.value))}
-        className="w-full rounded-lg border border-line-soft bg-white px-3 py-2 text-sm text-ink focus:border-brand-700 focus:outline-none"
-      />
-    </label>
-  );
-}
-
-function CheckField({
-  label,
-  value,
-  onChange,
-}: {
-  label: string;
-  value?: boolean;
-  onChange: (v: boolean) => void;
-}) {
-  return (
-    <label className="flex items-center gap-3">
-      <input
-        type="checkbox"
-        checked={value ?? false}
-        onChange={(e) => onChange(e.target.checked)}
-        className="h-4 w-4 rounded border-line-soft text-brand-600 focus:ring-brand-600"
-      />
-      <span className="text-sm text-ink">{label}</span>
-    </label>
-  );
-}
-
-function SelectField({
-  label,
-  value,
-  onChange,
-  options,
-}: {
-  label: string;
-  value?: string;
-  onChange: (v: string) => void;
-  options: { value: string; label: string }[];
-}) {
-  return (
-    <label className="block">
-      <span className="mb-1 block text-sm font-medium text-ink">{label}</span>
-      <select
-        value={value ?? ''}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-lg border border-line-soft bg-white px-3 py-2 text-sm text-ink focus:border-brand-700 focus:outline-none"
-      >
-        <option value="" disabled>
-          —
-        </option>
-        {options.map((o) => (
-          <option key={o.value} value={o.value}>
-            {o.label}
-          </option>
-        ))}
-      </select>
-    </label>
   );
 }
