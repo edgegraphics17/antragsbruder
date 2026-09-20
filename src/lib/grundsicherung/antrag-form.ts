@@ -590,16 +590,11 @@ export const GS_ANTRAG_SECTIONS: GsSectionDef[] = [
     repeater: 'pastBenefits',
     fields: [
       { formField: '52', key: 'type', label: 'Art der Leistung', type: 'select', required: true, options: [
-        { value: 'BUERGERGELD', label: 'Bürgergeld / Grundsicherung' },
         { value: 'SOZIALHILFE', label: 'Sozialhilfe (SGB XII)' },
       ] },
-      { formField: '53', key: 'from', label: 'Bezug von', type: 'date', required: true },
-      { formField: '53', key: 'to', label: 'Bezug bis', type: 'date', required: true },
+      { formField: '53', key: 'from', label: 'Bezug von', type: 'date' },
+      { formField: '53', key: 'to', label: 'Bezug bis', type: 'date' },
       { formField: '54', key: 'authorityName', label: 'Name des Leistungsträgers', type: 'text', required: true },
-      { formField: '55', key: 'authorityStreet', label: 'Straße', type: 'text' },
-      { formField: '56', key: 'authorityHouseNumber', label: 'Hausnummer', type: 'text' },
-      { formField: '57', key: 'authorityPostcode', label: 'Postleitzahl', type: 'text' },
-      { formField: '58', key: 'authorityCity', label: 'Ort', type: 'text' },
     ],
   },
   {
