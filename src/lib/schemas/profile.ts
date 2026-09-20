@@ -119,4 +119,6 @@ export interface UserProfile {
   preferredLocale: Locale | null;
   onboardingCompleted: boolean;
   onboardingDismissed: boolean;
+  /** Snapshot wiederverwendbarer Antragsfelder (DB-Spalte: antrag_data jsonb). */
+  antragData: Record<string, unknown> | null;
 }

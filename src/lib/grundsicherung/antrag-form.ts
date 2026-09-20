@@ -857,3 +857,108 @@ export const EMPTY_ANTRAG: Partial<GsAntragData> = {
   replacementBenefits: [],
   pastBenefits: [],
 };
+// ============================================================
+// PROFIL-VERKNÜPFUNG — Vorbefüllen & Zurückschreiben
+// Stammdaten (Name, Adresse, Kontakt) leben in profiles-Spalten,
+// alles Weitere (Geburtsort/-land, Nationalität, Geschlecht,
+// Kontodaten, RV-/Steuer-ID) im Snapshot profiles.antrag_data.
+// ============================================================
+
+import type { UserProfile } from '@/lib/schemas/profile';
+
+/** Antragsfelder, die im Profil-Snapshot (antrag_data) geparkt werden. */
+const ANTRAG_DATA_KEYS = [
+  'birthName',
+  'birthPlace',
+  'birthCountry',
+  'nationality',
+  'gender',
+  'accountHolder',
+  'iban',
+  'rvNumberStatus',
+  'rvNumber',
+  'taxId',
+  'postbox',
+] as const;
+
+function firstNonBlank(...values: unknown[]): string | undefined {
+  for (const v of values) {
+    if (typeof v === 'string' && v.trim() !== '') return v.trim();
+  }
+  return undefined;
+}
+
+/**
+ * Befüllt NUR leere Antragsfelder aus dem Profil vor — vom Nutzer
+ * eingegebene Angaben gewinnen immer (Stufe-3-Prefill, Playbook).
+ */
+export function applyProfilePrefill(
+  antrag: Partial<GsAntragData>,
+  profile: UserProfile | null,
+  email?: string | null,
+): Partial<GsAntragData> | null {
+  if (!profile) return null;
+  const snap = (profile.antragData ?? {}) as Record<string, unknown>;
+  const patch: Record<string, unknown> = {};
+  const put = (key: string, ...values: unknown[]) => {
+    const v = firstNonBlank(...values);
+    if (v !== undefined && isBlank((antrag as Record<string, unknown>)[key])) patch[key] = v;
+  };
+
+  put('firstName', profile.firstName);
+  put('lastName', profile.lastName);
+  put('birthDate', profile.birthDate);
+  put('street', profile.street);
+  put('houseNumber', profile.houseNumber);
+  put('postcode', profile.postcode);
+  put('city', profile.city);
+  put('phone', profile.phone);
+  put('email', email ?? profile.email);
+  for (const key of ANTRAG_DATA_KEYS) put(key, snap[key]);
+
+  // Konsistenz: Geburtsland → Staatsangehörigkeit (wie beim manuellen Auto-Fill)
+  if (patch.birthCountry && isBlank(patch.nationality) && isBlank(antrag.nationality)) {
+    patch.nationality = patch.birthCountry;
+  }
+
+  return Object.keys(patch).length > 0 ? (patch as Partial<GsAntragData>) : null;
+}
+
+/**
+ * Extrahiert aus ausgefüllten Antragsdaten die Profil-Updates:
+ * Stammspalten + antrag_data-Snapshot (nur befüllte Felder).
+ */
+export function profileUpdatesFromAntrag(
+  antrag: Partial<GsAntragData>,
+): {
+  firstName?: string;
+  lastName?: string;
+  birthDate?: string;
+  street?: string;
+  houseNumber?: string;
+  postcode?: string;
+  city?: string;
+  phone?: string;
+  antragData: Record<string, unknown>;
+} {
+  const a = antrag as Record<string, unknown>;
+  const snap: Record<string, unknown> = {};
+  for (const key of ANTRAG_DATA_KEYS) {
+    const v = firstNonBlank(a[key]);
+    if (v !== undefined) snap[key] = v;
+  }
+  const out: ReturnType<typeof profileUpdatesFromAntrag> = { antragData: snap };
+  const str = (k: keyof typeof out & string) => {
+    const v = firstNonBlank(a[k]);
+    if (v !== undefined) (out as Record<string, unknown>)[k] = v;
+  };
+  str('firstName');
+  str('lastName');
+  str('birthDate');
+  str('street');
+  str('houseNumber');
+  str('postcode');
+  str('city');
+  str('phone');
+  return out;
+}

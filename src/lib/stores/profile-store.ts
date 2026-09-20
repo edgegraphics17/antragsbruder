@@ -43,6 +43,8 @@ export function mapDbToProfile(data: Record<string, unknown>): UserProfile {
     preferredLocale: (data.preferred_locale as Locale) ?? null,
     onboardingCompleted: Boolean(data.onboarding_completed),
     onboardingDismissed: Boolean(data.onboarding_dismissed),
+    // Snapshot wiederverwendbarer Antragsfelder (GS-Antrag, Abschnitt A/Konto)
+    antragData: (data.antrag_data as Record<string, unknown> | null) ?? null,
   };
 }
 
@@ -102,6 +104,7 @@ export const useProfileStore = create<ProfileStore>((set) => ({
     if (updates.childrenCount !== undefined) dbUpdates.children_count = updates.childrenCount;
     if (updates.employmentStatus !== undefined) dbUpdates.employment_status = updates.employmentStatus;
     if (updates.preferredLocale !== undefined) dbUpdates.preferred_locale = updates.preferredLocale;
+    if (updates.antragData !== undefined) dbUpdates.antrag_data = updates.antragData;
     const { error } = await supabase.from('profiles').update(dbUpdates).eq('id', userId);
     if (error) {
       set({ error: error.message });

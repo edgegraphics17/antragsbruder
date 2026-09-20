@@ -16,6 +16,8 @@ import {
   type GsAntragChildData,
 } from '@/lib/grundsicherung/antrag-form';
 import { caseService } from '@/engine';
+import { useProfileStore } from '@/lib/stores/profile-store';
+import { applyProfilePrefill, profileUpdatesFromAntrag } from '@/lib/grundsicherung/antrag-form';
 import type { GsCalcResult } from '@/engine/benefit-engines/grundsicherung';
 import type { GsFormStateFacts } from '@/engine/benefit-engines/grundsicherung/facts';
 import { checkToFormStatePrefill } from '@/components/grundsicherung/GrundsicherungCheck';
@@ -124,9 +126,53 @@ export function GrundsicherungFlow({
           setError(dict.flow.calcError);
         }
       }
+
+      // Profil-Prefill (Stufe 3): Stammdaten + antrag_data-Snapshot in
+      // LEERE Antragsfelder übernehmen — Nutzer-Eingaben gewinnen immer.
+      try {
+        await useProfileStore.getState().loadProfile(user.id);
+        const profile = useProfileStore.getState().profile;
+        const patch = applyProfilePrefill(useGsStore.getState().antrag, profile, user.email);
+        if (patch) useGsStore.getState().setAntrag(patch);
+      } catch {
+        // Prefill ist optional — Fehler blockieren den Antrag nicht.
+      }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready, user, applicationId]);
+
+  // --- Debounced Cloud-Autosave: jede Formular-Änderung landet nach 1,5 s ---
+  // in applications.form_state — auch ohne „Weiter“-Klick. Lokal schreibt
+  // zustand/persist bereits bei jedem set() in den localStorage.
+  useEffect(() => {
+    if (!ready || !user || !useGsStore.getState().caseId) return;
+    const hasContent =
+      Object.keys(store.antrag ?? {}).length > 0 || Object.keys(store.formState ?? {}).length > 0;
+    if (!hasContent) return;
+    const id = setTimeout(() => {
+      void useGsStore.getState().saveToCloud(user.id, useGsStore.getState().caseId!);
+    }, 1500);
+    return () => clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, user, store.antrag, store.formState]);
+
+  // --- Flush beim Verlassen des Tabs/der Seite (letzte Eingaben sichern) ---
+  useEffect(() => {
+    if (!user) return;
+    const flush = () => {
+      const s = useGsStore.getState();
+      if (s.caseId) void s.saveToCloud(user.id, s.caseId);
+    };
+    const onVisibility = () => {
+      if (document.visibilityState === 'hidden') flush();
+    };
+    window.addEventListener('pagehide', flush);
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => {
+      window.removeEventListener('pagehide', flush);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, [user]);
 
   // --- Engine-Aufruf ---
   const evaluate = useCallback(async () => {
@@ -197,6 +243,14 @@ export function GrundsicherungFlow({
     }
     if (useGsStore.getState().applicationId) {
       void useGsStore.getState().saveToCloud(user.id, caseId!);
+    }
+    // Eingereichte Antragsstammdaten ins Profil zurückschreiben —
+    // der nächste Antrag wird damit automatisch vorbefüllt.
+    try {
+      const updates = profileUpdatesFromAntrag(useGsStore.getState().antrag);
+      await useProfileStore.getState().updateProfile(user.id, updates);
+    } catch {
+      // Profil-Sync ist optional — Einreichen gilt trotzdem als erfolgreich.
     }
   }, [user, t.submitError]);
 
