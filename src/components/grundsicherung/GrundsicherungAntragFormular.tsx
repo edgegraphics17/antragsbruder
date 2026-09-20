@@ -284,12 +284,28 @@ function Field({
         )}
       </span>
       {field.type === 'checkbox' ? (
-        <input
-          type="checkbox"
-          checked={value === true}
-          onChange={(e) => onChange(e.target.checked)}
-          className="h-4 w-4 rounded border-line-soft text-brand-600 focus:ring-brand-600"
-        />
+        <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-label={field.label}>
+          {(
+            [
+              { v: true, label: 'Ja' },
+              { v: false, label: 'Nein' },
+            ] as const
+          ).map((o) => (
+            <button
+              key={o.label}
+              type="button"
+              onClick={() => onChange(o.v)}
+              aria-pressed={value === o.v}
+              className={`rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
+                value === o.v
+                  ? 'border-brand-700 bg-brand-50 font-semibold text-brand-800'
+                  : 'border-line-soft bg-white text-ink hover:bg-cream'
+              }`}
+            >
+              {o.label}
+            </button>
+          ))}
+        </div>
       ) : field.type === 'select' ? (
         <select
           value={(value as string) ?? ''}
