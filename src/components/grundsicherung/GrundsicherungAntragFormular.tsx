@@ -125,20 +125,29 @@ export function GrundsicherungAntragFormular({
           className="rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900"
         >
           <p className="font-semibold">
-            Es fehlen noch Angaben in {missingSections.length}{' '}
-            {missingSections.length === 1 ? 'Abschnitt' : 'Abschnitten'}:
+            {missingSections.length === 1
+              ? 'Ein Abschnitt ist noch unvollständig:'
+              : `Es fehlen noch Angaben in ${missingSections.length} Abschnitten:`}
           </p>
-          <ul className="mt-1 list-disc pl-5">
+          <ul className="mt-2 space-y-2">
             {missingSections.map((id) => {
               const section = GS_ANTRAG_SECTIONS.find((s) => s.id === id);
+              const items = missing[id] ?? [];
               return (
                 <li key={id}>
-                  {section?.title ?? id}: {(missing[id] ?? []).slice(0, 4).join(' · ')}
-                  {(missing[id] ?? []).length > 4 ? ' …' : ''}
+                  <span className="font-semibold">{section?.title ?? id}</span>
+                  <span className="text-amber-800"> — {items.length === 1 ? 'diese Angabe fehlt' : 'diese Angaben fehlen'}:</span>{' '}
+                  {items.slice(0, 4).join(', ')}
+                  {items.length > 4 ? ' …' : ''}
                 </li>
               );
             })}
           </ul>
+          <p className="mt-3 text-xs text-amber-800">
+            Diese Angaben braucht das Jobcenter für deinen Antrag. Fahre einfach im Formular
+            weiter — die gelb markierten Felder findest du direkt im passenden Abschnitt, und
+            du kannst erst einreichen, wenn sie ausgefüllt sind.
+          </p>
         </div>
       )}
 
