@@ -58,8 +58,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     const localePrefix = "/:locale(en|ar|tr|ru|uk|pl|bg|ro)";
     return routeRedirects.flatMap(([from, to]) => [
-      { source: from, destination: to, permanent: true },
-      { source: `${localePrefix}${from}`, destination: `${localePrefix}${to}`, permanent: true },
+      // 301 statt Next-Default 308: Launch-QA (STEP 9A) fordert exakt 301 für
+      // Legacy-Landingpages (GET).statusCode 301 schließt `permanent` aus
+      // (Union-Typ in Next 16) — 301 ist damit per Definition permanent.
+      { source: from, destination: to, statusCode: 301 },
+      { source: `${localePrefix}${from}`, destination: `${localePrefix}${to}`, statusCode: 301 },
     ]);
   },
   async headers() {
