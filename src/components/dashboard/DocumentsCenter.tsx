@@ -26,6 +26,9 @@ import {
 } from '@/components/ui/icons';
 import { ButtonAction } from '@/components/ui/Button';
 import { IdentityVault } from './profile/IdentityVault';
+import { GsUnterlagenUpload } from '@/components/grundsicherung/GsUnterlagenUpload';
+import { useGsStore, type GsUploadedDoc } from '@/lib/grundsicherung/store';
+import { requiredAnlagen } from '@/lib/grundsicherung/antrag-form';
 import { localeHref } from '@/i18n/config';
 import { useLocaleFromPath } from '@/i18n/use-locale';
 import { getDashboardDict } from '@/content/i18n/dashboard';
@@ -272,6 +275,9 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
         />
       </div>
 
+      {/* ── Laufender Antrag: Anlagen-Upload (gleiche Tool wie im Flow) ── */}
+      <GsAntragSection />
+
       {/* ── Dokumenten-Liste ────────────────────────────────── */}
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center justify-center rounded-3xl border border-line-soft bg-paper p-12 text-center">
@@ -441,6 +447,93 @@ export function DocumentsCenter({ userId }: DocumentsCenterProps) {
 // ============================================================
 // DocThumb: Vorschaubild für Bilder (signierte URL), sonst Icon.
 // ============================================================
+
+// ============================================================
+// GsAntragSection: Laufender Grundsicherungs-Antrag im Tresor.
+// Aufklappen → Unterkategorien (Pflicht-Anlagen des Antrags)
+// mit demselben Upload-Tool wie in der Antragsstellung
+// (Drag & Drop / Dateiauswahl, Vorschau, Entfernen).
+// ============================================================
+
+function GsAntragSection() {
+  const store = useGsStore();
+  const [open, setOpen] = useState(false);
+  const [docsUploading, setDocsUploading] = useState(false);
+
+  // Draft einmalig aus dem localStorage holen (skipHydration-Store)
+  useEffect(() => {
+    void useGsStore.persist.rehydrate();
+  }, []);
+
+  const inProgress =
+    !!store.caseId && !store.submitted && store.stage !== 'check' && !!store.applicationId;
+
+  const anlagenListe = useMemo(
+    () =>
+      inProgress
+        ? requiredAnlagen(
+            store.antrag,
+            ((store.formState.children ?? []) as { age?: number }[])
+              .map((c) => c.age)
+              .filter((a): a is number => typeof a === 'number'),
+          )
+        : [],
+    [
+      inProgress,
+      store.antrag,
+      store.formState.children,
+    ],
+  );
+
+  const docs = store.anlagenDocs as GsUploadedDoc[];
+  const hochgeladen = anlagenListe.filter((a) => docs.some((d) => d.anlage === a)).length;
+  const fehlen = anlagenListe.length - hochgeladen;
+
+  if (!inProgress) return null;
+
+  return (
+    <div className="rounded-2xl border border-brand-300 bg-brand-50/40">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left"
+        aria-expanded={open}
+      >
+        <div>
+          <p className="text-sm font-semibold text-ink">
+            Laufender Antrag: Grundsicherung
+          </p>
+          <p className="mt-0.5 text-xs text-ink-soft">
+            {fehlen > 0
+              ? `${fehlen} von ${anlagenListe.length} Anlagen/Nachweisen fehlen noch`
+              : 'Alle erforderlichen Anlagen hochgeladen'}
+          </p>
+        </div>
+        <span className="shrink-0 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold text-white">
+          {open ? 'Einklappen' : `Anlagen (${anlagenListe.length})`}
+        </span>
+      </button>
+
+      {open && (
+        <div className="border-t border-brand-200 px-5 pb-5 pt-4">
+          <GsUnterlagenUpload
+            caseId={store.caseId}
+            anlagen={anlagenListe}
+            docs={docs}
+            onAdd={(newDocs) => useGsStore.getState().addAnlagenDocs(newDocs)}
+            onRemove={(doc) => useGsStore.getState().removeAnlagenDoc(doc.storagePath)}
+            onUploadingChange={setDocsUploading}
+          />
+          {docsUploading && (
+            <p className="mt-3 text-xs font-medium text-brand-700">
+              Wird hochgeladen …
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function DocThumb({ doc }: { doc: DocumentEntry }) {
   const isImage = isImageDoc(doc);
