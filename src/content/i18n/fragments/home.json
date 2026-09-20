@@ -86,7 +86,9 @@
     "noExcluded": "Aktuell ist keine Leistung eindeutig ausgeschlossen.",
     "excludedInfo": "{{count}} Leistungen sind laut Profil objektiv nicht zutreffend (z. B. nur für Studierende oder Rentner). Diese blenden wir aus.",
     "noQualified": "Noch nichts eindeutig Qualifiziertes — fülle dein Förder-Profil aus, um passende Leistungen zu sehen.",
-    "noPotential": "Keine offenen Potenziale — ergänze weitere Angaben in deinem Profil, um mehr freizuschalten."
+    "noPotential": "Keine offenen Potenziale — ergänze weitere Angaben in deinem Profil, um mehr freizuschalten.",
+    "resultCountFiltered": "{{count}} passende Leistungen mit Filter",
+    "resultCountAll": "{{count}} passende Leistungen"
   },
   "antraege": {
     "statusLabel": "Status",

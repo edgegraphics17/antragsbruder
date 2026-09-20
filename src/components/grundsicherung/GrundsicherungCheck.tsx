@@ -33,7 +33,7 @@ export const emptyCheck: GsCheckState = {
   household: { alone: true, partner: false, children: false, parents: false, others: false },
   childAges: [],
   income: {},
-  housing: {},
+  housing: { type: 'RENT' },
   assets: 'NO',
   special: {
     education: false,
@@ -98,6 +98,15 @@ export function GrundsicherungCheckQuestionnaire({
           labels={{ yes: 'Ja', no: 'Nein' }}
           onChange={(v) => patch({ residenceCenterOfLife: v === 'UNKNOWN' ? undefined : v })}
         />
+        <YesNoRow
+          label={t.q2citizen}
+          value={state.germanCitizen}
+          onChange={(v) => patch({ germanCitizen: v })}
+        />
+        <p className="text-xs text-ink-soft">
+          Ohne deutsche Staatsangehörigkeit ist das SGB II trotzdem möglich — der Aufenthaltsstatus
+          wird dann im Antrag genauer geprüft.
+        </p>
       </section>
 
       {/* 3. Erwerbsfähigkeit */}
@@ -298,23 +307,184 @@ export function GrundsicherungCheckQuestionnaire({
           />
         )}
         <p className="pt-2 text-sm font-semibold text-ink">{t.q5housing}</p>
-        <div className="grid grid-cols-3 gap-3">
-          <NumberField
-            label={t.coldRent}
-            value={housing.coldRent}
-            onChange={(v) => patch({ housing: { ...housing, coldRent: v } })}
-          />
-          <NumberField
-            label={t.operatingCosts}
-            value={housing.operatingCosts}
-            onChange={(v) => patch({ housing: { ...housing, operatingCosts: v } })}
-          />
-          <NumberField
-            label={t.heating}
-            value={housing.heating}
-            onChange={(v) => patch({ housing: { ...housing, heating: v } })}
-          />
+        <div className="grid grid-cols-2 gap-2">
+          {(
+            [
+              ['RENT', t.htRent],
+              ['OWNER', t.htOwner],
+              ['RENT_FREE', t.htRentFree],
+              ['OTHER', t.htOther],
+            ] as const
+          ).map(([key, label]) => (
+            <button
+              key={key}
+              type="button"
+              onClick={() => patch({ housing: { ...housing, type: key } })}
+              className={`rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
+                (housing.type ?? 'RENT') === key
+                  ? 'border-brand-700 bg-brand-50 font-semibold text-brand-800'
+                  : 'border-line-soft bg-white text-ink hover:bg-cream'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
         </div>
+
+        {(housing.type ?? 'RENT') === 'RENT' && (
+          <div className="grid grid-cols-3 gap-3">
+            <NumberField
+              label={t.coldRent}
+              value={housing.coldRent}
+              onChange={(v) => patch({ housing: { ...housing, coldRent: v } })}
+            />
+            <NumberField
+              label={t.operatingCosts}
+              value={housing.operatingCosts}
+              onChange={(v) => patch({ housing: { ...housing, operatingCosts: v } })}
+            />
+            <NumberField
+              label={t.heating}
+              value={housing.heating}
+              onChange={(v) => patch({ housing: { ...housing, heating: v } })}
+            />
+          </div>
+        )}
+
+        {(housing.type ?? 'RENT') === 'OWNER' && (
+          <div className="space-y-3">
+            <p className="text-xs text-ink-soft">{t.ownerHint}</p>
+            <div className="grid grid-cols-3 gap-3">
+              <NumberField
+                label={t.ownerRunning}
+                value={housing.ownerCosts?.running}
+                onChange={(v) =>
+                  patch({
+                    housing: {
+                      ...housing,
+                      ownerCosts: { ...housing.ownerCosts, running: v },
+                    },
+                  })
+                }
+              />
+              <NumberField
+                label={t.ownerHeating}
+                value={housing.ownerCosts?.heating}
+                onChange={(v) =>
+                  patch({
+                    housing: {
+                      ...housing,
+                      ownerCosts: { ...housing.ownerCosts, heating: v },
+                    },
+                  })
+                }
+              />
+              <NumberField
+                label={t.ownerInterest}
+                value={housing.ownerCosts?.interest}
+                onChange={(v) =>
+                  patch({
+                    housing: {
+                      ...housing,
+                      ownerCosts: { ...housing.ownerCosts, interest: v },
+                    },
+                  })
+                }
+              />
+            </div>
+          </div>
+        )}
+
+        {(housing.type ?? 'RENT') === 'RENT_FREE' && (
+          <NumberField
+            label={t.rentFreeCosts}
+            value={housing.rentFreeCosts}
+            onChange={(v) => patch({ housing: { ...housing, rentFreeCosts: v } })}
+          />
+        )}
+
+        {(housing.type ?? 'RENT') === 'OTHER' && (
+          <p className="rounded-xl bg-cream p-3 text-sm text-ink-soft">
+            Kein Problem — deine Wohnkosten werden dann im Antrag genauer erfasst.
+          </p>
+        )}
+
+        {/* Nachzahlung (Hidden Claim) */}
+        <YesNoRow
+          label={t.settlementQ}
+          value={state.settlement?.amount !== undefined && state.settlement.amount > 0}
+          onChange={(v) =>
+            patch({
+              settlement: v
+                ? { ...state.settlement, amount: state.settlement?.amount ?? 0 }
+                : undefined,
+              applicationStatus: v ? (state.applicationStatus ?? 'UNKNOWN') : undefined,
+            })
+          }
+        />
+        {state.settlement?.amount !== undefined && (
+          <div className="space-y-3 rounded-xl border border-line-soft bg-cream/40 p-3">
+            <label className="block">
+              <span className={labelCls}>{t.settlementKindTitle}</span>
+              <select
+                value={state.settlement.kind ?? 'UNSURE'}
+                onChange={(e) =>
+                  patch({
+                    settlement: {
+                      ...state.settlement!,
+                      kind: e.target.value as NonNullable<GsCheckState['settlement']>['kind'],
+                    },
+                  })
+                }
+                className={inputCls}
+              >
+                <option value="HEATING">{t.stHeating}</option>
+                <option value="OPERATING">{t.stOperating}</option>
+                <option value="MIXED">{t.stMixed}</option>
+                <option value="HOUSEHOLD_ELECTRICITY">{t.stElectricity}</option>
+                <option value="UNSURE">{t.stUnsure}</option>
+              </select>
+            </label>
+            <NumberField
+              label={t.settlementAmount}
+              value={state.settlement.amount}
+              onChange={(v) => patch({ settlement: { ...state.settlement!, amount: v } })}
+            />
+            <label className="block">
+              <span className={labelCls}>{t.settlementDue}</span>
+              <input
+                type="date"
+                value={state.settlement.dueDate ?? ''}
+                onChange={(e) =>
+                  patch({ settlement: { ...state.settlement!, dueDate: e.target.value || undefined } })
+                }
+                className={inputCls}
+              />
+            </label>
+            <YesNoRow
+              label={t.settlementCurrentHome}
+              value={state.settlement.currentHome}
+              onChange={(v) => patch({ settlement: { ...state.settlement!, currentHome: v } })}
+            />
+            <YesNoRow
+              label={t.applicationQ}
+              value={
+                state.applicationStatus === 'YES'
+                  ? true
+                  : state.applicationStatus === 'NO'
+                    ? false
+                    : null
+              }
+              tri={true}
+              onChange={(v, tri) =>
+                patch({
+                  applicationStatus:
+                    tri ? 'UNKNOWN' : v === true ? 'YES' : v === false ? 'NO' : undefined,
+                })
+              }
+            />
+          </div>
+        )}
       </section>
 
       {/* 6. Vermögen + Sonderfälle */}
@@ -327,20 +497,50 @@ export function GrundsicherungCheckQuestionnaire({
           onChange={(v) => patch({ assets: v })}
         />
         {state.assets === 'YES' && (
-          <div className="grid grid-cols-2 gap-3">
-            <NumberField
-              label={t.assetsApplicant}
-              value={state.assetsAmounts?.applicant}
-              onChange={(v) => patch({ assetsAmounts: { ...state.assetsAmounts, applicant: v } })}
-            />
-            {household.partner && (
+          <>
+            <div>
+              <span className={labelCls}>{t.assetsKindTitle}</span>
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                {(
+                  [
+                    ['LIQUID', t.akLiquid],
+                    ['RETIREMENT', t.akRetirement],
+                    ['PROPERTY', t.akProperty],
+                    ['MIXED', t.akMixed],
+                    ['UNKNOWN', t.akUnknown],
+                  ] as const
+                ).map(([key, label]) => (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => patch({ assetsKind: key })}
+                    className={`rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
+                      state.assetsKind === key
+                        ? 'border-brand-700 bg-brand-50 font-semibold text-brand-800'
+                        : 'border-line-soft bg-white text-ink hover:bg-cream'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+              <p className="mt-1 text-xs text-ink-soft">{t.assetsKindHint}</p>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
               <NumberField
-                label={t.assetsPartner}
-                value={state.assetsAmounts?.partner}
-                onChange={(v) => patch({ assetsAmounts: { ...state.assetsAmounts, partner: v } })}
+                label={t.assetsApplicant}
+                value={state.assetsAmounts?.applicant}
+                onChange={(v) => patch({ assetsAmounts: { ...state.assetsAmounts, applicant: v } })}
               />
-            )}
-          </div>
+              {household.partner && (
+                <NumberField
+                  label={t.assetsPartner}
+                  value={state.assetsAmounts?.partner}
+                  onChange={(v) => patch({ assetsAmounts: { ...state.assetsAmounts, partner: v } })}
+                />
+              )}
+            </div>
+          </>
         )}
         <p className="pt-2 text-sm font-semibold text-ink">{t.specialTitle}</p>
         <div className="space-y-2">
@@ -371,6 +571,73 @@ export function GrundsicherungCheckQuestionnaire({
           />
         </div>
       </section>
+
+      {/* 7. Sicherheits-Nachfragen (nur wenn sie das Ergebnis verändern können) */}
+      {(hasAnyIncome(state) || special.education || state.childAges.length > 0) && (
+        <section className={sectionCls}>
+          <h2 className="font-semibold text-ink">{t.safetyTitle}</h2>
+          <p className="text-xs text-ink-soft">{t.safetyIntro}</p>
+          {hasAnyIncome(state) && (
+            <YesNoRow
+              label={t.qPregnant}
+              value={state.pregnantWeek13}
+              onChange={(v) => patch({ pregnantWeek13: v })}
+            />
+          )}
+          {state.childAges.length > 0 && (
+            <div>
+              <span className={labelCls}>{t.qSingleParent}</span>
+              <div className="grid grid-cols-3 gap-2">
+                {(
+                  [
+                    ['YES', 'Ja'],
+                    ['NO', 'Nein'],
+                    ['HALF', t.spHalf],
+                  ] as const
+                ).map(([key, label]) => (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => patch({ singleParentCare: key })}
+                    className={`rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
+                      state.singleParentCare === key
+                        ? 'border-brand-700 bg-brand-50 font-semibold text-brand-800'
+                        : 'border-line-soft bg-white text-ink hover:bg-cream'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          {hasAnyIncome(state) && (
+            <YesNoRow
+              label={t.qHotWater}
+              value={state.hotWaterInHome}
+              onChange={(v) => patch({ hotWaterInHome: v })}
+            />
+          )}
+          {special.education && (
+            <TriField
+              label={t.qStudyExam}
+              value={
+                state.studyLastExamCompleted === true
+                  ? 'YES'
+                  : state.studyLastExamCompleted === false
+                    ? 'NO'
+                    : 'UNKNOWN'
+              }
+              labels={{ yes: 'Ja', no: 'Nein', unknown: 'Unsicher' }}
+              onChange={(v) =>
+                patch({
+                  studyLastExamCompleted: v === 'UNKNOWN' ? undefined : v === 'YES',
+                })
+              }
+            />
+          )}
+        </section>
+      )}
 
       {error && <p className="text-sm font-medium text-red-600">{error}</p>}
 
@@ -439,6 +706,33 @@ export function GrundsicherungCheckResultView({
         {result.alternativeSystem && (
           <p className="mt-3 rounded-xl bg-white/70 p-3 text-sm text-ink">{result.alternativeSystem}</p>
         )}
+        {result.nextAction && (
+          <div className="mt-3 rounded-xl border-2 border-red-600 bg-white/70 p-3">
+            <p className="text-xs font-bold uppercase tracking-wide text-red-600">
+              {t.nextActionLabel}
+            </p>
+            <p className="mt-1 text-sm font-semibold text-ink">{result.nextAction.title}</p>
+            <p className="mt-1 text-sm text-ink-soft">{result.nextAction.why}</p>
+          </div>
+        )}
+        {(() => {
+          const issues = result.reasonCodes.filter((c) => !c.startsWith('SGB2_')).slice(0, 3);
+          if (issues.length === 0) return null;
+          return (
+            <div className="mt-4">
+              <p className="text-xs font-medium uppercase tracking-wide text-ink-soft">
+                {t.openIssuesLabel}
+              </p>
+              <ul className="mt-1 space-y-1">
+                {issues.map((code) => (
+                  <li key={code} className="text-sm text-ink">
+                    • {issueLabel(t, code)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })()}
         {result.range && (
           <div className="mt-4">
             <p className="text-xs font-medium uppercase tracking-wide text-ink-soft">{t.rangeLabel}</p>
@@ -554,6 +848,22 @@ export function checkToFormStatePrefill(check: GsCheckState): GsFormStateFacts {
 // Kleine Formular-Bausteine
 // ============================================================
 
+/** Etwas Einkommen vorhanden? → Safety-Nachfragen können dann kippen. */
+function hasAnyIncome(c: GsCheckState): boolean {
+  return (
+    (c.income.employmentNet ?? 0) > 0 ||
+    (c.income.employmentGross ?? 0) > 0 ||
+    (c.income.otherBenefits ?? 0) > 0 ||
+    (c.income.maintenance ?? 0) > 0
+  );
+}
+
+/** Reason-Code → Nutzertext (fehlender Key fällt auf den Code selbst zurück). */
+function issueLabel(t: GsCheckDict, code: string): string {
+  const key = `i_${code}` as keyof GsCheckDict;
+  return (t[key] as string) ?? code;
+}
+
 function TriField({
   label,
   value,
@@ -615,10 +925,13 @@ function YesNoRow({
   label,
   value,
   onChange,
+  tri = false,
 }: {
   label: string;
-  value: boolean;
-  onChange: (v: boolean) => void;
+  value: boolean | null | undefined;
+  onChange: (v: boolean, unknown?: boolean) => void;
+  /** Dritte Option „Unsicher" (z. B. Antrag-Status im Fälligkeitsmonat) */
+  tri?: boolean;
 }) {
   const btn = (active: boolean) =>
     `rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
@@ -633,13 +946,33 @@ function YesNoRow({
       aria-label={label}
     >
       <span className="text-sm text-ink">{label}</span>
-      <div className="grid grid-cols-2 gap-2">
-        <button type="button" onClick={() => onChange(true)} aria-pressed={value} className={btn(value)}>
+      <div className={tri ? 'grid grid-cols-3 gap-2' : 'grid grid-cols-2 gap-2'}>
+        <button
+          type="button"
+          onClick={() => onChange(true)}
+          aria-pressed={value === true}
+          className={btn(value === true)}
+        >
           Ja
         </button>
-        <button type="button" onClick={() => onChange(false)} aria-pressed={value === false} className={btn(value === false)}>
+        <button
+          type="button"
+          onClick={() => onChange(false)}
+          aria-pressed={value === false}
+          className={btn(value === false)}
+        >
           Nein
         </button>
+        {tri && (
+          <button
+            type="button"
+            onClick={() => onChange(true, true)}
+            aria-pressed={value === null}
+            className={btn(value === null)}
+          >
+            Unsicher
+          </button>
+        )}
       </div>
     </div>
   );
