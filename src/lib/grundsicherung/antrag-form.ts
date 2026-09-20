@@ -924,6 +924,38 @@ export function applyProfilePrefill(
   return Object.keys(patch).length > 0 ? (patch as Partial<GsAntragData>) : null;
 }
 
+// ============================================================
+// SCHLÜSSELBUND-PREFILL — Vault-Einträge (IBAN, Krankenkasse,
+// RVNR, Steuer-ID) befüllen leere Antragsfelder. Entschlüsselung
+// rein client-seitig (AES-GCM, gerätelokaler Schlüssel).
+// ============================================================
+
+/** Vault entry_type → Antragsfeld */
+export const VAULT_PREFILL_MAP: Record<string, string> = {
+  iban: 'iban',
+  health_insurance: 'healthInsuranceName',
+  pension_id: 'rvNumber',
+  social_security_id: 'rvNumber',
+  tax_id: 'taxId',
+};
+
+/**
+ * Befüllt NUR leere Antragsfelder aus entschlüsselten Vault-Werten —
+ * Eingaben des Nutzers gewinnen immer (gleiches Prinzip wie Profil-Prefill).
+ */
+export function applyVaultPrefill(
+  antrag: Partial<GsAntragData>,
+  values: Record<string, string>,
+): Partial<GsAntragData> | null {
+  const patch: Record<string, unknown> = {};
+  for (const [field, value] of Object.entries(values)) {
+    if (firstNonBlank(value) !== undefined && isBlank((antrag as Record<string, unknown>)[field])) {
+      patch[field] = value.trim();
+    }
+  }
+  return Object.keys(patch).length > 0 ? (patch as Partial<GsAntragData>) : null;
+}
+
 /**
  * Extrahiert aus ausgefüllten Antragsdaten die Profil-Updates:
  * Stammspalten + antrag_data-Snapshot (nur befüllte Felder).

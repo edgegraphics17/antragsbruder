@@ -17,7 +17,12 @@ import {
 } from '@/lib/grundsicherung/antrag-form';
 import { caseService } from '@/engine';
 import { useProfileStore } from '@/lib/stores/profile-store';
-import { applyProfilePrefill, profileUpdatesFromAntrag } from '@/lib/grundsicherung/antrag-form';
+import {
+  applyProfilePrefill,
+  applyVaultPrefill,
+  VAULT_PREFILL_MAP,
+  profileUpdatesFromAntrag,
+} from '@/lib/grundsicherung/antrag-form';
 import type { GsCalcResult } from '@/engine/benefit-engines/grundsicherung';
 import type { GsFormStateFacts } from '@/engine/benefit-engines/grundsicherung/facts';
 import { checkToFormStatePrefill } from '@/components/grundsicherung/GrundsicherungCheck';
@@ -139,6 +144,34 @@ export function GrundsicherungFlow({
         if (patch) useGsStore.getState().setAntrag(patch);
       } catch {
         // Prefill ist optional — Fehler blockieren den Antrag nicht.
+      }
+
+      // Schlüsselbund-Prefill: IBAN, Krankenkasse, RVNR, Steuer-ID aus
+      // dem Vault entschlüsseln (client-seitig) und leere Felder füllen.
+      try {
+        const { supabase } = await import('@/lib/supabase');
+        const { data: vaultRows } = await supabase
+          .from('user_vault_entries')
+          .select('entry_type, value_encrypted')
+          .eq('user_id', user.id);
+        if (vaultRows && vaultRows.length > 0) {
+          const { getVaultKey, decryptValue } = await import('@/lib/identity-vault');
+          const key = await getVaultKey(localStorage);
+          const values: Record<string, string> = {};
+          for (const row of vaultRows) {
+            const field = VAULT_PREFILL_MAP[row.entry_type];
+            if (!field) continue;
+            try {
+              values[field] = await decryptValue(key, row.value_encrypted);
+            } catch {
+              // Auf anderem Gerät nicht entschlüsselbar — überspringen.
+            }
+          }
+          const vPatch = applyVaultPrefill(useGsStore.getState().antrag, values);
+          if (vPatch) useGsStore.getState().setAntrag(vPatch);
+        }
+      } catch {
+        // Vault-Prefill ist optional — Fehler blockieren den Antrag nicht.
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
