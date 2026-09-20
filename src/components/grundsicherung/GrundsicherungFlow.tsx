@@ -23,6 +23,8 @@ import type { GsFormStateFacts } from '@/engine/benefit-engines/grundsicherung/f
 import { checkToFormStatePrefill } from '@/components/grundsicherung/GrundsicherungCheck';
 import { GrundsicherungCheck } from '@/components/grundsicherung/GrundsicherungCheck';
 import { GrundsicherungAntragFormular } from '@/components/grundsicherung/GrundsicherungAntragFormular';
+import { GsUnterlagenUpload } from '@/components/grundsicherung/GsUnterlagenUpload';
+import type { GsUploadedDoc } from '@/lib/grundsicherung/store';
 import { getDashboardDict } from '@/content/i18n/dashboard';
 import { useLocaleFromPath } from '@/i18n/use-locale';
 import { localeHref } from '@/i18n/config';
@@ -68,6 +70,7 @@ export function GrundsicherungFlow({
   const [ready, setReady] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [calculating, setCalculating] = useState(false);
+  const [docsUploading, setDocsUploading] = useState(false);
   const [fullResult, setFullResult] = useState<GsCalcResult | null>(null);
 
   const t = dict.flow;
@@ -227,30 +230,35 @@ export function GrundsicherungFlow({
 
   const submit = useCallback(async () => {
     if (!user) return;
-    let caseId = useGsStore.getState().caseId;
-    if (!caseId) {
-      const c = await caseService.createCase([], {
-        entryType: 'BENEFIT_GRUNDSICHERUNG',
-        userId: user.id,
-      });
-      caseId = c.id;
-      useGsStore.setState({ caseId: c.id, userId: user.id });
-    }
-    const id = await useGsStore.getState().submit(user.id, caseId!);
-    if (!id) {
-      setError(t.submitError);
-      return;
-    }
-    if (useGsStore.getState().applicationId) {
-      void useGsStore.getState().saveToCloud(user.id, caseId!);
-    }
-    // Eingereichte Antragsstammdaten ins Profil zurückschreiben —
-    // der nächste Antrag wird damit automatisch vorbefüllt.
+    setCalculating(true);
     try {
-      const updates = profileUpdatesFromAntrag(useGsStore.getState().antrag);
-      await useProfileStore.getState().updateProfile(user.id, updates);
-    } catch {
-      // Profil-Sync ist optional — Einreichen gilt trotzdem als erfolgreich.
+      let caseId = useGsStore.getState().caseId;
+      if (!caseId) {
+        const c = await caseService.createCase([], {
+          entryType: 'BENEFIT_GRUNDSICHERUNG',
+          userId: user.id,
+        });
+        caseId = c.id;
+        useGsStore.setState({ caseId: c.id, userId: user.id });
+      }
+      const id = await useGsStore.getState().submit(user.id, caseId!);
+      if (!id) {
+        setError(t.submitError);
+        return;
+      }
+      if (useGsStore.getState().applicationId) {
+        void useGsStore.getState().saveToCloud(user.id, caseId!);
+      }
+      // Eingereichte Antragsstammdaten ins Profil zurückschreiben —
+      // der nächste Antrag wird damit automatisch vorbefüllt.
+      try {
+        const updates = profileUpdatesFromAntrag(useGsStore.getState().antrag);
+        await useProfileStore.getState().updateProfile(user.id, updates);
+      } catch {
+        // Profil-Sync ist optional — Einreichen gilt trotzdem als erfolgreich.
+      }
+    } finally {
+      setCalculating(false);
     }
   }, [user, t.submitError]);
 
@@ -458,7 +466,7 @@ export function GrundsicherungFlow({
     );
   }
 
-  // --- Stage: UNTERLAGEN ---
+  // --- Stage: UNTERLAGEN — pro Anlage hochladen & direkt einreichen ---
   if (store.stage === 'unterlagen') {
     // Pflicht-Anlagen automatisch aus den Antragsdaten abgeleitet
     // (Hauptantrag Abschnitt H + Trigger in A–G).
@@ -466,6 +474,7 @@ export function GrundsicherungFlow({
       store.antrag,
       (form.children ?? []).map((c) => c.age).filter((a) => typeof a === 'number')
     );
+    const submitting = calculating;
     return (
       <div className="mx-auto max-w-2xl space-y-6">
         <header>
@@ -477,22 +486,17 @@ export function GrundsicherungFlow({
           <h2 className="mb-3 font-semibold text-ink">
             Erforderliche Anlagen & Nachweise ({anlagenListe.length})
           </h2>
-          <ul className="space-y-2">
-            {anlagenListe.map((anlage) => (
-              <li key={anlage} className="flex items-start gap-3 rounded-xl bg-cream/60 p-3 text-sm text-ink">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-brand-600" />
-                {anlage}
-              </li>
-            ))}
-          </ul>
-          <a
-            href={localeHref(locale, '/dokumente')}
-            className="mt-4 inline-block text-sm font-semibold text-brand-700 hover:underline"
-          >
-            {dict.unterlagen.uploadCenter}
-          </a>
-          <p className="mt-2 text-xs text-ink-soft">{dict.unterlagen.note}</p>
+          <GsUnterlagenUpload
+            caseId={store.caseId}
+            anlagen={anlagenListe}
+            docs={store.anlagenDocs as GsUploadedDoc[]}
+            onAdd={(docs) => useGsStore.getState().addAnlagenDocs(docs)}
+            onRemove={(doc) => useGsStore.getState().removeAnlagenDoc(doc.storagePath)}
+            onUploadingChange={setDocsUploading}
+          />
         </section>
+
+        {error && <p className="text-sm font-medium text-red-600">{error}</p>}
 
         <div className="flex gap-3">
           <button
@@ -504,10 +508,13 @@ export function GrundsicherungFlow({
           </button>
           <button
             type="button"
-            onClick={() => store.setStage('einreichen')}
-            className="flex-1 rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700"
+            disabled={docsUploading || submitting}
+            onClick={() => void submit()}
+            className="flex-1 rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700 disabled:opacity-50"
           >
-            {dict.ergebnis.continue}
+            {docsUploading || submitting
+              ? 'Wird eingereicht …'
+              : dict.einreichen.submit}
           </button>
         </div>
       </div>

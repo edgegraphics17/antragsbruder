@@ -39,6 +39,20 @@ export interface GsApplication {
   updatedAt: string;
 }
 
+/** Eine hochgeladene Anlagen-Datei (Kategorie = Pflicht-Anlage). */
+export interface GsUploadedDoc {
+  id: string;
+  filename: string;
+  storagePath: string;
+  publicUrl?: string;
+  signedUrl?: string;
+  mimeType: string;
+  fileSize: number;
+  /** Kategorie: Text der Pflicht-Anlage; '—' für Dokumente ohne Zuordnung */
+  anlage: string;
+  uploadedAt: string;
+}
+
 export interface GsResultSnapshot {
   amount: number;
   status: string;
@@ -61,6 +75,8 @@ interface GsDraftState {
   check: GsCheckState | null;
   checkResult: GsCheckResult | null;
   antrag: Partial<GsAntragData>;
+  /** Pro Pflicht-Anlage hochgeladene Dateien (bleibt im Draft & Cloud-Save). */
+  anlagenDocs: GsUploadedDoc[];
   result: GsResultSnapshot | null;
   submitted: boolean;
   submittedAt: string | null;
@@ -70,6 +86,9 @@ interface GsDraftState {
   setCheck: (check: GsCheckState) => void;
   setCheckResult: (result: GsCheckResult | null) => void;
   setAntrag: (patch: Partial<GsAntragData>) => void;
+  setAnlagenDocs: (docs: GsUploadedDoc[]) => void;
+  addAnlagenDocs: (docs: GsUploadedDoc[]) => void;
+  removeAnlagenDoc: (storagePath: string) => void;
   setResult: (result: GsResultSnapshot) => void;
   resetDraft: () => void;
   resumeFromDb: (
@@ -99,6 +118,7 @@ export const useGsStore = create<GsDraftState>()(
       check: null,
       checkResult: null,
       antrag: { children: [] },
+      anlagenDocs: [],
       result: null,
       submitted: false,
       submittedAt: null,
@@ -109,6 +129,14 @@ export const useGsStore = create<GsDraftState>()(
       setCheck: (check) => set({ check }),
       setCheckResult: (checkResult) => set({ checkResult }),
       setAntrag: (patch) => set((s) => ({ antrag: { ...s.antrag, ...patch } })),
+      setAnlagenDocs: (anlagenDocs) => set({ anlagenDocs }),
+      addAnlagenDocs: (docs) =>
+        set((s) => {
+          const known = new Set(s.anlagenDocs.map((d) => d.storagePath));
+          return { anlagenDocs: [...s.anlagenDocs, ...docs.filter((d) => !known.has(d.storagePath))] };
+        }),
+      removeAnlagenDoc: (storagePath) =>
+        set((s) => ({ anlagenDocs: s.anlagenDocs.filter((d) => d.storagePath !== storagePath) })),
       setResult: (result) => set({ result }),
       resetDraft: () =>
         set({
@@ -120,6 +148,7 @@ export const useGsStore = create<GsDraftState>()(
           check: null,
           checkResult: null,
           antrag: { children: [] },
+          anlagenDocs: [],
           result: null,
           submitted: false,
           submittedAt: null,
@@ -135,6 +164,8 @@ export const useGsStore = create<GsDraftState>()(
           antrag?: Partial<GsAntragData>;
         };
         void _localAntrag;
+        const dbAnlagenDocs =
+          (dbForm as { anlagenDocs?: GsUploadedDoc[] }).anlagenDocs ?? [];
         set({
           applicationId: app.id,
           caseId: app.case_id,
@@ -143,6 +174,8 @@ export const useGsStore = create<GsDraftState>()(
           antrag: keepLocal && (local.antrag?.firstName || local.antrag.children?.length)
             ? local.antrag
             : dbAntrag,
+          anlagenDocs:
+            keepLocal && local.anlagenDocs.length > 0 ? local.anlagenDocs : dbAnlagenDocs,
         });
       },
 
@@ -154,7 +187,11 @@ export const useGsStore = create<GsDraftState>()(
           user_id: userId,
           benefit_type: 'GRUNDSICHERUNG',
           status: s.submitted ? 'SUBMITTED' : 'IN_PROGRESS',
-          form_state: { ...formState, antrag: s.antrag },
+          form_state: {
+            ...formState,
+            antrag: s.antrag,
+            anlagenDocs: s.anlagenDocs,
+          },
           calculation_result: s.result ?? null,
           last_stage: s.stage,
           progress_percent:
@@ -219,7 +256,11 @@ export const useGsStore = create<GsDraftState>()(
           user_id: userId,
           benefit_type: 'GRUNDSICHERUNG',
           status: 'SUBMITTED',
-          form_state: { ...formState, antrag: s.antrag },
+          form_state: {
+            ...formState,
+            antrag: s.antrag,
+            anlagenDocs: s.anlagenDocs,
+          },
           calculation_result: s.result ?? null,
           last_stage: 'einreichen',
           progress_percent: 100,
