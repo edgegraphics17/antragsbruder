@@ -587,6 +587,7 @@ export const GS_ANTRAG_SECTIONS: GsSectionDef[] = [
     id: 'fruehere_leistungen',
     title: 'Frühere Leistungsbezüge im Detail',
     description: 'Nur ausfüllen, wenn du oben „Sozialhilfe“ mit Ja beantwortet hast.',
+    showIf: (d) => d.receivedBenefitsLast3Years === true,
     repeater: 'pastBenefits',
     fields: [
       { formField: '52', key: 'type', label: 'Art der Leistung', type: 'select', required: true, options: [
@@ -601,7 +602,8 @@ export const GS_ANTRAG_SECTIONS: GsSectionDef[] = [
     officialSection: 'E',
     id: 'fruehere_arbeitgeber',
     title: 'Frühere Beschäftigungen im Detail',
-    description: 'Nur ausfüllen, wenn du oben „angestellt" mit Ja beantwortet hast.',
+    description: 'Nur ausfüllen, wenn du oben „angestellt“ mit Ja beantwortet hast.',
+    showIf: (d) => d.employedLast5Years === true,
     repeater: 'pastEmployers',
     fields: [
       { formField: '62', key: 'employer', label: 'Name der Arbeitgeberin/des Arbeitgebers', type: 'text', required: true },
@@ -618,7 +620,8 @@ export const GS_ANTRAG_SECTIONS: GsSectionDef[] = [
     officialSection: 'E',
     id: 'entgeltersatz',
     title: 'Entgeltersatzleistungen im Detail',
-    description: 'Nur ausfüllen, wenn du oben „Entgeltersatzleistungen" mit Ja beantwortet hast.',
+    description: 'Nur ausfüllen, wenn du oben „Entgeltersatzleistungen“ mit Ja beantwortet hast.',
+    showIf: (d) => d.receivedReplacementBenefits === true,
     repeater: 'replacementBenefits',
     fields: [
       { formField: '69', key: 'type', label: 'Art der Entgeltersatzleistung', type: 'select', required: true, options: [
@@ -731,11 +734,18 @@ export function visibleFields(
 export function missingRequiredFields(data: Partial<GsAntragData>): Record<string, string[]> {
   const missing: Record<string, string[]> = {};
   for (const section of GS_ANTRAG_SECTIONS) {
+    // Abschnitte, die laut Trigger (z. B. „Nein“ bei früheren Leistungen)
+    // gar nicht sichtbar sind, werden nicht validiert.
+    if (section.showIf && !section.showIf(data as Record<string, unknown>)) continue;
     if (section.repeater) {
       const items = ((data as unknown as Record<string, unknown[]>)[section.repeater] ?? []) as Record<string, unknown>[];
       const itemMissing: string[] = [];
       items.forEach((item, i) => {
-        const touched = Object.values(item).some((v) => !isBlank(v));
+        // „Angefasst" = ein nicht-leerer Text/Datum; reine Checkbox-
+        // Defaults (false) machen einen leeren Eintrag nicht zur Angabe.
+        const touched = Object.values(item).some(
+          (v) => (typeof v === 'boolean' ? v === true : !isBlank(v)),
+        );
         if (!touched) return;
         const req = visibleFields(section, data, item).filter((f) => f.required);
         const gaps = req.filter((f) => isBlank(item[f.key]));
