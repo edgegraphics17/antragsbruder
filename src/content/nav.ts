@@ -63,6 +63,7 @@ const footerStructure: Record<"produkt" | "unternehmen" | "legal", StructureLink
     { key: "unterlagenCheck", href: "/unterlagen-check" },
     { key: "papierkramOrdnen", href: "/papierkram-ordnen" },
     { key: "pricing", href: "/preise" },
+    { key: "wohngeld", href: "/wohngeld" },
     { key: "wohngeldRechner", href: "/wohngeld/rechner" },
     { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
     { key: "bafoegRechner", href: "/bafoegrechner" },

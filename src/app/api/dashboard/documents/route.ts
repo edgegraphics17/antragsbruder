@@ -145,6 +145,25 @@ export async function POST(request: NextRequest) {
       uploadedBy: userId,
     });
 
+    // Zusätzlich im Bürger-Tresor (documents_meta) abheften, damit der
+    // Upload automatisch in den Dashboard-Dokumenten erscheint.
+    try {
+      const { error: metaErr } = await supabase.from('documents_meta').insert({
+        user_id: userId,
+        application_id: null,
+        document_role: 'OTHER',
+        title: uploadResult.filename,
+        storage_path: uploadResult.storagePath,
+        filename: uploadResult.filename,
+        file_size: uploadResult.fileSize,
+        mime_type: uploadResult.mimeType,
+        status: 'DONE',
+      });
+      if (metaErr) console.warn('[Documents] Tresor-Sync fehlgeschlagen:', metaErr.message);
+    } catch (metaErr) {
+      console.warn('[Documents] Tresor-Sync fehlgeschlagen:', metaErr);
+    }
+
     // Upload-Bestätigung per E-Mail senden (versuchen, nicht blockieren)
     try {
       await sendUploadConfirmationEmail(

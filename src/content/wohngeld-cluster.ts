@@ -6,65 +6,16 @@
  * bewusst klein gehalten: paragraph, list, steps, table, callout.
  */
 
-export type ContentSource = { label: string; url: string };
+import type {
+  ClusterPageContent,
+  ContentSource,
+  FaqEntry,
+  ContentBlock,
+  ContentSection,
+} from "@/content/cluster/types";
+import { wohngeldSources } from "@/content/cluster/wohngeld/shared";
 
-export type FaqEntry = { question: string; answer: string };
-
-export type ContentBlock =
-  | { type: "paragraph"; text: string }
-  | { type: "list"; items: string[] }
-  | { type: "steps"; items: string[] }
-  | {
-      type: "table";
-      headers: string[];
-      rows: string[][];
-    }
-  | { type: "callout"; title: string; text: string };
-
-export type ContentSection = {
-  heading: string;
-  blocks: ContentBlock[];
-};
-
-export type ClusterPageContent = {
-  slug: string; // z. B. "wohngeld" oder "wohngeld/voraussetzungen"
-  title: string; // SEO-Title ohne Site-Suffix
-  metaDescription: string;
-  h1: string;
-  /** GEO: 40–80 Wörter, zitierfähig, direkt unter der H1. */
-  directAnswer: string;
-  /** Rechtsstand der Inhalte (ISO-Datum). */
-  legalStand: string;
-  /** Letzte redaktionelle Prüfung (ISO-Datum). */
-  lastReviewed: string;
-  legalBasis: string;
-  sources: ContentSource[];
-  /** Kurztabelle Frage→Antwort direkt unter dem Direct Answer. */
-  quickAnswers?: { question: string; answer: string }[];
-  sections: ContentSection[];
-  faqs: FaqEntry[];
-  primaryCta: { label: string; href: string };
-  secondaryCta?: { label: string; href: string };
-  /** Interne Links im Cluster (Related Content). */
-  related: { label: string; href: string }[];
-  breadcrumb: { name: string; href: string }[];
-};
-
-/** Primärquellen für das Wohngeld-Cluster (alle amtlich verifiziert). */
-export const wohngeldSources: ContentSource[] = [
-  {
-    label: "Wohngeldgesetz (WoGG) – Gesetze im Internet",
-    url: "https://www.gesetze-im-internet.de/wogg/",
-  },
-  {
-    label: "Bundesministerium für Wohnen, Stadtentwicklung und Bauwesen (BMWSB): Wohngeld",
-    url: "https://www.bmwsb.bund.de/DE/wohnen/wohngeld/wohngeld-plus/wohngeld-plus_node.html",
-  },
-  {
-    label: "VerwaltungPortal des Bundes: Wohngeld beantragen",
-    url: "https://verwaltung.bund.de/",
-  },
-];
+export type { ClusterPageContent, ContentSource, FaqEntry, ContentBlock, ContentSection };
 
 /**
  * Wohngeld-Pillar-Page. Alle Fakten sind gegen Primärquellen geprüft:

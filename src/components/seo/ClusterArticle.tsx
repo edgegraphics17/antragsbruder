@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Fragment } from "react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
@@ -6,7 +7,7 @@ import { Breadcrumb } from "@/components/seo/Breadcrumb";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { TrustBox } from "@/components/seo/TrustBox";
 import { JsonLd } from "@/components/seo/JsonLd";
-import type { ClusterPageContent, ContentBlock } from "@/content/wohngeld-cluster";
+import type { ClusterPageContent, ContentBlock } from "@/content/cluster/types";
 import { site, editor } from "@/content/site";
 import { articleJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo/jsonld";
 
@@ -18,15 +19,49 @@ import { articleJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo/jsonld";
  * JSON-LD (Article + BreadcrumbList + FAQPage) wird aus denselben Daten erzeugt.
  */
 
+/**
+ * Rendert Text mit optionalen Markdown-Inline-Links `[Ankertext](/pfad)`
+ * als echtes React (Next <Link>) – beschreibende, indexierbare Anker
+ * für die Cluster-Linkmatrix (DEV-WG-10). Kein dangerouslySetInnerHTML.
+ */
+function InlineText({ text }: { text: string }) {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g).filter(Boolean);
+  return (
+    <>
+      {parts.map((part, i) => {
+        const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        if (match) {
+          return (
+            <Link key={i} href={match[2]} className="text-brand-800 underline underline-offset-2">
+              {match[1]}
+            </Link>
+          );
+        }
+        return <Fragment key={i}>{part}</Fragment>;
+      })}
+    </>
+  );
+}
+
 function Block({ block }: { block: ContentBlock }) {
   switch (block.type) {
     case "paragraph":
-      return <p className="leading-relaxed text-ink-soft">{block.text}</p>;
+      return (
+        <p className="leading-relaxed text-ink-soft">
+          <InlineText text={block.text} />
+        </p>
+      );
+    case "heading":
+      return (
+        <h3 className="font-display mt-6 text-lg font-bold text-ink sm:text-xl">{block.text}</h3>
+      );
     case "list":
       return (
         <ul className="list-disc space-y-1.5 pl-5 leading-relaxed text-ink-soft">
           {block.items.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item}>
+              <InlineText text={item} />
+            </li>
           ))}
         </ul>
       );
@@ -34,9 +69,29 @@ function Block({ block }: { block: ContentBlock }) {
       return (
         <ol className="list-decimal space-y-1.5 pl-5 leading-relaxed text-ink-soft">
           {block.items.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item}>
+              <InlineText text={item} />
+            </li>
           ))}
         </ol>
+      );
+    case "checklist":
+      // SSR-fähige, crawlbar gerenderte Checkliste (UX-Optik, keine
+      // Client-JS-Pflicht – der Content bleibt ohne JavaScript lesbar).
+      return (
+        <ul className="space-y-2">
+          {block.items.map((item) => (
+            <li key={item} className="flex items-start gap-3 text-ink-soft">
+              <span
+                aria-hidden="true"
+                className="mt-0.5 h-4 w-4 shrink-0 rounded border-2 border-brand-700"
+              />
+              <span className="leading-relaxed">
+                <InlineText text={item} />
+              </span>
+            </li>
+          ))}
+        </ul>
       );
     case "table":
       return (

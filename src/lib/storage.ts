@@ -3,12 +3,24 @@
 // ============================================================
 
 import { createClient } from '@supabase/supabase-js';
+import { createAuthServerClient } from '@/lib/auth-server';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
+/**
+ * Storage-Client im Route-Kontext — MUSS authentifiziert sein:
+ * Storage-RLS prüft `auth.uid()`; ein anonymer Client ohne
+ * Session-Cookie scheitert mit "new row violates row-level
+ * security policy". Der anon-Client bleibt nur als Fallback für
+ * Umgebungen ohne Cookie-Handler (z. B. Tests) bestehen.
+ */
 function createStorageClient() {
-  return createClient(supabaseUrl, supabaseAnonKey);
+  try {
+    return createAuthServerClient();
+  } catch {
+    return createClient(supabaseUrl, supabaseAnonKey);
+  }
 }
 
 export async function uploadDocument(
