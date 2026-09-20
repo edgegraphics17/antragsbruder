@@ -522,6 +522,12 @@ function GsAntragSection() {
             docs={docs}
             onAdd={(newDocs) => useGsStore.getState().addAnlagenDocs(newDocs)}
             onRemove={(doc) => useGsStore.getState().removeAnlagenDoc(doc.storagePath)}
+            onRename={(doc, title) => {
+              const next = useGsStore
+                .getState()
+                .anlagenDocs.map((d) => (d.storagePath === doc.storagePath ? { ...d, filename: title } : d));
+              useGsStore.getState().setAnlagenDocs(next);
+            }}
             onUploadingChange={setDocsUploading}
           />
           {docsUploading && (

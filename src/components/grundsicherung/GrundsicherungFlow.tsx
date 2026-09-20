@@ -525,6 +525,12 @@ export function GrundsicherungFlow({
             docs={store.anlagenDocs as GsUploadedDoc[]}
             onAdd={(docs) => useGsStore.getState().addAnlagenDocs(docs)}
             onRemove={(doc) => useGsStore.getState().removeAnlagenDoc(doc.storagePath)}
+            onRename={(doc, title) => {
+              const docs = useGsStore
+                .getState()
+                .anlagenDocs.map((d) => (d.storagePath === doc.storagePath ? { ...d, filename: title } : d));
+              useGsStore.getState().setAnlagenDocs(docs);
+            }}
             onUploadingChange={setDocsUploading}
           />
         </section>
