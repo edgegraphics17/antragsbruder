@@ -694,6 +694,59 @@ const deDashboard = {
       "annualBillDue": "Fällige Heiz-/Nebenkosten-Nachzahlung (€, einmalig)",
       "calculate": "Anspruch berechnen →"
     },
+    "ergebnis": {
+      "title": "Dein vorläufiges Ergebnis",
+      "amountLabel": "Vorläufiger Grundsicherungsanspruch",
+      "perMonth": "pro Monat",
+      "statusLabel": "Status",
+      "qualityLabel": "Datenqualität",
+      "bgSizeLabel": "Bedarfsgemeinschaft",
+      "personsLabel": "Personen",
+      "actionsLabel": "Was solltest du jetzt tun?",
+      "openIssuesLabel": "Noch offen (kann den Betrag verändern)",
+      "breakdownLabel": "Berechnung im Detail",
+      "regelbedarf": "Regelbedarf",
+      "mehrbedarf": "Mehrbedarf",
+      "kdu": "Kosten Unterkunft (anerkannt)",
+      "heating": "Heizkosten",
+      "annualBill": "Fällige Nachzahlung (einmalig)",
+      "totalNeed": "Bedarf gesamt",
+      "countableIncome": "Angerechnetes Einkommen",
+      "whyQuality": "Die Datenqualität zeigt, wie verlässlich der Betrag ist.",
+      "disclaimer": "Vorläufige Berechnung, keine amtliche Entscheidung. Rechtsstand: verifizierte SGB-II-Kernregeln 2026.",
+      "continue": "Weiter zum Antrag →"
+    },
+    "unterlagen": {
+      "title": "Deine Unterlagen",
+      "intro": "Für den Grundsicherungsantrag brauchst du diese Nachweise. Sie können grundsätzlich auch nach dem Antrag nachgereicht werden — der Antragstag zählt.",
+      "uploadCenter": "Zum Dokumenten-Center hochladen →",
+      "docs": {
+        "id": "Ausweisdokument (Identität)",
+        "income": "Einkommensnachweise (Lohnabrechnungen, Bescheide)",
+        "rent": "Mietvertrag / Wohnkosten",
+        "heating": "Heiz-/Nebenkostenabrechnung",
+        "assets": "Vermögensnachweise (Kontoauszüge)",
+        "kindergeld": "Kindergeldbescheid (falls Kinder)",
+        "maintenance": "Unterhaltsnachweise (falls relevant)"
+      },
+      "note": "Wir markieren, welche Unterlagen wir bereits haben und welche fehlen."
+    },
+    "einreichen": {
+      "title": "Antrag einreichen",
+      "summaryTitle": "Zusammenfassung",
+      "dataTitle": "Deine Angaben",
+      "resultTitle": "Berechnung",
+      "statusLabel": "Status",
+      "amountLabel": "Vorläufiger Betrag",
+      "qualityLabel": "Qualität",
+      "openIssuesLabel": "Offene Punkte",
+      "infoTitle": "So funktioniert das Einreichen",
+      "infoText": "Der Antrag auf Grundsicherung ist formlos möglich. Nach dem Einreichen bereiten wir deinen formlosen Antrag und die Nachweise-Übergabe vor. Die Nachweise werden beim zuständigen Jobcenter nachgereicht — dein Antragsdatum ist durch die Einreichung bei uns dokumentiert.",
+      "submit": "Antrag jetzt einreichen",
+      "submittedTitle": "Antrag eingereicht ✓",
+      "submittedText": "Dein Grundsicherungsantrag ist bei Antragsbruder eingegangen und wird vorbereitet. Du findest ihn unter „Anträge“. Wir melden uns, sobald der Antrag beim Jobcenter eingegangen ist und welche Nachweise wann nachzureichen sind.",
+      "toApplications": "Zu meinen Anträgen →"
+    },
     "check": {
       "title": "Schnell-Check Grundsicherung",
       "intro": "6 kurze Fragen, um zu prüfen, ob Grundsicherungsgeld für dich grundsätzlich in Betracht kommt. Die genaue Berechnung folgt später im Antrag.",
@@ -753,59 +806,6 @@ const deDashboard = {
       "continueToApplication": "Jetzt Antrag vorbereiten →",
       "restart": "Antworten ändern",
       "whyRedLabel": "Warum?"
-    },
-    "ergebnis": {
-      "title": "Dein vorläufiges Ergebnis",
-      "amountLabel": "Vorläufiger Grundsicherungsanspruch",
-      "perMonth": "pro Monat",
-      "statusLabel": "Status",
-      "qualityLabel": "Datenqualität",
-      "bgSizeLabel": "Bedarfsgemeinschaft",
-      "personsLabel": "Personen",
-      "actionsLabel": "Was solltest du jetzt tun?",
-      "openIssuesLabel": "Noch offen (kann den Betrag verändern)",
-      "breakdownLabel": "Berechnung im Detail",
-      "regelbedarf": "Regelbedarf",
-      "mehrbedarf": "Mehrbedarf",
-      "kdu": "Kosten Unterkunft (anerkannt)",
-      "heating": "Heizkosten",
-      "annualBill": "Fällige Nachzahlung (einmalig)",
-      "totalNeed": "Bedarf gesamt",
-      "countableIncome": "Angerechnetes Einkommen",
-      "whyQuality": "Die Datenqualität zeigt, wie verlässlich der Betrag ist.",
-      "disclaimer": "Vorläufige Berechnung, keine amtliche Entscheidung. Rechtsstand: verifizierte SGB-II-Kernregeln 2026.",
-      "continue": "Weiter zum Antrag →"
-    },
-    "unterlagen": {
-      "title": "Deine Unterlagen",
-      "intro": "Für den Grundsicherungsantrag brauchst du diese Nachweise. Sie können grundsätzlich auch nach dem Antrag nachgereicht werden — der Antragstag zählt.",
-      "uploadCenter": "Zum Dokumenten-Center hochladen →",
-      "docs": {
-        "id": "Ausweisdokument (Identität)",
-        "income": "Einkommensnachweise (Lohnabrechnungen, Bescheide)",
-        "rent": "Mietvertrag / Wohnkosten",
-        "heating": "Heiz-/Nebenkostenabrechnung",
-        "assets": "Vermögensnachweise (Kontoauszüge)",
-        "kindergeld": "Kindergeldbescheid (falls Kinder)",
-        "maintenance": "Unterhaltsnachweise (falls relevant)"
-      },
-      "note": "Wir markieren, welche Unterlagen wir bereits haben und welche fehlen."
-    },
-    "einreichen": {
-      "title": "Antrag einreichen",
-      "summaryTitle": "Zusammenfassung",
-      "dataTitle": "Deine Angaben",
-      "resultTitle": "Berechnung",
-      "statusLabel": "Status",
-      "amountLabel": "Vorläufiger Betrag",
-      "qualityLabel": "Qualität",
-      "openIssuesLabel": "Offene Punkte",
-      "infoTitle": "So funktioniert das Einreichen",
-      "infoText": "Der Antrag auf Grundsicherung ist formlos möglich. Nach dem Einreichen bereiten wir deinen formlosen Antrag und die Nachweise-Übergabe vor. Die Nachweise werden beim zuständigen Jobcenter nachgereicht — dein Antragsdatum ist durch die Einreichung bei uns dokumentiert.",
-      "submit": "Antrag jetzt einreichen",
-      "submittedTitle": "Antrag eingereicht ✓",
-      "submittedText": "Dein Grundsicherungsantrag ist bei Antragsbruder eingegangen und wird vorbereitet. Du findest ihn unter „Anträge“. Wir melden uns, sobald der Antrag beim Jobcenter eingegangen ist und welche Nachweise wann nachzureichen sind.",
-      "toApplications": "Zu meinen Anträgen →"
     }
   },
   "home": {
@@ -886,10 +886,15 @@ const deDashboard = {
     "authority": "Zuständig: {{authority}}",
     "docsInVault": "{{present}} von {{total}} Nachweisen im Tresor",
     "unlockTitle": "Anspruch freischalten",
+    "searchPlaceholder": "Förderung suchen — Name, Amt oder Lebenslage…",
+    "filterClear": "Kategorien zurücksetzen",
+    "filterCalc": "Nur mit Rechner",
+    "filterDocsReady": "Unterlagen vollständig",
+    "noResults": "Keine Leistung passt zu deiner Suche oder Filter-Auswahl.",
     "noExcluded": "Aktuell ist keine Leistung eindeutig ausgeschlossen.",
     "excludedInfo": "{{count}} Leistungen sind laut Profil objektiv nicht zutreffend (z. B. nur für Studierende oder Rentner). Diese blenden wir aus.",
-    "noQualified": "Noch nichts eindeutig Qualifiziertes — beantworte die Klärungsfragen oben oder fülle dein Förder-Profil aus.",
-    "noPotential": "Keine offenen Potenziale — beantworte die Klärungsfragen, um mehr freizuschalten."
+    "noQualified": "Noch nichts eindeutig Qualifiziertes — fülle dein Förder-Profil aus, um passende Leistungen zu sehen.",
+    "noPotential": "Keine offenen Potenziale — ergänze weitere Angaben in deinem Profil, um mehr freizuschalten."
   },
   "antraege": {
     "statusLabel": "Status",

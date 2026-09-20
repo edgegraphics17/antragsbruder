@@ -2,9 +2,9 @@
 
 // ============================================================
 // FÖRDERUNGEN-RADAR — 3-Ebenen-Matching (Qualifiziert / Potenzial /
-// Ausgeschlossen) über die echte Benefit-Datenbank, mit 1-Klick-
-// Klärungsfragen und Dokumenten-Match-Chips aus dem Tresor.
-// Alle UI-Strings über getDashboardDict (i18n), Links locale-aware.
+// Ausgeschlossen) über die echte Benefit-Datenbank, mit Suche und
+// Filter-System (Kategorien, Rechner, Dokumente). Alle UI-Strings
+// über getDashboardDict (i18n), Links locale-aware.
 // ============================================================
 
 import { useEffect, useMemo, useState } from 'react';
@@ -13,7 +13,6 @@ import { useAuth } from '@/lib/auth-context';
 import { useProfileStore } from '@/lib/stores/profile-store';
 import {
   matchBenefits,
-  type ClarifyQuestion,
   type RadarResult,
 } from '@/lib/benefits/radar';
 import { Skeleton, SkeletonForm } from '@/components/ui/Skeleton';
@@ -36,6 +35,10 @@ const CALC_ROUTES: Record<string, string> = {
 
 // Gesamtanzahl der Leistungen in der Benefit-Datenbank (für den Subtitle).
 const TOTAL_BENEFITS = 131;
+
+function normalize(s: string): string {
+  return s.toLowerCase().trim();
+}
 
 function amountLabel(
   benefit: RadarResult['qualified'][number]['benefit'],
@@ -113,40 +116,87 @@ function BenefitCard({ match }: { match: RadarResult['qualified'][number] }) {
   );
 }
 
-function ClarifyBar({
-  questions,
-  onAnswer,
-  busy,
+// Filter-System: Suche, Kategorie-Chips (Multi-Select mit Anzahl),
+// Rechner-Toggle, Dokumente-Toggle.
+function FilterBar({
+  query,
+  onQuery,
+  categories,
+  activeCats,
+  onToggleCat,
+  onClearCats,
+  onlyCalc,
+  onToggleCalc,
+  onlyDocs,
+  onToggleDocs,
 }: {
-  questions: ClarifyQuestion[];
-  onAnswer: (field: ClarifyQuestion['field'], value: string) => void;
-  busy: boolean;
+  query: string;
+  onQuery: (q: string) => void;
+  categories: { name: string; count: number }[];
+  activeCats: Set<string>;
+  onToggleCat: (c: string) => void;
+  onClearCats: () => void;
+  onlyCalc: boolean;
+  onToggleCalc: () => void;
+  onlyDocs: boolean;
+  onToggleDocs: () => void;
 }) {
-  const locale = useLocaleFromPath();
-  const t = getDashboardDict(locale).foerderungen;
-  if (questions.length === 0) return null;
+  const t = getDashboardDict(useLocaleFromPath()).foerderungen;
   return (
-    <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5">
-      <h3 className="mb-3 font-semibold text-ink">{t.unlockTitle}</h3>
-      <div className="space-y-4">
-        {questions.map((q) => (
-          <div key={q.field}>
-            <p className="mb-2 text-sm text-ink-soft">{q.question}</p>
-            <div className="flex flex-wrap gap-2">
-              {q.options.map((opt) => (
-                <button
-                  key={opt.value}
-                  type="button"
-                  disabled={busy}
-                  onClick={() => onAnswer(q.field, opt.value)}
-                  className="rounded-full border border-brand-300 bg-white px-4 py-1.5 text-sm font-semibold text-brand-700 transition-colors hover:bg-brand-600 hover:text-white disabled:opacity-50"
-                >
-                  {opt.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        ))}
+    <div className="mb-6 space-y-3">
+      <input
+        type="search"
+        value={query}
+        onChange={(e) => onQuery(e.target.value)}
+        placeholder={t.searchPlaceholder}
+        className="w-full rounded-xl border border-line-soft bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors placeholder:text-ink-soft focus:border-brand-500"
+      />
+      <div className="flex flex-wrap items-center gap-1.5">
+        {categories.map((c) => {
+          const active = activeCats.has(c.name);
+          return (
+            <button
+              key={c.name}
+              type="button"
+              onClick={() => onToggleCat(c.name)}
+              className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                active
+                  ? 'bg-brand-600 text-white'
+                  : 'border border-line-soft bg-white text-ink-soft hover:text-ink'
+              }`}
+            >
+              {c.name} <span className={active ? 'opacity-75' : 'text-ink-soft'}>{c.count}</span>
+            </button>
+          );
+        })}
+        {activeCats.size > 0 && (
+          <button
+            type="button"
+            onClick={onClearCats}
+            className="rounded-full px-3 py-1.5 text-xs font-medium text-brand-700 hover:underline"
+          >
+            {t.filterClear}
+          </button>
+        )}
+        <span className="mx-1 h-4 w-px bg-line-soft" aria-hidden />
+        <button
+          type="button"
+          onClick={onToggleCalc}
+          className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+            onlyCalc ? 'bg-green-600 text-white' : 'border border-line-soft bg-white text-ink-soft hover:text-ink'
+          }`}
+        >
+          {t.filterCalc}
+        </button>
+        <button
+          type="button"
+          onClick={onToggleDocs}
+          className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+            onlyDocs ? 'bg-green-600 text-white' : 'border border-line-soft bg-white text-ink-soft hover:text-ink'
+          }`}
+        >
+          {t.filterDocsReady}
+        </button>
       </div>
     </div>
   );
@@ -154,13 +204,16 @@ function ClarifyBar({
 
 export function FoerderungenView() {
   const { user } = useAuth();
-  const { profile, updateProfile } = useProfileStore();
+  const { profile } = useProfileStore();
   const locale = useLocaleFromPath();
   const t = getDashboardDict(locale).foerderungen;
   const [docs, setDocs] = useState<{ document_role: string; filename: string }[]>([]);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<Tab>('qualified');
-  const [answering, setAnswering] = useState(false);
+  const [query, setQuery] = useState('');
+  const [activeCats, setActiveCats] = useState<Set<string>>(new Set());
+  const [onlyCalc, setOnlyCalc] = useState(false);
+  const [onlyDocs, setOnlyDocs] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -188,18 +241,48 @@ export function FoerderungenView() {
     [profile, docs],
   );
 
-  const handleAnswer = async (field: ClarifyQuestion['field'], value: string) => {
-    if (!profile || answering) return;
-    setAnswering(true);
-    if (field === 'housing') {
-      await updateProfile(profile.id, { housingType: value as 'RENT' | 'OWN' | 'PARENTS' | 'OTHER' });
-    } else if (field === 'employment') {
-      await updateProfile(profile.id, { employmentStatus: value });
-    } else if (field === 'children') {
-      await updateProfile(profile.id, { childrenCount: value === 'YES' ? 1 : 0 });
+  // Kategorien aus qualifizierten + potenziellen Matches (mit Anzahl).
+  const categories = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const m of [...result.qualified, ...result.potential]) {
+      const cat = m.benefit.category ?? '';
+      if (!cat) continue;
+      counts.set(cat, (counts.get(cat) ?? 0) + 1);
     }
-    setAnswering(false);
+    return [...counts.entries()]
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+  }, [result]);
+
+  // Filter: Suche (Name, Kategorie, Amt, Lebenslage-Tags), Kategorie, Toggles.
+  const filtered = useMemo(() => {
+    const source = tab === 'qualified' ? result.qualified : tab === 'potential' ? result.potential : [];
+    const q = normalize(query);
+    return source.filter((m) => {
+      if (activeCats.size > 0 && !(m.benefit.category && activeCats.has(m.benefit.category))) return false;
+      if (onlyCalc && !m.benefit.calcPossible) return false;
+      if (onlyDocs && m.docsMissing.length > 0) return false;
+      if (!q) return true;
+      return (
+        normalize(m.benefit.name).includes(q) ||
+        normalize(m.benefit.category ?? '').includes(q) ||
+        normalize(m.benefit.authority ?? '').includes(q) ||
+        m.benefit.lifeSituations.some((s) => normalize(s).includes(q))
+      );
+    });
+  }, [tab, result, query, activeCats, onlyCalc, onlyDocs]);
+
+  const counts: Record<Tab, number> = {
+    qualified: result.qualified.length,
+    potential: result.potential.length,
+    excluded: result.excluded.length,
   };
+  const tabLabels: Record<Tab, string> = {
+    qualified: t.tabQualified,
+    potential: t.tabPotential,
+    excluded: t.tabExcluded,
+  };
+  const hasActiveFilter = query !== '' || activeCats.size > 0 || onlyCalc || onlyDocs;
 
   if (loading) {
     return (
@@ -214,18 +297,6 @@ export function FoerderungenView() {
     );
   }
 
-  const counts: Record<Tab, number> = {
-    qualified: result.qualified.length,
-    potential: result.potential.length,
-    excluded: result.excluded.length,
-  };
-  const tabLabels: Record<Tab, string> = {
-    qualified: t.tabQualified,
-    potential: t.tabPotential,
-    excluded: t.tabExcluded,
-  };
-  const visible = tab === 'qualified' ? result.qualified : tab === 'potential' ? result.potential : [];
-
   return (
     <div className="flex flex-col px-6 py-8">
       <div className="mx-auto w-full max-w-4xl">
@@ -237,7 +308,25 @@ export function FoerderungenView() {
           })}
         </p>
 
-        <ClarifyBar questions={result.questions} onAnswer={handleAnswer} busy={answering} />
+        <FilterBar
+          query={query}
+          onQuery={setQuery}
+          categories={categories}
+          activeCats={activeCats}
+          onToggleCat={(c) =>
+            setActiveCats((prev) => {
+              const next = new Set(prev);
+              if (next.has(c)) next.delete(c);
+              else next.add(c);
+              return next;
+            })
+          }
+          onClearCats={() => setActiveCats(new Set())}
+          onlyCalc={onlyCalc}
+          onToggleCalc={() => setOnlyCalc((v) => !v)}
+          onlyDocs={onlyDocs}
+          onToggleDocs={() => setOnlyDocs((v) => !v)}
+        />
 
         {/* Tabs mit Badges */}
         <div className="mb-6 flex flex-wrap gap-2">
@@ -263,13 +352,13 @@ export function FoerderungenView() {
               ? t.noExcluded
               : formatTemplate(t.excludedInfo, { count: counts.excluded })}
           </div>
-        ) : visible.length === 0 ? (
+        ) : filtered.length === 0 ? (
           <div className="rounded-2xl border border-line-soft bg-paper p-8 text-center text-sm text-ink-soft">
-            {tab === 'qualified' ? t.noQualified : t.noPotential}
+            {hasActiveFilter ? t.noResults : tab === 'qualified' ? t.noQualified : t.noPotential}
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {visible.slice(0, 12).map((match) => (
+            {filtered.map((match) => (
               <BenefitCard key={match.benefit.id} match={match} />
             ))}
           </div>

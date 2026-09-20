@@ -77,10 +77,15 @@
     "authority": "Zuständig: {{authority}}",
     "docsInVault": "{{present}} von {{total}} Nachweisen im Tresor",
     "unlockTitle": "Anspruch freischalten",
+    "searchPlaceholder": "Förderung suchen — Name, Amt oder Lebenslage…",
+    "filterClear": "Kategorien zurücksetzen",
+    "filterCalc": "Nur mit Rechner",
+    "filterDocsReady": "Unterlagen vollständig",
+    "noResults": "Keine Leistung passt zu deiner Suche oder Filter-Auswahl.",
     "noExcluded": "Aktuell ist keine Leistung eindeutig ausgeschlossen.",
     "excludedInfo": "{{count}} Leistungen sind laut Profil objektiv nicht zutreffend (z. B. nur für Studierende oder Rentner). Diese blenden wir aus.",
-    "noQualified": "Noch nichts eindeutig Qualifiziertes — beantworte die Klärungsfragen oben oder fülle dein Förder-Profil aus.",
-    "noPotential": "Keine offenen Potenziale — beantworte die Klärungsfragen, um mehr freizuschalten."
+    "noQualified": "Noch nichts eindeutig Qualifiziertes — fülle dein Förder-Profil aus, um passende Leistungen zu sehen.",
+    "noPotential": "Keine offenen Potenziale — ergänze weitere Angaben in deinem Profil, um mehr freizuschalten."
   },
   "antraege": {
     "statusLabel": "Status",
