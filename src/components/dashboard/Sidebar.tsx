@@ -50,7 +50,7 @@ const NAV_ITEMS: NavItem[] = [
 const SERVICE_ITEMS: NavItem[] = [
   { href: '/alg1', labelKey: 'alg1', icon: IconCoin },
   { href: '/grundsicherung', labelKey: 'grundsicherung', icon: IconDocument },
-  { href: '/wohngeld/antrag', labelKey: 'wohngeld', icon: IconCoin },
+  { href: '/wohngeld/schnellcheck', labelKey: 'wohngeld', icon: IconCoin },
 ];
 
 /** Aktuelles Locale aus der URL ableiten (Dashboard-URLs sind unprefixed = de). */

@@ -25,6 +25,7 @@ import { getDashboardDict } from '@/content/i18n/dashboard';
 import { formatTemplate } from '@/content/i18n/format';
 import type { TimelineState } from './ApplicationTimeline';
 import { isGsStage } from '@/lib/grundsicherung/store';
+import { isWgStage } from '@/lib/wohngeld/store';
 import { calculateAlg1Estimate } from '@/lib/alg1/logic';
 
 // In-Bearbeitung-Status laut applications-Constraint.
@@ -91,11 +92,26 @@ function benefitTitle(
 ): string {
   if (benefitType === 'ALG1') return t.alg1Title;
   if (benefitType === 'GRUNDSICHERUNG') return t.gsTitle;
+  if (benefitType === 'WOHNGELD') return 'Wohngeld';
   return benefitType || t.applicationFallback;
 }
 
 function getTimelineState(app: AppRecord | null): TimelineState {
   if (!app) return { activeStep: 1, completedSteps: [] };
+
+  // Wohngeld: Stage-Semantik des Dashboard-Flows (schnellcheck →
+  // einschaetzung → antrag). Schritt-Slots: 1 = Unterlagen/Datenbasis,
+  // 2 = Daten, 3 = Einreichen, 4 = Erhalt.
+  if (app.benefit_type === 'WOHNGELD') {
+    const stage = app.last_stage ?? '';
+    const submitted = ['SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(app.status);
+    const completedSteps: number[] = [];
+    if (stage === 'einschaetzung' || stage === 'form' || submitted) completedSteps.push(1, 2);
+    if (stage === 'form' || stage === 'summary' || submitted) completedSteps.push(3);
+    if (app.status === 'APPROVED' || submitted) completedSteps.push(4);
+    const activeStep = [1, 2, 3, 4].find((s) => !completedSteps.includes(s)) ?? 4;
+    return { activeStep, completedSteps };
+  }
 
   // Grundsicherung: eigene Stage-Semantik (check → formular →
   // unterlagen → einreichen). Schritt-Slots der Timeline:
@@ -214,6 +230,10 @@ export function DashboardHome() {
     if (app.benefit_type === 'GRUNDSICHERUNG') {
       const stage = isGsStage(app.last_stage) ? app.last_stage : 'check';
       return `/grundsicherung?applicationId=${app.id}&stage=${stage}`;
+    }
+    if (app.benefit_type === 'WOHNGELD') {
+      const stageParam = isWgStage(app.last_stage) ? `&stage=${app.last_stage}` : '';
+      return `/wohngeld/schnellcheck?applicationId=${app.id}${stageParam}`;
     }
     return `/antraege/${app.case_id}`;
   };
