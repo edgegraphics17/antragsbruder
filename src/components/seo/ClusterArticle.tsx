@@ -130,7 +130,16 @@ function Block({ block }: { block: ContentBlock }) {
   }
 }
 
-export function ClusterArticle({ content }: { content: ClusterPageContent }) {
+export function ClusterArticle({
+  content,
+  variant = "full",
+}: {
+  content: ClusterPageContent;
+  /** "full": mit Hero (H1/DirectAnswer/CTAs). "body": nur Hauptinhalt ab
+   * H2-Sektionen (z. B. Rechner-Seite – dort liefert das Tool selbst die H1
+   * above the fold, Supporting Content folgt darunter). */
+  variant?: "full" | "body";
+}) {
   const pagePath = `/${content.slug}`;
 
   return (
@@ -151,55 +160,57 @@ export function ClusterArticle({ content }: { content: ClusterPageContent }) {
         ]}
       />
 
-      {/* H1 + Breadcrumb */}
-      <section className="relative overflow-hidden">
-        <Container className="relative py-10 sm:py-14">
-          <Breadcrumb items={content.breadcrumb} />
-          <h1 className="font-display mt-4 max-w-3xl text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-            {content.h1}
-          </h1>
-          {/* Direct Answer: GEO-Kern, direkt unter der H1 */}
-          <div className="mt-5 max-w-3xl">
-            <DirectAnswer>{content.directAnswer}</DirectAnswer>
-          </div>
-
-          {content.quickAnswers && content.quickAnswers.length > 0 ? (
-            <div className="mt-6 max-w-3xl overflow-x-auto rounded-2xl border border-line-soft">
-              <table className="w-full text-left text-sm">
-                <thead className="bg-cream-deep text-ink">
-                  <tr>
-                    <th scope="col" className="px-4 py-2 font-semibold">
-                      Frage
-                    </th>
-                    <th scope="col" className="px-4 py-2 font-semibold">
-                      Kurzantwort
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="text-ink-soft">
-                  {content.quickAnswers.map((qa) => (
-                    <tr key={qa.question} className="border-t border-line-soft">
-                      <td className="px-4 py-2 font-medium text-ink">{qa.question}</td>
-                      <td className="px-4 py-2">{qa.answer}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+      {/* H1 + Breadcrumb (nur im "full"-Variant; "body" rendert keine eigene H1) */}
+      {variant === "full" ? (
+        <section className="relative overflow-hidden">
+          <Container className="relative py-10 sm:py-14">
+            <Breadcrumb items={content.breadcrumb} />
+            <h1 className="font-display mt-4 max-w-3xl text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+              {content.h1}
+            </h1>
+            {/* Direct Answer: GEO-Kern, direkt unter der H1 */}
+            <div className="mt-5 max-w-3xl">
+              <DirectAnswer>{content.directAnswer}</DirectAnswer>
             </div>
-          ) : null}
 
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button href={content.primaryCta.href} size="md">
-              {content.primaryCta.label}
-            </Button>
-            {content.secondaryCta ? (
-              <Button href={content.secondaryCta.href} variant="secondary" size="md">
-                {content.secondaryCta.label}
-              </Button>
+            {content.quickAnswers && content.quickAnswers.length > 0 ? (
+              <div className="mt-6 max-w-3xl overflow-x-auto rounded-2xl border border-line-soft">
+                <table className="w-full text-left text-sm">
+                  <thead className="bg-cream-deep text-ink">
+                    <tr>
+                      <th scope="col" className="px-4 py-2 font-semibold">
+                        Frage
+                      </th>
+                      <th scope="col" className="px-4 py-2 font-semibold">
+                        Kurzantwort
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-ink-soft">
+                    {content.quickAnswers.map((qa) => (
+                      <tr key={qa.question} className="border-t border-line-soft">
+                        <td className="px-4 py-2 font-medium text-ink">{qa.question}</td>
+                        <td className="px-4 py-2">{qa.answer}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             ) : null}
-          </div>
-        </Container>
-      </section>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button href={content.primaryCta.href} size="md">
+                {content.primaryCta.label}
+              </Button>
+              {content.secondaryCta ? (
+                <Button href={content.secondaryCta.href} variant="secondary" size="md">
+                  {content.secondaryCta.label}
+                </Button>
+              ) : null}
+            </div>
+          </Container>
+        </section>
+      ) : null}
 
       {/* Hauptinhalt */}
       <section className="pb-4">

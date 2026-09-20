@@ -203,7 +203,10 @@ export const useGsStore = create<GsDraftState>()(
             .from('applications')
             .update(payload)
             .eq('id', s.applicationId);
-          if (error) return null;
+          if (error) {
+            console.warn('[GS-Store] Cloud-Update fehlgeschlagen:', error.message);
+            return null;
+          }
           return s.applicationId;
         }
 
@@ -212,7 +215,31 @@ export const useGsStore = create<GsDraftState>()(
           .insert(payload)
           .select('id')
           .single();
-        if (error || !data) return null;
+        if (error || !data) {
+          // Existiert bereits eine Row für diesen Case (z. B. vom Dashboard
+          // vorab angelegt)? Dann an diese Row anknüpfen statt scheitern.
+          const { data: existing } = await supabase
+            .from('applications')
+            .select('id')
+            .eq('case_id', caseId)
+            .eq('benefit_type', 'GRUNDSICHERUNG')
+            .limit(1)
+            .maybeSingle();
+          if (existing) {
+            set({ applicationId: existing.id });
+            const { error: updErr } = await supabase
+              .from('applications')
+              .update(payload)
+              .eq('id', existing.id);
+            if (updErr) {
+              console.warn('[GS-Store] Cloud-Update (Resume) fehlgeschlagen:', updErr.message);
+              return null;
+            }
+            return existing.id;
+          }
+          console.warn('[GS-Store] Cloud-Save fehlgeschlagen:', error?.message);
+          return null;
+        }
         set({ applicationId: data.id });
         return data.id;
       },
