@@ -892,6 +892,8 @@ const deDashboard = {
     "filterCalc": "Nur mit Rechner",
     "filterDocsReady": "Unterlagen vollständig",
     "noResults": "Keine Leistung passt zu deiner Suche oder Filter-Auswahl.",
+    "resultCountAll": "{{count}} Leistungen für dich gefunden",
+    "resultCountFiltered": "{{count}} Leistungen passen zu deiner Filter-Auswahl",
     "noExcluded": "Aktuell ist keine Leistung eindeutig ausgeschlossen.",
     "excludedInfo": "{{count}} Leistungen sind laut Profil objektiv nicht zutreffend (z. B. nur für Studierende oder Rentner). Diese blenden wir aus.",
     "noQualified": "Noch nichts eindeutig Qualifiziertes — fülle dein Förder-Profil aus, um passende Leistungen zu sehen.",

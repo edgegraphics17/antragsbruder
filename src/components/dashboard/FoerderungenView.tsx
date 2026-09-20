@@ -1,10 +1,11 @@
 'use client';
 
 // ============================================================
-// FÖRDERUNGEN-RADAR — 3-Ebenen-Matching (Qualifiziert / Potenzial /
-// Ausgeschlossen) über die echte Benefit-Datenbank, mit Suche und
-// Filter-System (Kategorien, Rechner, Dokumente). Alle UI-Strings
-// über getDashboardDict (i18n), Links locale-aware.
+// FÖRDERUNGEN-RADAR — Eine kompakte, gefilterte Liste.
+// Keine Tab-Splitting mehr: Qualifizierte + Potenzial-Leistungen
+// erscheinen gemeinsam (Badge pro Karte markiert den Match-Level).
+// Gefiltert wird nur noch über Suche + Kategorie-Chips (+ Toggles).
+// Alle UI-Strings über getDashboardDict (i18n), Links locale-aware.
 // ============================================================
 
 import { useEffect, useMemo, useState } from 'react';
@@ -20,11 +21,6 @@ import { localeHref } from '@/i18n/config';
 import { useLocaleFromPath } from '@/i18n/use-locale';
 import { getDashboardDict } from '@/content/i18n/dashboard';
 import { formatTemplate } from '@/content/i18n/format';
-
-type Tab = 'qualified' | 'potential' | 'excluded';
-
-// Tab-Reihenfolge; Labels aus dem Dict (foerderungen.tab*).
-const TABS: Tab[] = ['qualified', 'potential', 'excluded'];
 
 // CTA-Routen für Kern-Leistungen mit eigenem Rechner; sonst Amts-Link.
 const CALC_ROUTES: Record<string, string> = {
@@ -51,63 +47,67 @@ function amountLabel(
   return null;
 }
 
+// Kompakte Karte: Kategorie-Pill + Match-Badge in einer Zeile, Docs
+// nur als kompakte "x von y"-Zeile statt einzelner Pills.
 function BenefitCard({ match }: { match: RadarResult['qualified'][number] }) {
   const locale = useLocaleFromPath();
   const t = getDashboardDict(locale).foerderungen;
-  const { benefit, docsPresent, docsMissing } = match;
+  const { benefit, docsPresent, docsMissing, level } = match as RadarResult['qualified'][number] & { level?: 'qualified' | 'potential' };
   const amount = amountLabel(benefit, t);
   const calcRoute = (benefit.calcPossible && CALC_ROUTES[benefit.id]) || null;
   const ctaHref = calcRoute ? localeHref(locale, calcRoute) : benefit.url || localeHref(locale, '/dokumente');
   const ctaLabel = calcRoute ? t.calcNow : t.viewAtOffice;
+  const isQualified = level !== 'potential';
 
   return (
-    <div className="flex flex-col rounded-2xl border border-line-soft bg-paper p-5">
-      <div className="mb-2 flex flex-wrap items-center gap-2">
+    <div className="flex flex-col rounded-xl border border-line-soft bg-paper p-4">
+      <div className="flex flex-wrap items-center gap-1.5">
         {benefit.category && (
-          <span className="rounded-full bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700">
+          <span className="rounded-full bg-brand-50 px-2 py-0.5 text-[11px] font-medium text-brand-700">
             {benefit.category}
           </span>
         )}
         {benefit.calcPossible && (
-          <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-semibold text-green-700">
+          <span className="rounded-full bg-green-100 px-2 py-0.5 text-[11px] font-semibold text-green-700">
             {t.calcAvailable}
           </span>
         )}
       </div>
-      <h3 className="text-lg font-semibold text-ink">{benefit.name}</h3>
+      <h3 className="mt-1.5 text-base font-semibold leading-snug text-ink">{benefit.name}</h3>
       {benefit.authority && (
         <p className="mt-0.5 text-xs text-ink-soft">{formatTemplate(t.authority, { authority: benefit.authority })}</p>
       )}
-      {benefit.amountText && <p className="mt-1 text-sm text-ink-soft">{benefit.amountText}</p>}
-      {amount && <p className="mt-1 text-sm font-medium text-brand-700">{amount}</p>}
+      {benefit.amountText && <p className="mt-1 text-xs text-ink-soft">{benefit.amountText}</p>}
+      {amount && <p className="mt-0.5 text-sm font-medium text-brand-700">{amount}</p>}
 
       {benefit.requiredDocs.length > 0 && (
-        <div className="mt-3">
-          <p className="text-xs text-ink-soft">
+        <p className="mt-2 text-[11px] text-ink-soft">
+          <span
+            className={
+              docsMissing.length === 0
+                ? 'font-semibold text-green-700'
+                : 'font-semibold text-amber-700'
+            }
+          >
             {formatTemplate(t.docsInVault, { present: docsPresent.length, total: benefit.requiredDocs.length })}
-          </p>
-          <div className="mt-1.5 flex flex-wrap gap-1.5">
-            {benefit.requiredDocs.map((label) => {
-              const missing = docsMissing.some((m) => m.label === label);
-              return (
-                <span
-                  key={label}
-                  className={`rounded-full px-2 py-0.5 text-xs ${
-                    missing ? 'bg-red-50 text-red-600' : 'bg-green-100 text-green-700'
-                  }`}
-                >
-                  {missing ? '✗' : '✓'} {label.length > 34 ? `${label.slice(0, 34)}…` : label}
-                </span>
-              );
-            })}
-          </div>
-        </div>
+          </span>
+          {docsMissing.length > 0 && (
+            <> · {t.filterDocsReady}: {docsMissing.map((m) => m.label.length > 24 ? `${m.label.slice(0, 24)}…` : m.label).join(', ')}</>
+          )}
+        </p>
       )}
 
-      <div className="mt-auto pt-4">
+      <div className="mt-auto flex items-center justify-between gap-3 pt-3">
+        <span
+          className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${
+            isQualified ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
+          }`}
+        >
+          {isQualified ? t.tabQualified : t.tabPotential}
+        </span>
         <a
           href={ctaHref}
-          className="inline-block rounded-xl bg-brand-600 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+          className="rounded-lg bg-brand-600 px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-brand-700"
         >
           {ctaLabel}
         </a>
@@ -116,8 +116,8 @@ function BenefitCard({ match }: { match: RadarResult['qualified'][number] }) {
   );
 }
 
-// Filter-System: Suche, Kategorie-Chips (Multi-Select mit Anzahl),
-// Rechner-Toggle, Dokumente-Toggle.
+// Kompakte Filterzeile: Suche + Kategorie-Chips (Multi-Select mit Anzahl)
+// in einem Block, Toggles in derselben Zeile.
 function FilterBar({
   query,
   onQuery,
@@ -143,13 +143,13 @@ function FilterBar({
 }) {
   const t = getDashboardDict(useLocaleFromPath()).foerderungen;
   return (
-    <div className="mb-6 space-y-3">
+    <div className="mb-5 space-y-2.5">
       <input
         type="search"
         value={query}
         onChange={(e) => onQuery(e.target.value)}
         placeholder={t.searchPlaceholder}
-        className="w-full rounded-xl border border-line-soft bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors placeholder:text-ink-soft focus:border-brand-500"
+        className="w-full rounded-xl border border-line-soft bg-white px-4 py-2 text-sm text-ink outline-none transition-colors placeholder:text-ink-soft focus:border-brand-500"
       />
       <div className="flex flex-wrap items-center gap-1.5">
         {categories.map((c) => {
@@ -159,13 +159,13 @@ function FilterBar({
               key={c.name}
               type="button"
               onClick={() => onToggleCat(c.name)}
-              className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+              className={`rounded-full px-2.5 py-1 text-xs font-medium transition-colors ${
                 active
                   ? 'bg-brand-600 text-white'
                   : 'border border-line-soft bg-white text-ink-soft hover:text-ink'
               }`}
             >
-              {c.name} <span className={active ? 'opacity-75' : 'text-ink-soft'}>{c.count}</span>
+              {c.name} <span className={active ? 'opacity-75' : 'text-ink-soft/70'}>{c.count}</span>
             </button>
           );
         })}
@@ -173,16 +173,16 @@ function FilterBar({
           <button
             type="button"
             onClick={onClearCats}
-            className="rounded-full px-3 py-1.5 text-xs font-medium text-brand-700 hover:underline"
+            className="rounded-full px-2.5 py-1 text-xs font-medium text-brand-700 hover:underline"
           >
             {t.filterClear}
           </button>
         )}
-        <span className="mx-1 h-4 w-px bg-line-soft" aria-hidden />
+        <span className="mx-0.5 h-4 w-px bg-line-soft" aria-hidden />
         <button
           type="button"
           onClick={onToggleCalc}
-          className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+          className={`rounded-full px-2.5 py-1 text-xs font-medium transition-colors ${
             onlyCalc ? 'bg-green-600 text-white' : 'border border-line-soft bg-white text-ink-soft hover:text-ink'
           }`}
         >
@@ -191,7 +191,7 @@ function FilterBar({
         <button
           type="button"
           onClick={onToggleDocs}
-          className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+          className={`rounded-full px-2.5 py-1 text-xs font-medium transition-colors ${
             onlyDocs ? 'bg-green-600 text-white' : 'border border-line-soft bg-white text-ink-soft hover:text-ink'
           }`}
         >
@@ -209,7 +209,6 @@ export function FoerderungenView() {
   const t = getDashboardDict(locale).foerderungen;
   const [docs, setDocs] = useState<{ document_role: string; filename: string }[]>([]);
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState<Tab>('qualified');
   const [query, setQuery] = useState('');
   const [activeCats, setActiveCats] = useState<Set<string>>(new Set());
   const [onlyCalc, setOnlyCalc] = useState(false);
@@ -254,11 +253,20 @@ export function FoerderungenView() {
       .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   }, [result]);
 
+  // Kombinierte Liste: qualifizierte zuerst (weniger fehlende Docs zuerst),
+  // danach Potenzial — Badge pro Karte zeigt den Match-Level.
+  const allMatches = useMemo(
+    () => [
+      ...result.qualified.map((m) => ({ ...m, level: 'qualified' as const })),
+      ...result.potential.map((m) => ({ ...m, level: 'potential' as const })),
+    ],
+    [result],
+  );
+
   // Filter: Suche (Name, Kategorie, Amt, Lebenslage-Tags), Kategorie, Toggles.
   const filtered = useMemo(() => {
-    const source = tab === 'qualified' ? result.qualified : tab === 'potential' ? result.potential : [];
     const q = normalize(query);
-    return source.filter((m) => {
+    return allMatches.filter((m) => {
       if (activeCats.size > 0 && !(m.benefit.category && activeCats.has(m.benefit.category))) return false;
       if (onlyCalc && !m.benefit.calcPossible) return false;
       if (onlyDocs && m.docsMissing.length > 0) return false;
@@ -270,18 +278,8 @@ export function FoerderungenView() {
         m.benefit.lifeSituations.some((s) => normalize(s).includes(q))
       );
     });
-  }, [tab, result, query, activeCats, onlyCalc, onlyDocs]);
+  }, [allMatches, query, activeCats, onlyCalc, onlyDocs]);
 
-  const counts: Record<Tab, number> = {
-    qualified: result.qualified.length,
-    potential: result.potential.length,
-    excluded: result.excluded.length,
-  };
-  const tabLabels: Record<Tab, string> = {
-    qualified: t.tabQualified,
-    potential: t.tabPotential,
-    excluded: t.tabExcluded,
-  };
   const hasActiveFilter = query !== '' || activeCats.size > 0 || onlyCalc || onlyDocs;
 
   if (loading) {
@@ -301,7 +299,7 @@ export function FoerderungenView() {
     <div className="flex flex-col px-6 py-8">
       <div className="mx-auto w-full max-w-4xl">
         <h1 className="text-2xl font-bold text-ink">{t.title}</h1>
-        <p className="mb-6 mt-2 text-sm text-ink-soft">
+        <p className="mb-5 mt-2 text-sm text-ink-soft">
           {formatTemplate(t.subtitle, {
             matched: result.qualified.length + result.potential.length,
             total: TOTAL_BENEFITS,
@@ -328,40 +326,30 @@ export function FoerderungenView() {
           onToggleDocs={() => setOnlyDocs((v) => !v)}
         />
 
-        {/* Tabs mit Badges */}
-        <div className="mb-6 flex flex-wrap gap-2">
-          {TABS.map((key) => (
-            <button
-              key={key}
-              type="button"
-              onClick={() => setTab(key)}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-                tab === key
-                  ? 'bg-brand-600 text-white'
-                  : 'border border-line-soft bg-white text-ink-soft hover:text-ink'
-              }`}
-            >
-              {tabLabels[key]} ({counts[key]})
-            </button>
-          ))}
-        </div>
+        {/* Ergebnisanzahl kompakt neben der Liste */}
+        <p className="mb-2 text-xs font-medium text-ink-soft">
+          {hasActiveFilter
+            ? formatTemplate(t.resultCountFiltered, { count: filtered.length })
+            : formatTemplate(t.resultCountAll, { count: allMatches.length })}
+        </p>
 
-        {tab === 'excluded' ? (
-          <div className="rounded-2xl border border-line-soft bg-paper p-6 text-sm text-ink-soft">
-            {counts.excluded === 0
-              ? t.noExcluded
-              : formatTemplate(t.excludedInfo, { count: counts.excluded })}
-          </div>
-        ) : filtered.length === 0 ? (
+        {filtered.length === 0 ? (
           <div className="rounded-2xl border border-line-soft bg-paper p-8 text-center text-sm text-ink-soft">
-            {hasActiveFilter ? t.noResults : tab === 'qualified' ? t.noQualified : t.noPotential}
+            {hasActiveFilter ? t.noResults : t.noQualified}
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
             {filtered.map((match) => (
               <BenefitCard key={match.benefit.id} match={match} />
             ))}
           </div>
+        )}
+
+        {/* Ausgeschlossene nur als dezente Fußnote — kein eigener Tab */}
+        {result.excluded.length > 0 && (
+          <p className="mt-5 text-xs text-ink-soft">
+            {formatTemplate(t.excludedInfo, { count: result.excluded.length })}
+          </p>
         )}
       </div>
     </div>
