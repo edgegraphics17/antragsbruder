@@ -87,6 +87,12 @@ export interface WgQuickQuestion {
   unit?: string;
   relevantIf: (f: WgFacts) => boolean;
   fact: keyof WgFacts;
+  /** Konsequenz bei „Ja" — kurz, Alltagssprache (unter dem Button). */
+  whyYes?: string;
+  /** Konsequenz bei „Nein" — kurz, Alltagssprache (unter dem Button). */
+  whyNo?: string;
+  /** Konsequenz für Antwort-Fragen (single/money/number/text). */
+  impact?: string;
 }
 
 export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
@@ -97,6 +103,8 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
     type: 'bool',
     relevantIf: () => true,
     fact: 'grundsicherungsbezug',
+    whyYes: 'Dann bist du voraussichtlich vom Wohngeld ausgeschlossen — deine Unterkunftskosten sind in dieser Leistung schon enthalten (§ 7 WoGG).',
+    whyNo: 'Gut — dann können wir deinen möglichen Anspruch ganz normal prüfen.',
   },
   {
     id: 'bafoeg_haushalt',
@@ -104,6 +112,8 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
     type: 'bool',
     relevantIf: (f) => f.grundsicherungsbezug === false,
     fact: 'bafoeg_haushalt',
+    whyYes: 'Dann geht Ausbildungsförderung vor — grundsätzlich besteht dann kein Wohngeldanspruch, auch bei 0 € Förderung.',
+    whyNo: 'Gut — dann ist Wohngeld für deinen Haushalt grundsätzlich möglich.',
   },
   {
     id: 'wohnform',
@@ -117,6 +127,7 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
     ],
     relevantIf: (f) => f.grundsicherungsbezug === false && f.bafoeg_haushalt === false,
     fact: 'wohnform',
+    impact: 'Die Wohnform entscheidet, welche Wohnkosten wir rechnen: bei Miete deine Miete, bei Eigentum deine Belastung.',
   },
   {
     id: 'kaltmiete',
@@ -127,6 +138,7 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
     unit: '€ / Monat',
     relevantIf: (f) => f.wohnform === 'MIETE' || f.wohnform === 'ANDERE',
     fact: 'kaltmiete',
+    impact: 'Deine Kaltmiete ist Teil der Wohnkosten — sie zählt bis zum gesetzlichen Höchstbetrag deiner Mietenstufe.',
   },
   {
     id: 'nebenkosten',
@@ -138,6 +150,7 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
     unit: '€ / Monat',
     relevantIf: (f) => f.wohnform === 'MIETE' || f.wohnform === 'ANDERE',
     fact: 'nebenkosten',
+    impact: 'Kalte Betriebskosten gehören zur berücksichtigten Miete dazu — Heiz- und Warmwasser aber NICHT.',
   },
   {
     id: 'belastung',
@@ -149,6 +162,7 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
     unit: '€ / Monat',
     relevantIf: (f) => f.wohnform === 'EIGENTUM',
     fact: 'belastung',
+    impact: 'Bei Eigentum ersetzt deine Belastung die Miete — die Rechnung läuft wie beim Mietzuschuss (Näherung).',
   },
   {
     id: 'haushalt',
@@ -159,6 +173,7 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
     max: 12,
     relevantIf: (f) => f.wohnform != null,
     fact: 'haushalt',
+    impact: 'Die Haushaltsgröße bestimmt deine Berechnungswerte und den Höchstbetrag — mehr Personen bedeutet meist mehr Wohngeld.',
   },
   {
     id: 'alleinerziehend',
@@ -166,6 +181,8 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
     type: 'bool',
     relevantIf: (f) => (f.haushalt ?? 1) >= 2,
     fact: 'alleinerziehend',
+    whyYes: 'Dann rechnen wir den Alleinerziehenden-Freibetrag (1.320 €/Jahr) ein — das senkt dein anrechenbares Einkommen und erhöht dein Wohngeld.',
+    whyNo: 'Kein Freibetrag — die Rechnung läuft mit dem vollen Haushalts-Einkommen.',
   },
   {
     id: 'netto_einkommen',
@@ -177,6 +194,7 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
     unit: '€ / Monat',
     relevantIf: (f) => f.wohnform != null,
     fact: 'netto_einkommen',
+    impact: 'Je höher dein Einkommen, desto niedriger dein Wohngeld — die gesetzliche Formel rechnet Einkommen und Wohnkosten gegeneinander.',
   },
   {
     id: 'plz',
@@ -185,6 +203,7 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
     type: 'text',
     relevantIf: (f) => f.wohnform != null,
     fact: 'plz',
+    impact: 'Deine PLZ bestimmt die Mietenstufe (I–VII) deines Wohnorts — sie setzt den Höchstbetrag, bis zu dem deine Wohnkosten zählen.',
   },
   {
     id: 'schwerbehinderung',
@@ -192,6 +211,8 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
     type: 'bool',
     relevantIf: (f) => f.wohnform != null,
     fact: 'schwerbehinderung',
+    whyYes: 'Dann rechnen wir den Schwerbehinderten-Freibetrag (1.800 €/Jahr) ein — das senkt dein anrechenbares Einkommen und kann dein Wohngeld erhöhen.',
+    whyNo: 'Kein zusätzlicher Freibetrag — das ändert an deiner Rechnung nichts.',
   },
   {
     id: 'grad_behinderung',
@@ -201,6 +222,7 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
     max: 100,
     relevantIf: (f) => f.schwerbehinderung === true,
     fact: 'grad_behinderung',
+    impact: 'Den vollen Freibetrag gibt es bei GdB 100 oder Pflegebedürftigkeit — bei weniger prüft die Behörde im Einzelfall.',
   },
   {
     id: 'grundrentenzeiten',
@@ -209,6 +231,8 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
     type: 'bool',
     relevantIf: (f) => f.wohnform != null,
     fact: 'grundrentenzeiten',
+    whyYes: 'Dann gibt es einen zusätzlichen Freibetrag — dein anrechenbares Einkommen sinkt und dein Wohngeld kann höher ausfallen.',
+    whyNo: 'Kein zusätzlicher Freibetrag — das ändert an deiner Rechnung nichts.',
   },
   {
     id: 'unterhalt_gezahlt',
@@ -219,6 +243,7 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
     unit: '€ / Monat',
     relevantIf: (f) => f.wohnform != null,
     fact: 'unterhalt_gezahlt',
+    impact: 'Gezahlter Unterhalt kann dein Einkommen senken — ein Betrag hier kann dein Wohngeld also erhöhen.',
   },
 ];
 

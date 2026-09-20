@@ -45,29 +45,52 @@ function eur(n: number): string {
 function JaNeinButtons({
   value,
   onAnswer,
+  whyYes,
+  whyNo,
 }: {
   value: boolean | null;
   onAnswer: (v: boolean) => void;
+  whyYes?: string;
+  whyNo?: string;
 }) {
   return (
-    <div className="mt-3 flex gap-3">
-      {[
-        { label: 'Ja', v: true },
-        { label: 'Nein', v: false },
-      ].map((o) => (
+    <div className="mt-3 grid grid-cols-2 gap-3">
+      <div className="flex flex-col">
         <button
-          key={o.label}
           type="button"
-          onClick={() => onAnswer(o.v)}
+          onClick={() => onAnswer(true)}
           className={`flex-1 rounded-xl border px-4 py-3 text-sm font-semibold transition-colors ${
-            value === o.v
+            value === true
               ? 'border-brand-600 bg-brand-600 text-white'
               : 'border-line-soft bg-white text-ink hover:border-brand-400'
           }`}
         >
-          {o.label}
+          Ja
         </button>
-      ))}
+        {whyYes && (
+          <p className="mt-1.5 text-xs leading-snug text-ink-soft">
+            <span className="font-semibold text-ink">Ja →</span> {whyYes}
+          </p>
+        )}
+      </div>
+      <div className="flex flex-col">
+        <button
+          type="button"
+          onClick={() => onAnswer(false)}
+          className={`flex-1 rounded-xl border px-4 py-3 text-sm font-semibold transition-colors ${
+            value === false
+              ? 'border-brand-600 bg-brand-600 text-white'
+              : 'border-line-soft bg-white text-ink hover:border-brand-400'
+          }`}
+        >
+          Nein
+        </button>
+        {whyNo && (
+          <p className="mt-1.5 text-xs leading-snug text-ink-soft">
+            <span className="font-semibold text-ink">Nein →</span> {whyNo}
+          </p>
+        )}
+      </div>
     </div>
   );
 }
@@ -163,7 +186,15 @@ function QuickQuestionCard({
         <JaNeinButtons
           value={typeof rawValue === 'boolean' ? rawValue : null}
           onAnswer={onAnswer}
+          whyYes={q.whyYes}
+          whyNo={q.whyNo}
         />
+      ) : null}
+
+      {q.type !== 'bool' && q.impact ? (
+        <p className="mt-2 rounded-lg bg-brand-50 px-3 py-2 text-xs leading-snug text-ink-soft">
+          <span className="font-semibold text-ink">Auswirkung:</span> {q.impact}
+        </p>
       ) : null}
 
       {q.type === 'single' ? (
