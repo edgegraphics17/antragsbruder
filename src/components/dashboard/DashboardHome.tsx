@@ -244,33 +244,58 @@ export function DashboardHome() {
               const badgeCls = STATUS_BADGE_CLS[app.status] ?? 'bg-brand-100 text-brand-700';
               const badgeLabel = t.status[app.status as keyof typeof t.status] ?? app.status;
               const submitted = ['SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(app.status);
+              // ALG1 hat keinen Betrag, aber eine Schnell-Check-Einschätzung.
+              const eligibility =
+                app.benefit_type === 'ALG1'
+                  ? ((app.calculation_result as { eligibility?: string } | null)?.eligibility ?? null)
+                  : null;
+              const eligibilityLabel =
+                eligibility === 'LIKELY'
+                  ? 'Voraussichtlich berechtigt'
+                  : eligibility === 'MAYBE'
+                    ? 'Berechtigung offen — Details prüfen'
+                    : eligibility === 'UNLIKELY'
+                      ? 'Aktuell voraussichtlich keine Berechtigung'
+                      : null;
               return (
                 <div
                   key={app.id}
                   className="rounded-2xl border border-line-soft bg-paper p-5"
                 >
-                  <div className="mb-2 flex items-center gap-2">
-                    <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${badgeCls}`}>
-                      {badgeLabel}
-                    </span>
+                  <div className="flex items-start justify-between gap-4">
+                    {/* Links: Status, Name, Betrag aus dem Schnell-Check */}
+                    <div className="min-w-0">
+                      <div className="mb-2 flex items-center gap-2">
+                        <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${badgeCls}`}>
+                          {badgeLabel}
+                        </span>
+                      </div>
+                      <p className="font-semibold text-ink">
+                        {benefitTitle(app.benefit_type, t)}
+                      </p>
+                      {app.calculation_result?.amount != null && app.calculation_result.amount > 0 && (
+                        <p className="mt-1 text-sm font-semibold text-brand-700">
+                          {formatTemplate(t.upTo, { amount: app.calculation_result.amount })}
+                        </p>
+                      )}
+                      {app.calculation_result?.amount == null && eligibilityLabel && (
+                        <p className="mt-1 text-sm font-medium text-ink-soft">{eligibilityLabel}</p>
+                      )}
+                    </div>
+
+                    {/* Rechts: Weiterarbeiten/Status + Erstell-Datum */}
+                    <div className="flex shrink-0 flex-col items-end gap-2">
+                      <Link
+                        href={localeHref(locale, resumeHref(app))}
+                        className="inline-block rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+                      >
+                        {submitted ? t.viewStatus : t.continueWorking}
+                      </Link>
+                      <p className="text-xs text-ink-soft">
+                        {formatTemplate(t.createdAt, { date: formatDate(app.created_at) })}
+                      </p>
+                    </div>
                   </div>
-                  <p className="font-semibold text-ink">
-                    {benefitTitle(app.benefit_type, t)}
-                  </p>
-                  {app.calculation_result?.amount != null && app.calculation_result.amount > 0 && (
-                    <p className="mt-1 text-sm font-semibold text-brand-700">
-                      {formatTemplate(t.upTo, { amount: app.calculation_result.amount })}
-                    </p>
-                  )}
-                  <p className="mt-0.5 text-xs text-ink-soft">
-                    {formatTemplate(t.createdAt, { date: formatDate(app.created_at) })}
-                  </p>
-                  <Link
-                    href={localeHref(locale, resumeHref(app))}
-                    className="mt-3 inline-block rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
-                  >
-                    {submitted ? t.viewStatus : t.continueWorking}
-                  </Link>
                 </div>
               );
             })
