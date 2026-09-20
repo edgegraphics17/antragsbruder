@@ -20,8 +20,9 @@ import { localeHref } from '@/i18n/config';
 import { useLocaleFromPath } from '@/i18n/use-locale';
 import { getDashboardDict } from '@/content/i18n/dashboard';
 import { formatTemplate } from '@/content/i18n/format';
-import { ApplicationTimeline, type TimelineState } from './ApplicationTimeline';
+import type { TimelineState } from './ApplicationTimeline';
 import { isGsStage } from '@/lib/grundsicherung/store';
+import { calculateAlg1Estimate } from '@/lib/alg1/logic';
 
 // In-Bearbeitung-Status laut applications-Constraint.
 const ACTIVE_STATUSES = ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY', 'SUBMITTED', 'PROCESSING'];
@@ -50,6 +51,24 @@ const CALC_ROUTES: Record<string, string> = {
 
 // Timeline-Schritte: IDs + Status-Mapping leben in ApplicationTimeline /
 // getTimelineState — Labels/Beschreibungen aus dem Dict (home.timeline).
+const TIMELINE_STEP_IDS = ['docs', 'data', 'submit', 'receive'] as const;
+
+/**
+ * Geschätzte monatliche ALG1-Höhe — aus calculation_result, mit Fallback
+ * direkt aus dem Formularstand (verbindet auch Alt-Anträge ohne amount).
+ */
+function alg1EstimateAmount(app: AppRecord): number | null {
+  const stored = app.calculation_result?.amount;
+  if (stored != null && stored > 0) return stored;
+  const fs = (app.form_state ?? {}) as Record<string, unknown>;
+  const gross = Number(fs.grossSalary ?? 0);
+  if (!Number.isFinite(gross) || gross <= 0) return null;
+  const children = Number(fs.childrenCount ?? 0);
+  return calculateAlg1Estimate({
+    grossSalary: gross,
+    childrenCount: Number.isFinite(children) ? children : 0,
+  }).monthly;
+}
 
 interface AppRecord {
   id: string;
@@ -59,6 +78,7 @@ interface AppRecord {
   created_at: string;
   last_stage: string | null;
   calculation_result: { amount?: number; unit?: string } | null;
+  form_state: Record<string, unknown> | null;
 }
 
 // Klickbare Titel je Benefit (Dict statt Roh-Wert wie "GRUNDSICHERUNG").
@@ -152,7 +172,7 @@ export function DashboardHome() {
     const load = async () => {
       const { data } = await supabase
         .from('applications')
-        .select('id, case_id, benefit_type, status, created_at, last_stage, calculation_result')
+        .select('id, case_id, benefit_type, status, created_at, last_stage, calculation_result, form_state')
         .eq('user_id', user.id)
         .order('updated_at', { ascending: false });
       setApplications(data ?? []);
@@ -165,13 +185,10 @@ export function DashboardHome() {
   }, [user, loadDocuments]);
 
   const activeApplications = applications.filter((a) => ACTIVE_STATUSES.includes(a.status));
-  const activeAlg1 = activeApplications.find((a) => a.benefit_type === 'ALG1') ?? null;
-  const timeline = getTimelineState(activeAlg1);
 
-  // Startbildschirm ohne Ballast: Tresor-Balken und Fortschritts-Footer
-  // erscheinen erst, wenn tatsächlich ein Antrag läuft.
+  // Startbildschirm ohne Ballast: Tresor-Balken erscheint erst, wenn
+  // tatsächlich ein Antrag läuft.
   const showJourney = activeApplications.length > 0;
-  const journeyApp = activeApplications[0] ?? null;
 
   // Resume-Href je Benefit: ALG1 nutzt die Stage-Parameter des ALG1-Flows,
   // Grundsicherung den eigenen Flow (/grundsicherung mit Auto-Resume).
@@ -190,25 +207,10 @@ export function DashboardHome() {
     return `/antraege/${app.case_id}`;
   };
 
-  const journeySubmitted = journeyApp
-    ? ['SUBMITTED', 'PROCESSING'].includes(journeyApp.status)
-    : false;
-  // Klickbarer aktiver Schritt führt genau dorthin, wo der Antrag steht
-  // (gleiche Resume-Logik wie die "Weiterarbeiten"-Karte oben).
-  const journeyContinueHref = journeyApp ? resumeHref(journeyApp) : null;
-  const timelineHeader = journeyApp
-    ? {
-        title: benefitTitle(journeyApp.benefit_type, t),
-        statusLabel: t.status[journeyApp.status as keyof typeof t.status] ?? journeyApp.status,
-        badgeCls: STATUS_BADGE_CLS[journeyApp.status] ?? 'bg-brand-100 text-brand-700',
-      }
-    : null;
   const displayName = profile?.firstName || user?.email?.split('@')[0] || t.fallbackUser;
 
   return (
-    <div
-      className={`mx-auto max-w-6xl p-6 md:p-8 ${showJourney ? 'pb-56 md:pb-64' : ''}`}
-    >
+    <div className="mx-auto max-w-6xl p-6 md:p-8">
       {/* Gruß */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-ink" suppressHydrationWarning>
@@ -244,9 +246,14 @@ export function DashboardHome() {
               const badgeCls = STATUS_BADGE_CLS[app.status] ?? 'bg-brand-100 text-brand-700';
               const badgeLabel = t.status[app.status as keyof typeof t.status] ?? app.status;
               const submitted = ['SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(app.status);
+              // Möglicher Betrag: bei ALG1 die geschätzte monatliche Summe
+              // (calculation_result.amount, Fallback aus form_state) statt
+              // des reinen Eligibility-Labels.
+              const estimateAmount =
+                app.benefit_type === 'ALG1' ? alg1EstimateAmount(app) : app.calculation_result?.amount ?? null;
               // ALG1 hat keinen Betrag, aber eine Schnell-Check-Einschätzung.
               const eligibility =
-                app.benefit_type === 'ALG1'
+                app.benefit_type === 'ALG1' && estimateAmount == null
                   ? ((app.calculation_result as { eligibility?: string } | null)?.eligibility ?? null)
                   : null;
               const eligibilityLabel =
@@ -257,6 +264,12 @@ export function DashboardHome() {
                     : eligibility === 'UNLIKELY'
                       ? 'Aktuell voraussichtlich keine Berechtigung'
                       : null;
+              // Kompakte Fortschrittsleiste in der Karte — verschwindet,
+              // sobald der Antrag eingereicht ist (Status-Badge übernimmt).
+              const cardTimeline = getTimelineState(app);
+              const doneSteps = cardTimeline.completedSteps.length;
+              const activeStepLabel =
+                t.timeline[TIMELINE_STEP_IDS[cardTimeline.activeStep - 1]].label;
               return (
                 <div
                   key={app.id}
@@ -273,12 +286,12 @@ export function DashboardHome() {
                       <p className="font-semibold text-ink">
                         {benefitTitle(app.benefit_type, t)}
                       </p>
-                      {app.calculation_result?.amount != null && app.calculation_result.amount > 0 && (
+                      {estimateAmount != null && estimateAmount > 0 && (
                         <p className="mt-1 text-sm font-semibold text-brand-700">
-                          {formatTemplate(t.upTo, { amount: app.calculation_result.amount })}
+                          {formatTemplate(t.upTo, { amount: estimateAmount })}
                         </p>
                       )}
-                      {app.calculation_result?.amount == null && eligibilityLabel && (
+                      {estimateAmount == null && eligibilityLabel && (
                         <p className="mt-1 text-sm font-medium text-ink-soft">{eligibilityLabel}</p>
                       )}
                     </div>
@@ -296,6 +309,39 @@ export function DashboardHome() {
                       </p>
                     </div>
                   </div>
+
+                  {!submitted && (
+                    /* Kompakte Fortschrittsleiste — klickbar, führt direkt
+                       zum aktuellen Schritt des Antrags. */
+                    <Link
+                      href={localeHref(locale, resumeHref(app))}
+                      className="mt-4 block rounded-xl bg-white p-3 ring-1 ring-line-soft transition-colors hover:ring-brand-300"
+                      aria-label={`${formatTemplate(t.stepsProgress, { done: doneSteps })} — ${activeStepLabel}: weiterarbeiten`}
+                    >
+                      <div
+                        role="progressbar"
+                        aria-valuemin={0}
+                        aria-valuemax={4}
+                        aria-valuenow={doneSteps}
+                        aria-label={formatTemplate(t.stepsProgress, { done: doneSteps })}
+                      >
+                        <div className="flex items-center justify-between gap-2 text-xs">
+                          <span className="font-semibold text-ink">
+                            {formatTemplate(t.stepsProgress, { done: doneSteps })}
+                          </span>
+                          <span className="truncate text-brand-700">
+                            {activeStepLabel} →
+                          </span>
+                        </div>
+                        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-line-soft">
+                          <div
+                            className="h-full rounded-full bg-brand-600 transition-all duration-500"
+                            style={{ width: `${(doneSteps / 4) * 100}%` }}
+                          />
+                        </div>
+                      </div>
+                    </Link>
+                  )}
                 </div>
               );
             })
@@ -378,17 +424,8 @@ export function DashboardHome() {
         </div>
       )}
 
-      {/* Fortschritts-Footer — nur bei laufendem Antrag (schwebende Karte,
-          Desktop fixiert unten rechts neben der Sidebar, Mobile kompakt). */}
-      {showJourney && (
-        <ApplicationTimeline
-          timeline={timeline}
-          header={timelineHeader}
-          activeHref={journeyContinueHref ? localeHref(locale, journeyContinueHref) : null}
-          submitted={journeySubmitted}
-          applicationId={journeyApp?.id}
-        />
-      )}
+      {/* Fortschritts-Footer entfernt: kompakte Fortschrittsleiste lebt
+          direkt in den Antrags-Karten (verschwindet bei Eingereicht). */}
     </div>
   );
 }

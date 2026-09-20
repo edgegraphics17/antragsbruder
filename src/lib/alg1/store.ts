@@ -11,8 +11,30 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { Alg1FormSchema } from '../schemas/alg1';
 import { calculateProgress, getVisibleFields } from './form-config';
+import { calculateAlg1Estimate } from './logic';
 import { supabase } from '../supabase';
 import type { Alg1Application, Alg1FormData } from '../types/alg1';
+
+/**
+ * Geschätzte monatliche ALG1-Höhe in calculation_result persistieren, damit
+ * die Dashboard-Karte den Betrag direkt zeigt (statt „voraussichtlich
+ * berechtigt"). Existierende Felder (eligibility, reason) bleiben erhalten;
+ * ohne eintragbares Brutto wird calculation_result unverändert übernommen.
+ * (DB-Zeile ist snake_case-JSON — deshalb bewusst unknown-typed.)
+ */
+function mergeCalculationResult(
+  existing: unknown,
+  formState: Partial<Alg1FormData>,
+): unknown {
+  const grossSalary = Number(formState.grossSalary ?? 0);
+  const childrenCount = Number(formState.childrenCount ?? 0);
+  if (!Number.isFinite(grossSalary) || grossSalary <= 0) {
+    return existing ?? null;
+  }
+  const estimate = calculateAlg1Estimate({ grossSalary, childrenCount });
+  const base = (existing ?? {}) as Record<string, unknown>;
+  return { ...base, amount: estimate.monthly };
+}
 
 export type Alg1Stage = 'upload' | 'form' | 'summary';
 
@@ -212,6 +234,12 @@ export const useAlg1Store = create<Alg1Store>()(
           form_state: formState,
           progress_percent: progress,
           last_stage: stage,
+          // Geschätzte monatliche Summe mitspeichern (Dashboard-Connection);
+          // DB-Zeile ist snake_case — Feld über Cast lesen.
+          calculation_result: mergeCalculationResult(
+            (application as { calculation_result?: unknown }).calculation_result,
+            formState,
+          ),
         };
         // Erster Autosave hebt den Entwurf auf IN_PROGRESS (Resume-Query findet ihn)
         const promoteStatus = application.status === 'DRAFT';
@@ -258,6 +286,11 @@ export const useAlg1Store = create<Alg1Store>()(
             progress_percent: Math.max(progress, 100),
             last_stage: 'summary',
             status: 'READY',
+            // Finale Schätzung mitspeichern (Dashboard-Connection)
+            calculation_result: mergeCalculationResult(
+              (application as { calculation_result?: unknown }).calculation_result,
+              parsed.data,
+            ),
           })
           .eq('id', application.id);
 
