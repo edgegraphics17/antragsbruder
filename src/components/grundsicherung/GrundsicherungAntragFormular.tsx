@@ -4,11 +4,13 @@
 // GRUNDSICHERUNG ANTRAGSFORMULAR — amtliche Struktur (Hauptantrag HA 04/2026)
 // Schematisch getrieben über GS_ANTRAG_SECTIONS inkl. Skip-Logik (showIf)
 // und generischen Repeatern (Kinder, frühere Arbeitgeber, Entgeltersatz-
-// leistungen, frühere Leistungsbezüge). Validierung mit fehlenden
-// Pflichtfeldern je Abschnitt — kein Fortschritt über Lücken.
+// leistungen, frühere Leistungsbezüge). Validierung läuft erst beim Versuch
+// weiterzugehen: solange nichts abgeschickt wurde, bleiben die Felder neutral;
+// erst dann werden fehlende Pflichtfelder rot markiert und der Fehler-Kasten
+// mit den fehlenden Angaben eingeblendet.
 // ============================================================
 
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useGsStore } from '@/lib/grundsicherung/store';
 import {
   GS_ANTRAG_SECTIONS,
@@ -54,8 +56,19 @@ export function GrundsicherungAntragFormular({
   const antrag = useGsStore((s) => s.antrag);
   const setAntrag = useGsStore((s) => s.setAntrag);
 
+  // Fehler erst nach dem ersten „Weiter“-Versuch zeigen — vorher bleiben alle
+  // Felder normal (weiß), damit das Formular nicht als „alles falsch“ wirkt.
+  const [showErrors, setShowErrors] = useState(false);
+  const summaryRef = useRef<HTMLDivElement | null>(null);
+
   const missing = useMemo(() => missingRequiredFields(antrag), [antrag]);
   const missingSections = Object.keys(missing);
+
+  useEffect(() => {
+    if (showErrors && missingSections.length > 0) {
+      summaryRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [showErrors, missingSections.length]);
 
   const set = (patch: Partial<GsAntragData>) => setAntrag(patch);
 
@@ -106,8 +119,11 @@ export function GrundsicherungAntragFormular({
         </p>
       </header>
 
-      {missingSections.length > 0 && (
-        <div className="rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
+      {showErrors && missingSections.length > 0 && (
+        <div
+          ref={summaryRef}
+          className="rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900"
+        >
           <p className="font-semibold">
             Es fehlen noch Angaben in {missingSections.length}{' '}
             {missingSections.length === 1 ? 'Abschnitt' : 'Abschnitten'}:
@@ -159,13 +175,13 @@ export function GrundsicherungAntragFormular({
                         field={f}
                         value={item[f.key]}
                         onChange={(v) => setItem(repeater, i, { [f.key]: v })}
-                        error={sectionMissing.length > 0 && f.required && isBlank(item[f.key])}
+                        error={showErrors && f.required && isBlank(item[f.key])}
                       />
                     ))}
                   </div>
                 </div>
               ))}
-              {sectionMissing.length > 0 && (
+              {showErrors && sectionMissing.length > 0 && (
                 <ul className="list-disc space-y-1 pl-5 text-xs text-red-600">
                   {sectionMissing.map((m) => (
                     <li key={m}>{m}</li>
@@ -184,7 +200,6 @@ export function GrundsicherungAntragFormular({
         }
 
         const data = antrag as unknown as Record<string, unknown>;
-        const sectionHasGap = (missing[section.id] ?? []).length > 0;
         return (
           <section key={section.id} className="space-y-4 rounded-2xl border border-line-soft bg-white p-5">
             <div>
@@ -201,7 +216,7 @@ export function GrundsicherungAntragFormular({
                   field={f}
                   value={data[f.key]}
                   onChange={(v) => set({ [f.key]: v } as Partial<GsAntragData>)}
-                  error={sectionHasGap && f.required && isBlank(data[f.key])}
+                  error={showErrors && f.required && isBlank(data[f.key])}
                 />
               ))}
             </div>
@@ -219,12 +234,14 @@ export function GrundsicherungAntragFormular({
         </button>
         <button
           type="button"
-          disabled={!allComplete}
           onClick={() => {
-            if (allComplete) onContinue();
+            if (allComplete) {
+              onContinue();
+            } else {
+              setShowErrors(true);
+            }
           }}
-          title={allComplete ? undefined : 'Bitte zuerst alle Pflichtfelder ausfüllen'}
-          className="flex-1 rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-40"
+          className="flex-1 rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white transition-colors hover:bg-brand-700"
         >
           Weiter zu den Unterlagen →
         </button>
@@ -266,7 +283,11 @@ function Field({
           className="h-4 w-4 rounded border-line-soft text-brand-600 focus:ring-brand-600"
         />
       ) : field.type === 'select' ? (
-        <select value={(value as string) ?? ''} onChange={(e) => onChange(e.target.value)} className={inputBase}>
+        <select
+          value={(value as string) ?? ''}
+          onChange={(e) => onChange(e.target.value)}
+          className={`${inputBase} ${error ? 'border-red-400' : ''}`}
+        >
           <option value="" disabled>
             —
           </option>
