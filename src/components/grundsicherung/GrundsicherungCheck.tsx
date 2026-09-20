@@ -6,12 +6,18 @@
 // einschlägig ja/nein". Ausgabe: Ampel + SPANNE, kein Centbetrag.
 // Rechtsbewertung ausschließlich über die Engine-API
 // (/api/rechner/grundsicherung/evaluate mit body.check).
-// Bei Grün/Übergang → Prefill des Hauptantrags (Stufe 2).
+// Aufgeteilt in kontrollierte UI-Bausteine (Wiederverwendung auf
+// der Website unter /tools) + Dashboard-Wrapper mit Store.
 // ============================================================
 
 import { useState } from 'react';
 import { useGsStore } from '@/lib/grundsicherung/store';
-import { checkToFormState, type GsCheckResult, type GsCheckState, type TriState } from '@/engine/benefit-engines/grundsicherung';
+import {
+  checkToFormState,
+  type GsCheckResult,
+  type GsCheckState,
+  type TriState,
+} from '@/engine/benefit-engines/grundsicherung';
 import type { GsFormStateFacts } from '@/engine/benefit-engines/grundsicherung/facts';
 import { getDashboardDict } from '@/content/i18n/dashboard';
 import { useLocaleFromPath } from '@/i18n/use-locale';
@@ -21,7 +27,7 @@ const labelCls = 'mb-1 block text-sm font-medium text-ink';
 const inputCls =
   'w-full rounded-lg border border-line-soft bg-white px-3 py-2 text-sm text-ink focus:border-brand-700 focus:outline-none';
 
-const emptyCheck: GsCheckState = {
+export const emptyCheck: GsCheckState = {
   residenceCenterOfLife: 'UNKNOWN',
   workCapacityOver3h: 'UNKNOWN',
   household: { alone: true, partner: false, children: false, parents: false, others: false },
@@ -38,147 +44,30 @@ const emptyCheck: GsCheckState = {
   },
 };
 
-/** TT.MM.JJJJ → ISO YYYY-MM-DD */
-function parseDob(raw: string): string | undefined {
-  const m = raw.trim().match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
-  if (!m) return undefined;
-  const [, d, mo, y] = m;
-  const date = new Date(`${y}-${mo.padStart(2, '0')}-${d.padStart(2, '0')}`);
-  return Number.isNaN(date.getTime()) ? undefined : date.toISOString().slice(0, 10);
-}
+export type GsCheckDict = ReturnType<typeof getDashboardDict>['grundsicherung']['check'];
 
-export function GrundsicherungCheck({ onContinue }: { onContinue: () => void }) {
-  const locale = useLocaleFromPath();
-  const t = getDashboardDict(locale).grundsicherung.check;
-  const store = useGsStore();
+// ============================================================
+// Kontrollierte UI-Bausteine (reine Präsentation)
+// ============================================================
 
-  const [state, setState] = useState<GsCheckState>(store.check ?? emptyCheck);
-  const [showResult, setShowResult] = useState(store.checkResult !== null);
-  const [calculating, setCalculating] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+export function GrundsicherungCheckQuestionnaire({
+  t,
+  state,
+  onChange,
+  onSubmit,
+  submitting,
+  error,
+}: {
+  t: GsCheckDict;
+  state: GsCheckState;
+  onChange: (next: GsCheckState) => void;
+  onSubmit: () => void;
+  submitting: boolean;
+  error: string | null;
+}) {
+  const patch = (p: Partial<GsCheckState>) => onChange({ ...state, ...p });
+  const { household, income, housing, special } = state;
 
-  const result = store.checkResult;
-
-  const patch = (p: Partial<GsCheckState>) => setState((s) => ({ ...s, ...p }));
-
-  async function submit() {
-    setError(null);
-    setCalculating(true);
-    try {
-      const res = await fetch('/api/rechner/grundsicherung/evaluate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ check: state }),
-      });
-      const json = (await res.json()) as { result?: GsCheckResult; error?: string };
-      if (!res.ok || !json.result) throw new Error(json.error ?? 'Fehler');
-      useGsStore.getState().setCheck(state);
-      useGsStore.getState().setCheckResult(json.result);
-      useGsStore.getState().setResult({
-        amount: json.result.range?.min ?? 0,
-        status:
-          json.result.outcome === 'RELEVANT'
-            ? 'VERY_LIKELY_RELEVANT'
-            : json.result.outcome === 'FURTHER_REVIEW'
-              ? 'FURTHER_REVIEW_REQUIRED'
-              : 'NOT_APPLICABLE',
-        quality: 'ESTIMATED',
-        bgSize: json.result.bgSize,
-        openIssues: json.result.reasonCodes,
-        calculatedAt: new Date().toISOString(),
-        rangeMin: json.result.range?.min,
-        rangeMax: json.result.range?.max,
-        outcome: json.result.outcome,
-      });
-    } catch {
-      setError(t.calcError);
-    } finally {
-      setCalculating(false);
-    }
-  }
-
-  const checkResult = store.checkResult;
-
-  // --- Ergebnis-Ansicht (Ampel) ---
-  if (checkResult) {
-    const style =
-      checkResult.outcome === 'RELEVANT'
-        ? 'bg-green-50 border-green-600'
-        : checkResult.outcome === 'FURTHER_REVIEW'
-          ? 'bg-amber-50 border-amber-500'
-          : 'bg-red-50 border-red-600';
-    const dot =
-      checkResult.outcome === 'RELEVANT'
-        ? 'bg-green-600'
-        : checkResult.outcome === 'FURTHER_REVIEW'
-          ? 'bg-amber-500'
-          : 'bg-red-600';
-    const title =
-      checkResult.outcome === 'RELEVANT'
-        ? t.resultRelevantTitle
-        : checkResult.outcome === 'FURTHER_REVIEW'
-          ? t.resultReviewTitle
-          : t.resultNotTitle;
-    const text =
-      checkResult.outcome === 'RELEVANT'
-        ? t.resultRelevantText
-        : checkResult.outcome === 'FURTHER_REVIEW'
-          ? t.resultReviewText
-          : t.resultNotText;
-
-    return (
-      <div className="mx-auto max-w-2xl space-y-6">
-        <header>
-          <h1 className="text-2xl font-bold text-ink">{t.title}</h1>
-        </header>
-
-        <section className={`rounded-2xl border p-6 ${style}`}>
-          <div className="flex items-center gap-2">
-            <span className={`h-3 w-3 rounded-full ${dot}`} aria-hidden />
-            <h2 className="font-semibold text-ink">{title}</h2>
-          </div>
-          <p className="mt-2 text-sm text-ink-soft">{text}</p>
-          {checkResult.alternativeSystem && (
-            <p className="mt-3 rounded-xl bg-white/70 p-3 text-sm text-ink">
-              {checkResult.alternativeSystem}
-            </p>
-          )}
-          {checkResult.range && (
-            <div className="mt-4">
-              <p className="text-xs font-medium uppercase tracking-wide text-ink-soft">
-                {t.rangeLabel}
-              </p>
-              <p className="mt-1 font-display text-3xl font-bold text-ink">
-                {checkResult.range.min.toLocaleString('de-DE')} € –{' '}
-                {checkResult.range.max.toLocaleString('de-DE')} €
-                <span className="ml-2 text-sm font-normal text-ink-soft">{t.perMonth}</span>
-              </p>
-            </div>
-          )}
-        </section>
-
-        {checkResult.outcome !== 'NOT_APPLICABLE' && (
-          <button
-            type="button"
-            onClick={onContinue}
-            className="w-full rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700"
-          >
-            {t.continueToApplication}
-          </button>
-        )}
-
-        <button
-          type="button"
-          onClick={() => useGsStore.getState().setCheckResult(null)}
-          className="w-full text-center text-sm font-semibold text-ink-soft underline underline-offset-2"
-        >
-          {t.restart}
-        </button>
-      </div>
-    );
-  }
-
-  // --- Fragebogen: 6 Blöcke ---
   return (
     <div className="mx-auto max-w-2xl space-y-6">
       <header>
@@ -252,14 +141,14 @@ export function GrundsicherungCheck({ onContinue }: { onContinue: () => void }) 
         <div className="space-y-2">
           <CheckRow
             label={t.hhAlone}
-            checked={state.household.alone}
+            checked={household.alone}
             onChange={(v) =>
               patch({
                 household: {
-                  ...state.household,
+                  ...household,
                   alone: v,
-                  partner: v ? false : state.household.partner,
-                  children: v ? false : state.household.children,
+                  partner: v ? false : household.partner,
+                  children: v ? false : household.children,
                 },
                 childAges: v ? [] : state.childAges,
               })
@@ -267,14 +156,14 @@ export function GrundsicherungCheck({ onContinue }: { onContinue: () => void }) 
           />
           <CheckRow
             label={t.hhPartner}
-            checked={state.household.partner}
+            checked={household.partner}
             onChange={(v) =>
               patch({
-                household: { ...state.household, partner: v, alone: v ? false : state.household.alone },
+                household: { ...household, partner: v, alone: v ? false : household.alone },
               })
             }
           />
-          {state.household.partner && (
+          {household.partner && (
             <NumberField
               label={t.partnerAge}
               value={state.partnerAge}
@@ -283,15 +172,15 @@ export function GrundsicherungCheck({ onContinue }: { onContinue: () => void }) 
           )}
           <CheckRow
             label={t.hhChildren}
-            checked={state.household.children}
+            checked={household.children}
             onChange={(v) =>
               patch({
-                household: { ...state.household, children: v, alone: v ? false : state.household.alone },
+                household: { ...household, children: v, alone: v ? false : household.alone },
                 childAges: v ? (state.childAges.length ? state.childAges : [0]) : [],
               })
             }
           />
-          {state.household.children &&
+          {household.children &&
             state.childAges.map((age, i) => (
               <div key={i} className="flex items-end gap-2">
                 <div className="flex-1">
@@ -299,24 +188,20 @@ export function GrundsicherungCheck({ onContinue }: { onContinue: () => void }) 
                     label={`${t.childAge} ${i + 1}`}
                     value={age}
                     onChange={(v) =>
-                      patch({
-                        childAges: state.childAges.map((a, idx) => (idx === i ? (v ?? 0) : a)),
-                      })
+                      patch({ childAges: state.childAges.map((a, idx) => (idx === i ? (v ?? 0) : a)) })
                     }
                   />
                 </div>
                 <button
                   type="button"
-                  onClick={() =>
-                    patch({ childAges: state.childAges.filter((_, idx) => idx !== i) })
-                  }
+                  onClick={() => patch({ childAges: state.childAges.filter((_, idx) => idx !== i) })}
                   className="pb-2 text-xs font-semibold text-red-600"
                 >
                   ×
                 </button>
               </div>
             ))}
-          {state.household.children && (
+          {household.children && (
             <button
               type="button"
               onClick={() => patch({ childAges: [...state.childAges, 0] })}
@@ -327,13 +212,13 @@ export function GrundsicherungCheck({ onContinue }: { onContinue: () => void }) 
           )}
           <CheckRow
             label={t.hhParents}
-            checked={state.household.parents}
-            onChange={(v) => patch({ household: { ...state.household, parents: v } })}
+            checked={household.parents}
+            onChange={(v) => patch({ household: { ...household, parents: v } })}
           />
           <CheckRow
             label={t.hhOthers}
-            checked={state.household.others}
-            onChange={(v) => patch({ household: { ...state.household, others: v } })}
+            checked={household.others}
+            onChange={(v) => patch({ household: { ...household, others: v } })}
           />
         </div>
       </section>
@@ -343,88 +228,84 @@ export function GrundsicherungCheck({ onContinue }: { onContinue: () => void }) 
         <h2 className="font-semibold text-ink">{t.q5Title}</h2>
         <CheckRow
           label={t.incEmployment}
-          checked={state.income.employmentGross !== undefined || state.income.employmentNet !== undefined}
+          checked={income.employmentGross !== undefined || income.employmentNet !== undefined}
           onChange={(v) =>
             patch({
               income: v
-                ? { ...state.income, employmentGross: state.income.employmentGross ?? 0, employmentNet: state.income.employmentNet ?? 0 }
-                : {
-                    ...state.income,
-                    employmentGross: undefined,
-                    employmentNet: undefined,
-                  },
+                ? { ...income, employmentGross: income.employmentGross ?? 0, employmentNet: income.employmentNet ?? 0 }
+                : { ...income, employmentGross: undefined, employmentNet: undefined },
             })
           }
         />
-        {(state.income.employmentGross !== undefined || state.income.employmentNet !== undefined) && (
+        {(income.employmentGross !== undefined || income.employmentNet !== undefined) && (
           <div className="grid grid-cols-2 gap-3">
             <NumberField
               label={t.incGross}
-              value={state.income.employmentGross}
-              onChange={(v) => patch({ income: { ...state.income, employmentGross: v } })}
+              value={income.employmentGross}
+              onChange={(v) => patch({ income: { ...income, employmentGross: v } })}
             />
             <NumberField
               label={t.incNet}
-              value={state.income.employmentNet}
-              onChange={(v) => patch({ income: { ...state.income, employmentNet: v } })}
+              value={income.employmentNet}
+              onChange={(v) => patch({ income: { ...income, employmentNet: v } })}
             />
           </div>
         )}
         <CheckRow
           label={t.incOther}
-          checked={state.income.otherBenefits !== undefined}
+          checked={income.otherBenefits !== undefined}
           onChange={(v) =>
             patch({
-              income: { ...state.income, otherBenefits: v ? (state.income.otherBenefits ?? 0) : undefined },
+              income: { ...income, otherBenefits: v ? (income.otherBenefits ?? 0) : undefined },
             })
           }
         />
-        {state.income.otherBenefits !== undefined && (
+        {income.otherBenefits !== undefined && (
           <NumberField
             label={t.incOther}
-            value={state.income.otherBenefits}
-            onChange={(v) => patch({ income: { ...state.income, otherBenefits: v } })}
+            value={income.otherBenefits}
+            onChange={(v) => patch({ income: { ...income, otherBenefits: v } })}
           />
         )}
         <CheckRow
           label={t.incMaintenance}
-          checked={state.income.maintenance !== undefined}
+          checked={income.maintenance !== undefined}
           onChange={(v) =>
             patch({
-              income: { ...state.income, maintenance: v ? (state.income.maintenance ?? 0) : undefined },
+              income: { ...income, maintenance: v ? (income.maintenance ?? 0) : undefined },
             })
           }
         />
-        {state.income.maintenance !== undefined && (
+        {income.maintenance !== undefined && (
           <NumberField
             label={t.incMaintenance}
-            value={state.income.maintenance}
-            onChange={(v) => patch({ income: { ...state.income, maintenance: v } })}
+            value={income.maintenance}
+            onChange={(v) => patch({ income: { ...income, maintenance: v } })}
           />
         )}
         {state.childAges.length > 0 && (
           <CheckRow
             label={t.incKindergeld}
-            checked={state.income.kindergeld ?? false}
-            onChange={(v) => patch({ income: { ...state.income, kindergeld: v } })}
+            checked={income.kindergeld ?? false}
+            onChange={(v) => patch({ income: { ...income, kindergeld: v } })}
           />
         )}
         <p className="pt-2 text-sm font-semibold text-ink">{t.q5housing}</p>
         <div className="grid grid-cols-3 gap-3">
           <NumberField
             label={t.coldRent}
-            value={state.housing.coldRent}
-            onChange={(v) => patch({ housing: { ...state.housing, coldRent: v } })}
+            value={housing.coldRent}
+            onChange={(v) => patch({ housing: { ...housing, coldRent: v } })}
           />
           <NumberField
             label={t.operatingCosts}
-            value={state.housing.operatingCosts}
-            onChange={(v) => patch({ housing: { ...state.housing, operatingCosts: v } })}
+            value={housing.operatingCosts}
+            onChange={(v) => patch({ housing: { ...housing, operatingCosts: v } })}
           />
           <NumberField
             label={t.heating}
-            value={state.housing.heating}
-            onChange={(v) => patch({ housing: { ...state.housing, heating: v } })}
+            value={housing.heating}
+            onChange={(v) => patch({ housing: { ...housing, heating: v } })}
           />
         </div>
       </section>
@@ -443,17 +324,13 @@ export function GrundsicherungCheck({ onContinue }: { onContinue: () => void }) 
             <NumberField
               label={t.assetsApplicant}
               value={state.assetsAmounts?.applicant}
-              onChange={(v) =>
-                patch({ assetsAmounts: { ...state.assetsAmounts, applicant: v } })
-              }
+              onChange={(v) => patch({ assetsAmounts: { ...state.assetsAmounts, applicant: v } })}
             />
-            {state.household.partner && (
+            {household.partner && (
               <NumberField
                 label={t.assetsPartner}
                 value={state.assetsAmounts?.partner}
-                onChange={(v) =>
-                  patch({ assetsAmounts: { ...state.assetsAmounts, partner: v } })
-                }
+                onChange={(v) => patch({ assetsAmounts: { ...state.assetsAmounts, partner: v } })}
               />
             )}
           </div>
@@ -462,28 +339,28 @@ export function GrundsicherungCheck({ onContinue }: { onContinue: () => void }) 
         <div className="space-y-2">
           <CheckRow
             label={t.specialEducation}
-            checked={state.special.education}
-            onChange={(v) => patch({ special: { ...state.special, education: v } })}
+            checked={special.education}
+            onChange={(v) => patch({ special: { ...special, education: v } })}
           />
           <CheckRow
             label={t.specialPension}
-            checked={state.special.pension}
-            onChange={(v) => patch({ special: { ...state.special, pension: v } })}
+            checked={special.pension}
+            onChange={(v) => patch({ special: { ...special, pension: v } })}
           />
           <CheckRow
             label={t.specialStationary}
-            checked={state.special.stationaryCare}
-            onChange={(v) => patch({ special: { ...state.special, stationaryCare: v } })}
+            checked={special.stationaryCare}
+            onChange={(v) => patch({ special: { ...special, stationaryCare: v } })}
           />
           <CheckRow
             label={t.specialCustody}
-            checked={state.special.custody}
-            onChange={(v) => patch({ special: { ...state.special, custody: v } })}
+            checked={special.custody}
+            onChange={(v) => patch({ special: { ...special, custody: v } })}
           />
           <CheckRow
             label={t.specialAsylum}
-            checked={state.special.asylumBenefits}
-            onChange={(v) => patch({ special: { ...state.special, asylumBenefits: v } })}
+            checked={special.asylumBenefits}
+            onChange={(v) => patch({ special: { ...special, asylumBenefits: v } })}
           />
         </div>
       </section>
@@ -492,13 +369,172 @@ export function GrundsicherungCheck({ onContinue }: { onContinue: () => void }) 
 
       <button
         type="button"
-        disabled={calculating}
-        onClick={() => void submit()}
+        disabled={submitting}
+        onClick={onSubmit}
         className="w-full rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white transition-colors hover:bg-brand-700 disabled:opacity-50"
       >
-        {calculating ? t.calculating : t.submit}
+        {submitting ? t.calculating : t.submit}
       </button>
     </div>
+  );
+}
+
+export function GrundsicherungCheckResultView({
+  t,
+  result,
+  onContinue,
+  onRestart,
+  continueLabel,
+}: {
+  t: GsCheckDict;
+  result: GsCheckResult;
+  onContinue?: () => void;
+  onRestart: () => void;
+  continueLabel?: string;
+}) {
+  const style =
+    result.outcome === 'RELEVANT'
+      ? 'bg-green-50 border-green-600'
+      : result.outcome === 'FURTHER_REVIEW'
+        ? 'bg-amber-50 border-amber-500'
+        : 'bg-red-50 border-red-600';
+  const dot =
+    result.outcome === 'RELEVANT'
+      ? 'bg-green-600'
+      : result.outcome === 'FURTHER_REVIEW'
+        ? 'bg-amber-500'
+        : 'bg-red-600';
+  const title =
+    result.outcome === 'RELEVANT'
+      ? t.resultRelevantTitle
+      : result.outcome === 'FURTHER_REVIEW'
+        ? t.resultReviewTitle
+        : t.resultNotTitle;
+  const text =
+    result.outcome === 'RELEVANT'
+      ? t.resultRelevantText
+      : result.outcome === 'FURTHER_REVIEW'
+        ? t.resultReviewText
+        : t.resultNotText;
+
+  return (
+    <div className="mx-auto max-w-2xl space-y-6">
+      <header>
+        <h1 className="text-2xl font-bold text-ink">{t.title}</h1>
+      </header>
+
+      <section className={`rounded-2xl border p-6 ${style}`}>
+        <div className="flex items-center gap-2">
+          <span className={`h-3 w-3 rounded-full ${dot}`} aria-hidden />
+          <h2 className="font-semibold text-ink">{title}</h2>
+        </div>
+        <p className="mt-2 text-sm text-ink-soft">{text}</p>
+        {result.alternativeSystem && (
+          <p className="mt-3 rounded-xl bg-white/70 p-3 text-sm text-ink">{result.alternativeSystem}</p>
+        )}
+        {result.range && (
+          <div className="mt-4">
+            <p className="text-xs font-medium uppercase tracking-wide text-ink-soft">{t.rangeLabel}</p>
+            <p className="mt-1 font-display text-3xl font-bold text-ink">
+              {result.range.min.toLocaleString('de-DE')} € – {result.range.max.toLocaleString('de-DE')} €
+              <span className="ml-2 text-sm font-normal text-ink-soft">{t.perMonth}</span>
+            </p>
+          </div>
+        )}
+      </section>
+
+      {result.outcome !== 'NOT_APPLICABLE' && onContinue && (
+        <button
+          type="button"
+          onClick={onContinue}
+          className="w-full rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700"
+        >
+          {continueLabel ?? t.continueToApplication}
+        </button>
+      )}
+
+      <button
+        type="button"
+        onClick={onRestart}
+        className="w-full text-center text-sm font-semibold text-ink-soft underline underline-offset-2"
+      >
+        {t.restart}
+      </button>
+    </div>
+  );
+}
+
+// ============================================================
+// Dashboard-Wrapper (Store-Anbindung)
+// ============================================================
+
+export function GrundsicherungCheck({ onContinue }: { onContinue: () => void }) {
+  const locale = useLocaleFromPath();
+  const t = getDashboardDict(locale).grundsicherung.check;
+  const store = useGsStore();
+
+  const [state, setState] = useState<GsCheckState>(store.check ?? emptyCheck);
+  const [calculating, setCalculating] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const checkResult = store.checkResult;
+
+  async function submit() {
+    setError(null);
+    setCalculating(true);
+    try {
+      const res = await fetch('/api/rechner/grundsicherung/evaluate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ check: state }),
+      });
+      const json = (await res.json()) as { result?: GsCheckResult; error?: string };
+      if (!res.ok || !json.result) throw new Error(json.error ?? 'Fehler');
+      useGsStore.getState().setCheck(state);
+      useGsStore.getState().setCheckResult(json.result);
+      useGsStore.getState().setResult({
+        amount: json.result.range?.min ?? 0,
+        status:
+          json.result.outcome === 'RELEVANT'
+            ? 'VERY_LIKELY_RELEVANT'
+            : json.result.outcome === 'FURTHER_REVIEW'
+              ? 'FURTHER_REVIEW_REQUIRED'
+              : 'NOT_APPLICABLE',
+        quality: 'ESTIMATED',
+        bgSize: json.result.bgSize,
+        openIssues: json.result.reasonCodes,
+        calculatedAt: new Date().toISOString(),
+        rangeMin: json.result.range?.min,
+        rangeMax: json.result.range?.max,
+        outcome: json.result.outcome,
+      });
+    } catch {
+      setError(t.calcError);
+    } finally {
+      setCalculating(false);
+    }
+  }
+
+  if (checkResult) {
+    return (
+      <GrundsicherungCheckResultView
+        t={t}
+        result={checkResult}
+        onContinue={onContinue}
+        onRestart={() => useGsStore.getState().setCheckResult(null)}
+      />
+    );
+  }
+
+  return (
+    <GrundsicherungCheckQuestionnaire
+      t={t}
+      state={state}
+      onChange={setState}
+      onSubmit={() => void submit()}
+      submitting={calculating}
+      error={error}
+    />
   );
 }
 
@@ -506,6 +542,10 @@ export function GrundsicherungCheck({ onContinue }: { onContinue: () => void }) 
 export function checkToFormStatePrefill(check: GsCheckState): GsFormStateFacts {
   return checkToFormState(check);
 }
+
+// ============================================================
+// Kleine Formular-Bausteine
+// ============================================================
 
 function TriField({
   label,

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
-import { GrundsicherungCalculator } from "@/components/sections/GrundsicherungCalculator";
+import { GrundsicherungPublicCheck } from "@/components/grundsicherung/GrundsicherungPublicCheck";
 import { locales, isLocale, defaultLocale, type Locale } from "@/i18n/config";
 import { dict } from "@/content/grundsicherung-i18n";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -39,7 +39,7 @@ export default async function GrundsicherungsrechnerPage({ params }: { params: P
     <section>
       <JsonLd data={calcJsonLd} />
       <Container className="py-14 sm:py-20">
-        <GrundsicherungCalculator locale={locale} />
+        <GrundsicherungPublicCheck locale={locale} />
       </Container>
     </section>
   );
