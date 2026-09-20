@@ -10,7 +10,7 @@
 // Texte über getDashboardDict (home.timeline.*, home.stepsProgress).
 // ============================================================
 
-import { Fragment } from 'react';
+import { Fragment, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { useLocaleFromPath } from '@/i18n/use-locale';
 import { getDashboardDict } from '@/content/i18n/dashboard';
@@ -37,6 +37,20 @@ interface Props {
   activeHref?: string | null;
   /** Antrag eingereicht → Bestätigungs-Karte statt Stepper. */
   submitted?: boolean;
+  /** Antrag-ID — persistenter Dismiss der Bestätigungs-Karte (localStorage). */
+  applicationId?: string;
+}
+
+// localStorage ist nicht reaktiv — Abonnenten werden manuell per
+// Storage-Event benachrichtigt (dismiss dispatcht selbst eines).
+const storageListeners = new Set<() => void>();
+function subscribeStorage(cb: () => void) {
+  storageListeners.add(cb);
+  window.addEventListener('storage', cb);
+  return () => {
+    storageListeners.delete(cb);
+    window.removeEventListener('storage', cb);
+  };
 }
 
 const iconBase =
@@ -61,6 +75,7 @@ export function ApplicationTimeline({
   header = null,
   activeHref = null,
   submitted = false,
+  applicationId,
 }: Props) {
   const locale = useLocaleFromPath();
   const t = getDashboardDict(locale).home;
@@ -68,13 +83,58 @@ export function ApplicationTimeline({
   const activeStep = t.timeline[STEPS[timeline.activeStep - 1]];
   const progressText = formatTemplate(t.stepsProgress, { done });
 
+  // Bestätigungs-Karte per X weglassen — dauerhaft, pro Antrag (localStorage).
+  // localStorage ist nicht reaktiv: dismiss feuert selbst ein Storage-Event,
+  // damit der Snapshot neu gelesen wird.
+  const dismissKey = applicationId ? `ab-timeline-submitted-dismissed:${applicationId}` : null;
+  const dismissed = useSyncExternalStore(
+    subscribeStorage,
+    () => {
+      try {
+        return dismissKey !== null && window.localStorage.getItem(dismissKey) === '1';
+      } catch {
+        return false;
+      }
+    },
+    () => false,
+  );
+
+  const dismissSubmitted = () => {
+    if (dismissKey) {
+      try {
+        window.localStorage.setItem(dismissKey, '1');
+      } catch {
+        /* Private mode: nur für die Session ausblenden */
+      }
+      window.dispatchEvent(new StorageEvent('storage', { key: dismissKey }));
+    }
+  };
+
+  const showSubmittedCard = submitted && !dismissed;
+
   return (
     // Wrapper ohne Pointer-Events: nur die Karte selbst ist klickbar,
     // der umliegende Streifen blockiert die Seite nicht.
     <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-3 pb-[calc(5rem+env(safe-area-inset-bottom))] md:px-6 md:pb-5 lg:left-64">
-      {submitted ? (
+      {submitted && showSubmittedCard ? (
         /* Bestätigung statt Fortschritt: Antrag ist raus, Rückmeldung wird erwartet. */
-        <div className="pointer-events-auto mx-auto max-w-4xl rounded-3xl bg-white/95 p-4 shadow-[0_12px_40px_-12px_rgba(18,48,47,0.25)] ring-1 ring-line-soft backdrop-blur-md md:p-5">
+        <div className="pointer-events-auto relative mx-auto max-w-4xl rounded-3xl bg-white/95 p-4 shadow-[0_12px_40px_-12px_rgba(18,48,47,0.25)] ring-1 ring-line-soft backdrop-blur-md md:p-5">
+          <button
+            type="button"
+            onClick={dismissSubmitted}
+            aria-label="Mitteilung schließen"
+            title="Mitteilung schließen"
+            className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full text-ink-soft transition-colors hover:bg-line-soft hover:text-ink md:right-4 md:top-4"
+          >
+            <svg viewBox="0 0 20 20" fill="none" className="h-4 w-4" aria-hidden>
+              <path
+                d="M5 5l10 10M15 5L5 15"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-green-100 text-green-700">
               <CheckIcon className="h-5 w-5" />
@@ -92,7 +152,7 @@ export function ApplicationTimeline({
             )}
           </div>
         </div>
-      ) : (
+      ) : submitted ? null : (
         <div className="pointer-events-auto mx-auto max-w-4xl rounded-3xl bg-white/95 p-4 shadow-[0_12px_40px_-12px_rgba(18,48,47,0.25)] ring-1 ring-line-soft backdrop-blur-md md:p-6">
           {/* Kopfreihe: Antrag + Status (Desktop) | Schritte-Zähler */}
           <div className="flex items-center justify-between gap-3">

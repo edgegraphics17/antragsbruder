@@ -327,6 +327,7 @@ export function DashboardHome() {
           header={timelineHeader}
           activeHref={journeyContinueHref ? localeHref(locale, journeyContinueHref) : null}
           submitted={journeySubmitted}
+          applicationId={journeyApp?.id}
         />
       )}
     </div>
