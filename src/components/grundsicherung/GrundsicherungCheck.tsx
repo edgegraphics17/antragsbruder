@@ -233,9 +233,9 @@ export function GrundsicherungCheckQuestionnaire({
       {/* 5. Geld zum Leben */}
       <section className={sectionCls}>
         <h2 className="font-semibold text-ink">{t.q5Title}</h2>
-        <CheckRow
+        <YesNoRow
           label={t.incEmployment}
-          checked={income.employmentGross !== undefined || income.employmentNet !== undefined}
+          value={income.employmentGross !== undefined || income.employmentNet !== undefined}
           onChange={(v) =>
             patch({
               income: v
@@ -258,9 +258,9 @@ export function GrundsicherungCheckQuestionnaire({
             />
           </div>
         )}
-        <CheckRow
+        <YesNoRow
           label={t.incOther}
-          checked={income.otherBenefits !== undefined}
+          value={income.otherBenefits !== undefined}
           onChange={(v) =>
             patch({
               income: { ...income, otherBenefits: v ? (income.otherBenefits ?? 0) : undefined },
@@ -274,9 +274,9 @@ export function GrundsicherungCheckQuestionnaire({
             onChange={(v) => patch({ income: { ...income, otherBenefits: v } })}
           />
         )}
-        <CheckRow
+        <YesNoRow
           label={t.incMaintenance}
-          checked={income.maintenance !== undefined}
+          value={income.maintenance !== undefined}
           onChange={(v) =>
             patch({
               income: { ...income, maintenance: v ? (income.maintenance ?? 0) : undefined },
@@ -291,9 +291,9 @@ export function GrundsicherungCheckQuestionnaire({
           />
         )}
         {state.childAges.length > 0 && (
-          <CheckRow
+          <YesNoRow
             label={t.incKindergeld}
-            checked={income.kindergeld ?? false}
+            value={income.kindergeld ?? false}
             onChange={(v) => patch({ income: { ...income, kindergeld: v } })}
           />
         )}
@@ -608,6 +608,40 @@ function CheckRow({
       />
       <span className="text-sm text-ink">{label}</span>
     </label>
+  );
+}
+
+function YesNoRow({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: boolean;
+  onChange: (v: boolean) => void;
+}) {
+  const btn = (active: boolean) =>
+    `rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
+      active
+        ? 'border-brand-700 bg-brand-50 font-semibold text-brand-800'
+        : 'border-line-soft bg-white text-ink hover:bg-cream'
+    }`;
+  return (
+    <div
+      className="flex items-center justify-between gap-3 rounded-xl border border-line-soft bg-white px-3 py-2"
+      role="group"
+      aria-label={label}
+    >
+      <span className="text-sm text-ink">{label}</span>
+      <div className="grid grid-cols-2 gap-2">
+        <button type="button" onClick={() => onChange(true)} aria-pressed={value} className={btn(value)}>
+          Ja
+        </button>
+        <button type="button" onClick={() => onChange(false)} aria-pressed={value === false} className={btn(value === false)}>
+          Nein
+        </button>
+      </div>
+    </div>
   );
 }
 

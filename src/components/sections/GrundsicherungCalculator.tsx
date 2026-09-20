@@ -17,6 +17,41 @@ const inputBase =
 const checkCard =
   "flex items-start gap-3 rounded-2xl border border-line bg-cream px-4 py-3 text-sm text-ink";
 
+function YesNoRow({
+  label,
+  hint,
+  value,
+  onChange,
+}: {
+  label: string;
+  hint?: string;
+  value: boolean;
+  onChange: (v: boolean) => void;
+}) {
+  const btn = (active: boolean) =>
+    `rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
+      active
+        ? 'border-brand-700 bg-brand-50 font-semibold text-brand-800'
+        : 'border-line bg-white text-ink hover:border-brand-300'
+    }`;
+  return (
+    <div className={checkCard}>
+      <span>
+        <span className="block font-semibold">{label}</span>
+        {hint ? <span className="text-xs text-ink-soft">{hint}</span> : null}
+      </span>
+      <div className="ml-auto grid shrink-0 grid-cols-2 gap-2" role="group" aria-label={label}>
+        <button type="button" onClick={() => onChange(true)} aria-pressed={value} className={btn(value)}>
+          Ja
+        </button>
+        <button type="button" onClick={() => onChange(false)} aria-pressed={value === false} className={btn(value === false)}>
+          Nein
+        </button>
+      </div>
+    </div>
+  );
+}
+
 const tierStyles: Record<Tier, string> = {
   guenstig: "bg-brand-100 text-brand-900",
   durchschnittlich: "bg-brand-300 text-brand-950",
@@ -411,44 +446,24 @@ export function GrundsicherungCalculator({ locale }: { locale: LangCode }) {
             ) : null}
 
             <div className="space-y-2">
-              <label className={checkCard}>
-                <input
-                  type="checkbox"
-                  checked={singleParent}
-                  onChange={(e) => setSingleParent(e.target.checked)}
-                  className="mt-0.5 h-5 w-5 shrink-0 rounded border-line text-brand-800 focus-visible:outline-2 focus-visible:outline-brand-700"
-                />
-                <span>
-                  <span className="block font-semibold">{t.singleParentLabel}</span>
-                  <span className="text-xs text-ink-soft">{t.singleParentHint}</span>
-                </span>
-              </label>
-
-              <label className={checkCard}>
-                <input
-                  type="checkbox"
-                  checked={pregnant}
-                  onChange={(e) => setPregnant(e.target.checked)}
-                  className="mt-0.5 h-5 w-5 shrink-0 rounded border-line text-brand-800 focus-visible:outline-2 focus-visible:outline-brand-700"
-                />
-                <span>
-                  <span className="block font-semibold">{t.pregnantLabel}</span>
-                  <span className="text-xs text-ink-soft">{t.pregnantHint}</span>
-                </span>
-              </label>
-
-              <label className={checkCard}>
-                <input
-                  type="checkbox"
-                  checked={disability}
-                  onChange={(e) => setDisability(e.target.checked)}
-                  className="mt-0.5 h-5 w-5 shrink-0 rounded border-line text-brand-800 focus-visible:outline-2 focus-visible:outline-brand-700"
-                />
-                <span>
-                  <span className="block font-semibold">{t.disabilityLabel}</span>
-                  <span className="text-xs text-ink-soft">{t.disabilityHint}</span>
-                </span>
-              </label>
+              <YesNoRow
+                label={t.singleParentLabel}
+                hint={t.singleParentHint}
+                value={singleParent}
+                onChange={setSingleParent}
+              />
+              <YesNoRow
+                label={t.pregnantLabel}
+                hint={t.pregnantHint}
+                value={pregnant}
+                onChange={setPregnant}
+              />
+              <YesNoRow
+                label={t.disabilityLabel}
+                hint={t.disabilityHint}
+                value={disability}
+                onChange={setDisability}
+              />
             </div>
 
             {error ? (
@@ -607,18 +622,12 @@ export function GrundsicherungCalculator({ locale }: { locale: LangCode }) {
               )}
             </div>
 
-            <label className={checkCard}>
-              <input
-                type="checkbox"
-                checked={knowsOfficial}
-                onChange={(e) => setKnowsOfficial(e.target.checked)}
-                className="mt-0.5 h-5 w-5 shrink-0 rounded border-line text-brand-800 focus-visible:outline-2 focus-visible:outline-brand-700"
-              />
-              <span>
-                <span className="block font-semibold">{t.knowsOfficialLabel}</span>
-                <span className="text-xs text-ink-soft">{t.knowsOfficialHint}</span>
-              </span>
-            </label>
+            <YesNoRow
+              label={t.knowsOfficialLabel}
+              hint={t.knowsOfficialHint}
+              value={knowsOfficial}
+              onChange={setKnowsOfficial}
+            />
 
             {knowsOfficial ? (
               <div>
