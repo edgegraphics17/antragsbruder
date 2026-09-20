@@ -13,8 +13,11 @@ import { useProfileStore } from '@/lib/stores/profile-store';
 import { supabase } from '@/lib/supabase';
 import {
   matchBenefits,
+  topRecommendations,
   type RadarMatch,
+  type RadarProfile,
 } from '@/lib/benefits/radar';
+import { readFoerderprofil } from '@/lib/benefits/foerderprofil';
 import { formatDate } from '@/lib/dashboard';
 import { localeHref } from '@/i18n/config';
 import { useLocaleFromPath } from '@/i18n/use-locale';
@@ -150,19 +153,27 @@ export function DashboardHome() {
   const ft = getDashboardDict(locale).foerderungen;
   const [applications, setApplications] = useState<AppRecord[]>([]);
 
-  // Förderungs-Radar (3-Ebenen-Matching, identisch zur /foerderungen-Seite).
-  const radar = useMemo(
-    () =>
-      matchBenefits(
-        {
-          employmentStatus: profile?.employmentStatus ?? null,
-          housingType: profile?.housingType ?? null,
-          childrenCount: profile ? profile.childrenCount : null,
-        },
-        documents.map((d) => ({ document_role: d.document_role, filename: d.filename })),
-      ),
-    [profile, documents],
-  );
+  // Förderungs-Radar (3-Ebenen-Matching + Förder-Profil-Fakten).
+  // Das Radar liefert eine RELEVANZ-gerankte Liste; angezeigt werden nur
+  // die Top 3 (qualified bevorzugt, dann potential).
+  const radar = useMemo(() => {
+    const result = matchBenefits(
+      {
+        employmentStatus: profile?.employmentStatus ?? null,
+        housingType: profile?.housingType ?? null,
+        childrenCount: profile ? profile.childrenCount : null,
+        facts: readFoerderprofil(profile?.antragData ?? null).answers as RadarProfile['facts'],
+      },
+      documents.map((d) => ({ document_role: d.document_role, filename: d.filename })),
+    );
+    const qualifiedIds = new Set(result.qualified.map((m) => m.benefit.id));
+    const top = topRecommendations(result, 3);
+    return {
+      top,
+      qualified: top.filter((m) => qualifiedIds.has(m.benefit.id)),
+      count: result.qualified.length + result.potential.length,
+    };
+  }, [profile, documents]);
 
   const hour = new Date().getHours();
   const greeting = hour < 11 ? t.greetingMorning : hour < 18 ? t.greetingDay : t.greetingEvening;
@@ -220,7 +231,7 @@ export function DashboardHome() {
           {activeApplications.length > 0
             ? formatTemplate(
                 activeApplications.length === 1 ? t.summaryOneApp : t.summaryManyApps,
-                { apps: activeApplications.length, benefits: radar.qualified.length + radar.potential.length },
+                { apps: activeApplications.length, benefits: radar.count },
               )
             : t.startFirst}
         </p>
@@ -351,31 +362,28 @@ export function DashboardHome() {
         {/* Mögliche Förderungen — Radar (qualified + potential) */}
         <div className="space-y-4">
           <h2 className="text-lg font-semibold text-ink">{t.possibleTitle}</h2>
-          {radar.qualified.length + radar.potential.length === 0 ? (
+          {radar.top.length === 0 ? (
             <div className="rounded-2xl border border-line-soft bg-paper p-8 text-center text-sm text-ink-soft">
               {t.fillProfile}
             </div>
           ) : (
             <>
-              {[...radar.qualified, ...radar.potential].slice(0, 3).map((rec) => {
+              {radar.top.map((rec) => {
                 const calcRoute = (rec.benefit.calcPossible && CALC_ROUTES[rec.benefit.id]) || null;
                 const href =
                   calcRoute
                     ? localeHref(locale, calcRoute)
                     : rec.benefit.url || localeHref(locale, '/foerderungen');
+                const isQualified = radar.qualified.some((q) => q.benefit.id === rec.benefit.id);
                 return (
                   <div key={rec.benefit.id} className="rounded-2xl border border-line-soft bg-paper p-5">
                     <div className="mb-2 flex items-center gap-2">
                       <span
                         className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
-                          radar.qualified.some((q) => q.benefit.id === rec.benefit.id)
-                            ? 'bg-green-100 text-green-700'
-                            : 'bg-amber-100 text-amber-700'
+                          isQualified ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
                         }`}
                       >
-                        {radar.qualified.some((q) => q.benefit.id === rec.benefit.id)
-                          ? t.confidenceHigh
-                          : t.confidencePossible}
+                        {isQualified ? t.confidenceHigh : t.confidencePossible}
                       </span>
                     </div>
                     <h3 className="font-semibold text-ink">{rec.benefit.name}</h3>

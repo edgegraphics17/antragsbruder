@@ -19,6 +19,7 @@ import { getDashboardDict } from '@/content/i18n/dashboard';
 import { ProfileAvatarSection } from './profile/ProfileAvatarSection';
 import { ProfileMasterDataForm } from './profile/ProfileMasterDataForm';
 import { ProfileEligibilityForm } from './profile/ProfileEligibilityForm';
+import { FoerderprofilFunnel } from './profile/FoerderprofilFunnel';
 import { ProfileLanguageSection } from './profile/ProfileLanguageSection';
 import { EmailChangeDialog } from './profile/EmailChangeDialog';
 import { PasswordChangeDialog } from './profile/PasswordChangeDialog';
@@ -63,6 +64,7 @@ export function ProfileView() {
               <ProfileAvatarSection />
               <ProfileMasterDataForm onEmailChange={() => setEmailDialogOpen(true)} />
               <ProfileEligibilityForm />
+              <FoerderprofilFunnel />
 
               {/* Account-Sicherheit */}
               <div className="space-y-4 rounded-2xl border border-line-soft bg-paper p-5">
