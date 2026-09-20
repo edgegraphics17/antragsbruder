@@ -38,7 +38,25 @@ function DocRow({
   doc: GsUploadedDoc;
   onRemove: (doc: GsUploadedDoc) => void;
 }) {
-  const url = doc.publicUrl ?? doc.signedUrl;
+  const [opening, setOpening] = useState(false);
+  const open = async () => {
+    let url = doc.signedUrl;
+    if (!url) {
+      setOpening(true);
+      try {
+        const res = await fetch(
+          `/api/dashboard/documents/signed-url?path=${encodeURIComponent(doc.storagePath)}`,
+        );
+        const json = (await res.json()) as { signedUrl?: string };
+        url = json.signedUrl;
+      } catch {
+        url = undefined;
+      } finally {
+        setOpening(false);
+      }
+    }
+    if (url) window.open(url, '_blank', 'noopener');
+  };
   return (
     <li className="flex items-center gap-3 rounded-lg bg-white px-3 py-2 text-sm">
       <span className="h-2 w-2 shrink-0 rounded-full bg-brand-600" />
@@ -46,16 +64,14 @@ function DocRow({
       <span className="shrink-0 text-xs text-ink-soft">
         {(doc.fileSize / 1024).toFixed(0)} KB
       </span>
-      {url && (
-        <a
-          href={url}
-          target="_blank"
-          rel="noreferrer"
-          className="shrink-0 text-xs font-semibold text-brand-700 hover:underline"
-        >
-          Ansehen
-        </a>
-      )}
+      <button
+        type="button"
+        disabled={opening}
+        onClick={() => void open()}
+        className="shrink-0 text-xs font-semibold text-brand-700 hover:underline disabled:opacity-50"
+      >
+        {opening ? '…' : 'Ansehen'}
+      </button>
       <button
         type="button"
         onClick={() => onRemove(doc)}
