@@ -112,7 +112,7 @@ export interface GsAntragData {
   hasResidenceTitle?: boolean; // 23
   receivesAsylbLG?: boolean; // 24
   asylblgUntil?: string; // 25
-  verpflichtungserklaerung?: boolean; // 27
+  verpflichtungserklaerung?: boolean; // 27 (entfernt — keine Rechner-Relevanz, Feld bleibt für Legacy-Drafts)
 
   // ===== C. Antragstellung (Felder 29–31) =====
   claimFromNow?: string; // 29 (AB_SOFORT | SPAETER)
@@ -350,15 +350,6 @@ export const GS_ANTRAG_SECTIONS: GsSectionDef[] = [
         label: 'Bis wann erhältst du Asylbewerberleistungen?',
         type: 'date',
         showIf: (d) => d.receivesAsylbLG === true,
-      },
-      {
-        formField: '27',
-        key: 'verpflichtungserklaerung',
-        label:
-          'Hat jemand gegenüber der Ausländerbehörde zugesagt, alle Kosten deines Aufenthalts zu übernehmen (Verpflichtungserklärung)?',
-        type: 'checkbox',
-        hint: 'Verpflichtungserklärung bitte als Nachweis hochladen.',
-        showIf: isNonGerman,
       },
     ],
   },
@@ -802,7 +793,7 @@ export function requiredAnlagen(
   if (yes(data.hasGuardian)) anlagen.push('Bestellungsurkunde / Vollmacht / Betreuerausweis (Feld 22)');
   if (yes(data.hasResidenceTitle)) anlagen.push('Aufenthaltstitel (Feld 23)');
   if (yes(data.receivesAsylbLG)) anlagen.push('Nachweis aufenthaltsrechtlicher Status + AsylbLG-Bescheid (Feld 24)');
-  if (yes(data.verpflichtungserklaerung)) anlagen.push('Verpflichtungserklärung (Feld 27)');
+  // Feld 27 (Verpflichtungserklärung) ist entfernt — keine Rechner-Relevanz.
   if (
     data.familyStatus === 'DAUERND_GETRENNT' ||
     data.familyStatus === 'GESCHIEDEN' ||
