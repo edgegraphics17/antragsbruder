@@ -13,6 +13,7 @@ import { useAuth } from '@/lib/auth-context';
 import { useGsStore, isGsStage, type GsStage } from '@/lib/grundsicherung/store';
 import {
   requiredAnlagen,
+  missingRequiredFields,
   type GsAntragChildData,
 } from '@/lib/grundsicherung/antrag-form';
 import { caseService } from '@/engine';
@@ -315,6 +316,56 @@ export function GrundsicherungFlow({
     })();
   }, [ready, user, store.applicationId, store.submitted, docsUnvollstaendig]);
 
+  // --- Stage-Tabs (Wohngeld-Konzept): frei hin- und herspringen, ✓ wenn fertig ---
+  const antragMissingCount = useMemo(
+    () =>
+      Object.values(missingRequiredFields(store.antrag)).reduce((n, items) => n + items.length, 0),
+    [store.antrag],
+  );
+  const stageTabs: { stage: GsStage; label: string; done: boolean }[] = [
+    { stage: 'check', label: '1. Schnellcheck', done: store.checkResult != null },
+    { stage: 'ergebnis', label: '2. Einschätzung', done: store.result != null },
+    {
+      stage: 'formular',
+      label: '3. Antrag',
+      done: antragMissingCount === 0 && Object.keys(store.antrag ?? {}).length > 1,
+    },
+    { stage: 'unterlagen', label: '4. Dokumente', done: !docsUnvollstaendig },
+    { stage: 'einreichen', label: '5. Einreichen', done: store.submitted },
+  ];
+  const showTabs = !(store.stage === 'einreichen' && store.submitted);
+
+  // Tab-Leiste über jeder Stage (versteckt auf der Bestätigungs-Seite).
+  const withTabs = (node: React.ReactNode) => (
+    <>
+      {showTabs && (
+        <div className="mx-auto flex max-w-2xl gap-2 px-4 pt-6">
+          {stageTabs.map((t) => (
+            <button
+              key={t.stage}
+              type="button"
+              onClick={() => {
+                useGsStore.getState().setStage(t.stage);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`flex-1 rounded-xl border px-3 py-3 text-xs font-semibold transition-colors sm:text-sm ${
+                store.stage === t.stage
+                  ? 'border-brand-600 bg-brand-600 text-white'
+                  : t.done
+                    ? 'border-green-300 bg-green-50 text-green-700'
+                    : 'border-line-soft bg-white text-ink hover:border-brand-400'
+              }`}
+            >
+              {t.done && store.stage !== t.stage ? '✓ ' : ''}
+              {t.label}
+            </button>
+          ))}
+        </div>
+      )}
+      {node}
+    </>
+  );
+
   const submit = useCallback(async () => {
     if (!user) return;
     // Hartes Gate: Einreichen ohne vollständige Pflicht-Anlagen ist
@@ -361,7 +412,7 @@ export function GrundsicherungFlow({
 
   // --- Stage: CHECK (Stufe 1 — Discovery, 6 Kernblöcke) ---
   if (store.stage === 'check') {
-    return (
+    return withTabs(
       <GrundsicherungCheck
         onContinue={() => {
           // Check-Angaben ins Antragsformular vorbefüllen (Stufe 2 = Precision)
@@ -384,7 +435,7 @@ export function GrundsicherungFlow({
   if (store.stage === 'ergebnis' && !fullResult) {
     // Reload mit stage=ergebnis: gespeicherten Snapshot zeigen (keine
     // stille Neuberechnung — der Nutzer sieht den letzten Stand).
-    return (
+    return withTabs(
       <div className="mx-auto max-w-2xl space-y-6">
         <h1 className="text-2xl font-bold text-ink">{dict.ergebnis.title}</h1>
         {store.result ? (
@@ -415,7 +466,7 @@ export function GrundsicherungFlow({
 
   if (store.stage === 'ergebnis' && fullResult) {
     const r = fullResult;
-    return (
+    return withTabs(
       <div className="mx-auto max-w-2xl space-y-6">
         <header>
           <h1 className="text-2xl font-bold text-ink">{dict.ergebnis.title}</h1>
@@ -546,7 +597,7 @@ export function GrundsicherungFlow({
 
   // --- Stage: FORMULAR (vollständige Antragsdaten) ---
   if (store.stage === 'formular') {
-    return (
+    return withTabs(
       <GrundsicherungAntragFormular
         onBack={() => store.setStage('ergebnis')}
         onContinue={() => {
@@ -562,7 +613,7 @@ export function GrundsicherungFlow({
   // --- Stage: UNTERLAGEN — pro Anlage hochladen & direkt einreichen ---
   if (store.stage === 'unterlagen') {
     const submitting = calculating;
-    return (
+    return withTabs(
       <div className="mx-auto max-w-2xl space-y-6">
         <header>
           <h1 className="text-2xl font-bold text-ink">{dict.unterlagen.title}</h1>
@@ -629,7 +680,7 @@ export function GrundsicherungFlow({
 
   // --- Stage: EINREICHEN ---
   const submitted = store.submitted;
-  return (
+  return withTabs(
     <div className="mx-auto max-w-2xl space-y-6">
       {submitted ? (
         <>

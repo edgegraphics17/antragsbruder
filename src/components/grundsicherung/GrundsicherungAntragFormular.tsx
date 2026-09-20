@@ -4,13 +4,13 @@
 // GRUNDSICHERUNG ANTRAGSFORMULAR — amtliche Struktur (Hauptantrag HA 04/2026)
 // Schematisch getrieben über GS_ANTRAG_SECTIONS inkl. Skip-Logik (showIf)
 // und generischen Repeatern (Kinder, frühere Arbeitgeber, Entgeltersatz-
-// leistungen, frühere Leistungsbezüge). Validierung läuft erst beim Versuch
-// weiterzugehen: solange nichts abgeschickt wurde, bleiben die Felder neutral;
-// erst dann werden fehlende Pflichtfelder rot markiert und der Fehler-Kasten
-// mit den fehlenden Angaben eingeblendet.
+// leistungen, frühere Leistungsbezüge).
+// UI-Konzept portiert aus dem Wohngeld-Antrag: Abschnitt-Chips (Fehlende
+// Abschnitte mit ⚠ rot markiert), freies Hin- und Herspringen zwischen den
+// Abschnitten, Footer mit „X Pflichtangaben offen“ + Zurück/Weiter.
 // ============================================================
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useGsStore } from '@/lib/grundsicherung/store';
 import {
   GS_ANTRAG_SECTIONS,
@@ -56,26 +56,26 @@ export function GrundsicherungAntragFormular({
   const antrag = useGsStore((s) => s.antrag);
   const setAntrag = useGsStore((s) => s.setAntrag);
 
+  const [sectionIdx, setSectionIdx] = useState(0);
   // Fehler erst nach dem ersten „Weiter“-Versuch zeigen — vorher bleiben alle
   // Felder normal (weiß), damit das Formular nicht als „alles falsch“ wirkt.
   const [showErrors, setShowErrors] = useState(false);
-  const summaryRef = useRef<HTMLDivElement | null>(null);
+
+  const visibleSections = useMemo(
+    () => GS_ANTRAG_SECTIONS.filter((s) => sectionVisible(s, antrag)),
+    [antrag],
+  );
+  const section = visibleSections[Math.min(sectionIdx, visibleSections.length - 1)];
 
   const missing = useMemo(() => missingRequiredFields(antrag), [antrag]);
-  const missingSections = Object.keys(missing);
-
-  useEffect(() => {
-    if (showErrors && missingSections.length > 0) {
-      summaryRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }, [showErrors, missingSections.length]);
+  const missingCount = Object.values(missing).reduce((n, items) => n + items.length, 0);
 
   const set = (patch: Partial<GsAntragData>) => setAntrag(patch);
 
   const setItem = (
     repeater: NonNullable<GsSectionDef['repeater']>,
     i: number,
-    patch: Record<string, unknown>
+    patch: Record<string, unknown>,
   ) => {
     const key = repeaterKey(repeater);
     const list = [
@@ -106,163 +106,215 @@ export function GrundsicherungAntragFormular({
   const ibanInvalid =
     antrag.iban !== undefined && antrag.iban !== '' && !isPlausibleIban(antrag.iban);
 
-  const allComplete = missingSections.length === 0;
+  const goSection = (i: number) => {
+    setSectionIdx(i);
+    setShowErrors(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const sectionMissing = missing[section.id] ?? [];
+  const sectionComplete = sectionMissing.length === 0;
+
+  const goNext = () => {
+    const isLast = sectionIdx >= visibleSections.length - 1;
+    if (isLast && sectionComplete) {
+      onContinue();
+      return;
+    }
+    if (!sectionComplete) {
+      setShowErrors(true);
+      return;
+    }
+    goSection(sectionIdx + 1);
+  };
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
-      <header>
-        <h1 className="text-2xl font-bold text-ink">Dein Antragsformular</h1>
-        <p className="mt-1 text-sm text-ink-soft">
-          Alle Angaben des amtlichen Hauptantrags Grundsicherungsgeld (Jobcenter-HA 04/2026) —
-          nur die Fragen, die für deine Situation relevant sind. Angaben aus dem Schnell-Check
-          sind bereits übernommen.
-        </p>
-      </header>
-
-      {showErrors && missingSections.length > 0 && (
-        <div
-          ref={summaryRef}
-          className="rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900"
-        >
-          <p className="font-semibold">
-            {missingSections.length === 1
-              ? 'Ein Abschnitt ist noch unvollständig:'
-              : `Es fehlen noch Angaben in ${missingSections.length} Abschnitten:`}
-          </p>
-          <ul className="mt-2 space-y-2">
-            {missingSections.map((id) => {
-              const section = GS_ANTRAG_SECTIONS.find((s) => s.id === id);
-              const items = missing[id] ?? [];
-              return (
-                <li key={id}>
-                  <span className="font-semibold">{section?.title ?? id}</span>
-                  <span className="text-amber-800"> — {items.length === 1 ? 'diese Angabe fehlt' : 'diese Angaben fehlen'}:</span>{' '}
-                  {items.slice(0, 4).join(', ')}
-                  {items.length > 4 ? ' …' : ''}
-                </li>
-              );
-            })}
-          </ul>
-          <p className="mt-3 text-xs text-amber-800">
-            Diese Angaben braucht das Jobcenter für deinen Antrag. Fahre einfach im Formular
-            weiter — die gelb markierten Felder findest du direkt im passenden Abschnitt, und
-            du kannst erst einreichen, wenn sie ausgefüllt sind.
-          </p>
-        </div>
-      )}
-
-      {GS_ANTRAG_SECTIONS.filter((s) => sectionVisible(s, antrag)).map((section) => {
-        if (section.repeater) {
-          const repeater = section.repeater;
-          const key = repeaterKey(repeater);
-          const items = [
-            ...(((antrag as unknown as Record<string, unknown[]>)[key] ?? []) as Record<string, unknown>[]),
-          ];
-          const sectionMissing = missing[section.id] ?? [];
+    <div className="mx-auto max-w-2xl space-y-5">
+      {/* Abschnitt-Chips — freies Springen, unvollständige Abschnitte rot markiert */}
+      <div className="flex flex-wrap gap-2">
+        {visibleSections.map((s, i) => {
+          const sectionMissing = (missing[s.id]?.length ?? 0) > 0;
           return (
-            <section key={section.id} className="space-y-4 rounded-2xl border border-line-soft bg-white p-5">
-              <div>
-                <h2 className="font-semibold text-ink">{section.title}</h2>
-                {section.description && <p className="mt-1 text-xs text-ink-soft">{section.description}</p>}
-              </div>
-              {items.map((item, i) => (
-                <div key={i} className="rounded-xl bg-cream/60 p-4">
-                  <div className="mb-3 flex items-center justify-between">
-                    <span className="text-sm font-bold text-ink">Eintrag {i + 1}</span>
-                    <button
-                      type="button"
-                      onClick={() => removeItem(repeater, i)}
-                      className="text-xs font-semibold text-red-600 hover:underline"
-                    >
-                      Entfernen
-                    </button>
-                  </div>
-                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                    {visibleFields(section, antrag, item).map((f) => (
-                      <Field
-                        key={f.key}
-                        field={f}
-                        value={item[f.key]}
-                        onChange={(v) => setItem(repeater, i, { [f.key]: v })}
-                        error={showErrors && f.required && isBlank(item[f.key])}
-                      />
-                    ))}
-                  </div>
-                </div>
-              ))}
-              {showErrors && sectionMissing.length > 0 && (
-                <ul className="list-disc space-y-1 pl-5 text-xs text-red-600">
-                  {sectionMissing.map((m) => (
-                    <li key={m}>{m}</li>
-                  ))}
-                </ul>
-              )}
-              <button
-                type="button"
-                onClick={() => addItem(repeater)}
-                className="rounded-lg bg-cream px-3 py-2 text-sm font-semibold text-ink hover:bg-cream/70"
-              >
-                + Eintrag hinzufügen
-              </button>
-            </section>
+            <button
+              key={s.id}
+              type="button"
+              onClick={() => goSection(i)}
+              className={`rounded-lg border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                i === sectionIdx
+                  ? 'border-brand-600 bg-brand-600 text-white'
+                  : sectionMissing
+                    ? 'border-red-300 bg-red-50 text-red-600'
+                    : 'border-line-soft bg-white text-ink hover:border-brand-400'
+              }`}
+            >
+              {sectionMissing && i !== sectionIdx ? '⚠ ' : ''}
+              {s.title}
+            </button>
           );
-        }
+        })}
+      </div>
 
-        const data = antrag as unknown as Record<string, unknown>;
-        return (
-          <section key={section.id} className="space-y-4 rounded-2xl border border-line-soft bg-white p-5">
-            <div>
-              <h2 className="font-semibold text-ink">{section.title}</h2>
-              {section.description && <p className="mt-1 text-xs text-ink-soft">{section.description}</p>}
-            </div>
+      {/* Aktuelle Section */}
+      <div className="rounded-2xl border border-line-soft bg-white p-5">
+        <h3 className="font-semibold text-ink">{section.title}</h3>
+        {section.description && <p className="mt-0.5 text-xs text-ink-soft">{section.description}</p>}
+
+        {section.repeater ? (
+          <RepeaterSection
+            section={section}
+            antrag={antrag}
+            showErrors={showErrors}
+            missing={sectionMissing}
+            onSetItem={setItem}
+            onAddItem={addItem}
+            onRemoveItem={removeItem}
+          />
+        ) : (
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
             {section.id === 'konto_ids' && ibanInvalid && (
-              <p className="text-xs font-medium text-red-600">Diese IBAN sieht nicht vollständig aus.</p>
+              <p className="text-xs font-medium text-red-600 sm:col-span-2">
+                Diese IBAN sieht nicht vollständig aus.
+              </p>
             )}
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {visibleFields(section, antrag).map((f) => (
-                <Field
-                  key={f.key}
-                  field={f}
-                  value={data[f.key]}
-                  onChange={(v) => {
-                    const patchData = { [f.key]: v } as Partial<GsAntragData>;
-                    // Auto-Fill: Geburtsland übernimmt sich in die Staatsangehörigkeit,
-                    // solange dort nichts eingetragen ist.
-                    if (f.key === 'birthCountry' && typeof v === 'string' && v.trim() && isBlank(data.nationality)) {
-                      patchData.nationality = v.trim();
-                    }
-                    set(patchData);
-                  }}
-                  error={showErrors && f.required && isBlank(data[f.key])}
-                />
-              ))}
-            </div>
-          </section>
-        );
-      })}
+            {visibleFields(section, antrag).map((f) => (
+              <Field
+                key={f.key}
+                field={f}
+                value={(antrag as unknown as Record<string, unknown>)[f.key]}
+                onChange={(v) => {
+                  const patchData = { [f.key]: v } as Partial<GsAntragData>;
+                  // Auto-Fill: Geburtsland übernimmt sich in die Staatsangehörigkeit,
+                  // solange dort nichts eingetragen ist.
+                  const data = antrag as unknown as Record<string, unknown>;
+                  if (f.key === 'birthCountry' && typeof v === 'string' && v.trim() && isBlank(data.nationality)) {
+                    patchData.nationality = v.trim();
+                  }
+                  set(patchData);
+                }}
+                error={showErrors && Boolean(f.required) && isBlank((antrag as unknown as Record<string, unknown>)[f.key])}
+              />
+            ))}
+          </div>
+        )}
 
-      <div className="flex gap-3">
+        {showErrors && sectionMissing.length > 0 && (
+          <ul className="mt-3 list-disc space-y-1 pl-5 text-xs text-red-600">
+            {sectionMissing.map((m) => (
+              <li key={m}>{m}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Footer-Navigation wie im Wohngeld-Antrag */}
+      <div className="flex items-center justify-between gap-3">
         <button
           type="button"
-          onClick={onBack}
-          className="rounded-xl bg-cream px-4 py-3 font-semibold text-ink hover:bg-cream/70"
+          disabled={sectionIdx === 0}
+          onClick={() => goSection(Math.max(0, sectionIdx - 1))}
+          className="rounded-xl bg-cream px-4 py-3 font-semibold text-ink hover:bg-cream/70 disabled:opacity-40"
         >
-          ← Zurück
+          Zurück
         </button>
+        <p className="text-xs text-ink-soft">
+          {missingCount > 0
+            ? `${missingCount} Pflichtangabe${missingCount === 1 ? '' : 'n'} offen`
+            : 'Alle Pflichtangaben vollständig ✓'}
+        </p>
         <button
           type="button"
-          onClick={() => {
-            if (allComplete) {
-              onContinue();
-            } else {
-              setShowErrors(true);
-            }
-          }}
-          className="flex-1 rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white transition-colors hover:bg-brand-700"
+          onClick={goNext}
+          className="rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white transition-colors hover:bg-brand-700"
         >
-          Weiter zu den Unterlagen →
+          {sectionIdx >= visibleSections.length - 1 ? 'Weiter zu den Unterlagen →' : 'Weiter'}
         </button>
       </div>
+
+      <button
+        type="button"
+        onClick={onBack}
+        className="text-xs font-semibold text-ink-soft hover:text-ink"
+      >
+        ← Zurück zur Einschätzung
+      </button>
+    </div>
+  );
+}
+
+/** Repeater-Abschnitt (Einträge + Hinzufügen/Entfernen). */
+function RepeaterSection({
+  section,
+  antrag,
+  showErrors,
+  missing,
+  onSetItem,
+  onAddItem,
+  onRemoveItem,
+}: {
+  section: GsSectionDef;
+  antrag: Partial<GsAntragData>;
+  showErrors: boolean;
+  missing: string[];
+  onSetItem: (
+    repeater: NonNullable<GsSectionDef['repeater']>,
+    i: number,
+    patch: Record<string, unknown>,
+  ) => void;
+  onAddItem: (repeater: NonNullable<GsSectionDef['repeater']>) => void;
+  onRemoveItem: (repeater: NonNullable<GsSectionDef['repeater']>, i: number) => void;
+}) {
+  const repeater = section.repeater!;
+  const key = repeaterKey(repeater);
+  const items = [
+    ...(((antrag as unknown as Record<string, unknown[]>)[key] ?? []) as Record<string, unknown>[]),
+  ];
+
+  return (
+    <div className="mt-4 space-y-3">
+      {items.length === 0 && (
+        <p className="text-sm text-ink-soft">
+          {section.description ?? 'Noch keine Einträge angegeben.'}
+        </p>
+      )}
+      {items.map((item, i) => (
+        <div key={i} className="rounded-xl bg-cream/60 p-4">
+          <div className="mb-3 flex items-center justify-between">
+            <span className="text-sm font-bold text-ink">Eintrag {i + 1}</span>
+            <button
+              type="button"
+              onClick={() => onRemoveItem(repeater, i)}
+              className="text-xs font-semibold text-red-600 hover:underline"
+            >
+              Entfernen
+            </button>
+          </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {visibleFields(section, antrag, item).map((f) => (
+              <Field
+                key={f.key}
+                field={f}
+                value={item[f.key]}
+                onChange={(v) => onSetItem(repeater, i, { [f.key]: v })}
+                error={showErrors && Boolean(f.required) && isBlank(item[f.key])}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
+      {showErrors && missing.length > 0 && (
+        <ul className="list-disc space-y-1 pl-5 text-xs text-red-600">
+          {missing.map((m) => (
+            <li key={m}>{m}</li>
+          ))}
+        </ul>
+      )}
+      <button
+        type="button"
+        onClick={() => onAddItem(repeater)}
+        className="rounded-lg bg-cream px-3 py-2 text-sm font-semibold text-ink hover:bg-cream/70"
+      >
+        + Eintrag hinzufügen
+      </button>
     </div>
   );
 }
