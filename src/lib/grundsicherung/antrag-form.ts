@@ -537,7 +537,7 @@ export const GS_ANTRAG_SECTIONS: GsSectionDef[] = [
       {
         formField: '51',
         key: 'receivedBenefitsLast3Years',
-        label: 'Hast du in den letzten drei Jahren Bürgergeld oder Sozialhilfe beantragt oder bezogen?',
+        label: 'Hast du in den letzten drei Jahren Sozialhilfe bezogen?',
         type: 'checkbox',
       },
       {
@@ -586,7 +586,7 @@ export const GS_ANTRAG_SECTIONS: GsSectionDef[] = [
     officialSection: 'E',
     id: 'fruehere_leistungen',
     title: 'Frühere Leistungsbezüge im Detail',
-    description: 'Nur ausfüllen, wenn du oben „Bürgergeld oder Sozialhilfe" mit Ja beantwortet hast.',
+    description: 'Nur ausfüllen, wenn du oben „Sozialhilfe“ mit Ja beantwortet hast.',
     repeater: 'pastBenefits',
     fields: [
       { formField: '52', key: 'type', label: 'Art der Leistung', type: 'select', required: true, options: [
