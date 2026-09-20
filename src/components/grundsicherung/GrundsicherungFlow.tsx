@@ -2,7 +2,8 @@
 
 // ============================================================
 // GRUNDSICHERUNG FLOW — Dashboard-Antragsfunnel
-// Stages: angaben → ergebnis → unterlagen → einreichen
+// Stages: check (Stufe 1 Discovery) → formular (Stufe 2 Precision)
+//         → unterlagen → einreichen
 // Rechtsbewertung ausschließlich über die Engine-API
 // (/api/rechner/grundsicherung/evaluate) — keine Berechnung im Frontend.
 // ============================================================
@@ -17,6 +18,8 @@ import {
 import { caseService } from '@/engine';
 import type { GsCalcResult } from '@/engine/benefit-engines/grundsicherung';
 import type { GsFormStateFacts } from '@/engine/benefit-engines/grundsicherung/facts';
+import { checkToFormStatePrefill } from '@/components/grundsicherung/GrundsicherungCheck';
+import { GrundsicherungCheck } from '@/components/grundsicherung/GrundsicherungCheck';
 import { GrundsicherungAntragFormular } from '@/components/grundsicherung/GrundsicherungAntragFormular';
 import { getDashboardDict } from '@/content/i18n/dashboard';
 import { useLocaleFromPath } from '@/i18n/use-locale';
@@ -163,6 +166,10 @@ export function GrundsicherungFlow({
   const form = store.formState;
   const setForm = store.setForm;
 
+  const onCheckContinue = useCallback(() => {
+    useGsStore.getState().setStage('formular');
+  }, []);
+
   const applicant = useMemo(
     () => form.applicant ?? { age: undefined },
     [form.applicant],
@@ -193,259 +200,24 @@ export function GrundsicherungFlow({
     return <p className="p-6 text-ink-soft">{t.loading}</p>;
   }
 
-  // --- Stage: ANGABEN ---
-  if (store.stage === 'angaben') {
-    const a = applicant as { age?: number };
+  // --- Stage: CHECK (Stufe 1 — Discovery, 6 Kernblöcke) ---
+  if (store.stage === 'check') {
     return (
-      <div className="mx-auto max-w-2xl space-y-6">
-        <header>
-          <h1 className="text-2xl font-bold text-ink">{dict.angaben.title}</h1>
-          <p className="mt-1 text-sm text-ink-soft">{dict.angaben.intro}</p>
-        </header>
-
-        <section className="space-y-4 rounded-2xl border border-line-soft bg-white p-5">
-          <h2 className="font-semibold text-ink">{dict.angaben.personalTitle}</h2>
-          <NumberField
-            label={dict.angaben.age}
-            value={a.age}
-            onChange={(v) =>
-              setForm({
-                applicant: { ...form.applicant, age: v } as GsFormStateFacts['applicant'],
-              })
-            }
-          />
-          <CheckField
-            label={dict.angaben.pregnant}
-            value={(form.applicant as { pregnant?: boolean } | undefined)?.pregnant}
-            onChange={(v) =>
-              setForm({ applicant: { ...form.applicant, pregnant: v } as GsFormStateFacts['applicant'] })
-            }
-          />
-          <CheckField
-            label={dict.angaben.singleParent}
-            value={(form.applicant as { singleParent?: boolean } | undefined)?.singleParent}
-            onChange={(v) =>
-              setForm({
-                applicant: { ...form.applicant, singleParent: v } as GsFormStateFacts['applicant'],
-              })
-            }
-          />
-          <NumberField
-            label={dict.angaben.incomeEmploymentNet}
-            value={(form.applicant as { incomeEmploymentNet?: number } | undefined)?.incomeEmploymentNet}
-            onChange={(v) =>
-              setForm({
-                applicant: { ...form.applicant, incomeEmploymentNet: v } as GsFormStateFacts['applicant'],
-              })
-            }
-          />
-          <NumberField
-            label={dict.angaben.incomeOtherNet}
-            value={(form.applicant as { incomeOtherNet?: number } | undefined)?.incomeOtherNet}
-            onChange={(v) =>
-              setForm({
-                applicant: { ...form.applicant, incomeOtherNet: v } as GsFormStateFacts['applicant'],
-              })
-            }
-          />
-          <NumberField
-            label={dict.angaben.assets}
-            value={(form.applicant as { assets?: number } | undefined)?.assets}
-            onChange={(v) =>
-              setForm({ applicant: { ...form.applicant, assets: v } as GsFormStateFacts['applicant'] })
-            }
-          />
-          <SelectField
-            label={dict.angaben.workCapacity}
-            value={(form.applicant as { workCapacityOver3h?: string } | undefined)?.workCapacityOver3h}
-            onChange={(v) =>
-              setForm({
-                applicant: { ...form.applicant, workCapacityOver3h: v } as GsFormStateFacts['applicant'],
-              })
-            }
-            options={[
-              { value: 'YES', label: dict.angaben.yes },
-              { value: 'NO', label: dict.angaben.no },
-              { value: 'UNKNOWN', label: dict.angaben.unknown },
-            ]}
-          />
-          <SelectField
-            label={dict.angaben.residence}
-            value={(form.applicant as { residenceCenterOfLife?: string } | undefined)?.residenceCenterOfLife}
-            onChange={(v) =>
-              setForm({
-                applicant: { ...form.applicant, residenceCenterOfLife: v } as GsFormStateFacts['applicant'],
-              })
-            }
-            options={[
-              { value: 'YES', label: dict.angaben.yes },
-              { value: 'NO', label: dict.angaben.no },
-              { value: 'UNKNOWN', label: dict.angaben.unknown },
-            ]}
-          />
-        </section>
-
-        <section className="space-y-4 rounded-2xl border border-line-soft bg-white p-5">
-          <h2 className="font-semibold text-ink">{dict.angaben.partnerTitle}</h2>
-          <CheckField
-            label={dict.angaben.partnerExists}
-            value={form.partner?.exists}
-            onChange={(v) =>
-              setForm({
-                partner: {
-                  exists: v,
-                  age: form.partner?.age,
-                  incomeEmploymentNet: form.partner?.incomeEmploymentNet,
-                  incomeOtherNet: form.partner?.incomeOtherNet,
-                  assets: form.partner?.assets,
-                },
-              })
-            }
-          />
-          {form.partner?.exists && (
-            <>
-              <NumberField
-                label={dict.angaben.partnerAge}
-                value={form.partner.age}
-                onChange={(v) => setForm({ partner: { ...form.partner!, age: v } })}
-              />
-              <NumberField
-                label={dict.angaben.partnerIncomeEmploymentNet}
-                value={form.partner.incomeEmploymentNet}
-                onChange={(v) =>
-                  setForm({ partner: { ...form.partner!, incomeEmploymentNet: v } })
-                }
-              />
-              <NumberField
-                label={dict.angaben.partnerIncomeOtherNet}
-                value={form.partner.incomeOtherNet}
-                onChange={(v) => setForm({ partner: { ...form.partner!, incomeOtherNet: v } })}
-              />
-              <NumberField
-                label={dict.angaben.partnerAssets}
-                value={form.partner.assets}
-                onChange={(v) => setForm({ partner: { ...form.partner!, assets: v } })}
-              />
-            </>
-          )}
-        </section>
-
-        <section className="space-y-4 rounded-2xl border border-line-soft bg-white p-5">
-          <h2 className="font-semibold text-ink">{dict.angaben.childrenTitle}</h2>
-          {(form.children ?? []).map((c, i) => (
-            <div key={i} className="grid grid-cols-1 gap-3 rounded-xl bg-cream/60 p-3 sm:grid-cols-3">
-              <NumberField
-                label={dict.angaben.childAge}
-                value={c.age}
-                onChange={(v) => {
-                  const children = [...(form.children ?? [])];
-                  children[i] = { ...c, age: v ?? 0 };
-                  setForm({ children });
-                }}
-              />
-              <NumberField
-                label={dict.angaben.childIncomeNet}
-                value={c.incomeNet}
-                onChange={(v) => {
-                  const children = [...(form.children ?? [])];
-                  children[i] = { ...c, incomeNet: v };
-                  setForm({ children });
-                }}
-              />
-              <CheckField
-                label={dict.angaben.childKindergeld}
-                value={c.kindergeld}
-                onChange={(v) => {
-                  const children = [...(form.children ?? [])];
-                  children[i] = { ...c, kindergeld: v };
-                  setForm({ children });
-                }}
-              />
-            </div>
-          ))}
-          <button
-            type="button"
-            onClick={() => setForm({ children: [...(form.children ?? []), { age: 0 }] })}
-            className="rounded-lg bg-cream px-3 py-2 text-sm font-semibold text-ink hover:bg-cream/70"
-          >
-            {dict.angaben.addChild}
-          </button>
-        </section>
-
-        <section className="space-y-4 rounded-2xl border border-line-soft bg-white p-5">
-          <h2 className="font-semibold text-ink">{dict.angaben.housingTitle}</h2>
-          <NumberField
-            label={dict.angaben.coldRent}
-            value={form.housing?.coldRent}
-            onChange={(v) =>
-              setForm({ housing: { ...form.housing, coldRent: v } as GsFormStateFacts['housing'] })
-            }
-          />
-          <NumberField
-            label={dict.angaben.operatingCosts}
-            value={form.housing?.operatingCosts}
-            onChange={(v) =>
-              setForm({
-                housing: { ...form.housing, operatingCosts: v } as GsFormStateFacts['housing'],
-              })
-            }
-          />
-          <NumberField
-            label={dict.angaben.heating}
-            value={form.housing?.heating}
-            onChange={(v) =>
-              setForm({ housing: { ...form.housing, heating: v } as GsFormStateFacts['housing'] })
-            }
-          />
-          <CheckField
-            label={dict.angaben.kduLimitKnown}
-            value={form.housing?.kduLimitKnown}
-            onChange={(v) =>
-              setForm({
-                housing: { ...form.housing, kduLimitKnown: v } as GsFormStateFacts['housing'],
-              })
-            }
-          />
-          {form.housing?.kduLimitKnown && (
-            <NumberField
-              label={dict.angaben.kduLimit}
-              value={form.housing?.kduLimit}
-              onChange={(v) =>
-                setForm({ housing: { ...form.housing, kduLimit: v } as GsFormStateFacts['housing'] })
-              }
-            />
-          )}
-          <CheckField
-            label={dict.angaben.decentralizedHotWater}
-            value={form.housing?.decentralizedHotWater}
-            onChange={(v) =>
-              setForm({
-                housing: { ...form.housing, decentralizedHotWater: v } as GsFormStateFacts['housing'],
-              })
-            }
-          />
-          <NumberField
-            label={dict.angaben.annualBillDue}
-            value={form.housing?.annualBillDue}
-            onChange={(v) =>
-              setForm({
-                housing: { ...form.housing, annualBillDue: v } as GsFormStateFacts['housing'],
-              })
-            }
-          />
-        </section>
-
-        {error && <p className="text-sm font-medium text-red-600">{error}</p>}
-
-        <button
-          type="button"
-          disabled={calculating}
-          onClick={() => void evaluate()}
-          className="w-full rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white transition-colors hover:bg-brand-700 disabled:opacity-50"
-        >
-          {calculating ? t.loading : dict.angaben.calculate}
-        </button>
-      </div>
+      <GrundsicherungCheck
+        onContinue={() => {
+          // Check-Angaben ins Antragsformular vorbefüllen (Stufe 2 = Precision)
+          if (store.check) {
+            const prefill = checkToFormStatePrefill(store.check);
+            useGsStore.getState().setForm({
+              applicant: { ...prefill.applicant } as GsFormStateFacts['applicant'],
+              partner: prefill.partner,
+              children: prefill.children,
+              housing: prefill.housing,
+            });
+          }
+          onCheckContinue();
+        }}
+      />
     );
   }
 
@@ -473,7 +245,7 @@ export function GrundsicherungFlow({
         )}
         <button
           type="button"
-          onClick={() => store.setStage('angaben')}
+          onClick={() => store.setStage('check')}
           className="rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700"
         >
           {t.back}
@@ -584,7 +356,7 @@ export function GrundsicherungFlow({
         <div className="flex gap-3">
           <button
             type="button"
-            onClick={() => store.setStage('angaben')}
+            onClick={() => store.setStage('check')}
             className="rounded-xl bg-cream px-4 py-3 font-semibold text-ink hover:bg-cream/70"
           >
             {t.back}

@@ -22,3 +22,10 @@ export type {
 } from './calc';
 export { factsToCalcInput, ageFromBirthDate } from './facts';
 export type { GsFormStateFacts, GsFormChild, GsFormStateFacts as GrundsicherungFormState } from './facts';
+export { evaluateGrundsicherungCheck, checkToFormState } from './check';
+export type {
+  GsCheckState,
+  GsCheckResult,
+  GsCheckOutcome,
+  TriState,
+} from './check';

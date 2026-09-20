@@ -9,6 +9,7 @@ import { NextResponse } from 'next/server';
 import {
   calculateGrundsicherung,
   factsToCalcInput,
+  evaluateGrundsicherungCheck,
   type GsCalcInput,
 } from '@/engine/benefit-engines/grundsicherung';
 
@@ -19,12 +20,19 @@ export async function POST(req: Request) {
     const body = (await req.json()) as {
       input?: Partial<GsCalcInput>;
       form?: unknown;
+      check?: unknown;
     };
 
     const today = new Date().toISOString().split('T')[0];
     let result;
 
-    if (body.input) {
+    if (body.check) {
+      // Stufe 1 (Discovery): 6-Block-Minimalcheck → Ampel + Spanne
+      result = evaluateGrundsicherungCheck(
+        body.check as Parameters<typeof evaluateGrundsicherungCheck>[0],
+        today
+      );
+    } else if (body.input) {
       // Direkter Engine-Input (vollständige Kontrolle, u. a. für Tests)
       result = calculateGrundsicherung({
         ...body.input,
@@ -38,7 +46,7 @@ export async function POST(req: Request) {
       const input = factsToCalcInput({ 'gs.form': body.form }, today);
       result = calculateGrundsicherung(input);
     } else {
-      return NextResponse.json({ error: 'input oder form erforderlich' }, { status: 400 });
+      return NextResponse.json({ error: 'check, input oder form erforderlich' }, { status: 400 });
     }
 
     return NextResponse.json({ result });

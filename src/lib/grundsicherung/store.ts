@@ -11,14 +11,17 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { supabase } from '@/lib/supabase';
 import type { GsFormStateFacts } from '@/engine/benefit-engines/grundsicherung/facts';
+import type { GsCheckState, GsCheckResult } from '@/engine/benefit-engines/grundsicherung/check';
 import { factStore } from '@/engine/fact-store/FactStore';
 import type { GsAntragData } from './antrag-form';
 
-export type GsStage = 'angaben' | 'ergebnis' | 'formular' | 'unterlagen' | 'einreichen';
+export type GsStage = 'check' | 'ergebnis' | 'formular' | 'unterlagen' | 'einreichen';
 
-export const GS_STAGES: GsStage[] = ['angaben', 'ergebnis', 'formular', 'unterlagen', 'einreichen'];
+export const GS_STAGES: GsStage[] = ['check', 'ergebnis', 'formular', 'unterlagen', 'einreichen'];
 
 export function isGsStage(value: unknown): value is GsStage {
+  // Legacy-Drafts mit alter Stage 'angaben' landen im neuen Check.
+  if (value === 'angaben') return true;
   return typeof value === 'string' && (GS_STAGES as string[]).includes(value);
 }
 
@@ -43,6 +46,10 @@ export interface GsResultSnapshot {
   bgSize: number;
   openIssues: string[];
   calculatedAt: string;
+  /** Check-Stufe (Discovery): Spanne statt Centbetrag */
+  rangeMin?: number;
+  rangeMax?: number;
+  outcome?: string;
 }
 
 interface GsDraftState {
@@ -51,6 +58,8 @@ interface GsDraftState {
   userId: string | null;
   stage: GsStage;
   formState: Partial<GsFormStateFacts>;
+  check: GsCheckState | null;
+  checkResult: GsCheckResult | null;
   antrag: Partial<GsAntragData>;
   result: GsResultSnapshot | null;
   submitted: boolean;
@@ -58,6 +67,8 @@ interface GsDraftState {
 
   setStage: (stage: GsStage) => void;
   setForm: (patch: Partial<GsFormStateFacts>) => void;
+  setCheck: (check: GsCheckState) => void;
+  setCheckResult: (result: GsCheckResult | null) => void;
   setAntrag: (patch: Partial<GsAntragData>) => void;
   setResult: (result: GsResultSnapshot) => void;
   resetDraft: () => void;
@@ -83,8 +94,10 @@ export const useGsStore = create<GsDraftState>()(
       applicationId: null,
       caseId: null,
       userId: null,
-      stage: 'angaben',
+      stage: 'check',
       formState: emptyForm,
+      check: null,
+      checkResult: null,
       antrag: { children: [] },
       result: null,
       submitted: false,
@@ -93,6 +106,8 @@ export const useGsStore = create<GsDraftState>()(
       setStage: (stage) => set({ stage }),
       setForm: (patch) =>
         set((s) => ({ formState: { ...s.formState, ...patch } })),
+      setCheck: (check) => set({ check }),
+      setCheckResult: (checkResult) => set({ checkResult }),
       setAntrag: (patch) => set((s) => ({ antrag: { ...s.antrag, ...patch } })),
       setResult: (result) => set({ result }),
       resetDraft: () =>
@@ -100,8 +115,10 @@ export const useGsStore = create<GsDraftState>()(
           applicationId: null,
           caseId: null,
           userId: null,
-          stage: 'angaben',
+          stage: 'check',
           formState: emptyForm,
+          check: null,
+          checkResult: null,
           antrag: { children: [] },
           result: null,
           submitted: false,
