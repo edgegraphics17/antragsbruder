@@ -532,7 +532,8 @@ export function GsUnterlagenUpload({
 
       <p className="text-xs text-ink-soft">
         PDF oder Foto (JPG, PNG, WebP), max. 10 MB pro Datei. Du kannst pro Anlage mehrere
-        Dateien hochladen — fehlende Unterlagen kannst du grundsätzlich auch nachreichen.
+        Dateien hochladen. Der Antrag kann erst eingereicht werden, wenn alle Pflicht-Anlagen
+        hochgeladen sind.
       </p>
     </div>
   );

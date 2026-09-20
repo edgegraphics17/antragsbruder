@@ -8,7 +8,7 @@
 // (/api/rechner/grundsicherung/evaluate) — keine Berechnung im Frontend.
 // ============================================================
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useAuth } from '@/lib/auth-context';
 import { useGsStore, isGsStage, type GsStage } from '@/lib/grundsicherung/store';
 import {
@@ -112,6 +112,12 @@ export function GrundsicherungFlow({
           );
           if (initialStage || isGsStage(app.last_stage)) {
             useGsStore.getState().setStage(initialStage ?? (app.last_stage as GsStage));
+          }
+          // In der DB als SUBMITTED markierte Anträge brauchen auch lokal
+          // submitted=true — sonst umgeht der Nutzer das Dokumente-Gate
+          // (z. B. auf anderem Gerät / geleerter localStorage).
+          if (app.status === 'SUBMITTED') {
+            useGsStore.setState({ submitted: true, submittedAt: null });
           }
         }
       } else if (initialStage && !applicationId) {
@@ -261,8 +267,62 @@ export function GrundsicherungFlow({
     [form.applicant],
   );
 
+  // --- Dokumente-Gate: Pflicht-Anlagen vs. hochgeladene Dateien ---
+  // Einreichen nur möglich, wenn für JEDE Pflicht-Anlage mindestens
+  // eine Datei hochgeladen wurde (Dokumente ohne Zuordnung zählen nicht).
+  const anlagenListe = useMemo(
+    () =>
+      requiredAnlagen(
+        store.antrag,
+        (form.children ?? []).map((c) => c.age).filter((a) => typeof a === 'number'),
+      ),
+    [store.antrag, form.children],
+  );
+  const fehlendeAnlagen = useMemo(
+    () =>
+      anlagenListe.filter(
+        (a) => !(store.anlagenDocs as GsUploadedDoc[]).some((d) => d.anlage === a),
+      ),
+    [anlagenListe, store.anlagenDocs],
+  );
+  const docsUnvollstaendig = fehlendeAnlagen.length > 0;
+
+  // --- Rücksetzung eingereichter Anträge mit fehlenden Pflicht-Anlagen ---
+  // Bestehende User, die vor dem Gate eingereicht haben, landen sonst
+  // im „Eingereicht“-Screen ohne Möglichkeit, die restlichen Dokumente
+  // nachzuladen. Einmalig: Antrag zurück auf IN_PROGRESS + Stage UNTERLAGEN.
+  const unsubmittedRef = useRef(false);
+  useEffect(() => {
+    if (!ready || !user) return;
+    if (!store.applicationId || !store.submitted || !docsUnvollstaendig) return;
+    if (unsubmittedRef.current) return;
+    unsubmittedRef.current = true;
+    useGsStore.setState({
+      submitted: false,
+      submittedAt: null,
+      stage: 'unterlagen',
+    });
+    void (async () => {
+      try {
+        const { supabase } = await import('@/lib/supabase');
+        await supabase
+          .from('applications')
+          .update({ status: 'IN_PROGRESS', last_stage: 'unterlagen', progress_percent: 70 })
+          .eq('id', store.applicationId!);
+      } catch {
+        // DB-Update fehlgeschlagen — lokaler Reset greift trotzdem.
+      }
+    })();
+  }, [ready, user, store.applicationId, store.submitted, docsUnvollstaendig]);
+
   const submit = useCallback(async () => {
     if (!user) return;
+    // Hartes Gate: Einreichen ohne vollständige Pflicht-Anlagen ist
+    // grundsätzlich blockiert (auch bei direkten Aufrufen).
+    if (fehlendeAnlagen.length > 0) {
+      useGsStore.getState().setStage('unterlagen');
+      return;
+    }
     setCalculating(true);
     try {
       let caseId = useGsStore.getState().caseId;
@@ -293,7 +353,7 @@ export function GrundsicherungFlow({
     } finally {
       setCalculating(false);
     }
-  }, [user, t.submitError]);
+  }, [user, t.submitError, fehlendeAnlagen.length]);
 
   if (!ready) {
     return <p className="p-6 text-ink-soft">{t.loading}</p>;
@@ -501,12 +561,6 @@ export function GrundsicherungFlow({
 
   // --- Stage: UNTERLAGEN — pro Anlage hochladen & direkt einreichen ---
   if (store.stage === 'unterlagen') {
-    // Pflicht-Anlagen automatisch aus den Antragsdaten abgeleitet
-    // (Hauptantrag Abschnitt H + Trigger in A–G).
-    const anlagenListe = requiredAnlagen(
-      store.antrag,
-      (form.children ?? []).map((c) => c.age).filter((a) => typeof a === 'number')
-    );
     const submitting = calculating;
     return (
       <div className="mx-auto max-w-2xl space-y-6">
@@ -535,6 +589,17 @@ export function GrundsicherungFlow({
           />
         </section>
 
+        {docsUnvollstaendig && (
+          <section className="rounded-2xl border border-red-200 bg-red-50 p-4">
+            <p className="text-sm font-semibold text-red-700">
+              Es fehlen noch {fehlendeAnlagen.length} von {anlagenListe.length} Pflicht-Anlagen.
+            </p>
+            <p className="mt-1 text-xs text-red-600">
+              Der Antrag kann erst eingereicht werden, wenn alle Dokumente hochgeladen sind.
+            </p>
+          </section>
+        )}
+
         {error && <p className="text-sm font-medium text-red-600">{error}</p>}
 
         <div className="flex gap-3">
@@ -547,13 +612,15 @@ export function GrundsicherungFlow({
           </button>
           <button
             type="button"
-            disabled={docsUploading || submitting}
+            disabled={docsUploading || submitting || docsUnvollstaendig}
             onClick={() => void submit()}
             className="flex-1 rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700 disabled:opacity-50"
           >
             {docsUploading || submitting
               ? 'Wird eingereicht …'
-              : dict.einreichen.submit}
+              : docsUnvollstaendig
+                ? `Dokumente fehlen (${fehlendeAnlagen.length})`
+                : dict.einreichen.submit}
           </button>
         </div>
       </div>
@@ -604,6 +671,17 @@ export function GrundsicherungFlow({
 
           {error && <p className="text-sm font-medium text-red-600">{error}</p>}
 
+          {docsUnvollstaendig && (
+            <section className="rounded-2xl border border-red-200 bg-red-50 p-4">
+              <p className="text-sm font-semibold text-red-700">
+                Es fehlen noch {fehlendeAnlagen.length} von {anlagenListe.length} Pflicht-Anlagen.
+              </p>
+              <p className="mt-1 text-xs text-red-600">
+                Wechsle zurück zu den Dokumenten und lade alle Anlagen hoch, bevor du den Antrag einreichst.
+              </p>
+            </section>
+          )}
+
           <div className="flex gap-3">
             <button
               type="button"
@@ -614,10 +692,13 @@ export function GrundsicherungFlow({
             </button>
             <button
               type="button"
+              disabled={docsUnvollstaendig}
               onClick={() => void submit()}
-              className="flex-1 rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700"
+              className="flex-1 rounded-xl bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-700 disabled:opacity-50"
             >
-              {dict.einreichen.submit}
+              {docsUnvollstaendig
+                ? `Dokumente fehlen (${fehlendeAnlagen.length})`
+                : dict.einreichen.submit}
             </button>
           </div>
         </>
