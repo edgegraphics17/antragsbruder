@@ -108,12 +108,11 @@ export interface GsAntragData {
   hasGuardian?: boolean; // 22
   guardianNote?: string; // 22
 
-  // ===== B. Nationalität / Aufenthalt (Felder 23–25, 27–28) =====
+  // ===== B. Nationalität / Aufenthalt (Felder 23–25, 27) =====
   hasResidenceTitle?: boolean; // 23
   receivesAsylbLG?: boolean; // 24
   asylblgUntil?: string; // 25
   verpflichtungserklaerung?: boolean; // 27
-  originCountryId?: string; // 28
 
   // ===== C. Antragstellung (Felder 29–31) =====
   claimFromNow?: string; // 29 (AB_SOFORT | SPAETER)
@@ -359,13 +358,6 @@ export const GS_ANTRAG_SECTIONS: GsSectionDef[] = [
           'Hat jemand gegenüber der Ausländerbehörde zugesagt, alle Kosten deines Aufenthalts zu übernehmen (Verpflichtungserklärung)?',
         type: 'checkbox',
         hint: 'Verpflichtungserklärung bitte als Nachweis hochladen.',
-        showIf: isNonGerman,
-      },
-      {
-        formField: '28',
-        key: 'originCountryId',
-        label: 'Nationale Personenidentifikationsnummer des Herkunftslands (falls vorhanden)',
-        type: 'text',
         showIf: isNonGerman,
       },
     ],
