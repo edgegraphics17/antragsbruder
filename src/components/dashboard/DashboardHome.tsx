@@ -21,6 +21,7 @@ import { useLocaleFromPath } from '@/i18n/use-locale';
 import { getDashboardDict } from '@/content/i18n/dashboard';
 import { formatTemplate } from '@/content/i18n/format';
 import { ApplicationTimeline, type TimelineState } from './ApplicationTimeline';
+import { isGsStage } from '@/lib/grundsicherung/store';
 
 // In-Bearbeitung-Status laut applications-Constraint.
 const ACTIVE_STATUSES = ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY', 'SUBMITTED', 'PROCESSING'];
@@ -60,8 +61,36 @@ interface AppRecord {
   calculation_result: { amount?: number; unit?: string } | null;
 }
 
+// Klickbare Titel je Benefit (Dict statt Roh-Wert wie "GRUNDSICHERUNG").
+function benefitTitle(
+  benefitType: string | null,
+  t: ReturnType<typeof getDashboardDict>['home'],
+): string {
+  if (benefitType === 'ALG1') return t.alg1Title;
+  if (benefitType === 'GRUNDSICHERUNG') return t.gsTitle;
+  return benefitType || t.applicationFallback;
+}
+
 function getTimelineState(app: AppRecord | null): TimelineState {
   if (!app) return { activeStep: 1, completedSteps: [] };
+
+  // Grundsicherung: eigene Stage-Semantik (check → formular →
+  // unterlagen → einreichen). Schritt-Slots der Timeline:
+  // 1 = Unterlagen, 2 = Daten, 3 = Einreichen, 4 = Erhalt.
+  if (app.benefit_type === 'GRUNDSICHERUNG') {
+    const stage = app.last_stage ?? '';
+    const completedSteps: number[] = [];
+
+    if (['unterlagen', 'einreichen'].includes(stage)) completedSteps.push(1);
+    if (['ergebnis', 'unterlagen', 'einreichen'].includes(stage)) completedSteps.push(2);
+    if (['SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(app.status)) {
+      completedSteps.push(3);
+    }
+    if (app.status === 'APPROVED') completedSteps.push(4);
+
+    const activeStep = [1, 2, 3, 4].find((s) => !completedSteps.includes(s)) ?? 4;
+    return { activeStep, completedSteps };
+  }
 
   const { status, last_stage } = app;
   const completedSteps: number[] = [];
@@ -143,24 +172,33 @@ export function DashboardHome() {
   // erscheinen erst, wenn tatsächlich ein Antrag läuft.
   const showJourney = activeApplications.length > 0;
   const journeyApp = activeApplications[0] ?? null;
+
+  // Resume-Href je Benefit: ALG1 nutzt die Stage-Parameter des ALG1-Flows,
+  // Grundsicherung den eigenen Flow (/grundsicherung mit Auto-Resume).
+  const resumeHref = (app: AppRecord): string => {
+    if (app.benefit_type === 'ALG1') {
+      return `/alg1/antrag?applicationId=${app.id}&stage=${
+        ['SUBMITTED', 'PROCESSING'].includes(app.status)
+          ? 'summary'
+          : (app.last_stage ?? 'upload')
+      }`;
+    }
+    if (app.benefit_type === 'GRUNDSICHERUNG') {
+      const stage = isGsStage(app.last_stage) ? app.last_stage : 'check';
+      return `/grundsicherung?applicationId=${app.id}&stage=${stage}`;
+    }
+    return `/antraege/${app.case_id}`;
+  };
+
   const journeySubmitted = journeyApp
     ? ['SUBMITTED', 'PROCESSING'].includes(journeyApp.status)
     : false;
   // Klickbarer aktiver Schritt führt genau dorthin, wo der Antrag steht
   // (gleiche Resume-Logik wie die "Weiterarbeiten"-Karte oben).
-  const journeyContinueHref = journeyApp
-    ? journeyApp.benefit_type === 'ALG1'
-      ? `/alg1/antrag?applicationId=${journeyApp.id}&stage=${
-          journeySubmitted ? 'summary' : (journeyApp.last_stage ?? 'upload')
-        }`
-      : `/antraege/${journeyApp.case_id}`
-    : null;
+  const journeyContinueHref = journeyApp ? resumeHref(journeyApp) : null;
   const timelineHeader = journeyApp
     ? {
-        title:
-          journeyApp.benefit_type === 'ALG1'
-            ? t.alg1Title
-            : journeyApp.benefit_type || t.applicationFallback,
+        title: benefitTitle(journeyApp.benefit_type, t),
         statusLabel: t.status[journeyApp.status as keyof typeof t.status] ?? journeyApp.status,
         badgeCls: STATUS_BADGE_CLS[journeyApp.status] ?? 'bg-brand-100 text-brand-700',
       }
@@ -217,7 +255,7 @@ export function DashboardHome() {
                     </span>
                   </div>
                   <p className="font-semibold text-ink">
-                    {app.benefit_type === 'ALG1' ? t.alg1Title : app.benefit_type || t.applicationFallback}
+                    {benefitTitle(app.benefit_type, t)}
                   </p>
                   {app.calculation_result?.amount != null && app.calculation_result.amount > 0 && (
                     <p className="mt-1 text-sm font-semibold text-brand-700">
@@ -228,11 +266,7 @@ export function DashboardHome() {
                     {formatTemplate(t.createdAt, { date: formatDate(app.created_at) })}
                   </p>
                   <Link
-                    href={
-                      app.benefit_type === 'ALG1'
-                        ? localeHref(locale, `/alg1/antrag?applicationId=${app.id}&stage=${submitted ? 'summary' : (app.last_stage ?? 'upload')}`)
-                        : localeHref(locale, `/antraege/${app.case_id}`)
-                    }
+                    href={localeHref(locale, resumeHref(app))}
                     className="mt-3 inline-block rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
                   >
                     {submitted ? t.viewStatus : t.continueWorking}

@@ -70,6 +70,7 @@ export const enDict: PartialDashboardDict = {
       "REJECTED": "Rejected"
     },
     "alg1Title": "Unemployment benefit (ALG1)",
+    "gsTitle": "Basic income support (Grundsicherung)",
     "applicationFallback": "Application",
     "upTo": "Up to {{amount}} €/month",
     "createdAt": "Created on {{date}}",

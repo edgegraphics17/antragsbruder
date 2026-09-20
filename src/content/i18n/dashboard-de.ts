@@ -832,6 +832,7 @@ const deDashboard = {
       "REJECTED": "Abgelehnt"
     },
     "alg1Title": "Arbeitslosengeld (ALG1)",
+    "gsTitle": "Grundsicherung",
     "applicationFallback": "Antrag",
     "upTo": "Bis zu {{amount}} €/Monat",
     "createdAt": "Erstellt am {{date}}",

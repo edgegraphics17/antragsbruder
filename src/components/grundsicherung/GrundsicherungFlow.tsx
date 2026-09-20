@@ -116,6 +116,10 @@ export function GrundsicherungFlow({
             userId: user.id,
           });
           useGsStore.setState({ caseId: c.id, userId: user.id });
+          // Frischer Start: Application-Row sofort anlegen (Status
+          // IN_PROGRESS, last_stage = aktueller Stage), damit der Antrag
+          // unmittelbar im Dashboard als laufender Antrag erscheint.
+          void useGsStore.getState().saveToCloud(user.id, c.id);
         } catch {
           setError(dict.flow.calcError);
         }
