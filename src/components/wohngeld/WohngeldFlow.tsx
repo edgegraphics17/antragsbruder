@@ -347,10 +347,47 @@ function EinschaetzungTab() {
   const rent = wohnkostenMonatlich(facts);
   const income = Number(facts.netto_einkommen ?? 0);
   const size = Math.max(1, Number(facts.haushalt ?? 1));
+  // Editor hinter dem ⋯ neben der Mietenstufe (Design wie Grundsicherung:
+  // eigene Angabe direkt in der Transparenz-Liste statt eigener Kasten).
+  const [editingMietstufe, setEditingMietstufe] = useState(false);
+  const [plzTiers, setPlzTiers] = useState<number[] | null>(null);
+
+  // PLZ → Mietenstufe (amtlicher Lookup, identisch zum Schnellcheck), damit
+  // die Einschätzung dieselbe Stufe nutzt wie die dort gespeicherte Summe.
+  // setState bewusst erst asynchron (kein synchrones setState im Effekt).
+  useEffect(() => {
+    const plz = typeof facts.plz === 'string' ? facts.plz : null;
+    let cancelled = false;
+    void (async () => {
+      if (!plz || !/^\d{5}$/.test(plz)) {
+        if (!cancelled) setPlzTiers([]);
+        return;
+      }
+      try {
+        const matches = await searchLocation(plz);
+        if (!cancelled) setPlzTiers(matches.map((m) => m.stufe - 1));
+      } catch {
+        if (!cancelled) setPlzTiers([]);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [facts.plz]);
+
+  // Eigene Angabe gewinnt, sonst die aus der PLZ aufgelöste Stufe,
+  // sonst rechnet der Rechner mit der durchschnittlichen Mietenstufe.
+  const resolvedIdx = mietstufeIdx ?? plzTiers?.[0] ?? null;
   const estimate = useMemo(
-    () => calculateWgEstimate(facts, mietstufeIdx),
-    [facts, mietstufeIdx],
+    () => calculateWgEstimate(facts, resolvedIdx),
+    [facts, resolvedIdx],
   );
+  const stufeQuelle =
+    mietstufeIdx != null
+      ? 'eigene Angabe'
+      : resolvedIdx != null
+        ? 'aus PLZ'
+        : 'durchschnittlich';
 
   const wohnformLabel: Record<string, string> = {
     MIETE: 'Zur Miete',
@@ -401,37 +438,71 @@ function EinschaetzungTab() {
           <dt>Netto-Einkommen (Haushalt)</dt>
           <dd className="text-right font-medium text-ink">{eur(income)} € / Monat</dd>
           <dt>Mietenstufe</dt>
-          <dd className="text-right font-medium text-ink">
-            {mietstufeIdx != null ? `Stufe ${mietstufeIdx + 1}` : 'automatisch ermittelt'}
+          <dd className="flex items-center justify-end gap-2 text-right font-medium text-ink">
+            <span>
+              {estimate.mietstufe != null ? `Stufe ${estimate.mietstufe}` : 'noch nicht ermittelt'}
+            </span>
+            <span className="text-[10px] font-normal text-ink-soft">({stufeQuelle})</span>
+            <button
+              type="button"
+              onClick={() => setEditingMietstufe((open) => !open)}
+              aria-expanded={editingMietstufe}
+              aria-label="Mietenstufe anpassen"
+              title="Mietenstufe anpassen"
+              className="flex h-6 w-7 shrink-0 items-center justify-center rounded-full border border-line-soft bg-white text-sm leading-none text-ink-soft transition-colors hover:border-brand-400 hover:text-ink"
+            >
+              ⋯
+            </button>
           </dd>
         </dl>
+
+        {editingMietstufe && (
+          <div className="mt-4 rounded-xl border border-line-soft bg-white p-4">
+            <p className="font-semibold text-ink">Mietenstufe anpassen</p>
+            <p className="mt-1 text-xs leading-relaxed text-ink-soft">
+              Die Mietenstufe leitet sich aus deiner PLZ ab. Wenn sie nicht stimmt, wähle hier die
+              richtige Stufe — die Einschätzung rechnet dann damit.
+            </p>
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              {[1, 2, 3, 4, 5, 6, 7].map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => {
+                    setMietstufe(s - 1);
+                    setEditingMietstufe(false);
+                  }}
+                  className={`min-w-[2.75rem] rounded-xl border px-3 py-2.5 text-sm font-semibold transition-colors ${
+                    mietstufeIdx === s - 1
+                      ? 'border-brand-600 bg-brand-600 text-white'
+                      : 'border-line-soft bg-white text-ink hover:border-brand-400'
+                  }`}
+                >
+                  {s}
+                </button>
+              ))}
+              {mietstufeIdx != null && (
+                <ButtonAction
+                  variant="secondary"
+                  className="ml-auto"
+                  onClick={() => {
+                    setMietstufe(null);
+                    setEditingMietstufe(false);
+                  }}
+                >
+                  Aus PLZ bestimmen
+                </ButtonAction>
+              )}
+            </div>
+          </div>
+        )}
+
         <p className="mt-3 text-xs leading-relaxed text-ink-soft">
           Der Rechner deckelt deine Wohnkosten auf den gesetzlichen Höchstbetrag
           (Mietenstufe + Haushaltsgröße). Freibeträge für Alleinerziehende werden
           berücksichtigt — komplexe Konstellationen (Unterhalt, Grundrentenzeiten,
           Behinderung) prüft die Wohngeldbehörde im Antrag.
         </p>
-      </div>
-
-      {/* Mietenstufe manuell korrigieren (falls PLZ-Auflösung abwich) */}
-      <div className="rounded-2xl border border-line-soft bg-paper p-5">
-        <p className="text-sm font-medium text-ink">Mietenstufe stimmt nicht?</p>
-        <div className="mt-2 flex flex-wrap gap-2">
-          {[1, 2, 3, 4, 5, 6, 7].map((s) => (
-            <button
-              key={s}
-              type="button"
-              onClick={() => setMietstufe(s - 1)}
-              className={`rounded-lg border px-3 py-2 text-xs font-semibold transition-colors ${
-                mietstufeIdx === s - 1
-                  ? 'border-brand-600 bg-brand-600 text-white'
-                  : 'border-line-soft bg-white text-ink hover:border-brand-400'
-              }`}
-            >
-              {s}
-            </button>
-          ))}
-        </div>
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row">
