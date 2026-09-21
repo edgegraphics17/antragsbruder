@@ -15,6 +15,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useWgStore } from '@/lib/wohngeld/store';
 import {
   WG_EXCLUSION_TEXTS,
+  WG_QUICK_QUESTIONS,
   nextQuickQuestion,
   quickCheckComplete,
   wgExclusion,
@@ -164,18 +165,114 @@ function PlzAnswer({
     </div>
   );
 }
-
-function QuickQuestionCard({
-  q,
-  facts,
+function BoolMoneyAnswer({
+  value,
   onAnswer,
-  onBack,
+  unit,
+  whyYes,
+  whyNo,
+  min,
+  max,
 }: {
-  q: WgQuickQuestion;
-  facts: WgFacts;
-  onAnswer: (v: boolean | string | number) => void;
-  onBack: () => void;
+  value: number | null;
+  onAnswer: (v: number) => void;
+  unit?: string;
+  min?: number;
+  max?: number;
+  whyYes?: string;
+  whyNo?: string;
 }) {
+  const [showAmount, setShowAmount] = useState<boolean | null>(
+    value != null ? value > 0 : null
+  );
+  const [draft, setDraft] = useState<string>(value != null && value > 0 ? String(value) : '');
+  const parsed = Number(draft.replace(',', '.'));
+  const valid = draft !== '' && Number.isFinite(parsed) && parsed >= 0;
+
+  if (showAmount === null) {
+    return (
+      <div className="mt-3 grid grid-cols-2 gap-3">
+        <div className="flex flex-col">
+          <button
+            type="button"
+            onClick={() => {
+              setShowAmount(true);
+              setDraft('');
+            }}
+            className="flex-1 rounded-xl border border-line-soft bg-white px-4 py-3 text-sm font-semibold text-ink transition-colors hover:border-brand-400"
+          >
+            Ja
+          </button>
+          {whyYes && (
+            <p className="mt-1.5 text-xs leading-snug text-ink-soft">
+              <span className="font-semibold text-ink">Ja →</span> {whyYes}
+            </p>
+          )}
+        </div>
+        <div className="flex flex-col">
+          <button
+            type="button"
+            onClick={() => {
+              setShowAmount(false);
+              onAnswer(0);
+            }}
+            className="flex-1 rounded-xl border border-line-soft bg-white px-4 py-3 text-sm font-semibold text-ink transition-colors hover:border-brand-400"
+          >
+            Nein
+          </button>
+          {whyNo && (
+            <p className="mt-1.5 text-xs leading-snug text-ink-soft">
+              <span className="font-semibold text-ink">Nein →</span> {whyNo}
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-3">
+      <div className="mb-2 flex items-center gap-2">
+        <span className="rounded-lg bg-brand-100 px-2 py-1 text-xs font-semibold text-brand-700">
+          Ja
+        </span>
+        <button
+          type="button"
+          onClick={() => {
+            setShowAmount(null);
+            setDraft('');
+          }}
+          className="text-xs font-semibold text-ink-soft hover:text-ink"
+        >
+          ändern
+        </button>
+      </div>
+      <div className="flex items-center gap-3">
+        <input
+          type="number"
+          inputMode="decimal"
+          min={min}
+          max={max}
+          value={draft}
+          onChange={(e) => setDraft(e.target.value)}
+          placeholder="0"
+          className="w-36 rounded-lg border border-line-soft bg-white px-4 py-3 text-base text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+        />
+        {unit && <span className="text-sm text-ink-soft">{unit}</span>}
+        <button
+          type="button"
+          disabled={!valid}
+          onClick={() => onAnswer(parsed)}
+          className="ml-auto rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          Weiter
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function QuickQuestionCard({ q, facts, onAnswer, onBack }: { q: WgQuickQuestion; facts: WgFacts; onAnswer: (v: boolean | string | number) => void; onBack: () => void; }) {
   const rawValue = facts[q.fact];
   return (
     <div className="rounded-2xl border border-line-soft bg-paper p-5">
@@ -191,7 +288,19 @@ function QuickQuestionCard({
         />
       ) : null}
 
-      {q.type !== 'bool' && q.impact ? (
+      {q.type === 'bool_money' ? (
+        <BoolMoneyAnswer
+          value={typeof rawValue === 'number' ? rawValue : null}
+          onAnswer={(v) => onAnswer(v)}
+          unit={q.unit}
+          min={q.min}
+          max={q.max}
+          whyYes={q.whyYes}
+          whyNo={q.whyNo}
+        />
+      ) : null}
+
+      {q.type !== 'bool' && q.type !== 'bool_money' && q.impact ? (
         <p className="mt-2 rounded-lg bg-brand-50 px-3 py-2 text-xs leading-snug text-ink-soft">
           <span className="font-semibold text-ink">Auswirkung:</span> {q.impact}
         </p>
@@ -228,15 +337,33 @@ function QuickQuestionCard({
         <PlzAnswer value={typeof rawValue === 'string' ? rawValue : ''} onAnswer={onAnswer} />
       ) : null}
 
-      <button
-        type="button"
-        onClick={onBack}
-        className="mt-3 text-xs font-semibold text-ink-soft hover:text-ink"
-      >
-        ← Antwort ändern
-      </button>
+      <div className="mt-4 flex items-center justify-between border-t border-line-soft pt-3">
+        <button
+          type="button"
+          onClick={onBack}
+          className="text-xs font-semibold text-ink-soft transition-colors hover:text-ink"
+        >
+          ← Zurück zur vorherigen Frage
+        </button>
+      </div>
     </div>
   );
+}
+
+// Hilfsfunktion: Vorherige Frage finden (für Zurück-Navigation)
+function findPreviousQuestion(facts: WgFacts, currentId: string): WgQuickQuestion | null {
+  const currentIdx = WG_QUICK_QUESTIONS.findIndex((q) => q.id === currentId);
+  if (currentIdx <= 0) return null;
+  // Rückwärts gehen und erste Frage finden, deren Antwort noch null ist
+  for (let i = currentIdx - 1; i >= 0; i--) {
+    const q = WG_QUICK_QUESTIONS[i];
+    if (facts[q.fact] == null && q.relevantIf(facts)) return q;
+  }
+  // Falls alle vorherigen beantwortet sind, einfach die vorherige relevante Frage
+  for (let i = currentIdx - 1; i >= 0; i--) {
+    if (WG_QUICK_QUESTIONS[i].relevantIf(facts)) return WG_QUICK_QUESTIONS[i];
+  }
+  return null;
 }
 
 // ── Tab 1: Schnellcheck ────────────────────────────────────
@@ -307,6 +434,47 @@ function SchnellcheckTab() {
     );
   }
 
+  // Wenn alle Fragen beantwortet, zeige sie alle zum Bearbeiten an
+  if (complete) {
+    const answered = WG_QUICK_QUESTIONS.filter(
+      (q) => facts[q.fact] != null && q.relevantIf(facts),
+    );
+    return (
+      <div className="space-y-4">
+        {answered.length > 0 ? (
+          <>
+            {answered.map((q) => (
+              <QuickQuestionCard
+                key={q.id}
+                q={q}
+                facts={facts}
+                onAnswer={(v) => setFact(q.fact, v as never)}
+                onBack={() => {
+                  const prev = findPreviousQuestion(facts, q.id);
+                  if (prev) setFact(prev.fact, null);
+                }}
+              />
+            ))}
+            {rent != null && income > 0 ? (
+              <ButtonAction onClick={() => setStage('einschaetzung')}>
+                Zur Einschätzung
+              </ButtonAction>
+            ) : (
+              <p className="text-sm text-ink-soft">
+                Für die Berechnung fehlen noch Wohnkosten oder Einkommen.
+              </p>
+            )}
+          </>
+        ) : (
+          <div className="rounded-2xl border border-brand-300 bg-brand-50 p-6 text-center">
+            <IconCheck className="mx-auto h-8 w-8 text-brand-700" />
+            <p className="mt-2 font-semibold text-ink">Schnellcheck vollständig</p>
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-4">
       {next ? (
@@ -314,24 +482,13 @@ function SchnellcheckTab() {
           q={next}
           facts={facts}
           onAnswer={(v) => setFact(next.fact, v as never)}
-          onBack={() => setFact(next.fact, null)}
+          onBack={() => {
+            const prev = findPreviousQuestion(facts, next.id);
+            if (prev) {
+              setFact(prev.fact, null);
+            }
+          }}
         />
-      ) : null}
-
-      {complete ? (
-        <div className="rounded-2xl border border-brand-300 bg-brand-50 p-6 text-center">
-          <IconCheck className="mx-auto h-8 w-8 text-brand-700" />
-          <p className="mt-2 font-semibold text-ink">Schnellcheck vollständig</p>
-          {rent == null || income <= 0 ? (
-            <p className="mt-1 text-sm text-ink-soft">
-              Für die Berechnung fehlen noch Wohnkosten oder Einkommen.
-            </p>
-          ) : (
-            <ButtonAction className="mt-4" onClick={() => setStage('einschaetzung')}>
-              Zur Einschätzung
-            </ButtonAction>
-          )}
-        </div>
       ) : null}
     </div>
   );
@@ -341,20 +498,13 @@ function SchnellcheckTab() {
 function EinschaetzungTab() {
   const facts = useWgStore((s) => s.facts);
   const setStage = useWgStore((s) => s.setStage);
-  const mietstufeIdx = useWgStore((s) => s.mietstufeIdx);
-  const setMietstufe = useWgStore((s) => s.setMietstufe);
   const result = useWgStore((s) => s.result);
   const rent = wohnkostenMonatlich(facts);
   const income = Number(facts.netto_einkommen ?? 0);
   const size = Math.max(1, Number(facts.haushalt ?? 1));
-  // Editor hinter dem ⋯ neben der Mietenstufe (Design wie Grundsicherung:
-  // eigene Angabe direkt in der Transparenz-Liste statt eigener Kasten).
-  const [editingMietstufe, setEditingMietstufe] = useState(false);
   const [plzTiers, setPlzTiers] = useState<number[] | null>(null);
 
-  // PLZ → Mietenstufe (amtlicher Lookup, identisch zum Schnellcheck), damit
-  // die Einschätzung dieselbe Stufe nutzt wie die dort gespeicherte Summe.
-  // setState bewusst erst asynchron (kein synchrones setState im Effekt).
+  // PLZ → Mietenstufe (amtlicher Lookup, identisch zum Schnellcheck)
   useEffect(() => {
     const plz = typeof facts.plz === 'string' ? facts.plz : null;
     let cancelled = false;
@@ -375,19 +525,11 @@ function EinschaetzungTab() {
     };
   }, [facts.plz]);
 
-  // Eigene Angabe gewinnt, sonst die aus der PLZ aufgelöste Stufe,
-  // sonst rechnet der Rechner mit der durchschnittlichen Mietenstufe.
-  const resolvedIdx = mietstufeIdx ?? plzTiers?.[0] ?? null;
+  const resolvedIdx = plzTiers?.[0] ?? null;
   const estimate = useMemo(
     () => calculateWgEstimate(facts, resolvedIdx),
     [facts, resolvedIdx],
   );
-  const stufeQuelle =
-    mietstufeIdx != null
-      ? 'eigene Angabe'
-      : resolvedIdx != null
-        ? 'aus PLZ'
-        : 'durchschnittlich';
 
   const wohnformLabel: Record<string, string> = {
     MIETE: 'Zur Miete',
@@ -437,65 +579,7 @@ function EinschaetzungTab() {
           <dd className="text-right font-medium text-ink">{size}</dd>
           <dt>Netto-Einkommen (Haushalt)</dt>
           <dd className="text-right font-medium text-ink">{eur(income)} € / Monat</dd>
-          <dt>Mietenstufe</dt>
-          <dd className="flex items-center justify-end gap-2 text-right font-medium text-ink">
-            <span>
-              {estimate.mietstufe != null ? `Stufe ${estimate.mietstufe}` : 'noch nicht ermittelt'}
-            </span>
-            <span className="text-[10px] font-normal text-ink-soft">({stufeQuelle})</span>
-            <button
-              type="button"
-              onClick={() => setEditingMietstufe((open) => !open)}
-              aria-expanded={editingMietstufe}
-              aria-label="Mietenstufe anpassen"
-              title="Mietenstufe anpassen"
-              className="flex h-6 w-7 shrink-0 items-center justify-center rounded-full border border-line-soft bg-white text-sm leading-none text-ink-soft transition-colors hover:border-brand-400 hover:text-ink"
-            >
-              ⋯
-            </button>
-          </dd>
         </dl>
-
-        {editingMietstufe && (
-          <div className="mt-4 rounded-xl border border-line-soft bg-white p-4">
-            <p className="font-semibold text-ink">Mietenstufe anpassen</p>
-            <p className="mt-1 text-xs leading-relaxed text-ink-soft">
-              Die Mietenstufe leitet sich aus deiner PLZ ab. Wenn sie nicht stimmt, wähle hier die
-              richtige Stufe — die Einschätzung rechnet dann damit.
-            </p>
-            <div className="mt-3 flex flex-wrap items-center gap-2">
-              {[1, 2, 3, 4, 5, 6, 7].map((s) => (
-                <button
-                  key={s}
-                  type="button"
-                  onClick={() => {
-                    setMietstufe(s - 1);
-                    setEditingMietstufe(false);
-                  }}
-                  className={`min-w-[2.75rem] rounded-xl border px-3 py-2.5 text-sm font-semibold transition-colors ${
-                    mietstufeIdx === s - 1
-                      ? 'border-brand-600 bg-brand-600 text-white'
-                      : 'border-line-soft bg-white text-ink hover:border-brand-400'
-                  }`}
-                >
-                  {s}
-                </button>
-              ))}
-              {mietstufeIdx != null && (
-                <ButtonAction
-                  variant="secondary"
-                  className="ml-auto"
-                  onClick={() => {
-                    setMietstufe(null);
-                    setEditingMietstufe(false);
-                  }}
-                >
-                  Aus PLZ bestimmen
-                </ButtonAction>
-              )}
-            </div>
-          </div>
-        )}
 
         <p className="mt-3 text-xs leading-relaxed text-ink-soft">
           Der Rechner deckelt deine Wohnkosten auf den gesetzlichen Höchstbetrag
@@ -527,19 +611,22 @@ function AntragTab() {
   const submitError = useWgStore((s) => s.submitError);
   const submitted = useWgStore((s) => s.submitted);
   const [sectionIdx, setSectionIdx] = useState(0);
+  const [showErrors, setShowErrors] = useState(false);
   const [touched, setTouched] = useState<Set<string>>(new Set());
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const section = WG_ANTRAG_SECTIONS[sectionIdx];
   const visibleFields = section.fields.filter((f) => !f.showIf || f.showIf(antrag, facts));
   const errors = useMemo(() => {
+    // Erst nach "Weiter"-Klick Fehler zeigen (touched durch goNext gesetzt)
+    if (!showErrors) return {};
     const out: Record<string, string> = {};
     for (const f of section.fields) {
       const err = validateWgField(f, antrag, facts);
-      if (err && (touched.has(f.key as string) || f.required)) out[f.key as string] = err;
+      if (err && touched.has(f.key as string)) out[f.key as string] = err;
     }
     return out;
-  }, [section, antrag, facts, touched]);
+  }, [section, antrag, facts, touched, showErrors]);
 
   const sectionValid = visibleFields.every(
     (f) => !f.required || !validateWgField(f, antrag, facts),
@@ -553,8 +640,10 @@ function AntragTab() {
   };
 
   const goNext = () => {
+    // Markiere alle Felder als "berührt" und zeige Fehler an
+    setTouched(new Set(section.fields.map((f) => f.key as string)));
+    setShowErrors(true);
     if (!sectionValid) {
-      setTouched(new Set(section.fields.map((f) => f.key as string)));
       return;
     }
     if (sectionIdx < WG_ANTRAG_SECTIONS.length - 1) {
@@ -598,10 +687,13 @@ function AntragTab() {
         </p>
       </div>
 
-      {/* Section-Navigation */}
+      {/* Section-Navigation — gleiche Logik wie Grundsicherungsrechner:
+          grün = vollständig, weiß = noch nicht ausgefüllt, rot erst bei
+          Weiter-Klick mit fehlenden Pflichtfeldern. */}
       <div className="flex flex-wrap gap-2">
         {WG_ANTRAG_SECTIONS.map((s, i) => {
           const sectionMissing = (missing[s.id]?.length ?? 0) > 0;
+          const sectionComplete = !sectionMissing && (s.fields.length > 0 || s.id === 'haushalt');
           return (
             <button
               key={s.id}
@@ -610,12 +702,12 @@ function AntragTab() {
               className={`rounded-lg border px-3 py-1.5 text-xs font-semibold transition-colors ${
                 i === sectionIdx
                   ? 'border-brand-600 bg-brand-600 text-white'
-                  : sectionMissing
-                    ? 'border-red-300 bg-red-50 text-red-600'
+                  : sectionComplete
+                    ? 'border-green-300 bg-green-50 text-green-700'
                     : 'border-line-soft bg-white text-ink'
               }`}
             >
-              {sectionMissing && i !== sectionIdx ? '⚠ ' : ''}
+              {sectionComplete && i !== sectionIdx ? '✓ ' : ''}
               {s.title}
             </button>
           );

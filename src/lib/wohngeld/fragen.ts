@@ -80,7 +80,7 @@ export interface WgQuickQuestion {
   id: string;
   question: string;
   help?: string;
-  type: 'bool' | 'single' | 'number' | 'money' | 'text';
+  type: 'bool' | 'single' | 'number' | 'money' | 'text' | 'bool_money';
   options?: { value: string; label: string }[];
   min?: number;
   max?: number;
@@ -237,13 +237,14 @@ export const WG_QUICK_QUESTIONS: WgQuickQuestion[] = [
   {
     id: 'unterhalt_gezahlt',
     question: 'Zahlst du gesetzlichen Unterhalt (z. B. an Kinder oder Ex-Partner)?',
-    type: 'money',
+    type: 'bool_money',
     min: 0,
     max: 5000,
     unit: '€ / Monat',
     relevantIf: (f) => f.wohnform != null,
     fact: 'unterhalt_gezahlt',
-    impact: 'Gezahlter Unterhalt kann dein Einkommen senken — ein Betrag hier kann dein Wohngeld also erhöhen.',
+    whyYes: 'Gib deinen Unterhaltsbetrag an — das senkt dein anrechenbares Einkommen und dein Wohngeld kann höher ausfallen.',
+    whyNo: 'Kein Unterhalt — dann zählt dein volles Einkommen.',
   },
 ];
 
