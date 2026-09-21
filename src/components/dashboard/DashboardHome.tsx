@@ -106,25 +106,35 @@ function getTimelineState(app: AppRecord | null): TimelineState {
     const stage = app.last_stage ?? '';
     const submitted = ['SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(app.status);
     const completedSteps: number[] = [];
-    if (stage === 'einschaetzung' || stage === 'form' || submitted) completedSteps.push(1, 2);
-    if (stage === 'form' || stage === 'summary' || submitted) completedSteps.push(3);
-    if (app.status === 'APPROVED' || submitted) completedSteps.push(4);
+    // Schritt 1 (Dokumente): Schnellcheck + Einschätzung abgeschlossen
+    if (stage === 'form' || stage === 'summary' || submitted) completedSteps.push(1);
+    // Schritt 2 (Daten): Antragsformular abgeschlossen, Summary erreicht
+    if (stage === 'summary' || submitted) completedSteps.push(2);
+    // Schritt 3 (Einreichen): Antrag eingereicht
+    if (submitted) completedSteps.push(3);
+    // Schritt 4 (Erhalt): bewilligt
+    if (app.status === 'APPROVED') completedSteps.push(4);
     const activeStep = [1, 2, 3, 4].find((s) => !completedSteps.includes(s)) ?? 4;
     return { activeStep, completedSteps };
   }
 
-  // Grundsicherung: eigene Stage-Semantik (check → formular →
-  // unterlagen → einreichen). Schritt-Slots der Timeline:
-  // 1 = Unterlagen, 2 = Daten, 3 = Einreichen, 4 = Erhalt.
+  // Grundsicherung: eigene Stage-Semantik (check → ergebnis →
+  // formular → unterlagen → einreichen). Schritt-Slots der Timeline:
+  // 1 = Unterlagen (Schnellcheck/Einschätzung), 2 = Daten (Antragsformular),
+  // 3 = Einreichen, 4 = Erhalt.
   if (app.benefit_type === 'GRUNDSICHERUNG') {
     const stage = app.last_stage ?? '';
     const completedSteps: number[] = [];
 
-    if (['unterlagen', 'einreichen'].includes(stage)) completedSteps.push(1);
-    if (['ergebnis', 'unterlagen', 'einreichen'].includes(stage)) completedSteps.push(2);
-    if (['SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(app.status)) {
+    // Schritt 1 (Unterlagen): Schnellcheck + Einschätzung abgeschlossen
+    if (['ergebnis', 'formular', 'unterlagen', 'einreichen'].includes(stage)) completedSteps.push(1);
+    // Schritt 2 (Daten): Antragsformular erreicht
+    if (['formular', 'unterlagen', 'einreichen'].includes(stage)) completedSteps.push(2);
+    // Schritt 3 (Einreichen): Antrag eingereicht
+    if (['SUBMITTED', 'DOCS_PENDING', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(app.status)) {
       completedSteps.push(3);
     }
+    // Schritt 4 (Erhalt): bewilligt
     if (app.status === 'APPROVED') completedSteps.push(4);
 
     const activeStep = [1, 2, 3, 4].find((s) => !completedSteps.includes(s)) ?? 4;
@@ -228,6 +238,10 @@ export function DashboardHome() {
       }`;
     }
     if (app.benefit_type === 'GRUNDSICHERUNG') {
+      // Nachreichende Nachweise landen direkt im Dokumente-Tab des Antrags.
+      if (app.status === 'DOCS_PENDING') {
+        return `/grundsicherung?applicationId=${app.id}&stage=unterlagen`;
+      }
       const stage = isGsStage(app.last_stage) ? app.last_stage : 'check';
       return `/grundsicherung?applicationId=${app.id}&stage=${stage}`;
     }
@@ -277,6 +291,10 @@ export function DashboardHome() {
               const badgeCls = STATUS_BADGE_CLS[app.status] ?? 'bg-brand-100 text-brand-700';
               const badgeLabel = t.status[app.status as keyof typeof t.status] ?? app.status;
               const submitted = ['SUBMITTED', 'PROCESSING', 'APPROVED', 'REJECTED'].includes(app.status);
+              // DOCS_PENDING: Antrag ist gestellt, Nachweise fehlen noch —
+              // bleibt sichtbar und führt direkt in den Dokumente-Tab.
+              const docsPending = app.status === 'DOCS_PENDING';
+              const settled = submitted || docsPending;
               // Möglicher Betrag: bei ALG1 die geschätzte monatliche Summe
               // (calculation_result.amount, Fallback aus form_state) statt
               // des reinen Eligibility-Labels.
@@ -325,6 +343,11 @@ export function DashboardHome() {
                       {estimateAmount == null && eligibilityLabel && (
                         <p className="mt-1 text-sm font-medium text-ink-soft">{eligibilityLabel}</p>
                       )}
+                      {docsPending && (
+                        <p className="mt-1 text-xs leading-relaxed text-amber-700">
+                          {t.resubmitHint}
+                        </p>
+                      )}
                     </div>
 
                     {/* Rechts: Weiterarbeiten/Status + Erstell-Datum */}
@@ -333,7 +356,7 @@ export function DashboardHome() {
                         href={localeHref(locale, resumeHref(app))}
                         className="inline-block rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
                       >
-                        {submitted ? t.viewStatus : t.continueWorking}
+                        {docsPending ? t.resubmitDocs : submitted ? t.viewStatus : t.continueWorking}
                       </Link>
                       <p className="text-xs text-ink-soft">
                         {formatTemplate(t.createdAt, { date: formatDate(app.created_at) })}
@@ -341,7 +364,7 @@ export function DashboardHome() {
                     </div>
                   </div>
 
-                  {!submitted && (
+                  {!settled && (
                     /* Kompakte Fortschrittsleiste — klickbar, führt direkt
                        zum aktuellen Schritt des Antrags. */
                     <Link

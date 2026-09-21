@@ -75,7 +75,9 @@ export default async function GrundsicherungPage({
     .select('id, last_stage')
     .eq('user_id', data.user.id)
     .eq('benefit_type', 'GRUNDSICHERUNG')
-    .in('status', ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY'])
+    // Auch eingereichte Anträge bleiben erreichbar: Nachweise können
+    // nachgereicht werden (DOCS_PENDING), bis alles vorliegt.
+    .in('status', ['DRAFT', 'IN_PROGRESS', 'DOCS_PENDING', 'READY', 'SUBMITTED', 'PROCESSING'])
     .order('updated_at', { ascending: false })
     .limit(1)
     .maybeSingle();

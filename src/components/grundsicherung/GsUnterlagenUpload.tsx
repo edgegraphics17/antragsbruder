@@ -13,6 +13,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import type { GsUploadedDoc } from '@/lib/grundsicherung/store';
+import { anlagenHint } from '@/lib/grundsicherung/antrag-form';
 
 const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10 MB
 const ACCEPT = '.pdf,image/jpeg,image/png,image/webp';
@@ -351,6 +352,9 @@ function AnlageCard({
         </span>
       </div>
 
+      {/* Erklärtext direkt in der Box: was ist diese Anlage, was hochladen, warum */}
+      <p className="mt-2 text-xs leading-relaxed text-ink-soft">{anlagenHint(anlage)}</p>
+
       {docs.length > 0 && (
         <ul className="mt-3 space-y-1.5">
           {docs.map((d) => (
@@ -532,8 +536,8 @@ export function GsUnterlagenUpload({
 
       <p className="text-xs text-ink-soft">
         PDF oder Foto (JPG, PNG, WebP), max. 10 MB pro Datei. Du kannst pro Anlage mehrere
-        Dateien hochladen. Der Antrag kann erst eingereicht werden, wenn alle Pflicht-Anlagen
-        hochgeladen sind.
+        Dateien hochladen. Fehlende Nachweise kannst du noch nach dem Abschicken hochladen —
+        der Antrag gilt mit dem Abschicken als gestellt.
       </p>
     </div>
   );

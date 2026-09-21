@@ -13,7 +13,7 @@ import { supabase } from '@/lib/supabase';
 import type { GsFormStateFacts } from '@/engine/benefit-engines/grundsicherung/facts';
 import type { GsCheckState, GsCheckResult } from '@/engine/benefit-engines/grundsicherung/check';
 import { factStore } from '@/engine/fact-store/FactStore';
-import type { GsAntragData } from './antrag-form';
+import { requiredAnlagen, type GsAntragData } from './antrag-form';
 
 export type GsStage = 'check' | 'ergebnis' | 'formular' | 'unterlagen' | 'einreichen';
 
@@ -107,6 +107,42 @@ interface GsDraftState {
 
 const emptyForm: Partial<GsFormStateFacts> = {};
 
+/**
+ * Anlagen, für die noch keine Datei hochgeladen wurde (Pflicht-Nachweise).
+ * Zählt Dokumente ohne Anlagen-Zuordnung ('—') nicht mit.
+ */
+export function missingAnlagen(
+  antrag: Partial<GsAntragData>,
+  formState: Partial<GsFormStateFacts>,
+  anlagenDocs: GsUploadedDoc[],
+): string[] {
+  const childAges = (formState.children ?? [])
+    .map((c) => c.age)
+    .filter((a): a is number => typeof a === 'number');
+  return requiredAnlagen(antrag, childAges).filter(
+    (a) => !anlagenDocs.some((d) => d.anlage === a),
+  );
+}
+
+/**
+ * Status, der zum aktuellen Stand passt:
+ *   IN_PROGRESS   — noch nicht abgeschickt
+ *   DOCS_PENDING  — abgeschickt, aber Pflicht-Nachweise fehlen (nachreichbar)
+ *   SUBMITTED     — abgeschickt und alle Pflicht-Nachweise vorhanden
+ * Wird von saveToCloud UND submit genutzt, damit ein Cloud-Autosave den
+ * DOCS_PENDING-Status nicht wieder auf IN_PROGRESS zurückdreht.
+ */
+export function derivedStatus(state: {
+  submitted: boolean;
+  antrag: Partial<GsAntragData>;
+  formState: Partial<GsFormStateFacts>;
+  anlagenDocs: GsUploadedDoc[];
+}): 'IN_PROGRESS' | 'DOCS_PENDING' | 'SUBMITTED' {
+  if (!state.submitted) return 'IN_PROGRESS';
+  const missing = missingAnlagen(state.antrag, state.formState, state.anlagenDocs);
+  return missing.length > 0 ? 'DOCS_PENDING' : 'SUBMITTED';
+}
+
 export const useGsStore = create<GsDraftState>()(
   persist(
     (set, get) => ({
@@ -186,7 +222,7 @@ export const useGsStore = create<GsDraftState>()(
           case_id: caseId,
           user_id: userId,
           benefit_type: 'GRUNDSICHERUNG',
-          status: s.submitted ? 'SUBMITTED' : 'IN_PROGRESS',
+          status: derivedStatus(s),
           form_state: {
             ...formState,
             antrag: s.antrag,
@@ -194,8 +230,17 @@ export const useGsStore = create<GsDraftState>()(
           },
           calculation_result: s.result ?? null,
           last_stage: s.stage,
-          progress_percent:
-            s.stage === 'einreichen' ? 90 : s.stage === 'unterlagen' ? 70 : s.stage === 'formular' ? 55 : 35,
+          progress_percent: s.submitted
+            ? 100
+            : s.stage === 'einreichen'
+              ? 90
+              : s.stage === 'unterlagen'
+                ? 70
+                : s.stage === 'formular'
+                  ? 55
+                  : s.stage === 'ergebnis'
+                    ? 40
+                    : 25,
         };
 
         if (s.applicationId) {
@@ -282,7 +327,9 @@ export const useGsStore = create<GsDraftState>()(
           case_id: caseId,
           user_id: userId,
           benefit_type: 'GRUNDSICHERUNG',
-          status: 'SUBMITTED',
+          // Abgeschickt ≠ alle Nachweise da: fehlende Pflicht-Nachweise
+          // führen zu DOCS_PENDING (nachreichbar), nicht zur Blockade.
+          status: derivedStatus({ ...s, submitted: true }),
           form_state: {
             ...formState,
             antrag: s.antrag,

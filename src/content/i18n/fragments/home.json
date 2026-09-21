@@ -15,7 +15,7 @@
     "status": {
       "DRAFT": "In Arbeit",
       "IN_PROGRESS": "In Arbeit",
-      "DOCS_PENDING": "Dokumente fehlen",
+      "DOCS_PENDING": "Dokumente nachreichen",
       "READY": "Bereit zur Einreichung",
       "SUBMITTED": "Eingereicht ✓",
       "PROCESSING": "In Prüfung",
@@ -29,6 +29,8 @@
     "createdAt": "Erstellt am {{date}}",
     "viewStatus": "Status ansehen",
     "continueWorking": "Weiterarbeiten",
+    "resubmitDocs": "Dokumente nachreichen",
+    "resubmitHint": "Antrag ist gestellt — fehlende Nachweise kannst du noch hochladen.",
     "possibleTitle": "Mögliche Förderungen",
     "fillProfile": "Fülle dein Profil aus, um passende Förderungen zu sehen.",
     "confidenceHigh": "Sehr wahrscheinlich",

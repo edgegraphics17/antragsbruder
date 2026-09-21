@@ -769,7 +769,7 @@ const deDashboard = {
       "infoText": "Der Antrag auf Grundsicherung ist formlos möglich. Nach dem Einreichen bereiten wir deinen formlosen Antrag und die Nachweise-Übergabe vor. Die Nachweise werden beim zuständigen Jobcenter nachgereicht — dein Antragsdatum ist durch die Einreichung bei uns dokumentiert.",
       "submit": "Antrag jetzt einreichen",
       "submittedTitle": "Antrag eingereicht ✓",
-      "submittedText": "Dein Grundsicherungsantrag ist bei Antragsbruder eingegangen und wird vorbereitet. Du findest ihn unter „Anträge“. Wir melden uns, sobald der Antrag beim Jobcenter eingegangen ist und welche Nachweise wann nachzureichen sind.",
+      "submittedText": "Dein Grundsicherungsantrag ist bei Antragsbruder eingegangen und wird vorbereitet. Du findest ihn jederzeit in deinem Dashboard unter „Laufende Anträge“ — dort kannst du auch fehlende Nachweise nachreichen. Wir melden uns, sobald der Antrag beim Jobcenter eingegangen ist und welche Nachweise wann nachzureichen sind.",
       "toApplications": "Zu meinen Anträgen →"
     },
     "check": {
@@ -907,7 +907,7 @@ const deDashboard = {
     "status": {
       "DRAFT": "In Arbeit",
       "IN_PROGRESS": "In Arbeit",
-      "DOCS_PENDING": "Dokumente fehlen",
+      "DOCS_PENDING": "Dokumente nachreichen",
       "READY": "Bereit zur Einreichung",
       "SUBMITTED": "Eingereicht ✓",
       "PROCESSING": "In Prüfung",
@@ -921,6 +921,8 @@ const deDashboard = {
     "createdAt": "Erstellt am {{date}}",
     "viewStatus": "Status ansehen",
     "continueWorking": "Weiterarbeiten",
+    "resubmitDocs": "Dokumente nachreichen",
+    "resubmitHint": "Antrag ist gestellt — fehlende Nachweise kannst du noch hochladen.",
     "possibleTitle": "Mögliche Förderungen",
     "fillProfile": "Fülle dein Profil aus, um passende Förderungen zu sehen.",
     "confidenceHigh": "Sehr wahrscheinlich",

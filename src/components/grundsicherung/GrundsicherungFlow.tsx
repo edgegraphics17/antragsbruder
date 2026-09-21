@@ -13,12 +13,11 @@
 // (/api/rechner/grundsicherung/evaluate) — keine Berechnung im Frontend.
 // ============================================================
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAuth } from '@/lib/auth-context';
 import { useGsStore, isGsStage, type GsStage } from '@/lib/grundsicherung/store';
 import {
   requiredAnlagen,
-  missingRequiredFields,
   type GsAntragChildData,
 } from '@/lib/grundsicherung/antrag-form';
 import { caseService } from '@/engine';
@@ -95,10 +94,9 @@ export function GrundsicherungFlow({
           if (initialStage || isGsStage(app.last_stage)) {
             useGsStore.getState().setStage(initialStage ?? (app.last_stage as GsStage));
           }
-          // In der DB als SUBMITTED markierte Anträge brauchen auch lokal
-          // submitted=true — sonst umgeht der Nutzer das Dokumente-Gate
-          // (z. B. auf anderem Gerät / geleerter localStorage).
-          if (app.status === 'SUBMITTED') {
+          // In der DB als eingereicht markierte Anträge (auch DOCS_PENDING:
+          // abgeschickt, Nachweise offen) brauchen auch lokal submitted=true.
+          if (['SUBMITTED', 'DOCS_PENDING', 'PROCESSING'].includes(app.status)) {
             useGsStore.setState({ submitted: true, submittedAt: null });
           }
         }
@@ -177,7 +175,7 @@ export function GrundsicherungFlow({
       void useGsStore.getState().saveToCloud(user.id, useGsStore.getState().caseId!);
     }, 1500);
     return () => clearTimeout(id);
-  }, [ready, user, store.antrag, store.formState]);
+  }, [ready, user, store.antrag, store.formState, store.anlagenDocs]);
 
   // --- Flush beim Verlassen des Tabs/der Seite (letzte Eingaben sichern) ---
   useEffect(() => {
@@ -238,9 +236,10 @@ export function GrundsicherungFlow({
 
   const form = store.formState;
 
-  // --- Dokumente-Gate: Pflicht-Anlagen vs. hochgeladene Dateien ---
-  // Einreichen nur möglich, wenn für JEDE Pflicht-Anlage mindestens
-  // eine Datei hochgeladen wurde (Dokumente ohne Zuordnung zählen nicht).
+  // --- Pflicht-Anlagen vs. hochgeladene Dateien ---
+  // Fehlende Nachweise blockieren das Abschicken NICHT mehr: der Antrag kann
+  // gestellt werden (wichtig für die Rückwirkung zum Monatsersten), die
+  // restlichen Nachweise werden danach nachgereicht (Status DOCS_PENDING).
   const anlagenListe = useMemo(
     () =>
       requiredAnlagen(
@@ -258,52 +257,24 @@ export function GrundsicherungFlow({
   );
   const docsUnvollstaendig = fehlendeAnlagen.length > 0;
 
-  // --- Rücksetzung eingereichter Anträge mit fehlenden Pflicht-Anlagen ---
-  // Bestehende User, die vor dem Gate eingereicht haben, landen sonst
-  // im „Eingereicht“-Screen ohne Möglichkeit, die restlichen Dokumente
-  // nachzuladen. Einmalig: Antrag zurück auf IN_PROGRESS + Stage UNTERLAGEN.
-  const unsubmittedRef = useRef(false);
+  // --- Nachreichen nach dem Abschicken ---
+  // Sobald alle Pflicht-Nachweise da sind, wandert der Antrag in der DB von
+  // DOCS_PENDING auf SUBMITTED (Cloud-Save übernimmt den Status mit).
   useEffect(() => {
-    if (!ready || !user) return;
-    if (!store.applicationId || !store.submitted || !docsUnvollstaendig) return;
-    if (unsubmittedRef.current) return;
-    unsubmittedRef.current = true;
-    useGsStore.setState({
-      submitted: false,
-      submittedAt: null,
-      stage: 'unterlagen',
-    });
-    void (async () => {
-      try {
-        const { supabase } = await import('@/lib/supabase');
-        await supabase
-          .from('applications')
-          .update({ status: 'IN_PROGRESS', last_stage: 'unterlagen', progress_percent: 70 })
-          .eq('id', store.applicationId!);
-      } catch {
-        // DB-Update fehlgeschlagen — lokaler Reset greift trotzdem.
-      }
-    })();
+    if (!ready || !user || !store.applicationId) return;
+    if (!store.submitted || docsUnvollstaendig) return;
+    const id = setTimeout(() => {
+      void useGsStore.getState().saveToCloud(user.id, useGsStore.getState().caseId!);
+    }, 800);
+    return () => clearTimeout(id);
   }, [ready, user, store.applicationId, store.submitted, docsUnvollstaendig]);
 
   // --- Stage-Tabs (Wohngeld-Konzept): frei hin- und herspringen, ✓ wenn fertig ---
   // „Dokumente“ ist kein eigener Tab mehr, sondern ein Unter-Tab in „3. Antrag“.
-  const antragMissingCount = useMemo(
-    () =>
-      Object.values(missingRequiredFields(store.antrag)).reduce((n, items) => n + items.length, 0),
-    [store.antrag],
-  );
   const stageTabs: { stage: GsStage; label: string; done: boolean }[] = [
     { stage: 'check', label: '1. Schnellcheck', done: store.checkResult != null },
     { stage: 'ergebnis', label: '2. Einschätzung', done: store.result != null },
-    {
-      stage: 'formular',
-      label: '3. Antrag',
-      done:
-        antragMissingCount === 0 &&
-        Object.keys(store.antrag ?? {}).length > 1 &&
-        !docsUnvollstaendig,
-    },
+    { stage: 'formular', label: '3. Antrag', done: store.submitted },
   ];
   const submitted = store.submitted;
   // Bestätigungs-Screen: keine Tab-Leiste (Einreichen ist keine Kategorie).
@@ -348,12 +319,6 @@ export function GrundsicherungFlow({
 
   const submit = useCallback(async () => {
     if (!user) return;
-    // Hartes Gate: Einreichen ohne vollständige Pflicht-Anlagen ist
-    // grundsätzlich blockiert (auch bei direkten Aufrufen).
-    if (fehlendeAnlagen.length > 0) {
-      useGsStore.getState().setStage('unterlagen');
-      return;
-    }
     setCalculating(true);
     try {
       let caseId = useGsStore.getState().caseId;
@@ -384,7 +349,7 @@ export function GrundsicherungFlow({
     } finally {
       setCalculating(false);
     }
-  }, [user, t.submitError, fehlendeAnlagen.length]);
+  }, [user, t.submitError]);
 
   if (!ready) {
     return <p className="p-6 text-ink-soft">{t.loading}</p>;
@@ -536,12 +501,15 @@ export function GrundsicherungFlow({
             </section>
 
             {docsUnvollstaendig && (
-              <section className="rounded-2xl border border-red-200 bg-red-50 p-4">
-                <p className="text-sm font-semibold text-red-700">
-                  Es fehlen noch {fehlendeAnlagen.length} von {anlagenListe.length} Pflicht-Anlagen.
+              <section className="rounded-2xl border border-amber-300 bg-amber-50 p-4">
+                <p className="text-sm font-semibold text-amber-800">
+                  Es fehlen noch {fehlendeAnlagen.length} von {anlagenListe.length} Nachweisen.
                 </p>
-                <p className="mt-1 text-xs text-red-600">
-                  Der Antrag kann erst abgeschickt werden, wenn alle Dokumente hochgeladen sind.
+                <p className="mt-1 text-xs leading-relaxed text-ink-soft">
+                  Du kannst den Antrag trotzdem abschicken und die restlichen Nachweise später hier
+                  hochladen. Wichtig: Mit dem Abschicken gilt der Antrag als gestellt — und damit
+                  auch der Rückwirkungszeitpunkt zum Monatsersten (§ 37 Abs. 2 SGB II). Der Antrag
+                  bleibt danach im Dashboard sichtbar, bis alle Nachweise vorliegen.
                 </p>
               </section>
             )}
@@ -559,14 +527,10 @@ export function GrundsicherungFlow({
               </ButtonAction>
               <ButtonAction
                 className="flex-1"
-                disabled={docsUploading || calculating || docsUnvollstaendig}
+                disabled={docsUploading || calculating}
                 onClick={() => void submit()}
               >
-                {docsUploading || calculating
-                  ? 'Wird eingereicht …'
-                  : docsUnvollstaendig
-                    ? `Dokumente fehlen (${fehlendeAnlagen.length})`
-                    : 'Abschicken'}
+                {docsUploading || calculating ? 'Wird eingereicht …' : 'Abschicken'}
               </ButtonAction>
             </div>
           </>
@@ -597,7 +561,43 @@ export function GrundsicherungFlow({
         </section>
       )}
 
-      <Button href={localeHref(locale, '/antraege')}>{dict.einreichen.toApplications}</Button>
+      {/* Nachreichung: Antrag bleibt sichtbar, Nachweise können noch hochgeladen werden */}
+      {docsUnvollstaendig ? (
+        <section className="rounded-2xl border border-amber-300 bg-amber-50 p-5">
+          <h3 className="font-semibold text-amber-800">
+            Noch {fehlendeAnlagen.length} Nachweis{fehlendeAnlagen.length === 1 ? '' : 'e'}{' '}
+            nachreichen
+          </h3>
+          <p className="mt-1 text-sm leading-relaxed text-ink-soft">
+            Dein Antrag ist gestellt — die Unterlagen kannst du jederzeit nachliefern. Dein Antrag
+            bleibt dafür im Dashboard sichtbar, bis alle Nachweise vorliegen.
+          </p>
+          <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-ink-soft">
+            {fehlendeAnlagen.map((a) => (
+              <li key={a}>{a}</li>
+            ))}
+          </ul>
+          <ButtonAction className="mt-4" onClick={() => store.setStage('unterlagen')}>
+            Dokumente nachreichen →
+          </ButtonAction>
+        </section>
+      ) : (
+        <section className="rounded-2xl border border-brand-300 bg-brand-50 p-5">
+          <p className="font-semibold text-brand-800">Alle Nachweise liegen vor ✓</p>
+          <p className="mt-1 text-sm text-ink-soft">
+            Du kannst weitere Dokumente jederzeit über den Antrag hochladen.
+          </p>
+          <ButtonAction
+            className="mt-4"
+            variant="secondary"
+            onClick={() => store.setStage('unterlagen')}
+          >
+            Zu den Dokumenten →
+          </ButtonAction>
+        </section>
+      )}
+
+      <Button href={localeHref(locale, '/dashboard')}>{dict.einreichen.toApplications}</Button>
     </div>
   );
 }

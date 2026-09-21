@@ -785,6 +785,76 @@ export function isPlausibleIban(iban: string): boolean {
 }
 
 /**
+ * Kurz-Erklärung je Pflicht-Anlage: Was ist das, was lädt man hoch und warum
+ * braucht das Jobcenter es. Key = exakt der Anlagen-Text aus requiredAnlagen()
+ * (die Texte sind zugleich die Zuordnung hochgeladener Dateien).
+ */
+export const ANLAGEN_HINTS: Record<string, string> = {
+  'Bestellungsurkunde / Vollmacht / Betreuerausweis (Feld 22)':
+    'Nachweis, dass jemand für dich handelt — Vormundschaft, rechtliche Betreuung oder eine schriftliche Vollmacht. Ohne diesen Nachweis darf das Jobcenter Anträge von Dritten nicht bearbeiten.',
+  'Aufenthaltstitel (Feld 23)':
+    'Dein Aufenthaltstitel, zum Beispiel Aufenthaltserlaubnis, Niederlassungserlaubnis oder Blaue Karte. Fotografiere Vorder- und Rückseite — damit wird geprüft, ob du SGB II beziehen darfst.',
+  'Nachweis aufenthaltsrechtlicher Status + AsylbLG-Bescheid (Feld 24)':
+    'Aufenthaltsdokument (Aufenthaltsgestattung, Duldung, Bescheid) zusammen mit dem AsylbLG-Bescheid. Daraus ergibt sich, ob für dich SGB II oder das Asylbewerberleistungsgesetz gilt.',
+  'Anlage UH1 (Unterhalt — Trennung/Geschieden, Feld 32)':
+    'Formular „Anlage UH1“ des Jobcenters zu Unterhaltsansprüchen nach Trennung oder Scheidung. Ohne diese Angaben kann Unterhalt nicht richtig geprüft und angerechnet werden.',
+  'Anlage UH2 (Schwangerschaft, Feld 37)':
+    'Erklärung zur Schwangerschaft (Anlage UH2) — am besten zusammen mit Mutterpass oder ärztlicher Bescheinigung. Ab der 13. Woche kann daraus ein Mehrbedarf entstehen.',
+  'Anlage UH3 (Antragsteller unter 25 ohne Eltern in der BG, Feld 38)':
+    'Anlage UH3 für Unter-25-Jährige, die ohne Eltern in der Bedarfsgemeinschaft leben. Damit klärt das Jobcenter, ob Unterhaltsansprüche gegen die Eltern bestehen.',
+  'Nachweise Schule/Studium/Ausbildung (Feld 39)':
+    'Immatrikulationsbescheinigung, Schülerausweis oder Ausbildungsvertrag. Damit wird geprüft, ob du dem Arbeitsmarkt zur Verfügung stehst oder ob eine Ausbildung gefördert werden kann.',
+  'Nachweis Schulbuch-/Arbeitsheftkosten (Feld 40)':
+    'Kaufbeleg, Quittung oder Aufstellung der Schulbücher und Arbeitshefte, die du selbst bezahlst. Diese Kosten können zusätzlich übernommen werden.',
+  'Anlage MEB (kostenaufwändige Ernährung, Feld 44)':
+    'Ärztliche Bescheinigung (Anlage MEB) über eine medizinisch notwendige, kostenaufwändige Ernährung. Daraus ergibt sich ein Mehrbedarf.',
+  'Teilhabe-/Eingliederungsbescheid (Feld 46)':
+    'Bescheid über Leistungen zur Teilhabe oder Eingliederung (z. B. Reha-Träger, Rentenversicherung). Er hilft bei der Prüfung von Mehrbedarfen wegen einer Behinderung.',
+  'Anlage BB (unabweisbarer besonderer Bedarf, Feld 47)':
+    'Formular „Anlage BB“ zu einem besonderen Bedarf, der einmalig oder selten anfällt (§ 21 Abs. 6 SGB II). Rechnungen oder Kostenvoranschläge dazu mithochladen.',
+  'Anlage UF (Unfall/Haftung durch Dritte, Feld 75)':
+    'Nachweis über Ansprüche aus einem Unfall oder Schadensfall mit Dritten (Anlage UF). Solche Ansprüche mindern den Bedarf — das Jobcenter muss sie kennen.',
+  'Anlage SV (private/freiwillige Versicherung, Feld 78)':
+    'Beitragsbescheinigung deiner privaten oder freiwilligen Kranken- und Pflegeversicherung. Mit diesem Nachweis werden die Beiträge zusätzlich zum Regelbedarf übernommen.',
+  'Nachweis ausstehender Lohnansprüche (Feld 61)':
+    'Arbeitsvertrag, Lohnabrechnungen oder Kontoauszüge, die zeigen, welcher Lohn noch aussteht. Offene Lohnansprüche müssen vorrangig verfolgt werden.',
+  'Nachweis Anspruch gegenüber Dritten (Feld 74)':
+    'Verträge, Bescheide oder Schriftverkehr zu Ansprüchen gegen Dritte (z. B. Versicherung, Vermieter, Arbeitgeber). Diese Ansprüche müssen verwertet werden.',
+  'Anlage VM — Selbstauskunft Vermögen (je Bedarfsgemeinschaft, 1×)':
+    'Formular „Anlage VM“: eine Selbstauskunft über das gesamte Vermögen der Bedarfsgemeinschaft — Konten, Sparbücher, Lebensversicherungen, Fahrzeuge, Immobilien. Einmal pro Bedarfsgemeinschaft ausfüllen und unterschreiben.',
+  'Kontoauszüge der letzten 3 Monate (alle Konten, alle BG-Personen, lückenlos)':
+    'Kontoauszüge der letzten drei Monate von jedem Konto jeder Person in der Bedarfsgemeinschaft — vollständig und ohne Lücken. Damit prüft das Jobcenter Einkommen, Vermögen und alle Zuflüsse.',
+  'Anlage EK — Einkommen (je Person der Bedarfsgemeinschaft)':
+    'Formular „Anlage EK“ je Person mit Einkommen (Lohn, Rente, Unterhalt, Kindergeld …). Dazu passend die Nachweise: Lohnabrechnungen, Bescheide, Kontoauszüge.',
+  'Anlage EKS — Selbständige/freiberufliche Tätigkeit':
+    'Formular „Anlage EKS“ als Einnahmen-Überschuss-Rechnung deiner Selbständigkeit, dazu Belege wie Rechnungen, BWA oder Steuerbescheid. Daraus wird dein anrechenbares Einkommen ermittelt.',
+  'Aktueller Nachweis Krankenversicherung (Feld 77)':
+    'Aktuelle Bescheinigung deiner Krankenkasse (z. B. Mitgliedsbescheinigung) oder bei privat/freiwillig Versicherten die Beitragsbescheinigung. Diese Beiträge übernimmt das Jobcenter zusätzlich.',
+  'Kindergeldbescheid / -nachweis':
+    'Aktueller Kindergeldbescheid der Familienkasse oder Kontoauszüge mit der Kindergeldgutschrift. Das Kindergeld zählt als Einkommen der Kinder.',
+  'Geburtsurkunden der Kinder':
+    'Geburtsurkunde oder Auszug aus dem Familienstammbuch je Kind. Damit stehen Name, Geburtsdatum und Zugehörigkeit zur Bedarfsgemeinschaft fest.',
+  'Schulbescheinigung für Kinder ab 15 Jahren (Bildung & Teilhabe)':
+    'Aktuelle Schulbescheinigung für Kinder ab 15 Jahren. Ohne sie kann der Bedarf für Bildung und Teilhabe nicht berücksichtigt werden.',
+  'Nachweis alleinerziehend (falls vorhanden)':
+    'Unterhaltsbescheinigung, Sorgerechtsbeschluss oder Meldebescheinigung, die belegt, dass du allein erziehst. Damit lässt sich der Mehrbedarf für Alleinerziehende prüfen.',
+};
+
+/** Erklärender Satz zur Anlage — Fallback, wenn kein eigener Text hinterlegt ist. */
+export function anlagenHint(anlage: string): string {
+  const base = anlage.replace(/ \(.*?\)$/, '').replace(/ — .*$/, '');
+  const dynamic =
+    /^Anlage (WEP|KI) je Kind/.test(anlage)
+      ? 'Formular des Jobcenters je Kind — pro Kind eine Ausfertigung ausfüllen. Daraus ergeben sich die Kinderbedarfe und der Bildungs- und Teilhabebedarf.'
+      : null;
+  return (
+    ANLAGEN_HINTS[anlage] ??
+    dynamic ??
+    `${base} wird für die Prüfung deines Antrags gebraucht. Lade das passende Dokument als PDF oder Foto hoch — mehrere Dateien pro Anlage sind möglich.`
+  );
+}
+
+/**
  * Pflicht-Anlagen nach dem Hauptantrag (Abschnitt H + Trigger in A–G).
  * Ableitung aus den Antragsdaten — der Nutzer sieht automatisch, welche
  * Anlagen/Nachweise nötig sind, damit der Antrag ohne Lücken eingereicht

@@ -48,10 +48,6 @@ const OPEN_ISSUE_LABELS: Record<string, string> = {
 const inputCls =
   'w-40 rounded-lg border border-line-soft bg-white px-4 py-3 text-base md:text-sm text-ink focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100';
 
-function eur(n: number): string {
-  return n.toLocaleString('de-DE');
-}
-
 /** Geldbeträge immer mit zwei Nachkommastellen (de-DE). */
 function eur2(n: number): string {
   return n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });

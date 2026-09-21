@@ -179,8 +179,22 @@ export function GrundsicherungAntragFormular({ onContinue }: { onContinue: () =>
   const isLast = sectionIdx >= visibleSections.length - 1;
 
   const goNext = () => {
-    if (isLast && sectionComplete) {
-      onContinue();
+    if (isLast) {
+      // Beim letzten Abschnitt prüfen wir ALLE Abschnitte — nicht nur
+      // den aktuellen. Fehlende Pflichtfelder in anderen Abschnitten
+      // navigieren wir direkt an.
+      if (missingCount === 0) {
+        onContinue();
+        return;
+      }
+      const firstIncompleteIdx = visibleSections.findIndex(
+        (s) => (missing[s.id]?.length ?? 0) > 0,
+      );
+      if (firstIncompleteIdx >= 0) {
+        setSectionIdx(firstIncompleteIdx);
+        setShowErrors(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
       return;
     }
     if (!sectionComplete) {
@@ -198,6 +212,9 @@ export function GrundsicherungAntragFormular({ onContinue }: { onContinue: () =>
       <div className="flex flex-wrap gap-2">
         {visibleSections.map((s, i) => {
           const chipMissing = (missing[s.id]?.length ?? 0) > 0;
+          const chipComplete =
+            !chipMissing &&
+            visibleFields(s, antrag).filter((f) => f.required).length > 0;
           return (
             <button
               key={s.id}
@@ -208,7 +225,9 @@ export function GrundsicherungAntragFormular({ onContinue }: { onContinue: () =>
                   ? 'border-brand-600 bg-brand-600 text-white'
                   : chipMissing
                     ? 'border-red-300 bg-red-50 text-red-600'
-                    : 'border-line-soft bg-white text-ink hover:border-brand-400'
+                    : chipComplete
+                      ? 'border-green-300 bg-green-50 text-green-700'
+                      : 'border-line-soft bg-white text-ink hover:border-brand-400'
               }`}
             >
               {chipMissing && i !== sectionIdx ? '⚠ ' : ''}
