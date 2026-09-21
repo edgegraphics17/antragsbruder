@@ -41,8 +41,8 @@ export default async function GrundsicherungPage({
         Grundsicherung — Anspruch prüfen &amp; beantragen
       </h1>
       <p className="text-sm text-ink-soft">
-        Fünf Schritte: Schnellcheck → Einschätzung → Antrag → Dokumente → Einreichen. Alles wird
-        automatisch gespeichert — du kannst jederzeit pausieren und weitermachen.
+        Drei Schritte: Schnellcheck → Einschätzung → Antrag. Alles wird automatisch gespeichert —
+        du kannst jederzeit pausieren und weitermachen.
       </p>
     </div>
   );

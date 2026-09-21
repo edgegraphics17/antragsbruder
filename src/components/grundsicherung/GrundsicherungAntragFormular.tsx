@@ -276,7 +276,7 @@ export function GrundsicherungAntragFormular({ onContinue }: { onContinue: () =>
             : 'Alle Pflichtangaben vollständig ✓'}
         </p>
         <ButtonAction onClick={goNext}>
-          {isLast ? 'Weiter zu den Unterlagen →' : 'Weiter'}
+          {isLast ? 'Weiter zu den Dokumenten →' : 'Weiter'}
         </ButtonAction>
       </div>
     </div>

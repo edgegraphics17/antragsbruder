@@ -755,7 +755,14 @@ export function GrundsicherungCheckResultView({
 // Dashboard-Wrapper (Store-Anbindung)
 // ============================================================
 
-export function GrundsicherungCheck({ onContinue }: { onContinue: () => void }) {
+export function GrundsicherungCheck({
+  onContinue,
+  continueLabel,
+}: {
+  onContinue: () => void;
+  /** Beschriftung des Abschluss-Buttons (Dashboard: „Zur Einschätzung →“) */
+  continueLabel?: string;
+}) {
   const locale = useLocaleFromPath();
   const t = getDashboardDict(locale).grundsicherung.check;
   const store = useGsStore();
@@ -808,6 +815,7 @@ export function GrundsicherungCheck({ onContinue }: { onContinue: () => void }) 
         t={t}
         result={checkResult}
         onContinue={onContinue}
+        continueLabel={continueLabel}
         onRestart={() => useGsStore.getState().setCheckResult(null)}
       />
     );

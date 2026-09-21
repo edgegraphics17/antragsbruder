@@ -2,8 +2,13 @@
 
 // ============================================================
 // GRUNDSICHERUNG FLOW — Dashboard-Antragsfunnel
-// Stages: check (Stufe 1 Discovery) → formular (Stufe 2 Precision)
-//         → unterlagen → einreichen
+// Drei Tabs wie im Wohngeld-Flow (Referenz-UI):
+//   1. Schnellcheck  (stage 'check')
+//   2. Einschätzung  (stage 'ergebnis', GsEinschaetzung)
+//   3. Antrag        (stage 'formular' | 'unterlagen')
+//      → darin zwei große Unter-Tabs: „Formular“ und „Dokumente“
+// Nach dem Abschicken (stage 'einreichen') erscheint der Bestätigungs-
+// Screen ohne Tab-Leiste — „Einreichen“ ist keine eigene Kategorie mehr.
 // Rechtsbewertung ausschließlich über die Engine-API
 // (/api/rechner/grundsicherung/evaluate) — keine Berechnung im Frontend.
 // ============================================================
@@ -29,38 +34,13 @@ import type { GsFormStateFacts } from '@/engine/benefit-engines/grundsicherung/f
 import { checkToFormStatePrefill } from '@/components/grundsicherung/GrundsicherungCheck';
 import { GrundsicherungCheck } from '@/components/grundsicherung/GrundsicherungCheck';
 import { GrundsicherungAntragFormular } from '@/components/grundsicherung/GrundsicherungAntragFormular';
+import { GsEinschaetzung } from '@/components/grundsicherung/GsEinschaetzung';
 import { GsUnterlagenUpload } from '@/components/grundsicherung/GsUnterlagenUpload';
 import { Button, ButtonAction } from '@/components/ui/Button';
 import type { GsUploadedDoc } from '@/lib/grundsicherung/store';
 import { getDashboardDict } from '@/content/i18n/dashboard';
 import { useLocaleFromPath } from '@/i18n/use-locale';
 import { localeHref } from '@/i18n/config';
-
-const STATUS_LABELS: Record<string, string> = {
-  VERY_LIKELY_RELEVANT: 'Sehr wahrscheinlich relevant',
-  FURTHER_REVIEW_REQUIRED: 'Weitere Prüfung erforderlich',
-  POSSIBLY_RELEVANT: 'Eventuell relevant',
-  RATHER_NOT_APPLICABLE: 'Eher nicht einschlägig',
-  NOT_APPLICABLE: 'Nicht einschlägig',
-  ALREADY_RECEIVING: 'Bereits vorhanden',
-};
-
-const QUALITY_LABELS: Record<string, string> = {
-  EXACT: 'Exakt',
-  HIGH: 'Hoch',
-  ESTIMATED: 'Geschätzt',
-  SCENARIO: 'Szenario',
-  INSUFFICIENT_DATA: 'Zu wenig Daten',
-};
-
-const OPEN_ISSUE_LABELS: Record<string, string> = {
-  WORK_CAPACITY_UNCLEAR: 'Erwerbsfähigkeit noch unklar (§ 8 SGB II)',
-  KDU_LOCAL_RULE_MISSING: 'Örtliche Angemessenheitsgrenze der Wohnkosten noch ungeprüft',
-  KDU_UEBER_1_5X_OBERGRENZE: 'Wohnkosten über der 1,5-fach-Obergrenze (§ 22 SGB II) — Härtefall prüfen',
-  KDU_HAERTEFALL_PRUEFUNG_OFFEN: 'Härtefallprüfung Wohnkosten möglich',
-  HEIZKOSTEN_NACHZAHLUNG_IM_PRUEFMONAT: 'Fällige Heiz-/Betriebskosten-Nachzahlung im Prüfmonat (einmaliger Bedarf)',
-  SGB2_12_VERMOEGEN_UEBER_FREIBETRAG: 'Vermögen über den Freibeträgen (§ 12 SGB II)',
-};
 
 export function GrundsicherungFlow({
   applicationId,
@@ -197,7 +177,6 @@ export function GrundsicherungFlow({
       void useGsStore.getState().saveToCloud(user.id, useGsStore.getState().caseId!);
     }, 1500);
     return () => clearTimeout(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready, user, store.antrag, store.formState]);
 
   // --- Flush beim Verlassen des Tabs/der Seite (letzte Eingaben sichern) ---
@@ -258,16 +237,6 @@ export function GrundsicherungFlow({
   }, [dict.angaben.title, t.calcError, user]);
 
   const form = store.formState;
-  const setForm = store.setForm;
-
-  const onCheckContinue = useCallback(() => {
-    useGsStore.getState().setStage('formular');
-  }, []);
-
-  const applicant = useMemo(
-    () => form.applicant ?? { age: undefined },
-    [form.applicant],
-  );
 
   // --- Dokumente-Gate: Pflicht-Anlagen vs. hochgeladene Dateien ---
   // Einreichen nur möglich, wenn für JEDE Pflicht-Anlage mindestens
@@ -318,6 +287,7 @@ export function GrundsicherungFlow({
   }, [ready, user, store.applicationId, store.submitted, docsUnvollstaendig]);
 
   // --- Stage-Tabs (Wohngeld-Konzept): frei hin- und herspringen, ✓ wenn fertig ---
+  // „Dokumente“ ist kein eigener Tab mehr, sondern ein Unter-Tab in „3. Antrag“.
   const antragMissingCount = useMemo(
     () =>
       Object.values(missingRequiredFields(store.antrag)).reduce((n, items) => n + items.length, 0),
@@ -329,12 +299,19 @@ export function GrundsicherungFlow({
     {
       stage: 'formular',
       label: '3. Antrag',
-      done: antragMissingCount === 0 && Object.keys(store.antrag ?? {}).length > 1,
+      done:
+        antragMissingCount === 0 &&
+        Object.keys(store.antrag ?? {}).length > 1 &&
+        !docsUnvollstaendig,
     },
-    { stage: 'unterlagen', label: '4. Dokumente', done: !docsUnvollstaendig },
-    { stage: 'einreichen', label: '5. Einreichen', done: store.submitted },
   ];
-  const showTabs = !(store.stage === 'einreichen' && store.submitted);
+  const submitted = store.submitted;
+  // Bestätigungs-Screen: keine Tab-Leiste (Einreichen ist keine Kategorie).
+  const showTabs = !(store.stage === 'einreichen' && submitted);
+  // „unterlagen“ (Dokumente-Unter-Tab) und der Bestätigungs-Screen gehören
+  // optisch zu „3. Antrag“ — der Antrag-Tab bleibt dabei aktiv.
+  const activeTab: GsStage =
+    store.stage === 'unterlagen' || store.stage === 'einreichen' ? 'formular' : store.stage;
 
   // Tab-Leiste über jeder Stage (versteckt auf der Bestätigungs-Seite).
   // Design + Reihenfolge identisch zum Wohngeld-Flow (Referenz-UI): gleiche
@@ -352,14 +329,14 @@ export function GrundsicherungFlow({
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className={`min-w-[7.5rem] flex-1 rounded-xl border px-3 py-3 text-sm font-semibold transition-colors sm:px-4 ${
-                store.stage === t.stage
+                activeTab === t.stage
                   ? 'border-brand-600 bg-brand-600 text-white'
                   : t.done
                     ? 'border-green-300 bg-green-50 text-green-700'
                     : 'border-line-soft bg-white text-ink hover:border-brand-400'
               }`}
             >
-              {t.done && store.stage !== t.stage ? '✓ ' : ''}
+              {t.done && activeTab !== t.stage ? '✓ ' : ''}
               {t.label}
             </button>
           ))}
@@ -417,6 +394,7 @@ export function GrundsicherungFlow({
   if (store.stage === 'check') {
     return withTabs(
       <GrundsicherungCheck
+        continueLabel={dict.check.continueToEstimate}
         onContinue={() => {
           // Check-Angaben ins Antragsformular vorbefüllen (Stufe 2 = Precision)
           if (store.check) {
@@ -428,310 +406,198 @@ export function GrundsicherungFlow({
               housing: prefill.housing,
             });
           }
-          onCheckContinue();
+          // Nach dem Schnellcheck kommt die Einschätzung (Cent-Betrag),
+          // nicht direkt der Antrag — wie im Wohngeld-Flow.
+          useGsStore.getState().setStage('ergebnis');
+          void evaluate();
         }}
       />
     );
   }
 
-  // --- Stage: ERGEBNIS ---
-  if (store.stage === 'ergebnis' && !fullResult) {
-    // Reload mit stage=ergebnis: gespeicherten Snapshot zeigen (keine
-    // stille Neuberechnung — der Nutzer sieht den letzten Stand).
+  // --- Stage: EINSCHÄTZUNG (Stufe 2 — Design-Modell des Wohngeldrechners) ---
+  if (store.stage === 'ergebnis') {
     return withTabs(
-      <div className="space-y-6">
-        <h2 className="text-lg font-semibold text-ink">{dict.ergebnis.title}</h2>
-        {store.result ? (
-          <section className="rounded-2xl bg-brand-950 p-6 text-white">
-            <p className="text-sm text-white/60">{dict.ergebnis.amountLabel}</p>
-            <p className="mt-1 font-display text-4xl font-bold">
-              {store.result.amount.toLocaleString('de-DE', { minimumFractionDigits: 2 })} €
-              <span className="ml-2 text-sm font-normal text-white/60">{dict.ergebnis.perMonth}</span>
-            </p>
-            <p className="mt-2 text-xs text-white/60">
-              {STATUS_LABELS[store.result.status] ?? store.result.status} ·{' '}
-              {QUALITY_LABELS[store.result.quality] ?? store.result.quality}
-            </p>
-          </section>
-        ) : (
-          <p className="text-sm text-ink-soft">{dict.angaben.intro}</p>
-        )}
-        <ButtonAction variant="secondary" onClick={() => store.setStage('check')}>
-          {t.back}
-        </ButtonAction>
-      </div>
-    );
-  }
-
-  if (store.stage === 'ergebnis' && fullResult) {
-    const r = fullResult;
-    return withTabs(
-      <div className="space-y-6">
-        <h2 className="text-lg font-semibold text-ink">{dict.ergebnis.title}</h2>
-
-        <section className="rounded-2xl bg-brand-950 p-6 text-white">
-          <p className="text-sm text-white/60">{dict.ergebnis.amountLabel}</p>
-          <p className="mt-1 font-display text-4xl font-bold">
-            {r.amount.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €
-            <span className="ml-2 text-sm font-normal text-white/60">{dict.ergebnis.perMonth}</span>
-          </p>
-          <div className="mt-3 flex flex-wrap gap-2 text-xs">
-            <span className="rounded-full bg-white/10 px-3 py-1">
-              {dict.ergebnis.statusLabel}: {STATUS_LABELS[r.status] ?? r.status}
-            </span>
-            <span className="rounded-full bg-white/10 px-3 py-1">
-              {dict.ergebnis.qualityLabel}: {QUALITY_LABELS[r.quality] ?? r.quality}
-            </span>
-            <span className="rounded-full bg-white/10 px-3 py-1">
-              {dict.ergebnis.bgSizeLabel}: {r.bgSize} {dict.ergebnis.personsLabel}
-            </span>
-          </div>
-        </section>
-
-        {r.actions.length > 0 && (
-          <section className="rounded-2xl border border-line-soft bg-paper p-5">
-            <h2 className="mb-3 font-semibold text-ink">{dict.ergebnis.actionsLabel}</h2>
-            <ol className="space-y-3">
-              {r.actions.map((a, i) => (
-                <li key={i} className="rounded-xl bg-cream/60 p-3">
-                  <p className="text-sm font-semibold text-ink">
-                    {i + 1}. {a.title}{' '}
-                    <span className="ml-1 rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-bold text-red-700">
-                      {a.priority}
-                    </span>
-                  </p>
-                  <p className="mt-1 text-xs text-ink-soft">{a.whyNow}</p>
-                </li>
-              ))}
-            </ol>
-          </section>
-        )}
-
-        {r.openIssues.length > 0 && (
-          <section className="rounded-2xl border border-line-soft bg-paper p-5">
-            <h2 className="mb-2 font-semibold text-ink">{dict.ergebnis.openIssuesLabel}</h2>
-            <ul className="list-disc space-y-1 pl-5 text-sm text-ink-soft">
-              {r.openIssues.map((issue) => (
-                <li key={issue}>{OPEN_ISSUE_LABELS[issue] ?? issue}</li>
-              ))}
-            </ul>
-          </section>
-        )}
-
-        <section className="rounded-2xl border border-line-soft bg-paper p-5">
-          <h2 className="mb-3 font-semibold text-ink">{dict.ergebnis.breakdownLabel}</h2>
-          <dl className="space-y-2 text-sm">
-            {r.persons.map((p) => (
-              <div key={p.personId} className="flex justify-between border-b border-line-soft/60 pb-1">
-                <dt className="text-ink-soft">
-                  {dict.ergebnis.regelbedarf} ({p.role}, {p.age})
-                </dt>
-                <dd className="font-medium text-ink">
-                  {(p.regelbedarf + p.mehrbedarf).toLocaleString('de-DE', { minimumFractionDigits: 2 })} €
-                </dd>
-              </div>
-            ))}
-            <div className="flex justify-between border-b border-line-soft/60 pb-1">
-              <dt className="text-ink-soft">{dict.ergebnis.kdu}</dt>
-              <dd className="font-medium text-ink">
-                {r.kdu.allowed.toLocaleString('de-DE', { minimumFractionDigits: 2 })} €
-                {r.kdu.capped && ' (gekürzt)'}
-              </dd>
-            </div>
-            <div className="flex justify-between border-b border-line-soft/60 pb-1">
-              <dt className="text-ink-soft">{dict.ergebnis.heating}</dt>
-              <dd className="font-medium text-ink">
-                {r.kdu.heating.toLocaleString('de-DE', { minimumFractionDigits: 2 })} €
-              </dd>
-            </div>
-            <div className="flex justify-between border-b border-line-soft/60 pb-1">
-              <dt className="text-ink-soft">{dict.ergebnis.totalNeed}</dt>
-              <dd className="font-semibold text-ink">
-                {r.totalNeed.toLocaleString('de-DE', { minimumFractionDigits: 2 })} €
-              </dd>
-            </div>
-            <div className="flex justify-between">
-              <dt className="text-ink-soft">{dict.ergebnis.countableIncome}</dt>
-              <dd className="font-semibold text-ink">
-                −{r.totalIncome.toLocaleString('de-DE', { minimumFractionDigits: 2 })} €
-              </dd>
-            </div>
-          </dl>
-          <p className="mt-3 text-xs text-ink-soft">{dict.ergebnis.disclaimer}</p>
-        </section>
-
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <ButtonAction
-            className="flex-1"
-            onClick={() => {
-              // Kinder aus dem Schnell-Check ins Antragsformular vorbefüllen
-              const qc = (form.children ?? []) as { age: number; incomeNet?: number; kindergeld?: boolean }[];
-              const antragChildren = useGsStore.getState().antrag.children ?? [];
-              const next: GsAntragChildData[] = qc.map((c, i) => ({
-                ...(antragChildren[i] ?? {}),
-                livesInHousehold: antragChildren[i]?.livesInHousehold ?? true,
-                kindergeld: antragChildren[i]?.kindergeld ?? Boolean(c.kindergeld),
-                ownIncomeNet: antragChildren[i]?.ownIncomeNet ?? c.incomeNet,
-              }));
-              if (next.length > 0) useGsStore.getState().setAntrag({ children: next });
-              store.setStage('formular');
-            }}
-          >
-            {dict.ergebnis.continue}
-          </ButtonAction>
-          <ButtonAction variant="secondary" onClick={() => store.setStage('check')}>
-            {t.back}
-          </ButtonAction>
-        </div>
-      </div>
-    );
-  }
-
-  // --- Stage: FORMULAR (vollständige Antragsdaten) ---
-  if (store.stage === 'formular') {
-    return withTabs(
-      <GrundsicherungAntragFormular
-        onContinue={() => {
-          if (user && useGsStore.getState().caseId) {
-            void useGsStore.getState().saveToCloud(user.id, useGsStore.getState().caseId!);
+      <GsEinschaetzung
+        result={fullResult}
+        snapshot={store.result}
+        recalculating={calculating}
+        onApplyKduLimit={(value) => {
+          // Örtliche Angemessenheitsgrenze aus der Einschätzung heraus setzen
+          // (⋯ neben „Angemessene Kaltmiete“) bzw. eigene Angabe entfernen.
+          const housing = { ...(useGsStore.getState().formState.housing ?? {}) };
+          if (value == null) {
+            delete housing.kduLimitKnown;
+            delete housing.kduLimit;
+          } else {
+            housing.kduLimitKnown = true;
+            housing.kduLimit = value;
           }
-          store.setStage('unterlagen');
+          useGsStore.getState().setForm({ housing });
+          void evaluate();
+        }}
+        onBack={() => store.setStage('check')}
+        onContinue={() => {
+          // Kinder aus dem Schnell-Check ins Antragsformular vorbefüllen
+          const qc = (form.children ?? []) as { age: number; incomeNet?: number; kindergeld?: boolean }[];
+          const antragChildren = useGsStore.getState().antrag.children ?? [];
+          const next: GsAntragChildData[] = qc.map((c, i) => ({
+            ...(antragChildren[i] ?? {}),
+            livesInHousehold: antragChildren[i]?.livesInHousehold ?? true,
+            kindergeld: antragChildren[i]?.kindergeld ?? Boolean(c.kindergeld),
+            ownIncomeNet: antragChildren[i]?.ownIncomeNet ?? c.incomeNet,
+          }));
+          if (next.length > 0) useGsStore.getState().setAntrag({ children: next });
+          store.setStage('formular');
         }}
       />
     );
   }
 
-  // --- Stage: UNTERLAGEN — pro Anlage hochladen & direkt einreichen ---
-  if (store.stage === 'unterlagen') {
-    const submitting = calculating;
+  // --- Stage: ANTRAG — ein Tab mit zwei großen Unter-Tabs (Formular | Dokumente) ---
+  if (
+    store.stage === 'formular' ||
+    store.stage === 'unterlagen' ||
+    (store.stage === 'einreichen' && !submitted)
+  ) {
+    const docsTab: 'formular' | 'dokumente' = store.stage === 'formular' ? 'formular' : 'dokumente';
+    const subTabCls = (active: boolean) =>
+      `flex-1 rounded-xl border px-4 py-3 text-left transition-colors ${
+        active
+          ? 'border-brand-600 bg-brand-600 text-white'
+          : 'border-line-soft bg-white text-ink hover:border-brand-400'
+      }`;
+    const subTabHintCls = (active: boolean) =>
+      `mt-1 block text-xs ${active ? 'text-white/70' : 'text-ink-soft'}`;
+
     return withTabs(
       <div className="space-y-6">
-        <header>
-          <h2 className="text-lg font-semibold text-ink">{dict.unterlagen.title}</h2>
-          <p className="mt-1 text-sm text-ink-soft">{dict.unterlagen.intro}</p>
-        </header>
-
-        <section className="rounded-2xl border border-line-soft bg-paper p-5">
-          <h2 className="mb-3 font-semibold text-ink">
-            Erforderliche Anlagen & Nachweise ({anlagenListe.length})
-          </h2>
-          <GsUnterlagenUpload
-            caseId={store.caseId}
-            anlagen={anlagenListe}
-            docs={store.anlagenDocs as GsUploadedDoc[]}
-            onAdd={(docs) => useGsStore.getState().addAnlagenDocs(docs)}
-            onRemove={(doc) => useGsStore.getState().removeAnlagenDoc(doc.storagePath)}
-            onRename={(doc, title) => {
-              const docs = useGsStore
-                .getState()
-                .anlagenDocs.map((d) => (d.storagePath === doc.storagePath ? { ...d, filename: title } : d));
-              useGsStore.getState().setAnlagenDocs(docs);
-            }}
-            onUploadingChange={setDocsUploading}
-          />
-        </section>
-
-        {docsUnvollstaendig && (
-          <section className="rounded-2xl border border-red-200 bg-red-50 p-4">
-            <p className="text-sm font-semibold text-red-700">
-              Es fehlen noch {fehlendeAnlagen.length} von {anlagenListe.length} Pflicht-Anlagen.
-            </p>
-            <p className="mt-1 text-xs text-red-600">
-              Der Antrag kann erst eingereicht werden, wenn alle Dokumente hochgeladen sind.
-            </p>
-          </section>
-        )}
-
-        {error && <p className="text-sm font-medium text-red-600">{error}</p>}
-
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <ButtonAction variant="secondary" onClick={() => store.setStage('formular')}>
-            {t.back}
-          </ButtonAction>
-          <ButtonAction
-            className="flex-1"
-            disabled={docsUploading || submitting || docsUnvollstaendig}
-            onClick={() => void submit()}
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <button
+            type="button"
+            onClick={() => store.setStage('formular')}
+            className={subTabCls(docsTab === 'formular')}
           >
-            {docsUploading || submitting
-              ? 'Wird eingereicht …'
-              : docsUnvollstaendig
-                ? `Dokumente fehlen (${fehlendeAnlagen.length})`
-                : dict.einreichen.submit}
-          </ButtonAction>
+            <span className="block text-sm font-semibold">{dict.flow.tabForm}</span>
+            <span className={subTabHintCls(docsTab === 'formular')}>{dict.flow.tabFormHint}</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => store.setStage('unterlagen')}
+            className={subTabCls(docsTab === 'dokumente')}
+          >
+            <span className="block text-sm font-semibold">
+              {dict.flow.tabDocuments}
+              {docsUnvollstaendig && docsTab !== 'dokumente' ? (
+                <span className="ml-1 text-red-600">⚠</span>
+              ) : null}
+            </span>
+            <span className={subTabHintCls(docsTab === 'dokumente')}>
+              {dict.flow.tabDocumentsHint}
+              {docsUnvollstaendig ? ` · ${fehlendeAnlagen.length} offen` : ''}
+            </span>
+          </button>
         </div>
+
+        {docsTab === 'formular' ? (
+          <GrundsicherungAntragFormular
+            onContinue={() => {
+              if (user && useGsStore.getState().caseId) {
+                void useGsStore.getState().saveToCloud(user.id, useGsStore.getState().caseId!);
+              }
+              store.setStage('unterlagen');
+            }}
+          />
+        ) : (
+          <>
+            <header>
+              <h2 className="text-lg font-semibold text-ink">{dict.unterlagen.title}</h2>
+              <p className="mt-1 text-sm text-ink-soft">{dict.unterlagen.intro}</p>
+            </header>
+
+            <section className="rounded-2xl border border-line-soft bg-paper p-5">
+              <h3 className="mb-3 font-semibold text-ink">
+                Erforderliche Anlagen & Nachweise ({anlagenListe.length})
+              </h3>
+              <GsUnterlagenUpload
+                caseId={store.caseId}
+                anlagen={anlagenListe}
+                docs={store.anlagenDocs as GsUploadedDoc[]}
+                onAdd={(docs) => useGsStore.getState().addAnlagenDocs(docs)}
+                onRemove={(doc) => useGsStore.getState().removeAnlagenDoc(doc.storagePath)}
+                onRename={(doc, title) => {
+                  const docs = useGsStore
+                    .getState()
+                    .anlagenDocs.map((d) => (d.storagePath === doc.storagePath ? { ...d, filename: title } : d));
+                  useGsStore.getState().setAnlagenDocs(docs);
+                }}
+                onUploadingChange={setDocsUploading}
+              />
+            </section>
+
+            {docsUnvollstaendig && (
+              <section className="rounded-2xl border border-red-200 bg-red-50 p-4">
+                <p className="text-sm font-semibold text-red-700">
+                  Es fehlen noch {fehlendeAnlagen.length} von {anlagenListe.length} Pflicht-Anlagen.
+                </p>
+                <p className="mt-1 text-xs text-red-600">
+                  Der Antrag kann erst abgeschickt werden, wenn alle Dokumente hochgeladen sind.
+                </p>
+              </section>
+            )}
+
+            {error && <p className="text-sm font-medium text-red-600">{error}</p>}
+
+            <section className="rounded-2xl border border-line-soft bg-paper p-5">
+              <h3 className="mb-2 font-semibold text-ink">{dict.einreichen.infoTitle}</h3>
+              <p className="text-sm text-ink-soft">{dict.einreichen.infoText}</p>
+            </section>
+
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <ButtonAction variant="secondary" onClick={() => store.setStage('formular')}>
+                {t.back}
+              </ButtonAction>
+              <ButtonAction
+                className="flex-1"
+                disabled={docsUploading || calculating || docsUnvollstaendig}
+                onClick={() => void submit()}
+              >
+                {docsUploading || calculating
+                  ? 'Wird eingereicht …'
+                  : docsUnvollstaendig
+                    ? `Dokumente fehlen (${fehlendeAnlagen.length})`
+                    : 'Abschicken'}
+              </ButtonAction>
+            </div>
+          </>
+        )}
       </div>
     );
   }
 
-  // --- Stage: EINREICHEN ---
-  const submitted = store.submitted;
+  // --- Stage: EINREICHEN (Bestätigung — bewusst ohne Tab-Leiste) ---
   return withTabs(
     <div className="space-y-6">
-      {submitted ? (
-        <>
-          <header>
-            <h2 className="text-lg font-semibold text-ink">{dict.einreichen.submittedTitle}</h2>
-            <p className="mt-2 text-sm text-ink-soft">{dict.einreichen.submittedText}</p>
-          </header>
-          <Button href={localeHref(locale, '/antraege')}>
-            {dict.einreichen.toApplications}
-          </Button>
-        </>
-      ) : (
-        <>
-          <header>
-            <h2 className="text-lg font-semibold text-ink">{dict.einreichen.title}</h2>
-          </header>
+      <header>
+        <h2 className="text-lg font-semibold text-ink">{dict.einreichen.submittedTitle}</h2>
+        <p className="mt-2 text-sm text-ink-soft">{dict.einreichen.submittedText}</p>
+      </header>
 
-          <section className="rounded-2xl border border-line-soft bg-paper p-5">
-            <h2 className="mb-2 font-semibold text-ink">{dict.einreichen.infoTitle}</h2>
-            <p className="text-sm text-ink-soft">{dict.einreichen.infoText}</p>
-          </section>
-
-          {store.result && (
-            <section className="rounded-2xl bg-brand-950 p-5 text-white">
-              <h2 className="text-sm text-white/60">{dict.einreichen.resultTitle}</h2>
-              <p className="mt-1 font-display text-2xl font-bold">
-                {store.result.amount.toLocaleString('de-DE', { minimumFractionDigits: 2 })} €{' '}
-                <span className="text-sm font-normal text-white/60">/ Monat</span>
-              </p>
-              <p className="mt-1 text-xs text-white/60">
-                {STATUS_LABELS[store.result.status] ?? store.result.status} ·{' '}
-                {QUALITY_LABELS[store.result.quality] ?? store.result.quality}
-              </p>
-            </section>
-          )}
-
-          {error && <p className="text-sm font-medium text-red-600">{error}</p>}
-
-          {docsUnvollstaendig && (
-            <section className="rounded-2xl border border-red-200 bg-red-50 p-4">
-              <p className="text-sm font-semibold text-red-700">
-                Es fehlen noch {fehlendeAnlagen.length} von {anlagenListe.length} Pflicht-Anlagen.
-              </p>
-              <p className="mt-1 text-xs text-red-600">
-                Wechsle zurück zu den Dokumenten und lade alle Anlagen hoch, bevor du den Antrag einreichst.
-              </p>
-            </section>
-          )}
-
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <ButtonAction variant="secondary" onClick={() => store.setStage('unterlagen')}>
-              {t.back}
-            </ButtonAction>
-            <ButtonAction
-              className="flex-1"
-              disabled={docsUnvollstaendig}
-              onClick={() => void submit()}
-            >
-              {docsUnvollstaendig
-                ? `Dokumente fehlen (${fehlendeAnlagen.length})`
-                : dict.einreichen.submit}
-            </ButtonAction>
-          </div>
-        </>
+      {store.result && (
+        <section className="rounded-2xl bg-gradient-to-b from-brand-50 to-cream p-6 text-center">
+          <p className="text-sm text-ink-soft">{dict.ergebnis.estimatedAmount}</p>
+          <p className="font-display mt-1 text-4xl font-extrabold tracking-tight text-brand-800">
+            ca.{' '}
+            {store.result.amount.toLocaleString('de-DE', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}{' '}
+            €<span className="ml-2 text-sm font-semibold text-ink-soft">{dict.ergebnis.perMonth}</span>
+          </p>
+        </section>
       )}
+
+      <Button href={localeHref(locale, '/antraege')}>{dict.einreichen.toApplications}</Button>
     </div>
   );
 }
