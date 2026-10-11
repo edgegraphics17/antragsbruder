@@ -32,6 +32,7 @@ const structure: StructureGroup[] = [
     items: [
       { key: "anspruecheChecken", href: "/ansprueche-checken" },
       { key: "wohngeld", href: "/wohngeld" },
+      { key: "bafoeg", href: "/bafoeg" },
       { key: "datenbank", href: "/datenbank" },
       { key: "blog", href: "/blog" },
     ],

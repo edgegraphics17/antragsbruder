@@ -7,6 +7,14 @@ import {
   wohngeldBeantragen,
   type ClusterPageContent,
 } from "@/content/wohngeld-cluster";
+import {
+  bafoegPillar,
+  bafoegVoraussetzungen,
+  bafoegEinkommensgrenze,
+  bafoegUnterlagen,
+  bafoegBeantragen,
+  bafoegElternunabhaengig,
+} from "@/content/bafoeg-cluster";
 
 /**
  * Blog-Registry: Alle redaktionellen Artikel der Website, zentral für den
@@ -21,6 +29,7 @@ export type BlogCategory = {
 
 export const blogCategories: BlogCategory[] = [
   { id: "wohngeld", label: "Wohngeld" },
+  { id: "bafoeg", label: "BAföG" },
   { id: "wissen", label: "Redaktion & Wissen" },
 ];
 
@@ -44,7 +53,8 @@ function fromCluster(content: ClusterPageContent, category: BlogCategory): BlogP
 }
 
 const wohngeldCat = blogCategories[0];
-const wissenCat = blogCategories[1];
+const bafoegCat = blogCategories[1];
+const wissenCat = blogCategories[2];
 
 export const blogPosts: BlogPost[] = [
   {
@@ -56,6 +66,16 @@ export const blogPosts: BlogPost[] = [
   fromCluster(wohngeldEinkommensgrenze, wohngeldCat),
   fromCluster(wohngeldUnterlagen, wohngeldCat),
   fromCluster(wohngeldBeantragen, wohngeldCat),
+  {
+    ...fromCluster(bafoegPillar, bafoegCat),
+    excerpt:
+      "BAföG ist die staatliche Ausbildungsförderung für Studierende und Azubis. Alles zu Anspruch, Höhe, Einkommensgrenze und Rechner auf einen Blick.",
+  },
+  fromCluster(bafoegVoraussetzungen, bafoegCat),
+  fromCluster(bafoegEinkommensgrenze, bafoegCat),
+  fromCluster(bafoegUnterlagen, bafoegCat),
+  fromCluster(bafoegBeantragen, bafoegCat),
+  fromCluster(bafoegElternunabhaengig, bafoegCat),
   {
     slug: "redaktion",
     title: "Redaktion & Qualitätsstandards",

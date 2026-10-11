@@ -44,6 +44,13 @@ const routes: {
   { path: "/wohngeld/einkommensgrenze", priority: 0.8, changeFrequency: "monthly", deOnly: true },
   { path: "/wohngeld/unterlagen", priority: 0.8, changeFrequency: "monthly", deOnly: true },
   { path: "/wohngeld/beantragen", priority: 0.8, changeFrequency: "monthly", deOnly: true },
+  // BAföG-Content-Cluster: DE-only.
+  { path: "/bafoeg", priority: 0.9, changeFrequency: "weekly", deOnly: true },
+  { path: "/bafoeg/voraussetzungen", priority: 0.8, changeFrequency: "monthly", deOnly: true },
+  { path: "/bafoeg/einkommensgrenze", priority: 0.8, changeFrequency: "monthly", deOnly: true },
+  { path: "/bafoeg/unterlagen", priority: 0.8, changeFrequency: "monthly", deOnly: true },
+  { path: "/bafoeg/beantragen", priority: 0.8, changeFrequency: "monthly", deOnly: true },
+  { path: "/bafoeg/elternunabhaengig", priority: 0.7, changeFrequency: "monthly", deOnly: true },
 ];
 
 const base = `https://${site.domain}`;
