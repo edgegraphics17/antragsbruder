@@ -1,26 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  --color-cream: #faf6ea;
-  --color-cream-deep: #f1e9d3;
-  --color-paper: #fffdf7;
-  --color-ink: #22261f;
-  --color-ink-soft: #55594f;
-  --color-brand-950: #12302f;
-  --color-brand-900: #163d3b;
-  --color-brand-800: #1b4d4a;
-  --color-brand-700: #235f5b;
-  --color-brand-600: #2f7370;
-  --color-brand-500: #4a9895;
-  --color-brand-400: #6bb0ad;
-  --color-brand-300: #97c9c6;
-  --color-brand-200: #c3e0de;
-  --color-brand-100: #e0eeed;
-  --color-brand-50: #f0f7f6;
-  --color-charcoal: #2c2f33;
+  /* Designsystem 2026 – siehe DESIGN.md. Neutrale: warmes Off-White + fast
+     schwarze Tinte. Marke: Türkis-Blau aus dem Logo (brand-400 = Logofläche). */
+  --color-cream: #f7f5f1;
+  --color-cream-deep: #ebe8e2;
+  --color-paper: #ffffff;
+  --color-ink: #22211f;
+  --color-ink-soft: #5c5a55;
+  --color-brand-950: #102e3b;
+  --color-brand-900: #17414f;
+  --color-brand-800: #1c5468;
+  --color-brand-700: #216881;
+  --color-brand-600: #2a7c9a;
+  --color-brand-500: #4a9dba;
+  --color-brand-400: #6fb5cd;
+  --color-brand-300: #97cbdd;
+  --color-brand-200: #bfe0ec;
+  --color-brand-100: #def0f6;
+  --color-brand-50: #f0f8fb;
+  --color-mauve: #d9c8d0;
+  --color-mauve-soft: #f1e9ed;
+  --color-charcoal: #2c2b29;
   --color-white: #ffffff;
-  --color-line: #e2d7b8;
-  --color-line-soft: #ece3cc;
+  --color-line: #dedad2;
+  --color-line-soft: #ebe8e1;
 }
 
 @theme inline {
@@ -41,6 +45,8 @@
   --color-brand-100: var(--color-brand-100);
   --color-brand-50: var(--color-brand-50);
   --color-charcoal: var(--color-charcoal);
+  --color-mauve: var(--color-mauve);
+  --color-mauve-soft: var(--color-mauve-soft);
   --color-line: var(--color-line);
   --color-line-soft: var(--color-line-soft);
   --font-sans: var(--font-body);
@@ -51,6 +57,9 @@ body {
   background: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -64,8 +73,42 @@ body {
   }
 }
 
+/* Überschriften: schmale Serife (Instrument Serif), immer in Normalstärke –
+   die Schrift hat nur einen Schnitt, font-bold im Markup würde künstlich
+   gefettet. Deshalb hier zentral überschrieben statt in 100 Dateien. */
 .font-display {
-  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-heading), var(--font-heading-cyr), Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-synthesis: none;
+  letter-spacing: -0.012em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+/* Dreifarbiger Trenner unter Überschriften (Türkis – Mauve – Türkis). */
+.rule-brand {
+  display: block;
+  width: 4.5rem;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--color-brand-500) 0 34%,
+    var(--color-mauve) 34% 66%,
+    var(--color-brand-500) 66% 100%
+  );
+}
+
+/* Fließtext in Ratgeber-Artikeln: große, ruhige Lesegröße. */
+.prose-ab {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-ink-soft);
+}
+@media (min-width: 640px) {
+  .prose-ab {
+    font-size: 1.1875rem;
+  }
 }
 
 ::selection {

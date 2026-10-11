@@ -7,8 +7,8 @@
  */
 export function DirectAnswer({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-3xl border-2 border-brand-800/25 bg-brand-50 p-5 sm:p-6">
-      <p className="text-base leading-relaxed text-ink sm:text-lg">{children}</p>
+    <div className="rounded-3xl border-s-4 border-brand-400 bg-brand-50 p-5 sm:p-7">
+      <p className="text-lg leading-relaxed text-ink sm:text-xl">{children}</p>
     </div>
   );
 }

@@ -30,7 +30,7 @@ export default async function AgbPage({ params }: { params: Promise<{ locale: st
   return (
     <section>
       <Container className="max-w-3xl py-16 sm:py-20">
-        <h1 className="font-display text-4xl font-bold tracking-tight text-ink">{t.pageTitle}</h1>
+        <h1 className="font-display text-5xl text-ink">{t.pageTitle}</h1>
 
         <div className="mt-8">
           <LegalSection title={t.s1Heading}>

@@ -7,7 +7,7 @@ export default function NotFound() {
     <section>
       <Container className="flex flex-col items-center py-16 text-center sm:py-24">
         <MascotFull priority className="w-48 sm:w-56" />
-        <h1 className="font-display mt-2 text-3xl font-bold text-ink sm:text-4xl">
+        <h1 className="font-display mt-2 text-4xl text-ink sm:text-5xl">
           Diese Seite haben wir nicht gefunden.
         </h1>
         <p className="mt-4 max-w-md text-ink-soft">

@@ -2,11 +2,10 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StatusBadge } from "@/components/ui/Badge";
-import { HeroVisual } from "@/components/sections/HeroVisual";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { EntryCard, PillarCard } from "@/components/sections/Cards";
 import { CTASection } from "@/components/sections/CTASection";
-import { IconClock, IconCoin, IconDocument, IconFolder, IconMail, IconSpark, IconCompass } from "@/components/ui/icons";
+import { IconClock, IconDocument, IconFolder, IconMail, IconSpark, IconCompass } from "@/components/ui/icons";
 import { warumPillars } from "@/content/pillars";
 import { site } from "@/content/site";
 import { languages } from "@/content/wohngeld-i18n";
@@ -46,19 +45,25 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const href = (path: string) => localeHref(locale, path);
   const t = dict[locale];
 
+  const rechner = [
+    { title: t.wohngeldTitle, amount: t.wohngeldAmount, unit: t.wohngeldUnit, caption: t.wohngeldCaption, cta: t.wohngeldCta, href: "/wohngeld/rechner" },
+    { title: t.grundsicherungTitle, amount: t.grundsicherungAmount, unit: t.grundsicherungUnit, caption: t.grundsicherungCaption, cta: t.grundsicherungCta, href: "/grundsicherungsrechner" },
+    { title: t.bafoegTitle, amount: t.bafoegAmount, unit: t.bafoegUnit, caption: t.bafoegCaption, cta: t.bafoegCta, href: "/bafoegrechner" },
+    { title: t.alg1Title, amount: t.alg1Amount, unit: t.alg1Unit, caption: t.alg1Caption, cta: t.alg1Cta, href: "/alg1" },
+  ];
+
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden">
-        <Container className="grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-2 lg:py-28">
-          <div>
+      {/* HERO: zentriert, große Serife, zweite Zeile in Markenfarbe */}
+      <section className="px-3 sm:px-5">
+        <div className="rounded-[2rem] bg-white sm:rounded-[2.5rem]">
+          <Container className="pb-8 pt-14 text-center sm:pb-10 sm:pt-20 lg:pt-24">
             <StatusBadge status="jetzt" label={t.heroBadge} />
-            <h1 className="font-display mt-5 text-4xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-              {t.heroTitle1} <br className="hidden sm:block" />
-              {t.heroTitle2}
+            <h1 className="font-display mx-auto mt-6 max-w-4xl text-5xl text-ink sm:text-7xl lg:text-[5.5rem]">
+              {t.heroTitle1} <span className="block text-brand-600">{t.heroTitle2}</span>
             </h1>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-ink-soft">{t.heroLede}</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ink-soft sm:text-xl">{t.heroLede}</p>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Button href={href("/ansprueche-checken")} size="lg">
                 {t.heroCta1}
               </Button>
@@ -66,144 +71,74 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 {t.heroCta2}
               </Button>
             </div>
-            <p className="mt-6 text-xs text-ink-soft">{t.heroDisclaimer(site.name)}</p>
-          </div>
-          <HeroVisual locale={locale} />
-        </Container>
+            <p className="mx-auto mt-5 max-w-xl text-xs text-ink-soft">{t.heroDisclaimer(site.name)}</p>
+          </Container>
+
+          {/* EINSTIEG als Fotokarten direkt unter dem Hero */}
+          <Container className="pb-10 sm:pb-14">
+            <h2 className="sr-only">{t.einstiegTitle}</h2>
+            <div className="grid gap-3 rounded-[1.75rem] bg-cream p-3 sm:grid-cols-2 lg:grid-cols-4">
+              <EntryCard
+                image="/images/photos/aktenstapel.jpg"
+                icon={<IconDocument />}
+                title={t.entryBriefTitle}
+                text={t.entryBriefText}
+                ctaLabel={t.entryBriefCta}
+                href={href("/wohngeld")}
+              />
+              <EntryCard
+                image="/images/photos/fassade-muster.jpg"
+                icon={<IconFolder />}
+                title={t.entryAntragTitle}
+                text={t.entryAntragText}
+                ctaLabel={t.entryAntragCta}
+                href={href("/bafoegrechner")}
+              />
+              <EntryCard
+                image="/images/photos/buecher-markt.jpg"
+                icon={<IconClock />}
+                title={t.entryChaosTitle}
+                text={t.entryChaosText}
+                ctaLabel={t.entryChaosCta}
+                href={href("/grundsicherungsrechner")}
+              />
+              <EntryCard
+                image="/images/photos/coworking-warm.jpg"
+                icon={<IconCompass />}
+                title={t.entryAnspruecheTitle}
+                text={t.entryAnspruecheText}
+                ctaLabel={t.entryAnspruecheCta}
+                href={href("/ansprueche-checken")}
+              />
+            </div>
+          </Container>
+        </div>
       </section>
 
-      {/* EINSTIEG */}
-      <section className="bg-cream-deep/60">
-        <Container className="py-20">
-          <SectionHeading title={t.einstiegTitle} align="center" className="mx-auto" />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            <EntryCard
-              icon={<IconDocument className="h-6 w-6" />}
-              title={t.entryBriefTitle}
-              text={t.entryBriefText}
-              ctaLabel={t.entryBriefCta}
-              href={href("/wohngeld")}
-            />
-            <EntryCard
-              icon={<IconFolder className="h-6 w-6" />}
-              title={t.entryAntragTitle}
-              text={t.entryAntragText}
-              ctaLabel={t.entryAntragCta}
-              href={href("/bafoegrechner")}
-            />
-            <EntryCard
-              icon={<IconClock className="h-6 w-6" />}
-              title={t.entryChaosTitle}
-              text={t.entryChaosText}
-              ctaLabel={t.entryChaosCta}
-              href={href("/grundsicherungsrechner")}
-            />
-            <EntryCard
-              icon={<IconCompass className="h-6 w-6" />}
-              title={t.entryAnspruecheTitle}
-              text={t.entryAnspruecheText}
-              ctaLabel={t.entryAnspruecheCta}
-              href={href("/ansprueche-checken")}
-            />
-          </div>
-        </Container>
-      </section>
-
-      {/* RECHNER (zusammengeführt) */}
+      {/* RECHNER */}
       <section>
-        <Container className="py-20">
-          <SectionHeading eyebrow={t.rechnerEyebrow} title={t.rechnerTitle} lede={t.rechnerLede} />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-3xl border border-brand-700/30 bg-brand-50 p-6 sm:p-8">
-              <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
-                  <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
-                  {t.toolBadge}
-                </span>
-                <span className="text-xs text-ink-soft">Beispielrechnung</span>
-              </div>
-              <h3 className="font-display mt-4 text-xl font-bold text-ink">{t.wohngeldTitle}</h3>
-              <div className="mt-4 flex items-end gap-2">
-                <IconCoin className="mb-1 h-6 w-6 shrink-0 text-brand-700" />
-                <p className="font-display text-3xl font-extrabold tracking-tight text-ink">
-                  {t.wohngeldAmount} <span className="text-sm font-semibold text-ink-soft">{t.wohngeldUnit}</span>
+        <Container className="py-20 sm:py-28">
+          <SectionHeading eyebrow={t.rechnerEyebrow} title={t.rechnerTitle} lede={t.rechnerLede} rule />
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {rechner.map((r) => (
+              <div key={r.href} className="flex flex-col rounded-3xl bg-white p-6 sm:p-7">
+                <p className="text-sm font-medium text-ink-soft">{r.title}</p>
+                <p className="font-display mt-6 text-5xl text-ink">{r.amount}</p>
+                <p className="mt-1 text-sm font-medium text-brand-700">{r.unit}</p>
+                <p className="mt-4 flex-1 text-xs leading-relaxed text-ink-soft">
+                  {r.caption}
                 </p>
+                <Button href={href(r.href)} size="md" className="mt-6 w-full">
+                  {r.cta}
+                </Button>
               </div>
-              <p className="mt-1 text-xs text-ink-soft">{t.wohngeldCaption}</p>
-              <Button href={href("/wohngeld/rechner")} size="md" className="mt-6">
-                {t.wohngeldCta}
-              </Button>
-            </div>
-
-            <div className="rounded-3xl border border-brand-700/30 bg-brand-50 p-6 sm:p-8">
-              <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
-                  <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
-                  {t.toolBadge}
-                </span>
-                <span className="text-xs text-ink-soft">Beispielrechnung</span>
-              </div>
-              <h3 className="font-display mt-4 text-xl font-bold text-ink">{t.grundsicherungTitle}</h3>
-              <div className="mt-4 flex items-end gap-2">
-                <IconCoin className="mb-1 h-6 w-6 shrink-0 text-brand-700" />
-                <p className="font-display text-3xl font-extrabold tracking-tight text-ink">
-                  {t.grundsicherungAmount}{" "}
-                  <span className="text-sm font-semibold text-ink-soft">{t.grundsicherungUnit}</span>
-                </p>
-              </div>
-              <p className="mt-1 text-xs text-ink-soft">{t.grundsicherungCaption}</p>
-              <Button href={href("/grundsicherungsrechner")} size="md" className="mt-6">
-                {t.grundsicherungCta}
-              </Button>
-            </div>
-
-            <div className="rounded-3xl border border-brand-700/30 bg-brand-50 p-6 sm:p-8">
-              <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
-                  <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
-                  {t.toolBadge}
-                </span>
-                <span className="text-xs text-ink-soft">Beispielrechnung</span>
-              </div>
-              <h3 className="font-display mt-4 text-xl font-bold text-ink">{t.bafoegTitle}</h3>
-              <div className="mt-4 flex items-end gap-2">
-                <IconCoin className="mb-1 h-6 w-6 shrink-0 text-brand-700" />
-                <p className="font-display text-3xl font-extrabold tracking-tight text-ink">
-                  {t.bafoegAmount} <span className="text-sm font-semibold text-ink-soft">{t.bafoegUnit}</span>
-                </p>
-              </div>
-              <p className="mt-1 text-xs text-ink-soft">{t.bafoegCaption}</p>
-              <Button href={href("/bafoegrechner")} size="md" className="mt-6">
-                {t.bafoegCta}
-              </Button>
-            </div>
-
-            <div className="rounded-3xl border border-brand-700/30 bg-brand-50 p-6 sm:p-8">
-              <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
-                  <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
-                  {t.toolBadge}
-                </span>
-                <span className="text-xs text-ink-soft">Beispielrechnung</span>
-              </div>
-              <h3 className="font-display mt-4 text-xl font-bold text-ink">{t.alg1Title}</h3>
-              <div className="mt-4 flex items-end gap-2">
-                <IconCoin className="mb-1 h-6 w-6 shrink-0 text-brand-700" />
-                <p className="font-display text-3xl font-extrabold tracking-tight text-ink">
-                  {t.alg1Amount} <span className="text-sm font-semibold text-ink-soft">{t.alg1Unit}</span>
-                </p>
-              </div>
-              <p className="mt-1 text-xs text-ink-soft">{t.alg1Caption}</p>
-              <Button href={href("/alg1")} size="md" className="mt-6">
-                {t.alg1Cta}
-              </Button>
-            </div>
+            ))}
           </div>
 
           <div className="mt-8 flex flex-wrap items-center gap-2 text-xs text-ink-soft">
-            <span className="font-semibold uppercase tracking-wide">{t.availableLanguages}:</span>
+            <span className="font-medium">{t.availableLanguages}:</span>
             {languages.map((l) => (
-              <span key={l.code} className="rounded-full border border-line bg-cream px-2.5 py-1 font-medium text-ink">
+              <span key={l.code} className="rounded-full bg-white px-2.5 py-1 font-medium text-ink">
                 {l.label}
               </span>
             ))}
@@ -212,46 +147,35 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* WARUM ANTRAGSBRUDER */}
-      <section className="bg-cream-deep/60">
-        <Container className="py-20">
-          <SectionHeading title={t.warumTitle} align="center" className="mx-auto" />
-          <div className="mt-10 grid gap-5 sm:grid-cols-3">
-            {warumPillars[locale].map((p, i) => {
-              const Icon = pillarIcons[i];
-              return <PillarCard key={p.title} icon={<Icon className="h-5 w-5" />} title={p.title} text={p.text} />;
-            })}
-          </div>
-        </Container>
+      <section className="px-3 sm:px-5">
+        <div className="rounded-[2rem] bg-cream-deep/70 sm:rounded-[2.5rem]">
+          <Container className="py-20 sm:py-24">
+            <SectionHeading title={t.warumTitle} align="center" rule />
+            <div className="mt-12 grid gap-4 sm:grid-cols-3">
+              {warumPillars[locale].map((p, i) => {
+                const Icon = pillarIcons[i];
+                return <PillarCard key={p.title} icon={<Icon className="h-5 w-5" />} title={p.title} text={p.text} />;
+              })}
+            </div>
+          </Container>
+        </div>
       </section>
 
-      {/* FOTOSTREIFEN */}
-      <section className="overflow-hidden">
-        <Container className="py-16 sm:py-20">
-          <div className="grid grid-cols-3 gap-4 sm:gap-6">
-            <PhotoFrame
-              src="/images/photos/coworking-warm.jpg"
-              alt=""
-              className="col-span-2 aspect-[4/3] sm:aspect-[16/9]"
-            />
-            <PhotoFrame src="/images/photos/ordner-regal.jpg" alt="" className="aspect-[3/4]" />
-          </div>
-        </Container>
-      </section>
-
-      {/* SO FUNKTIONIERT'S */}
+      {/* SO FUNKTIONIERT'S + Foto */}
       <section>
-        <Container className="py-20">
-          <SectionHeading eyebrow={t.howItWorksEyebrow} title={t.howItWorksTitle} align="center" className="mx-auto" />
-          <ol className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-3">
-            {t.howItWorksSteps.map((step, i) => (
-              <li key={step} className="rounded-3xl border border-line-soft bg-white p-5">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-900 text-xs font-semibold text-cream">
-                  {i + 1}
-                </span>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">{step}</p>
-              </li>
-            ))}
-          </ol>
+        <Container className="grid items-center gap-10 py-20 sm:py-28 lg:grid-cols-2 lg:gap-16">
+          <PhotoFrame src="/images/photos/ordner-regal.jpg" alt="" className="aspect-[4/3] lg:aspect-[5/6]" />
+          <div>
+            <SectionHeading eyebrow={t.howItWorksEyebrow} title={t.howItWorksTitle} rule />
+            <ol className="mt-10 space-y-6">
+              {t.howItWorksSteps.map((step, i) => (
+                <li key={step} className="flex gap-5 border-t border-line pt-6">
+                  <span className="font-display text-4xl text-brand-600">{i + 1}</span>
+                  <p className="pt-1 text-lg leading-relaxed text-ink-soft">{step}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
         </Container>
       </section>
 
@@ -273,18 +197,18 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <Link
                   key={post.slug}
                   href={`/${post.slug}`}
-                  className="group flex flex-col rounded-3xl border border-line-soft bg-white p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-700 hover:shadow-lg hover:shadow-brand-950/5"
+                  className="group flex flex-col rounded-3xl bg-white p-7 transition-shadow duration-200 hover:shadow-[0_18px_40px_-22px_rgba(34,33,31,0.35)]"
                 >
-                  <span className="w-fit rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold text-brand-800">
+                  <span className="w-fit rounded-full bg-brand-100 px-3 py-1 text-xs font-medium text-brand-900">
                     {post.category.label}
                   </span>
-                  <h3 className="font-display mt-4 text-lg font-bold leading-snug text-ink group-hover:text-brand-800">
+                  <h3 className="font-display mt-5 text-2xl text-ink">
                     {post.title}
                   </h3>
                   <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink-soft">
                     {post.excerpt}
                   </p>
-                  <span className="mt-4 text-sm font-semibold text-brand-700 group-hover:underline">
+                  <span className="mt-5 text-sm font-medium text-ink group-hover:underline">
                     Weiterlesen →
                   </span>
                 </Link>

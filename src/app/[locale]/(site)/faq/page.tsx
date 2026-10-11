@@ -57,7 +57,7 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
         <Container className="space-y-12">
           {groups.map((g) => (
             <div key={g.group}>
-              <h2 className="font-display mb-4 text-xl font-bold text-ink">{g.group}</h2>
+              <h2 className="font-display mb-4 text-2xl text-ink">{g.group}</h2>
               <FaqAccordion items={g.items} />
             </div>
           ))}

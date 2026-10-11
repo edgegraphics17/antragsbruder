@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { MascotIcon } from "@/components/ui/Logo";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { Breadcrumb } from "@/components/seo/Breadcrumb";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
@@ -43,21 +45,39 @@ function InlineText({ text }: { text: string }) {
   );
 }
 
+/** Titelbild je Themen-Cluster (erstes Slug-Segment). */
+const clusterImages: Record<string, string> = {
+  // Dateinamen sind historisch und passen nicht zum Motiv:
+  // aktenstapel = Hausfassade, fassade-muster = Büchermarkt.
+  wohngeld: "/images/photos/aktenstapel.jpg",
+  bafoeg: "/images/photos/fassade-muster.jpg",
+};
+
+const sectionId = (i: number) => `abschnitt-${i + 1}`;
+
+const formatDate = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("de-DE", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+
 function Block({ block }: { block: ContentBlock }) {
   switch (block.type) {
     case "paragraph":
       return (
-        <p className="leading-relaxed text-ink-soft">
+        <p>
           <InlineText text={block.text} />
         </p>
       );
     case "heading":
       return (
-        <h3 className="font-display mt-6 text-lg font-bold text-ink sm:text-xl">{block.text}</h3>
+        <h3 className="font-display pt-4 text-2xl text-ink sm:text-3xl">{block.text}</h3>
       );
     case "list":
       return (
-        <ul className="list-disc space-y-1.5 pl-5 leading-relaxed text-ink-soft">
+        <ul className="list-disc space-y-2 ps-6 marker:text-brand-500">
           {block.items.map((item) => (
             <li key={item}>
               <InlineText text={item} />
@@ -67,7 +87,7 @@ function Block({ block }: { block: ContentBlock }) {
       );
     case "steps":
       return (
-        <ol className="list-decimal space-y-1.5 pl-5 leading-relaxed text-ink-soft">
+        <ol className="list-decimal space-y-2 ps-6 marker:font-medium marker:text-brand-700">
           {block.items.map((item) => (
             <li key={item}>
               <InlineText text={item} />
@@ -81,10 +101,10 @@ function Block({ block }: { block: ContentBlock }) {
       return (
         <ul className="space-y-2">
           {block.items.map((item) => (
-            <li key={item} className="flex items-start gap-3 text-ink-soft">
+            <li key={item} className="flex items-start gap-3">
               <span
                 aria-hidden="true"
-                className="mt-0.5 h-4 w-4 shrink-0 rounded border-2 border-brand-700"
+                className="mt-1.5 h-4 w-4 shrink-0 rounded border-2 border-brand-500"
               />
               <span className="leading-relaxed">
                 <InlineText text={item} />
@@ -95,12 +115,12 @@ function Block({ block }: { block: ContentBlock }) {
       );
     case "table":
       return (
-        <div className="overflow-x-auto rounded-2xl border border-line-soft">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-cream-deep text-ink">
+        <div className="overflow-x-auto rounded-2xl bg-white">
+          <table className="w-full text-start text-sm sm:text-base">
+            <thead className="bg-cream-deep/70 text-ink">
               <tr>
                 {block.headers.map((h) => (
-                  <th key={h} scope="col" className="px-4 py-2 font-semibold">
+                  <th key={h} scope="col" className="px-4 py-3 font-medium">
                     {h}
                   </th>
                 ))}
@@ -110,7 +130,7 @@ function Block({ block }: { block: ContentBlock }) {
               {block.rows.map((row, i) => (
                 <tr key={i} className="border-t border-line-soft">
                   {row.map((cell, j) => (
-                    <td key={j} className="px-4 py-2">
+                    <td key={j} className="px-4 py-3">
                       {cell}
                     </td>
                   ))}
@@ -122,9 +142,9 @@ function Block({ block }: { block: ContentBlock }) {
       );
     case "callout":
       return (
-        <div className="rounded-2xl border border-brand-800/25 bg-brand-50 p-4 sm:p-5">
-          <p className="font-semibold text-brand-900">{block.title}</p>
-          <p className="mt-1 text-sm leading-relaxed text-ink-soft">{block.text}</p>
+        <div className="rounded-2xl border-s-4 border-mauve bg-mauve-soft p-5 sm:p-6">
+          <p className="font-medium text-ink">{block.title}</p>
+          <p className="mt-1 text-base leading-relaxed text-ink-soft">{block.text}</p>
         </div>
       );
   }
@@ -141,6 +161,39 @@ export function ClusterArticle({
   variant?: "full" | "body";
 }) {
   const pagePath = `/${content.slug}`;
+  const heroImage = clusterImages[content.slug.split("/")[0]];
+  const full = variant === "full";
+
+  const body = (
+    <div className="prose-ab space-y-14">
+      {content.sections.map((section, i) => (
+        <section key={section.heading} id={sectionId(i)} className="scroll-mt-28">
+          <h2 className="font-display mb-5 text-3xl text-ink sm:text-4xl">{section.heading}</h2>
+          <div className="space-y-5">
+            {section.blocks.map((block, j) => (
+              <Block key={j} block={block} />
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+
+  const toc = (
+    <ol className="mt-4 space-y-3 text-sm">
+      {content.sections.map((section, i) => (
+        <li key={section.heading}>
+          <a
+            href={`#${sectionId(i)}`}
+            className="flex gap-2 leading-snug text-ink-soft transition-colors hover:text-ink"
+          >
+            <span className="tabular-nums">{i + 1}.</span>
+            <span>{section.heading}</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  );
 
   return (
     <article>
@@ -160,78 +213,115 @@ export function ClusterArticle({
         ]}
       />
 
-      {/* H1 + Breadcrumb (nur im "full"-Variant; "body" rendert keine eigene H1) */}
-      {variant === "full" ? (
-        <section className="relative overflow-hidden">
-          <Container className="relative py-10 sm:py-14">
-            <Breadcrumb items={content.breadcrumb} />
-            <h1 className="font-display mt-4 max-w-3xl text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-              {content.h1}
-            </h1>
-            {/* Direct Answer: GEO-Kern, direkt unter der H1 */}
-            <div className="mt-5 max-w-3xl">
-              <DirectAnswer>{content.directAnswer}</DirectAnswer>
-            </div>
-
-            {content.quickAnswers && content.quickAnswers.length > 0 ? (
-              <div className="mt-6 max-w-3xl overflow-x-auto rounded-2xl border border-line-soft">
-                <table className="w-full text-left text-sm">
-                  <thead className="bg-cream-deep text-ink">
-                    <tr>
-                      <th scope="col" className="px-4 py-2 font-semibold">
-                        Frage
-                      </th>
-                      <th scope="col" className="px-4 py-2 font-semibold">
-                        Kurzantwort
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-ink-soft">
-                    {content.quickAnswers.map((qa) => (
-                      <tr key={qa.question} className="border-t border-line-soft">
-                        <td className="px-4 py-2 font-medium text-ink">{qa.question}</td>
-                        <td className="px-4 py-2">{qa.answer}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+      {/* Kopf: helle Fläche mit Breadcrumb, großer Serifen-H1, Autorzeile und Bild
+          (nur im "full"-Variant; "body" rendert keine eigene H1) */}
+      {full ? (
+        <section className="px-3 sm:px-5">
+          <div className="rounded-[2rem] bg-white sm:rounded-[2.5rem]">
+            <Container className="grid items-center gap-10 py-10 sm:py-16 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+              <div>
+                <Breadcrumb items={content.breadcrumb} />
+                <h1 className="font-display mt-6 text-4xl text-ink sm:text-6xl">{content.h1}</h1>
+                <p className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-soft">
+                  <MascotIcon className="h-9 w-9 rounded-full bg-brand-100" />
+                  <span className="font-medium text-ink">{editor.name}</span>
+                  <span aria-hidden="true">|</span>
+                  <span>Zuletzt geprüft am {formatDate(content.lastReviewed)}</span>
+                </p>
               </div>
-            ) : null}
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button href={content.primaryCta.href} size="md">
-                {content.primaryCta.label}
-              </Button>
-              {content.secondaryCta ? (
-                <Button href={content.secondaryCta.href} variant="secondary" size="md">
-                  {content.secondaryCta.label}
-                </Button>
+              {heroImage ? (
+                <div className="relative aspect-[16/10] overflow-hidden rounded-3xl bg-cream-deep">
+                  <Image
+                    src={heroImage}
+                    alt=""
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 520px, 92vw"
+                    className="object-cover"
+                  />
+                </div>
               ) : null}
-            </div>
-          </Container>
+            </Container>
+          </div>
         </section>
       ) : null}
 
-      {/* Hauptinhalt */}
-      <section className="pb-4">
-        <Container className="max-w-3xl space-y-12">
-          {content.sections.map((section) => (
-            <section key={section.heading}>
-              <h2 className="font-display mb-4 text-2xl font-bold text-ink">{section.heading}</h2>
-              <div className="space-y-4">
-                {section.blocks.map((block, i) => (
-                  <Block key={i} block={block} />
-                ))}
+      {/* Hauptinhalt: links Inhaltsverzeichnis (sticky), rechts Lesespalte */}
+      <section className="pb-8 pt-12 sm:pt-20">
+        {full ? (
+          <Container className="grid gap-10 lg:grid-cols-[17rem_minmax(0,1fr)] lg:gap-20">
+            <div className="min-w-0 max-w-3xl">
+              {/* Direct Answer: GEO-Kern, erster Inhalt der Lesespalte */}
+              <DirectAnswer>{content.directAnswer}</DirectAnswer>
+
+              {content.quickAnswers && content.quickAnswers.length > 0 ? (
+                <div className="mt-6 overflow-x-auto rounded-2xl bg-white">
+                  <table className="w-full text-start text-sm sm:text-base">
+                    <thead className="bg-cream-deep/70 text-ink">
+                      <tr>
+                        <th scope="col" className="px-4 py-3 font-medium">
+                          Frage
+                        </th>
+                        <th scope="col" className="px-4 py-3 font-medium">
+                          Kurzantwort
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-ink-soft">
+                      {content.quickAnswers.map((qa) => (
+                        <tr key={qa.question} className="border-t border-line-soft">
+                          <td className="px-4 py-3 font-medium text-ink">{qa.question}</td>
+                          <td className="px-4 py-3">{qa.answer}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : null}
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button href={content.primaryCta.href} size="md">
+                  {content.primaryCta.label}
+                </Button>
+                {content.secondaryCta ? (
+                  <Button href={content.secondaryCta.href} variant="secondary" size="md">
+                    {content.secondaryCta.label}
+                  </Button>
+                ) : null}
               </div>
-            </section>
-          ))}
-        </Container>
+
+              {/* Handy: Inhaltsverzeichnis einklappbar unter der Kurzantwort */}
+              <details className="mt-8 rounded-3xl bg-white p-6 lg:hidden">
+                <summary className="cursor-pointer font-medium text-ink">In diesem Artikel</summary>
+                {toc}
+              </details>
+
+              <div className="mt-14">{body}</div>
+            </div>
+
+            <aside className="hidden lg:sticky lg:top-28 lg:order-first lg:block lg:self-start">
+              <nav aria-label="Inhaltsverzeichnis" className="rounded-3xl bg-white p-6">
+                <p className="font-medium text-ink">In diesem Artikel</p>
+                {toc}
+              </nav>
+              <div className="mt-4 rounded-3xl bg-brand-100 p-6">
+                <p className="font-display text-2xl text-ink">{content.primaryCta.label}</p>
+                <Button href={content.primaryCta.href} size="md" className="mt-4 w-full">
+                  Los geht&apos;s
+                </Button>
+              </div>
+            </aside>
+
+          </Container>
+        ) : (
+          <Container className="max-w-3xl">{body}</Container>
+        )}
       </section>
 
       {/* FAQ */}
-      <section className="pb-16">
+      <section className="pb-16 pt-12">
         <Container className="max-w-3xl">
-          <h2 className="font-display mb-4 text-2xl font-bold text-ink">
+          <h2 className="font-display mb-6 text-3xl text-ink sm:text-4xl">
             Häufige Fragen zu {content.breadcrumb[content.breadcrumb.length - 1].name}
           </h2>
           <FaqAccordion items={content.faqs} />
@@ -248,12 +338,13 @@ export function ClusterArticle({
             sources={content.sources}
           />
           <nav aria-label="Weiterlesen im Themenbereich">
-            <h2 className="font-display text-xl font-bold text-ink">Weiterlesen</h2>
-            <ul className="mt-3 space-y-2">
+            <h2 className="font-display text-3xl text-ink">Weiterlesen</h2>
+            <ul className="mt-4 divide-y divide-line border-y border-line">
               {content.related.map((r) => (
                 <li key={r.href}>
-                  <Link href={r.href} className="text-brand-800 underline">
+                  <Link href={r.href} className="flex items-center justify-between gap-4 py-4 text-lg text-ink hover:text-brand-700">
                     {r.label}
+                    <span aria-hidden="true" className="rtl:-scale-x-100">→</span>
                   </Link>
                 </li>
               ))}

@@ -5,8 +5,8 @@ export function ProcessFlow({ steps }: { steps: string[] }) {
     <ol className="flex flex-col items-stretch gap-0">
       {steps.map((step, i) => (
         <li key={step} className="flex flex-col items-center">
-          <div className="flex w-full items-center gap-4 rounded-3xl border border-line-soft bg-white px-5 py-4 shadow-sm">
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-900 text-sm font-semibold text-cream">
+          <div className="flex w-full items-center gap-4 rounded-3xl border border-line-soft bg-white px-5 py-4 ">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink text-sm font-medium text-white">
               {i + 1}
             </span>
             <span className="text-sm font-medium text-ink sm:text-base">{step}</span>

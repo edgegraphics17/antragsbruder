@@ -45,7 +45,7 @@ export default async function WerWirSindPage({ params }: { params: Promise<{ loc
           <div className="mx-auto mt-10 grid max-w-5xl gap-6 sm:grid-cols-3">
             {t.warumGruende.map((g) => (
               <div key={g.title} className="rounded-3xl border border-line-soft bg-white p-6">
-                <h3 className="font-display text-lg font-bold text-ink">{g.title}</h3>
+                <h3 className="font-display text-2xl text-ink">{g.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">{g.text}</p>
               </div>
             ))}
@@ -60,7 +60,7 @@ export default async function WerWirSindPage({ params }: { params: Promise<{ loc
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
               {t.grenzen.map((item) => (
                 <div key={item.title} className="rounded-2xl border border-line-soft bg-white p-6">
-                  <h3 className="font-display text-base font-bold text-ink">{item.title}</h3>
+                  <h3 className="font-display text-xl text-ink">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">{item.text}</p>
                 </div>
               ))}
@@ -83,7 +83,7 @@ export default async function WerWirSindPage({ params }: { params: Promise<{ loc
           <div className="mx-auto mt-10 grid max-w-5xl gap-6 sm:grid-cols-3">
             {t.werte.map((w) => (
               <div key={w.title} className="rounded-3xl border border-line-soft bg-white p-6 text-center">
-                <h3 className="font-display text-lg font-bold text-ink">{w.title}</h3>
+                <h3 className="font-display text-2xl text-ink">{w.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">{w.text}</p>
               </div>
             ))}

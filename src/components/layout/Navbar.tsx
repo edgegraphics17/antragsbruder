@@ -107,10 +107,10 @@ export function Navbar({ locale }: { locale: Locale }) {
       </a>
 
       <div className="mx-auto flex w-full max-w-6xl justify-center">
-        <div className="flex w-full items-center justify-between gap-2 rounded-full border border-line-soft/80 bg-paper/85 py-2 ps-3 pe-2 shadow-[0_8px_30px_-12px_rgba(18,48,47,0.28)] backdrop-blur-md xl:w-auto xl:justify-start xl:gap-1 xl:ps-4 xl:pe-2">
+        <div className="flex w-full items-center justify-between gap-2 rounded-full border border-line-soft/80 bg-paper/85 py-2 ps-3 pe-2 shadow-[0_8px_30px_-14px_rgba(34,33,31,0.22)] backdrop-blur-md xl:w-auto xl:justify-start xl:gap-1 xl:ps-4 xl:pe-2">
           <Link
             href={localeHref(locale, "/")}
-            className="flex shrink-0 items-center gap-2 rounded-full font-display text-lg font-bold text-ink"
+            className="flex shrink-0 items-center gap-2 rounded-full font-display text-2xl text-ink"
           >
             <MascotIcon className="h-8 w-8" priority />
             <span>{site.name}</span>
@@ -124,7 +124,7 @@ export function Navbar({ locale }: { locale: Locale }) {
             {mainNav.map((group) => {
               const active = groupIsActive(currentPath, group);
               const itemClass = `flex h-10 items-center gap-1 whitespace-nowrap rounded-full px-3 text-sm font-medium transition-colors ${
-                active ? "bg-brand-100 text-brand-900" : "text-ink-soft hover:bg-brand-50 hover:text-brand-900"
+                active ? "bg-cream-deep text-ink" : "text-ink-soft hover:bg-cream hover:text-ink"
               }`;
 
               if (!group.items) {
@@ -163,7 +163,7 @@ export function Navbar({ locale }: { locale: Locale }) {
 
                   {expanded ? (
                     <div className="absolute start-1/2 top-full z-50 w-80 -translate-x-1/2 pt-3 rtl:translate-x-1/2">
-                      <div className="rounded-3xl border border-line-soft bg-white p-2 shadow-[0_16px_40px_-16px_rgba(18,48,47,0.35)]">
+                      <div className="rounded-3xl border border-line-soft bg-white p-2 shadow-[0_16px_40px_-18px_rgba(34,33,31,0.3)]">
                         {group.items.map((item) => (
                           <Link
                             key={item.href}
@@ -218,7 +218,7 @@ export function Navbar({ locale }: { locale: Locale }) {
               // Seit 2026-10-12: Kein öffentlicher Registrierungs-/Login-Zugang mehr.
               // Das Dashboard ist ein internes Projekt — Besucher erreichen uns
               // stattdessen über den Kontakt (keine Preise, offene Anfragen).
-              <Button href={localeHref(locale, "/kontakt")} variant="primary" size="md" className="ms-2 whitespace-nowrap">
+              <Button href={localeHref(locale, "/kontakt")} variant="primary" size="md" className="ms-2 whitespace-nowrap rounded-full">
                 {t.navbar.kontaktCta}
               </Button>
             )}
@@ -239,11 +239,11 @@ export function Navbar({ locale }: { locale: Locale }) {
       {mobileOpen ? (
         <div className="xl:hidden">
           <div
-            className="fixed inset-0 top-0 -z-10 bg-brand-950/30"
+            className="fixed inset-0 top-0 -z-10 bg-ink/30"
             aria-hidden="true"
             onClick={() => setMobileOpen(false)}
           />
-          <div className="mx-auto mt-2 max-h-[calc(100dvh-6rem)] w-full max-w-6xl overflow-y-auto rounded-3xl border border-line-soft bg-paper p-3 shadow-[0_16px_40px_-16px_rgba(18,48,47,0.35)]">
+          <div className="mx-auto mt-2 max-h-[calc(100dvh-6rem)] w-full max-w-6xl overflow-y-auto rounded-3xl border border-line-soft bg-paper p-3 shadow-[0_16px_40px_-18px_rgba(34,33,31,0.3)]">
             <nav className="flex flex-col" aria-label={t.navbar.mobileNavLabel}>
               {mainNav.map((group) => {
                 if (!group.items) {

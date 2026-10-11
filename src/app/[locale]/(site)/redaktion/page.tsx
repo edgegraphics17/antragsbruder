@@ -38,7 +38,7 @@ export default async function RedaktionPage({
   return (
     <section>
       <Container className="max-w-3xl py-16 sm:py-20">
-        <h1 className="font-display text-4xl font-bold tracking-tight text-ink">
+        <h1 className="font-display text-5xl text-ink">
           Redaktion &amp; Qualitätsstandards
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-ink-soft">

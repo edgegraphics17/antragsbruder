@@ -30,7 +30,7 @@ function BenefitDetail({ benefit }: { benefit: Benefit }) {
           <Link href="/datenbank" className="text-brand-300 hover:text-cream text-sm">
             ← Zurück zur Datenbank
           </Link>
-          <h1 className="mt-4 font-display text-3xl sm:text-4xl font-bold">
+          <h1 className="mt-4 font-display text-4xl sm:text-5xl">
             {benefit.official_name}
           </h1>
           <div className="mt-4 flex flex-wrap gap-2">
@@ -50,7 +50,7 @@ function BenefitDetail({ benefit }: { benefit: Benefit }) {
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Quick Info */}
         <section className="rounded-2xl border border-line-soft bg-white p-6 mb-8">
-          <h2 className="font-display text-xl font-bold text-ink mb-4">Kurzübersicht</h2>
+          <h2 className="font-display text-2xl text-ink mb-4">Kurzübersicht</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <p className="text-xs font-semibold uppercase text-ink-soft">Zielgruppe</p>
@@ -73,7 +73,7 @@ function BenefitDetail({ benefit }: { benefit: Benefit }) {
 
         {/* Eligibility */}
         <section className="rounded-2xl border border-line-soft bg-white p-6 mb-8">
-          <h2 className="font-display text-xl font-bold text-ink mb-4">Voraussetzungen</h2>
+          <h2 className="font-display text-2xl text-ink mb-4">Voraussetzungen</h2>
           <ul className="space-y-3">
             {benefit.eligibility?.rules?.map((rule) => (
               <li key={rule.rule_id} className="flex items-start gap-3">
@@ -101,7 +101,7 @@ function BenefitDetail({ benefit }: { benefit: Benefit }) {
 
         {/* Calculation */}
         <section className="rounded-2xl border border-line-soft bg-white p-6 mb-8">
-          <h2 className="font-display text-xl font-bold text-ink mb-4">Berechnung & Höhe</h2>
+          <h2 className="font-display text-2xl text-ink mb-4">Berechnung & Höhe</h2>
           <p className="text-sm text-ink mb-4">{benefit.calculation?.method}</p>
           {benefit.calculation?.steps && benefit.calculation.steps.length > 0 && (
             <ol className="space-y-3">
@@ -128,7 +128,7 @@ function BenefitDetail({ benefit }: { benefit: Benefit }) {
 
         {/* Application */}
         <section className="rounded-2xl border border-line-soft bg-white p-6 mb-8">
-          <h2 className="font-display text-xl font-bold text-ink mb-4">Antragstellung</h2>
+          <h2 className="font-display text-2xl text-ink mb-4">Antragstellung</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <p className="text-xs font-semibold uppercase text-ink-soft">Antragsweg</p>
@@ -163,7 +163,7 @@ function BenefitDetail({ benefit }: { benefit: Benefit }) {
 
         {/* Legal */}
         <section className="rounded-2xl border border-line-soft bg-white p-6 mb-8">
-          <h2 className="font-display text-xl font-bold text-ink mb-4">Rechtsgrundlagen</h2>
+          <h2 className="font-display text-2xl text-ink mb-4">Rechtsgrundlagen</h2>
           <ul className="space-y-1">
             {benefit.legal_basis?.map((law, i) => (
               <li key={i} className="text-sm text-ink-soft">{law}</li>
@@ -173,7 +173,7 @@ function BenefitDetail({ benefit }: { benefit: Benefit }) {
 
         {/* Sources */}
         <section className="rounded-2xl border border-line-soft bg-white p-6">
-          <h2 className="font-display text-xl font-bold text-ink mb-4">Quellen</h2>
+          <h2 className="font-display text-2xl text-ink mb-4">Quellen</h2>
           <ul className="space-y-3">
             {benefit.official_sources?.map((source, i) => (
               <li key={i} className="flex items-start gap-3">

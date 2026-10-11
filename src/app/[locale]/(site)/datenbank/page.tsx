@@ -33,7 +33,7 @@ export default function DatenbankPage({ params }: { params: Promise<{ locale: st
       {/* Hero */}
       <section className="bg-brand-950 text-cream py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4">
-          <h1 className="font-display text-4xl sm:text-5xl font-bold">
+          <h1 className="font-display text-5xl sm:text-6xl">
             Fördermittel-Datenbank
           </h1>
           <p className="mt-4 text-lg text-brand-200 max-w-2xl">
@@ -88,7 +88,7 @@ export default function DatenbankPage({ params }: { params: Promise<{ locale: st
                     </span>
                   )}
                 </div>
-                <h2 className="mt-3 font-display text-lg font-bold text-ink group-hover:text-brand-700">
+                <h2 className="mt-3 font-display text-2xl text-ink group-hover:text-brand-700">
                   {benefit.official_name}
                 </h2>
                 <p className="mt-2 text-sm text-ink-soft line-clamp-3">

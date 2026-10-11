@@ -63,7 +63,7 @@ export default async function WohngeldAntragPage({
               <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
               {t.eyebrow}
             </span>
-            <h1 className="font-display mt-5 text-4xl font-bold leading-[1.1] tracking-tight text-ink sm:text-5xl">
+            <h1 className="font-display mt-5 text-5xl text-ink sm:text-6xl">
               {t.title}
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">{t.lede}</p>
@@ -94,7 +94,7 @@ export default async function WohngeldAntragPage({
             {hasSummary ? (
               <>
                 <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft">{t.summaryTitle}</p>
-                <p className="font-display mt-2 text-4xl font-extrabold tracking-tight text-ink">
+                <p className="font-display mt-2 text-5xl text-ink">
                   {sp.betrag ?? "–"} <span className="text-base font-semibold text-ink-soft">{tc.perMonth}</span>
                 </p>
                 <dl className="mt-5 space-y-2.5 border-t border-line-soft pt-5 text-sm">
@@ -125,7 +125,7 @@ export default async function WohngeldAntragPage({
               </>
             )}
             <div className="mt-6 border-t border-line-soft pt-6">
-              <p className="font-display text-3xl font-extrabold text-ink">{t.priceLabel}</p>
+              <p className="font-display text-4xl text-ink">{t.priceLabel}</p>
               <p className="mt-1 text-xs text-ink-soft">{t.priceNote}</p>
               <Button href={ctaHref} size="lg" className="mt-5 w-full">
                 {t.pricingCardCta}
@@ -140,7 +140,7 @@ export default async function WohngeldAntragPage({
         <Container className="py-16 sm:py-20">
           <div className="max-w-2xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-700">{t.includedTitle}</p>
-            <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">{t.includedLede}</h2>
+            <h2 className="font-display text-4xl text-ink sm:text-5xl">{t.includedLede}</h2>
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             {t.included.map((item) => (
@@ -185,15 +185,15 @@ export default async function WohngeldAntragPage({
         <Container className="py-16 sm:py-20">
           <div className="max-w-2xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-700">{t.processTitle}</p>
-            <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">{t.processLede}</h2>
+            <h2 className="font-display text-4xl text-ink sm:text-5xl">{t.processLede}</h2>
           </div>
           <ol className="relative mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {t.process.map((step, i) => (
               <li key={step.title} className="relative rounded-3xl border border-line-soft bg-white p-6">
-                <span className="font-display flex h-10 w-10 items-center justify-center rounded-full bg-brand-900 text-base font-bold text-cream">
+                <span className="font-display flex h-10 w-10 items-center justify-center rounded-full bg-brand-900 text-xl text-cream">
                   {i + 1}
                 </span>
-                <p className="mt-4 font-display text-lg font-bold text-ink">{step.title}</p>
+                <p className="mt-4 font-display text-2xl text-ink">{step.title}</p>
                 <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">{step.text}</p>
               </li>
             ))}
@@ -205,7 +205,7 @@ export default async function WohngeldAntragPage({
       <section className="bg-cream-deep/60">
         <Container className="py-16 sm:py-20">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">{t.faqTitle}</h2>
+            <h2 className="font-display text-4xl text-ink sm:text-5xl">{t.faqTitle}</h2>
           </div>
           <div className="mx-auto mt-10 max-w-2xl">
             <FaqAccordion items={t.faq.map((f) => ({ question: f.q, answer: f.a }))} />

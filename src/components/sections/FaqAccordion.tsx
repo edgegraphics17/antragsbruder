@@ -20,7 +20,7 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
                 aria-controls={`faq-panel-${i}`}
                 onClick={() => setOpenIndex(isOpen ? null : i)}
               >
-                <span className="text-base font-medium text-ink">{item.question}</span>
+                <span className="text-base font-medium text-ink sm:text-lg">{item.question}</span>
                 <span
                   className={`shrink-0 text-brand-700 transition-transform duration-200 ${
                     isOpen ? "rotate-180" : ""
@@ -38,7 +38,7 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
               }`}
             >
               <div className="overflow-hidden">
-                <p className="px-5 pb-5 text-sm leading-relaxed text-ink-soft sm:px-6">{item.answer}</p>
+                <p className="px-5 pb-5 text-base leading-relaxed text-ink-soft sm:px-6">{item.answer}</p>
               </div>
             </div>
           </div>

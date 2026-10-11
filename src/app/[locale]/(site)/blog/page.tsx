@@ -75,7 +75,7 @@ export default async function BlogPage({
       <section>
         <Container className="py-14 sm:py-20">
           <Breadcrumb items={breadcrumb} />
-          <h1 className="font-display mt-4 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <h1 className="font-display mt-4 text-4xl text-ink sm:text-5xl">
             Blog: Ratgeber zu Leistungen, Anträgen &amp; Behörden
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-soft">

@@ -153,7 +153,7 @@ export function BafoegCalculator({ locale }: { locale: LangCode }) {
 
       <div className="mb-8 text-center">
         <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-brand-700">{t.eyebrow}</p>
-        <h1 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">{t.title}</h1>
+        <h1 className="font-display text-4xl text-ink sm:text-5xl">{t.title}</h1>
         <p className="mt-3 text-base leading-relaxed text-ink-soft">{t.lede}</p>
       </div>
 
@@ -177,7 +177,7 @@ export function BafoegCalculator({ locale }: { locale: LangCode }) {
         {step === 1 ? (
           <div className="space-y-6">
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">{t.step1Title}</h2>
+              <h2 className="font-display text-2xl text-ink">{t.step1Title}</h2>
               <p className="mt-1 text-sm text-ink-soft">{t.step1Lede}</p>
             </div>
 
@@ -234,7 +234,7 @@ export function BafoegCalculator({ locale }: { locale: LangCode }) {
         {step === 2 && !isParentIndependent ? (
           <div className="space-y-6">
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">{t.step2Title}</h2>
+              <h2 className="font-display text-2xl text-ink">{t.step2Title}</h2>
               <p className="mt-1 text-sm text-ink-soft">{t.step2Lede}</p>
             </div>
 
@@ -325,7 +325,7 @@ export function BafoegCalculator({ locale }: { locale: LangCode }) {
         {step === 3 ? (
           <div className="space-y-6">
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">{t.step3Title}</h2>
+              <h2 className="font-display text-2xl text-ink">{t.step3Title}</h2>
               <p className="mt-1 text-sm text-ink-soft">{t.step3Lede}</p>
             </div>
 
@@ -415,7 +415,7 @@ export function BafoegCalculator({ locale }: { locale: LangCode }) {
                 {result.eligible ? t.resultYes : t.resultNo}
               </span>
 
-              <div className="mt-3 font-display text-5xl font-extrabold tracking-tight text-ink sm:text-6xl">
+              <div className="mt-3 font-display text-6xl text-ink sm:text-7xl">
                 {formattedAmount} <span className="text-xl font-semibold text-ink-soft">{t.perMonth}</span>
               </div>
 
@@ -447,10 +447,10 @@ export function BafoegCalculator({ locale }: { locale: LangCode }) {
             </div>
 
             <div className="rounded-3xl border border-brand-700/30 bg-brand-50 p-5 sm:p-6">
-              <h3 className="font-display text-lg font-bold text-brand-900">{t.ctaTitle}</h3>
+              <h3 className="font-display text-2xl text-brand-900">{t.ctaTitle}</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-soft">{t.ctaText}</p>
               <div className="mt-4 flex items-center gap-2">
-                <span className="font-display text-2xl font-extrabold text-brand-900">{t.ctaPrice}</span>
+                <span className="font-display text-3xl text-brand-900">{t.ctaPrice}</span>
               </div>
               <Button href={localeHref(lang, "/hilfe-starten")} size="lg" className="mt-4 w-full">
                 {t.ctaButton}

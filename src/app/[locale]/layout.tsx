@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Baloo_2 } from "next/font/google";
+import { Inter, Instrument_Serif, Noto_Serif_Display } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { AuthLayoutWrapper } from "@/components/auth/AuthLayoutWrapper";
@@ -24,11 +24,21 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-const headingFont = Baloo_2({
+const headingFont = Instrument_Serif({
   variable: "--font-heading",
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  subsets: ["latin", "latin-ext"],
+  weight: "400",
   display: "swap",
+});
+
+// Instrument Serif hat kein Kyrillisch – für ru/uk/bg springt diese Serife ein
+// (wird nur geladen, wenn kyrillische Zeichen auf der Seite stehen).
+const headingFontCyr = Noto_Serif_Display({
+  variable: "--font-heading-cyr",
+  subsets: ["cyrillic"],
+  weight: "400",
+  display: "swap",
+  preload: false,
 });
 
 export function generateStaticParams() {
@@ -145,7 +155,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} dir={dir}>
-      <body className={`${bodyFont.variable} ${headingFont.variable} antialiased`}>
+      <body className={`${bodyFont.variable} ${headingFont.variable} ${headingFontCyr.variable} antialiased`}>
         <script
           type="application/ld+json"
           // Statisches Entity-Markup, keine Nutzerdaten – dangerouslySetInnerHTML hier sicher.

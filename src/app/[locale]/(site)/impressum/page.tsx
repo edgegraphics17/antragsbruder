@@ -35,7 +35,7 @@ export default async function ImpressumPage({ params }: { params: Promise<{ loca
   return (
     <section>
       <Container className="max-w-3xl py-16 sm:py-20">
-        <h1 className="font-display text-4xl font-bold tracking-tight text-ink">{t.pageTitle}</h1>
+        <h1 className="font-display text-5xl text-ink">{t.pageTitle}</h1>
         <p className="mt-4 text-sm text-ink-soft">{t.subtitle}</p>
 
         <div className="mt-8">

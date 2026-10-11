@@ -15,7 +15,7 @@ export function PhotoFrame({
 }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-[2rem] border border-line-soft shadow-lg shadow-brand-950/10 ${className}`}
+      className={`relative overflow-hidden rounded-3xl bg-cream-deep ${className}`}
     >
       <Image
         src={src}
@@ -25,7 +25,6 @@ export function PhotoFrame({
         sizes={sizes}
         className="object-cover"
       />
-      <div className="absolute inset-0 bg-brand-900/15 mix-blend-multiply" aria-hidden="true" />
     </div>
   );
 }

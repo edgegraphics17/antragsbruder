@@ -41,9 +41,9 @@ export function TrustBox({
   return (
     <aside
       aria-label="Geprüfte Informationen: Quellen und Rechtsstand"
-      className="rounded-3xl border border-line-soft bg-cream-deep/60 p-5 sm:p-6"
+      className="rounded-3xl bg-white p-6 sm:p-8"
     >
-      <h2 className="font-display text-base font-bold text-ink">Geprüfte Informationen</h2>
+      <h2 className="font-display text-2xl text-ink">Geprüfte Informationen</h2>
       <dl className="mt-3 space-y-2 text-sm leading-relaxed text-ink-soft">
         <div className="flex flex-wrap gap-x-2">
           <dt className="font-semibold text-ink">Rechtsstand:</dt>

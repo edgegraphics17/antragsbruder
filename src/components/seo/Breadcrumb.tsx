@@ -16,8 +16,8 @@ export function Breadcrumb({ items }: { items: BreadcrumbEntry[] }) {
           return (
             <li key={item.href} className="flex items-center gap-x-2">
               {i > 0 && (
-                <span aria-hidden="true" className="select-none">
-                  /
+                <span aria-hidden="true" className="select-none text-ink-soft/60 rtl:-scale-x-100">
+                  ›
                 </span>
               )}
               {isLast ? (
@@ -25,7 +25,7 @@ export function Breadcrumb({ items }: { items: BreadcrumbEntry[] }) {
                   {item.name}
                 </span>
               ) : (
-                <Link href={item.href} className="underline hover:text-ink">
+                <Link href={item.href} className="hover:text-ink hover:underline">
                   {item.name}
                 </Link>
               )}

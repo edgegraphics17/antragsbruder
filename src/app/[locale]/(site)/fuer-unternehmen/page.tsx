@@ -40,7 +40,7 @@ export default async function FuerUnternehmenPage({ params }: { params: Promise<
               <IconBuilding className="h-3.5 w-3.5" />
               {t.eyebrow}
             </div>
-            <h1 className="font-display mt-5 text-4xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl">
+            <h1 className="font-display mt-5 text-5xl text-ink sm:text-6xl">
               {t.title}
             </h1>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-ink-soft">{t.lede}</p>
@@ -64,7 +64,7 @@ export default async function FuerUnternehmenPage({ params }: { params: Promise<
           <div className="mt-10 grid gap-5 sm:grid-cols-3">
             {t.whyItems.map((item) => (
               <div key={item.title} className="rounded-3xl border border-line-soft bg-white p-6">
-                <h3 className="font-display text-lg font-bold text-ink">{item.title}</h3>
+                <h3 className="font-display text-2xl text-ink">{item.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">{item.text}</p>
               </div>
             ))}
@@ -108,7 +108,7 @@ export default async function FuerUnternehmenPage({ params }: { params: Promise<
       <section>
         <Container className="py-20">
           <div className="rounded-3xl border border-brand-700/30 bg-brand-50 p-8 sm:p-12">
-            <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">{t.ctaTitle}</h2>
+            <h2 className="font-display text-3xl text-ink sm:text-4xl">{t.ctaTitle}</h2>
             <p className="mt-4 max-w-2xl leading-relaxed text-ink-soft">{t.ctaText}</p>
             <Button href={href("/kontakt")} size="lg" className="mt-8">
               {t.ctaPrimary}

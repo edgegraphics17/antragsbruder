@@ -54,7 +54,7 @@ export default async function WohngeldPillarPage({
       {/* Rechner-Modul direkt auf der Pillar-Page (Conversion-Architektur §26) */}
       <section aria-labelledby="wohngeld-rechner-modul" className="pb-20">
         <Container>
-          <h2 id="wohngeld-rechner-modul" className="font-display mb-6 text-center text-2xl font-bold text-ink">
+          <h2 id="wohngeld-rechner-modul" className="font-display mb-6 text-center text-3xl text-ink">
             Prüfe jetzt deinen Anspruch
           </h2>
           <WohngeldCalculator locale="de" headingLevel="h2" />

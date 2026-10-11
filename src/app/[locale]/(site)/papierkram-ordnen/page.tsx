@@ -54,7 +54,7 @@ export default async function PapierkramOrdnenPage({ params }: { params: Promise
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
             {t.whatWeDoItems.map((item) => (
               <div key={item.title} className="rounded-3xl border border-line-soft bg-white p-6">
-                <h3 className="font-display text-base font-bold text-ink">{item.title}</h3>
+                <h3 className="font-display text-xl text-ink">{item.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">{item.text}</p>
               </div>
             ))}

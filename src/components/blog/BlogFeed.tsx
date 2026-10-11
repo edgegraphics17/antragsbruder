@@ -33,7 +33,7 @@ function PostCard({ post }: { post: BlogPost }) {
           {formatDate(post.date)}
         </time>
       </div>
-      <h2 className="font-display mt-4 text-lg font-bold leading-snug text-ink group-hover:text-brand-800">
+      <h2 className="font-display mt-4 text-2xl text-ink group-hover:text-brand-800">
         {post.title}
       </h2>
       <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink-soft">{post.excerpt}</p>
