@@ -101,7 +101,7 @@ export default async function AntragVorbereitenPage({ params }: { params: Promis
         primaryLabel={t.ctaPrimaryLabel}
         primaryHref={href("/hilfe-starten?anliegen=antrag")}
         secondaryLabel={t.ctaSecondaryLabel}
-        secondaryHref={href("/preise")}
+        secondaryHref={href("/kontakt")}
       />
     </>
   );

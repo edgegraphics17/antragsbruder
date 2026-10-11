@@ -21,19 +21,23 @@ type StructureGroup = { key: string; href?: string; items?: StructureLink[] };
 
 // "Hilfe starten" is intentionally absent here: it is the header's primary CTA
 // button on the right, so listing it again as a nav link would duplicate it.
+//
+// Navigation seit 2026-10-12 (Konzept-Umbau auf Ratgeber-Plattform):
+// - Preise raus (kein Preis-/Service-Konzept mehr, offene Anfragen über Kontakt)
+// - Fokus auf informative Ratgeber-Cluster + Rechner
+// - Neue Gruppe "Für Unternehmen" (B2B: Papierkram für Unternehmen, generisch)
 const structure: StructureGroup[] = [
   {
-    key: "services",
+    key: "ratgeber",
     items: [
       { key: "anspruecheChecken", href: "/ansprueche-checken" },
-      { key: "briefVerstehen", href: "/brief-verstehen" },
-      { key: "antragVorbereiten", href: "/antrag-vorbereiten" },
-      { key: "unterlagenCheck", href: "/unterlagen-check" },
-      { key: "papierkramOrdnen", href: "/papierkram-ordnen" },
+      { key: "wohngeld", href: "/wohngeld" },
+      { key: "datenbank", href: "/datenbank" },
+      { key: "blog", href: "/blog" },
     ],
   },
   {
-    key: "tools",
+    key: "rechner",
     items: [
       { key: "wohngeldRechner", href: "/wohngeld/rechner" },
       { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
@@ -42,33 +46,34 @@ const structure: StructureGroup[] = [
     ],
   },
   {
+    key: "unternehmen",
+    items: [
+      { key: "fuerUnternehmen", href: "/fuer-unternehmen" },
+      { key: "kontakt", href: "/kontakt" },
+    ],
+  },
+  {
     key: "mehr",
     items: [
       { key: "howItWorks", href: "/so-funktionierts" },
-      { key: "pricing", href: "/preise" },
       { key: "ueberUns", href: "/wer-wir-sind" },
       { key: "faq", href: "/faq" },
-      { key: "blog", href: "/blog" },
-      { key: "datenbank", href: "/datenbank" },
     ],
   },
-  { key: "kontakt", href: "/kontakt" },
 ];
 
 const footerStructure: Record<"produkt" | "unternehmen" | "legal", StructureLink[]> = {
   produkt: [
     { key: "anspruecheChecken", href: "/ansprueche-checken" },
-    { key: "briefVerstehen", href: "/brief-verstehen" },
-    { key: "antragVorbereiten", href: "/antrag-vorbereiten" },
-    { key: "unterlagenCheck", href: "/unterlagen-check" },
-    { key: "papierkramOrdnen", href: "/papierkram-ordnen" },
-    { key: "pricing", href: "/preise" },
     { key: "wohngeld", href: "/wohngeld" },
     { key: "wohngeldRechner", href: "/wohngeld/rechner" },
     { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
     { key: "bafoegRechner", href: "/bafoegrechner" },
+    { key: "alg1Rechner", href: "/alg1" },
+    { key: "datenbank", href: "/datenbank" },
   ],
   unternehmen: [
+    { key: "fuerUnternehmen", href: "/fuer-unternehmen" },
     { key: "ueberUns", href: "/wer-wir-sind" },
     { key: "howItWorks", href: "/so-funktionierts" },
     { key: "blog", href: "/blog" },

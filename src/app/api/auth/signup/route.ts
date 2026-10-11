@@ -12,6 +12,22 @@ import { signupSchema } from '@/lib/api-validation';
 import { trackError } from '@/lib/sentry';
 
 export async function POST(request: Request) {
+  // ============================================================
+  // ÖFFENTLICHE REGISTRIERUNG GESPERRT (seit 2026-10-12)
+  // Das Dashboard ist ein internes Projekt — normale Besucher dürfen
+  // keinen Account erstellen. Die Registrierung bleibt im Code erhalten
+  // (um sie später freizuschalten), wird aber serverseitig blockiert.
+  // Neue Nutzer kommen nur über Kontakt → manuelle Anlage ins Team.
+  // Zum Freischalten: SIGNUPS_ENABLED auf true setzen (oder ENV-Flag).
+  // ============================================================
+  const SIGNUPS_ENABLED = false;
+  if (!SIGNUPS_ENABLED) {
+    return NextResponse.json(
+      { error: 'Die Registrierung ist derzeit geschlossen. Bitte kontaktiere uns über das Kontaktformular.' },
+      { status: 403 },
+    );
+  }
+
   // Rate-Limiting: Auth-Endpunkte sind brute-force-angreifbar
   const ip = getClientIp(request);
   const rate = checkRateLimit(ip, 'auth');

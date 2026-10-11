@@ -17,6 +17,7 @@ export function KontaktForm({
   const t = dict[locale];
   const themen = [
     { value: "allgemein", label: t.formThemaAllgemein, email: site.contactEmail },
+    { value: "unternehmen", label: t.formThemaUnternehmen, email: site.contactEmail },
     { value: "support", label: t.formThemaSupport, email: site.supportEmail },
     { value: "partner", label: t.formThemaPartner, email: site.partnerEmail },
   ];

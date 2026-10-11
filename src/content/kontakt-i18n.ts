@@ -12,6 +12,7 @@ export type Dict = {
   formThemaAllgemein: string;
   formThemaSupport: string;
   formThemaPartner: string;
+  formThemaUnternehmen: string;
   formNameLabel: string;
   formEmailLabel: string;
   formMessageLabel: string;
@@ -21,6 +22,12 @@ export type Dict = {
   formError: string;
   formSubmit: string;
   formSubmittedPrefix: string;
+  // Seit 2026-10-12: offene Anfragen, keine Preise, B2B
+  b2bTitle: string;
+  b2bText: string;
+  b2bLink: string;
+  noPricesTitle: string;
+  noPricesText: string;
 };
 
 export const dict: Record<Locale, Dict> = {
@@ -35,6 +42,7 @@ export const dict: Record<Locale, Dict> = {
     formThemaAllgemein: "Allgemeine Frage",
     formThemaSupport: "Support zu meinem Vorgang",
     formThemaPartner: "Partnerschaft",
+    formThemaUnternehmen: "Unternehmen / Papierkram (B2B)",
     formNameLabel: "Name",
     formEmailLabel: "E-Mail",
     formMessageLabel: "Nachricht",
@@ -44,6 +52,11 @@ export const dict: Record<Locale, Dict> = {
     formError: "Bitte Name, E-Mail und Nachricht ausfüllen und Häkchen setzen.",
     formSubmit: "Jetzt senden",
     formSubmittedPrefix: "Fast geschafft! Falls sich dein E-Mail-Programm nicht geöffnet hat, schreib uns direkt an",
+    b2bTitle: "Unternehmen & Papierkram (B2B)",
+    b2bText: "Du suchst Unterstützung bei Anträgen, Förderungen und behördlichem Papierkram für dein Unternehmen?",
+    b2bLink: "Mehr zu unserem Service für Unternehmen",
+    noPricesTitle: "Keine Preise – individuelle Absprache",
+    noPricesText: "Wir veröffentlichen bewusst keine Preise. Schreib uns dein Anliegen und wir besprechen alles Weitere persönlich.",
   },
   en: {
     metaTitle: "Contact",
@@ -56,6 +69,7 @@ export const dict: Record<Locale, Dict> = {
     formThemaAllgemein: "General question",
     formThemaSupport: "Support for my case",
     formThemaPartner: "Partnership",
+    formThemaUnternehmen: "Business / paperwork (B2B)",
     formNameLabel: "Name",
     formEmailLabel: "Email",
     formMessageLabel: "Message",
@@ -65,6 +79,11 @@ export const dict: Record<Locale, Dict> = {
     formError: "Please fill in name, email and message, and check the box.",
     formSubmit: "Send now",
     formSubmittedPrefix: "Almost there! If your email program didn't open, write to us directly at",
+    b2bTitle: "Business & paperwork (B2B)",
+    b2bText: "Looking for support with applications, funding and bureaucratic paperwork for your business?",
+    b2bLink: "More about our service for businesses",
+    noPricesTitle: "No prices – individual agreement",
+    noPricesText: "We deliberately don't publish prices. Write to us about your concern and we'll discuss everything personally.",
   },
   ar: {
     metaTitle: "اتصل بنا",
@@ -77,6 +96,7 @@ export const dict: Record<Locale, Dict> = {
     formThemaAllgemein: "سؤال عام",
     formThemaSupport: "دعم بخصوص حالتي",
     formThemaPartner: "شراكة",
+    formThemaUnternehmen: "شركة / أوراق (B2B)",
     formNameLabel: "الاسم",
     formEmailLabel: "البريد الإلكتروني",
     formMessageLabel: "الرسالة",
@@ -86,6 +106,11 @@ export const dict: Record<Locale, Dict> = {
     formError: "يرجى تعبئة الاسم والبريد الإلكتروني والرسالة، وتحديد المربع.",
     formSubmit: "إرسال الآن",
     formSubmittedPrefix: "على وشك الانتهاء! إذا لم يفتح برنامج البريد الإلكتروني لديك، راسلنا مباشرة على",
+    b2bTitle: "شركة وأوراق (B2B)",
+    b2bText: "تبحث عن دعم في الطلبات والتمويل والأوراق الرسمية لشركتك؟",
+    b2bLink: "المزيد عن خدمتنا للشركات",
+    noPricesTitle: "لا أسعار – اتفاق فردي",
+    noPricesText: "ننشر الأسعار عن قصد. اكتب لنا عن طلبك وسنناقش كل شيء شخصيًا.",
   },
   tr: {
     metaTitle: "İletişim",
@@ -98,6 +123,7 @@ export const dict: Record<Locale, Dict> = {
     formThemaAllgemein: "Genel soru",
     formThemaSupport: "Sürecimle ilgili destek",
     formThemaPartner: "İş ortaklığı",
+    formThemaUnternehmen: "İşletme / evrak (B2B)",
     formNameLabel: "Ad",
     formEmailLabel: "E-posta",
     formMessageLabel: "Mesaj",
@@ -107,6 +133,11 @@ export const dict: Record<Locale, Dict> = {
     formError: "Lütfen ad, e-posta ve mesajı doldur ve kutuyu işaretle.",
     formSubmit: "Şimdi gönder",
     formSubmittedPrefix: "Neredeyse tamam! E-posta programın açılmadıysa, bize doğrudan şu adresten yaz:",
+    b2bTitle: "İşletme ve evrak (B2B)",
+    b2bText: "Şirketin için başvurular, teşvikler ve resmi evrak konusunda destek mi arıyorsun?",
+    b2bLink: "Şirketler için hizmetimiz hakkında daha fazlası",
+    noPricesTitle: "Fiyat yok – bireysel anlaşma",
+    noPricesText: "Bilerek fiyat yayınlamıyoruz. Talebini bize yaz, her şeyi kişisel olarak konuşalım.",
   },
   ru: {
     metaTitle: "Контакты",
@@ -119,6 +150,7 @@ export const dict: Record<Locale, Dict> = {
     formThemaAllgemein: "Общий вопрос",
     formThemaSupport: "Поддержка по моему случаю",
     formThemaPartner: "Партнёрство",
+    formThemaUnternehmen: "Компания / документы (B2B)",
     formNameLabel: "Имя",
     formEmailLabel: "Эл. почта",
     formMessageLabel: "Сообщение",
@@ -128,6 +160,11 @@ export const dict: Record<Locale, Dict> = {
     formError: "Пожалуйста, заполните имя, эл. почту и сообщение и поставьте галочку.",
     formSubmit: "Отправить",
     formSubmittedPrefix: "Почти готово! Если ваша почтовая программа не открылась, напишите нам напрямую на",
+    b2bTitle: "Компания и документы (B2B)",
+    b2bText: "Ищете поддержку с заявками, финансированием и официальными документами для вашей компании?",
+    b2bLink: "Подробнее о нашей услуге для компаний",
+    noPricesTitle: "Нет цен – индивидуальная договорённость",
+    noPricesText: "Мы осознанно не публикуем цены. Напишите нам о вашем запросе, и мы всё обсудим лично.",
   },
   uk: {
     metaTitle: "Контакти",
@@ -140,6 +177,7 @@ export const dict: Record<Locale, Dict> = {
     formThemaAllgemein: "Загальне запитання",
     formThemaSupport: "Підтримка щодо моєї справи",
     formThemaPartner: "Партнерство",
+    formThemaUnternehmen: "Компанія / документи (B2B)",
     formNameLabel: "Ім'я",
     formEmailLabel: "Ел. пошта",
     formMessageLabel: "Повідомлення",
@@ -149,6 +187,11 @@ export const dict: Record<Locale, Dict> = {
     formError: "Будь ласка, заповніть ім'я, електронну пошту та повідомлення і поставте позначку.",
     formSubmit: "Надіслати",
     formSubmittedPrefix: "Майже готово! Якщо ваша поштова програма не відкрилася, напишіть нам напряму на",
+    b2bTitle: "Компанія та документи (B2B)",
+    b2bText: "Шукаєте підтримку із заявками, фінансуванням та офіційними документами для вашої компанії?",
+    b2bLink: "Докладніше про нашу послугу для компаній",
+    noPricesTitle: "Немає цін – індивідуальна домовленість",
+    noPricesText: "Ми свідомо не публікуємо ціни. Напишіть нам про ваш запит, і ми все обговоримо особисто.",
   },
   pl: {
     metaTitle: "Kontakt",
@@ -161,6 +204,7 @@ export const dict: Record<Locale, Dict> = {
     formThemaAllgemein: "Ogólne pytanie",
     formThemaSupport: "Wsparcie w mojej sprawie",
     formThemaPartner: "Współpraca",
+    formThemaUnternehmen: "Firma / dokumenty (B2B)",
     formNameLabel: "Imię",
     formEmailLabel: "E-mail",
     formMessageLabel: "Wiadomość",
@@ -170,6 +214,11 @@ export const dict: Record<Locale, Dict> = {
     formError: "Wypełnij imię, e-mail i wiadomość oraz zaznacz pole wyboru.",
     formSubmit: "Wyślij teraz",
     formSubmittedPrefix: "Już prawie gotowe! Jeśli twój program pocztowy się nie otworzył, napisz do nas bezpośrednio na",
+    b2bTitle: "Firma i dokumenty (B2B)",
+    b2bText: "Szukasz wsparcia przy wnioskach, dofinansowaniu i urzędowych dokumentach dla swojej firmy?",
+    b2bLink: "Więcej o naszej usłudze dla firm",
+    noPricesTitle: "Brak cen – indywidualne ustalenia",
+    noPricesText: "Celowo nie publikujemy cen. Napisz do nas o swojej sprawie, a wszystko omówimy osobiście.",
   },
   bg: {
     metaTitle: "Контакти",
@@ -182,6 +231,7 @@ export const dict: Record<Locale, Dict> = {
     formThemaAllgemein: "Общ въпрос",
     formThemaSupport: "Поддръжка по моя случай",
     formThemaPartner: "Партньорство",
+    formThemaUnternehmen: "Фирма / документи (B2B)",
     formNameLabel: "Име",
     formEmailLabel: "Имейл",
     formMessageLabel: "Съобщение",
@@ -191,6 +241,11 @@ export const dict: Record<Locale, Dict> = {
     formError: "Моля, попълнете име, имейл и съобщение и поставете отметка.",
     formSubmit: "Изпрати сега",
     formSubmittedPrefix: "Почти готово! Ако пощенската ви програма не се отвори, пишете ни директно на",
+    b2bTitle: "Фирма и документи (B2B)",
+    b2bText: "Търсите подкрепа със заявления, финансиране и официални документи за вашата фирма?",
+    b2bLink: "Повече за нашата услуга за фирми",
+    noPricesTitle: "Няма цени – индивидуална договорка",
+    noPricesText: "Съзнателно не публикуваме цени. Пишете ни за вашия случай и ще обсъдим всичко лично.",
   },
   ro: {
     metaTitle: "Contact",
@@ -203,6 +258,7 @@ export const dict: Record<Locale, Dict> = {
     formThemaAllgemein: "Întrebare generală",
     formThemaSupport: "Suport pentru cazul meu",
     formThemaPartner: "Parteneriat",
+    formThemaUnternehmen: "Companie / acte (B2B)",
     formNameLabel: "Nume",
     formEmailLabel: "E-mail",
     formMessageLabel: "Mesaj",
@@ -212,5 +268,10 @@ export const dict: Record<Locale, Dict> = {
     formError: "Te rugăm să completezi numele, e-mailul și mesajul și să bifezi caseta.",
     formSubmit: "Trimite acum",
     formSubmittedPrefix: "Aproape gata! Dacă programul tău de e-mail nu s-a deschis, scrie-ne direct la",
+    b2bTitle: "Companie și acte (B2B)",
+    b2bText: "Cauți sprijin cu cereri, finanțări și acte oficiale pentru compania ta?",
+    b2bLink: "Mai multe despre serviciul nostru pentru companii",
+    noPricesTitle: "Fără prețuri – înțelegere individuală",
+    noPricesText: "Nu publicăm prețuri în mod deliberat. Scrie-ne despre solicitarea ta și vom discuta totul personal.",
   },
 };

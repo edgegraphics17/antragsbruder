@@ -47,8 +47,8 @@ export const dict: Record<Locale, Dict> = {
     s3Text: (siteName) =>
       `Ein Vertrag kommt zustande, sobald ${siteName} eine Anfrage angenommen und den jeweiligen Leistungsumfang sowie den Preis mit der Kundin bzw. dem Kunden bestätigt hat. Die Übermittlung einer Anfrage über die Website stellt noch keine Annahme dar.`,
     s4Heading: "§ 4 Preise und Zahlung",
-    s4TextBefore: "Die jeweils gültigen Preise werden vor Auftragserteilung mitgeteilt. Unverbindliche Richtwerte finden sich auf unserer",
-    s4LinkText: "Preisseite",
+    s4TextBefore: "Die Vergütung wird individuell mit der Kundin bzw. dem Kunden besprochen, bevor ein Auftrag erteilt wird. Eine öffentliche Preisliste besteht nicht – sprich uns über den",
+    s4LinkText: "Kontakt",
     s4TextAfter: ".",
     s5Heading: "§ 5 Mitwirkungspflichten der Kundin bzw. des Kunden",
     s5Text: (siteName) =>
@@ -84,8 +84,8 @@ export const dict: Record<Locale, Dict> = {
     s3Text: (siteName) =>
       `A contract is formed once ${siteName} has accepted a request and confirmed the respective scope of services and price with the customer. Submitting a request via the website does not, by itself, constitute acceptance.`,
     s4Heading: "Section 4 Prices and payment",
-    s4TextBefore: "The applicable prices are communicated before the order is placed. Non-binding indicative prices can be found on our",
-    s4LinkText: "pricing page",
+    s4TextBefore: "The remuneration is agreed individually with the customer before an order is placed. There is no public price list – reach out via",
+    s4LinkText: "contact",
     s4TextAfter: ".",
     s5Heading: "Section 5 Customer's duties to cooperate",
     s5Text: (siteName) =>
@@ -122,7 +122,7 @@ export const dict: Record<Locale, Dict> = {
       `يُبرم العقد بمجرد أن تقبل ${siteName} الطلب وتؤكد نطاق الخدمة والسعر مع العميل. لا يُعد إرسال الطلب عبر الموقع الإلكتروني بحد ذاته قبولًا للعقد.`,
     s4Heading: "المادة 4 الأسعار والدفع",
     s4TextBefore: "يتم إبلاغ العميل بالأسعار المعمول بها قبل تقديم الطلب. يمكن الاطلاع على قيم إرشادية غير ملزمة في",
-    s4LinkText: "صفحة الأسعار",
+    s4LinkText: "صفحة الاتصال",
     s4TextAfter: " الخاصة بنا.",
     s5Heading: "المادة 5 التزامات التعاون الواقعة على العميل",
     s5Text: (siteName) =>
@@ -159,7 +159,7 @@ export const dict: Record<Locale, Dict> = {
       `Sözleşme, ${siteName}'in bir talebi kabul etmesi ve ilgili hizmet kapsamı ile fiyatı müşteriyle teyit etmesiyle kurulur. Web sitesi üzerinden bir talebin iletilmesi tek başına bir kabul teşkil etmez.`,
     s4Heading: "§ 4 Fiyatlar ve ödeme",
     s4TextBefore: "Geçerli fiyatlar, sipariş verilmeden önce bildirilir. Bağlayıcı olmayan gösterge niteliğindeki değerlere",
-    s4LinkText: "fiyat sayfamızdan",
+    s4LinkText: "iletişim sayfamızdan",
     s4TextAfter: " ulaşabilirsiniz.",
     s5Heading: "§ 5 Müşterinin işbirliği yükümlülükleri",
     s5Text: (siteName) =>
@@ -196,7 +196,7 @@ export const dict: Record<Locale, Dict> = {
       `Договор считается заключённым, как только ${siteName} принял запрос и согласовал с клиентом соответствующий объём услуг и цену. Отправка запроса через сайт сама по себе ещё не является принятием.`,
     s4Heading: "§ 4 Цены и оплата",
     s4TextBefore: "Действующие цены сообщаются до оформления заказа. Ориентировочные (необязывающие) значения можно найти на нашей",
-    s4LinkText: "странице цен",
+    s4LinkText: "странице контактов",
     s4TextAfter: ".",
     s5Heading: "§ 5 Обязанности клиента по содействию",
     s5Text: (siteName) =>
@@ -233,7 +233,7 @@ export const dict: Record<Locale, Dict> = {
       `Договір вважається укладеним, щойно ${siteName} прийняв запит і узгодив із клієнтом відповідний обсяг послуг та ціну. Надсилання запиту через сайт саме по собі ще не є прийняттям.`,
     s4Heading: "§ 4 Ціни та оплата",
     s4TextBefore: "Чинні ціни повідомляються до оформлення замовлення. Орієнтовні (необов'язкові) значення можна знайти на нашій",
-    s4LinkText: "сторінці цін",
+    s4LinkText: "сторінці контактів",
     s4TextAfter: ".",
     s5Heading: "§ 5 Обов'язки клієнта щодо сприяння",
     s5Text: (siteName) =>
@@ -270,7 +270,7 @@ export const dict: Record<Locale, Dict> = {
       `Umowa zostaje zawarta, gdy ${siteName} przyjmie zgłoszenie i potwierdzi z klientem odpowiedni zakres usług oraz cenę. Przesłanie zgłoszenia za pośrednictwem strony internetowej samo w sobie nie stanowi jeszcze przyjęcia.`,
     s4Heading: "§ 4 Ceny i płatność",
     s4TextBefore: "Obowiązujące ceny są podawane przed złożeniem zamówienia. Niewiążące wartości orientacyjne znajdują się na naszej",
-    s4LinkText: "stronie z cenami",
+    s4LinkText: "stronie kontaktu",
     s4TextAfter: ".",
     s5Heading: "§ 5 Obowiązki współdziałania klienta",
     s5Text: (siteName) =>
@@ -307,7 +307,7 @@ export const dict: Record<Locale, Dict> = {
       `Договорът се счита за сключен, след като ${siteName} приеме запитването и потвърди с клиента съответния обхват на услугата и цената. Изпращането на запитване чрез уебсайта само по себе си все още не представлява приемане.`,
     s4Heading: "§ 4 Цени и плащане",
     s4TextBefore: "Актуалните цени се съобщават преди възлагането на поръчката. Необвързващи ориентировъчни стойности можете да намерите на нашата",
-    s4LinkText: "страница с цени",
+    s4LinkText: "страница с контакти",
     s4TextAfter: ".",
     s5Heading: "§ 5 Задължения за съдействие на клиента",
     s5Text: (siteName) =>
@@ -344,7 +344,7 @@ export const dict: Record<Locale, Dict> = {
       `Contractul se încheie odată ce ${siteName} a acceptat o solicitare și a confirmat cu clientul domeniul de servicii și prețul aferent. Transmiterea unei solicitări prin intermediul site-ului nu constituie, prin ea însăși, o acceptare.`,
     s4Heading: "§ 4 Prețuri și plată",
     s4TextBefore: "Prețurile valabile sunt comunicate înainte de plasarea comenzii. Valorile orientative, fără caracter obligatoriu, pot fi găsite pe",
-    s4LinkText: "pagina noastră de prețuri",
+    s4LinkText: "pagina noastră de contact",
     s4TextAfter: ".",
     s5Heading: "§ 5 Obligațiile de cooperare ale clientului",
     s5Text: (siteName) =>

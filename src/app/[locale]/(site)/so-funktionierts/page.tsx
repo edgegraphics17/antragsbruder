@@ -79,7 +79,7 @@ export default async function SoFunktioniertsPage({ params }: { params: Promise<
         primaryLabel={t.ctaPrimaryLabel}
         primaryHref={href("/hilfe-starten")}
         secondaryLabel={t.ctaSecondaryLabel}
-        secondaryHref={href("/preise")}
+        secondaryHref={href("/kontakt")}
       />
     </>
   );

@@ -64,6 +64,7 @@ export type CommonDict = {
     abmelden: string;
     anmelden: string;
     kontoErstellen: string;
+    kontaktCta: string;
   };
   footer: {
     colProdukt: string;
@@ -139,6 +140,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       impressum: "Impressum",
       datenschutz: "Datenschutz",
       agb: "AGB",
+      ratgeber: "Ratgeber",
+      rechner: "Rechner",
+      unternehmen: "Für Unternehmen",
+      fuerUnternehmen: "Papierkram für Unternehmen"
     },
     navDescriptions: {
       anspruecheChecken: "Prüfen, welche Leistungen dir zustehen könnten",
@@ -156,6 +161,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       faq: "Antworten auf häufige Fragen",
       blog: "Ratgeber zu Leistungen, Anträgen und Behörden",
       kontakt: "Schreib uns, wenn du nicht weiterkommst",
+      fuerUnternehmen: "Wir erledigen den Papierkram für Unternehmen – unverbindlich anfragen"
     },
     blogTeaser: { eyebrow: "Aus dem Blog", title: "Wissen, das dich weiterbringt", cta: "Zum Blog" },
     buttons: { kontakt: "Kontakt", papierkramHochladen: "Papierkram hochladen" },
@@ -172,7 +178,8 @@ export const commonDict: Record<Locale, CommonDict> = {
     dashboard: "Dashboard",
     abmelden: "Abmelden",
     anmelden: "Anmelden",
-    kontoErstellen: "Konto erstellen" },
+    kontoErstellen: "Konto erstellen",
+    kontaktCta: "Kontakt" },
     auth: {
       emailLabel: "E-Mail-Adresse",
       passwortLabel: "Passwort",
@@ -294,6 +301,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       impressum: "Legal notice",
       datenschutz: "Privacy policy",
       agb: "Terms",
+      ratgeber: "Guides",
+      rechner: "Calculators",
+      unternehmen: "For businesses",
+      fuerUnternehmen: "Paperwork for businesses"
     },
     navDescriptions: {
       anspruecheChecken: "Check which benefits you might be entitled to",
@@ -311,6 +322,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       faq: "Answers to common questions",
       blog: "Guides on benefits, applications and authorities",
       kontakt: "Write to us if you're stuck",
+      fuerUnternehmen: "We handle the paperwork for businesses – reach out, no commitment"
     },
     blogTeaser: { eyebrow: "From the blog", title: "Knowledge that moves you forward", cta: "Go to the blog" },
     buttons: { kontakt: "Contact", papierkramHochladen: "Upload your paperwork" },
@@ -327,7 +339,8 @@ export const commonDict: Record<Locale, CommonDict> = {
     dashboard: "Dashboard",
     abmelden: "Sign out",
     anmelden: "Sign in",
-    kontoErstellen: "Create account" },
+    kontoErstellen: "Create account",
+    kontaktCta: "Contact" },
     auth: {
       emailLabel: "Email address",
       passwortLabel: "Password",
@@ -448,6 +461,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       impressum: "بيانات الناشر",
       datenschutz: "سياسة الخصوصية",
       agb: "الشروط والأحكام",
+      ratgeber: "أدلة",
+      rechner: "حاسبات",
+      unternehmen: "للشركات",
+      fuerUnternehmen: "الأوراق للشركات"
     },
     navDescriptions: {
       anspruecheChecken: "تحقق من المزايا التي قد تكون مستحقًا لها",
@@ -465,6 +482,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       faq: "إجابات على الأسئلة الشائعة",
       blog: "أدلة حول المزايا والتطبيقات والسلطات",
       kontakt: "راسلنا إذا واجهت صعوبة",
+      fuerUnternehmen: "نتولى الأوراق للشركات – تواصل معنا بدون التزام"
     },
     blogTeaser: { eyebrow: "من المدونة", title: "معرفة تدفعك للأمام", cta: "إلى المدونة" },
     buttons: { kontakt: "تواصل معنا", papierkramHochladen: "ارفع مستنداتك" },
@@ -481,7 +499,8 @@ export const commonDict: Record<Locale, CommonDict> = {
     dashboard: "لوحة التحكم",
     abmelden: "تسجيل خروج",
     anmelden: "تسجيل دخول",
-    kontoErstellen: "إنشاء حساب" },
+    kontoErstellen: "إنشاء حساب",
+    kontaktCta: "اتصل بنا" },
     auth: {
       emailLabel: "البريد الإلكتروني",
       passwortLabel: "كلمة المرور",
@@ -602,6 +621,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       impressum: "Yasal bilgiler",
       datenschutz: "Gizlilik politikası",
       agb: "Kullanım şartları",
+      ratgeber: "Rehberler",
+      rechner: "Hesaplayıcılar",
+      unternehmen: "İşletmeler için",
+      fuerUnternehmen: "Şirketler için evrak"
     },
     navDescriptions: {
       anspruecheChecken: "Haklarını ve yardımları kontrol et",
@@ -619,6 +642,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       faq: "Sık sorulan sorulara yanıtlar",
       blog: "Destekler, başvurular ve resmi kurumlar hakkında rehberler",
       kontakt: "Takıldıysan bize yaz",
+      fuerUnternehmen: "İşletmeler için evrak işlerini üstleniyoruz – ücretsiz sorun"
     },
     blogTeaser: { eyebrow: "Blogdan", title: "Seni ileriye taşıyan bilgi", cta: "Bloğa git" },
     buttons: { kontakt: "İletişim", papierkramHochladen: "Belgelerini yükle" },
@@ -635,7 +659,8 @@ export const commonDict: Record<Locale, CommonDict> = {
     dashboard: "Panel",
     abmelden: "Çıkış yap",
     anmelden: "Giriş yap",
-    kontoErstellen: "Hesap oluştur" },
+    kontoErstellen: "Hesap oluştur",
+    kontaktCta: "İletişim" },
     auth: {
       emailLabel: "E-posta adresi",
       passwortLabel: "Parola",
@@ -756,6 +781,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       impressum: "Выходные данные",
       datenschutz: "Политика конфиденциальности",
       agb: "Условия",
+      ratgeber: "Гиды",
+      rechner: "Калькуляторы",
+      unternehmen: "Для компаний",
+      fuerUnternehmen: "Бумаги для компаний"
     },
     navDescriptions: {
       anspruecheChecken: "Проверить, какие льготы могут быть актуальны",
@@ -773,6 +802,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       faq: "Ответы на частые вопросы",
       blog: "Руководства по пособиям, заявлениям и ведомствам",
       kontakt: "Напишите нам, если не получается",
+      fuerUnternehmen: "Берём на себя документы для компаний – свяжитесь без обязательств"
     },
     blogTeaser: { eyebrow: "Из блога", title: "Знания, которые двигают вас вперёд", cta: "Перейти в блог" },
     buttons: { kontakt: "Контакты", papierkramHochladen: "Загрузить документы" },
@@ -789,7 +819,8 @@ export const commonDict: Record<Locale, CommonDict> = {
     dashboard: "Панель",
     abmelden: "Выйти",
     anmelden: "Войти",
-    kontoErstellen: "Создать аккаунт" },
+    kontoErstellen: "Создать аккаунт",
+    kontaktCta: "Связаться" },
     auth: {
       emailLabel: "Электронная почта",
       passwortLabel: "Пароль",
@@ -910,6 +941,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       impressum: "Вихідні дані",
       datenschutz: "Політика конфіденційності",
       agb: "Умови",
+      ratgeber: "Гіди",
+      rechner: "Калькулятори",
+      unternehmen: "Для компаній",
+      fuerUnternehmen: "Папери для компаній"
     },
     navDescriptions: {
       anspruecheChecken: "Перевірити, які пільги можуть бути актуальні",
@@ -927,6 +962,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       faq: "Відповіді на часті запитання",
       blog: "Посібники з допомоги, заяв та відомств",
       kontakt: "Напишіть нам, якщо щось незрозуміло",
+      fuerUnternehmen: "Беремо на себе папери для компаній – звертайтесь без зобов’язань"
     },
     blogTeaser: { eyebrow: "З блогу", title: "Знання, що рухають вас уперед", cta: "До блогу" },
     buttons: { kontakt: "Контакти", papierkramHochladen: "Завантажити документи" },
@@ -943,7 +979,8 @@ export const commonDict: Record<Locale, CommonDict> = {
     dashboard: "Панель",
     abmelden: "Вийти",
     anmelden: "Увійти",
-    kontoErstellen: "Створити акаунт" },
+    kontoErstellen: "Створити акаунт",
+    kontaktCta: "Зв'язатися" },
     auth: {
       emailLabel: "Електронна пошта",
       passwortLabel: "Пароль",
@@ -1064,6 +1101,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       impressum: "Dane rejestrowe",
       datenschutz: "Polityka prywatności",
       agb: "Regulamin",
+      ratgeber: "Poradniki",
+      rechner: "Kalkulatory",
+      unternehmen: "Dla firm",
+      fuerUnternehmen: "Papiery dla firm"
     },
     navDescriptions: {
       anspruecheChecken: "Sprawdź, które świadczenia mogą być dla ciebie istotne",
@@ -1081,6 +1122,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       faq: "Odpowiedzi na częste pytania",
       blog: "Poradniki o świadczeniach, wnioskach i urzędach",
       kontakt: "Napisz do nas, jeśli utknąłeś",
+      fuerUnternehmen: "Zajmujemy się papierami dla firm – zapytaj bez zobowiązań"
     },
     blogTeaser: { eyebrow: "Z bloga", title: "Wiedza, która Cię pociągnie naprzód", cta: "Przejdź do bloga" },
     buttons: { kontakt: "Kontakt", papierkramHochladen: "Prześlij dokumenty" },
@@ -1097,7 +1139,8 @@ export const commonDict: Record<Locale, CommonDict> = {
     dashboard: "Panel",
     abmelden: "Wyloguj się",
     anmelden: "Zaloguj się",
-    kontoErstellen: "Utwórz konto" },
+    kontoErstellen: "Utwórz konto",
+    kontaktCta: "Kontakt" },
     auth: {
       emailLabel: "Adres e-mail",
       passwortLabel: "Hasło",
@@ -1218,6 +1261,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       impressum: "Данни за издателя",
       datenschutz: "Политика за поверителност",
       agb: "Общи условия",
+      ratgeber: "Ръководства",
+      rechner: "Калкулатори",
+      unternehmen: "За фирми",
+      fuerUnternehmen: "Документи за фирми"
     },
     navDescriptions: {
       anspruecheChecken: "Провери кои помощи могат да са актуални за теб",
@@ -1235,6 +1282,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       faq: "Отговори на често задавани въпроси",
       blog: "Ръководства за помощи, заявления и институции",
       kontakt: "Пишете ни, ако не се справяте",
+      fuerUnternehmen: "Поемаме документите за фирми – попитайте без ангажимент"
     },
     blogTeaser: { eyebrow: "От блога", title: "Знания, които ви придвижват напред", cta: "Към блога" },
     buttons: { kontakt: "Контакт", papierkramHochladen: "Качи документите си" },
@@ -1251,7 +1299,8 @@ export const commonDict: Record<Locale, CommonDict> = {
     dashboard: "Табло",
     abmelden: "Излезте",
     anmelden: "Влезте",
-    kontoErstellen: "Създайте профил" },
+    kontoErstellen: "Създайте профил",
+    kontaktCta: "Контакт" },
     auth: {
       emailLabel: "Имейл",
       passwortLabel: "Парола",
@@ -1372,6 +1421,10 @@ export const commonDict: Record<Locale, CommonDict> = {
       impressum: "Date de identificare",
       datenschutz: "Politica de confidențialitate",
       agb: "Termeni și condiții",
+      ratgeber: "Ghiduri",
+      rechner: "Calculatoare",
+      unternehmen: "Pentru companii",
+      fuerUnternehmen: "Acte pentru companii"
     },
     navDescriptions: {
       anspruecheChecken: "Verifică ce beneficii ar putea fi relevante pentru tine",
@@ -1389,6 +1442,7 @@ export const commonDict: Record<Locale, CommonDict> = {
       faq: "Răspunsuri la întrebări frecvente",
       blog: "Ghiduri despre prestații, cereri și autorități",
       kontakt: "Scrie-ne dacă te-ai blocat",
+      fuerUnternehmen: "Ne ocupăm de acte pentru companii – contactați-ne fără obligații"
     },
     blogTeaser: { eyebrow: "Din blog", title: "Cunoștințe care te duc mai departe", cta: "Mergi la blog" },
     buttons: { kontakt: "Contact", papierkramHochladen: "Încarcă documentele" },
@@ -1405,7 +1459,8 @@ export const commonDict: Record<Locale, CommonDict> = {
     dashboard: "Panou",
     abmelden: "Deconectează-te",
     anmelden: "Conectează-te",
-    kontoErstellen: "Creează cont" },
+    kontoErstellen: "Creează cont",
+    kontaktCta: "Contact" },
     auth: {
       emailLabel: "Adresă de e-mail",
       passwortLabel: "Parolă",

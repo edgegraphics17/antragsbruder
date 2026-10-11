@@ -59,10 +59,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </h1>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-ink-soft">{t.heroLede}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href={href("/hilfe-starten")} size="lg">
+              <Button href={href("/ansprueche-checken")} size="lg">
                 {t.heroCta1}
               </Button>
-              <Button href={href("/so-funktionierts")} variant="secondary" size="lg">
+              <Button href={href("/wohngeld/rechner")} variant="secondary" size="lg">
                 {t.heroCta2}
               </Button>
             </div>
@@ -82,21 +82,21 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               title={t.entryBriefTitle}
               text={t.entryBriefText}
               ctaLabel={t.entryBriefCta}
-              href={href("/hilfe-starten?anliegen=brief")}
+              href={href("/wohngeld")}
             />
             <EntryCard
               icon={<IconFolder className="h-6 w-6" />}
               title={t.entryAntragTitle}
               text={t.entryAntragText}
               ctaLabel={t.entryAntragCta}
-              href={href("/hilfe-starten?anliegen=antrag")}
+              href={href("/bafoegrechner")}
             />
             <EntryCard
               icon={<IconClock className="h-6 w-6" />}
               title={t.entryChaosTitle}
               text={t.entryChaosText}
               ctaLabel={t.entryChaosCta}
-              href={href("/hilfe-starten?anliegen=papierkram")}
+              href={href("/grundsicherungsrechner")}
             />
             <EntryCard
               icon={<IconCompass className="h-6 w-6" />}
@@ -299,9 +299,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         title={t.finalCtaTitle}
         text={t.finalCtaText}
         primaryLabel={t.finalCtaPrimary}
-        primaryHref={href("/hilfe-starten")}
+        primaryHref={href("/kontakt")}
         secondaryLabel={t.finalCtaSecondary}
-        secondaryHref={href("/so-funktionierts")}
+        secondaryHref={href("/datenbank")}
       />
     </>
   );

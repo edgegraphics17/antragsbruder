@@ -215,17 +215,12 @@ export function Navbar({ locale }: { locale: Locale }) {
                 </button>
               </div>
             ) : (
-              <>
-                <Link
-                  href={localeHref(locale, "/anmelden")}
-                  className="ms-2 rounded-full border border-line-soft px-3 py-2 text-sm font-medium text-ink hover:bg-brand-50 transition-colors"
-                >
-                  {t.navbar.anmelden}
-                </Link>
-                <Button href={localeHref(locale, "/konto-erstellen")} variant="primary" size="md" className="ms-1 whitespace-nowrap">
-                  {t.navbar.kontoErstellen}
-                </Button>
-              </>
+              // Seit 2026-10-12: Kein öffentlicher Registrierungs-/Login-Zugang mehr.
+              // Das Dashboard ist ein internes Projekt — Besucher erreichen uns
+              // stattdessen über den Kontakt (keine Preise, offene Anfragen).
+              <Button href={localeHref(locale, "/kontakt")} variant="primary" size="md" className="ms-2 whitespace-nowrap">
+                {t.navbar.kontaktCta}
+              </Button>
             )}
           </div>
 
@@ -335,33 +330,17 @@ export function Navbar({ locale }: { locale: Locale }) {
                   </ButtonAction>
                 </>
               ) : (
-                <>
-                  <Button
-                    href={localeHref(locale, "/konto-erstellen")}
-                    variant="primary"
-                    size="lg"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {t.navbar.kontoErstellen}
-                  </Button>
-                  <Button
-                    href={localeHref(locale, "/anmelden")}
-                    variant="outline"
-                    size="lg"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {t.navbar.anmelden}
-                  </Button>
-                </>
+                // Kein öffentlicher Registrierungs-/Login-Zugang (seit 2026-10-12):
+                // Dashboard ist intern, Besucher kommen über den Kontakt.
+                <Button
+                  href={localeHref(locale, "/kontakt")}
+                  variant="primary"
+                  size="lg"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {t.navbar.kontaktCta}
+                </Button>
               )}
-              <Button
-                href={localeHref(locale, "/hilfe-starten")}
-                variant="outline"
-                size="lg"
-                onClick={() => setMobileOpen(false)}
-              >
-                {t.nav.hilfeStarten}
-              </Button>
               <LanguageSwitcher locale={locale} label={t.navbar.language} variant="block" />
             </div>
           </div>

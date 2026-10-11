@@ -27,7 +27,7 @@ const routes: {
   { path: "/navigator", priority: 0.7, changeFrequency: "monthly" },
   { path: "/datenbank", priority: 0.7, changeFrequency: "weekly" },
   { path: "/wer-wir-sind", priority: 0.6, changeFrequency: "monthly" },
-  { path: "/preise", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/fuer-unternehmen", priority: 0.7, changeFrequency: "monthly" },
   { path: "/faq", priority: 0.6, changeFrequency: "monthly" },
   { path: "/kontakt", priority: 0.5, changeFrequency: "monthly" },
   { path: "/hilfe-starten", priority: 0.8, changeFrequency: "monthly" },
