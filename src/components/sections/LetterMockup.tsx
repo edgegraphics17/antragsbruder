@@ -4,7 +4,7 @@ export function LetterMockup() {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <div className="rounded-3xl border border-line-soft bg-white p-5">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-ink-soft">Originalbrief</p>
+        <p className="mb-3 text-xs font-semibold text-ink-soft">Originalbrief</p>
         <div className="space-y-2 rounded-2xl bg-cream p-4 font-mono text-[11px] leading-relaxed text-ink-soft">
           <p className="text-ink">Jobcenter Musterstadt</p>
           <p>Aufforderung zur Mitwirkung gem. § 60 SGB I</p>
@@ -18,7 +18,7 @@ export function LetterMockup() {
         </div>
       </div>
       <div className="rounded-3xl border border-brand-700/40 bg-brand-50 p-5">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-brand-800">Kurz erklärt</p>
+        <p className="mb-3 text-xs font-semibold text-brand-800">Kurz erklärt</p>
         <dl className="space-y-3 text-sm">
           <div>
             <dt className="font-semibold text-ink">Was ist passiert?</dt>

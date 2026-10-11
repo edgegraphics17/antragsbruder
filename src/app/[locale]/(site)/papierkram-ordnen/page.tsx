@@ -33,10 +33,10 @@ export default async function PapierkramOrdnenPage({ params }: { params: Promise
 
   return (
     <>
-      <section>
+      <section className="mx-3 rounded-[2rem] bg-white sm:mx-5 sm:rounded-[2.5rem]">
         <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.2fr_1fr]">
           <div>
-            <SectionHeading eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
+            <SectionHeading as="h1" eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
             <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <Button href={href("/hilfe-starten?anliegen=papierkram")} size="lg">
                 {t.heroButtonLabel}
@@ -48,7 +48,7 @@ export default async function PapierkramOrdnenPage({ params }: { params: Promise
         </Container>
       </section>
 
-      <section className="bg-cream-deep/60">
+      <section className="my-3 mx-3 rounded-[2rem] bg-cream-deep/70 sm:mx-5 sm:rounded-[2.5rem] sm:my-5">
         <Container className="py-16">
           <SectionHeading title={t.whatWeDoTitle} />
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
@@ -71,18 +71,18 @@ export default async function PapierkramOrdnenPage({ params }: { params: Promise
         </Container>
       </section>
 
-      <section className="bg-cream-deep/60">
+      <section className="my-3 mx-3 rounded-[2rem] bg-cream-deep/70 sm:mx-5 sm:rounded-[2.5rem] sm:my-5">
         <Container className="py-16">
           <SectionHeading title={t.exampleTitle} />
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
             <div className="rounded-3xl border border-line-soft bg-white p-6">
-              <p className="text-sm font-semibold uppercase tracking-wide text-ink-soft">
+              <p className="text-sm font-semibold text-ink-soft">
                 {t.exampleBeforeLabel}
               </p>
               <p className="mt-3 text-sm leading-relaxed text-ink-soft">{t.exampleBefore}</p>
             </div>
             <div className="rounded-3xl border border-brand-400 bg-brand-50 p-6">
-              <p className="text-sm font-semibold uppercase tracking-wide text-brand-800">
+              <p className="text-sm font-semibold text-brand-800">
                 {t.exampleAfterLabel}
               </p>
               <ul className="mt-3 grid grid-cols-2 gap-2">

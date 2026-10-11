@@ -6,7 +6,7 @@
 
 **Gehört dazu:** alle Seiten unter `(site)`. **Nicht dazu:** Inhalte/Texte, Engine, Dashboard-Umbau (erbt nur Farben und Schrift).
 
-**Annahmen:** Haupt-Buttons dunkel wie in der Referenz; Inter bleibt als Fließtext (deckt alle 9 Sprachen ab); Logo in der Navigation = Maskottchen + Name in Serife; noch nicht live gestellt (Branch `redesign-2026`).
+**Annahmen:** Haupt-Buttons dunkel wie in der Referenz; Inter bleibt als Fließtext (deckt alle 9 Sprachen ab); Logo in der Navigation = Maskottchen + Name in Serife; live über `main` seit 12.10.2026.
 
 ## Etappen
 
@@ -15,10 +15,10 @@
 | 1 | Tokens, Schriften, Kern-Bausteine, Navigation, Footer, Startseite | Startseite Desktop + Handy geprüft | fertig |
 | 2 | Ratgeber-Vorlage `ClusterArticle` (13 Wohngeld-/BAföG-Seiten) | Artikel Desktop + Handy geprüft | fertig |
 | 3 | Überschriften aller Website-Seiten per Skript angeglichen | Typprüfung + Build grün | fertig |
-| 4 | Durchsicht der übrigen Seiten in Gruppen: Rechner (3), Info-Seiten (wer-wir-sind, so-funktionierts, fuer-unternehmen, faq, kontakt, brief-verstehen, papierkram-ordnen, unterlagen-check), Blog + Datenbank, Konto-Seiten, Rechtliches. Je Gruppe: Kopf-Fläche wie Artikel, alte Rahmen-Karten, Großbuchstaben-Dachzeilen, alte Schatten | jede Gruppe im Browser gesehen | offen |
+| 4 | Durchsicht der übrigen Seiten in Gruppen: Rechner (3), Info-Seiten (wer-wir-sind, so-funktionierts, fuer-unternehmen, faq, kontakt, brief-verstehen, papierkram-ordnen, unterlagen-check), Blog + Datenbank, Konto-Seiten, Rechtliches. Je Gruppe: Kopf-Fläche wie Artikel, alte Rahmen-Karten, Großbuchstaben-Dachzeilen, alte Schatten | jede Gruppe im Browser gesehen | fertig |
 | 5 | Fotos: einheitlicher Satz (Unsplash), Dateinamen korrigieren, Bild je Cluster | keine gemischten SW-/Farbfotos mehr | offen |
 | 6 | Dashboard + Antragsformulare: Kontrast und Zustände mit neuer Palette prüfen | Stichprobe je Formular | offen |
-| 7 | Abnahme (`abnahme`), dann live | Freigabe Karim | offen |
+| 7 | Live stellen (Freigabe Karim 12.10.2026), danach Abnahme (`abnahme`) | Live-Seite geprüft | live, Abnahme offen |
 
 ## Vorschläge außerhalb des Auftrags
 - Gemalte Illustrationen im Stil der Referenz (per KI-Bild) statt Fotos.

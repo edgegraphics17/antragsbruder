@@ -209,7 +209,7 @@ export function Alg1Flow({
           <button
             type="button"
             onClick={handleContinueToSummary}
-            className="w-full rounded-xl bg-brand-600 py-4 text-base font-semibold text-white transition-colors hover:bg-brand-700"
+            className="w-full rounded-xl bg-ink py-4 text-base font-semibold text-white transition-colors hover:bg-brand-800"
           >
             {t.continueToSummary}
           </button>

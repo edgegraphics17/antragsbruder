@@ -37,7 +37,7 @@ export default async function ForgotPasswordPage({ params }: PageProps) {
               <path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
           </div>
-          <SectionHeading
+          <SectionHeading as="h1"
             eyebrow={t(BADGE)}
             title={t(TITLE)}
             lede={t(LEDE)}

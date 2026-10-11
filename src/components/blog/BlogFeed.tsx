@@ -23,7 +23,7 @@ function PostCard({ post }: { post: BlogPost }) {
   return (
     <Link
       href={`/${post.slug}`}
-      className="group flex flex-col rounded-3xl border border-line-soft bg-white p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-700 hover:shadow-lg hover:shadow-brand-950/5"
+      className="group flex flex-col rounded-3xl border border-line-soft bg-white p-7 transition-all duration-200 hover:border-brand-700 hover:shadow-lg hover:shadow-brand-950/5"
     >
       <div className="flex items-center justify-between gap-3">
         <span className="rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold text-brand-800">

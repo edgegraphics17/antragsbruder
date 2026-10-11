@@ -12,9 +12,9 @@ const stellen = [
 export function VisionDiagramHeute() {
   return (
     <div className="rounded-3xl border border-line-soft bg-white p-6 sm:p-8">
-      <p className="mb-6 text-center text-sm font-semibold uppercase tracking-wide text-ink-soft">Heute</p>
+      <p className="mb-6 text-center text-sm font-semibold text-ink-soft">Heute</p>
       <div className="relative mx-auto flex aspect-square max-w-sm items-center justify-center">
-        <span className="absolute z-10 flex h-20 w-20 items-center justify-center rounded-full bg-brand-900 text-center text-xs font-semibold text-cream">
+        <span className="absolute z-10 flex h-20 w-20 items-center justify-center rounded-full bg-ink text-center text-xs font-semibold text-cream">
           Bürger:in
         </span>
         {stellen.map((s, i) => {
@@ -62,9 +62,9 @@ export function VisionDiagramHeute() {
 export function VisionDiagramZukunft() {
   return (
     <div className="rounded-3xl border border-brand-700/40 bg-brand-50 p-6 sm:p-8">
-      <p className="mb-6 text-center text-sm font-semibold uppercase tracking-wide text-brand-800">Unsere Vision</p>
+      <p className="mb-6 text-center text-sm font-semibold text-brand-800">Unsere Vision</p>
       <div className="relative mx-auto flex aspect-square max-w-sm items-center justify-center">
-        <span className="absolute z-10 flex h-24 w-24 items-center justify-center rounded-full bg-brand-900 text-center text-xs font-semibold text-cream">
+        <span className="absolute z-10 flex h-24 w-24 items-center justify-center rounded-full bg-ink text-center text-xs font-semibold text-cream">
           Antragsbruder
         </span>
         {stellen.map((s, i) => {

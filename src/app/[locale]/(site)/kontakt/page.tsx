@@ -3,7 +3,6 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { KontaktForm } from "@/components/sections/KontaktForm";
 import { IconBuilding, IconMail, IconSpark } from "@/components/ui/icons";
-import { LockupHorizontal } from "@/components/ui/Logo";
 import { PhotoFrame } from "@/components/ui/PhotoFrame";
 import { site } from "@/content/site";
 import { dict } from "@/content/kontakt-i18n";
@@ -42,11 +41,10 @@ export default async function KontaktPage({
     : "allgemein";
 
   return (
-    <section>
+    <section className="mx-3 rounded-[2rem] bg-white sm:mx-5 sm:rounded-[2.5rem]">
       <Container className="grid gap-12 py-16 sm:py-20 lg:grid-cols-2">
         <div>
-          <LockupHorizontal priority className="mb-8 w-56" />
-          <SectionHeading eyebrow={t.eyebrow} title={t.title} lede={t.lede} />
+          <SectionHeading as="h1" eyebrow={t.eyebrow} title={t.title} lede={t.lede} />
           <PhotoFrame src="/images/photos/coworking-blau.jpg" alt="" className="mt-6 aspect-[16/9] w-full" />
           <div className="mt-6 flex items-start gap-3 rounded-3xl border border-brand-700/30 bg-brand-50 p-5">
             <IconMail className="h-5 w-5 shrink-0 text-brand-800" />

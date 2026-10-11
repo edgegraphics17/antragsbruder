@@ -28,7 +28,7 @@ export default async function DatenschutzPage({ params }: { params: Promise<{ lo
   const t = dict[locale];
 
   return (
-    <section>
+    <section className="mx-3 rounded-[2rem] bg-white sm:mx-5 sm:rounded-[2.5rem]">
       <Container className="max-w-3xl py-16 sm:py-20">
         <h1 className="font-display text-5xl text-ink">{t.pageTitle}</h1>
 

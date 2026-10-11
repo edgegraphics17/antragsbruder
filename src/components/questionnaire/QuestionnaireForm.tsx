@@ -187,7 +187,7 @@ export function QuestionnaireForm({ caseId, onComplete, compact = false }: Quest
       <div className={`flex flex-col ${compact ? 'gap-4' : 'gap-6'}`}>
         {/* Question header */}
         <div className="flex items-start gap-3">
-          <div className={`mt-0.5 shrink-0 rounded-full px-2 py-0.5 text-xs font-semibold uppercase tracking-wide ${
+          <div className={`mt-0.5 shrink-0 rounded-full px-2 py-0.5 text-xs font-semibold ${
             sensitivity === 'HIGHLY_SENSITIVE' ? 'bg-red-100 text-red-700' :
             sensitivity === 'SENSITIVE' ? 'bg-amber-100 text-amber-700' :
             'bg-brand-100 text-brand-700'

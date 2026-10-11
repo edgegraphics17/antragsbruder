@@ -35,10 +35,10 @@ export default async function UnterlagenCheckPage({ params }: { params: Promise<
 
   return (
     <>
-      <section>
+      <section className="mx-3 rounded-[2rem] bg-white sm:mx-5 sm:rounded-[2.5rem]">
         <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.2fr_1fr]">
           <div>
-          <SectionHeading eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
+          <SectionHeading as="h1" eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
           <div className="mt-6 flex flex-wrap items-center gap-4">
             <Button href={ctaHref} size="lg">
               {t.heroButtonLabel}
@@ -50,7 +50,7 @@ export default async function UnterlagenCheckPage({ params }: { params: Promise<
         </Container>
       </section>
 
-      <section className="bg-cream-deep/60">
+      <section className="my-3 mx-3 rounded-[2rem] bg-cream-deep/70 sm:mx-5 sm:rounded-[2.5rem] sm:my-5">
         <Container className="grid gap-12 py-20 lg:grid-cols-2">
           <div>
             <SectionHeading title={t.whatWeShowTitle} />
@@ -75,7 +75,7 @@ export default async function UnterlagenCheckPage({ params }: { params: Promise<
         <Container className="py-20">
           <SectionHeading title={t.exampleTitle} lede={t.exampleLede} />
           <div className="mt-8 max-w-xl rounded-3xl border border-line-soft bg-white p-6 shadow-sm">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-brand-700">{t.exampleCaseLabel}</p>
+            <p className="mb-4 text-sm font-semibold text-brand-700">{t.exampleCaseLabel}</p>
             <ul className="space-y-3">
               {t.exampleItems.map((item) => (
                 <li

@@ -41,7 +41,7 @@ export default async function RegisterPage({ params }: PageProps) {
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-brand-100">
           <IconLock className="h-8 w-8 text-brand-700" />
         </div>
-        <SectionHeading
+        <SectionHeading as="h1"
           eyebrow={t.badge}
           title="Registrierung geschlossen"
           lede="Das Dashboard ist ein internes Projekt. Wir sind aber gerne für dich da – schreib uns einfach, wenn du Unterstützung bei deinen Anträgen und Ansprüchen brauchst."

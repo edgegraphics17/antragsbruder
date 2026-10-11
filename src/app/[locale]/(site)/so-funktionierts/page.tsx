@@ -32,19 +32,19 @@ export default async function SoFunktioniertsPage({ params }: { params: Promise<
 
   return (
     <>
-      <section>
+      <section className="mx-3 rounded-[2rem] bg-white sm:mx-5 sm:rounded-[2.5rem]">
         <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.2fr_1fr]">
-          <SectionHeading eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
+          <SectionHeading as="h1" eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
           <PhotoFrame src="/images/photos/coworking-warm.jpg" alt="" priority className="aspect-[4/3] w-full" />
         </Container>
       </section>
 
-      <section className="bg-cream-deep/60">
+      <section className="my-3 mx-3 rounded-[2rem] bg-cream-deep/70 sm:mx-5 sm:rounded-[2.5rem] sm:my-5">
         <Container className="py-16">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {t.steps.map((s, i) => (
               <div key={s.title} className="rounded-3xl border border-line-soft bg-white p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-900 text-sm font-semibold text-cream">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink text-sm font-semibold text-cream">
                   {i + 1}
                 </span>
                 <h3 className="font-display mt-4 text-2xl text-ink">{s.title}</h3>

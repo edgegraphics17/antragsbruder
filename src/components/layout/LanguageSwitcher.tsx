@@ -77,7 +77,7 @@ export function LanguageSwitcher({
           aria-label={label}
           className={
             variant === "compact"
-              ? "absolute end-0 top-full z-50 mt-2 w-52 overflow-hidden rounded-2xl border border-line-soft bg-white p-1.5 shadow-xl shadow-brand-950/10"
+              ? "absolute end-0 top-full z-50 mt-2 w-52 overflow-hidden rounded-2xl border border-line-soft bg-white p-1.5 shadow-xl"
               : // In the mobile sheet the list stays in flow, so it scrolls with
                 // the sheet instead of being clipped by its overflow container.
                 "mt-2 w-full overflow-hidden rounded-2xl border border-line-soft bg-white p-1.5"

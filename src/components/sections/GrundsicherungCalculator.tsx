@@ -329,7 +329,7 @@ export function GrundsicherungCalculator({ locale }: { locale: LangCode }) {
       </div>
 
       <div className="mb-8 text-center">
-        <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-brand-700">{t.eyebrow}</p>
+        <p className="mb-2 text-sm font-semibold text-brand-700">{t.eyebrow}</p>
         <h1 className="font-display text-4xl text-ink sm:text-5xl">{t.title}</h1>
         <p className="mt-3 text-base leading-relaxed text-ink-soft">{t.lede}</p>
       </div>
@@ -800,7 +800,7 @@ export function GrundsicherungCalculator({ locale }: { locale: LangCode }) {
           <div className="space-y-6">
             <div>
               <span
-                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide ${
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${
                   result.eligible ? "bg-brand-600 text-white" : "bg-cream-deep text-ink-soft border border-line"
                 }`}
               >

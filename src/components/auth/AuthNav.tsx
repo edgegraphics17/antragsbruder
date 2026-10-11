@@ -56,7 +56,7 @@ export function AuthNav({ locale }: { locale: Locale }) {
                 />
                 <div
                   role="menu"
-                  className="absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-2xl border border-line-soft bg-white p-1.5 shadow-xl shadow-brand-950/10"
+                  className="absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-2xl border border-line-soft bg-white p-1.5 shadow-xl"
                 >
                   <Link
                     href={profileHref}
@@ -91,7 +91,7 @@ export function AuthNav({ locale }: { locale: Locale }) {
             </Link>
             <Link
               href={kontoHref}
-              className="rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+              className="rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-800"
             >
               {t.signup}
             </Link>
@@ -112,7 +112,7 @@ export function AuthNav({ locale }: { locale: Locale }) {
         </button>
 
         {mobileOpen && (
-          <div className="mt-2 rounded-2xl border border-line-soft bg-white p-3 shadow-[0_16px_40px_-16px_rgba(18,48,47,0.35)]">
+          <div className="mt-2 rounded-2xl border border-line-soft bg-white p-3 shadow-[0_16px_40px_-16px_rgba(34,33,31,0.35)]">
             {user && !loading ? (
               <>
                 <div className="mb-2 flex items-center gap-2 rounded-xl bg-brand-50 px-3 py-2">
@@ -142,7 +142,7 @@ export function AuthNav({ locale }: { locale: Locale }) {
               <div className="flex flex-col gap-2">
                 <Link
                   href={anmeldenHref}
-                  className="flex w-full items-center justify-center rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+                  className="flex w-full items-center justify-center rounded-xl bg-ink px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-800"
                   onClick={() => setMobileOpen(false)}
                 >
                   {t.login}

@@ -32,14 +32,14 @@ export default async function WerWirSindPage({ params }: { params: Promise<{ loc
 
   return (
     <>
-      <section>
+      <section className="mx-3 rounded-[2rem] bg-white sm:mx-5 sm:rounded-[2.5rem]">
         <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.3fr_1fr]">
-          <SectionHeading eyebrow={t.heroEyebrow} title={t.heroTitle} lede={t.heroLede} />
+          <SectionHeading as="h1" eyebrow={t.heroEyebrow} title={t.heroTitle} lede={t.heroLede} />
           <MascotFull priority className="mx-auto w-48 sm:w-56 lg:mx-0" />
         </Container>
       </section>
 
-      <section className="bg-cream-deep/60">
+      <section className="my-3 mx-3 rounded-[2rem] bg-cream-deep/70 sm:mx-5 sm:rounded-[2.5rem] sm:my-5">
         <Container className="py-16 sm:py-20">
           <SectionHeading title={t.warumTitle} align="center" className="mx-auto" />
           <div className="mx-auto mt-10 grid max-w-5xl gap-6 sm:grid-cols-3">

@@ -33,10 +33,10 @@ export default async function FuerUnternehmenPage({ params }: { params: Promise<
   return (
     <>
       {/* HERO */}
-      <section>
+      <section className="mx-3 rounded-[2rem] bg-white sm:mx-5 sm:rounded-[2.5rem]">
         <Container className="grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-2 lg:py-24">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-800">
+            <div className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold text-brand-800">
               <IconBuilding className="h-3.5 w-3.5" />
               {t.eyebrow}
             </div>
@@ -58,7 +58,7 @@ export default async function FuerUnternehmenPage({ params }: { params: Promise<
       </section>
 
       {/* WARUM */}
-      <section className="bg-cream-deep/60">
+      <section className="my-3 mx-3 rounded-[2rem] bg-cream-deep/70 sm:mx-5 sm:rounded-[2.5rem] sm:my-5">
         <Container className="py-20">
           <SectionHeading title={t.whyTitle} align="center" className="mx-auto" />
           <div className="mt-10 grid gap-5 sm:grid-cols-3">
@@ -88,13 +88,13 @@ export default async function FuerUnternehmenPage({ params }: { params: Promise<
       </section>
 
       {/* PROZESS */}
-      <section className="bg-cream-deep/60">
+      <section className="my-3 mx-3 rounded-[2rem] bg-cream-deep/70 sm:mx-5 sm:rounded-[2.5rem] sm:my-5">
         <Container className="py-20">
           <SectionHeading title={t.processTitle} align="center" className="mx-auto" />
           <ol className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-2">
             {t.processSteps.map((step, i) => (
               <li key={step} className="rounded-3xl border border-line-soft bg-white p-5">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-900 text-xs font-semibold text-cream">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-xs font-semibold text-cream">
                   {i + 1}
                 </span>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">{step}</p>

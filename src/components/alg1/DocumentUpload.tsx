@@ -161,7 +161,7 @@ export function DocumentUpload({
         type="button"
         onClick={onComplete}
         disabled={!canContinue}
-        className="w-full rounded-xl bg-brand-600 py-3 font-semibold text-white transition-colors hover:bg-brand-700 disabled:opacity-50"
+        className="w-full rounded-xl bg-ink py-3 font-semibold text-white transition-colors hover:bg-brand-800 disabled:opacity-50"
       >
         {t.continueBtn}
       </button>

@@ -46,13 +46,13 @@ dict: any;
     <>
       <section>
         <Container className="py-16 sm:py-20">
-          <SectionHeading eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
+          <SectionHeading as="h1" eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
         </Container>
       </section>
 
-      <section className="bg-cream-deep/60">
+      <section className="my-3 mx-3 rounded-[2rem] bg-cream-deep/70 sm:mx-5 sm:rounded-[2.5rem] sm:my-5">
         <Container className="py-12">
-          <h2 className="text-xl font-bold text-ink">{t.situationsTitle}</h2>
+          <h2 className="font-display text-3xl text-ink">{t.situationsTitle}</h2>
           <p className="mt-2 text-sm text-ink-soft">{t.situationsSubtitle}</p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {t.situations.map((s: { key: string; icon: string; label: string }) => {
@@ -102,10 +102,10 @@ dict: any;
       {showResults && (
         <section>
           <Container className="py-16">
-            <h2 className="text-2xl font-bold text-ink">{t.resultTitle}</h2>
+            <h2 className="font-display text-4xl text-ink">{t.resultTitle}</h2>
             <p className="mt-2 text-ink-soft">{t.resultLede}</p>
             <div className="mt-8 rounded-2xl border border-brand-200 bg-brand-50 p-6">
-              <h3 className="font-semibold text-ink">{t.disclaimerTitle}</h3>
+              <h3 className="font-display font-semibold text-ink">{t.disclaimerTitle}</h3>
               <p className="mt-2 text-sm text-ink-soft">{t.disclaimerText}</p>
             </div>
           </Container>

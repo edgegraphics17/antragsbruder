@@ -28,7 +28,7 @@ export function Footer({ locale }: { locale: Locale }) {
   const t = commonDict[locale];
 
   return (
-    <footer className="px-3 pb-3 sm:px-5 sm:pb-5">
+    <footer className="px-3 pb-3 pt-3 sm:px-5 sm:pb-5 sm:pt-5">
       <div className="rounded-[2rem] bg-ink text-white sm:rounded-[2.5rem]">
       <Container className="py-16">
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">

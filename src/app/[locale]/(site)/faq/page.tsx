@@ -38,7 +38,7 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
   return (
     <>
       <JsonLd data={faqJsonLd(allFaqItems)} />
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden mx-3 rounded-[2rem] bg-white sm:mx-5 sm:rounded-[2.5rem]">
         <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[38%] sm:block" aria-hidden="true">
           <Image
             src="/images/photos/fassade-muster.jpg"
@@ -49,7 +49,7 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
           />
         </div>
         <Container className="relative py-16 sm:py-20">
-          <SectionHeading eyebrow={t.eyebrow} title={t.title} lede={t.lede} />
+          <SectionHeading as="h1" eyebrow={t.eyebrow} title={t.title} lede={t.lede} />
         </Container>
       </section>
 

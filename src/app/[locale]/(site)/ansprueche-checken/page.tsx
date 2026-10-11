@@ -37,7 +37,7 @@ export default function AnspruecheCheckenPage() {
     <>
       <section className="py-16">
         <Container>
-          <SectionHeading
+          <SectionHeading as="h1"
             eyebrow="Ansprüche prüfen"
             title="Damit dir keine Leistung entgeht"
             lede="Beschreibe deine Situation — wir zeigen dir, was für dich relevant sein könnte."
@@ -51,9 +51,9 @@ export default function AnspruecheCheckenPage() {
         </Container>
       </section>
 
-      <section className="bg-cream-deep/60">
+      <section className="my-3 mx-3 rounded-[2rem] bg-cream-deep/70 sm:mx-5 sm:rounded-[2.5rem] sm:my-5">
         <Container className="py-12">
-          <h2 className="text-xl font-bold text-ink">Was trifft auf dich zu?</h2>
+          <h2 className="font-display text-3xl text-ink">Was trifft auf dich zu?</h2>
           <p className="mt-2 text-sm text-ink-soft">
             Wähle eine Situation aus, um die Prüfung zu starten.
           </p>

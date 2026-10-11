@@ -31,7 +31,7 @@ export default function DatenbankPage({ params }: { params: Promise<{ locale: st
   return (
     <main className="min-h-screen bg-cream">
       {/* Hero */}
-      <section className="bg-brand-950 text-cream py-16 sm:py-20">
+      <section className="mx-3 rounded-[2rem] bg-ink sm:mx-5 sm:rounded-[2.5rem] text-cream py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4">
           <h1 className="font-display text-5xl sm:text-6xl">
             Fördermittel-Datenbank
@@ -112,7 +112,7 @@ export default function DatenbankPage({ params }: { params: Promise<{ locale: st
             <p className="text-lg text-ink-soft">Keine Förderungen gefunden.</p>
             <button
               onClick={() => setFilters(emptyFilters)}
-              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-brand-900 px-4 py-2 text-sm font-medium text-cream hover:bg-brand-800"
+              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-ink px-4 py-2 text-sm font-medium text-cream hover:bg-brand-800"
             >
               Filter zurücksetzen
             </button>

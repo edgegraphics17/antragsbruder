@@ -341,7 +341,7 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
       <div className="mx-auto max-w-2xl px-6 pt-6">
         <div className="flex items-center gap-3">
           <div
-            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold uppercase tracking-wide ${
+            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold ${
               step === 1 ? 'bg-brand-600 text-white' : 'bg-brand-100 text-brand-700'
             }`}
           >
@@ -349,7 +349,7 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
           </div>
           <div className={`flex-1 h-0.5 ${step === 1 ? 'bg-brand-600' : 'bg-line-soft'}`} />
           <div
-            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold uppercase tracking-wide ${
+            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold ${
               step === 2 ? 'bg-brand-600 text-white' : 'bg-brand-100 text-brand-700'
             }`}
           >
@@ -437,7 +437,7 @@ export function UploadOnboardingFlow({ caseId: caseIdProp }: { caseId?: string }
 
               {files.length > 0 && (
                 <div className="mt-6 flex flex-col gap-3">
-                  <h2 className="text-sm font-semibold text-ink-soft uppercase tracking-wide">
+                  <h2 className="text-sm font-semibold text-ink-soft">
                     {formatTemplate(tu.filesCount, { count: files.length })}
                   </h2>
                   {files.map((f) => (

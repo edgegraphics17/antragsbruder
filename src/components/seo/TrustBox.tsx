@@ -69,7 +69,7 @@ export function TrustBox({
         ) : null}
       </dl>
       <div className="mt-4 border-t border-line-soft pt-4">
-        <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft">Primärquellen</p>
+        <p className="text-xs font-semibold text-ink-soft">Primärquellen</p>
         <ul className="mt-2 space-y-1 text-sm">
           {sources.map((s) => (
             <li key={s.url}>

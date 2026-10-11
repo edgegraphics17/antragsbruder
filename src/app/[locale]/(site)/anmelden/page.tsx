@@ -43,7 +43,7 @@ export default async function LoginPage({ params }: PageProps) {
               <path d="M4 21a7 7 0 0 1 14 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
           </div>
-          <SectionHeading eyebrow={t.badge} title={t.signInTitle} lede={t.signInLede} />
+          <SectionHeading as="h1" eyebrow={t.badge} title={t.signInTitle} lede={t.signInLede} />
         </div>
 
         <div className="rounded-3xl border border-line-soft bg-paper p-6 shadow-lg">

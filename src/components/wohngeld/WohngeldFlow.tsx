@@ -124,7 +124,7 @@ function MoneyAnswer({
           type="button"
           disabled={!valid}
           onClick={() => onAnswer(parsed)}
-          className="ml-auto rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-40"
+          className="ml-auto rounded-xl bg-ink px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-800 disabled:cursor-not-allowed disabled:opacity-40"
         >
           Weiter
         </button>
@@ -155,7 +155,7 @@ function PlzAnswer({
         type="button"
         disabled={!valid}
         onClick={() => onAnswer(draft.trim())}
-        className="ml-3 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-40"
+        className="ml-3 rounded-xl bg-ink px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-800 disabled:cursor-not-allowed disabled:opacity-40"
       >
         Weiter
       </button>
@@ -263,7 +263,7 @@ function BoolMoneyAnswer({
           type="button"
           disabled={!valid}
           onClick={() => onAnswer(parsed)}
-          className="ml-auto rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-40"
+          className="ml-auto rounded-xl bg-ink px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-800 disabled:cursor-not-allowed disabled:opacity-40"
         >
           Weiter
         </button>

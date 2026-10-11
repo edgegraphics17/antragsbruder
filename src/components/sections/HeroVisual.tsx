@@ -16,14 +16,14 @@ export function HeroVisual({ locale }: { locale: Locale }) {
         className="absolute -bottom-10 -left-14 z-10 hidden w-40 drop-shadow-xl sm:block lg:-left-20 lg:w-48"
       />
 
-      <div className="relative rounded-[2rem] border border-line-soft bg-white p-5 shadow-xl shadow-brand-950/10">
-        <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft">{t.senderLabel}</p>
+      <div className="relative rounded-[2rem] border border-line-soft bg-white p-5 shadow-xl">
+        <p className="text-xs font-semibold text-ink-soft">{t.senderLabel}</p>
         <div className="mt-2 rounded-2xl bg-cream p-4 font-mono text-[11px] leading-relaxed text-ink-soft">
           <p className="text-ink">{t.sender}</p>
           <p>{t.letterExcerpt}</p>
         </div>
 
-        <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-brand-800">{t.explainedLabel}</p>
+        <p className="mt-4 text-xs font-semibold text-brand-800">{t.explainedLabel}</p>
         <ul className="mt-2 space-y-2">
           <li className="flex items-center gap-3 rounded-2xl bg-brand-50 px-3 py-2.5">
             <IconCheck className="h-4 w-4 shrink-0 text-brand-700" />

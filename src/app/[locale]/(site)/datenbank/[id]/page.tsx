@@ -25,7 +25,7 @@ function BenefitDetail({ benefit }: { benefit: Benefit }) {
   return (
     <main className="min-h-screen bg-cream">
       {/* Hero */}
-      <section className="bg-brand-950 text-cream py-12 sm:py-16">
+      <section className="mx-3 rounded-[2rem] bg-ink sm:mx-5 sm:rounded-[2.5rem] text-cream py-12 sm:py-16">
         <div className="max-w-4xl mx-auto px-4">
           <Link href="/datenbank" className="text-brand-300 hover:text-cream text-sm">
             ← Zurück zur Datenbank
@@ -107,7 +107,7 @@ function BenefitDetail({ benefit }: { benefit: Benefit }) {
             <ol className="space-y-3">
               {benefit.calculation.steps.map((step) => (
                 <li key={step.step} className="flex items-start gap-3">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-900 text-xs font-bold text-cream">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink text-xs font-bold text-cream">
                     {step.step}
                   </span>
                   <div>
@@ -154,7 +154,7 @@ function BenefitDetail({ benefit }: { benefit: Benefit }) {
               href={benefit.application.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-brand-900 px-4 py-2 text-sm font-medium text-cream hover:bg-brand-800"
+              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-ink px-4 py-2 text-sm font-medium text-cream hover:bg-brand-800"
             >
               Zum Antrag →
             </a>

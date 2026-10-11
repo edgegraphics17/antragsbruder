@@ -32,10 +32,10 @@ export default async function AntragVorbereitenPage({ params }: { params: Promis
 
   return (
     <>
-      <section>
+      <section className="mx-3 rounded-[2rem] bg-white sm:mx-5 sm:rounded-[2.5rem]">
         <Container className="py-16 sm:py-20">
-          <SectionHeading eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
-          <p className="mt-4 text-sm font-semibold uppercase tracking-wide text-brand-700">{t.priceLabel}</p>
+          <SectionHeading as="h1" eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
+          <p className="mt-4 text-sm font-semibold text-brand-700">{t.priceLabel}</p>
           <div className="mt-6">
             <Button href={href("/hilfe-starten?anliegen=antrag")} size="lg">
               {t.startButtonLabel}
@@ -44,7 +44,7 @@ export default async function AntragVorbereitenPage({ params }: { params: Promis
         </Container>
       </section>
 
-      <section className="bg-cream-deep/60">
+      <section className="my-3 mx-3 rounded-[2rem] bg-cream-deep/70 sm:mx-5 sm:rounded-[2.5rem] sm:my-5">
         <Container className="py-16">
           <SectionHeading title={t.bereicheTitle} />
           <div className="mt-8 flex flex-wrap gap-3">
@@ -67,7 +67,7 @@ export default async function AntragVorbereitenPage({ params }: { params: Promis
           <ul className="mt-8 space-y-4 text-sm leading-relaxed text-ink-soft sm:text-base">
             {t.whatWeDoItems.map((item, i) => (
               <li key={item.bold} className="flex items-start gap-4 rounded-3xl border border-line-soft bg-white p-5">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-900 text-sm font-semibold text-cream">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink text-sm font-semibold text-cream">
                   {i + 1}
                 </span>
                 <p>
@@ -79,7 +79,7 @@ export default async function AntragVorbereitenPage({ params }: { params: Promis
         </Container>
       </section>
 
-      <section className="bg-cream-deep/60">
+      <section className="my-3 mx-3 rounded-[2rem] bg-cream-deep/70 sm:mx-5 sm:rounded-[2.5rem] sm:my-5">
         <Container className="py-20">
           <SectionHeading title={t.beispielTitle} lede={t.beispielIntro} />
           <div className="mt-8 max-w-2xl">

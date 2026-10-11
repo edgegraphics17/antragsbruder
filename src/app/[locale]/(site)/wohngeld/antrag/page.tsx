@@ -56,10 +56,10 @@ export default async function WohngeldAntragPage({
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-brand-50 to-cream">
+      <section className="relative overflow-hidden mx-3 rounded-[2rem] bg-white sm:mx-5 sm:rounded-[2.5rem]">
         <Container className="grid gap-10 py-16 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:py-24">
           <div>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold text-white">
               <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
               {t.eyebrow}
             </span>
@@ -90,10 +90,10 @@ export default async function WohngeldAntragPage({
             </ul>
           </div>
 
-          <div className="rounded-3xl border border-line-soft bg-white p-6 shadow-lg shadow-brand-950/5 sm:p-8">
+          <div className="rounded-3xl border border-line-soft bg-white p-6 shadow-lg sm:p-8">
             {hasSummary ? (
               <>
-                <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft">{t.summaryTitle}</p>
+                <p className="text-xs font-semibold text-ink-soft">{t.summaryTitle}</p>
                 <p className="font-display mt-2 text-5xl text-ink">
                   {sp.betrag ?? "–"} <span className="text-base font-semibold text-ink-soft">{tc.perMonth}</span>
                 </p>
@@ -139,7 +139,7 @@ export default async function WohngeldAntragPage({
       <section>
         <Container className="py-16 sm:py-20">
           <div className="max-w-2xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-700">{t.includedTitle}</p>
+            <p className="mb-3 text-sm font-semibold text-brand-700">{t.includedTitle}</p>
             <h2 className="font-display text-4xl text-ink sm:text-5xl">{t.includedLede}</h2>
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -159,11 +159,11 @@ export default async function WohngeldAntragPage({
       </section>
 
       {/* CHECKLIST */}
-      <section className="bg-cream-deep/60">
+      <section className="my-3 mx-3 rounded-[2rem] bg-cream-deep/70 sm:mx-5 sm:rounded-[2.5rem] sm:my-5">
         <Container className="py-16 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-700">{t.checklistTitle}</p>
+              <p className="mb-3 text-sm font-semibold text-brand-700">{t.checklistTitle}</p>
               <p className="text-lg leading-relaxed text-ink-soft">{t.checklistLede}</p>
             </div>
             <div className="rounded-3xl border border-line-soft bg-white p-6 sm:p-8">
@@ -184,13 +184,13 @@ export default async function WohngeldAntragPage({
       <section>
         <Container className="py-16 sm:py-20">
           <div className="max-w-2xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-brand-700">{t.processTitle}</p>
+            <p className="mb-3 text-sm font-semibold text-brand-700">{t.processTitle}</p>
             <h2 className="font-display text-4xl text-ink sm:text-5xl">{t.processLede}</h2>
           </div>
           <ol className="relative mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {t.process.map((step, i) => (
               <li key={step.title} className="relative rounded-3xl border border-line-soft bg-white p-6">
-                <span className="font-display flex h-10 w-10 items-center justify-center rounded-full bg-brand-900 text-xl text-cream">
+                <span className="font-display flex h-10 w-10 items-center justify-center rounded-full bg-ink text-xl text-cream">
                   {i + 1}
                 </span>
                 <p className="mt-4 font-display text-2xl text-ink">{step.title}</p>
@@ -202,7 +202,7 @@ export default async function WohngeldAntragPage({
       </section>
 
       {/* FAQ */}
-      <section className="bg-cream-deep/60">
+      <section className="my-3 mx-3 rounded-[2rem] bg-cream-deep/70 sm:mx-5 sm:rounded-[2.5rem] sm:my-5">
         <Container className="py-16 sm:py-20">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-display text-4xl text-ink sm:text-5xl">{t.faqTitle}</h2>

@@ -34,10 +34,10 @@ export default async function BriefVerstehenPage({ params }: { params: Promise<{
 
   return (
     <>
-      <section>
+      <section className="mx-3 rounded-[2rem] bg-white sm:mx-5 sm:rounded-[2.5rem]">
         <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-[1.2fr_1fr]">
           <div>
-            <SectionHeading eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
+            <SectionHeading as="h1" eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
             <div className="mt-6">
               <Button href={href("/hilfe-starten?anliegen=brief")} size="lg">
                 {t.uploadButtonLabel}
@@ -61,7 +61,7 @@ export default async function BriefVerstehenPage({ params }: { params: Promise<{
         </Container>
       </section>
 
-      <section className="bg-cream-deep/60">
+      <section className="my-3 mx-3 rounded-[2rem] bg-cream-deep/70 sm:mx-5 sm:rounded-[2.5rem] sm:my-5">
         <Container className="py-20">
           <SectionHeading title={t.howItWorksTitle} />
           <div className="mt-6 max-w-lg">

@@ -22,12 +22,12 @@ export default async function TeilenPage({
     return (
       <div className="mx-auto max-w-2xl px-6 py-20 text-center">
         <IconAlertTriangle className="mx-auto h-10 w-10 text-amber-500" />
-        <h1 className="mt-4 text-2xl font-bold text-ink">Link nicht mehr gültig</h1>
+        <h1 className="font-display mt-4 text-4xl text-ink">Link nicht mehr gültig</h1>
         <p className="mt-2 text-sm text-ink-soft">
           Dieses geteilte Paket ist abgelaufen oder wurde zurückgezogen. Bitte fordere einen
           neuen Link bei der Person an, die ihn erstellt hat.
         </p>
-        <Link href="/" className="mt-6 inline-block rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700">
+        <Link href="/" className="mt-6 inline-block rounded-xl bg-ink px-6 py-3 text-sm font-semibold text-white hover:bg-brand-800">
           Zur Startseite
         </Link>
       </div>
@@ -41,7 +41,7 @@ export default async function TeilenPage({
 
   return (
     <div className="mx-auto max-w-2xl px-6 py-12">
-      <h1 className="text-2xl font-bold text-ink">Geteilte Unterlagen</h1>
+      <h1 className="font-display text-4xl text-ink">Geteilte Unterlagen</h1>
       <p className="mt-1 text-sm text-ink-soft">
         {bundle.downloads.length} Dokument{bundle.downloads.length === 1 ? '' : 'e'} · Paket gültig
         bis {expires} · Download-Links laufen 60 Minuten nach Öffnen ab.

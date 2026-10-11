@@ -38,7 +38,7 @@ export default async function ResetPasswordPage({ params }: PageProps) {
               <circle cx="12" cy="15" r="1.5" fill="currentColor" />
             </svg>
           </div>
-          <SectionHeading eyebrow={t(BADGE)} title={t(TITLE)} lede={t(LEDE)} />
+          <SectionHeading as="h1" eyebrow={t(BADGE)} title={t(TITLE)} lede={t(LEDE)} />
         </div>
 
         <div className="rounded-3xl border border-line-soft bg-paper p-6 shadow-lg">

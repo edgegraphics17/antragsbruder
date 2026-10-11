@@ -78,7 +78,7 @@ export function GrundsicherungCheckQuestionnaire({
   return (
     <div className="space-y-6">
       <header>
-        <h2 className="text-lg font-semibold text-ink">{t.title}</h2>
+        <h1 className="font-display text-4xl text-ink sm:text-5xl">{t.title}</h1>
         <p className="mt-1 text-sm text-ink-soft">{t.intro}</p>
       </header>
 
@@ -684,7 +684,7 @@ export function GrundsicherungCheckResultView({
   return (
     <div className="space-y-6">
       <header>
-        <h2 className="text-lg font-semibold text-ink">{t.title}</h2>
+        <h1 className="font-display text-4xl text-ink sm:text-5xl">{t.title}</h1>
       </header>
 
       <section className={`rounded-2xl border p-6 ${style}`}>
@@ -698,7 +698,7 @@ export function GrundsicherungCheckResultView({
         )}
         {result.nextAction && (
           <div className="mt-3 rounded-xl border-2 border-red-600 bg-white/70 p-3">
-            <p className="text-xs font-bold uppercase tracking-wide text-red-600">
+            <p className="text-xs font-bold text-red-600">
               {t.nextActionLabel}
             </p>
             <p className="mt-1 text-sm font-semibold text-ink">{result.nextAction.title}</p>
@@ -710,7 +710,7 @@ export function GrundsicherungCheckResultView({
           if (issues.length === 0) return null;
           return (
             <div className="mt-4">
-              <p className="text-xs font-medium uppercase tracking-wide text-ink-soft">
+              <p className="text-xs font-medium text-ink-soft">
                 {t.openIssuesLabel}
               </p>
               <ul className="mt-1 space-y-1">
@@ -725,7 +725,7 @@ export function GrundsicherungCheckResultView({
         })()}
         {result.range && (
           <div className="mt-4">
-            <p className="text-xs font-medium uppercase tracking-wide text-ink-soft">{t.rangeLabel}</p>
+            <p className="text-xs font-medium text-ink-soft">{t.rangeLabel}</p>
             <p className="mt-1 font-display text-3xl font-bold text-ink">
               {result.range.min.toLocaleString('de-DE')} € – {result.range.max.toLocaleString('de-DE')} €
               <span className="ml-2 text-sm font-normal text-ink-soft">{t.perMonth}</span>
