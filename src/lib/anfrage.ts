@@ -35,16 +35,6 @@ export const anfrageSchema = z.object({
 
 export type Anfrage = z.infer<typeof anfrageSchema>;
 
-/** Maskiert Nutzereingaben für die HTML-Mail. */
-export function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
 /**
  * Klartextfassung der Anfrage. Wird als Plaintext-Teil der E-Mail und als
  * Basis für die Rückfallebene (mailto) verwendet.

@@ -267,7 +267,7 @@ export async function sendStatusChangeEmail(
     to: userEmail,
     subject: `Antrags-Status: ${status} — Antragsbruder`,
     html,
-    text: `Hallo ${escapeHtml(userName)},\n\ndein Antrags-Status hat sich geändert: ${status}.\n\nAntrag: ${escapeHtml(benefitType || 'Allgemeiner Antrag')}\nCase-ID: ${escapeHtml(caseId)}\n\nZum Dashboard: ${APP_URL}/dashboard`,
+    text: `Hallo ${userName},\n\ndein Antrags-Status hat sich geändert: ${status}.\n\nAntrag: ${benefitType || 'Allgemeiner Antrag'}\nCase-ID: ${caseId}\n\nZum Dashboard: ${APP_URL}/dashboard`,
   });
 }
 
@@ -280,9 +280,9 @@ export async function sendUploadConfirmationEmail(
   const html = uploadConfirmationHtml(userName, fileName, caseId, APP_URL);
   return sendEmail({
     to: userEmail,
-    subject: `Unterlage hochgeladen: ${escapeHtml(fileName)} — Antragsbruder`,
+    subject: `Unterlage hochgeladen: ${fileName} — Antragsbruder`,
     html,
-    text: `Hallo ${escapeHtml(userName)},\n\ndeine Unterlage wurde hochgeladen:\n${escapeHtml(fileName)}\nCase-ID: ${escapeHtml(caseId)}\n\nZum Dashboard: ${APP_URL}/dashboard`,
+    text: `Hallo ${userName},\n\ndeine Unterlage wurde hochgeladen:\n${fileName}\nCase-ID: ${caseId}\n\nZum Dashboard: ${APP_URL}/dashboard`,
   });
 }
 
@@ -298,6 +298,6 @@ export async function sendReminderEmail(
     to: userEmail,
     subject: `Erinnerung: ${daysRemaining} Tage verbleibend — Antragsbruder`,
     html,
-    text: `Hallo ${escapeHtml(userName)},\n\nErinnerung: dein Antrag (ID: ${escapeHtml(caseId)}) hat noch ${daysRemaining} Tage.\n\nZum Dashboard: ${APP_URL}/dashboard`,
+    text: `Hallo ${userName},\n\nErinnerung: dein Antrag (ID: ${caseId}) hat noch ${daysRemaining} Tage.\n\nZum Dashboard: ${APP_URL}/dashboard`,
   });
 }

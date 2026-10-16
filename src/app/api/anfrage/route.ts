@@ -12,7 +12,8 @@
 
 import { NextResponse } from "next/server";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limiter";
-import { anfrageSchema, anfrageToPlainText, escapeHtml } from "@/lib/anfrage";
+import { anfrageSchema, anfrageToPlainText } from "@/lib/anfrage";
+import { escapeHtml } from "@/lib/html";
 import { sendAnfrageEmail } from "@/lib/email";
 import { site } from "@/content/site";
 
