@@ -90,6 +90,22 @@ export default async function AgbPage({ params }: { params: Promise<{ locale: st
           <LegalSection title={t.s10Heading}>
             <p>{t.s10Text}</p>
           </LegalSection>
+
+          {/* Widerrufsrecht: gesetzlich vorgeschriebene Belehrung, verlinkt aus
+              den Vertragsbedingungen. Der Text selbst ist deutsch – deshalb hier
+              ein fester Hinweis statt einer Übersetzung, die den Inhalt
+              verfälschen könnte. */}
+          <LegalSection title="Widerrufsrecht (Verbraucher)">
+            <p>
+              Verbraucherinnen und Verbraucher haben bei entgeltlichen Leistungen ein
+              Widerrufsrecht. Die vollständige Belehrung mit Frist, Folgen und
+              Muster-Widerrufsformular findest du unter{" "}
+              <Link href={localeHref(locale, "/widerruf")} className="text-brand-800 underline">
+                Widerrufsbelehrung
+              </Link>
+              .
+            </p>
+          </LegalSection>
         </div>
       </Container>
     </section>

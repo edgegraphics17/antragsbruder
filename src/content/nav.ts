@@ -91,6 +91,9 @@ const footerStructure: Record<"produkt" | "unternehmen" | "legal", StructureLink
     { key: "impressum", href: "/impressum" },
     { key: "datenschutz", href: "/datenschutz" },
     { key: "agb", href: "/agb" },
+    // Widerrufsbelehrung: Pflichtangabe für Fernabsatzverträge mit Verbrauchern,
+    // deshalb dauerhaft im Footer verlinkt (§ 312d, § 355 BGB, Art. 246a EGBGB).
+    { key: "widerruf", href: "/widerruf" },
   ],
 };
 

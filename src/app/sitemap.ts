@@ -36,6 +36,9 @@ const routes: {
   { path: "/impressum", priority: 0.3, changeFrequency: "monthly" },
   { path: "/datenschutz", priority: 0.3, changeFrequency: "monthly" },
   { path: "/agb", priority: 0.3, changeFrequency: "monthly" },
+  // Widerrufsbelehrung: Inhalt nur auf Deutsch, kanonisch ist die deutsche
+  // Fassung – deshalb nur diese Adresse in der Sitemap.
+  { path: "/widerruf", priority: 0.3, changeFrequency: "monthly", deOnly: true },
   // Wohngeld-Content-Cluster + Blog: DE-only (Phase 1 der Mehrsprachigkeit).
   { path: "/blog", priority: 0.8, changeFrequency: "weekly", deOnly: true },
   { path: "/wohngeld", priority: 0.9, changeFrequency: "weekly", deOnly: true },
