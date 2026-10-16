@@ -18,6 +18,7 @@ export async function generateMetadata({
   const { locale } = await params;
   if (locale !== "de") notFound();
   return buildPageMetadata({
+    deOnly: true,
     locale: "de",
     path: "/redaktion/redaktionsrichtlinien",
     title: "Redaktionsrichtlinien",

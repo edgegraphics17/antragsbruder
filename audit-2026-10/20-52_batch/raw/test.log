@@ -1,0 +1,75 @@
+
+> antragsbruder@0.1.0 test
+> vitest run tests/unit
+
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v3.2.7 /Users/karim/Claude/Projects/Antragsbruder
+
+ ✓ tests/unit/identity-vault.test.ts (7 tests) 5ms
+ ✓ tests/unit/gs-household-resolver.test.ts (12 tests) 2ms
+ ✓ tests/unit/gs-person-service.test.ts (5 tests) 3ms
+ ✓ tests/unit/radar.test.ts (8 tests) 4ms
+ ✓ tests/unit/alg1-schema.test.ts (3 tests) 4ms
+ ✓ tests/unit/api-validation.test.ts (19 tests) 4ms
+ ✓ tests/unit/gs-legal-registry.test.ts (8 tests) 8ms
+ ✓ tests/unit/benefits-radar.test.ts (13 tests) 5ms
+(node:49256) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ tests/unit/gs-docs-pending.test.ts (9 tests) 4ms
+(node:49250) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/unit/alg1-store.test.ts (6 tests | 6 failed) 4ms
+   × ALG1 Store — 3-Stufen-Persistenz > resumeFromDb: DB-Stand laden ohne lokalen Stand (anderer Draft) 3ms
+     → Cannot read properties of undefined (reading 'setItem')
+   × ALG1 Store — 3-Stufen-Persistenz > resumeFromDb mit keepLocal: lokaler Stand gewinnt pro Feld, DB füllt Lücken 0ms
+     → Cannot read properties of undefined (reading 'setItem')
+   × ALG1 Store — 3-Stufen-Persistenz > prefillFromProfile: füllt nur LEERE Felder, überschreibt nie Eingaben 0ms
+     → Cannot read properties of undefined (reading 'setItem')
+   × ALG1 Store — 3-Stufen-Persistenz > prefillFromProfile: keine Änderung, wenn alles gefüllt ist 0ms
+     → Cannot read properties of undefined (reading 'setItem')
+   × ALG1 Store — 3-Stufen-Persistenz > setStage: wechselt ohne Datenverlust 0ms
+     → Cannot read properties of undefined (reading 'setItem')
+   × ALG1 Store — 3-Stufen-Persistenz > resetDraft: leert Store vollständig (Draft-Zuordnung inklusive) 0ms
+     → Cannot read properties of undefined (reading 'setItem')
+ ✓ tests/unit/gs-check.test.ts (22 tests) 7ms
+ ✓ tests/unit/bafoeg-cluster-links.test.ts (8 tests) 7ms
+ ✓ tests/unit/wohngeld-cluster-links.test.ts (8 tests) 6ms
+ ✓ tests/unit/gs-kdu-rules.test.ts (7 tests) 2ms
+ ✓ tests/unit/gs-calc-engine.test.ts (17 tests) 3ms
+ ✓ tests/unit/gs-fact-versioning.test.ts (4 tests) 3ms
+ ✓ tests/unit/rate-limiter.test.ts (6 tests) 2ms
+ ✓ tests/unit/wohngeld-calc-regression.test.ts (12 tests) 2ms
+ ✓ tests/unit/wohngeld-flow.test.ts (17 tests) 3ms
+ ✓ tests/unit/gs-question-pool.test.ts (7 tests) 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/alg1-store.test.ts > ALG1 Store — 3-Stufen-Persistenz > resumeFromDb: DB-Stand laden ohne lokalen Stand (anderer Draft)
+ FAIL  tests/unit/alg1-store.test.ts > ALG1 Store — 3-Stufen-Persistenz > resumeFromDb mit keepLocal: lokaler Stand gewinnt pro Feld, DB füllt Lücken
+ FAIL  tests/unit/alg1-store.test.ts > ALG1 Store — 3-Stufen-Persistenz > prefillFromProfile: füllt nur LEERE Felder, überschreibt nie Eingaben
+ FAIL  tests/unit/alg1-store.test.ts > ALG1 Store — 3-Stufen-Persistenz > prefillFromProfile: keine Änderung, wenn alles gefüllt ist
+ FAIL  tests/unit/alg1-store.test.ts > ALG1 Store — 3-Stufen-Persistenz > setStage: wechselt ohne Datenverlust
+ FAIL  tests/unit/alg1-store.test.ts > ALG1 Store — 3-Stufen-Persistenz > resetDraft: leert Store vollständig (Draft-Zuordnung inklusive)
+TypeError: Cannot read properties of undefined (reading 'setItem')
+ ❯ Object.setItem node_modules/zustand/esm/middleware.mjs:300:42
+ ❯ setItem node_modules/zustand/esm/middleware.mjs:360:20
+ ❯ node_modules/zustand/esm/middleware.mjs:373:14
+ ❯ Object.resetDraft src/lib/alg1/store.ts:316:9
+    314|           // persist-API nicht verfügbar (nicht-Browser-Umgebung, z. B…
+    315|         }
+    316|         set({
+       |         ^
+    317|           application: null,
+    318|           applicationId: null,
+ ❯ tests/unit/alg1-store.test.ts:36:27
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+
+ Test Files  1 failed | 19 passed (20)
+      Tests  6 failed | 192 passed (198)
+   Start at  20:54:18
+   Duration  569ms (transform 739ms, setup 0ms, collect 1.67s, tests 81ms, environment 2ms, prepare 1.04s)
+
+EXIT_CODE_TEST=1

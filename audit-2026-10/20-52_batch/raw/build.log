@@ -1,0 +1,276 @@
+
+> antragsbruder@0.1.0 build
+> next build
+
+▲ Next.js 16.3.2 (Turbopack)
+- Environments: .env.local
+⚠ Warning: Next.js ignored package-lock.json in /Users/karim because it is outside the current Git repository (/Users/karim/Claude/Projects/Antragsbruder).
+ To use this directory, set `turbopack.root` in your Next.js config.
+
+✓ Running next.config.ts took 70ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 879ms
+  Running TypeScript ...
+  Finished TypeScript in 1433ms ...
+  Collecting page data using 13 workers ...
+[Sentry] SENTRY_DSN nicht gesetzt — Fehler werden nur console.error geloggt. Für Production einen Sentry-DSN konfigurieren.
+[Sentry] SENTRY_DSN nicht gesetzt — Fehler werden nur console.error geloggt. Für Production einen Sentry-DSN konfigurieren.
+[Sentry] SENTRY_DSN nicht gesetzt — Fehler werden nur console.error geloggt. Für Production einen Sentry-DSN konfigurieren.
+[Sentry] SENTRY_DSN nicht gesetzt — Fehler werden nur console.error geloggt. Für Production einen Sentry-DSN konfigurieren.
+[Sentry] SENTRY_DSN nicht gesetzt — Fehler werden nur console.error geloggt. Für Production einen Sentry-DSN konfigurieren.
+[Sentry] SENTRY_DSN nicht gesetzt — Fehler werden nur console.error geloggt. Für Production einen Sentry-DSN konfigurieren.
+[Sentry] SENTRY_DSN nicht gesetzt — Fehler werden nur console.error geloggt. Für Production einen Sentry-DSN konfigurieren.
+[Sentry] SENTRY_DSN nicht gesetzt — Fehler werden nur console.error geloggt. Für Production einen Sentry-DSN konfigurieren.
+[Sentry] SENTRY_DSN nicht gesetzt — Fehler werden nur console.error geloggt. Für Production einen Sentry-DSN konfigurieren.
+[Sentry] SENTRY_DSN nicht gesetzt — Fehler werden nur console.error geloggt. Für Production einen Sentry-DSN konfigurieren.
+[Sentry] SENTRY_DSN nicht gesetzt — Fehler werden nur console.error geloggt. Für Production einen Sentry-DSN konfigurieren.
+[Sentry] SENTRY_DSN nicht gesetzt — Fehler werden nur console.error geloggt. Für Production einen Sentry-DSN konfigurieren.
+[Sentry] SENTRY_DSN nicht gesetzt — Fehler werden nur console.error geloggt. Für Production einen Sentry-DSN konfigurieren.
+(node:49339) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:49335) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:49336) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 13 workers (0/1706) ...
+(node:49337) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 13 workers (426/1706) 
+  Generating static pages using 13 workers (852/1706) 
+  Generating static pages using 13 workers (1279/1706) 
+✓ Generating static pages using 13 workers (1706/1706) in 1999ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /_not-found
+├   /[locale]
+│ ├ ● /de
+│ ├ ● /en
+│ ├ ● /ar
+│ └ ● [+6 more paths]
+├ ƒ /[locale]/admin
+├ ƒ /[locale]/admin/antraege
+├ ƒ /[locale]/admin/antraege/[id]
+├ ƒ /[locale]/admin/audit
+├ ƒ /[locale]/admin/buerger
+├ ƒ /[locale]/admin/buerger/[id]
+├   /[locale]/agb
+│ ├ ● /de/agb
+│ ├ ● /en/agb
+│ ├ ● /ar/agb
+│ └ ● [+6 more paths]
+├ ƒ /[locale]/alg1
+├ ƒ /[locale]/alg1/antrag
+├   /[locale]/alg1/erfolg
+│ ├ ● /de/alg1/erfolg
+│ ├ ● /en/alg1/erfolg
+│ ├ ● /ar/alg1/erfolg
+│ └ ● [+6 more paths]
+├   /[locale]/anmelden
+│ ├ ● /de/anmelden
+│ ├ ● /en/anmelden
+│ ├ ● /ar/anmelden
+│ └ ● [+6 more paths]
+├   /[locale]/ansprueche-checken
+│ ├ ● /de/ansprueche-checken
+│ ├ ● /en/ansprueche-checken
+│ ├ ● /ar/ansprueche-checken
+│ └ ● [+6 more paths]
+├ ƒ /[locale]/antraege/[id]
+├   /[locale]/antrag-vorbereiten
+│ ├ ● /de/antrag-vorbereiten
+│ ├ ● /en/antrag-vorbereiten
+│ ├ ● /ar/antrag-vorbereiten
+│ └ ● [+6 more paths]
+├   /[locale]/bafoeg
+│ └ ● /de/bafoeg
+├   /[locale]/bafoeg/beantragen
+│ └ ● /de/bafoeg/beantragen
+├   /[locale]/bafoeg/einkommensgrenze
+│ └ ● /de/bafoeg/einkommensgrenze
+├   /[locale]/bafoeg/elternunabhaengig
+│ └ ● /de/bafoeg/elternunabhaengig
+├   /[locale]/bafoeg/unterlagen
+│ └ ● /de/bafoeg/unterlagen
+├   /[locale]/bafoeg/voraussetzungen
+│ └ ● /de/bafoeg/voraussetzungen
+├   /[locale]/bafoegrechner
+│ ├ ● /de/bafoegrechner
+│ ├ ● /en/bafoegrechner
+│ ├ ● /ar/bafoegrechner
+│ └ ● [+6 more paths]
+├   /[locale]/blog
+│ └ ● /de/blog
+├   /[locale]/brief-verstehen
+│ ├ ● /de/brief-verstehen
+│ ├ ● /en/brief-verstehen
+│ ├ ● /ar/brief-verstehen
+│ └ ● [+6 more paths]
+├   /[locale]/dashboard
+│ ├ ● /de/dashboard
+│ ├ ● /en/dashboard
+│ ├ ● /ar/dashboard
+│ └ ● [+6 more paths]
+├ ƒ /[locale]/dashboard/upload
+├   /[locale]/datenbank
+│ ├ ● /de/datenbank
+│ ├ ● /en/datenbank
+│ ├ ● /ar/datenbank
+│ └ ● [+6 more paths]
+├   /[locale]/datenbank/[id]
+│ ├ ● /de/datenbank/adoption
+│ ├ ● /de/datenbank/agrarförderung-gak
+│ ├ ● /de/datenbank/alleinerziehendenentlastungsbetrag
+│ └ ● [+1302 more paths]
+├   /[locale]/datenschutz
+│ ├ ● /de/datenschutz
+│ ├ ● /en/datenschutz
+│ ├ ● /ar/datenschutz
+│ └ ● [+6 more paths]
+├   /[locale]/dokumente
+│ ├ ● /de/dokumente
+│ ├ ● /en/dokumente
+│ ├ ● /ar/dokumente
+│ └ ● [+6 more paths]
+├   /[locale]/faq
+│ ├ ● /de/faq
+│ ├ ● /en/faq
+│ ├ ● /ar/faq
+│ └ ● [+6 more paths]
+├   /[locale]/foerderungen
+│ ├ ● /de/foerderungen
+│ ├ ● /en/foerderungen
+│ ├ ● /ar/foerderungen
+│ └ ● [+6 more paths]
+├   /[locale]/fuer-unternehmen
+│ ├ ● /de/fuer-unternehmen
+│ ├ ● /en/fuer-unternehmen
+│ ├ ● /ar/fuer-unternehmen
+│ └ ● [+6 more paths]
+├ ƒ /[locale]/grundsicherung
+├   /[locale]/grundsicherungsrechner
+│ ├ ● /de/grundsicherungsrechner
+│ ├ ● /en/grundsicherungsrechner
+│ ├ ● /ar/grundsicherungsrechner
+│ └ ● [+6 more paths]
+├   /[locale]/hilfe-starten
+│ ├ ● /de/hilfe-starten
+│ ├ ● /en/hilfe-starten
+│ ├ ● /ar/hilfe-starten
+│ └ ● [+6 more paths]
+├   /[locale]/impressum
+│ ├ ● /de/impressum
+│ ├ ● /en/impressum
+│ ├ ● /ar/impressum
+│ └ ● [+6 more paths]
+├ ƒ /[locale]/kontakt
+├   /[locale]/konto-erstellen
+│ ├ ● /de/konto-erstellen
+│ ├ ● /en/konto-erstellen
+│ ├ ● /ar/konto-erstellen
+│ └ ● [+6 more paths]
+├   /[locale]/navigator
+│ ├ ● /de/navigator
+│ ├ ● /en/navigator
+│ ├ ● /ar/navigator
+│ └ ● [+6 more paths]
+├   /[locale]/papierkram-ordnen
+│ ├ ● /de/papierkram-ordnen
+│ ├ ● /en/papierkram-ordnen
+│ ├ ● /ar/papierkram-ordnen
+│ └ ● [+6 more paths]
+├   /[locale]/passwort-vergessen
+│ ├ ● /de/passwort-vergessen
+│ ├ ● /en/passwort-vergessen
+│ ├ ● /ar/passwort-vergessen
+│ └ ● [+6 more paths]
+├   /[locale]/passwort-zuruecksetzen
+│ ├ ● /de/passwort-zuruecksetzen
+│ ├ ● /en/passwort-zuruecksetzen
+│ ├ ● /ar/passwort-zuruecksetzen
+│ └ ● [+6 more paths]
+├   /[locale]/preise
+│ ├ ● /de/preise
+│ ├ ● /en/preise
+│ ├ ● /ar/preise
+│ └ ● [+6 more paths]
+├   /[locale]/profil
+│ ├ ● /de/profil
+│ ├ ● /en/profil
+│ ├ ● /ar/profil
+│ └ ● [+6 more paths]
+├   /[locale]/redaktion
+│ └ ● /de/redaktion
+├   /[locale]/redaktion/quellenstandard
+│ └ ● /de/redaktion/quellenstandard
+├   /[locale]/redaktion/redaktionsrichtlinien
+│ └ ● /de/redaktion/redaktionsrichtlinien
+├   /[locale]/so-funktionierts
+│ ├ ● /de/so-funktionierts
+│ ├ ● /en/so-funktionierts
+│ ├ ● /ar/so-funktionierts
+│ └ ● [+6 more paths]
+├ ƒ /[locale]/teilen/[token]
+├   /[locale]/unterlagen-check
+│ ├ ● /de/unterlagen-check
+│ ├ ● /en/unterlagen-check
+│ ├ ● /ar/unterlagen-check
+│ └ ● [+6 more paths]
+├   /[locale]/wer-wir-sind
+│ ├ ● /de/wer-wir-sind
+│ ├ ● /en/wer-wir-sind
+│ ├ ● /ar/wer-wir-sind
+│ └ ● [+6 more paths]
+├   /[locale]/wohngeld
+│ └ ● /de/wohngeld
+├ ƒ /[locale]/wohngeld/antrag
+├   /[locale]/wohngeld/beantragen
+│ └ ● /de/wohngeld/beantragen
+├   /[locale]/wohngeld/einkommensgrenze
+│ └ ● /de/wohngeld/einkommensgrenze
+├   /[locale]/wohngeld/rechner
+│ ├ ● /de/wohngeld/rechner
+│ ├ ● /en/wohngeld/rechner
+│ ├ ● /ar/wohngeld/rechner
+│ └ ● [+6 more paths]
+├ ƒ /[locale]/wohngeld/schnellcheck
+├   /[locale]/wohngeld/unterlagen
+│ └ ● /de/wohngeld/unterlagen
+├   /[locale]/wohngeld/voraussetzungen
+│ └ ● /de/wohngeld/voraussetzungen
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/reset-password
+├ ƒ /api/auth/signin
+├ ƒ /api/auth/signup
+├ ƒ /api/auth/status
+├ ƒ /api/auth/update-password
+├ ƒ /api/auth/verify-email
+├ ƒ /api/case
+├ ƒ /api/chat/message
+├ ƒ /api/chat/status
+├ ƒ /api/crisis/scan
+├ ƒ /api/dashboard/case
+├ ƒ /api/dashboard/case/[id]
+├ ƒ /api/dashboard/cases
+├ ƒ /api/dashboard/documents
+├ ƒ /api/dashboard/documents/all
+├ ƒ /api/dashboard/documents/parse
+├ ƒ /api/dashboard/documents/share
+├ ƒ /api/dashboard/documents/signed-url
+├ ƒ /api/dashboard/results
+├ ƒ /api/health/supabase
+├ ƒ /api/question
+├ ƒ /api/rechner/grundsicherung/evaluate
+├ ○ /icon.png
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+EXIT_CODE_BUILD=0

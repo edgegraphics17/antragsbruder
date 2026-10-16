@@ -1,0 +1,165 @@
+QUELLE: https://gdpr-info.eu/de/art-9/
+Art. 9 GDPR – Processing of special categories of personal data - General Data Protection Regulation (GDPR) 
+ Search for: 
+ General Data Protection Regulation (GDPR) 
+ Final text of the GDPR including recitals. 
+ Menu and widgets 
+ DSGVO 
+ GDPR 
+ Recitals 
+ Key Issues 
+ AI Act 
+ Data Act 
+ Skip to content 
+ Search for: 
+ GDPR 
+ Recitals 
+ Key Issues 
+ AI Act 
+ Data Act 
+ GDPR 
+ Chapter 1 (Art. 1 – 4) General provisions 
+ Art. 1 Subject-matter and objectives 
+ Art. 2 Material scope 
+ Art. 3 Territorial scope 
+ Art. 4 Definitions 
+ Chapter 2 (Art. 5 – 11) Principles 
+ Art. 5 Principles relating to processing of personal data 
+ Art. 6 Lawfulness of processing 
+ Art. 7 Conditions for consent 
+ Art. 8 Conditions applicable to child’s consent in relation to information society services 
+ Art. 9 Processing of special categories of personal data 
+ Art. 10 Processing of personal data relating to criminal convictions and offences 
+ Art. 11 Processing which does not require identification 
+ Chapter 3 (Art. 12 – 23) Rights of the data subject 
+ Art. 12 Transparent information, communication and modalities for the exercise of the rights of the data subject 
+ Art. 13 Information to be provided where personal data are collected from the data subject 
+ Art. 14 Information to be provided where personal data have not been obtained from the data subject 
+ Art. 15 Right of access by the data subject 
+ Art. 16 Right to rectification 
+ Art. 17 Right to erasure (‘right to be forgotten’) 
+ Art. 18 Right to restriction of processing 
+ Art. 19 Notification obligation regarding rectification or erasure of personal data or restriction of processing 
+ Art. 20 Right to data portability 
+ Art. 21 Right to object 
+ Art. 22 Automated individual decision-making, including profiling 
+ Art. 23 Restrictions 
+ Chapter 4 (Art. 24 – 43) Controller and processor 
+ Art. 24 Responsibility of the controller 
+ Art. 25 Data protection by design and by default 
+ Art. 26 Joint controllers 
+ Art. 27 Representatives of controllers or processors not established in the Union 
+ Art. 28 Processor 
+ Art. 29 Processing under the authority of the controller or processor 
+ Art. 30 Records of processing activities 
+ Art. 31 Cooperation with the supervisory authority 
+ Art. 32 Security of processing 
+ Art. 33 Notification of a personal data breach to the supervisory authority 
+ Art. 34 Communication of a personal data breach to the data subject 
+ Art. 35 Data protection impact assessment 
+ Art. 36 Prior consultation 
+ Art. 37 Designation of the data protection officer 
+ Art. 38 Position of the data protection officer 
+ Art. 39 Tasks of the data protection officer 
+ Art. 40 Codes of conduct 
+ Art. 41 Monitoring of approved codes of conduct 
+ Art. 42 Certification 
+ Art. 43 Certification bodies 
+ Chapter 5 (Art. 44 – 50) Transfers of personal data to third countries or international organisations 
+ Art. 44 General principle for transfers 
+ Art. 45 Transfers on the basis of an adequacy decision 
+ Art. 46 Transfers subject to appropriate safeguards 
+ Art. 47 Binding corporate rules 
+ Art. 48 Transfers or disclosures not authorised by Union law 
+ Art. 49 Derogations for specific situations 
+ Art. 50 International cooperation for the protection of personal data 
+ Chapter 6 (Art. 51 – 59) Independent supervisory authorities 
+ Art. 51 Supervisory authority 
+ Art. 52 Independence 
+ Art. 53 General conditions for the members of the supervisory authority 
+ Art. 54 Rules on the establishment of the supervisory authority 
+ Art. 55 Competence 
+ Art. 56 Competence of the lead supervisory authority 
+ Art. 57 Tasks 
+ Art. 58 Powers 
+ Art. 59 Activity reports 
+ Chapter 7 (Art. 60 – 76) Cooperation and consistency 
+ Art. 60 Cooperation between the lead supervisory authority and the other supervisory authorities concerned 
+ Art. 61 Mutual assistance 
+ Art. 62 Joint operations of supervisory authorities 
+ Art. 63 Consistency mechanism 
+ Art. 64 Opinion of the Board 
+ Art. 65 Dispute resolution by the Board 
+ Art. 66 Urgency procedure 
+ Art. 67 Exchange of information 
+ Art. 68 European Data Protection Board 
+ Art. 69 Independence 
+ Art. 70 Tasks of the Board 
+ Art. 71 Reports 
+ Art. 72 Procedure 
+ Art. 73 Chair 
+ Art. 74 Tasks of the Chair 
+ Art. 75 Secretariat 
+ Art. 76 Confidentiality 
+ Chapter 8 (Art. 77 – 84) Remedies, liability and penalties 
+ Art. 77 Right to lodge a complaint with a supervisory authority 
+ Art. 78 Right to an effective judicial remedy against a supervisory authority 
+ Art. 79 Right to an effective judicial remedy against a controller or processor 
+ Art. 80 Representation of data subjects 
+ Art. 81 Suspension of proceedings 
+ Art. 82 Right to compensation and liability 
+ Art. 83 General conditions for imposing administrative fines 
+ Art. 84 Penalties 
+ Chapter 9 (Art. 85 – 91) Provisions relating to specific processing situations 
+ Art. 85 Processing and freedom of expression and information 
+ Art. 86 Processing and public access to official documents 
+ Art. 87 Processing of the national identification number 
+ Art. 88 Processing in the context of employment 
+ Art. 89 Safeguards and derogations relating to processing for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes 
+ Art. 90 Obligations of secrecy 
+ Art. 91 Existing data protection rules of churches and religious associations 
+ Chapter 10 (Art. 92 – 93) Delegated acts and implementing acts 
+ Art. 92 Exercise of the delegation 
+ Art. 93 Committee procedure 
+ Chapter 11 (Art. 94 – 99) Final provisions 
+ Art. 94 Repeal of Directive 95/46/EC 
+ Art. 95 Relationship with Directive 2002/58/EC 
+ Art. 96 Relationship with previously concluded Agreements 
+ Art. 97 Commission reports 
+ Art. 98 Review of other Union legal acts on data protection 
+ Art. 99 Entry into force and application 
+ Imprint | Privacy Policy | Liability 
+ Art. 9 GDPR Processing of special categories of personal data 
+ Processing of personal data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, or trade union membership, and the processing of genetic data, biometric data for the purpose of uniquely identifying a natural person, data concerning health or data concerning a natural person’s sex life or sexual orientation shall be prohibited. 
+ Paragraph 1 shall not apply if one of the following applies:
+ the data subject has given explicit consent to the processing of those personal data for one or more specified purposes, except where Union or Member State law provide that the prohibition referred to in paragraph 1 may not be lifted by the data subject; 
+ processing is necessary for the purposes of carrying out the obligations and exercising specific rights of the controller or of the data subject in the field of employment and social security and social protection law in so far as it is authorised by Union or Member State law or a collective agreement pursuant to Member State law providing for appropriate safeguards for the fundamental rights and the interests of the data subject; 
+ processing is necessary to protect the vital interests of the data subject or of another natural person where the data subject is physically or legally incapable of giving consent; 
+ processing is carried out in the course of its legitimate activities with appropriate safeguards by a foundation, association or any other not-for-profit body with a political, philosophical, religious or trade union aim and on condition that the processing relates solely to the members or to former members of the body or to persons who have regular contact with it in connection with its purposes and that the personal data are not disclosed outside that body without the consent of the data subjects; 
+ processing relates to personal data which are manifestly made public by the data subject; 
+ processing is necessary for the establishment, exercise or defence of legal claims or whenever courts are acting in their judicial capacity; 
+ processing is necessary for reasons of substantial public interest, on the basis of Union or Member State law which shall be proportionate to the aim pursued, respect the essence of the right to data protection and provide for suitable and specific measures to safeguard the fundamental rights and the interests of the data subject; 
+ processing is necessary for the purposes of preventive or occupational medicine, for the assessment of the working capacity of the employee, medical diagnosis, the provision of health or social care or treatment or the management of health or social care systems and services on the basis of Union or Member State law or pursuant to contract with a health professional and subject to the conditions and safeguards referred to in paragraph 3; 
+ processing is necessary for reasons of public interest in the area of public health, such as protecting against serious cross-border threats to health or ensuring high standards of quality and safety of health care and of medicinal products or medical devices, on the basis of Union or Member State law which provides for suitable and specific measures to safeguard the rights and freedoms of the data subject, in particular professional secrecy; 
+ processing is necessary for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes in accordance with Article 89 (1) based on Union or Member State law which shall be proportionate to the aim pursued, respect the essence of the right to data protection and provide for suitable and specific measures to safeguard the fundamental rights and the interests of the data subject. 
+ Personal data referred to in paragraph 1 may be processed for the purposes referred to in point (h) of paragraph 2 when those data are processed by or under the responsibility of a professional subject to the obligation of professional secrecy under Union or Member State law or rules established by national competent bodies or by another person also subject to an obligation of secrecy under Union or Member State law or rules established by national competent bodies. 
+ Member States may maintain or introduce further conditions, including limitations, with regard to the processing of genetic data, biometric data or data concerning health. 
+ Suitable Recitals 
+ ( 46 ) Vital Interests of the Data Subject 
+ ( 51 ) Protecting Sensitive Personal Data 
+ ( 52 ) Exceptions to the Prohibition on Processing Special Categories of Personal Data 
+ ( 53 ) Processing of Sensitive Data in Health and Social Sector 
+ ( 54 ) Processing of Sensitive Data in Public Health Sector 
+ ( 55 ) Public Interest in Processing by Official Authorities for Objectives of Recognized Religious Communities 
+ ( 56 ) Processing Personal Data on People's Political Opinions by Parties 
+ ← Art. 8 GDPR 
+ Art. 10 GDPR → 
+ GDPR 
+ Table of contents 
+ Report error 
+ Logo We are a consulting company specialised in the fields of data protection, information security and IT forensics. CTA Learn more 
+ Follow us: 
+ XING | 
+ LinkedIn 
+ Rate us: 
+ Please wait...

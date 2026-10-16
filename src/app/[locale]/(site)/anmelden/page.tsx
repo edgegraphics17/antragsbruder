@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   const t = getAuthPageDict(isLocale(locale) ? locale : defaultLocale);
   return buildPageMetadata({
+    noindex: true,
     locale: isLocale(locale) ? locale : defaultLocale,
     path: "/anmelden",
     title: t.signInNow,

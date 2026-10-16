@@ -46,6 +46,12 @@ Zwei Commits, jeweils verifiziert (tsc, Lint, 198/198 Tests, Build):
 - Hilfe-Band auf allen Ratgeber-/Cluster-Seiten: erst informieren, dann Unterstützung anbieten.
 - SEO-Nebenfixes: Sitemap-Duplikat entfernt, Redirect-URLs aus der Sitemap, DE-only-Seiten ohne fremdsprachige hreflang-Alternates; Lint-Fehler in `WohngeldFlow.tsx` behoben; `/redaktion`-Seiten in der Sitemap auf Deutsch begrenzt (vorher 24 × 404 an Google); Umleitungen von temporär (307) auf dauerhaft umgestellt.
 
+**Dritte Runde — Signale und Navigation (nach dem zweiten Prüflauf):**
+- **120 tote hreflang-Ziele behoben.** 15 de-only-Seiten (wohngeld-Cluster 5, bafoeg-Cluster 6, Blog, Redaktion 3) wiesen je 8 fremdsprachige Alternates aus, die 404 liefern; ohne Reziprozität verwirft Google solche Cluster. `buildPageMetadata` kennt jetzt `deOnly` und die 15 Seiten sind markiert.
+- **16 kaputte Navi-Links behoben.** Navigation und Footer verlinkten `/wohngeld`, `/bafoeg` und `/blog` auch aus den 8 anderen Sprachen — dort sind das 404er (aus 21 Seiten verlinkt). Die Einträge tragen jetzt `deOnly` und werden außerhalb von DE gefiltert.
+- **`noindex` für `/anmelden` und `/konto-erstellen`** — sie waren nur per robots.txt ausgeschlossen, aber indexierbar.
+- **Open Redirect geschlossen**: `?next=//evil.com` war nach dem Login als Fremd-Redirect nutzbar (`LoginForm.tsx`).
+
 **`854b819` — Rechtskonformität nach RDG-Gutachten** (siehe Abschnitt 2)
 
 **Sicherheit (in diesem Durchlauf entfernt):**
@@ -136,6 +142,31 @@ Aus `03_technik/code_und_sicherheit_audit.md`:
 
 ---
 
+---
+
+## 6. Zweiter, unabhängiger Prüflauf (versetzt) — was er bestätigt und was nicht
+
+Ein zweiter, parallel gestarteter Prüflauf (Berichte unter `20-52_batch/`, inklusive zweitem RDG-Gutachten mit 34 Quellen und den abgerufenen Gesetzestexten in `20-52_batch/02_Recht/_quellen/`) liefert teils abweichende Zahlen. Ich habe die kritischen Behauptungen **selbst nachgeprüft** statt sie zu übernehmen:
+
+**Bestätigt:** Der RLS-Befund (Abschnitt 0) wurde unabhängig ebenfalls als „KRITISCH" gefunden — inklusive des Hinweises, dass auch `documents_meta` (mit OCR-Texten) und `cases` betroffen waren. Deckt sich exakt mit meiner Analyse und ist behoben.
+
+**Als falsch verifiziert (nicht übernommen):**
+- *Behauptung:* In `WohngeldCalculator.tsx`, `GrundsicherungCalculator.tsx` und `BafoegCalculator.tsx` stehen weiterhin Preise („99 €", „ab 29 €"). → **Falsch.** Grep über alle Komponenten findet nur legitime Leistungsbeträge (`ca. 511 €` = Rechnerergebnis). `GrundsicherungCalculator` wird von keiner Seite gerendert (toter Code). Die Annahme stammt aus einem Stand vor dem Preis-Commit.
+- *Behauptung:* `npm run test` läuft mit 6 Fehlern in `alg1-store.test.ts`. → **Nicht reproduzierbar:** 20 Dateien, **198/198 Tests grün** (mehrfach, zuletzt nach allen Änderungen). Vermutlich ein Lauf, der sich mit laufenden parallel-Edits überschnitten hat.
+- *Behauptung:* Lint-Fehler in `WohngeldFlow.tsx:389`. → Bereits behoben, Lint steht bei **0 Fehlern** (84 Warnungen).
+
+**Zusätzliche, noch offene Funde aus diesem Lauf** (im Detailbericht belegt):
+- **`profiles.antrag_data` liegt als Klartext-JSONB** mit IBAN, Steuernummer und Rentenversicherungsnummer; es gibt **keine Endpunkte für Auskunft (Art. 15) oder Löschung (Art. 17)** — aktuell nur „auf Anfrage per Kontakt". (P1)
+- **Session-Cookie ist nicht `httpOnly`** (`@supabase/ssr`-Default, kein Override). (P1)
+- **`WohngeldEngine.ts` rechnet mit festen Annahmen** (Einkommen = 0, Mietenstufe 3) und zeigt „ca. X €/Monat". Wenn der öffentliche Wohngeldrechner diesen Pfad nutzt, zeigt er systematisch falsche Beträge — das wäre zusätzlich irreführend (§ 5 UWG). **Zu verifizieren, dann fixen.** (P1)
+- `/alg1` führt aus Navigation und Footer ins Login-Gate statt zum Inhalt (36 Seiten verlinken dorthin). (P2)
+- 10 `/datenbank`-Detailseiten mit Umlaut-Slugs liefern 404 (135 von 145 funktionieren). (P2)
+- `og:image`/`twitter:image` fehlen auf **allen** Seiten, obwohl `twitter:card=summary_large_image` gesetzt ist. (P2)
+- 81 von 204 Seiten liegen unter 300 Wörtern; Impressum ohne USt-IdNr./Wirtschafts-Ident-Nr. (letzteres hängt an der Steuerlage, siehe P0). (P2)
+- Datenschutzerklärung: Auftragsverarbeiter und Drittlandübermittlung habe ich ergänzt (Abschnitt 2, Punkt 5); es fehlen weiterhin konkrete Löschfristen und ein Cookie-Abschnitt. (P2)
+
+**Fachlich neu und für das Geschäftsmodell wichtig:** Das zweite Gutachten schärft zwei Punkte. Erstens ist die **Vermittlung** an Anwalt/VdK/SoVD nur zulässig, solange **kein Entgelt pro vermitteltem Mandat** fließt (§ 49b Abs. 3 BRAO; BGH 18.4.2024 – IX ZR 89/23) — relevant, falls daraus ein Kooperationsmodell werden soll. Zweitens bleibt **„Bescheid oder Behördenbrief gegen Entgelt erklären" der Kern der unzulässigen Einzelfallprüfung** — die frühere Verkaufsversion „Brief verstehen, 29–49 €" war also genau der verbotene Teil, nicht das Beiwerk. Beides deckt sich mit dem ersten Gutachten und mit dem, was ich an der Seite bereits umgestellt habe.
+
 ## 5. Offene Aufgaben — nach Priorität
 
 **P0 — vor dem nächsten Launch zu klären (kein Code):**
@@ -146,7 +177,7 @@ Aus `03_technik/code_und_sicherheit_audit.md`:
 **P1 — inhaltlich nachziehen:**
 4. **Widerrufsprozess** sauber aufsetzen: Widerrufsbelehrung (14 Tage, § 355 BGB) im Angebot mitschicken und die Zustimmung zum Erlöschen des Widerrufsrechts **gesondert und nicht vorangehakt** einholen, wenn die Leistung vor Ablauf erbracht wird.
 5. **`/ansprueche-checken` und die Rechner-Ergebnisse prüfen**: Die Sprache „Wahrscheinlich anspruchsberechtigt" und „Ansprüche checken" auf der Startseite ist grenznah zur Einzelfallprüfung. Nach dem Gutachten ist ein **allgemeines Rechenwerkzeug** zulässig, solange keine Einordnung des Einzelfalls erfolgt — die Wortwahl sollte entsprechend entschärft werden (z. B. „Mögliche Leistungen finden" statt „Ansprüche checken").
-6. **SEO-Punkte 1–4** aus Abschnitt 3 (404-URLs, fehlende Descriptions, Waise `/navigator`, fehlende `/datenbank`-Seiten).
+6. **SEO-Punkte aus Abschnitt 3**, soweit nicht behoben: `/redaktion`-404s, hreflang- und Navi-Fehler sind erledigt; offen sind fehlende Descriptions auf der Startseite, die Waise `/navigator` ohne H1, die 135 `/datenbank`-Seiten, `/alg1` im Login-Gate und die Umlaut-Slugs.
 7. **Rate-Limiting + Zod** auf den genannten Routen; externer Limiter für Produktion.
 
 **P2 — Aufräumen und Härtung:**

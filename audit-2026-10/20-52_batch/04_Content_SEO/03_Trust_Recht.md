@@ -1,0 +1,27 @@
+# Trust- & Rechtsseiten — Bestandteile und Lücken (Ist-Inventar, keine Rechtsberatung)
+
+Volltexte gesichert: `../raw/impressum_de.txt`, `../raw/datenschutz_de.txt`, `../raw/agb_de.txt` (sichtbarer Text aus gespeichertem HTML).
+
+## Impressum (`/impressum`, 200, 153 Wörter) — inhaltlich vollständig nach § 5 DDG
+✔ Firmenbezeichnung „Taswiq Media (Einzelunternehmen)", ✔ Inhaber/Vertretung „Karim Azzaoui", ✔ vollständige Anschrift „Taunusanlage 8, 60329 Frankfurt am Main", ✔ E-Mail `info@antragsbruder.de`, ✔ „Angaben gemäß § 5 DDG", ✔ „Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV" (gleicher Name/Anschrift), ✔ EU-Streitschlichtung-Link (ec.europa.eu/consumers/odr), ✔ ausdrücklicher Hinweis, nicht an Verbraucherschlichtungsverfahren teilzunehmen.
+**Nicht vorhanden (optional/kontextabhängig):** Telefon-Angabe, USt-ID, Registereintrag (Einzelunternehmen i. d. R. nicht nötig). Auf Deutsch 153 Wörter — dünn, aber für Impressum funktional ausreichend; alle 8 Locale-Impressen existieren (165–207 Wörter).
+
+## Datenschutz (`/datenschutz`, 200, ~3.000 Zeichen, 10 Abschnitte) — Grundgerüst ok, 3 konkrete Deckungslücken
+✔ Verantwortlicher (Taswiq Media + Anschrift + E-Mail), ✔ Datenkategorien (Kontaktdaten, übermittelte Dokumente, Anfrageangaben, „Server-Logdaten"), ✔ Zwecke/Rechtsgrundlagen mit Art.-6-Nennung (a/b/f), ✔ Weitergabe + „verkaufen nicht", ✔ Speicherdauer (abstrakt: „erforderlich … Aufbewahrungspflichten"), ✔ Aufzählung Betroffenenrechte (Art. 15–20 deckungsgleich benannt), ✔ Beschwerderecht, ✔ TOM-Hinweis.
+**Lücken (jeweils: benannt, nicht vorhanden):**
+1. **Keine Auftragsverarbeitung/Anbieteroffenlegung.** Die CSP der Seite (Header aller Seiten, `raw/headers/root.hdr.json`) verbindet nachweislich `https://*.supabase.co` (Datenbank/Auth), `https://*.resend.com` (E-Mail-Versand); Server: Vercel (`server: Vercel`). In der Datenschutzerklärung kommt kein einziges dieser Unternehmen vor; der Begriff „Auftragsverarbeiter" fällt nicht.
+2. **Drittlandtransfers nicht thematisiert** — Supabase/Resend/Vercel sind US-Anbieter; Art.-44-ff.-Information (Angemessenheitsbeschluss/SCC/DPF) fehlt vollständig.
+3. **Konkrete Löschfristen fehlen** (nur Formeltext, Abschnitt 6); ebenso kein Hinweis auf Widerspruchsrecht-Einzelangabe (ist pauschal in 7) und kein Datenschutz-Kontakt außer der allgemeinen E-Mail.
+Zusatzbefunde: Verweis „Mehr zu unseren Prinzipien … auf unserer Seite Sicherheit & Datenschutz" verlinkt `/wer-wir-sind` (Link existiert, 200 — aber Seite heißt anders als der Linktext). **Positiv:** Kein Cookie-/Tracking-Abschnitt nötig nachweislich, weil im SSR-HTML keine Third-party-Tracker und keine „cookie"-Vorkommen (root.html: 0) — konsistent. Die 8 Locale-Datenschutzfassungen sind vollständig übersetzt (324–404 Wörter, gemessen an `raw/html/*_datenschutz.html`); ein zuerst vermuteter „Fragment-Übersetzungs"-Befund war ein Messartefakt (regex ohne Nicht-Latein-Schriftzeichen) und wird hiermit verworfen.
+
+## AGB (`/agb`, 200, ~3.200 Zeichen, 10 Paragraphen) — textlich da, aber zwei inhaltliche Brüche
+✔ Aufbau: Geltungsbereich (1), Leistungsbeschreibung (2: Briefe verstehen, Anträge vorbereiten, Unterlagen organisieren; ausdrücklich **keine Rechts-/Steuerberatung**), Vertragsschluss (3: Anfrage + Bestätigung von Umfang **und Preis**), Mitwirkungspflichten (5), Leistungsgrenzen/Bewilligung keine Gewähr (6), Haftung (8), Datenschutzverweis (9), Schlussbestimmungen (10).
+**Befund A — Preisregel vs. Live-Site (Widerspruch, doppelt belegt):** § 4: „Die Vergütung wird individuell … besprochen … **Eine öffentliche Preisliste besteht nicht** – sprich uns über den Kontakt." Die Live-Seiten enthalten aber auf 45 Seiten öffentliche Festpreis-/Spannenangaben inkl. „Jetzt beauftragen"-Bestell-CTAs (`04/01`). Solange die Preisseiten online sind, ist die AGB-Aussage faktisch unrichtig — und bei Beauftragung über einen bepreisten Button ist unklar, welche Preisgrundlage vertraglich gilt.
+**Befund B — Widerrufsrecht nur angetippt:** § 7 sagt lediglich, ob ein Widerrufsrecht besteht, „richtet sich nach den Umständen des jeweiligen Vertrags" — **keine** Widerrufsbelehrung/-formular, obwohl § 3 (Anfrage online) + Button-Beauftragung auf Distanzgeschäfte mit Verbrauchern hindeuten. Für eine „ohne-Festpreise-Plattform" wäre § 4/§ 7 ohnehin anzupassen (Richtung Betreiberentscheidung: Preis raus → „individuell" bleibt; bleibt /wohngeld/antrag mit Preis → Widersprüche sichtbar).
+**Befund C — „Was wir nicht sind"-Verweis** (§ 6) verlinkt Zielseite? Linktext vorhanden; Ziel nicht separat geprüft (Methodik-Grenze, nicht als Befund gewertet).
+Locale-AGBs: `/en|ar|tr|pl|…/agb` sind vollständig übersetzt (en 427, ar 374, pl 352, tr 341 Wörter; `raw/urls.csv` words-Spalte; ein zuerst auf Basis einer Latein-Regex vermuteter Fragment-Befund war ein Messartefakt und ist verworfen).
+
+## Sonstige Trust-Signale
+- `/wer-wir-sind`, `/so-funktionierts`, `/redaktion`, `/redaktion/quellenstandard` (175 W.), `/redaktion/redaktionsrichtlinien` (253 W.) existieren DE + Fremdsprachen-Kurzvarianten; Footer-Disclaimer „keine Rechts-, Steuer- oder sonstige regulierte Beratungsleistung" auf jeder Seite (sichtbarer Footer) ✓.
+- Externe Erstquellen-Links (113× gesetze-im-internet.de u. a., `analysis2.txt`) stützen redaktionelle Glaubwürdigkeit.
+- Hinweis für Betreiber-Ziel „keine Produkte mehr": /wohngeld/antrag-„Jetzt beauftragen"-Kette und FAQ-Widerspruch `/wohngeld/beantragen` („kein kostenpflichtiger Dienstleister nötig") sollten mit dem Rest der Preisseiten konsistentiert werden (s. 04/01 D).

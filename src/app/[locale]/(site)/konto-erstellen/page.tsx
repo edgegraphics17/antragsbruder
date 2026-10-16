@@ -23,6 +23,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
   return buildPageMetadata({
+    noindex: true,
     locale: isLocale(locale) ? locale : defaultLocale,
     path: "/konto-erstellen",
     title: "Registrierung geschlossen",

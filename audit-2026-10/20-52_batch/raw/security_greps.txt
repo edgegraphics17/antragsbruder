@@ -1,0 +1,148 @@
+# Roh-Greps Security/SEO (2026-10-16, Repo /Users/karim/Claude/Projects/Antragsbruder, Werte maskiert)
+
+## git ls-files | grep -i env
+src/components/dashboard/FoerderungenView.tsx   (Namenstreffer, KEIN .env-Datei getrackt)
+=> .env.local / .env sind NICHT in git getrackt (gitignore '.env*'); `git log --all -- .env.local .env` = leer.
+
+## .env.local Variablen-Namen (Werte nicht ausgegeben)
+NEXT_PUBLIC_SUPABASE_URL=SET
+NEXT_PUBLIC_SUPABASE_ANON_KEY=SET
+SUPABASE_SERVICE_ROLE_KEY=SET
+NEXT_PUBLIC_SITE_URL=SET
+VERCEL_OIDC_TOKEN=SET   (! OIDC-Token lokal in .env.local, kurzlebig, untracked)
+=> KEIN RESEND_API_KEY, KEIN SENTRY_DSN, KEIN OPENAI/ANTHROPIC, KEIN EMAIL_FROM_ADDRESS in .env.local.
+
+## .env.example Variablen-Namen
+NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY (Platzhalter),
+RESEND_API_KEY, EMAIL_FROM_ADDRESS, EMAIL_FROM_NAME, SENTRY_DSN, NEXT_PUBLIC_APP_URL
+
+## grep -rn SUPABASE_SERVICE_ROLE_KEY src/
+src/lib/supabase-service.ts:13,15
+src/lib/share.ts:12,33
+src/lib/supabase.ts:38,40
+=> alle in Server-Modulen; kein NEXT_PUBLIC-Prefix; kein Client-Import dieser Module gefunden
+   (share.ts nutzt node:crypto, supabase-service.ts server-only). NICHT vertieft geprüft: alle Importketten.
+
+## noindex/robots
+src/app/[locale]/(dashboard)/layout.tsx:7        robots index:false follow:false  -> /dashboard + Unterseiten OK
+src/app/[locale]/(admin)/layout.tsx:15           robots index:false follow:false  -> /admin OK
+src/app/[locale]/(site)/teilen/[token]/page.tsx:8 robots index:false follow:false -> OK
+src/app/[locale]/(site)/passwort-vergessen/page.tsx:22  index:false OK
+src/app/[locale]/(site)/passwort-zuruecksetzen/page.tsx:22 index:false OK
+src/app/[locale]/(site)/anmelden/page.tsx:21-27  buildPageMetadata -> KEIN robots/noindex
+src/app/[locale]/(site)/konto-erstellen/page.tsx:21-27 buildPageMetadata -> KEIN robots/noindex
+(src/app/robots.ts:11 disallowt beide Pfade für Crawler, das ersetzt kein noindex-Meta.)
+
+## Domain-Fallbacks
+src/content/site.ts:7            domain: "www.antragsbruder.de" (kanonisch)
+src/lib/email.ts:21              APP_URL = NEXT_PUBLIC_APP_URL || 'https://www.antragsbruder.de'
+src/app/api/auth/reset-password/route.ts:24,56  redirectTo = NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+=> localhost:3000-Fallback, wenn NEXT_PUBLIC_SITE_URL in Prod fehlt (lokal gesetzt; Vercel-Werte nicht geprüft).
+
+## @supabase/ssr Cookie-Defaults (node_modules/@supabase/ssr@0.12.7)
+dist/main/utils/constants.js:6 sameSite: "lax"
+dist/main/utils/constants.js:7 httpOnly: false
+=> Session-Cookie sb-*-auth-token ist JS-lesbar (XSS => Token-Diebstahl). Code setzt keine Cookie-Override
+   (src/lib/auth.ts:12-15, src/lib/supabase.ts:26, src/lib/auth-server.ts:42-49).
+
+## Stack-Trace an Client
+src/app/api/question/route.ts:54  stack: NODE_ENV==='development' ? error.stack : undefined => Prod ausgeschlossen, OK.
+Aber: details = error.message wird in PROD an Client gegeben (route.ts:53); ebenso signin 62, status 46, signed-url 45,
+reset-password 37/69 -> interne Fehlermeldungen nach außen (niedrig).
+
+## Rate-Limiter aktiv (12 Routen): auth/logout, auth/signin, auth/signup, auth/status, auth/verify-email,
+case, dashboard/cases, dashboard/documents/all, dashboard/documents, dashboard/documents/signed-url,
+health/supabase, question.
+NICHT limitiert: api/auth/reset-password, api/auth/update-password, api/chat/message, api/chat/history,
+api/case/[id], api/crisis/*, api/dashboard/case/[id], api/dashboard/results, api/dashboard/stats,
+api/dashboard/agent-log, api/dashboard/documents/[id], api/dashboard/documents/parse, api/dashboard/documents/share,
+api/dashboard/documents/upload, api/dashboard/identity, api/dashboard/profile, api/rechner/grundsicherung/evaluate.
+
+## PII in Server-Logs
+src/lib/email.ts:33-35  console.log E-Mail-Empfänger + Subject + HTML-Auszug (Dev-Fallback)
+src/lib/email.ts:53     console.log('[EMAIL SENT]', data?.id, '→', payload.to)   (Empfänger-Adresse in Vercel-Logs)
+src/app/api/dashboard/cases/route.ts:37  console.error(..., casesError)
+
+## Supabase RLS (Repo-Stand; Live-DB nicht geprüft)
+schema.sql:210-259: public-Policies using(true) auf cases*, facts (select/insert/update), benefit_results (select/insert),
+actions (select/insert/update), emergencies (select/insert), documents_meta (select/insert/update),
+rules (select), legal_parameters (select).  (*cases-public wurde per Migration 20260917_drop_public_policies_on_cases.sql entfernt)
+gs_dev_001_004.sql:132-165 + schema.sql:349-392: persons/relationships "Allow public read/insert/update" using(true) bewusst
+für Anonymous-GS-Flow; schema.sql:395-415 cases "Anonymous GS-Erstecheck" (insert/read/update/delete für user_id IS NULL).
+=> Mit öffentlichem Anon-Key (JS-Bundle) sind facts (Einkommen/Vermögen/Krisen-Indikatoren), persons (Geburtsdatum,
+Nationalität, Aufenthalt), relationships, documents_meta (filename, ocr_text!), benefit_results, actions querlesbar,
+solange diese Policies live sind. Fälle mit user_id IS NULL sind zusätzlich durch Anonymous-Policy änderbar.
+Alle 21 Tabellen haben RLS aktiv (enable-Zeilen geprüft); shared_vault_bundles 20260917_profile_fields_and_share_bundles.sql:28
+"Users manage own bundles" for ALL ohne "to authenticated" => greift auch für anon (Bundle-Insert durch Token-Inhaber?
+resolveBundle läuft über Service-Client, daher funktional unkritisch; RLS-Härtung fehlt).
+SECURITY DEFINER ohne REVOKE/GRants-Reset: handle_new_user (20260917_dashboard_expansion_v2.sql:30,
+20260917_fix_funnel_and_profiles.sql:31, auth-schema.sql:99), sync_profile_email (v2:44), update_profiles_updated_at
+(auth-schema:110ff); nur is_admin (admin_foundation:62) und touch_updated_at (seo_content_pages:110) revoked.
+Nur is_admin hat set search_path (admin_foundation:57); die anderen DEFNER-Funktionen OHNE set search_path.
+Buckets: documents (public=false, alg1:213), avatars (public=TRUE, dashboard_expansion.sql:36 + v2:75 doppelt),
+antragsunterlagen (public=false, NUR auth-schema.sql:127 — KEINE Bucket-Erzeugung in migrations/; Policies in
+20260920_antragsunterlagen_storage_policies.sql setzen Existenz voraus).
+
+## Auth-Flows
+Login/Signup passivieren die API-Routen: auth-context.tsx:64,83 ruft supabase.auth.signInWithPassword/signUp
+direkt aus dem Browser auf => /api/auth/signin (Rate-Limit auth-Tier) wird vom echten Login-Pfad nicht genutzt
+(kein einziges fetch('/api/auth/*') in src/components/src/app; grep leer).
+OpenAI/Anthropic-Keys nirgends dokumentiert: src/app/api/chat/message/route.ts:28,~60 liest OPENAI_API_KEY /
+ANTHROPIC_API_KEY; weder .env.example noch .env.local enthalten sie => Chat-Route live nur 503 (route.ts ~140-152),
+sobald keys gesetzt: unauthentifizierter, unlimitierter LLM-Proxy (Zeile 129ff: Auth optional).
+update-password: GET mit ?newPassword=… (route.ts:19,25) => Passwort im URL/Query-Log, GET-Mutation ohne CSRF/Rate-Limit.
+Open Redirect (leichtgewichtig): LoginForm.tsx:79-83 next= akzeptiert "//evil.com" (startsWith('/') allein).
+Registrierung serverseitig zu: signup/route.ts:23-29 SIGNUPS_ENABLED=false hardcodiert.
+Admin-Guard: (admin)/layout.tsx:28 getAdminUser() + is_admin()-RPC (SECURITY DEFINER revoked+search_path) OK;
+Admin-Server-Actions alle mit requireAdmin() (src/app/actions/admin-actions.ts:19,49,105,160,194,215).
+Dashboard-Proxy-Schutz src/proxy.ts:10-16 PROTECTED_PREFIXES = dashboard,antraege,alg1,dokumente,foerderungen,profil —
+NICHT enthalten: grundsicherung, wohngeld ( liegen aber als (dashboard)-Seiten unter /grundsicherung, /wohngeld/schnellcheck).
+Rate-Limiter In-Memory: src/lib/rate-limiter.ts:22 Map im Prozess => auf Vercel serverless/edge pro Instanz,
+Key aus x-forwarded-for Erster Wert (Zeile 67-71) = vom Angreifer selbst setzbar => pro Request neue "IP" => praktisch umgehbar.
+identity-vault: clientseitig AES-GCM, Schlüssel in localStorage ('ab_vault_key', src/lib/identity-vault.ts:1-12) —
+DB sieht nur value_encrypted+value_masked (migration 20260917_user_vault_entries.sql), gut; Schlüsselverlust = Datenverlust.
+profile.antrag_data: IBAN, Steuer-ID, RVNR, Geburtsname/-ort/-land, Staatsangehörigkeit, Geschlecht als
+Klartext-JSONB in profiles (20260920_profile_antrag_data.sql:1-13, Spaltenkommentar zählt sie auf).
+profiles-Klartextspalten: auth-schema.sql:15-22 (email, full_name, preferred_locale) +
+20260917_dashboard_expansion.sql:11-24 (first_name, last_name, phone, postcode, city, housing_type,
+children_count, employment_status, avatar_url). RLS auf profiles: only own rows (auth-schema.sql:29-36).
+Kein Lösch-/Export-Endpoint für profiles/cases/facts documents (siehe oben Art.15/17).
+
+## Consent / Art.15/17 / Tracker
+Consent-Chips: Kontakt-Toolset hat Einwilligung (IntakeForm 157-167, SimpleContactForm 113-123, KontaktForm 25) —
+aber alle drei Formulare senden nur mailto: (IntakeForm.tsx:57-61, SimpleContactForm.tsx:53, KontaktForm.tsx:46),
+keine Speicherung => Consent-Protokollierung hinfällig, Formular-Code aber auch wertlos.
+KEIN separates KI-/Tracker-Consent-Element gefunden (ls src/components/legal => existiert nicht;
+grep -rni "consent|cookie|zustimmung" src/components src/app => nur die 3 Formular-Checkboxen oben +
+Datenschutz-Text). => nicht geprüft, ob OCR/KI-Verarbeitung (Tesseract clientseitig, KI nur für Text?)
+anderweitig Einwilligungen braucht und bekommt.
+Kein API-Endpoint für Datenexport (Art.15) oder Kontolöschung (Art.17) gefunden (grep delete-account/export leer;
+einzig document-level DELETE route.ts:191ff und vault-Eintrag-delete IdentityVault.tsx:152-154 — letztere Funktion
+wird laut ESLint nicht aufgerufen: "'handleDelete' is assigned a value but never used" IdentityVault.tsx:152).
+Tracker: KEINE (kein @vercel/analytics, gtag, fbq, plausible, matomo in src/ + package.json). Sentry nur bei DSN,
+DSN nirgends gesetzt (build.log: "[Sentry] SENTRY_DSN nicht gesetzt" mehrfach).
+
+## Preis-Altlasten — LIVE-VERÖFFENTLICHT (Konzept sagt "keine öffentlichen Preise")
+WICHTIG / ZEITSTempel: Befunde unten = Stand HEAD c0988e0ff ("7a5d55c", Redesign-Commit) + Audit-Lauf ~20:54–21:10.
+Am 2026-10-16 21:10–21:30 hat ein PARALLELER Agent im selben Working-Tree die Preis-Reste bereits teil-cleanupped
+(git status: M/D auf preise-i18n, pricing, wohngeld-antrag-i18n, antrag-vorbereiten/brief-verstehen/papierkram-
+ dictionaries und Seiten; IntakeForm/KontaktForm gelöscht). Stand 21:25 IMMER NOCH öffentlich:
+  calculator ctaPrices: WohngeldCalculator.tsx:450 + GrundsicherungCalculator.tsx:881 => "99 €"
+  (content/wohngeld-i18n.ts:109ff, content/grundsicherung-i18n.ts:198ff), BafoegCalculator.tsx:453 => "ab 29 €"
+  (content/bafoeg-i18n.ts:150ff). Dagegen €-frei im Working-Tree: antrag-vorbereiten-i18n, brief-verstehen-i18n,
+  papierkram-ordnen-i18n (grep -c "€" = 0 je Datei), /wohngeld/antrag auf 27-zeilige Stub-Seite reduziert.
+src/content/antrag-vorbereiten-i18n.ts:28,90,214,276,338,400,462,524  metaTitle/priceLabel "79–149 €" in ALLEN 9 Locales;
+  gerendert: src/app/[locale]/(site)/antrag-vorbereiten/page.tsx:38 (priceLabel) + generateMetadata:24 (title/description)
+src/content/brief-verstehen-i18n.ts:26,30,58,62,122,126,154,158,186,190,218,222,250,254,282,286  "29 bis 49 €"
+  metaDescription + heroLede; gerendert: brief-verstehen/page.tsx:26 (buildPageMetadata description) + SectionHeading lede.
+src/content/preise-i18n.ts:15-23  Preis-Seiten-Text vorhanden, aber /preise leitet nur um (page redirect) => Text totes Relikt.
+src/components/sections/WohngeldCalculator.tsx:450  t.ctaPrice "99 €" (content/wohngeld-i18n.ts:109ff, alle Locales)
+src/components/sections/GrundsicherungCalculator.tsx:881 ctaPrice "99 €" (content/grundsicherung-i18n.ts:198ff, alle Locales)
+src/components/sections/BafoegCalculator.tsx:453  ctaPrice "ab 29 €" (content/bafoeg-i18n.ts:150ff, alle Locales)
+src/content/wohngeld-antrag-i18n.ts:38-42,102ff  priceLabel "99 €", trust "Festpreis, keine versteckten Kosten"
+src/content/papierkram-ordnen-i18n.ts:35,79,120,155,196,237,278,322,363  priceLabel "149–299 €" in allen Locales.
+src/app/[locale]/(admin)/admin/antraege/[id]/page.tsx:2  Kommentar "Arbeitsansicht für den 99-€-Service".
+src/content/pricing.ts:22,36,66,199,213 u.a. "29–49 €", "79–149 €", "149–299 €" — KEIN Import im Code => tote Datei.
+Gegengecheckt (legitim/neutraL): AGB §4 "Preise individuell, keine öffentliche Preisliste" (agb-i18n.ts:49-50),
+  Kontakt "Keine Preise" (kontakt-i18n.ts:58-59, fueh-unternehmen), Ratgeber-€-Beträge (Wohngeld-/BAföG-Rechnerinhalte,
+  cluster/*.ts) = fachliche Beträge, kein Angebot.

@@ -1,0 +1,478 @@
+== STATUS ==
+{'200': 215, '404': 33}
+
+== 404-URLS ==
+  https://www.antragsbruder.de/ar/redaktion in-sitemap
+  https://www.antragsbruder.de/ar/redaktion/quellenstandard in-sitemap
+  https://www.antragsbruder.de/ar/redaktion/redaktionsrichtlinien in-sitemap
+  https://www.antragsbruder.de/bg/redaktion in-sitemap
+  https://www.antragsbruder.de/bg/redaktion/quellenstandard in-sitemap
+  https://www.antragsbruder.de/bg/redaktion/redaktionsrichtlinien in-sitemap
+  https://www.antragsbruder.de/en/redaktion in-sitemap
+  https://www.antragsbruder.de/en/redaktion/quellenstandard in-sitemap
+  https://www.antragsbruder.de/en/redaktion/redaktionsrichtlinien in-sitemap
+  https://www.antragsbruder.de/pl/redaktion in-sitemap
+  https://www.antragsbruder.de/pl/redaktion/quellenstandard in-sitemap
+  https://www.antragsbruder.de/pl/redaktion/redaktionsrichtlinien in-sitemap
+  https://www.antragsbruder.de/ro/redaktion in-sitemap
+  https://www.antragsbruder.de/ro/redaktion/quellenstandard in-sitemap
+  https://www.antragsbruder.de/ro/redaktion/redaktionsrichtlinien in-sitemap
+  https://www.antragsbruder.de/ru/redaktion in-sitemap
+  https://www.antragsbruder.de/ru/redaktion/quellenstandard in-sitemap
+  https://www.antragsbruder.de/ru/redaktion/redaktionsrichtlinien in-sitemap
+  https://www.antragsbruder.de/tr/redaktion in-sitemap
+  https://www.antragsbruder.de/tr/redaktion/quellenstandard in-sitemap
+  https://www.antragsbruder.de/tr/redaktion/redaktionsrichtlinien in-sitemap
+  https://www.antragsbruder.de/uk/redaktion in-sitemap
+  https://www.antragsbruder.de/uk/redaktion/quellenstandard in-sitemap
+  https://www.antragsbruder.de/uk/redaktion/redaktionsrichtlinien in-sitemap
+  https://www.antragsbruder.de/en/wohngeld probe
+  https://www.antragsbruder.de/en/bafoeg probe
+  https://www.antragsbruder.de/en/blog probe
+  https://www.antragsbruder.de/tr/wohngeld probe
+  https://www.antragsbruder.de/ru/wohngeld probe
+  https://www.antragsbruder.de/ar/wohngeld probe
+  https://www.antragsbruder.de/pl/wohngeld probe
+  https://www.antragsbruder.de/gibt-es-nicht-404-test-xyz probe
+  https://www.antragsbruder.de/api/health probe
+
+== REDIRECT-KETTEN (interesting) ==
+  https://www.antragsbruder.de/wohngeld/ -> 308 /wohngeld | 200 https://www.antragsbruder.de/wohngeld
+
+== TITLES/DESCS DUPES (200er) ==
+ x5: Contact – Antragsbruder
+     ['https://www.antragsbruder.de/en/hilfe-starten', 'https://www.antragsbruder.de/en/kontakt', 'https://www.antragsbruder.de/ro/hilfe-starten', 'https://www.antragsbruder.de/ro/kontakt', 'https://www.antragsbruder.de/en/preise']
+ x5: Kontakt – Antragsbruder
+     ['https://www.antragsbruder.de/hilfe-starten', 'https://www.antragsbruder.de/kontakt', 'https://www.antragsbruder.de/pl/hilfe-starten', 'https://www.antragsbruder.de/pl/kontakt', 'https://www.antragsbruder.de/preise']
+ x4: Antragsbruder – Papierkram? Schick ihn deinem Antragsbruder.
+     ['https://www.antragsbruder.de/', 'https://www.antragsbruder.de/datenbank', 'https://www.antragsbruder.de/navigator', 'https://www.antragsbruder.de/de']
+ x4: Контакти – Antragsbruder
+     ['https://www.antragsbruder.de/bg/hilfe-starten', 'https://www.antragsbruder.de/bg/kontakt', 'https://www.antragsbruder.de/uk/hilfe-starten', 'https://www.antragsbruder.de/uk/kontakt']
+ x4: Jetzt anmelden – Antragsbruder
+     ['https://www.antragsbruder.de/alg1', 'https://www.antragsbruder.de/admin', 'https://www.antragsbruder.de/dashboard', 'https://www.antragsbruder.de/anmelden']
+ x3: Antragsbruder – أوراق رسمية؟ أرسلها إلى أنتراغسبرودر.
+     ['https://www.antragsbruder.de/ar', 'https://www.antragsbruder.de/ar/datenbank', 'https://www.antragsbruder.de/ar/navigator']
+ x3: Antragsbruder – Бумащина? Предай я на Antragsbruder.
+     ['https://www.antragsbruder.de/bg', 'https://www.antragsbruder.de/bg/datenbank', 'https://www.antragsbruder.de/bg/navigator']
+ x3: Antragsbruder – Paperwork? Hand it to your Antragsbruder.
+     ['https://www.antragsbruder.de/en', 'https://www.antragsbruder.de/en/datenbank', 'https://www.antragsbruder.de/en/navigator']
+ x3: FAQ – Antragsbruder
+     ['https://www.antragsbruder.de/en/faq', 'https://www.antragsbruder.de/faq', 'https://www.antragsbruder.de/pl/faq']
+ x3: Impressum – Antragsbruder
+     ['https://www.antragsbruder.de/en/impressum', 'https://www.antragsbruder.de/impressum', 'https://www.antragsbruder.de/tr/impressum']
+ x3: Antragsbruder – Papierkowa robota? Oddaj ją Antragsbruder.
+     ['https://www.antragsbruder.de/pl', 'https://www.antragsbruder.de/pl/datenbank', 'https://www.antragsbruder.de/pl/navigator']
+ x3: Antragsbruder – Hârțogărie? Las-o pe mâna Antragsbruder.
+     ['https://www.antragsbruder.de/ro', 'https://www.antragsbruder.de/ro/datenbank', 'https://www.antragsbruder.de/ro/navigator']
+missing desc: 10 ['https://www.antragsbruder.de/', 'https://www.antragsbruder.de/ar', 'https://www.antragsbruder.de/bg', 'https://www.antragsbruder.de/en', 'https://www.antragsbruder.de/pl', 'https://www.antragsbruder.de/ro', 'https://www.antragsbruder.de/ru', 'https://www.antragsbruder.de/tr', 'https://www.antragsbruder.de/uk', 'https://www.antragsbruder.de/de']
+ desc x10: NO-DESC
+ desc x4: Melde dich an oder erstelle ein neues Konto, um deine Anträge und Unterlagen zu verwalten.
+ desc x3: Wir erklären dir Briefe vom Amt. Wir bereiten deine Anträge vor. Ohne Behördendeutsch, ohne Stress –
+ desc x3: Get in touch with Antragsbruder for support, general questions or partnerships.
+ desc x3: Kontaktiere Antragsbruder für Support, allgemeine Fragen oder Partnerschaften.
+ desc x3: Wohngeld 2026 einfach erklärt: Prüfe deinen möglichen Anspruch, berechne dein Wohngeld und erfahre a
+ desc x2: نشرح لك الرسائل الرسمية بلغة بسيطة. نجهّز طلباتك. بدون مصطلحات رسمية، بدون توتر – مع أنتراغسبرودر.
+ desc x2: تواصل مع Antragsbruder للدعم أو الأسئلة العامة أو الشراكات.
+
+== CANONICAL ==
+ NO-CANONICAL: https://www.antragsbruder.de/ar/datenbank
+ CANON≠SELF: https://www.antragsbruder.de/ar/hilfe-starten -> https://www.antragsbruder.de/ar/kontakt
+ NO-CANONICAL: https://www.antragsbruder.de/ar/navigator
+ NO-CANONICAL: https://www.antragsbruder.de/bg/datenbank
+ CANON≠SELF: https://www.antragsbruder.de/bg/hilfe-starten -> https://www.antragsbruder.de/bg/kontakt
+ NO-CANONICAL: https://www.antragsbruder.de/bg/navigator
+ NO-CANONICAL: https://www.antragsbruder.de/datenbank
+ NO-CANONICAL: https://www.antragsbruder.de/en/datenbank
+ CANON≠SELF: https://www.antragsbruder.de/en/hilfe-starten -> https://www.antragsbruder.de/en/kontakt
+ NO-CANONICAL: https://www.antragsbruder.de/en/navigator
+ CANON≠SELF: https://www.antragsbruder.de/hilfe-starten -> https://www.antragsbruder.de/kontakt
+ NO-CANONICAL: https://www.antragsbruder.de/navigator
+ NO-CANONICAL: https://www.antragsbruder.de/pl/datenbank
+ CANON≠SELF: https://www.antragsbruder.de/pl/hilfe-starten -> https://www.antragsbruder.de/pl/kontakt
+ NO-CANONICAL: https://www.antragsbruder.de/pl/navigator
+ NO-CANONICAL: https://www.antragsbruder.de/ro/datenbank
+ CANON≠SELF: https://www.antragsbruder.de/ro/hilfe-starten -> https://www.antragsbruder.de/ro/kontakt
+ NO-CANONICAL: https://www.antragsbruder.de/ro/navigator
+ NO-CANONICAL: https://www.antragsbruder.de/ru/datenbank
+ CANON≠SELF: https://www.antragsbruder.de/ru/hilfe-starten -> https://www.antragsbruder.de/ru/kontakt
+ NO-CANONICAL: https://www.antragsbruder.de/ru/navigator
+ NO-CANONICAL: https://www.antragsbruder.de/tr/datenbank
+ CANON≠SELF: https://www.antragsbruder.de/tr/hilfe-starten -> https://www.antragsbruder.de/tr/kontakt
+ NO-CANONICAL: https://www.antragsbruder.de/tr/navigator
+ NO-CANONICAL: https://www.antragsbruder.de/uk/datenbank
+ CANON≠SELF: https://www.antragsbruder.de/uk/hilfe-starten -> https://www.antragsbruder.de/uk/kontakt
+ NO-CANONICAL: https://www.antragsbruder.de/uk/navigator
+ CANON≠SELF: https://www.antragsbruder.de/alg1 -> https://www.antragsbruder.de/anmelden
+ CANON≠SELF: https://www.antragsbruder.de/de -> https://www.antragsbruder.de
+ CANON≠SELF: https://www.antragsbruder.de/de/wohngeld -> https://www.antragsbruder.de/wohngeld
+ CANON≠SELF: https://www.antragsbruder.de/admin -> https://www.antragsbruder.de/anmelden
+ CANON≠SELF: https://www.antragsbruder.de/dashboard -> https://www.antragsbruder.de/anmelden
+ NO-CANONICAL: https://www.antragsbruder.de/teilen/test
+ CANON≠SELF: https://www.antragsbruder.de/preise -> https://www.antragsbruder.de/kontakt
+ CANON≠SELF: https://www.antragsbruder.de/en/preise -> https://www.antragsbruder.de/en/kontakt
+
+== HREFLANG (page head) ==
+ pages without hreflang: 215 ['https://www.antragsbruder.de/', 'https://www.antragsbruder.de/agb', 'https://www.antragsbruder.de/ansprueche-checken', 'https://www.antragsbruder.de/antrag-vorbereiten', 'https://www.antragsbruder.de/ar', 'https://www.antragsbruder.de/ar/agb', 'https://www.antragsbruder.de/ar/ansprueche-checken', 'https://www.antragsbruder.de/ar/antrag-vorbereiten', 'https://www.antragsbruder.de/ar/bafoegrechner', 'https://www.antragsbruder.de/ar/brief-verstehen']
+
+== SITEMAP-HREFLANG vs REALITÄT ==
+ sitemap hreflang targets that 404: 223
+   ('https://www.antragsbruder.de/redaktion', 'https://www.antragsbruder.de/en/redaktion')
+   ('https://www.antragsbruder.de/redaktion', 'https://www.antragsbruder.de/ar/redaktion')
+   ('https://www.antragsbruder.de/redaktion', 'https://www.antragsbruder.de/tr/redaktion')
+   ('https://www.antragsbruder.de/redaktion', 'https://www.antragsbruder.de/ru/redaktion')
+   ('https://www.antragsbruder.de/redaktion', 'https://www.antragsbruder.de/uk/redaktion')
+   ('https://www.antragsbruder.de/redaktion', 'https://www.antragsbruder.de/pl/redaktion')
+   ('https://www.antragsbruder.de/redaktion', 'https://www.antragsbruder.de/bg/redaktion')
+   ('https://www.antragsbruder.de/redaktion', 'https://www.antragsbruder.de/ro/redaktion')
+   ('https://www.antragsbruder.de/en/redaktion', 'https://www.antragsbruder.de/en/redaktion')
+   ('https://www.antragsbruder.de/en/redaktion', 'https://www.antragsbruder.de/ar/redaktion')
+   ('https://www.antragsbruder.de/en/redaktion', 'https://www.antragsbruder.de/tr/redaktion')
+   ('https://www.antragsbruder.de/en/redaktion', 'https://www.antragsbruder.de/ru/redaktion')
+   ('https://www.antragsbruder.de/en/redaktion', 'https://www.antragsbruder.de/uk/redaktion')
+   ('https://www.antragsbruder.de/en/redaktion', 'https://www.antragsbruder.de/pl/redaktion')
+   ('https://www.antragsbruder.de/en/redaktion', 'https://www.antragsbruder.de/bg/redaktion')
+
+== H1 ==
+ NO-H1: https://www.antragsbruder.de/ar/navigator words: 46
+ NO-H1: https://www.antragsbruder.de/bg/navigator words: 49
+ NO-H1: https://www.antragsbruder.de/en/navigator words: 142
+ NO-H1: https://www.antragsbruder.de/navigator words: 112
+ NO-H1: https://www.antragsbruder.de/pl/navigator words: 139
+ NO-H1: https://www.antragsbruder.de/ro/navigator words: 154
+ NO-H1: https://www.antragsbruder.de/ru/navigator words: 49
+ NO-H1: https://www.antragsbruder.de/tr/navigator words: 140
+ NO-H1: https://www.antragsbruder.de/uk/navigator words: 50
+
+== THIN (<300 words) ==
+      7  https://www.antragsbruder.de/ar/so-funktionierts
+      7  https://www.antragsbruder.de/ar/wer-wir-sind
+      8  https://www.antragsbruder.de/ar/papierkram-ordnen
+      9  https://www.antragsbruder.de/bg/so-funktionierts
+      9  https://www.antragsbruder.de/bg/wer-wir-sind
+      9  https://www.antragsbruder.de/ru/so-funktionierts
+      9  https://www.antragsbruder.de/ru/wer-wir-sind
+     10  https://www.antragsbruder.de/ar/hilfe-starten
+     10  https://www.antragsbruder.de/ar/kontakt
+     10  https://www.antragsbruder.de/bg/papierkram-ordnen
+     10  https://www.antragsbruder.de/ru/papierkram-ordnen
+     10  https://www.antragsbruder.de/uk/so-funktionierts
+     11  https://www.antragsbruder.de/uk/papierkram-ordnen
+     12  https://www.antragsbruder.de/ar/unterlagen-check
+     12  https://www.antragsbruder.de/ar/wohngeld/antrag
+     12  https://www.antragsbruder.de/bg/hilfe-starten
+     12  https://www.antragsbruder.de/bg/kontakt
+     12  https://www.antragsbruder.de/ru/hilfe-starten
+     12  https://www.antragsbruder.de/ru/kontakt
+     13  https://www.antragsbruder.de/uk/wer-wir-sind
+     14  https://www.antragsbruder.de/bg/unterlagen-check
+     14  https://www.antragsbruder.de/bg/wohngeld/antrag
+     14  https://www.antragsbruder.de/ru/wohngeld/antrag
+     15  https://www.antragsbruder.de/ru/unterlagen-check
+     15  https://www.antragsbruder.de/uk/hilfe-starten
+     15  https://www.antragsbruder.de/uk/kontakt
+     15  https://www.antragsbruder.de/uk/wohngeld/antrag
+     16  https://www.antragsbruder.de/uk/unterlagen-check
+     18  https://www.antragsbruder.de/ar/wohngeld/rechner
+     19  https://www.antragsbruder.de/ar/agb
+     20  https://www.antragsbruder.de/bg/wohngeld/rechner
+     20  https://www.antragsbruder.de/ru/wohngeld/rechner
+     21  https://www.antragsbruder.de/bg/agb
+     21  https://www.antragsbruder.de/ru/agb
+     22  https://www.antragsbruder.de/ar/antrag-vorbereiten
+     22  https://www.antragsbruder.de/uk/wohngeld/rechner
+     23  https://www.antragsbruder.de/bg/datenschutz
+     25  https://www.antragsbruder.de/ar/datenschutz
+     26  https://www.antragsbruder.de/ar/bafoegrechner
+     26  https://www.antragsbruder.de/ar/faq
+     26  https://www.antragsbruder.de/uk/agb
+     27  https://www.antragsbruder.de/bg/antrag-vorbereiten
+     27  https://www.antragsbruder.de/ru/antrag-vorbereiten
+     28  https://www.antragsbruder.de/ar
+     28  https://www.antragsbruder.de/bg/bafoegrechner
+     28  https://www.antragsbruder.de/bg/faq
+     28  https://www.antragsbruder.de/ru/bafoegrechner
+     28  https://www.antragsbruder.de/ru/datenschutz
+     29  https://www.antragsbruder.de/ru/faq
+     29  https://www.antragsbruder.de/uk/antrag-vorbereiten
+     31  https://www.antragsbruder.de/bg
+     31  https://www.antragsbruder.de/ru
+     31  https://www.antragsbruder.de/uk/bafoegrechner
+     31  https://www.antragsbruder.de/uk/datenschutz
+     32  https://www.antragsbruder.de/uk
+     33  https://www.antragsbruder.de/uk/faq
+     36  https://www.antragsbruder.de/ar/impressum
+     38  https://www.antragsbruder.de/bg/impressum
+     38  https://www.antragsbruder.de/ru/impressum
+     40  https://www.antragsbruder.de/uk/impressum
+     46  https://www.antragsbruder.de/ar/navigator
+     49  https://www.antragsbruder.de/bg/navigator
+     49  https://www.antragsbruder.de/ru/navigator
+     50  https://www.antragsbruder.de/uk/navigator
+     91  https://www.antragsbruder.de/ar/ansprueche-checken
+     93  https://www.antragsbruder.de/bg/ansprueche-checken
+     93  https://www.antragsbruder.de/ru/ansprueche-checken
+     94  https://www.antragsbruder.de/uk/ansprueche-checken
+     95  https://www.antragsbruder.de/ar/brief-verstehen
+     97  https://www.antragsbruder.de/teilen/test
+     99  https://www.antragsbruder.de/bg/brief-verstehen
+     99  https://www.antragsbruder.de/ru/brief-verstehen
+    100  https://www.antragsbruder.de/uk/brief-verstehen
+    108  https://www.antragsbruder.de/alg1
+    108  https://www.antragsbruder.de/admin
+    108  https://www.antragsbruder.de/dashboard
+    108  https://www.antragsbruder.de/anmelden
+    112  https://www.antragsbruder.de/navigator
+    113  https://www.antragsbruder.de/konto-erstellen
+    139  https://www.antragsbruder.de/impressum
+    139  https://www.antragsbruder.de/pl/navigator
+    140  https://www.antragsbruder.de/tr/navigator
+    142  https://www.antragsbruder.de/en/navigator
+    154  https://www.antragsbruder.de/ro/navigator
+    155  https://www.antragsbruder.de/hilfe-starten
+    155  https://www.antragsbruder.de/kontakt
+    155  https://www.antragsbruder.de/preise
+    157  https://www.antragsbruder.de/ansprueche-checken
+    175  https://www.antragsbruder.de/en/impressum
+    175  https://www.antragsbruder.de/redaktion/quellenstandard
+    176  https://www.antragsbruder.de/pl/hilfe-starten
+    176  https://www.antragsbruder.de/pl/kontakt
+    176  https://www.antragsbruder.de/tr/hilfe-starten
+    176  https://www.antragsbruder.de/tr/kontakt
+    177  https://www.antragsbruder.de/pl/impressum
+    180  https://www.antragsbruder.de/en/hilfe-starten
+    180  https://www.antragsbruder.de/en/kontakt
+    180  https://www.antragsbruder.de/en/preise
+    182  https://www.antragsbruder.de/tr/impressum
+    185  https://www.antragsbruder.de/ro/hilfe-starten
+    185  https://www.antragsbruder.de/ro/kontakt
+    186  https://www.antragsbruder.de/pl/ansprueche-checken
+    186  https://www.antragsbruder.de/tr/ansprueche-checken
+    189  https://www.antragsbruder.de/en/ansprueche-checken
+    197  https://www.antragsbruder.de/ro/ansprueche-checken
+    199  https://www.antragsbruder.de/ar/grundsicherungsrechner
+    202  https://www.antragsbruder.de/bg/grundsicherungsrechner
+    202  https://www.antragsbruder.de/ru/grundsicherungsrechner
+    204  https://www.antragsbruder.de/uk/grundsicherungsrechner
+    207  https://www.antragsbruder.de/ro/impressum
+    224  https://www.antragsbruder.de/ar/fuer-unternehmen
+    225  https://www.antragsbruder.de/redaktion
+    226  https://www.antragsbruder.de/bg/fuer-unternehmen
+    226  https://www.antragsbruder.de/ru/fuer-unternehmen
+    227  https://www.antragsbruder.de/uk/fuer-unternehmen
+    238  https://www.antragsbruder.de/pl/wohngeld/rechner
+    238  https://www.antragsbruder.de/tr/wohngeld/rechner
+    248  https://www.antragsbruder.de/unterlagen-check
+    253  https://www.antragsbruder.de/redaktion/redaktionsrichtlinien
+    255  https://www.antragsbruder.de/en/wohngeld/rechner
+    256  https://www.antragsbruder.de/pl/unterlagen-check
+    258  https://www.antragsbruder.de/papierkram-ordnen
+    259  https://www.antragsbruder.de/tr/unterlagen-check
+    263  https://www.antragsbruder.de/pl/papierkram-ordnen
+    273  https://www.antragsbruder.de/ro/wohngeld/rechner
+    274  https://www.antragsbruder.de/tr/papierkram-ordnen
+    275  https://www.antragsbruder.de/ro/papierkram-ordnen
+    279  https://www.antragsbruder.de/en/unterlagen-check
+    286  https://www.antragsbruder.de/en/papierkram-ordnen
+    286  https://www.antragsbruder.de/grundsicherungsrechner
+    286  https://www.antragsbruder.de/pl/bafoegrechner
+    286  https://www.antragsbruder.de/tr/bafoegrechner
+    291  https://www.antragsbruder.de/ro/unterlagen-check
+    293  https://www.antragsbruder.de/en/bafoegrechner
+    297  https://www.antragsbruder.de/pl/so-funktionierts
+
+== ROBOTS-META / X-ROBOTS ==
+  https://www.antragsbruder.de/teilen/test  meta=noindex, nofollow  hdr=None
+
+== JSON-LD ==
+{'Organization': 215, 'Person': 215, 'PostalAddress': 215, 'WebSite': 215, 'Offer': 30, 'WebApplication': 30, 'Answer': 24, 'FAQPage': 24, 'Question': 24, 'BreadcrumbList': 16, 'ListItem': 16, 'Article': 15, 'WebPage': 15, 'CollectionPage': 1, 'ItemList': 1}
+
+== IMAGES ==
+  alt-fehlend 5/9: https://www.antragsbruder.de/
+  alt-fehlend 5/9: https://www.antragsbruder.de/ar
+  alt-fehlend 1/5: https://www.antragsbruder.de/ar/brief-verstehen
+  alt-fehlend 1/5: https://www.antragsbruder.de/ar/faq
+  alt-fehlend 1/4: https://www.antragsbruder.de/ar/fuer-unternehmen
+  alt-fehlend 1/4: https://www.antragsbruder.de/ar/hilfe-starten
+  alt-fehlend 1/4: https://www.antragsbruder.de/ar/kontakt
+  alt-fehlend 1/5: https://www.antragsbruder.de/ar/papierkram-ordnen
+  alt-fehlend 1/5: https://www.antragsbruder.de/ar/so-funktionierts
+  alt-fehlend 1/5: https://www.antragsbruder.de/ar/unterlagen-check
+  alt-fehlend 1/6: https://www.antragsbruder.de/ar/wer-wir-sind
+  alt-fehlend 1/5: https://www.antragsbruder.de/bafoeg
+  alt-fehlend 1/5: https://www.antragsbruder.de/bafoeg/beantragen
+  alt-fehlend 1/5: https://www.antragsbruder.de/bafoeg/einkommensgrenze
+  alt-fehlend 1/5: https://www.antragsbruder.de/bafoeg/elternunabhaengig
+  alt-fehlend 1/5: https://www.antragsbruder.de/bafoeg/unterlagen
+  alt-fehlend 1/5: https://www.antragsbruder.de/bafoeg/voraussetzungen
+  alt-fehlend 5/9: https://www.antragsbruder.de/bg
+  alt-fehlend 1/5: https://www.antragsbruder.de/bg/brief-verstehen
+  alt-fehlend 1/5: https://www.antragsbruder.de/bg/faq
+  alt-fehlend 1/4: https://www.antragsbruder.de/bg/fuer-unternehmen
+  alt-fehlend 1/4: https://www.antragsbruder.de/bg/hilfe-starten
+  alt-fehlend 1/4: https://www.antragsbruder.de/bg/kontakt
+  alt-fehlend 1/5: https://www.antragsbruder.de/bg/papierkram-ordnen
+  alt-fehlend 1/5: https://www.antragsbruder.de/bg/so-funktionierts
+  alt-fehlend 1/5: https://www.antragsbruder.de/bg/unterlagen-check
+  alt-fehlend 1/6: https://www.antragsbruder.de/bg/wer-wir-sind
+  alt-fehlend 1/5: https://www.antragsbruder.de/brief-verstehen
+  alt-fehlend 5/9: https://www.antragsbruder.de/en
+  alt-fehlend 1/5: https://www.antragsbruder.de/en/brief-verstehen
+  alt-fehlend 1/5: https://www.antragsbruder.de/en/faq
+  alt-fehlend 1/4: https://www.antragsbruder.de/en/fuer-unternehmen
+  alt-fehlend 1/4: https://www.antragsbruder.de/en/hilfe-starten
+  alt-fehlend 1/4: https://www.antragsbruder.de/en/kontakt
+  alt-fehlend 1/5: https://www.antragsbruder.de/en/papierkram-ordnen
+  alt-fehlend 1/5: https://www.antragsbruder.de/en/so-funktionierts
+  alt-fehlend 1/5: https://www.antragsbruder.de/en/unterlagen-check
+  alt-fehlend 1/6: https://www.antragsbruder.de/en/wer-wir-sind
+  alt-fehlend 1/5: https://www.antragsbruder.de/faq
+  alt-fehlend 1/4: https://www.antragsbruder.de/fuer-unternehmen
+  alt-fehlend 1/4: https://www.antragsbruder.de/hilfe-starten
+  alt-fehlend 1/4: https://www.antragsbruder.de/kontakt
+  alt-fehlend 1/5: https://www.antragsbruder.de/papierkram-ordnen
+  alt-fehlend 5/9: https://www.antragsbruder.de/pl
+  alt-fehlend 1/5: https://www.antragsbruder.de/pl/brief-verstehen
+  alt-fehlend 1/5: https://www.antragsbruder.de/pl/faq
+  alt-fehlend 1/4: https://www.antragsbruder.de/pl/fuer-unternehmen
+  alt-fehlend 1/4: https://www.antragsbruder.de/pl/hilfe-starten
+  alt-fehlend 1/4: https://www.antragsbruder.de/pl/kontakt
+  alt-fehlend 1/5: https://www.antragsbruder.de/pl/papierkram-ordnen
+  alt-fehlend 1/5: https://www.antragsbruder.de/pl/so-funktionierts
+  alt-fehlend 1/5: https://www.antragsbruder.de/pl/unterlagen-check
+  alt-fehlend 1/6: https://www.antragsbruder.de/pl/wer-wir-sind
+  alt-fehlend 5/9: https://www.antragsbruder.de/ro
+  alt-fehlend 1/5: https://www.antragsbruder.de/ro/brief-verstehen
+  alt-fehlend 1/5: https://www.antragsbruder.de/ro/faq
+  alt-fehlend 1/4: https://www.antragsbruder.de/ro/fuer-unternehmen
+  alt-fehlend 1/4: https://www.antragsbruder.de/ro/hilfe-starten
+  alt-fehlend 1/4: https://www.antragsbruder.de/ro/kontakt
+  alt-fehlend 1/5: https://www.antragsbruder.de/ro/papierkram-ordnen
+  alt-fehlend 1/5: https://www.antragsbruder.de/ro/so-funktionierts
+  alt-fehlend 1/5: https://www.antragsbruder.de/ro/unterlagen-check
+  alt-fehlend 1/6: https://www.antragsbruder.de/ro/wer-wir-sind
+  alt-fehlend 5/9: https://www.antragsbruder.de/ru
+  alt-fehlend 1/5: https://www.antragsbruder.de/ru/brief-verstehen
+  alt-fehlend 1/5: https://www.antragsbruder.de/ru/faq
+  alt-fehlend 1/4: https://www.antragsbruder.de/ru/fuer-unternehmen
+  alt-fehlend 1/4: https://www.antragsbruder.de/ru/hilfe-starten
+  alt-fehlend 1/4: https://www.antragsbruder.de/ru/kontakt
+  alt-fehlend 1/5: https://www.antragsbruder.de/ru/papierkram-ordnen
+  alt-fehlend 1/5: https://www.antragsbruder.de/ru/so-funktionierts
+  alt-fehlend 1/5: https://www.antragsbruder.de/ru/unterlagen-check
+  alt-fehlend 1/6: https://www.antragsbruder.de/ru/wer-wir-sind
+  alt-fehlend 1/5: https://www.antragsbruder.de/so-funktionierts
+  alt-fehlend 5/9: https://www.antragsbruder.de/tr
+  alt-fehlend 1/5: https://www.antragsbruder.de/tr/brief-verstehen
+  alt-fehlend 1/5: https://www.antragsbruder.de/tr/faq
+  alt-fehlend 1/4: https://www.antragsbruder.de/tr/fuer-unternehmen
+  alt-fehlend 1/4: https://www.antragsbruder.de/tr/hilfe-starten
+  alt-fehlend 1/4: https://www.antragsbruder.de/tr/kontakt
+  alt-fehlend 1/5: https://www.antragsbruder.de/tr/papierkram-ordnen
+  alt-fehlend 1/5: https://www.antragsbruder.de/tr/so-funktionierts
+  alt-fehlend 1/5: https://www.antragsbruder.de/tr/unterlagen-check
+  alt-fehlend 1/6: https://www.antragsbruder.de/tr/wer-wir-sind
+  alt-fehlend 5/9: https://www.antragsbruder.de/uk
+  alt-fehlend 1/5: https://www.antragsbruder.de/uk/brief-verstehen
+  alt-fehlend 1/5: https://www.antragsbruder.de/uk/faq
+  alt-fehlend 1/4: https://www.antragsbruder.de/uk/fuer-unternehmen
+  alt-fehlend 1/4: https://www.antragsbruder.de/uk/hilfe-starten
+  alt-fehlend 1/4: https://www.antragsbruder.de/uk/kontakt
+  alt-fehlend 1/5: https://www.antragsbruder.de/uk/papierkram-ordnen
+  alt-fehlend 1/5: https://www.antragsbruder.de/uk/so-funktionierts
+  alt-fehlend 1/5: https://www.antragsbruder.de/uk/unterlagen-check
+  alt-fehlend 1/6: https://www.antragsbruder.de/uk/wer-wir-sind
+  alt-fehlend 1/5: https://www.antragsbruder.de/unterlagen-check
+  alt-fehlend 1/6: https://www.antragsbruder.de/wer-wir-sind
+  alt-fehlend 1/5: https://www.antragsbruder.de/wohngeld
+  alt-fehlend 1/5: https://www.antragsbruder.de/wohngeld/beantragen
+  alt-fehlend 1/5: https://www.antragsbruder.de/wohngeld/einkommensgrenze
+  alt-fehlend 1/5: https://www.antragsbruder.de/wohngeld/unterlagen
+  alt-fehlend 1/5: https://www.antragsbruder.de/wohngeld/voraussetzungen
+  alt-fehlend 5/9: https://www.antragsbruder.de/de
+  alt-fehlend 1/5: https://www.antragsbruder.de/de/wohngeld
+  alt-fehlend 1/5: https://www.antragsbruder.de/wohngeld/
+  alt-fehlend 1/4: https://www.antragsbruder.de/preise
+  alt-fehlend 1/4: https://www.antragsbruder.de/en/preise
+
+== INTERNE LINKS: orphan-check + new targets ==
+ discovered-not-crawled (unique): 210
+  + https://www.antragsbruder.de/ar/alg1
+  + https://www.antragsbruder.de/ar/blog
+  + https://www.antragsbruder.de/ar/hilfe-starten?anliegen=antrag
+  + https://www.antragsbruder.de/ar/hilfe-starten?anliegen=brief
+  + https://www.antragsbruder.de/ar/hilfe-starten?anliegen=papierkram
+  + https://www.antragsbruder.de/ar/hilfe-starten?anliegen=unterlagen
+  + https://www.antragsbruder.de/ar/hilfe-starten?anliegen=wohngeld
+  + https://www.antragsbruder.de/bg/alg1
+  + https://www.antragsbruder.de/bg/blog
+  + https://www.antragsbruder.de/bg/hilfe-starten?anliegen=antrag
+  + https://www.antragsbruder.de/bg/hilfe-starten?anliegen=brief
+  + https://www.antragsbruder.de/bg/hilfe-starten?anliegen=papierkram
+  + https://www.antragsbruder.de/bg/hilfe-starten?anliegen=unterlagen
+  + https://www.antragsbruder.de/bg/hilfe-starten?anliegen=wohngeld
+  + https://www.antragsbruder.de/bg/wohngeld
+  + https://www.antragsbruder.de/datenbank/adoption
+  + https://www.antragsbruder.de/datenbank/agrarförderung-gak
+  + https://www.antragsbruder.de/datenbank/alleinerziehendenentlastungsbetrag
+  + https://www.antragsbruder.de/datenbank/altersrente
+  + https://www.antragsbruder.de/datenbank/anerkennung_abschluss
+  + https://www.antragsbruder.de/datenbank/arbeitnehmerförderung
+  + https://www.antragsbruder.de/datenbank/arbeitslosengeld-i
+  + https://www.antragsbruder.de/datenbank/arbeitsmarktzugang
+  + https://www.antragsbruder.de/datenbank/arbeitsmedizinische_vorsorge
+  + https://www.antragsbruder.de/datenbank/assistenz
+  + https://www.antragsbruder.de/datenbank/aufenthaltstitel_arbeit
+  + https://www.antragsbruder.de/datenbank/aufstiegsbafoeg
+  + https://www.antragsbruder.de/datenbank/aufstiegsfortbildung
+  + https://www.antragsbruder.de/datenbank/ausbildungsförderung
+  + https://www.antragsbruder.de/datenbank/auslandsbafoeg
+  + https://www.antragsbruder.de/datenbank/außergewöhnliche_belastungen
+  + https://www.antragsbruder.de/datenbank/avgs-vermittlungsgutschein
+  + https://www.antragsbruder.de/datenbank/bafoeg
+  + https://www.antragsbruder.de/datenbank/barrierefrei_umbauen
+  + https://www.antragsbruder.de/datenbank/belastungsgrenze-zuzahlung
+  + https://www.antragsbruder.de/datenbank/beratung_migranten
+  + https://www.antragsbruder.de/datenbank/berufliche_reha
+  + https://www.antragsbruder.de/datenbank/berufseinstieg
+  + https://www.antragsbruder.de/datenbank/beschaeftigungsförderung
+  + https://www.antragsbruder.de/datenbank/betriebliche-altersvorsorge
+  + https://www.antragsbruder.de/datenbank/betriebsberatung-landwirtschaft
+  + https://www.antragsbruder.de/datenbank/bildungskredit_kfw
+  + https://www.antragsbruder.de/datenbank/bildungspaket
+  + https://www.antragsbruder.de/datenbank/biologischer-bau-foerderung
+  + https://www.antragsbruder.de/datenbank/buergergeld
+  + https://www.antragsbruder.de/datenbank/bundesfreiwilligendienst
+  + https://www.antragsbruder.de/datenbank/deutschkurs
+  + https://www.antragsbruder.de/datenbank/digitalbonus
+  + https://www.antragsbruder.de/datenbank/duldung
+  + https://www.antragsbruder.de/datenbank/ehegattensplitting
+  + https://www.antragsbruder.de/datenbank/eigentumsfoerderung
+  + https://www.antragsbruder.de/datenbank/einstiegsgeld
+  + https://www.antragsbruder.de/datenbank/elektromobilitaet-foerderung
+  + https://www.antragsbruder.de/datenbank/elterngeld
+  + https://www.antragsbruder.de/datenbank/elternzeit
+  + https://www.antragsbruder.de/datenbank/energieeffizienz-foerderung
+  + https://www.antragsbruder.de/datenbank/energiesanierung
+  + https://www.antragsbruder.de/datenbank/energieschuldenberatung
+  + https://www.antragsbruder.de/datenbank/entlastungsleistungen
+  + https://www.antragsbruder.de/datenbank/erneuerbare-energien-eeg
+  + https://www.antragsbruder.de/datenbank/erp-gruenderkredit-nachfolge
+  + https://www.antragsbruder.de/datenbank/erwerbsminderungsrente
+  + https://www.antragsbruder.de/datenbank/exist-gruenderstipendium
+  + https://www.antragsbruder.de/datenbank/existenzgruenderkredit
+  + https://www.antragsbruder.de/datenbank/existenzgruendung-landwirtschaft
+  + https://www.antragsbruder.de/datenbank/familienleistungen_steuer
+  + https://www.antragsbruder.de/datenbank/familienpflegezeit
+  + https://www.antragsbruder.de/datenbank/familiezusammenführung
+  + https://www.antragsbruder.de/datenbank/festzuschuss-zahnersatz
+  + https://www.antragsbruder.de/datenbank/forschungszulage
+  + https://www.antragsbruder.de/datenbank/forstwirtschaft-foerderung
+  + https://www.antragsbruder.de/datenbank/gebaeude-daemmung-foerderung
+  + https://www.antragsbruder.de/datenbank/geburt
+  + https://www.antragsbruder.de/datenbank/gruendercoaching
+  + https://www.antragsbruder.de/datenbank/gruendungszuschuss
+  + https://www.antragsbruder.de/datenbank/grundrente
+  + https://www.antragsbruder.de/datenbank/grundsicherung-arbeitsuchende
+  + https://www.antragsbruder.de/datenbank/haeusliche-krankenpflege
+  + https://www.antragsbruder.de/datenbank/handwerkerleistungen
+  + https://www.antragsbruder.de/datenbank/haushaltshilfe_pauschbetrag

@@ -78,7 +78,9 @@ export function LoginForm({ locale }: LoginFormProps) {
       // ?next= hat Vorrang (gesetzt vom Proxy bei umgeleiteten Dashboard-Routen)
       const nextParam = new URLSearchParams(window.location.search).get('next');
       let dash =
-        nextParam && nextParam.startsWith('/')
+        // Nur eigene, absolute Pfade: '//evil.com' ist ein Protokoll-relativer
+        // Fremd-URL und war als Open Redirect nach dem Login nutzbar.
+        nextParam && nextParam.startsWith('/') && !nextParam.startsWith('//')
           ? nextParam
           : redirectLocale === 'de'
             ? '/dashboard'

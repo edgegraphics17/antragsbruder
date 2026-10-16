@@ -7,6 +7,7 @@ export type NavLink = {
   href: string;
   label: string;
   description?: string;
+  deOnly?: boolean;
 };
 
 export type NavGroup = {
@@ -16,8 +17,10 @@ export type NavGroup = {
   items?: NavLink[];
 };
 
-type StructureLink = { key: string; href: string };
-type StructureGroup = { key: string; href?: string; items?: StructureLink[] };
+// deOnly: Seiten, die es nur auf Deutsch gibt (Ratgeber-Cluster, Blog).
+// In anderen Sprachen dürfen sie nicht verlinkt werden – dort liefern sie 404.
+type StructureLink = { key: string; href: string; deOnly?: boolean };
+type StructureGroup = { key: string; href?: string; deOnly?: boolean; items?: StructureLink[] };
 
 // "Hilfe starten" is intentionally absent here: it is the header's primary CTA
 // button on the right, so listing it again as a nav link would duplicate it.
@@ -31,10 +34,10 @@ const structure: StructureGroup[] = [
     key: "ratgeber",
     items: [
       { key: "anspruecheChecken", href: "/ansprueche-checken" },
-      { key: "wohngeld", href: "/wohngeld" },
-      { key: "bafoeg", href: "/bafoeg" },
+      { key: "wohngeld", href: "/wohngeld", deOnly: true },
+      { key: "bafoeg", href: "/bafoeg", deOnly: true },
       { key: "datenbank", href: "/datenbank" },
-      { key: "blog", href: "/blog" },
+      { key: "blog", href: "/blog", deOnly: true },
     ],
   },
   {
@@ -66,7 +69,7 @@ const structure: StructureGroup[] = [
 const footerStructure: Record<"produkt" | "unternehmen" | "legal", StructureLink[]> = {
   produkt: [
     { key: "anspruecheChecken", href: "/ansprueche-checken" },
-    { key: "wohngeld", href: "/wohngeld" },
+    { key: "wohngeld", href: "/wohngeld", deOnly: true },
     { key: "wohngeldRechner", href: "/wohngeld/rechner" },
     { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
     { key: "bafoegRechner", href: "/bafoegrechner" },
@@ -77,7 +80,7 @@ const footerStructure: Record<"produkt" | "unternehmen" | "legal", StructureLink
     { key: "fuerUnternehmen", href: "/fuer-unternehmen" },
     { key: "ueberUns", href: "/wer-wir-sind" },
     { key: "howItWorks", href: "/so-funktionierts" },
-    { key: "blog", href: "/blog" },
+    { key: "blog", href: "/blog", deOnly: true },
     { key: "faq", href: "/faq" },
     { key: "kontakt", href: "/kontakt" },
   ],
@@ -90,16 +93,23 @@ const footerStructure: Record<"produkt" | "unternehmen" | "legal", StructureLink
 
 export function getMainNav(locale: Locale): NavGroup[] {
   const t = commonDict[locale];
-  return structure.map((group) => ({
+  // Seiten ohne Übersetzung (Ratgeber-Cluster, Blog) dürfen in anderen Sprachen
+  // nicht verlinkt werden: sie liefern dort 404 (Navigation war 16× kaputt).
+  const hasGerman = locale === "de";
+  return structure
+    .filter((group) => !(group.deOnly && !hasGerman))
+    .map((group) => ({
     key: group.key,
     label: t.nav[group.key],
     href: group.href ? localeHref(locale, group.href) : undefined,
-    items: group.items?.map((item) => ({
-      key: item.key,
-      href: localeHref(locale, item.href),
-      label: t.nav[item.key],
-      description: t.navDescriptions[item.key],
-    })),
+    items: group.items
+      ?.filter((item) => !(item.deOnly && !hasGerman))
+      .map((item) => ({
+        key: item.key,
+        href: localeHref(locale, item.href),
+        label: t.nav[item.key],
+        description: t.navDescriptions[item.key],
+      })),
   }));
 }
 
@@ -107,11 +117,13 @@ export function getFooterNav(locale: Locale): Record<keyof typeof footerStructur
   const t = commonDict[locale];
   const result = {} as Record<keyof typeof footerStructure, NavLink[]>;
   for (const key of Object.keys(footerStructure) as (keyof typeof footerStructure)[]) {
-    result[key] = footerStructure[key].map((item) => ({
-      key: item.key,
-      href: localeHref(locale, item.href),
-      label: t.nav[item.key],
-    }));
+    result[key] = footerStructure[key]
+      .filter((item) => !(item.deOnly && locale !== "de"))
+      .map((item) => ({
+        key: item.key,
+        href: localeHref(locale, item.href),
+        label: t.nav[item.key],
+      }));
   }
   return result;
 }

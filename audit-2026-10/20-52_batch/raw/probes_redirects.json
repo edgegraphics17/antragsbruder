@@ -1,0 +1,323 @@
+[
+ {
+  "url": "http://antragsbruder.de/",
+  "status": 200,
+  "chain": [
+   [
+    "http://antragsbruder.de/",
+    308,
+    "https://antragsbruder.de/"
+   ],
+   [
+    "https://antragsbruder.de/",
+    308,
+    "https://www.antragsbruder.de/"
+   ],
+   [
+    "https://www.antragsbruder.de/",
+    200,
+    ""
+   ]
+  ],
+  "headers": {
+   "Access-Control-Allow-Origin": "*",
+   "Age": "419196",
+   "Cache-Control": "public, max-age=0, must-revalidate",
+   "Content-Disposition": "inline",
+   "Content-Encoding": "gzip",
+   "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co https://*.supabase.co/ https://*.resend.com wss: https://*.vercel-integrations.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+   "Content-Type": "text/html; charset=utf-8",
+   "Date": "Fri, 16 Oct 2026 19:56:38 GMT",
+   "Etag": "W/\"305cef9d390bc644c3eba1022116fdb9\"",
+   "Permissions-Policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+   "Referrer-Policy": "strict-origin-when-cross-origin",
+   "Server": "Vercel",
+   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+   "Vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+   "X-Content-Type-Options": "nosniff",
+   "X-Frame-Options": "DENY",
+   "X-Matched-Path": "/de",
+   "X-Nextjs-Prerender": "1",
+   "X-Nextjs-Stale-Time": "300",
+   "X-Vercel-Cache": "HIT",
+   "X-Vercel-Id": "cdg1::lkt6t-1792180598645-95842204774a",
+   "Connection": "close",
+   "Transfer-Encoding": "chunked"
+  },
+  "bytes": 91934
+ },
+ {
+  "url": "http://www.antragsbruder.de/",
+  "status": 200,
+  "chain": [
+   [
+    "http://www.antragsbruder.de/",
+    308,
+    "https://www.antragsbruder.de/"
+   ],
+   [
+    "https://www.antragsbruder.de/",
+    200,
+    ""
+   ]
+  ],
+  "headers": {
+   "Access-Control-Allow-Origin": "*",
+   "Age": "419196",
+   "Cache-Control": "public, max-age=0, must-revalidate",
+   "Content-Disposition": "inline",
+   "Content-Encoding": "gzip",
+   "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co https://*.supabase.co/ https://*.resend.com wss: https://*.vercel-integrations.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+   "Content-Type": "text/html; charset=utf-8",
+   "Date": "Fri, 16 Oct 2026 19:56:39 GMT",
+   "Etag": "W/\"305cef9d390bc644c3eba1022116fdb9\"",
+   "Permissions-Policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+   "Referrer-Policy": "strict-origin-when-cross-origin",
+   "Server": "Vercel",
+   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+   "Vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+   "X-Content-Type-Options": "nosniff",
+   "X-Frame-Options": "DENY",
+   "X-Matched-Path": "/de",
+   "X-Nextjs-Prerender": "1",
+   "X-Nextjs-Stale-Time": "300",
+   "X-Vercel-Cache": "HIT",
+   "X-Vercel-Id": "cdg1::w47n2-1792180599076-0d0d7e136921",
+   "Connection": "close",
+   "Transfer-Encoding": "chunked"
+  },
+  "bytes": 91934
+ },
+ {
+  "url": "https://antragsbruder.de/",
+  "status": 200,
+  "chain": [
+   [
+    "https://antragsbruder.de/",
+    308,
+    "https://www.antragsbruder.de/"
+   ],
+   [
+    "https://www.antragsbruder.de/",
+    200,
+    ""
+   ]
+  ],
+  "headers": {
+   "Access-Control-Allow-Origin": "*",
+   "Age": "419197",
+   "Cache-Control": "public, max-age=0, must-revalidate",
+   "Content-Disposition": "inline",
+   "Content-Encoding": "gzip",
+   "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co https://*.supabase.co/ https://*.resend.com wss: https://*.vercel-integrations.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+   "Content-Type": "text/html; charset=utf-8",
+   "Date": "Fri, 16 Oct 2026 19:56:39 GMT",
+   "Etag": "W/\"305cef9d390bc644c3eba1022116fdb9\"",
+   "Permissions-Policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+   "Referrer-Policy": "strict-origin-when-cross-origin",
+   "Server": "Vercel",
+   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+   "Vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+   "X-Content-Type-Options": "nosniff",
+   "X-Frame-Options": "DENY",
+   "X-Matched-Path": "/de",
+   "X-Nextjs-Prerender": "1",
+   "X-Nextjs-Stale-Time": "300",
+   "X-Vercel-Cache": "HIT",
+   "X-Vercel-Id": "cdg1::dn5cq-1792180599860-ed390c020da4",
+   "Connection": "close",
+   "Transfer-Encoding": "chunked"
+  },
+  "bytes": 91934
+ },
+ {
+  "url": "http://antragsbruder.de/wohngeld",
+  "status": 200,
+  "chain": [
+   [
+    "http://antragsbruder.de/wohngeld",
+    308,
+    "https://antragsbruder.de/wohngeld"
+   ],
+   [
+    "https://antragsbruder.de/wohngeld",
+    308,
+    "https://www.antragsbruder.de/wohngeld"
+   ],
+   [
+    "https://www.antragsbruder.de/wohngeld",
+    200,
+    ""
+   ]
+  ],
+  "headers": {
+   "Access-Control-Allow-Origin": "*",
+   "Age": "392776",
+   "Cache-Control": "public, max-age=0, must-revalidate",
+   "Content-Disposition": "inline",
+   "Content-Encoding": "gzip",
+   "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co https://*.supabase.co/ https://*.resend.com wss: https://*.vercel-integrations.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+   "Content-Type": "text/html; charset=utf-8",
+   "Date": "Fri, 16 Oct 2026 19:56:40 GMT",
+   "Etag": "W/\"2177a25037d350369d329e613ebaa87f\"",
+   "Permissions-Policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+   "Referrer-Policy": "strict-origin-when-cross-origin",
+   "Server": "Vercel",
+   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+   "Vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+   "X-Content-Type-Options": "nosniff",
+   "X-Frame-Options": "DENY",
+   "X-Matched-Path": "/de/wohngeld",
+   "X-Nextjs-Prerender": "1",
+   "X-Nextjs-Stale-Time": "300",
+   "X-Vercel-Cache": "HIT",
+   "X-Vercel-Id": "cdg1::n5dzz-1792180600392-cdbd91de463e",
+   "Connection": "close",
+   "Transfer-Encoding": "chunked"
+  },
+  "bytes": 156298
+ },
+ {
+  "url": "https://www.antragsbruder.de/humans.txt",
+  "status": 404,
+  "chain": [
+   [
+    "https://www.antragsbruder.de/humans.txt",
+    404,
+    ""
+   ]
+  ],
+  "headers": {
+   "Age": "0",
+   "Cache-Control": "public, max-age=0, must-revalidate",
+   "Content-Encoding": "gzip",
+   "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co https://*.supabase.co/ https://*.resend.com wss: https://*.vercel-integrations.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+   "Content-Type": "text/html; charset=utf-8",
+   "Date": "Fri, 16 Oct 2026 19:56:40 GMT",
+   "Etag": "W/\"nmnxbmgr5t10py\"",
+   "Permissions-Policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+   "Referrer-Policy": "strict-origin-when-cross-origin",
+   "Server": "Vercel",
+   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+   "Vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+   "X-Content-Type-Options": "nosniff",
+   "X-Frame-Options": "DENY",
+   "X-Matched-Path": "/[locale]",
+   "X-Nextjs-Prerender": "1",
+   "X-Nextjs-Stale-Time": "300",
+   "X-Powered-By": "Next.js",
+   "X-Vercel-Cache": "MISS",
+   "X-Vercel-Id": "cdg1::iad1::hktjm-1792180600704-dd6ef35fb759",
+   "Connection": "close",
+   "Transfer-Encoding": "chunked"
+  },
+  "bytes": 47743
+ },
+ {
+  "url": "https://www.antragsbruder.de/llms.txt",
+  "status": 404,
+  "chain": [
+   [
+    "https://www.antragsbruder.de/llms.txt",
+    404,
+    ""
+   ]
+  ],
+  "headers": {
+   "Age": "417687",
+   "Cache-Control": "public, max-age=0, must-revalidate",
+   "Content-Encoding": "gzip",
+   "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co https://*.supabase.co/ https://*.resend.com wss: https://*.vercel-integrations.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+   "Content-Type": "text/html; charset=utf-8",
+   "Date": "Sun, 11 Oct 2026 23:55:13 GMT",
+   "Etag": "W/\"134vkb0yzv110pu\"",
+   "Permissions-Policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+   "Referrer-Policy": "strict-origin-when-cross-origin",
+   "Server": "Vercel",
+   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+   "Vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+   "X-Content-Type-Options": "nosniff",
+   "X-Frame-Options": "DENY",
+   "X-Matched-Path": "/[locale]",
+   "X-Nextjs-Prerender": "1",
+   "X-Nextjs-Stale-Time": "300",
+   "X-Powered-By": "Next.js",
+   "X-Vercel-Cache": "HIT",
+   "X-Vercel-Id": "cdg1::iad1::7ghkp-1792180601293-d2db7b64f765",
+   "Connection": "close",
+   "Transfer-Encoding": "chunked"
+  },
+  "bytes": 47739
+ },
+ {
+  "url": "https://www.antragsbruder.de/sitemap_index.xml",
+  "status": 404,
+  "chain": [
+   [
+    "https://www.antragsbruder.de/sitemap_index.xml",
+    404,
+    ""
+   ]
+  ],
+  "headers": {
+   "Age": "0",
+   "Cache-Control": "public, max-age=0, must-revalidate",
+   "Content-Encoding": "gzip",
+   "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co https://*.supabase.co/ https://*.resend.com wss: https://*.vercel-integrations.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+   "Content-Type": "text/html; charset=utf-8",
+   "Date": "Fri, 16 Oct 2026 19:56:41 GMT",
+   "Etag": "W/\"vld7ak0cr610qc\"",
+   "Permissions-Policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+   "Referrer-Policy": "strict-origin-when-cross-origin",
+   "Server": "Vercel",
+   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+   "Vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+   "X-Content-Type-Options": "nosniff",
+   "X-Frame-Options": "DENY",
+   "X-Matched-Path": "/[locale]",
+   "X-Nextjs-Prerender": "1",
+   "X-Nextjs-Stale-Time": "300",
+   "X-Powered-By": "Next.js",
+   "X-Vercel-Cache": "MISS",
+   "X-Vercel-Id": "cdg1::iad1::bjt5w-1792180601697-5095b59e91a5",
+   "Connection": "close",
+   "Transfer-Encoding": "chunked"
+  },
+  "bytes": 47757
+ },
+ {
+  "url": "https://www.antragsbruder.de/robots.txt",
+  "status": 200,
+  "chain": [
+   [
+    "https://www.antragsbruder.de/robots.txt",
+    200,
+    ""
+   ]
+  ],
+  "headers": {
+   "Access-Control-Allow-Origin": "*",
+   "Age": "212",
+   "Cache-Control": "public, max-age=0, must-revalidate",
+   "Content-Disposition": "inline; filename=\"robots.txt\"",
+   "Content-Encoding": "gzip",
+   "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co https://*.supabase.co/ https://*.resend.com wss: https://*.vercel-integrations.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+   "Content-Type": "text/plain; charset=utf-8",
+   "Date": "Fri, 16 Oct 2026 19:56:42 GMT",
+   "Etag": "W/\"807a939c6a1938daf679adaa5d2f2f8a\"",
+   "Last-Modified": "Fri, 16 Oct 2026 19:53:09 GMT",
+   "Permissions-Policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+   "Referrer-Policy": "strict-origin-when-cross-origin",
+   "Server": "Vercel",
+   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+   "X-Content-Type-Options": "nosniff",
+   "X-Frame-Options": "DENY",
+   "X-Matched-Path": "/robots.txt",
+   "X-Vercel-Cache": "HIT",
+   "X-Vercel-Id": "cdg1::zhhhs-1792180602280-b3d675be7b09",
+   "Connection": "close",
+   "Transfer-Encoding": "chunked"
+  },
+  "bytes": 1412
+ }
+]

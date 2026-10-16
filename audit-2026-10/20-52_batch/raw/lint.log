@@ -1,0 +1,225 @@
+
+> antragsbruder@0.1.0 lint
+> eslint
+
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/[locale]/(dashboard)/antraege/[id]/page.tsx
+    9:31  warning  'useCallback' is defined but never used                                                                                                          @typescript-eslint/no-unused-vars
+   14:3   warning  'IconCheckCircle' is defined but never used                                                                                                      @typescript-eslint/no-unused-vars
+   24:15  warning  'BenefitType' is defined but never used                                                                                                          @typescript-eslint/no-unused-vars
+  178:10  warning  'statusLoading' is assigned a value but never used                                                                                               @typescript-eslint/no-unused-vars
+  221:6   warning  React Hook useEffect has missing dependencies: 't.loadFailed', 't.notFound', and 'tc.error'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/[locale]/(dashboard)/wohngeld/schnellcheck/page.tsx
+  18:9  warning  'locale' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/[locale]/(site)/ansprueche-checken/AnspruecheCheckenClient.tsx
+  22:3  warning  'locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/[locale]/(site)/datenbank/page.tsx
+  11:41  warning  'params' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/[locale]/(site)/navigator/page.tsx
+  14:9  warning  'locale' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/auth/signup/route.ts
+  8:10  warning  'z' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/auth/update-password/route.ts
+  20:9  warning  '_token' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  21:9  warning  '_type' is assigned a value but never used   @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/auth/verify-email/route.ts
+  53:19  warning  'profile' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/case/route.ts
+  7:10  warning  'z' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/chat/message/route.ts
+  134:39  warning  'sessionError' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  135:11  warning  'userId' is assigned a value but never used          @typescript-eslint/no-unused-vars
+  138:11  warning  'resolvedCaseId' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/crisis/scan/route.ts
+  10:10  warning  'crisisEngine' is defined but never used  @typescript-eslint/no-unused-vars
+  15:57  warning  'caseId' is defined but never used        @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/dashboard/case/[id]/route.ts
+  109:11  warning  'existingRow' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/dashboard/documents/route.ts
+  20:36  warning  'documentUploadFormSchema' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/dashboard/documents/signed-url/route.ts
+  7:10  warning  'z' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/dashboard/results/route.ts
+  14:27  warning  '_request' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/health/supabase/route.ts
+  19:13  warning  'data' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/app/api/question/route.ts
+  8:10  warning  'z' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/alg1/Alg1Flow.tsx
+  143:6  warning  React Hook useEffect has missing dependencies: 't.errorNoAccess' and 't.errorNotFound'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/alg1/Alg1Form.tsx
+  9:38  warning  'useState' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/alg1/DocumentUpload.tsx
+  108:5  warning  React Hook useCallback has a missing dependency: 'userId'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/auth/AuthNav.tsx
+  10:22  warning  'stripLocale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/auth/ForgotPasswordForm.tsx
+  89:27  warning  Do not use `window.location.href` to navigate to internal Next.js pages. Use `redirect()` in the render phase, or `useRouter().push()` in Client Components' event handlers instead. See: https://nextjs.org/docs/messages/no-location-assign-relative-destination  @next/next/no-location-assign-relative-destination
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/auth/LoginForm.tsx
+   28:10  warning  'success' is assigned a value but never used                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  103:5   warning  Do not use `window.location.href` to navigate to internal Next.js pages. Use `redirect()` in the render phase, or `useRouter().push()` in Client Components' event handlers instead. See: https://nextjs.org/docs/messages/no-location-assign-relative-destination  @next/next/no-location-assign-relative-destination
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/auth/RegisterForm.tsx
+  18:9  warning  'router' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/auth/ResetPasswordForm.tsx
+  144:27  warning  Do not use `window.location.href` to navigate to internal Next.js pages. Use `redirect()` in the render phase, or `useRouter().push()` in Client Components' event handlers instead. See: https://nextjs.org/docs/messages/no-location-assign-relative-destination  @next/next/no-location-assign-relative-destination
+  167:27  warning  Do not use `window.location.href` to navigate to internal Next.js pages. Use `redirect()` in the render phase, or `useRouter().push()` in Client Components' event handlers instead. See: https://nextjs.org/docs/messages/no-location-assign-relative-destination  @next/next/no-location-assign-relative-destination
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/dashboard/DashboardHome.tsx
+  17:8  warning  'RadarMatch' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/dashboard/DocumentsCenter.tsx
+  32:10  warning  'localeHref' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/dashboard/Sidebar.tsx
+  26:27  warning  'Locale' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/dashboard/profile/FoerderprofilFunnel.tsx
+  15:10  warning  'ButtonAction' is defined but never used       @typescript-eslint/no-unused-vars
+  27:7   warning  'inputCls' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/dashboard/profile/IdentityVault.tsx
+   50:9  warning  'tc' is assigned a value but never used            @typescript-eslint/no-unused-vars
+  152:9  warning  'handleDelete' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/dashboard/profile/ProfileEligibilityForm.tsx
+  56:5  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/set-state-in-effect')
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/dashboard/profile/ProfileMasterDataForm.tsx
+  54:5   warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/set-state-in-effect')
+  68:20  warning  Compilation Skipped: Use of incompatible library
+
+This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/dashboard/profile/ProfileMasterDataForm.tsx:68:20
+  66 |
+  67 |   // PLZ-Autofill: Bei 5 Ziffern automatisch Stadt füllen (nur einmal pro PLZ)
+> 68 |   const postcode = watch('postcode');
+     |                    ^^^^^ React Hook Form's `useForm()` API returns a `watch()` function which cannot be memoized safely.
+  69 |   const fetchedPostcode = useRef<string | null>(null);
+  70 |   useEffect(() => {
+  71 |     if (postcode?.length !== 5 || fetchedPostcode.current === postcode) return;  react-hooks/incompatible-library
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/layout/Navbar.tsx
+  38:34  warning  'authLoading' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/navigator/JobLossNavigator.tsx
+  10:20  warning  'useEffect' is defined but never used      @typescript-eslint/no-unused-vars
+  14:26  warning  'IconArrowLeft' is defined but never used  @typescript-eslint/no-unused-vars
+  15:71  warning  'Action' is defined but never used         @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/questionnaire/QuestionnaireForm.tsx
+    9:15  warning  'Question' is defined but never used                                                                               @typescript-eslint/no-unused-vars
+   13:10  warning  'ButtonAction' is defined but never used                                                                           @typescript-eslint/no-unused-vars
+   60:10  warning  'progress' is assigned a value but never used                                                                      @typescript-eslint/no-unused-vars
+   62:10  warning  'isSubmitting' is assigned a value but never used                                                                  @typescript-eslint/no-unused-vars
+   62:24  warning  'setIsSubmitting' is assigned a value but never used                                                               @typescript-eslint/no-unused-vars
+  102:6   warning  React Hook useEffect has a missing dependency: 't.errorLoading'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  253:34  warning  'e' is defined but never used                                                                                      @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/upload/UploadOnboardingFlow.tsx
+   19:3  warning  'IconDocument' is defined but never used                                                                         @typescript-eslint/no-unused-vars
+   20:3  warning  'IconFolder' is defined but never used                                                                           @typescript-eslint/no-unused-vars
+  288:6  warning  React Hook useCallback has a missing dependency: 'uploadFile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  321:9  warning  'canProceed' is assigned a value but never used                                                                  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/wohngeld/WohngeldFlow.tsx
+    20:3  warning  'quickCheckComplete' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-unused-vars
+   389:7  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/karim/Claude/Projects/Antragsbruder/src/components/wohngeld/WohngeldFlow.tsx:389:7
+  387 |     const plz = typeof facts.plz === 'string' ? facts.plz : null;
+  388 |     if (!plz || !/^\d{5}$/.test(plz)) {
+> 389 |       setPlzTiers(null);
+      |       ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  390 |       return;
+  391 |     }
+  392 |     let cancelled = false;  react-hooks/set-state-in-effect
+   609:9  warning  'submit' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+   610:9  warning  'isSaving' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+   637:9  warning  'setField' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+  1004:7  warning  'TABS' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/action-engine/ActionEngine.ts
+  5:23  warning  'ActionType' is defined but never used    @typescript-eslint/no-unused-vars
+  5:35  warning  'ActionStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/benefit-engines/KindergeldEngine.ts
+  6:30  warning  'BenefitStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/benefit-engines/KinderzuschlagEngine.ts
+  6:30  warning  'BenefitStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/benefit-engines/UnterhaltsvorschussEngine.ts
+  6:30  warning  'BenefitStatus' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/benefit-engines/WohngeldEngine.ts
+  52:11  warning  'heatingCosts' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/document-engine/DocumentCategorizer.ts
+  166:9   warning  'fnameLower' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  247:10  warning  'entryPriority' is defined but never used        @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/document-engine/DocumentToFactMapper.ts
+   11:15  warning  'DocumentCategory' is defined but never used               @typescript-eslint/no-unused-vars
+   12:21  warning  'SourceType' is defined but never used                     @typescript-eslint/no-unused-vars
+   64:10  warning  'extractFromSchulzeugnis' is defined but never used        @typescript-eslint/no-unused-vars
+   64:34  warning  'text' is defined but never used                           @typescript-eslint/no-unused-vars
+   70:10  warning  'extractFromAusbildungsvertrag' is defined but never used  @typescript-eslint/no-unused-vars
+   70:40  warning  'text' is defined but never used                           @typescript-eslint/no-unused-vars
+  199:9   warning  'now' is assigned a value but never used                   @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/engine/rule-engine/RuleEngine.ts
+  5:15  warning  'Rule' is defined but never used  @typescript-eslint/no-unused-vars
+  5:52  warning  'Fact' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/lib/auth-context.tsx
+  43:26  warning  'u' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/lib/auth-server.ts
+  5:30  warning  'isBrowser' is defined but never used    @typescript-eslint/no-unused-vars
+  8:6   warning  'CookieStore' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/lib/share.ts
+  11:7  warning  'supabaseAnonKey' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/src/lib/wohngeld/store.ts
+  185:78  warning  'mietstufeIdx' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/karim/Claude/Projects/Antragsbruder/tests/e2e/login-upload-case.spec.ts
+  63:16  warning  'createCase' is defined but never used      @typescript-eslint/no-unused-vars
+  84:16  warning  'uploadDocument' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 90 problems (1 error, 89 warnings)
+  0 errors and 2 warnings potentially fixable with the `--fix` option.
+
+EXIT_CODE_LINT=1

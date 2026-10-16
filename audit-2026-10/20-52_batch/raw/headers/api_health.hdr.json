@@ -1,0 +1,23 @@
+{
+ "Access-Control-Allow-Origin": "*",
+ "Age": "10150",
+ "Cache-Control": "public, max-age=0, must-revalidate",
+ "Content-Disposition": "inline; filename=\"404\"",
+ "Content-Encoding": "gzip",
+ "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co https://*.supabase.co/ https://*.resend.com wss: https://*.vercel-integrations.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+ "Content-Type": "text/html; charset=utf-8",
+ "Date": "Fri, 16 Oct 2026 19:56:36 GMT",
+ "Etag": "W/\"546fc28e20f68f99afabb5bc8e587b5f\"",
+ "Last-Modified": "Fri, 16 Oct 2026 17:07:26 GMT",
+ "Permissions-Policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+ "Referrer-Policy": "strict-origin-when-cross-origin",
+ "Server": "Vercel",
+ "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+ "X-Content-Type-Options": "nosniff",
+ "X-Frame-Options": "DENY",
+ "X-Matched-Path": "/404",
+ "X-Vercel-Cache": "HIT",
+ "X-Vercel-Id": "cdg1::wdrpn-1792180596544-c7bd23755153",
+ "Connection": "close",
+ "Transfer-Encoding": "chunked"
+}

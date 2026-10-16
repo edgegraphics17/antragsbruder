@@ -38,15 +38,21 @@ export function buildPageMetadata({
   title,
   description,
   ogType = "website",
-}: PageSeoInput): Metadata {
+  deOnly = false,
+  noindex = false,
+}: PageSeoInput & { deOnly?: boolean; noindex?: boolean }): Metadata {
   const canonical = localeHref(locale, path);
   const pageUrl = `https://${site.domain}${canonical === "/" ? "" : canonical}`;
 
-  // hreflang-Matrix: alle Sprachversionen derselben Seite + x-default auf DE.
+  // hreflang-Matrix: Sprachversionen derselben Seite + x-default auf DE.
+  // deOnly: Für Seiten, die es nur auf Deutsch gibt (Ratgeber-Cluster, Blog,
+  // Redaktion), dürfen KEINE fremdsprachigen Alternates ausgewiesen werden –
+  // sonst verweisen 8 hreflang-Ziele pro Seite auf 404 und die Reziprozität
+  // fehlt. Google verwirft solche Cluster dann als inkonsistent.
   const languages: Record<string, string> = {
     "x-default": `https://${site.domain}${localeHref(defaultLocale, path)}`,
   };
-  for (const l of locales) {
+  for (const l of (deOnly ? [defaultLocale] : locales)) {
     languages[l] = `https://${site.domain}${localeHref(l, path)}`;
   }
 
@@ -59,6 +65,10 @@ export function buildPageMetadata({
       canonical,
       languages,
     },
+    // noindex für Seiten, die inhaltlich nichts zu suchen haben (Anmeldung,
+    // Registrierung). robots.txt-Disallow allein hält sie nicht aus dem Index,
+    // wenn andere Seiten darauf verlinken.
+    ...(noindex ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       ...(title ? { title } : {}),
       description,

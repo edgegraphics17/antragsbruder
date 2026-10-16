@@ -1,0 +1,22 @@
+{
+ "Age": "0",
+ "Cache-Control": "private, no-cache, no-store, max-age=0, must-revalidate",
+ "Content-Encoding": "gzip",
+ "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co https://*.supabase.co/ https://*.resend.com wss: https://*.vercel-integrations.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+ "Content-Type": "text/html; charset=utf-8",
+ "Date": "Fri, 16 Oct 2026 19:58:57 GMT",
+ "Link": "</_next/static/immutable/media/1bffadaabf893a1e-s.p.0szrwpqb9mkwe.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/immutable/media/2c55a0e60120577a-s.p.03ez25a9g3i0n.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/immutable/media/83afe278b6a6bb3c-s.p.45535valc9rzk.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/immutable/media/9c72aa0f40e4eef8-s.p.3i9rha7jpxn0q.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/immutable/media/ccf27e5a7366fb23-s.p.1wwzpfhzaj2r0.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/immutable/media/e41d5df559864f9e-s.p.2rlzm4mj5kw8e.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+ "Permissions-Policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+ "Referrer-Policy": "strict-origin-when-cross-origin",
+ "Server": "Vercel",
+ "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+ "Vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+ "X-Content-Type-Options": "nosniff",
+ "X-Frame-Options": "DENY",
+ "X-Matched-Path": "/[locale]/kontakt",
+ "X-Powered-By": "Next.js",
+ "X-Vercel-Cache": "MISS",
+ "X-Vercel-Id": "cdg1::iad1::2xfcw-1792180737328-ca421c738366",
+ "Connection": "close",
+ "Transfer-Encoding": "chunked"
+}
