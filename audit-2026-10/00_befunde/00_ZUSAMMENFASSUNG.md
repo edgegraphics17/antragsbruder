@@ -186,3 +186,35 @@ Ein zweiter, parallel gestarteter Prüflauf (Berichte unter `20-52_batch/`, inkl
 10. Toten Code und Repo-Hygiene aufräumen; Security-Header in `next.config.ts` ergänzen (CSP/HSTS/X-Frame-Options/Referrer-Policy).
 
 **Hinweis:** Dieses Audit ist eine Recherche-Zusammenfassung und **keine Rechtsberatung**. Es ersetzt kein anwaltliches und kein steuerberatendes Gegenlesen.
+
+
+---
+
+## Vierte Runde (2026-10-16) – was geschlossen wurde
+
+| Befund | Status | Nachweis |
+| --- | --- | --- |
+| Vorschaubild fehlte auf 18 Seiten, Startseite ohne Meta-Description, /navigator ohne h1 | behoben | 186 Sitemap-URLs geprüft: 0/0/0 |
+| /navigator und /datenbank erbten Titel+Canonical der Startseite | behoben | eigene Metadaten (datenbank über layout.tsx, weil Client-Komponente) |
+| Auskunft (Art. 15) und Löschung (Art. 17) nur per Kontaktformular | behoben | /api/account/export, /api/account/delete, Seite /konto |
+| Widerrufsbelehrung fehlte vollständig | behoben | /widerruf mit Mustertext, Footer + AGB + Sitemap |
+| "Cookie" kam in der Datenschutzerklärung nicht vor | behoben | Abschnitt 6b (de/en) |
+| Speicherdauer nur abstrakt ("so lange wie nötig") | behoben | Abschnitt 6a mit konkreten Fristen + durchsetzender Cron |
+| Datenauskunft ließ applications, user_vault_entries, shared_vault_bundles aus | behoben (selbst gefunden) | in Export und Löschung ergänzt |
+| Automatische Löschfristen existierten nur auf dem Papier | behoben | /api/maintenance/cleanup + vercel.json Cron |
+
+## Offen – Liste für die Nachfrage
+
+**Nur mit Zugangsdaten/Entscheidung des Betreibers:**
+1. `RESEND_API_KEY` in Vercel → ohne ihn keine Mail (Funnel fällt auf mailto zurück)
+2. `UPSTASH_REDIS_REST_URL`/`_TOKEN` in Vercel → Rate-Limiter wirkt nur je Instanz
+3. `CRON_SECRET` in Vercel → ohne ihn verweigert der Cleanup-Endpunkt jeden Aufruf, die zugesagten Fristen greifen dann nicht
+4. `profiles.antrag_data` liegt im Klartext (IBAN, Steuernummer, RVNR) → Verschlüsselung oder Ablage nur in Supabase Vault
+5. Widerrufsbelehrung + Datenschutz 6a/6b: Übersetzungen und anwaltliches Gegenlesen
+6. Datenschutz: die 6-Monats-Frist für Kontaktanfragen ist organisatorisch (Postfach), nicht Code
+
+**Fachlich/redaktionell:**
+7. WohngeldEngine prüft mit festen Annahmen (Mietenstufe 3, Einkommen 0) → nur über /api/case und /api/question erreichbar, also nicht sichtbar; Ergebnis trotzdem korrigieren
+8. Session-Cookie ohne httpOnly: bewusst (Browser-Client liest die Sitzung), Risiko dokumentiert
+9. 85 Lint-Warnungen aus dem Altbestand
+10. GSC: /wohngeld/antrag und /preise ohne Impressionen in 90 Tagen; Backlink-Aufbau steht bei 0
