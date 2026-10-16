@@ -158,7 +158,7 @@ Ein zweiter, parallel gestarteter Prüflauf (Berichte unter `20-52_batch/`, inkl
 **Zusätzliche, noch offene Funde aus diesem Lauf** (im Detailbericht belegt):
 - **`profiles.antrag_data` liegt als Klartext-JSONB** mit IBAN, Steuernummer und Rentenversicherungsnummer; es gibt **keine Endpunkte für Auskunft (Art. 15) oder Löschung (Art. 17)** — aktuell nur „auf Anfrage per Kontakt". (P1)
 - **Session-Cookie ist nicht `httpOnly`** (`@supabase/ssr`-Default, kein Override). (P1)
-- **`WohngeldEngine.ts` rechnet mit festen Annahmen** (Einkommen = 0, Mietenstufe 3) und zeigt „ca. X €/Monat". Wenn der öffentliche Wohngeldrechner diesen Pfad nutzt, zeigt er systematisch falsche Beträge — das wäre zusätzlich irreführend (§ 5 UWG). **Zu verifizieren, dann fixen.** (P1)
+- **`WohngeldEngine.ts` rechnet mit festen Annahmen** (Zeilen 86–89: `mietstufeIdx = 3`, `monthlyNetIncome = 0`). **Verifiziert:** Der öffentliche Wohngeldrechner nutzt diesen Pfad *nicht* — er rechnet aus den echten Angaben (`calculateWgEstimate(facts, …)` in `WohngeldFlow.tsx`), die sichtbare Schätzung ist also korrekt. Erreichbar ist die Engine nur über `/api/case` und `/api/question`. Ein Aufrufer dieser Endpunkte bekäme falsche Wohngeldbeträge — latenter Korrektheitsfehler, bei Reaktivierung irreführend (§ 5 UWG). **Vor erneuter Einbindung dieser Endpunkte zu fixen.** (P1)
 - `/alg1` führt aus Navigation und Footer ins Login-Gate statt zum Inhalt (36 Seiten verlinken dorthin). (P2)
 - 10 `/datenbank`-Detailseiten mit Umlaut-Slugs liefern 404 (135 von 145 funktionieren). (P2)
 - `og:image`/`twitter:image` fehlen auf **allen** Seiten, obwohl `twitter:card=summary_large_image` gesetzt ist. (P2)
