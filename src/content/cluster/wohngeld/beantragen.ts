@@ -22,7 +22,7 @@ export const wohngeldBeantragen: ClusterPageContent = {
     { question: "Bearbeitungsdauer?", answer: "Nicht deutschlandweit einheitlich – Vollständigkeit und Antragsaufkommen beeinflussen die Dauer." },
     { question: "Selbst beantragen?", answer: "Ja – du kannst Wohngeld immer selbst und kostenlos beantragen. Antragsbruder ist eine optionale Unterstützung." },
   ],
-  primaryCta: { label: "Wohngeldantrag vorbereiten", href: "/wohngeld/antrag" },
+  primaryCta: { label: "Wohngeldantrag vorbereiten", href: "/wohngeld/beantragen" },
   secondaryCta: { label: "Wohngeldanspruch berechnen", href: "/wohngeld/rechner" },
   breadcrumb: [
     { name: "Startseite", href: "/" },
@@ -126,7 +126,7 @@ export const wohngeldBeantragen: ClusterPageContent = {
         { type: "paragraph", text: "Bei zahlreichen Wohngeldbehörden sind digitale Antragsverfahren verfügbar. Die konkreten Online-Angebote unterscheiden sich regional. Je nach Verfahren kannst du dort einen Mietzuschuss oder Lastenzuschuss beantragen, Unterlagen hochladen und teilweise später Unterlagen nachreichen." },
         { type: "heading", level: 3, text: "Wohngeld mit Formular beantragen" },
         { type: "paragraph", text: "Ist kein Online-Verfahren verfügbar, kann der Antrag über die von der zuständigen Wohngeldbehörde bereitgestellten Formulare eingereicht werden. Je nach Behörde kann das beispielsweise per Post, persönlich, über ein lokales Serviceportal oder auf einem anderen von der Behörde vorgesehenen Weg erfolgen. Die konkreten Verfahren unterscheiden sich regional." },
-        { type: "paragraph", text: "Antragsbruder hilft dir bei der Vorbereitung: [Wohngeldantrag vorbereiten](/wohngeld/antrag)." },
+        { type: "paragraph", text: "Antragsbruder hilft dir bei der Vorbereitung: [Wohngeldantrag vorbereiten](/wohngeld/beantragen)." },
       ],
     },
     {
@@ -232,7 +232,7 @@ export const wohngeldBeantragen: ClusterPageContent = {
             "Gibt es besondere Nachweise? (Pflege, Schwerbehinderung, Unterhalt, weitere Leistungen)",
           ],
         },
-        { type: "paragraph", text: "Dann geht es los: [Wohngeldantrag vorbereiten](/wohngeld/antrag)." },
+        { type: "paragraph", text: "Dann geht es los: [Wohngeldantrag vorbereiten](/wohngeld/beantragen)." },
       ],
     },
     {
@@ -243,7 +243,7 @@ export const wohngeldBeantragen: ClusterPageContent = {
           items: [
             "Noch nicht sicher, ob Wohngeld infrage kommt? → [Wohngeld berechnen](/wohngeld/rechner)",
             "Anspruch erscheint möglich? → [Unterlagen prüfen](/unterlagen-check)",
-            "Unterlagen vorhanden? → [Antrag vorbereiten](/wohngeld/antrag)",
+            "Unterlagen vorhanden? → [Antrag vorbereiten](/wohngeld/beantragen)",
             "Wohngeldstelle fordert etwas nach? → [Brief verstehen](/brief-verstehen)",
             "Bescheid erhalten? → Inhalte verstehen und Prüffristen im Blick behalten",
           ],

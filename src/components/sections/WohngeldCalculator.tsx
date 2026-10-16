@@ -132,14 +132,14 @@ export function WohngeldCalculator({
   }
 
   const ctaHref = useMemo(() => {
-    if (!result) return localeHref(lang, "/wohngeld/antrag");
+    if (!result) return localeHref(lang, "/wohngeld/beantragen");
     const params = new URLSearchParams({
       betrag: String(result.amount),
       haushalt: String(result.householdSize),
       miete: String(rentNum),
       einkommen: String(incomeNum),
     });
-    return `${localeHref(lang, "/wohngeld/antrag")}?${params.toString()}`;
+    return `${localeHref(lang, "/wohngeld/beantragen")}?${params.toString()}`;
   }, [result, rentNum, incomeNum, lang]);
 
   const totalSteps = 2;

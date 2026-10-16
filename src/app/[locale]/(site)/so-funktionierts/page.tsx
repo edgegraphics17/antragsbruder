@@ -77,7 +77,7 @@ export default async function SoFunktioniertsPage({ params }: { params: Promise<
       <CTASection
         title={t.ctaTitle}
         primaryLabel={t.ctaPrimaryLabel}
-        primaryHref={href("/hilfe-starten")}
+        primaryHref={href("/kontakt")}
         secondaryLabel={t.ctaSecondaryLabel}
         secondaryHref={href("/kontakt")}
       />

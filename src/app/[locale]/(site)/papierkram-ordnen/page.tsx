@@ -38,10 +38,9 @@ export default async function PapierkramOrdnenPage({ params }: { params: Promise
           <div>
             <SectionHeading as="h1" eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
             <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <Button href={href("/hilfe-starten?anliegen=papierkram")} size="lg">
+              <Button href={href("/kontakt?anliegen=papierkram")} size="lg">
                 {t.heroButtonLabel}
               </Button>
-              <span className="text-lg font-semibold text-brand-800">{t.priceLabel}</span>
             </div>
           </div>
           <PhotoFrame src="/images/photos/ordner-regal.jpg" alt="" priority className="aspect-[4/3] w-full" />
@@ -109,7 +108,7 @@ export default async function PapierkramOrdnenPage({ params }: { params: Promise
       <CTASection
         title={t.ctaTitle}
         primaryLabel={t.ctaPrimaryLabel}
-        primaryHref={href("/hilfe-starten?anliegen=papierkram")}
+        primaryHref={href("/kontakt?anliegen=papierkram")}
       />
     </>
   );

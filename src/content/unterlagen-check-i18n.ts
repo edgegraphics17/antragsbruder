@@ -8,7 +8,6 @@ export type Dict = {
   eyebrow: string;
   heroTitle: string;
   heroLede: string;
-  heroPrice: string;
   heroButtonLabel: string;
   whatWeShowTitle: string;
   whatWeShowItems: { bold: string; rest: string }[];
@@ -29,13 +28,10 @@ export type Dict = {
 export const dict: Record<Locale, Dict> = {
   de: {
     metaTitle: "Unterlagen-Check",
-    metaDescription:
-      "Wir zeigen dir, welche Unterlagen für deinen Vorgang vorhanden sind und welche noch fehlen – für 39–59 €.",
+    metaDescription: "Wir zeigen dir, welche Unterlagen für deinen Vorgang vorhanden sind und welche noch fehlen.",
     eyebrow: "Unterlagen-Check",
     heroTitle: "Weißt du wirklich, ob alle Unterlagen da sind?",
-    heroLede:
-      "Wir gleichen ab, welche Dokumente für deinen Vorgang gebraucht werden, was du schon hast und was noch fehlt. Für 39–59 € bekommst du eine klare Übersicht, bevor das Amt nachfragt.",
-    heroPrice: "39–59 €",
+    heroLede: "Wir gleichen ab, welche Dokumente für deinen Vorgang gebraucht werden, was du schon hast und was noch fehlt. So hast du eine klare Übersicht, bevor das Amt nachfragt.",
     heroButtonLabel: "Dokumente prüfen lassen",
     whatWeShowTitle: "Was du bekommst",
     whatWeShowItems: [
@@ -69,13 +65,10 @@ export const dict: Record<Locale, Dict> = {
   },
   en: {
     metaTitle: "Document check",
-    metaDescription:
-      "We show you which documents you already have for your case and which are still missing – for €39–59.",
+    metaDescription: "We show you which documents you already have for your case and which are still missing.",
     eyebrow: "Document check",
     heroTitle: "Do you actually know if all your documents are complete?",
-    heroLede:
-      "We check which documents your case needs, what you already have, and what's still missing. For €39–59 you get a clear overview before the authority asks.",
-    heroPrice: "€39–59",
+    heroLede: "We check which documents your case needs, what you already have, and what's still missing. That gives you a clear overview before the authority asks.",
     heroButtonLabel: "Get your documents checked",
     whatWeShowTitle: "What you get",
     whatWeShowItems: [
@@ -109,12 +102,10 @@ export const dict: Record<Locale, Dict> = {
   },
   ar: {
     metaTitle: "فحص المستندات",
-    metaDescription: "نوضح لك أي المستندات متوفرة لطلبك وأيها لا يزال ناقصًا – مقابل 39–59 يورو.",
+    metaDescription: "نوضح لك أي المستندات متوفرة لطلبك وأيها لا يزال ناقصًا.",
     eyebrow: "فحص المستندات",
     heroTitle: "هل تعرف حقًا إن كانت جميع مستنداتك مكتملة؟",
-    heroLede:
-      "نتحقق من المستندات التي يحتاجها طلبك، وما هو متوفر لديك بالفعل، وما الذي لا يزال ناقصًا. مقابل 39–59 يورو تحصل على نظرة واضحة قبل أن تسأل الجهة المختصة.",
-    heroPrice: "39–59 يورو",
+    heroLede: "نطابق المستندات المطلوبة لطلبك: ما لديك بالفعل وما لا يزال ناقصًا. هكذا تحصل على نظرة واضحة قبل أن تسأل الجهة.",
     heroButtonLabel: "افحص مستنداتي",
     whatWeShowTitle: "ما الذي تحصل عليه",
     whatWeShowItems: [
@@ -148,12 +139,10 @@ export const dict: Record<Locale, Dict> = {
   },
   tr: {
     metaTitle: "Belge kontrolü",
-    metaDescription: "İşlemin için hangi belgelerin tam, hangilerinin eksik olduğunu gösteririz – 39–59 € karşılığında.",
+    metaDescription: "İşlemin için hangi belgelerin tam, hangilerinin eksik olduğunu gösteririz.",
     eyebrow: "Belge kontrolü",
     heroTitle: "Tüm belgelerinin tam olup olmadığını gerçekten biliyor musun?",
-    heroLede:
-      "İşlemin için hangi belgelerin gerektiğini, elinde neyin olduğunu ve neyin eksik olduğunu karşılaştırıyoruz. 39–59 € karşılığında, kurum sormadan önce net bir genel bakış elde edersin.",
-    heroPrice: "39–59 €",
+    heroLede: "İşlemin için hangi belgelerin gerektiğini, elinde neyin olduğunu ve neyin eksik olduğunu karşılaştırıyoruz. Böylece kurum sormadan önce net bir genel bakışa sahip olursun.",
     heroButtonLabel: "Belgelerimi kontrol ettir",
     whatWeShowTitle: "Ne alıyorsun",
     whatWeShowItems: [
@@ -187,12 +176,10 @@ export const dict: Record<Locale, Dict> = {
   },
   ru: {
     metaTitle: "Проверка документов",
-    metaDescription: "Мы показываем, какие документы у вас уже есть, а каких ещё не хватает – за 39–59 €.",
+    metaDescription: "Мы показываем, какие документы у вас уже есть, а каких ещё не хватает.",
     eyebrow: "Проверка документов",
     heroTitle: "Вы точно знаете, все ли документы у вас есть?",
-    heroLede:
-      "Мы проверяем, какие документы нужны для вашего дела, что у вас уже есть и чего ещё не хватает. За 39–59 € вы получаете чёткий обзор, прежде чем об этом спросит ведомство.",
-    heroPrice: "39–59 €",
+    heroLede: "Мы проверяем, какие документы нужны для вашего дела, что у вас уже есть и чего ещё не хватает. Так у вас есть чёткий обзор, прежде чем об этом спросит ведомство.",
     heroButtonLabel: "Проверить документы",
     whatWeShowTitle: "Что вы получаете",
     whatWeShowItems: [
@@ -226,12 +213,10 @@ export const dict: Record<Locale, Dict> = {
   },
   uk: {
     metaTitle: "Перевірка документів",
-    metaDescription: "Ми показуємо, які документи у вас вже є, а яких ще бракує – за 39–59 €.",
+    metaDescription: "Ми показуємо, які документи у вас вже є, а яких ще бракує.",
     eyebrow: "Перевірка документів",
     heroTitle: "Чи точно знаєте ви, чи всі документи в наявності?",
-    heroLede:
-      "Ми перевіряємо, які документи потрібні для вашої справи, що у вас вже є, а чого ще бракує. За 39–59 € ви отримуєте чіткий огляд ще до того, як про це запитає установа.",
-    heroPrice: "39–59 €",
+    heroLede: "Ми перевіряємо, які документи потрібні для вашої справи, що у вас вже є, а чого ще бракує. Так у вас є чіткий огляд ще до того, як про це запитає установа.",
     heroButtonLabel: "Перевірити документи",
     whatWeShowTitle: "Що ви отримуєте",
     whatWeShowItems: [
@@ -265,12 +250,10 @@ export const dict: Record<Locale, Dict> = {
   },
   pl: {
     metaTitle: "Sprawdzenie dokumentów",
-    metaDescription: "Pokazujemy, które dokumenty już masz, a których jeszcze brakuje – za 39–59 €.",
+    metaDescription: "Pokazujemy, które dokumenty już masz, a których jeszcze brakuje.",
     eyebrow: "Sprawdzenie dokumentów",
     heroTitle: "Czy na pewno wiesz, czy masz komplet dokumentów?",
-    heroLede:
-      "Sprawdzamy, jakie dokumenty są potrzebne do twojej sprawy, co już masz i czego jeszcze brakuje. Za 39–59 € otrzymujesz jasny przegląd, zanim zapyta o to urząd.",
-    heroPrice: "39–59 €",
+    heroLede: "Sprawdzamy, jakie dokumenty są potrzebne do twojej sprawy, co już masz i czego jeszcze brakuje. Dzięki temu masz jasny przegląd, zanim zapyta o to urząd.",
     heroButtonLabel: "Sprawdź moje dokumenty",
     whatWeShowTitle: "Co otrzymujesz",
     whatWeShowItems: [
@@ -304,12 +287,10 @@ export const dict: Record<Locale, Dict> = {
   },
   bg: {
     metaTitle: "Проверка на документи",
-    metaDescription: "Показваме кои документи вече имаш и кои още липсват – за 39–59 €.",
+    metaDescription: "Показваме кои документи вече имаш и кои още липсват.",
     eyebrow: "Проверка на документи",
     heroTitle: "Наистина ли знаеш дали всички документи са налице?",
-    heroLede:
-      "Проверяваме кои документи са необходими за твоя случай, кои вече имаш и кои все още липсват. За 39–59 € получаваш ясен преглед, преди институцията да попита.",
-    heroPrice: "39–59 €",
+    heroLede: "Проверяваме кои документи са необходими за твоя случай, кои вече имаш и кои все още липсват. Така имаш ясен преглед, преди институцията да попита.",
     heroButtonLabel: "Провери документите ми",
     whatWeShowTitle: "Какво получаваш",
     whatWeShowItems: [
@@ -343,12 +324,10 @@ export const dict: Record<Locale, Dict> = {
   },
   ro: {
     metaTitle: "Verificarea actelor",
-    metaDescription: "Îți arătăm ce acte ai deja pentru cazul tău și ce mai lipsește – pentru 39–59 €.",
+    metaDescription: "Îți arătăm ce acte ai deja pentru cazul tău și ce mai lipsește.",
     eyebrow: "Verificarea actelor",
     heroTitle: "Știi cu adevărat dacă ai toate actele complete?",
-    heroLede:
-      "Verificăm ce acte sunt necesare pentru cazul tău, ce ai deja și ce mai lipsește. Pentru 39–59 € primești o imagine clară înainte ca instituția să te întrebe.",
-    heroPrice: "39–59 €",
+    heroLede: "Verificăm ce acte sunt necesare pentru cazul tău, ce ai deja și ce mai lipsește. Așa ai o imagine clară înainte ca instituția să te întrebe.",
     heroButtonLabel: "Verifică-mi actele",
     whatWeShowTitle: "Ce primești",
     whatWeShowItems: [

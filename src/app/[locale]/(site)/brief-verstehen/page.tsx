@@ -39,7 +39,7 @@ export default async function BriefVerstehenPage({ params }: { params: Promise<{
           <div>
             <SectionHeading as="h1" eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
             <div className="mt-6">
-              <Button href={href("/hilfe-starten?anliegen=brief")} size="lg">
+              <Button href={href("/kontakt?anliegen=brief")} size="lg">
                 {t.uploadButtonLabel}
               </Button>
             </div>
@@ -85,7 +85,7 @@ export default async function BriefVerstehenPage({ params }: { params: Promise<{
         </Container>
       </section>
 
-      <CTASection title={t.ctaTitle} primaryLabel={t.ctaButtonLabel} primaryHref={href("/hilfe-starten?anliegen=brief")} />
+      <CTASection title={t.ctaTitle} primaryLabel={t.ctaButtonLabel} primaryHref={href("/kontakt?anliegen=brief")} />
     </>
   );
 }

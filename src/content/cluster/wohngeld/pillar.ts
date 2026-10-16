@@ -26,7 +26,7 @@ export const wohngeldPillar: ClusterPageContent = {
     { question: "Erst prüfen?", answer: "Ja – am einfachsten mit dem Wohngeld-Rechner." },
   ],
   primaryCta: { label: "Wohngeld kostenlos berechnen", href: "/wohngeld/rechner" },
-  secondaryCta: { label: "Wohngeldantrag vorbereiten", href: "/wohngeld/antrag" },
+  secondaryCta: { label: "Wohngeldantrag vorbereiten", href: "/wohngeld/beantragen" },
   breadcrumb: [
     { name: "Startseite", href: "/" },
     { name: "Wohngeld", href: "/wohngeld" },
@@ -167,7 +167,7 @@ export const wohngeldPillar: ClusterPageContent = {
             "Antrag und Nachweise einreichen – je nach zuständiger Behörde kann ein Online-Verfahren verfügbar sein",
           ],
         },
-        { type: "paragraph", text: "[Wohngeldantrag vorbereiten](/wohngeld/antrag) – Schritt für Schritt mit Antragsbruder." },
+        { type: "paragraph", text: "[Wohngeldantrag vorbereiten](/wohngeld/beantragen) – Schritt für Schritt mit Antragsbruder." },
       ],
     },
     {
@@ -210,7 +210,7 @@ export const wohngeldPillar: ClusterPageContent = {
             "Ich verstehe die Voraussetzungen noch nicht → [Voraussetzungen ansehen](/wohngeld/voraussetzungen)",
             "Ich weiß nicht, ob mein Einkommen passt → [Einkommensgrenze prüfen](/wohngeld/einkommensgrenze)",
             "Ich möchte meine Dokumente vorbereiten → [Unterlagen-Checkliste](/wohngeld/unterlagen)",
-            "Ich möchte Wohngeld beantragen → [Antrag vorbereiten](/wohngeld/antrag)",
+            "Ich möchte Wohngeld beantragen → [Antrag vorbereiten](/wohngeld/beantragen)",
           ],
         },
       ],

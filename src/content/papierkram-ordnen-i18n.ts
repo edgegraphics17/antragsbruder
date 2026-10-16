@@ -6,7 +6,6 @@ export type Dict = {
   eyebrow: string;
   heroTitle: string;
   heroLede: string;
-  priceLabel: string;
   heroButtonLabel: string;
   whatWeDoTitle: string;
   whatWeDoItems: { title: string; text: string }[];
@@ -26,13 +25,10 @@ export type Dict = {
 export const dict: Record<Locale, Dict> = {
   de: {
     metaTitle: "Papierkram ordnen",
-    metaDescription:
-      "Wir digitalisieren, sortieren und strukturieren deine Unterlagen. Für 149 bis 299 € bekommst du eine digitale Ablage, in der du alles wiederfindest.",
+    metaDescription: "Wir digitalisieren, sortieren und strukturieren deine Unterlagen. So entsteht eine digitale Ablage, in der du alles wiederfindest.",
     eyebrow: "Papierkram ordnen",
     heroTitle: "Schluss mit dem Papierchaos.",
-    heroLede:
-      "Rechnungen im Küchenschrank, Behördenbriefe im Rucksack, Verträge irgendwo als Foto auf dem Handy. Wir bringen deinen Papierkram in eine Ordnung, die du auch in einem Jahr noch verstehst.",
-    priceLabel: "149–299 €",
+    heroLede: "Wir digitalisieren, sortieren und strukturieren deine Unterlagen, damit du alles wiederfindest – Aufwand und Kosten klären wir vorher individuell mit dir.",
     heroButtonLabel: "Ordnung schaffen",
     whatWeDoTitle: "Was wir tun",
     whatWeDoItems: [
@@ -70,13 +66,10 @@ export const dict: Record<Locale, Dict> = {
   },
   en: {
     metaTitle: "Sort Out Your Paperwork",
-    metaDescription:
-      "We digitize, sort, and structure your documents. For 149 to 299 €, you get a digital filing system where you can find everything again.",
+    metaDescription: "We digitize, sort, and structure your documents, so you get a digital filing system where you can find everything again.",
     eyebrow: "Sort out your paperwork",
     heroTitle: "No more paper chaos.",
-    heroLede:
-      "Bills in the kitchen cupboard, official letters in your backpack, contracts saved as random photos on your phone. We bring your paperwork into an order you'll still understand a year from now.",
-    priceLabel: "€149–299",
+    heroLede: "We digitize, sort, and structure your documents so you can find everything again – we agree the effort and the costs with you individually beforehand.",
     heroButtonLabel: "Get organized",
     whatWeDoTitle: "What we do",
     whatWeDoItems: [
@@ -111,13 +104,10 @@ export const dict: Record<Locale, Dict> = {
   },
   ar: {
     metaTitle: "ترتيب الأوراق",
-    metaDescription:
-      "نقوم برقمنة مستنداتك وفرزها وتنظيمها. مقابل 149 إلى 299 يورو تحصل على أرشيف رقمي تجد فيه كل شيء بسهولة.",
+    metaDescription: "نرقمن مستنداتك ونرتبها وننظّمها، فتحصل على أرشيف رقمي تجد فيه كل شيء بسهولة.",
     eyebrow: "ترتيب الأوراق",
     heroTitle: "نهاية فوضى الأوراق.",
-    heroLede:
-      "فواتير في خزانة المطبخ، خطابات من الجهات الرسمية في حقيبة الظهر، عقود محفوظة كصور عشوائية على الهاتف. ننظّم أوراقك بطريقة تفهمها حتى بعد عام من الآن.",
-    priceLabel: "149–299 يورو",
+    heroLede: "نرقمن مستنداتك ونرتبها وننظّمها لتجد كل شيء بسهولة – ونتفق على الجهد والتكلفة معك مسبقًا وبشكل فردي.",
     heroButtonLabel: "لنرتب الأمور",
     whatWeDoTitle: "ماذا نفعل",
     whatWeDoItems: [
@@ -146,13 +136,10 @@ export const dict: Record<Locale, Dict> = {
   },
   tr: {
     metaTitle: "Evraklarını Düzenle",
-    metaDescription:
-      "Belgelerini dijitalleştiriyor, sınıflandırıyor ve düzenliyoruz. 149 ile 299 € arasında, her şeyi kolayca bulabileceğin dijital bir dosyalama sistemi elde ediyorsun.",
+    metaDescription: "Belgelerini dijitalleştiriyor, sınıflandırıyor ve düzenliyoruz; böylece her şeyi kolayca bulabileceğin dijital bir dosyalama düzeni oluşur.",
     eyebrow: "Evraklarını düzenle",
     heroTitle: "Evrak kaosuna son.",
-    heroLede:
-      "Mutfak dolabında faturalar, sırt çantasında resmi yazılar, telefonda rastgele fotoğraf olarak kaydedilmiş sözleşmeler. Evraklarını bir yıl sonra bile anlayacağın bir düzene sokuyoruz.",
-    priceLabel: "149–299 €",
+    heroLede: "Belgelerini dijitalleştiriyor, sınıflandırıyor ve düzenliyoruz ki her şeyi bulabilesin – emeği ve maliyeti önceden birlikte netleştiririz.",
     heroButtonLabel: "Düzeni sağla",
     whatWeDoTitle: "Ne yapıyoruz",
     whatWeDoItems: [
@@ -187,13 +174,10 @@ export const dict: Record<Locale, Dict> = {
   },
   ru: {
     metaTitle: "Наведите порядок в бумагах",
-    metaDescription:
-      "Мы оцифровываем, сортируем и структурируем ваши документы. За 149–299 € вы получаете цифровой архив, в котором всё легко найти.",
+    metaDescription: "Мы оцифровываем, сортируем и структурируем ваши документы. Так появляется цифровой архив, в котором всё легко найти.",
     eyebrow: "Порядок в бумагах",
     heroTitle: "Конец бумажному хаосу.",
-    heroLede:
-      "Счета на кухонной полке, письма от ведомств в рюкзаке, договоры где-то в виде случайных фото в телефоне. Мы наводим порядок в ваших документах так, что вы поймёте его и через год.",
-    priceLabel: "149–299 €",
+    heroLede: "Мы оцифровываем, сортируем и структурируем ваши документы, чтобы вы всё находили – объём работы и стоимость обсуждаем с вами заранее.",
     heroButtonLabel: "Навести порядок",
     whatWeDoTitle: "Что мы делаем",
     whatWeDoItems: [
@@ -228,13 +212,10 @@ export const dict: Record<Locale, Dict> = {
   },
   uk: {
     metaTitle: "Наведіть лад у паперах",
-    metaDescription:
-      "Ми оцифровуємо, сортуємо та структуруємо ваші документи. За 149–299 € ви отримуєте цифровий архів, у якому легко все знайти.",
+    metaDescription: "Ми оцифровуємо, сортуємо та структуруємо ваші документи. Так постає цифровий архів, у якому легко все знайти.",
     eyebrow: "Лад у паперах",
     heroTitle: "Кінець паперовому хаосу.",
-    heroLede:
-      "Рахунки на кухонній полиці, листи від відомств у рюкзаку, договори десь у вигляді випадкових фото в телефоні. Ми наводимо лад у ваших документах так, що ви зрозумієте його і через рік.",
-    priceLabel: "149–299 €",
+    heroLede: "Ми оцифровуємо, сортуємо та структуруємо ваші документи, щоб ви все знаходили – обсяг роботи та вартість узгоджуємо заздалегідь.",
     heroButtonLabel: "Навести лад",
     whatWeDoTitle: "Що ми робимо",
     whatWeDoItems: [
@@ -269,13 +250,10 @@ export const dict: Record<Locale, Dict> = {
   },
   pl: {
     metaTitle: "Uporządkuj swoje papiery",
-    metaDescription:
-      "Digitalizujemy, sortujemy i porządkujemy twoje dokumenty. Za 149–299 € otrzymujesz cyfrowe archiwum, w którym wszystko łatwo znajdziesz.",
+    metaDescription: "Digitalizujemy, sortujemy i porządkujemy twoje dokumenty. Tak powstaje cyfrowe archiwum, w którym wszystko łatwo znajdziesz.",
     eyebrow: "Uporządkuj papiery",
     heroTitle: "Koniec z chaosem papierów.",
-    heroLede:
-      "Rachunki w szafce kuchennej, pisma z urzędów w plecaku, umowy zapisane jako przypadkowe zdjęcia w telefonie. Wprowadzamy w twoich papierach porządek, który zrozumiesz jeszcze za rok.",
-    priceLabel: "149–299 €",
+    heroLede: "Digitalizujemy, sortujemy i porządkujemy twoje dokumenty, żebyś wszystko znajdował – nakład pracy i koszty ustalamy wcześniej.",
     heroButtonLabel: "Zaprowadź porządek",
     whatWeDoTitle: "Co robimy",
     whatWeDoItems: [
@@ -313,13 +291,10 @@ export const dict: Record<Locale, Dict> = {
   },
   bg: {
     metaTitle: "Подреди документите си",
-    metaDescription:
-      "Дигитализираме, сортираме и структурираме документите ти. За 149–299 € получаваш дигитален архив, в който намираш всичко лесно.",
+    metaDescription: "Дигитализираме, сортираме и структурираме документите ти. Така се създава дигитален архив, в който намираш всичко лесно.",
     eyebrow: "Подреди документите",
     heroTitle: "Край на хартиения хаос.",
-    heroLede:
-      "Сметки в кухненския шкаф, писма от институции в раницата, договори записани като случайни снимки в телефона. Внасяме ред в документите ти, който ще разбираш и след година.",
-    priceLabel: "149–299 €",
+    heroLede: "Дигитализираме, сортираме и структурираме документите ти, за да намираш всичко – обема работа и разходите уточняваме предварително.",
     heroButtonLabel: "Внеси ред",
     whatWeDoTitle: "Какво правим",
     whatWeDoItems: [
@@ -354,13 +329,10 @@ export const dict: Record<Locale, Dict> = {
   },
   ro: {
     metaTitle: "Pune ordine în hârtii",
-    metaDescription:
-      "Digitalizăm, sortăm și structurăm documentele tale. Pentru 149–299 € primești o arhivă digitală în care găsești totul ușor.",
+    metaDescription: "Digitalizăm, sortăm și structurăm documentele tale. Așa rezultă o arhivă digitală în care găsești totul ușor.",
     eyebrow: "Pune ordine în hârtii",
     heroTitle: "Gata cu haosul de hârtii.",
-    heroLede:
-      "Facturi în dulapul din bucătărie, scrisori de la instituții în rucsac, contracte salvate ca poze întâmplătoare pe telefon. Punem ordine în hârtiile tale astfel încât să o înțelegi și peste un an.",
-    priceLabel: "149–299 €",
+    heroLede: "Digitalizăm, sortăm și structurăm documentele tale, ca să găsești totul ușor – efortul și costurile le stabilim în avans.",
     heroButtonLabel: "Pune ordine",
     whatWeDoTitle: "Ce facem",
     whatWeDoItems: [

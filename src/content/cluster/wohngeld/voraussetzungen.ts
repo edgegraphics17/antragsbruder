@@ -23,7 +23,7 @@ export const wohngeldVoraussetzungen: ClusterPageContent = {
     { question: "Antrag nötig?", answer: "Ja, Wohngeld wird nur auf Antrag gezahlt." },
   ],
   primaryCta: { label: "Wohngeldanspruch berechnen", href: "/wohngeld/rechner" },
-  secondaryCta: { label: "Wohngeldantrag vorbereiten", href: "/wohngeld/antrag" },
+  secondaryCta: { label: "Wohngeldantrag vorbereiten", href: "/wohngeld/beantragen" },
   breadcrumb: [
     { name: "Startseite", href: "/" },
     { name: "Wohngeld", href: "/wohngeld" },

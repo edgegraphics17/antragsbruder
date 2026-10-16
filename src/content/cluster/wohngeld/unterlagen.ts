@@ -21,7 +21,7 @@ export const wohngeldUnterlagen: ClusterPageContent = {
     { question: "Nachreichen?", answer: "In der Praxis möglich – verlasse dich aber nicht bewusst darauf, unvollständig einzureichen." },
   ],
   primaryCta: { label: "Unterlagen prüfen lassen", href: "/unterlagen-check" },
-  secondaryCta: { label: "Wohngeldantrag vorbereiten", href: "/wohngeld/antrag" },
+  secondaryCta: { label: "Wohngeldantrag vorbereiten", href: "/wohngeld/beantragen" },
   breadcrumb: [
     { name: "Startseite", href: "/" },
     { name: "Wohngeld", href: "/wohngeld" },
@@ -203,7 +203,7 @@ export const wohngeldUnterlagen: ClusterPageContent = {
     {
       heading: "Prüfe deine Wohngeld-Unterlagen vor dem Antrag",
       blocks: [
-        { type: "paragraph", text: "Du hast Dokumente gesammelt, bist aber nicht sicher, ob etwas fehlt? Antragsbruder hilft dir dabei, deine Unterlagen strukturiert zu prüfen und mögliche Lücken zu erkennen: [Unterlagen prüfen lassen](/unterlagen-check). Danach kannst du direkt den nächsten Schritt gehen: [Wohngeldantrag vorbereiten](/wohngeld/antrag). Vorab einen möglichen Anspruch prüfen: [Wohngeld berechnen](/wohngeld/rechner) – oder alles im Überblick: [Wohngeld 2026](/wohngeld)." },
+        { type: "paragraph", text: "Du hast Dokumente gesammelt, bist aber nicht sicher, ob etwas fehlt? Antragsbruder hilft dir dabei, deine Unterlagen strukturiert zu prüfen und mögliche Lücken zu erkennen: [Unterlagen prüfen lassen](/unterlagen-check). Danach kannst du direkt den nächsten Schritt gehen: [Wohngeldantrag vorbereiten](/wohngeld/beantragen). Vorab einen möglichen Anspruch prüfen: [Wohngeld berechnen](/wohngeld/rechner) – oder alles im Überblick: [Wohngeld 2026](/wohngeld)." },
       ],
     },
   ],

@@ -25,7 +25,7 @@ export const wohngeldRechnerSupporting: ClusterPageContent = {
     { question: "Welche Miete eingeben?", answer: "Die Bruttokaltmiete: Nettokaltmiete plus kalte Betriebskosten, ohne Heizung und Warmwasser." },
     { question: "Brutto oder Netto beim Einkommen?", answer: "Weder noch – das Wohngeldrecht rechnet mit einem eigenen, wohngeldrechtlichen Einkommen." },
   ],
-  primaryCta: { label: "Wohngeldantrag vorbereiten", href: "/wohngeld/antrag" },
+  primaryCta: { label: "Wohngeldantrag vorbereiten", href: "/wohngeld/beantragen" },
   secondaryCta: { label: "Welche Unterlagen brauche ich?", href: "/wohngeld/unterlagen" },
   breadcrumb: [
     { name: "Startseite", href: "/" },
@@ -94,7 +94,7 @@ export const wohngeldRechnerSupporting: ClusterPageContent = {
         { type: "heading", level: 3, text: "Schritt 1: Unterlagen zusammenstellen" },
         { type: "paragraph", text: "Typischerweise werden Angaben und Nachweise zu folgenden Bereichen benötigt: Einkommen, Wohnung und Miete, Haushaltsmitglieder, gegebenenfalls weitere Leistungen und gegebenenfalls persönliche Freibeträge. Die vollständige Übersicht: [Wohngeld-Unterlagen ansehen](/wohngeld/unterlagen)." },
         { type: "heading", level: 3, text: "Schritt 2: Antrag vorbereiten" },
-        { type: "paragraph", text: "Du kannst deinen Wohngeldantrag selbst bei der zuständigen Wohngeldbehörde einreichen. Wenn du Unterstützung möchtest, hilft dir Antragsbruder dabei, deine Angaben und Dokumente zu strukturieren und den Antrag für die Einreichung vorzubereiten: [Wohngeldantrag vorbereiten lassen](/wohngeld/antrag). Antragsbruder entscheidet nicht darüber, ob dir Wohngeld zusteht – diese Entscheidung trifft ausschließlich die zuständige Behörde." },
+        { type: "paragraph", text: "Du kannst deinen Wohngeldantrag selbst bei der zuständigen Wohngeldbehörde einreichen. Wenn du Unterstützung möchtest, hilft dir Antragsbruder dabei, deine Angaben und Dokumente zu strukturieren und den Antrag für die Einreichung vorzubereiten: [Wohngeldantrag vorbereiten lassen](/wohngeld/beantragen). Antragsbruder entscheidet nicht darüber, ob dir Wohngeld zusteht – diese Entscheidung trifft ausschließlich die zuständige Behörde." },
       ],
     },
   ],  faqs: [

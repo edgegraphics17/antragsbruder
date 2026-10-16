@@ -6,7 +6,6 @@ export type Dict = {
   eyebrow: string;
   heroTitle: string;
   heroLede: string;
-  priceLabel: string;
   startButtonLabel: string;
   bereicheTitle: string;
   bereiche: string[];
@@ -25,14 +24,11 @@ export type Dict = {
 
 export const dict: Record<Locale, Dict> = {
   de: {
-    metaTitle: "Antrag vorbereiten – 79–149 €",
-    metaDescription:
-      "Wir bereiten deinen Antrag für Jobcenter, Wohngeld, Familienkasse und mehr vor. Für 79–149 € bekommst du ein vollständig ausgefülltes Formular mit allen nötigen Unterlagen.",
+    metaTitle: "Antrag vorbereiten – Unterlagen, Formulare, Fristen",
+    metaDescription: "Wir bereiten deinen Antrag für Jobcenter, Wohngeld, Familienkasse und mehr mit dir vor: Unterlagen sammeln, Formulare ausfüllen, Fristen im Blick behalten.",
     eyebrow: "Antrag vorbereiten",
     heroTitle: "Dein Antrag, fertig vorbereitet.",
-    heroLede:
-      "Du weißt, dass du einen Antrag stellen musst, aber die Formulare sind lang und die Unterlagen unklar. Wir sammeln mit dir zusammen, was gebraucht wird, füllen den Antrag aus und bereiten ihn für die Einreichung vor. Das kostet 79 bis 149 € je nach Aufwand.",
-    priceLabel: "79–149 € pro Antrag, je nach Aufwand",
+    heroLede: "Du weißt, dass du einen Antrag stellen musst, aber die Formulare sind lang und die Unterlagen unklar. Wir sammeln mit dir zusammen, was gebraucht wird, füllen den Antrag aus und bereiten ihn für die Einreichung vor. Aufwand und Kosten klären wir vorher individuell mit dir.",
     startButtonLabel: "Antrag starten",
     bereicheTitle: "Für diese Anträge machen wir das",
     bereiche: [
@@ -87,14 +83,11 @@ export const dict: Record<Locale, Dict> = {
     ctaSecondaryLabel: "Alle Services ansehen",
   },
   en: {
-    metaTitle: "Prepare an application – €79–149",
-    metaDescription:
-      "We prepare your application for Jobcenter, Wohngeld, Familienkasse and more. For €79–149 you get a fully completed form with all the documents you need.",
+    metaTitle: "Prepare an application – documents, forms, deadlines",
+    metaDescription: "We prepare your application for Jobcenter, Wohngeld, Familienkasse and more together with you: gathering documents, completing forms, keeping an eye on deadlines.",
     eyebrow: "Prepare an application",
     heroTitle: "Your application, fully prepared.",
-    heroLede:
-      "You know you need to submit an application, but the forms are long and the required documents unclear. We work with you to gather what's needed, fill out the application, and prepare it for submission. This costs €79 to €149 depending on the work involved.",
-    priceLabel: "€79–149 per application, depending on the work involved",
+    heroLede: "You know you need to submit an application, but the forms are long and the required documents unclear. We work with you to gather what's needed, fill out the application, and prepare it for submission. We agree the effort and the costs with you individually beforehand.",
     startButtonLabel: "Start application",
     bereicheTitle: "We do this for these applications",
     bereiche: [
@@ -149,14 +142,11 @@ export const dict: Record<Locale, Dict> = {
     ctaSecondaryLabel: "View all services",
   },
   ar: {
-    metaTitle: "إعداد طلب – 79–149 يورو",
-    metaDescription:
-      "نعد طلبك لمركز التوظيف، إعانة السكن، صندوق الأسرة وغيرها. مقابل 79–149 يورو تحصل على نموذج مكتمل بجميع المستندات المطلوبة.",
+    metaTitle: "إعداد الطلب – المستندات والاستمارات والمواعيد",
+    metaDescription: "نُعدّ طلبك لـ Jobcenter وWohngeld وFamilienkasse وغيرها معك: جمع المستندات، تعبئة الاستمارات، ومتابعة المواعيد.",
     eyebrow: "إعداد طلب",
     heroTitle: "طلبك، جاهز تمامًا.",
-    heroLede:
-      "تعرف أنك بحاجة إلى تقديم طلب، لكن النماذج طويلة والمستندات المطلوبة غير واضحة. نعمل معك على جمع ما هو مطلوب، وملء الطلب، وإعداده للتقديم. يكلف ذلك بين 79 و149 يورو حسب حجم العمل.",
-    priceLabel: "79–149 يورو لكل طلب، حسب حجم العمل",
+    heroLede: "تعلم أن عليك تقديم طلب، لكن الاستمارات طويلة والمستندات غير واضحة. نجمع معك ما هو مطلوب، ونعبّئ الطلب، ونجهّزه للتقديم. نتفق معك مسبقًا وبشكل فردي على الجهد والتكلفة.",
     startButtonLabel: "ابدأ الطلب",
     bereicheTitle: "نقوم بذلك لهذه الطلبات",
     bereiche: [
@@ -211,14 +201,11 @@ export const dict: Record<Locale, Dict> = {
     ctaSecondaryLabel: "عرض جميع الخدمات",
   },
   tr: {
-    metaTitle: "Başvuru hazırlama – 79–149 €",
-    metaDescription:
-      "Jobcenter, Wohngeld, Familienkasse ve daha fazlası için başvurunu hazırlıyoruz. 79–149 € karşılığında gerekli tüm belgelerle eksiksiz doldurulmuş bir form alırsın.",
+    metaTitle: "Başvuru hazırlama – belgeler, formlar, süreler",
+    metaDescription: "Jobcenter, Wohngeld, Familienkasse ve daha fazlası için başvurunu seninle birlikte hazırlıyoruz: belgeleri toplamak, formları doldurmak, süreleri takip etmek.",
     eyebrow: "Başvuru hazırlama",
     heroTitle: "Başvurun, tamamen hazır.",
-    heroLede:
-      "Bir başvuru yapman gerektiğini biliyorsun ama formlar uzun ve gerekli belgeler belirsiz. Seninle birlikte gerekenleri topluyor, başvuruyu dolduruyor ve gönderime hazırlıyoruz. Bunun bedeli işin kapsamına göre 79 ile 149 € arasında.",
-    priceLabel: "İşin kapsamına göre başvuru başına 79–149 €",
+    heroLede: "Bir başvuru yapman gerektiğini biliyorsun ama formlar uzun ve gerekli belgeler belirsiz. Seninle birlikte gerekenleri topluyor, başvuruyu dolduruyor ve gönderime hazırlıyoruz. Emeği ve maliyeti önceden seninle ayrı ayrı konuşuyoruz.",
     startButtonLabel: "Başvuruyu başlat",
     bereicheTitle: "Bu başvurular için bunu yapıyoruz",
     bereiche: [
@@ -273,14 +260,11 @@ export const dict: Record<Locale, Dict> = {
     ctaSecondaryLabel: "Tüm hizmetleri gör",
   },
   ru: {
-    metaTitle: "Подготовка заявления – 79–149 €",
-    metaDescription:
-      "Мы готовим ваше заявление для Jobcenter, Wohngeld, Familienkasse и других ведомств. За 79–149 € вы получаете полностью заполненную форму со всеми нужными документами.",
+    metaTitle: "Подготовка заявления – документы, формуляры, сроки",
+    metaDescription: "Мы вместе с вами готовим заявление для Jobcenter, Wohngeld, Familienkasse и других ведомств: собираем документы, заполняем формуляры, следим за сроками.",
     eyebrow: "Подготовка заявления",
     heroTitle: "Ваше заявление, полностью готово.",
-    heroLede:
-      "Вы знаете, что нужно подать заявление, но формы длинные, а нужные документы неясны. Мы вместе с вами собираем всё необходимое, заполняем заявление и готовим его к подаче. Это стоит от 79 до 149 € в зависимости от объёма работы.",
-    priceLabel: "79–149 € за заявление, в зависимости от объёма работы",
+    heroLede: "Вы знаете, что нужно подать заявление, но формы длинные, а нужные документы неясны. Мы вместе с вами собираем всё необходимое, заполняем заявление и готовим его к подаче. Объём работы и стоимость обсуждаем с вами заранее.",
     startButtonLabel: "Начать заявление",
     bereicheTitle: "Мы делаем это для таких заявлений",
     bereiche: [
@@ -335,14 +319,11 @@ export const dict: Record<Locale, Dict> = {
     ctaSecondaryLabel: "Посмотреть все услуги",
   },
   uk: {
-    metaTitle: "Підготовка заяви – 79–149 €",
-    metaDescription:
-      "Ми готуємо вашу заяву для Jobcenter, Wohngeld, Familienkasse та інших установ. За 79–149 € ви отримуєте повністю заповнену форму з усіма потрібними документами.",
+    metaTitle: "Підготовка заяви – документи, формуляри, строки",
+    metaDescription: "Ми разом із вами готуємо заяву для Jobcenter, Wohngeld, Familienkasse та інших установ: збираємо документи, заповнюємо формуляри, стежимо за строками.",
     eyebrow: "Підготовка заяви",
     heroTitle: "Ваша заява, повністю готова.",
-    heroLede:
-      "Ви знаєте, що треба подати заяву, але форми довгі, а потрібні документи незрозумілі. Ми разом з вами збираємо все необхідне, заповнюємо заяву і готуємо її до подання. Це коштує від 79 до 149 € залежно від обсягу роботи.",
-    priceLabel: "79–149 € за заяву, залежно від обсягу роботи",
+    heroLede: "Ви знаєте, що треба подати заяву, але форми довгі, а потрібні документи незрозумілі. Ми разом з вами збираємо все необхідне, заповнюємо заяву і готуємо її до подання. Обсяг роботи та вартість узгоджуємо з вами заздалегідь.",
     startButtonLabel: "Почати заяву",
     bereicheTitle: "Ми робимо це для таких заяв",
     bereiche: [
@@ -397,14 +378,11 @@ export const dict: Record<Locale, Dict> = {
     ctaSecondaryLabel: "Переглянути всі послуги",
   },
   pl: {
-    metaTitle: "Przygotowanie wniosku – 79–149 €",
-    metaDescription:
-      "Przygotowujemy twój wniosek do Jobcenter, Wohngeld, Familienkasse i innych urzędów. Za 79–149 € otrzymujesz w pełni wypełniony formularz ze wszystkimi potrzebnymi dokumentami.",
+    metaTitle: "Przygotowanie wniosku – dokumenty, formularze, terminy",
+    metaDescription: "Wraz z tobą przygotowujemy wniosek do Jobcenter, Wohngeld, Familienkasse i innych urzędów: zbieramy dokumenty, wypełniamy formularze, pilnujemy terminów.",
     eyebrow: "Przygotowanie wniosku",
     heroTitle: "Twój wniosek, w pełni gotowy.",
-    heroLede:
-      "Wiesz, że musisz złożyć wniosek, ale formularze są długie, a potrzebne dokumenty niejasne. Razem z tobą zbieramy to, co potrzebne, wypełniamy wniosek i przygotowujemy go do złożenia. Kosztuje to od 79 do 149 € w zależności od nakładu pracy.",
-    priceLabel: "79–149 € za wniosek, w zależności od nakładu pracy",
+    heroLede: "Wiesz, że musisz złożyć wniosek, ale formularze są długie, a potrzebne dokumenty niejasne. Razem z tobą zbieramy to, co potrzebne, wypełniamy wniosek i przygotowujemy go do złożenia. Nakład pracy i koszty ustalamy z tobą wcześniej.",
     startButtonLabel: "Rozpocznij wniosek",
     bereicheTitle: "Robimy to dla tych wniosków",
     bereiche: [
@@ -459,14 +437,11 @@ export const dict: Record<Locale, Dict> = {
     ctaSecondaryLabel: "Zobacz wszystkie usługi",
   },
   bg: {
-    metaTitle: "Подготовка на заявление – 79–149 €",
-    metaDescription:
-      "Подготвяме заявлението ти за Jobcenter, Wohngeld, Familienkasse и други институции. За 79–149 € получаваш напълно попълнен формуляр с всички нужни документи.",
+    metaTitle: "Подготовка на заявление – документи, формуляри, срокове",
+    metaDescription: "Заедно с теб подготвяме заявлението за Jobcenter, Wohngeld, Familienkasse и други институции: събираме документи, попълваме формуляри, следим срокове.",
     eyebrow: "Подготовка на заявление",
     heroTitle: "Заявлението ти, напълно готово.",
-    heroLede:
-      "Знаеш, че трябва да подадеш заявление, но формулярите са дълги, а нужните документи неясни. Заедно с теб събираме нужното, попълваме заявлението и го подготвяме за подаване. Това струва между 79 и 149 € в зависимост от обема работа.",
-    priceLabel: "79–149 € на заявление, в зависимост от обема работа",
+    heroLede: "Знаеш, че трябва да подадеш заявление, но формулярите са дълги, а нужните документи неясни. Заедно с теб събираме нужното, попълваме заявлението и го подготвяме за подаване. Обема работа и разходите уточняваме предварително с теб.",
     startButtonLabel: "Започни заявление",
     bereicheTitle: "Правим това за тези заявления",
     bereiche: [
@@ -521,14 +496,11 @@ export const dict: Record<Locale, Dict> = {
     ctaSecondaryLabel: "Виж всички услуги",
   },
   ro: {
-    metaTitle: "Pregătirea unei cereri – 79–149 €",
-    metaDescription:
-      "Îți pregătim cererea pentru Jobcenter, Wohngeld, Familienkasse și altele. Pentru 79–149 € primești un formular complet completat, cu toate documentele necesare.",
+    metaTitle: "Pregătirea unei cereri – acte, formulare, termene",
+    metaDescription: "Împreună cu tine pregătim cererea pentru Jobcenter, Wohngeld, Familienkasse și altele: adunăm actele, completăm formularele, urmărim termenele.",
     eyebrow: "Pregătirea unei cereri",
     heroTitle: "Cererea ta, complet pregătită.",
-    heroLede:
-      "Știi că trebuie să depui o cerere, dar formularele sunt lungi și documentele necesare neclare. Lucrăm împreună cu tine ca să adunăm ce e nevoie, completăm cererea și o pregătim pentru depunere. Costă între 79 și 149 € în funcție de complexitate.",
-    priceLabel: "79–149 € per cerere, în funcție de complexitate",
+    heroLede: "Știi că trebuie să depui o cerere, dar formularele sunt lungi și documentele necesare neclare. Lucrăm împreună cu tine ca să adunăm ce e nevoie, completăm cererea și o pregătim pentru depunere. Efortul și costurile le stabilim împreună, în avans.",
     startButtonLabel: "Începe cererea",
     bereicheTitle: "Facem asta pentru aceste cereri",
     bereiche: [

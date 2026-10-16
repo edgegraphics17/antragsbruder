@@ -1,5 +1,5 @@
 // ============================================================
-// ADMIN — Antrags-Detail (Arbeitsansicht für den 99-€-Service):
+// ADMIN — Antrags-Detail (Arbeitsansicht für übernommene Vorgänge):
 // Formulardaten mit Copy-Helfern, Engine-Daten (extracted_facts),
 // Berechnung, Dokumente (Audit + 60s-Signed-URL) und Status-Aktionen.
 // ============================================================

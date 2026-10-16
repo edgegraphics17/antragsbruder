@@ -8,6 +8,7 @@ import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { Breadcrumb } from "@/components/seo/Breadcrumb";
 import { DirectAnswer } from "@/components/seo/DirectAnswer";
 import { TrustBox } from "@/components/seo/TrustBox";
+import { SupportCta } from "@/components/seo/SupportCta";
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { ClusterPageContent, ContentBlock } from "@/content/cluster/types";
 import { site, editor } from "@/content/site";
@@ -327,6 +328,9 @@ export function ClusterArticle({
           <FaqAccordion items={content.faqs} />
         </Container>
       </section>
+
+      {/* Hilfe-Band: Information zuerst, Unterstützung als Angebot danach */}
+      <SupportCta slug={content.slug} />
 
       {/* Trust + Related */}
       <section className="pb-20">

@@ -35,9 +35,8 @@ export default async function AntragVorbereitenPage({ params }: { params: Promis
       <section className="mx-3 rounded-[2rem] bg-white sm:mx-5 sm:rounded-[2.5rem]">
         <Container className="py-16 sm:py-20">
           <SectionHeading as="h1" eyebrow={t.eyebrow} title={t.heroTitle} lede={t.heroLede} />
-          <p className="mt-4 text-sm font-semibold text-brand-700">{t.priceLabel}</p>
           <div className="mt-6">
-            <Button href={href("/hilfe-starten?anliegen=antrag")} size="lg">
+            <Button href={href("/kontakt?anliegen=antrag")} size="lg">
               {t.startButtonLabel}
             </Button>
           </div>
@@ -99,7 +98,7 @@ export default async function AntragVorbereitenPage({ params }: { params: Promis
       <CTASection
         title={t.ctaTitle}
         primaryLabel={t.ctaPrimaryLabel}
-        primaryHref={href("/hilfe-starten?anliegen=antrag")}
+        primaryHref={href("/kontakt?anliegen=antrag")}
         secondaryLabel={t.ctaSecondaryLabel}
         secondaryHref={href("/kontakt")}
       />

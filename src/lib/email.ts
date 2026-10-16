@@ -206,6 +206,52 @@ function reminderHtml(
 </html>`;
 }
 
+/**
+ * Versand einer Kontakt-Funnel-Anfrage.
+ *
+ * Wichtig: Anders als `sendEmail` (das im Dev-Modus nur loggt und Erfolg
+ * meldet) gibt diese Funktion `reason: "not_configured"` zurück, wenn kein
+ * Versandweg eingerichtet ist. Der Funnel kann dann auf das E-Mail-Programm
+ * der Besucherin bzw. des Besuchers ausweichen, statt eine Anfrage
+ * stillschweigend zu verlieren.
+ */
+export async function sendAnfrageEmail(payload: {
+  to: string;
+  replyTo: string;
+  subject: string;
+  html: string;
+  text: string;
+}): Promise<{ success: boolean; error?: string; reason?: "not_configured" | "provider_error" }> {
+  if (!resend) {
+    console.warn("[EMAIL] RESEND_API_KEY fehlt – Anfrage wird nicht versendet.");
+    return { success: false, reason: "not_configured" };
+  }
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: `"${FROM_NAME}" <${FROM_EMAIL}>`,
+      to: payload.to,
+      replyTo: payload.replyTo,
+      subject: payload.subject,
+      html: payload.html,
+      text: payload.text,
+    });
+
+    if (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error("[EMAIL ERROR]", message);
+      return { success: false, error: message, reason: "provider_error" };
+    }
+
+    console.log("[EMAIL SENT]", data?.id);
+    return { success: true };
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[EMAIL EXCEPTION]", message);
+    return { success: false, error: message, reason: "provider_error" };
+  }
+}
+
 // --- Öffentliche E-Mail-Funktionen ---
 
 export async function sendStatusChangeEmail(

@@ -386,7 +386,9 @@ function SchnellcheckTab() {
   useEffect(() => {
     const plz = typeof facts.plz === 'string' ? facts.plz : null;
     if (!plz || !/^\d{5}$/.test(plz)) {
-      setPlzTiers(null);
+      // Kein (gültiger) Wert: Lookup überspringen. Der State wird hier
+      // bewusst nicht synchron zurückgesetzt (löste Kaskaden-Renders aus) –
+      // `effectTiers` unten wertet das Ergebnis nur bei gültiger PLZ aus.
       return;
     }
     let cancelled = false;
@@ -403,10 +405,14 @@ function SchnellcheckTab() {
     };
   }, [facts.plz]);
 
+  // Ergebnis des PLZ-Lookups zählt nur, solange eine gültige PLZ eingetragen ist.
+  const effectTiers =
+    typeof facts.plz === 'string' && /^\d{5}$/.test(facts.plz) ? plzTiers : null;
+
   // Check vollständig → Einschätzung automatisch setzen (Auto-Save fährt fort)
   useEffect(() => {
-    if (!complete || result || plzTiers === null) return;
-    const idx = mietstufeIdx ?? plzTiers[0];
+    if (!complete || result || effectTiers === null) return;
+    const idx = mietstufeIdx ?? effectTiers[0];
     if (idx == null) return;
     if (rent == null || income <= 0) return;
     const est = calculateWgEstimate(facts, idx);

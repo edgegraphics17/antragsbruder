@@ -69,7 +69,7 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
         primaryLabel={t.ctaPrimaryLabel}
         primaryHref={localeHref(locale, "/kontakt")}
         secondaryLabel={t.ctaSecondaryLabel}
-        secondaryHref={localeHref(locale, "/hilfe-starten")}
+        secondaryHref={localeHref(locale, "/kontakt")}
       />
     </>
   );

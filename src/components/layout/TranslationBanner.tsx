@@ -9,17 +9,13 @@ import { commonDict } from "@/content/i18n/common";
 // silently presenting untranslated copy as if it were localized.
 const TRANSLATED_PATHS = new Set([
   "/",
-  "/wohngeld",
-  "/wohngeld/antrag",
   "/grundsicherungsrechner",
   "/bafoegrechner",
   "/so-funktionierts",
-  "/hilfe-starten",
   "/brief-verstehen",
   "/antrag-vorbereiten",
   "/unterlagen-check",
   "/papierkram-ordnen",
-  "/preise",
   "/faq",
   "/kontakt",
   "/wer-wir-sind",

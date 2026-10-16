@@ -452,7 +452,7 @@ export function BafoegCalculator({ locale }: { locale: LangCode }) {
               <div className="mt-4 flex items-center gap-2">
                 <span className="font-display text-3xl text-brand-900">{t.ctaPrice}</span>
               </div>
-              <Button href={localeHref(lang, "/hilfe-starten")} size="lg" className="mt-4 w-full">
+              <Button href={localeHref(lang, "/kontakt")} size="lg" className="mt-4 w-full">
                 {t.ctaButton}
               </Button>
             </div>

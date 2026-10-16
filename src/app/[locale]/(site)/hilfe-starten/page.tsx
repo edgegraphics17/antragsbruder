@@ -6,15 +6,23 @@ export function generateStaticParams() {
 }
 
 // ============================================================
-// "HILFE STARTEN" ENTFERNT (seit 2026-10-12)
-// Konzept-Umbau: kein Selbstbedienungs-Service-Flow (IntakeForm)
-// mehr. Offene Anfragen laufen über den Kontakt — die Route leitet
-// dorthin um, damit bestehende Links (u. a. Rechner-CTAs) nicht
-// ins Leere laufen.
+// "HILFE STARTEN" → KONTAKT-FUNNEL (seit 2026-10-16)
 // ============================================================
+// Der frühere Selbstbedienungs-Flow ist weg. Diese Route bleibt bestehen,
+// weil sie in vielen Texten und in Altdokumenten verlinkt ist, und leitet
+// auf den Kontakt-Funnel um. Wichtig: Der Parameter `?anliegen=…` wird
+// mitgenommen, damit der Bereich im Funnel vorausgewählt ist.
 
-export default async function HilfeStartenPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale: raw } = await params;
+export default async function HilfeStartenPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ anliegen?: string }>;
+}) {
+  const [{ locale: raw }, sp] = await Promise.all([params, searchParams]);
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
-  redirect(localeHref(locale, "/kontakt"));
+  const target = localeHref(locale, "/kontakt");
+  const query = sp.anliegen ? `?anliegen=${encodeURIComponent(sp.anliegen)}` : "";
+  redirect(`${target}${query}`);
 }

@@ -16,7 +16,6 @@ const routes: {
   // Wohngeld-Cluster (DE-first): Content-Seiten nur im defaultLocale indexiert,
   // Rechner + Antrag-Flow in allen Sprachen. Steuerung unten über deOnlyRoutes.
   { path: "/wohngeld/rechner", priority: 0.9, changeFrequency: "weekly" },
-  { path: "/wohngeld/antrag", priority: 0.9, changeFrequency: "weekly" },
   { path: "/grundsicherungsrechner", priority: 0.9, changeFrequency: "weekly" },
   { path: "/bafoegrechner", priority: 0.9, changeFrequency: "weekly" },
   { path: "/brief-verstehen", priority: 0.8, changeFrequency: "monthly" },
@@ -29,8 +28,7 @@ const routes: {
   { path: "/wer-wir-sind", priority: 0.6, changeFrequency: "monthly" },
   { path: "/fuer-unternehmen", priority: 0.7, changeFrequency: "monthly" },
   { path: "/faq", priority: 0.6, changeFrequency: "monthly" },
-  { path: "/kontakt", priority: 0.5, changeFrequency: "monthly" },
-  { path: "/hilfe-starten", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/kontakt", priority: 0.8, changeFrequency: "monthly" },
   { path: "/redaktion", priority: 0.5, changeFrequency: "monthly" },
   { path: "/redaktion/redaktionsrichtlinien", priority: 0.4, changeFrequency: "monthly" },
   { path: "/redaktion/quellenstandard", priority: 0.4, changeFrequency: "monthly" },
@@ -78,7 +76,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency,
       priority,
-      alternates: hreflangAlternates(path),
+      // DE-only-Seiten dürfen keine fremdsprachigen Alternates anbieten:
+      // sonst verspricht die Sitemap Sprachfassungen, die es nicht gibt.
+      alternates: deOnly ? { languages: { de: `${base}${localeHref("de", path)}` } } : hreflangAlternates(path),
     }));
   });
 }

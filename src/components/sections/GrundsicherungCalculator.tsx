@@ -299,9 +299,9 @@ export function GrundsicherungCalculator({ locale }: { locale: LangCode }) {
   }
 
   const ctaHref = useMemo(() => {
-    if (!result) return "/hilfe-starten?anliegen=grundsicherung";
+    if (!result) return "/kontakt?anliegen=grundsicherung";
     const summary = `Grundsicherungsgeld-Rechner-Ergebnis: ca. ${result.amount} €/Monat, Haushaltsgröße ${result.householdSize}.`;
-    return `/hilfe-starten?anliegen=grundsicherung&details=${encodeURIComponent(summary)}`;
+    return `/kontakt?anliegen=grundsicherung&details=${encodeURIComponent(summary)}`;
   }, [result]);
 
   const totalSteps = 3;

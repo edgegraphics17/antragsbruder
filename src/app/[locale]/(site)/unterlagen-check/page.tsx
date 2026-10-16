@@ -31,7 +31,7 @@ export default async function UnterlagenCheckPage({ params }: { params: Promise<
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
   const t = dict[locale];
   const href = (path: string) => localeHref(locale, path);
-  const ctaHref = href("/hilfe-starten?anliegen=unterlagen");
+  const ctaHref = href("/kontakt?anliegen=unterlagen");
 
   return (
     <>
@@ -43,7 +43,6 @@ export default async function UnterlagenCheckPage({ params }: { params: Promise<
             <Button href={ctaHref} size="lg">
               {t.heroButtonLabel}
             </Button>
-            <span className="text-sm font-semibold text-brand-700">{t.heroPrice}</span>
           </div>
           </div>
           <PhotoFrame src="/images/photos/aktenstapel.jpg" alt="" priority className="aspect-[4/3] w-full" />
