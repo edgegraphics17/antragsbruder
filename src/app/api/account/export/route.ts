@@ -44,10 +44,24 @@ export async function GET(request: Request) {
 
     const user = session.user;
 
-    const [profileResult, casesResult, documentsResult] = await Promise.all([
+    // Vollständig heißt: jede Tabelle mit Personbezug. applications,
+    // user_vault_entries und shared_vault_bundles hängen ebenfalls an user_id
+    // und fehlten in einem ersten Entwurf – die Auskunft wäre unvollständig
+    // gewesen, obwohl sie "alle Daten" verspricht.
+    const [
+      profileResult,
+      casesResult,
+      documentsResult,
+      applicationsResult,
+      vaultEntriesResult,
+      vaultBundlesResult,
+    ] = await Promise.all([
       supabase.from('profiles').select('*').eq('id', user.id).maybeSingle(),
       supabase.from('cases').select('*').eq('user_id', user.id),
       supabase.from('documents_meta').select('*').eq('user_id', user.id),
+      supabase.from('applications').select('*').eq('user_id', user.id),
+      supabase.from('user_vault_entries').select('*').eq('user_id', user.id),
+      supabase.from('shared_vault_bundles').select('*').eq('user_id', user.id),
     ]);
 
     const caseIds = (casesResult.data ?? []).map((c) => c.id as string);
@@ -119,7 +133,10 @@ export async function GET(request: Request) {
       },
       profil: profileResult.data ?? null,
       verfahren: casesResult.data ?? [],
+      antraege: applicationsResult.data ?? [],
       dokumente: documentsResult.data ?? [],
+      tresorEintraege: vaultEntriesResult.data ?? [],
+      freigaben: vaultBundlesResult.data ?? [],
       ...childData,
       dateien: files,
     };

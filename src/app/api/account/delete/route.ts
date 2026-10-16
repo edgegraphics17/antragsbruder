@@ -123,8 +123,13 @@ export async function POST(request: Request) {
       }
     }
 
+    // Reihenfolge ist wichtig: applications verweist auf cases. Erst die
+    // abhängigen Tabellen, dann die Verfahren selbst, zuletzt Profil und Zugang.
     for (const [table, column] of [
+      ['applications', 'user_id'],
       ['documents_meta', 'user_id'],
+      ['user_vault_entries', 'user_id'],
+      ['shared_vault_bundles', 'user_id'],
       ['cases', 'user_id'],
       ['profiles', 'id'],
     ] as const) {

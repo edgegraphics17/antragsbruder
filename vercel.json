@@ -1,4 +1,10 @@
 {
   "framework": "nextjs",
-  "buildCommand": "NEXT_DISABLE_TURBOPACK=1 next build"
+  "buildCommand": "NEXT_DISABLE_TURBOPACK=1 next build",
+  "crons": [
+    {
+      "path": "/api/maintenance/cleanup?execute=1",
+      "schedule": "0 3 * * *"
+    }
+  ]
 }

@@ -70,6 +70,34 @@ export default async function DatenschutzPage({ params }: { params: Promise<{ lo
             <p>{t.section6Text}</p>
           </LegalSection>
 
+          {/* Konkrete Löschfristen (Art. 13 Abs. 2 lit. a DSGVO). Nur sichtbar,
+              wenn der Abschnitt für die Sprache verfasst ist. */}
+          {t.sectionSpeicherfristenHeading && t.sectionSpeicherfristenItems ? (
+            <LegalSection title={t.sectionSpeicherfristenHeading}>
+              <ul className="list-disc space-y-1 pl-5">
+                {t.sectionSpeicherfristenItems.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              {t.sectionSpeicherfristenNote ? (
+                <p className="mt-3">
+                  {t.sectionSpeicherfristenNote}{" "}
+                  <Link href={localeHref(locale, "/konto")} className="text-brand-800 underline">
+                    {t.sectionSpeicherfristenLinkText}
+                  </Link>
+                  .
+                </p>
+              ) : null}
+            </LegalSection>
+          ) : null}
+
+          {/* § 25 Abs. 1 TDDDG: Hinweis auf Cookies und Endgeräte-Zugriffe. */}
+          {t.sectionCookiesHeading && t.sectionCookiesText ? (
+            <LegalSection title={t.sectionCookiesHeading}>
+              <p>{t.sectionCookiesText}</p>
+            </LegalSection>
+          ) : null}
+
           <LegalSection title={t.section7Heading}>
             <p>
               {t.section7TextBefore}{" "}

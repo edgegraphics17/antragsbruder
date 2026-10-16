@@ -29,6 +29,19 @@ export type Dict = {
   section10Text: string;
   section11Heading: string;
   section11Text: string;
+  // Ergänzt 2026-10-16. Zwei Lücken, die die Aufsicht typischerweise zuerst
+  // prüft: Art. 13 Abs. 2 lit. a DSGVO verlangt KONKRETE Löschfristen (vorher
+  // stand hier nur "so lange wie nötig"), und § 25 Abs. 1 TDDDG verlangt einen
+  // Hinweis auf gespeicherte Informationen, wenn ein Endgerät darauf zugreift
+  // (das Projekt setzt Sitzungs-Cookies, erwähnte "Cookie" aber nirgends).
+  // Optional, weil bislang nur auf Deutsch und Englisch verfasst – die Seite
+  // zeigt die Abschnitte nur, wenn Text vorhanden ist.
+  sectionSpeicherfristenHeading?: string;
+  sectionSpeicherfristenItems?: string[];
+  sectionSpeicherfristenNote?: string;
+  sectionSpeicherfristenLinkText?: string;
+  sectionCookiesHeading?: string;
+  sectionCookiesText?: string;
 };
 
 export const dict: Record<Locale, Dict> = {
@@ -57,6 +70,21 @@ export const dict: Record<Locale, Dict> = {
     section6Heading: "6. Speicherdauer",
     section6Text:
       "Wir speichern deine Daten nur so lange, wie es für die Bearbeitung deines Anliegens sowie zur Erfüllung gesetzlicher Aufbewahrungspflichten erforderlich ist. Danach werden sie gelöscht oder anonymisiert.",
+    sectionSpeicherfristenHeading: "6a. Konkrete Löschfristen",
+    sectionSpeicherfristenItems: [
+      "Profildaten (Name, E-Mail, Angaben im Profil): bis du dein Konto löschst.",
+      "Verfahrensdaten (erfasste Fakten, Ergebnisse der Prüfung, Maßnahmen): bis du sie oder dein Konto löschst; ohne Aktivität werden sie 24 Monate nach der letzten Änderung gelöscht.",
+      "Hochgeladene Dokumente: bis du sie löschst; zusätzlich spätestens 12 Monate nach dem Hochladen.",
+      "Dokumentinformationen mit automatisch erkanntem Text (bei gescannten Dokumenten): wie das jeweilige Dokument, längstens 12 Monate.",
+      "Kontaktanfragen über das Formular: 6 Monate nach Abschluss der Bearbeitung.",
+      "Rechnungs- und Zahlungsunterlagen: 10 Jahre (gesetzliche Aufbewahrungspflicht, Paragraf 147 AO, Paragraf 257 HGB).",
+      "Technische Zugriffsprotokolle unserer Hoster: wenige Tage, danach automatische Löschung.",
+      "Gesetzliche Aufbewahrungspflichten und die Geltendmachung von Ansprüchen können eine Löschung ausnahmsweise verzögern; in diesem Fall werden die Daten für andere Zwecke gesperrt.",
+    ],
+    sectionSpeicherfristenNote: "Konto, Verfahrensdaten und Dokumente kannst du jederzeit selbst löschen unter",
+    sectionSpeicherfristenLinkText: "Konto & Daten",
+    sectionCookiesHeading: "6b. Cookies und Zugriffe auf dein Endgerät",
+    sectionCookiesText: "Wir setzen ausschließlich technisch notwendige Cookies. Beim Anmelden legt unser Anmeldedienst ein Sitzungs-Cookie (Name beginnt mit sb-, enthält das Sitzungstoken) ab; es hält dich bis zur Abmeldung angemeldet und wird beim Abmelden oder nach Ablauf der Sitzung gelöscht. Rechtsgrundlage ist die unbedingt erforderliche Speicherung nach Paragraf 25 Abs. 2 Nr. 2 TDDDG, eine Einwilligung ist dafür nicht nötig. Analyse-, Werbe- oder Tracking-Cookies setzen wir nicht ein; es gibt kein Google Analytics, keine Werbenetzwerke und keine Profilbildung über dein Nutzungsverhalten. Ein Einwilligungsbanner ist deshalb nicht erforderlich. Server-Protokolle unserer Hoster (Vercel, Supabase) enthalten technisch bedingt IP-Adressen und werden nach kurzer Frist automatisch gelöscht.",
     section7Heading: "7. Deine Rechte",
     section7TextBefore:
       "Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch gegen die Verarbeitung deiner Daten. Zudem kannst du eine erteilte Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen. Wende dich hierzu an",
@@ -102,6 +130,21 @@ export const dict: Record<Locale, Dict> = {
     section6Heading: "6. Retention period",
     section6Text:
       "We store your data only as long as necessary to handle your request and to fulfil statutory retention obligations. It is then deleted or anonymised.",
+    sectionSpeicherfristenHeading: "6a. Specific retention periods",
+    sectionSpeicherfristenItems: [
+      "Profile data (name, email, details in your profile): until you delete your account.",
+      "Case data (facts recorded, assessment results, actions): until you delete it or your account; without activity it is deleted 24 months after the last change.",
+      "Uploaded documents: until you delete them; in addition, no later than 12 months after upload.",
+      "Document information including automatically recognised text (for scanned documents): as long as the document itself, at most 12 months.",
+      "Contact requests submitted via the form: 6 months after processing is completed.",
+      "Invoice and payment records: 10 years (statutory retention, Section 147 AO, Section 257 HGB).",
+      "Technical access logs of our hosting providers: a few days, then deleted automatically.",
+      "Statutory retention duties and the assertion of legal claims may exceptionally delay deletion; in that case the data is blocked for other purposes.",
+    ],
+    sectionSpeicherfristenNote: "You can delete your account, case data and documents yourself at any time under",
+    sectionSpeicherfristenLinkText: "Account & data",
+    sectionCookiesHeading: "6b. Cookies and access to your device",
+    sectionCookiesText: "We use strictly necessary cookies only. When you sign in, our authentication service stores a session cookie (name starts with sb-, contains the session token); it keeps you signed in until you sign out and is deleted on sign-out or when the session expires. The legal basis is strictly necessary storage under Section 25(2) no. 2 TDDDG, which does not require consent. We do not use analytics, advertising or tracking cookies; there is no Google Analytics, no ad networks and no profiling of your usage. A consent banner is therefore not required. Server logs of our hosting providers (Vercel, Supabase) necessarily contain IP addresses and are deleted automatically after a short period.",
     section7Heading: "7. Your rights",
     section7TextBefore:
       "You have the right to access, rectification, erasure, restriction of processing, data portability, and to object to the processing of your data. You may also withdraw consent already given at any time with effect for the future. Please contact us at",
