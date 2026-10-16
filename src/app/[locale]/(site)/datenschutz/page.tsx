@@ -94,6 +94,10 @@ export default async function DatenschutzPage({ params }: { params: Promise<{ lo
             </p>
           </LegalSection>
 
+          <LegalSection title={t.section11Heading}>
+            <p>{t.section11Text}</p>
+          </LegalSection>
+
           <LegalSection title={t.section10Heading}>
             <p>{t.section10Text}</p>
           </LegalSection>

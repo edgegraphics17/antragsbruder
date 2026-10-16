@@ -49,7 +49,7 @@ export const dict: Record<Locale, Dict> = {
     s4Heading: "§ 4 Preise und Zahlung",
     s4TextBefore: "Die Vergütung wird individuell mit der Kundin bzw. dem Kunden besprochen, bevor ein Auftrag erteilt wird. Eine öffentliche Preisliste besteht nicht – sprich uns über den",
     s4LinkText: "Kontakt",
-    s4TextAfter: ".",
+    s4TextAfter: " Der Preis wird immer als Gesamtpreis inklusive der jeweils geltenden Umsatzsteuer genannt.",
     s5Heading: "§ 5 Mitwirkungspflichten der Kundin bzw. des Kunden",
     s5Text: (siteName) =>
       `Die Kundin bzw. der Kunde stellt ${siteName} die für die Bearbeitung erforderlichen Informationen und Unterlagen vollständig und wahrheitsgemäß zur Verfügung. Die Verantwortung für die fristgerechte Einreichung von Anträgen und Unterlagen bei der zuständigen Stelle verbleibt bei der Kundin bzw. dem Kunden.`,
@@ -86,7 +86,7 @@ export const dict: Record<Locale, Dict> = {
     s4Heading: "Section 4 Prices and payment",
     s4TextBefore: "The remuneration is agreed individually with the customer before an order is placed. There is no public price list – reach out via",
     s4LinkText: "contact",
-    s4TextAfter: ".",
+    s4TextAfter: " The price is always stated as a total price including applicable VAT.",
     s5Heading: "Section 5 Customer's duties to cooperate",
     s5Text: (siteName) =>
       `The customer shall provide ${siteName} with the information and documents required for processing completely and truthfully. Responsibility for the timely submission of applications and documents to the competent authority remains with the customer.`,
@@ -123,7 +123,7 @@ export const dict: Record<Locale, Dict> = {
     s4Heading: "المادة 4 الأسعار والدفع",
     s4TextBefore: "يتم إبلاغ العميل بالأسعار المعمول بها قبل تقديم الطلب. يمكن الاطلاع على قيم إرشادية غير ملزمة في",
     s4LinkText: "صفحة الاتصال",
-    s4TextAfter: " الخاصة بنا.",
+    s4TextAfter: " يُذكر السعر دائمًا كسعر إجمالي شاملًا ضريبة القيمة المضافة المعمول بها.",
     s5Heading: "المادة 5 التزامات التعاون الواقعة على العميل",
     s5Text: (siteName) =>
       `يلتزم العميل بتزويد ${siteName} بالمعلومات والمستندات اللازمة للمعالجة بشكل كامل وصحيح. تبقى مسؤولية تقديم الطلبات والمستندات في المواعيد المحددة إلى الجهة المختصة على عاتق العميل.`,
@@ -160,7 +160,7 @@ export const dict: Record<Locale, Dict> = {
     s4Heading: "§ 4 Fiyatlar ve ödeme",
     s4TextBefore: "Geçerli fiyatlar, sipariş verilmeden önce bildirilir. Bağlayıcı olmayan gösterge niteliğindeki değerlere",
     s4LinkText: "iletişim sayfamızdan",
-    s4TextAfter: " ulaşabilirsiniz.",
+    s4TextAfter: " Fiyat her zaman geçerli KDV dâhil toplam fiyat olarak belirtilir.",
     s5Heading: "§ 5 Müşterinin işbirliği yükümlülükleri",
     s5Text: (siteName) =>
       `Müşteri, işlem için gerekli bilgi ve belgeleri ${siteName}'e eksiksiz ve doğru şekilde sunar. Başvuru ve belgelerin yetkili makama zamanında iletilmesi sorumluluğu müşteride kalır.`,
@@ -197,7 +197,7 @@ export const dict: Record<Locale, Dict> = {
     s4Heading: "§ 4 Цены и оплата",
     s4TextBefore: "Действующие цены сообщаются до оформления заказа. Ориентировочные (необязывающие) значения можно найти на нашей",
     s4LinkText: "странице контактов",
-    s4TextAfter: ".",
+    s4TextAfter: " Цена всегда указывается как итоговая сумма с учётом действующего НДС.",
     s5Heading: "§ 5 Обязанности клиента по содействию",
     s5Text: (siteName) =>
       `Клиент предоставляет ${siteName} полную и достоверную информацию и документы, необходимые для обработки. Ответственность за своевременную подачу заявлений и документов в компетентный орган остаётся на клиенте.`,
@@ -234,7 +234,7 @@ export const dict: Record<Locale, Dict> = {
     s4Heading: "§ 4 Ціни та оплата",
     s4TextBefore: "Чинні ціни повідомляються до оформлення замовлення. Орієнтовні (необов'язкові) значення можна знайти на нашій",
     s4LinkText: "сторінці контактів",
-    s4TextAfter: ".",
+    s4TextAfter: " Ціна завжди вказується як підсумкова сума з урахуванням чинного ПДВ.",
     s5Heading: "§ 5 Обов'язки клієнта щодо сприяння",
     s5Text: (siteName) =>
       `Клієнт надає ${siteName} повну та достовірну інформацію й документи, необхідні для обробки. Відповідальність за своєчасне подання заяв і документів до компетентного органу залишається на клієнті.`,
@@ -271,7 +271,7 @@ export const dict: Record<Locale, Dict> = {
     s4Heading: "§ 4 Ceny i płatność",
     s4TextBefore: "Obowiązujące ceny są podawane przed złożeniem zamówienia. Niewiążące wartości orientacyjne znajdują się na naszej",
     s4LinkText: "stronie kontaktu",
-    s4TextAfter: ".",
+    s4TextAfter: " Cena jest zawsze podawana jako cena całkowita z obowiązującym podatkiem VAT.",
     s5Heading: "§ 5 Obowiązki współdziałania klienta",
     s5Text: (siteName) =>
       `Klient udostępnia ${siteName} informacje i dokumenty niezbędne do realizacji usługi w sposób kompletny i zgodny z prawdą. Odpowiedzialność za terminowe złożenie wniosków i dokumentów we właściwym urzędzie pozostaje po stronie klienta.`,
@@ -308,7 +308,7 @@ export const dict: Record<Locale, Dict> = {
     s4Heading: "§ 4 Цени и плащане",
     s4TextBefore: "Актуалните цени се съобщават преди възлагането на поръчката. Необвързващи ориентировъчни стойности можете да намерите на нашата",
     s4LinkText: "страница с контакти",
-    s4TextAfter: ".",
+    s4TextAfter: " Цената винаги се посочва като обща цена с включен дължимия ДДС.",
     s5Heading: "§ 5 Задължения за съдействие на клиента",
     s5Text: (siteName) =>
       `Клиентът предоставя на ${siteName} необходимата за обработката информация и документи изцяло и достоверно. Отговорността за навременното подаване на заявления и документи пред компетентния орган остава на клиента.`,
@@ -345,7 +345,7 @@ export const dict: Record<Locale, Dict> = {
     s4Heading: "§ 4 Prețuri și plată",
     s4TextBefore: "Prețurile valabile sunt comunicate înainte de plasarea comenzii. Valorile orientative, fără caracter obligatoriu, pot fi găsite pe",
     s4LinkText: "pagina noastră de contact",
-    s4TextAfter: ".",
+    s4TextAfter: " Prețul este întotdeauna indicat ca preț total, inclusiv TVA-ul aplicabil.",
     s5Heading: "§ 5 Obligațiile de cooperare ale clientului",
     s5Text: (siteName) =>
       `Clientul îi pune la dispoziție ${siteName} informațiile și documentele necesare procesării, în mod complet și conform realității. Responsabilitatea pentru depunerea la timp a cererilor și documentelor la autoritatea competentă revine clientului.`,

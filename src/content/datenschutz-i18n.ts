@@ -27,6 +27,8 @@ export type Dict = {
   section9TextAfter: string;
   section10Heading: string;
   section10Text: string;
+  section11Heading: string;
+  section11Text: string;
 };
 
 export const dict: Record<Locale, Dict> = {
@@ -67,6 +69,10 @@ export const dict: Record<Locale, Dict> = {
       "Wir setzen technische und organisatorische Maßnahmen ein, um deine Daten angemessen zu schützen. Mehr zu unseren Prinzipien findest du auf unserer Seite",
     section9LinkText: "Sicherheit & Datenschutz",
     section9TextAfter: ".",
+    section11Heading: "11. Empfänger, Dienstleister und Drittlandübermittlung",
+    section11Text:
+      "Für Betrieb und Versand setzen wir Dienstleister ein: Vercel (Hosting), Supabase (Datenbank und Anmeldung) und Resend (E-Mail-Versand). Sie verarbeiten Daten in unserem Auftrag (Art. 28 DSGVO); einzelne Anbieter sitzen in den USA. Für Übermittlungen in die USA stützen wir uns auf die Standardvertragsklauseln der EU-Kommission (Art. 46 Abs. 2 lit. c DSGVO). Anfragen aus dem Kontakt-Formular werden per E-Mail an unser Postfach geschickt und dort bis zum Abschluss des Vorgangs aufbewahrt – nicht in einer eigenen Datenbank. Im Kontakt-Formular fragen wir keine Gesundheits-, Attest- oder Ausweisdaten ab.",
+
     section10Heading: "10. Änderungen dieser Erklärung",
     section10Text:
       "Wir passen diese Datenschutzerklärung an, sobald sich unsere Verarbeitungstätigkeiten oder die rechtlichen Rahmenbedingungen ändern.",
@@ -108,6 +114,10 @@ export const dict: Record<Locale, Dict> = {
       "We employ technical and organisational measures to appropriately protect your data. You can find more about our principles on our",
     section9LinkText: "Security & Privacy",
     section9TextAfter: " page.",
+    section11Heading: "11. Recipients, service providers and transfers to third countries",
+    section11Text:
+      "We use service providers for operation and delivery: Vercel (hosting), Supabase (database and login) and Resend (email delivery). They process data on our behalf (Art. 28 GDPR); some are based in the USA. For transfers to the USA we rely on the EU Commission's Standard Contractual Clauses (Art. 46(2)(c) GDPR). Requests from the contact form are sent to our mailbox by email and kept there until the case is closed – not in a database of ours. The contact form does not ask for health, medical certificate or ID data.",
+
     section10Heading: "10. Changes to this policy",
     section10Text:
       "We update this privacy policy whenever our processing activities or the legal framework change.",
@@ -149,6 +159,10 @@ export const dict: Record<Locale, Dict> = {
       "نستخدم إجراءات تقنية وتنظيمية لحماية بياناتك بشكل مناسب. يمكنك معرفة المزيد عن مبادئنا في صفحة",
     section9LinkText: "الأمان والخصوصية",
     section9TextAfter: ".",
+    section11Heading: "11. الجهات المستقبِلة ومقدّمو الخدمة والنقل إلى دول ثالثة",
+    section11Text:
+      "نستخدم مقدّمي خدمة للتشغيل والإرسال: Vercel (الاستضافة)، Supabase (قاعدة البيانات وتسجيل الدخول) وResend (إرسال البريد). يعالجون البيانات نيابة عنا (المادة 28 DSGVO)، وبعضهم في الولايات المتحدة. وللنقل إلى الولايات المتحدة نستند إلى الشروط التعاقدية النموذجية للمفوضية الأوروبية (المادة 46 فقرة 2 حرف c). تُرسل الطلبات من نموذج الاتصال بالبريد إلى صندوقنا وتُحفظ حتى انتهاء المعالجة – وليس في قاعدة بيانات خاصة بنا. ولا نطلب في النموذج أي بيانات صحية أو شهادات طبية أو بيانات هوية.",
+
     section10Heading: "10. التغييرات على هذه السياسة",
     section10Text:
       "نقوم بتحديث سياسة الخصوصية هذه كلما تغيرت أنشطة المعالجة لدينا أو الإطار القانوني.",
@@ -190,6 +204,10 @@ export const dict: Record<Locale, Dict> = {
       "Verilerinizi uygun şekilde korumak için teknik ve organizasyonel önlemler alıyoruz. İlkelerimiz hakkında daha fazla bilgiyi",
     section9LinkText: "Güvenlik ve Gizlilik",
     section9TextAfter: " sayfamızda bulabilirsiniz.",
+    section11Heading: "11. Alıcılar, hizmet sağlayıcılar ve üçüncü ülkelere aktarım",
+    section11Text:
+      "İşletme ve gönderim için hizmet sağlayıcı kullanıyoruz: Vercel (barındırma), Supabase (veritabanı ve giriş) ve Resend (e-posta gönderimi). Verileri bizim adımıza işlerler (DSGVO md. 28); bazıları ABD'de bulunur. ABD'ye aktarımlarda AB Komisyonu'nun standart sözleşme maddelerine dayanıyoruz (md. 46/2/c). İletişim formundan gelen talepler e-posta ile posta kutumuza gider ve işlem bitene kadar orada saklanır – kendi veritabanımızda değil. Formda sağlık, rapor veya kimlik verisi sormuyoruz.",
+
     section10Heading: "10. Bu politikadaki değişiklikler",
     section10Text:
       "İşleme faaliyetlerimiz veya yasal çerçeve değiştiğinde bu gizlilik politikasını güncelleriz.",
@@ -231,6 +249,10 @@ export const dict: Record<Locale, Dict> = {
       "Мы применяем технические и организационные меры для надлежащей защиты ваших данных. Подробнее о наших принципах вы можете узнать на нашей странице",
     section9LinkText: "«Безопасность и конфиденциальность»",
     section9TextAfter: ".",
+    section11Heading: "11. Получатели, поставщики услуг и передача в третьи страны",
+    section11Text:
+      "Для работы и отправки мы используем сервисы: Vercel (хостинг), Supabase (база данных и вход) и Resend (отправка писем). Они обрабатывают данные по нашему поручению (ст. 28 DSGVO); часть находится в США. Для передачи в США мы опираемся на стандартные договорные условия Еврокомиссии (ст. 46 ч. 2 п. c). Запросы из контактной формы отправляются письмом на наш почтовый ящик и хранятся там до завершения дела – не в нашей базе данных. В форме мы не запрашиваем медицинские, справки или паспортные данные.",
+
     section10Heading: "10. Изменения настоящей политики",
     section10Text:
       "Мы обновляем данную политику конфиденциальности, как только меняются наши процессы обработки данных или правовые рамки.",
@@ -272,6 +294,10 @@ export const dict: Record<Locale, Dict> = {
       "Ми застосовуємо технічні та організаційні заходи для належного захисту ваших даних. Детальніше про наші принципи ви можете дізнатися на нашій сторінці",
     section9LinkText: "«Безпека та конфіденційність»",
     section9TextAfter: ".",
+    section11Heading: "11. Отримувачі, постачальники послуг і передача до третіх країн",
+    section11Text:
+      "Для роботи й надсилання ми використовуємо сервіси: Vercel (хостинг), Supabase (база даних і вхід) та Resend (надсилання листів). Вони обробляють дані на наше замовлення (ст. 28 DSGVO); частина розташована в США. Для передачі до США ми спираємося на стандартні договірні положення Єврокомісії (ст. 46 ч. 2 п. c). Запити з контактної форми надсилаються листом на нашу пошту і зберігаються там до завершення справи – не в нашій базі даних. У формі ми не запитуємо медичних, довідкових чи паспортних даних.",
+
     section10Heading: "10. Зміни цієї політики",
     section10Text:
       "Ми оновлюємо цю політику конфіденційності, щойно змінюються наші процеси обробки даних або правові рамки.",
@@ -313,6 +339,10 @@ export const dict: Record<Locale, Dict> = {
       "Stosujemy środki techniczne i organizacyjne w celu odpowiedniej ochrony Twoich danych. Więcej o naszych zasadach znajdziesz na naszej stronie",
     section9LinkText: "Bezpieczeństwo i prywatność",
     section9TextAfter: ".",
+    section11Heading: "11. Odbiorcy, usługodawcy i przekazywanie do państw trzecich",
+    section11Text:
+      "Do działania i wysyłki korzystamy z usług: Vercel (hosting), Supabase (baza danych i logowanie) oraz Resend (wysyłka e-maili). Przetwarzają dane na nasze zlecenie (art. 28 RODO); część z nich ma siedzibę w USA. W przypadku przekazywania do USA opieramy się na standardowych klauzulach umownych Komisji Europejskiej (art. 46 ust. 2 lit. c). Zgłoszenia z formularza kontaktowego trafiają e-mailem do naszej skrzynki i są tam przechowywane do zakończenia sprawy – nie w naszej bazie danych. W formularzu nie pytamy o dane zdrowotne, zaświadczenia ani dokumenty tożsamości.",
+
     section10Heading: "10. Zmiany niniejszej polityki",
     section10Text:
       "Dostosowujemy tę politykę prywatności, gdy tylko zmieniają się nasze działania przetwarzania lub ramy prawne.",
@@ -354,6 +384,10 @@ export const dict: Record<Locale, Dict> = {
       "Прилагаме технически и организационни мерки за подходяща защита на вашите данни. Повече за нашите принципи ще намерите на нашата страница",
     section9LinkText: "„Сигурност и поверителност“",
     section9TextAfter: ".",
+    section11Heading: "11. Получатели, доставчици на услуги и предаване в трети държави",
+    section11Text:
+      "За работа и изпращане използваме услуги: Vercel (хостинг), Supabase (база данни и вход) и Resend (изпращане на имейли). Те обработват данни по наше поръчение (чл. 28 DSGVO); част от тях са в САЩ. За предаване в САЩ се позоваваме на стандартните договорни клаузи на Европейската комисия (чл. 46, ал. 2, буква c). Запитванията от контактната форма се изпращат по имейл до нашата поща и се съхраняват там до приключване на случая – не в наша база данни. Във формата не питаме за здравни данни, медицински документи или документи за самоличност.",
+
     section10Heading: "10. Промени в тази политика",
     section10Text:
       "Адаптираме тази политика за поверителност веднага щом се променят нашите дейности по обработка или правната рамка.",
@@ -395,6 +429,10 @@ export const dict: Record<Locale, Dict> = {
       "Aplicăm măsuri tehnice și organizatorice pentru a-ți proteja datele în mod corespunzător. Mai multe despre principiile noastre găsești pe pagina noastră",
     section9LinkText: "Securitate și confidențialitate",
     section9TextAfter: ".",
+    section11Heading: "11. Destinatari, furnizori de servicii și transferuri în țări terțe",
+    section11Text:
+      "Pentru funcționare și trimitere folosim servicii: Vercel (hosting), Supabase (bază de date și autentificare) și Resend (trimitere e-mailuri). Acestea prelucrează date în numele nostru (art. 28 GDPR); unele au sediul în SUA. Pentru transferurile în SUA ne bazăm pe clauzele contractuale standard ale Comisiei Europene (art. 46 alin. 2 lit. c). Solicitările din formularul de contact ajung prin e-mail în căsuța noastră și sunt păstrate acolo până la finalizarea cazului – nu într-o bază de date proprie. În formular nu cerem date medicale, adeverințe sau date de identitate.",
+
     section10Heading: "10. Modificări ale acestei politici",
     section10Text:
       "Actualizăm această politică de confidențialitate de îndată ce se modifică activitățile noastre de prelucrare sau cadrul legal.",

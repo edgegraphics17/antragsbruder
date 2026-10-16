@@ -62,7 +62,10 @@ export const problems: Record<ProblemKey, Problem> = {
   frist: { key: "frist" },
   nachforderung: { key: "nachforderung" },
   keinFortschritt: { key: "keinFortschritt" },
-  falscherAntrag: { key: "falscherAntrag" },
+  // "Welcher Antrag ist der richtige?" ist eine Einzelfallprüfung und damit
+  // erlaubnispflichtig (LG Köln, CR 2019; BSG B 9 SB 5/12 R). Wir zeigen
+  // dafür den Zuständigkeits-Hinweis statt einer Einordnung.
+  falscherAntrag: { key: "falscherAntrag", legalNote: true },
   onlineZugang: { key: "onlineZugang" },
   // Ablehnung ist eine Rechtsfrage: Wir ordnen keinen Anspruch ein und
   // begründen keinen Widerspruch – wir verweisen für den Rechtsweg.

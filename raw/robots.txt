@@ -1,0 +1,83 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /teilen/
+Disallow: /anmelden
+Disallow: /konto-erstellen
+
+User-Agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /teilen/
+Disallow: /anmelden
+Disallow: /konto-erstellen
+
+User-Agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /teilen/
+Disallow: /anmelden
+Disallow: /konto-erstellen
+
+User-Agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /teilen/
+Disallow: /anmelden
+Disallow: /konto-erstellen
+
+User-Agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /teilen/
+Disallow: /anmelden
+Disallow: /konto-erstellen
+
+User-Agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /teilen/
+Disallow: /anmelden
+Disallow: /konto-erstellen
+
+User-Agent: Perplexity-User
+Allow: /
+Disallow: /api/
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /teilen/
+Disallow: /anmelden
+Disallow: /konto-erstellen
+
+User-Agent: ClaudeBot
+Allow: /
+Disallow: /api/
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /teilen/
+Disallow: /anmelden
+Disallow: /konto-erstellen
+
+User-Agent: Google-Extended
+Disallow: /
+
+User-Agent: GPTBot
+Disallow: /
+
+User-Agent: CCBot
+Disallow: /
+
+Host: https://www.antragsbruder.de
+Sitemap: https://www.antragsbruder.de/sitemap.xml

@@ -84,6 +84,12 @@ export default async function ImpressumPage({ params }: { params: Promise<{ loca
           <LegalSection title={t.consumerDisputeHeading}>
             <p>{t.consumerDisputeText(site.name)}</p>
           </LegalSection>
+
+          {/* Abgrenzung unserer Tätigkeit (RDG/UWG): wesentliche Information,
+              die nach § 5a UWG nicht vorenthalten werden darf. */}
+          <LegalSection title={t.legalServiceHeading}>
+            <p>{t.legalServiceText}</p>
+          </LegalSection>
         </div>
       </Container>
     </section>

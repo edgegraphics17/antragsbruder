@@ -25,7 +25,7 @@ export const dict: Record<Locale, Dict> = {
     metaDescription: "Behördenbrief bekommen und nicht verstanden, worum es geht? Wir erklären ihn dir in normalem Deutsch, inklusive Fristenübersicht.",
     eyebrow: "Brief verstehen",
     heroTitle: "Verstehe deinen Behördenbrief in normalem Deutsch.",
-    heroLede: "Ein Brief vom Jobcenter, Sozialamt oder Finanzamt liest sich oft wie eine Fremdsprache. Du lädst ihn hoch, wir erklären dir, was drinsteht, was du tun musst und bis wann. Wie wir dich unterstützen können und was das kostet, klären wir vorher individuell mit dir.",
+    heroLede: "Ein Brief vom Jobcenter, Sozialamt oder Finanzamt liest sich oft wie eine Fremdsprache. Du lädst ihn hoch, wir erklären dir in einfachen Worten, was drinsteht und bis wann eine Reaktion erwartet wird. Eine rechtliche Bewertung deines Bescheids nehmen wir nicht vor – dafür nennen wir dir die zuständigen Stellen.",
     uploadButtonLabel: "Brief hochladen",
     whatWeShowTitle: "Was du bekommst",
     whatWeShowItems: [
@@ -55,7 +55,7 @@ export const dict: Record<Locale, Dict> = {
     metaDescription: "Got a letter from a German authority and can't make sense of it? We explain it in plain language, deadlines included.",
     eyebrow: "Understand your letter",
     heroTitle: "Understand your official letter in plain language.",
-    heroLede: "A letter from the Jobcenter, social services, or the tax office often reads like a foreign language. You upload it, we explain what it says, what you need to do, and by when. What we can do for you and what it costs — we clarify that individually beforehand.",
+    heroLede: "A letter from the Jobcenter, social services, or the tax office often reads like a foreign language. You upload it, we explain in plain words what it says and by when a reaction is expected. We do not assess your notice legally – for that we point you to the responsible places.",
     uploadButtonLabel: "Upload letter",
     whatWeShowTitle: "What you get",
     whatWeShowItems: [
@@ -85,7 +85,7 @@ export const dict: Record<Locale, Dict> = {
     metaDescription: "وصلتك رسالة من جهة رسمية ولم تفهم المقصود؟ نشرحها لك بلغة واضحة، مع نظرة عامة على المواعيد.",
     eyebrow: "افهم خطابك",
     heroTitle: "افهم خطابك الرسمي بلغة بسيطة.",
-    heroLede: "الرسالة من Jobcenter أو مكتب الشؤون الاجتماعية أو مصلحة الضرائب تبدو غالبًا كلغة أجنبية. ترفعها، ونحن نشرح لك مضمونها وما يجب أن تفعله وإلى أي تاريخ. وكيف يمكننا مساعدتك وما تكلفته، نتفق عليه مسبقًا وبشكل فردي.",
+    heroLede: "الرسالة من Jobcenter أو مكتب الشؤون الاجتماعية أو مصلحة الضرائب تبدو غالبًا كلغة أجنبية. ترفعها، ونشرح لك بكلمات بسيطة مضمونها ومتى يُتوقع ردّ. لا نُجري تقييمًا قانونيًا لخطابك – لذلك نذكر لك الجهات المختصة.",
     uploadButtonLabel: "ارفع الخطاب",
     whatWeShowTitle: "ما الذي تحصل عليه",
     whatWeShowItems: [
@@ -115,7 +115,7 @@ export const dict: Record<Locale, Dict> = {
     metaDescription: "Resmi bir kurumdan mektup aldın ve ne demek istediğini anlamadın mı? Sana sade bir dille açıklıyoruz, süre takibi dahil.",
     eyebrow: "Mektubunu anla",
     heroTitle: "Resmi mektubunu sade bir dille anla.",
-    heroLede: "İş Kurumu, Sosyal Hizmetler ya da Maliye'den gelen bir mektup çoğu zaman yabancı bir dilde yazılmış gibi görünür. Sen yüklersin, biz ne yazdığını, ne yapman gerektiğini ve son tarihini açıklarız. Sana nasıl destek olabileceğimizi ve maliyeti önceden birlikte netleştiririz.",
+    heroLede: "İş Kurumu, Sosyal Hizmetler ya da Maliye'den gelen mektup çoğu zaman yabancı bir dilde yazılmış gibi görünür. Sen yüklersin, biz sade sözcüklerle ne yazdığını ve ne zamana kadar yanıt beklendiğini açıklarız. Yazına hukuki bir değerlendirme yapmıyoruz – bunun için yetkili yerleri sana bildiririz.",
     uploadButtonLabel: "Mektup yükle",
     whatWeShowTitle: "Neler alıyorsun",
     whatWeShowItems: [
@@ -145,7 +145,7 @@ export const dict: Record<Locale, Dict> = {
     metaDescription: "Получили письмо из ведомства и не поняли, о чём оно? Мы объясним его понятным языком, включая обзор сроков.",
     eyebrow: "Поймите своё письмо",
     heroTitle: "Поймите официальное письмо на понятном языке.",
-    heroLede: "Письмо из Jobcenter, социальной службы или налоговой часто читается как текст на чужом языке. Вы загружаете его, мы объясняем, о чём оно, что нужно сделать и до какого срока. Чем мы можем помочь и сколько это стоит — обсуждаем с вами заранее.",
+    heroLede: "Письмо из Jobcenter, социальной службы или налоговой часто читается как текст на чужом языке. Вы загружаете его, мы простыми словами объясняем, о чём оно и к какому сроку ждут ответ. Правовую оценку вашего письма мы не делаем – для этого мы называем компетентные организации.",
     uploadButtonLabel: "Загрузить письмо",
     whatWeShowTitle: "Что вы получите",
     whatWeShowItems: [
@@ -175,7 +175,7 @@ export const dict: Record<Locale, Dict> = {
     metaDescription: "Отримали лист від відомства і не зрозуміли, про що він? Ми пояснимо його зрозумілою мовою, включно з оглядом термінів.",
     eyebrow: "Зрозумійте свій лист",
     heroTitle: "Зрозумійте офіційний лист зрозумілою мовою.",
-    heroLede: "Лист від Jobcenter, соціальної служби чи податкової часто читається як текст іншою мовою. Ви завантажуєте його, ми пояснюємо, про що він, що потрібно зробити і до якого терміну. Чим ми можемо допомогти і скільки це коштує — узгоджуємо заздалегідь.",
+    heroLede: "Лист від Jobcenter, соціальної служби чи податкової часто читається як текст чужою мовою. Ви завантажуєте його, ми простими словами пояснюємо, про що він і до якого терміну очікують відповідь. Правової оцінки вашого листа ми не робимо – для цього називаємо компетентні організації.",
     uploadButtonLabel: "Завантажити лист",
     whatWeShowTitle: "Що ви отримаєте",
     whatWeShowItems: [
@@ -205,7 +205,7 @@ export const dict: Record<Locale, Dict> = {
     metaDescription: "Dostałeś pismo z urzędu i nie wiesz, o co chodzi? Wyjaśnimy je prostym językiem, razem z przeglądem terminów.",
     eyebrow: "Zrozum swoje pismo",
     heroTitle: "Zrozum urzędowe pismo w prostym języku.",
-    heroLede: "Pismo z urzędu pracy, opieki społecznej czy urzędu skarbowego często czyta się jak w obcym języku. Przesyłasz je, a my wyjaśniamy, o co chodzi, co musisz zrobić i do kiedy. Jak możemy pomóc i ile to kosztuje – ustalamy wcześniej.",
+    heroLede: "Pismo z urzędu pracy, opieki społecznej czy urzędu skarbowego często czyta się jak w obcym języku. Przesyłasz je, a my prostymi słowami wyjaśniamy, o co chodzi i do kiedy oczekiwana jest reakcja. Nie oceniamy twojego pisma prawnie – w tym celu wskazujemy właściwe miejsca.",
     uploadButtonLabel: "Prześlij pismo",
     whatWeShowTitle: "Co dostajesz",
     whatWeShowItems: [
@@ -235,7 +235,7 @@ export const dict: Record<Locale, Dict> = {
     metaDescription: "Получи писмо от институция и не разбра за какво става дума? Обясняваме ти го на ясен език, включително преглед на сроковете.",
     eyebrow: "Разбери писмото си",
     heroTitle: "Разбери официалното писмо на ясен език.",
-    heroLede: "Писмо от Jobcenter, социалната служба или данъчната служба често звучи като на чужд език. Качваш го, а ние обясняваме за какво става дума, какво трябва да направиш и до кога. С какво можем да помогнем и какво струва това – уточняваме предварително.",
+    heroLede: "Писмо от Jobcenter, социалната служба или данъчната служба често звучи като на чужд език. Качваш го, а ние обясняваме с прости думи какво пише и до кога се очаква отговор. Не правим правна оценка на писмото ти – за това посочваме компетентните места.",
     uploadButtonLabel: "Качи писмо",
     whatWeShowTitle: "Какво получаваш",
     whatWeShowItems: [
@@ -265,7 +265,7 @@ export const dict: Record<Locale, Dict> = {
     metaDescription: "Ai primit o scrisoare de la o instituție și nu ai înțeles despre ce este vorba? Ți-o explicăm pe înțelesul tău, inclusiv termenele.",
     eyebrow: "Înțelege-ți scrisoarea",
     heroTitle: "Înțelege scrisoarea oficială pe înțelesul tău.",
-    heroLede: "O scrisoare de la Jobcenter, asistență socială sau administrația financiară sună adesea ca o limbă străină. O încarci, iar noi îți explicăm despre ce este vorba, ce trebuie să faci și până când. Cu ce te putem sprijini și cât costă – stabilim în avans.",
+    heroLede: "O scrisoare de la Jobcenter, asistență socială sau administrația financiară sună adesea ca o limbă străină. O încarci, iar noi îți explicăm pe înțeles despre ce este vorba și până când se așteaptă un răspuns. Nu facem o evaluare juridică a scrisorii tale – pentru asta îți indicăm instituțiile competente.",
     uploadButtonLabel: "Încarcă scrisoarea",
     whatWeShowTitle: "Ce primești",
     whatWeShowItems: [

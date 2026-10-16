@@ -18,6 +18,8 @@ export type Dict = {
   disputeTextAfter: string;
   consumerDisputeHeading: string;
   consumerDisputeText: (siteName: string) => string;
+  legalServiceHeading: string;
+  legalServiceText: string;
 };
 
 export const dict: Record<Locale, Dict> = {
@@ -37,6 +39,10 @@ export const dict: Record<Locale, Dict> = {
     disputeHeading: "EU-Streitschlichtung",
     disputeTextBefore: "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:",
     disputeTextAfter: ". Unsere E-Mail-Adresse findest du oben.",
+    legalServiceHeading: "Hinweis zur Tätigkeit",
+    legalServiceText:
+      "Antragsbruder ist kein Rechtsdienstleister im Sinne des Rechtsdienstleistungsgesetzes (RDG), keine Anwaltskanzlei und kein Sozialverband. Wir bieten allgemeine Informationen und organisatorische Unterstützung (z. B. Scannen, Sortieren, Fristenübersichten, Formulare nach deinen Vorgaben ausfüllen). Wir nehmen keine rechtliche Prüfung des Einzelfalls vor, erteilen keine Rechtsberatung und vertreten dich nicht gegenüber Behörden oder Gerichten. Für Rechtsfragen wende dich an eine zugelassene Rechtsanwältin oder einen zugelassenen Rechtsanwalt, einen Sozialverband oder die Beratung deines Leistungsträgers (§ 14 SGB I).",
+
     consumerDisputeHeading: "Verbraucherstreitbeilegung",
     consumerDisputeText: (siteName) =>
       `${siteName} ist nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.`,
@@ -57,6 +63,10 @@ export const dict: Record<Locale, Dict> = {
     disputeHeading: "EU dispute resolution",
     disputeTextBefore: "The European Commission provides a platform for online dispute resolution (ODR):",
     disputeTextAfter: ". You can find our email address above.",
+    legalServiceHeading: "Note on our services",
+    legalServiceText:
+      "Antragsbruder is not a legal services provider within the meaning of the German Legal Services Act (RDG), not a law firm and not a social association. We provide general information and organisational support (e.g. scanning, sorting, deadline overviews, filling in forms according to your instructions). We do not assess your individual case, do not give legal advice and do not represent you before authorities or courts. For legal questions please contact a licensed lawyer, a social association or the advice service of your benefit provider (§ 14 SGB I).",
+
     consumerDisputeHeading: "Consumer dispute resolution",
     consumerDisputeText: (siteName) =>
       `${siteName} is not willing and not obliged to participate in dispute resolution proceedings before a consumer arbitration board.`,
@@ -77,6 +87,10 @@ export const dict: Record<Locale, Dict> = {
     disputeHeading: "تسوية المنازعات على مستوى الاتحاد الأوروبي",
     disputeTextBefore: "توفر المفوضية الأوروبية منصة لتسوية المنازعات عبر الإنترنت (ODR):",
     disputeTextAfter: ". يمكنك إيجاد عنوان بريدنا الإلكتروني أعلاه.",
+    legalServiceHeading: "ملاحظة حول نشاطنا",
+    legalServiceText:
+      "Antragsbruder ليس مقدّم خدمات قانونية وفق قانون الخدمات القانونية الألماني (RDG)، وليس مكتب محاماة ولا جمعية اجتماعية. نقدّم معلومات عامة ودعمًا تنظيميًا (مثل المسح الضوئي، الترتيب، نظرة على المواعيد، وتعبئة الاستمارات حسب إرشاداتك). لا نجري مراجعة قانونية لحالتك، ولا نقدّم استشارة قانونية، ولا نمثّلك أمام الجهات أو المحاكم. للأسئلة القانونية يُرجى التواصل مع محامٍ مرخّص أو جمعية اجتماعية أو خدمة الإرشاد لدى جهة الدعم (§ 14 SGB I).",
+
     consumerDisputeHeading: "تسوية منازعات المستهلكين",
     consumerDisputeText: (siteName) =>
       `${siteName} غير مستعدة وغير ملزمة بالمشاركة في إجراءات تسوية النزاعات أمام هيئة تحكيم المستهلكين.`,
@@ -97,6 +111,10 @@ export const dict: Record<Locale, Dict> = {
     disputeHeading: "AB uyuşmazlık çözümü",
     disputeTextBefore: "Avrupa Komisyonu, çevrimiçi uyuşmazlık çözümü (ODR) için bir platform sunmaktadır:",
     disputeTextAfter: ". E-posta adresimizi yukarıda bulabilirsiniz.",
+    legalServiceHeading: "Faaliyetimize dair not",
+    legalServiceText:
+      "Antragsbruder, Alman Hukuki Hizmetler Kanunu (RDG) anlamında hukuki hizmet sağlayıcı değildir, avukatlık bürosu ve sosyal dernek de değildir. Genel bilgi ve organizasyonel destek sunuyoruz (örn. tarama, sıralama, süre özetleri, senin talimatlarınla form doldurma). Senin durumun için hukuki inceleme yapmıyor, hukuki danışmanlık vermiyor ve kurumlar veya mahkemeler önünde seni temsil etmiyoruz. Hukuki sorular için ruhsatlı bir avukata, bir sosyal derneğe veya kurumunun danışma hizmetine başvur (§ 14 SGB I).",
+
     consumerDisputeHeading: "Tüketici uyuşmazlık çözümü",
     consumerDisputeText: (siteName) =>
       `${siteName}, tüketici hakem heyeti önündeki uyuşmazlık çözüm süreçlerine katılmaya hazır değildir ve katılmakla yükümlü değildir.`,
@@ -117,6 +135,10 @@ export const dict: Record<Locale, Dict> = {
     disputeHeading: "Урегулирование споров ЕС",
     disputeTextBefore: "Европейская комиссия предоставляет платформу для онлайн-урегулирования споров (ODR):",
     disputeTextAfter: ". Наш адрес электронной почты указан выше.",
+    legalServiceHeading: "Примечание о нашей деятельности",
+    legalServiceText:
+      "Antragsbruder не является поставщиком юридических услуг по смыслу немецкого закона о юридических услугах (RDG), не является адвокатским бюро или социальным объединением. Мы предоставляем общую информацию и организационную помощь (например, сканирование, сортировку, обзор сроков, заполнение формуляров по вашим указаниям). Мы не проводим правовую проверку вашего случая, не даём юридических консультаций и не представляем вас в ведомствах или судах. По юридическим вопросам обращайтесь к адвокату с лицензией, в социальное объединение или в консультацию вашего ведомства (§ 14 SGB I).",
+
     consumerDisputeHeading: "Урегулирование потребительских споров",
     consumerDisputeText: (siteName) =>
       `${siteName} не готова и не обязана участвовать в процедурах разрешения споров перед органом по урегулированию потребительских споров.`,
@@ -137,6 +159,10 @@ export const dict: Record<Locale, Dict> = {
     disputeHeading: "Врегулювання спорів ЄС",
     disputeTextBefore: "Європейська комісія надає платформу для онлайн-врегулювання спорів (ODR):",
     disputeTextAfter: ". Нашу електронну адресу ви знайдете вище.",
+    legalServiceHeading: "Примітка про нашу діяльність",
+    legalServiceText:
+      "Antragsbruder не є надавачем юридичних послуг у розумінні німецького закону про юридичні послуги (RDG), не є адвокатським бюро чи соціальним об'єднанням. Ми надаємо загальну інформацію та організаційну допомогу (наприклад, сканування, сортування, огляд термінів, заповнення формулярів за вашими вказівками). Ми не проводимо правової перевірки вашої справи, не надаємо юридичних консультацій і не представляємо вас в установах чи судах. З юридичних питань звертайтеся до ліцензованого адвоката, соціального об'єднання або консультації вашої установи (§ 14 SGB I).",
+
     consumerDisputeHeading: "Врегулювання споживчих спорів",
     consumerDisputeText: (siteName) =>
       `${siteName} не готова і не зобов'язана брати участь у процедурах врегулювання спорів перед органом із розгляду споживчих спорів.`,
@@ -157,6 +183,10 @@ export const dict: Record<Locale, Dict> = {
     disputeHeading: "Rozstrzyganie sporów UE",
     disputeTextBefore: "Komisja Europejska udostępnia platformę internetowego rozstrzygania sporów (ODR):",
     disputeTextAfter: ". Nasz adres e-mail znajduje się powyżej.",
+    legalServiceHeading: "Uwaga o naszej działalności",
+    legalServiceText:
+      "Antragsbruder nie jest dostawcą usług prawnych w rozumieniu niemieckiej ustawy o usługach prawnych (RDG), nie jest kancelarią adwokacką ani organizacją społeczną. Zapewniamy ogólne informacje i wsparcie organizacyjne (np. skanowanie, porządkowanie, przegląd terminów, wypełnianie formularzy według twoich wskazówek). Nie badamy twojej indywidualnej sprawy, nie udzielamy porad prawnych i nie reprezentujemy cię przed urzędami ani sądami. W sprawach prawnych zwróć się do licencjonowanego adwokata, organizacji społecznej lub poradni twojego urzędu (§ 14 SGB I).",
+
     consumerDisputeHeading: "Rozstrzyganie sporów konsumenckich",
     consumerDisputeText: (siteName) =>
       `${siteName} nie jest gotowa ani zobowiązana do udziału w postępowaniach rozwiązywania sporów konsumenckich przed organem polubownym.`,
@@ -177,6 +207,10 @@ export const dict: Record<Locale, Dict> = {
     disputeHeading: "Уреждане на спорове на ЕС",
     disputeTextBefore: "Европейската комисия предоставя платформа за онлайн уреждане на спорове (ODR):",
     disputeTextAfter: ". Нашият имейл адрес можете да намерите по-горе.",
+    legalServiceHeading: "Бележка за дейността ни",
+    legalServiceText:
+      "Antragsbruder не е доставчик на правни услуги по смисъла на германския Закон за правните услуги (RDG), не е адвокатска кантора и не е социално сдружение. Предоставяме обща информация и организационна подкрепа (напр. сканиране, подреждане, преглед на срокове, попълване на формуляри по твои указания). Не извършваме правна проверка на твоя случай, не даваме правни съвети и не те представляваме пред институции или съдилища. За правни въпроси се обърни към лицензиран адвокат, социално сдружение или консултацията на институцията ти (§ 14 SGB I).",
+
     consumerDisputeHeading: "Уреждане на потребителски спорове",
     consumerDisputeText: (siteName) =>
       `${siteName} не е готова и не е задължена да участва в процедури за разрешаване на спорове пред орган за уреждане на потребителски спорове.`,
@@ -197,6 +231,10 @@ export const dict: Record<Locale, Dict> = {
     disputeHeading: "Soluționarea litigiilor la nivelul UE",
     disputeTextBefore: "Comisia Europeană pune la dispoziție o platformă pentru soluționarea online a litigiilor (SOL):",
     disputeTextAfter: ". Adresa noastră de e-mail o găsești mai sus.",
+    legalServiceHeading: "Notă privind activitatea noastră",
+    legalServiceText:
+      "Antragsbruder nu este furnizor de servicii juridice în sensul Legii germane privind serviciile juridice (RDG), nu este cabinet de avocatură și nu este asociație socială. Oferim informații generale și sprijin organizatoric (de ex. scanare, sortare, prezentare de termene, completarea formularelor după indicațiile tale). Nu analizăm cazul tău individual, nu oferim consultanță juridică și nu te reprezentăm în fața instituțiilor sau instanțelor. Pentru întrebări juridice adresează-te unui avocat autorizat, unei asociații sociale sau consilierii instituției tale (§ 14 SGB I).",
+
     consumerDisputeHeading: "Soluționarea litigiilor cu consumatorii",
     consumerDisputeText: (siteName) =>
       `${siteName} nu este dispusă și nu este obligată să participe la proceduri de soluționare a litigiilor în fața unei entități de arbitraj a consumatorilor.`,

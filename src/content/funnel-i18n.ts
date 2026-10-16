@@ -149,7 +149,7 @@ export const funnelDict: Dict = {
       "Was sollten wir wissen? Verlauf, Fristen, was du schon versucht hast. Bitte ohne Diagnosen, Atteste oder Ausweisnummern.",
     wishLabel: "Wie möchtest du weiterkommen?",
     wish: {
-      einschaetzung: "Erstmal eine Einschätzung, was ich tun kann",
+      einschaetzung: "Erstmal wissen, ob und wie ihr helfen könnt",
       unterstuetzung: "Ich möchte, dass ihr das für mich übernehmt",
     },
     wishHint:
@@ -265,7 +265,7 @@ export const funnelDict: Dict = {
       "What should we know? History, deadlines, what you have already tried. Please without diagnoses, medical certificates or ID numbers.",
     wishLabel: "How would you like to proceed?",
     wish: {
-      einschaetzung: "First an assessment of what I can do",
+      einschaetzung: "First find out whether and how you can help",
       unterstuetzung: "I'd like you to take this over for me",
     },
     wishHint:
@@ -381,7 +381,7 @@ export const funnelDict: Dict = {
       "ما الذي يجب أن نعرفه؟ مسار الحالة، المواعيد، ما جرّبته من قبل. يُرجى دون تشخيصات طبية أو شهادات أو أرقام هوية.",
     wishLabel: "كيف تود أن تستمر؟",
     wish: {
-      einschaetzung: "أريد أولًا تقديرًا لما يمكنني فعله",
+      einschaetzung: "أعرف أولًا إن كان يمكنكم المساعدة وكيف",
       unterstuetzung: "أريد أن تتولوا الأمر عني",
     },
     wishHint:
@@ -497,7 +497,7 @@ export const funnelDict: Dict = {
       "Neyi bilmemiz gerekiyor? Süreç, süreler, şimdiye kadar denediklerin. Lütfen tanı, sağlık raporu veya kimlik numarası olmadan.",
     wishLabel: "Nasıl devam etmek istersin?",
     wish: {
-      einschaetzung: "Önce ne yapabileceğime dair bir değerlendirme",
+      einschaetzung: "Önce yardım edip edemeyeceğinizi ve nasıl edebileceğinizi bilmek",
       unterstuetzung: "Bunu benim adıma sizin yürütmenizi istiyorum",
     },
     wishHint:
@@ -613,7 +613,7 @@ export const funnelDict: Dict = {
       "Что нам стоит знать? История, сроки, что вы уже пробовали. Пожалуйста, без диагнозов, заключений и номеров документов.",
     wishLabel: "Как вы хотите продолжить?",
     wish: {
-      einschaetzung: "Сначала оценка того, что я могу сделать",
+      einschaetzung: "Сначала узнать, можете ли вы помочь и как",
       unterstuetzung: "Хочу, чтобы вы взяли это на себя",
     },
     wishHint:
@@ -729,7 +729,7 @@ export const funnelDict: Dict = {
       "Що нам варто знати? Перебіг справи, строки, що ви вже пробували. Будь ласка, без діагнозів, висновків і номерів документів.",
     wishLabel: "Як ви хочете продовжити?",
     wish: {
-      einschaetzung: "Спочатку оцінка того, що я можу зробити",
+      einschaetzung: "Спочатку дізнатися, чи можете ви допомогти і як",
       unterstuetzung: "Хочу, щоб ви взяли це на себе",
     },
     wishHint:
@@ -845,7 +845,7 @@ export const funnelDict: Dict = {
       "Co powinniśmy wiedzieć? Przebieg sprawy, terminy, czego już próbowałeś. Prosimy bez diagnoz, zaświadczeń i numerów dokumentów.",
     wishLabel: "Jak chcesz to poprowadzić?",
     wish: {
-      einschaetzung: "Najpierw ocena, co mogę zrobić",
+      einschaetzung: "Najpierw dowiedzieć się, czy i jak możecie pomóc",
       unterstuetzung: "Chcę, żebyście przejęli to za mnie",
     },
     wishHint:
@@ -961,7 +961,7 @@ export const funnelDict: Dict = {
       "Какво трябва да знаем? Развитие, срокове, какво вече сте опитвали. Моля, без диагнози, удостоверения и номера на документи.",
     wishLabel: "Как искате да продължим?",
     wish: {
-      einschaetzung: "Първо оценка какво мога да направя",
+      einschaetzung: "Първо да разбера дали и как можете да помогнете",
       unterstuetzung: "Искам вие да поемете случая",
     },
     wishHint:
@@ -1077,7 +1077,7 @@ export const funnelDict: Dict = {
       "Ce ar trebui să știm? Desfășurare, termene, ce ai încercat deja. Te rugăm fără diagnostice, certificate și numere de documente.",
     wishLabel: "Cum vrei să continuăm?",
     wish: {
-      einschaetzung: "Mai întâi o evaluare a ce pot face",
+      einschaetzung: "Mai întâi să aflu dacă și cum puteți ajuta",
       unterstuetzung: "Aș vrea să preluați voi acest lucru",
     },
     wishHint:

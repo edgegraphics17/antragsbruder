@@ -1,0 +1,582 @@
+[
+ {
+  "path": "/datenbank/adoption",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/agrarf\u00f6rderung-gak",
+  "status": 404
+ },
+ {
+  "path": "/datenbank/alleinerziehendenentlastungsbetrag",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/altersrente",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/anerkennung_abschluss",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/arbeitnehmerf\u00f6rderung",
+  "status": 404
+ },
+ {
+  "path": "/datenbank/arbeitslosengeld-i",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/arbeitsmarktzugang",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/arbeitsmedizinische_vorsorge",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/assistenz",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/aufenthaltstitel_arbeit",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/aufstiegsbafoeg",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/aufstiegsfortbildung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/ausbildungsf\u00f6rderung",
+  "status": 404
+ },
+ {
+  "path": "/datenbank/auslandsbafoeg",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/au\u00dfergew\u00f6hnliche_belastungen",
+  "status": 404
+ },
+ {
+  "path": "/datenbank/avgs-vermittlungsgutschein",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/bafoeg",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/barrierefrei_umbauen",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/belastungsgrenze-zuzahlung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/beratung_migranten",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/berufliche_reha",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/berufseinstieg",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/beschaeftigungsf\u00f6rderung",
+  "status": 404
+ },
+ {
+  "path": "/datenbank/betriebliche-altersvorsorge",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/betriebsberatung-landwirtschaft",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/bildungskredit_kfw",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/bildungspaket",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/biologischer-bau-foerderung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/buergergeld",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/bundesfreiwilligendienst",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/deutschkurs",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/digitalbonus",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/duldung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/ehegattensplitting",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/eigentumsfoerderung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/einstiegsgeld",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/elektromobilitaet-foerderung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/elterngeld",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/elternzeit",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/energieeffizienz-foerderung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/energiesanierung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/energieschuldenberatung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/entlastungsleistungen",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/erneuerbare-energien-eeg",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/erp-gruenderkredit-nachfolge",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/erwerbsminderungsrente",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/exist-gruenderstipendium",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/existenzgruenderkredit",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/existenzgruendung-landwirtschaft",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/familienleistungen_steuer",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/familienpflegezeit",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/familiezusammenf\u00fchrung",
+  "status": 404
+ },
+ {
+  "path": "/datenbank/festzuschuss-zahnersatz",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/forschungszulage",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/forstwirtschaft-foerderung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/gebaeude-daemmung-foerderung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/geburt",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/gruendercoaching",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/gruendungszuschuss",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/grundrente",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/grundsicherung-arbeitsuchende",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/haeusliche-krankenpflege",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/handwerkerleistungen",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/haushaltshilfe_pauschbetrag",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/haushaltsnahe_dienstleistungen",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/heilmittel",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/heizungstausch-foerderung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/hilfsmittel",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/hinterbliebenenleistungen",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/hinterbliebenenrente",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/humanit\u00e4rer_aufnahme",
+  "status": 404
+ },
+ {
+  "path": "/datenbank/industriekammerausbildung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/insolvenzgeld",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/integrationskurs",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/investitionszuschuss",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/junglandwirte-einkommensstuetzung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/kfw-unternehmerkredit",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/kindererziehungszeiten",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/kinderfreibetrag",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/kinderfr\u00fchf\u00f6rderung",
+  "status": 404
+ },
+ {
+  "path": "/datenbank/kindergeld",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/kinderzuschlag",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/kirchensteuer",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/klimaschutz-beratung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/krankenfahrkosten",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/krankengeld",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/kurzarbeitergeld",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/kurzzeitpflege",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/landwirtschaft-investitionen",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/lastenzuschuss",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/medizinische_versorgung_fl\u00fcchtlinge",
+  "status": 404
+ },
+ {
+  "path": "/datenbank/mietpreisbremse",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/mietzuschuss",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/mindestlohn",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/mutschutz",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/mutterschaftsgeld",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/mutterschaftsvorsorge",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/neubau_zuschuss",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/pflegebeihilfe",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/pflegeberatung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/pflegegeld",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/pflegesachleistungen",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/pflegezeitgeld",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/photovoltaik-foerderung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/praktika",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/psychotherapie",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/qualifizierungschancengesetz",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/reha",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/rehabilitation",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/rentenberatung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/riester-rente",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/ruerup-rente",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/sanierung_zuschuss",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/schangerschaftsleistungen",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/schulgelbefreiung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/schutzsuchende",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/schwerbehinderung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/solarthermie-foerderung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/sonderausgaben",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/sozialhilfe",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/sozialversicherung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/spendenabzug",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/staatsbuergerschaft",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/steuer_familie",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/steuerberatungskosten",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/stipendien",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/teilhabe",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/tierhaltung-umbau",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/umschulung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/umweltprogramme-fakt",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/unterhalt",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/unterhaltsvorschuss",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/verhinderungspflege",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/vollstation\u00e4re_pflege",
+  "status": 404
+ },
+ {
+  "path": "/datenbank/vormundschaft",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/waermepumpe-foerderung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/weiterbildung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/weiterbildungsfoerderung",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/werbungskosten",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/wirtschaftliche_rehabilitation",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/wohnberechtigungsschein",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/wohngeld",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/wohngeld_alleinerziehende",
+  "status": 200
+ },
+ {
+  "path": "/datenbank/wohnraumfoerderung",
+  "status": 200
+ }
+]

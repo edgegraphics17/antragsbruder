@@ -1,0 +1,152 @@
+[
+ {
+  "target": "https://www.antragsbruder.de/alg1",
+  "status": "200",
+  "final": "https://www.antragsbruder.de/anmelden?next=%2Falg1",
+  "sources": 36
+ },
+ {
+  "target": "https://www.antragsbruder.de/ar/alg1",
+  "status": "200",
+  "final": "https://www.antragsbruder.de/ar/anmelden?next=%2Far%2Falg1",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/ar/blog",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/ar/blog",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/ar/wohngeld",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/ar/wohngeld",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/bg/alg1",
+  "status": "200",
+  "final": "https://www.antragsbruder.de/bg/anmelden?next=%2Fbg%2Falg1",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/bg/blog",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/bg/blog",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/bg/wohngeld",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/bg/wohngeld",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/en/alg1",
+  "status": "200",
+  "final": "https://www.antragsbruder.de/en/anmelden?next=%2Fen%2Falg1",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/en/blog",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/en/blog",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/en/wohngeld",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/en/wohngeld",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/pl/alg1",
+  "status": "200",
+  "final": "https://www.antragsbruder.de/pl/anmelden?next=%2Fpl%2Falg1",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/pl/blog",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/pl/blog",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/pl/wohngeld",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/pl/wohngeld",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/ro/alg1",
+  "status": "200",
+  "final": "https://www.antragsbruder.de/ro/anmelden?next=%2Fro%2Falg1",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/ro/blog",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/ro/blog",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/ro/wohngeld",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/ro/wohngeld",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/ru/alg1",
+  "status": "200",
+  "final": "https://www.antragsbruder.de/ru/anmelden?next=%2Fru%2Falg1",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/ru/blog",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/ru/blog",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/ru/wohngeld",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/ru/wohngeld",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/tr/alg1",
+  "status": "200",
+  "final": "https://www.antragsbruder.de/tr/anmelden?next=%2Ftr%2Falg1",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/tr/blog",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/tr/blog",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/tr/wohngeld",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/tr/wohngeld",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/uk/alg1",
+  "status": "200",
+  "final": "https://www.antragsbruder.de/uk/anmelden?next=%2Fuk%2Falg1",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/uk/blog",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/uk/blog",
+  "sources": 21
+ },
+ {
+  "target": "https://www.antragsbruder.de/uk/wohngeld",
+  "status": "404",
+  "final": "https://www.antragsbruder.de/uk/wohngeld",
+  "sources": 21
+ }
+]
