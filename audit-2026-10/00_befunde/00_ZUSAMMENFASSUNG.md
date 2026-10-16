@@ -25,7 +25,7 @@ Zwei Commits, jeweils verifiziert (tsc, Lint, 198/198 Tests, Build):
 - Tote Dateien mit Preis-/Pakettexten gelöscht: `pricing.ts`, `preise-i18n.ts`, `wohngeld-antrag-i18n.ts`, `KontaktForm`, `SimpleContactForm`, `IntakeForm`.
 - Kontakt-Funnel auf `/kontakt` (3 Schritte, 9 Sprachen) + `POST /api/anfrage` (zod-validiert, rate-limitiert, mailt an den Betreiber, **speichert nichts**; ohne konfigurierten Versand Rückfallebene E-Mail-Programm statt stillem Verlust).
 - Hilfe-Band auf allen Ratgeber-/Cluster-Seiten: erst informieren, dann Unterstützung anbieten.
-- SEO-Nebenfixes: Sitemap-Duplikat entfernt, Redirect-URLs aus der Sitemap, DE-only-Seiten ohne fremdsprachige hreflang-Alternates; Lint-Fehler in `WohngeldFlow.tsx` behoben.
+- SEO-Nebenfixes: Sitemap-Duplikat entfernt, Redirect-URLs aus der Sitemap, DE-only-Seiten ohne fremdsprachige hreflang-Alternates; Lint-Fehler in `WohngeldFlow.tsx` behoben; `/redaktion`-Seiten in der Sitemap auf Deutsch begrenzt (vorher 24 × 404 an Google); Umleitungen von temporär (307) auf dauerhaft umgestellt.
 
 **`854b819` — Rechtskonformität nach RDG-Gutachten** (siehe Abschnitt 2)
 
@@ -82,9 +82,19 @@ Aus `01_seo/technischer_seo_audit.md` (Live-Crawl, 228 Sitemap-URLs):
 | 6 | `lastmod` ist in der ganzen Sitemap identisch → Google wertet es als bedeutungslos | **offen** (P2) |
 | 7 | Redirect-URLs in der Sitemap (`/hilfe-starten`, Duplikat `/wohngeld/beantragen`) und DE-only-Seiten mit fremdsprachigen hreflang-Alternates | **behoben** in `85544a4` |
 | 8 | `/anmelden`, `/konto-erstellen` sind per robots.txt ausgeschlossen, aber indexiert | **offen** (P2, braucht noindex) |
-| 9 | 0 von 204 Seiten tragen `noindex` — Impressum/Datenschutz/AGB sollten in die Sitemap (Vertrauensseiten), Dashboard/404 nicht | teilweise bereits gelöst, Rest **offen** (P2) |
+| 9 | **Umleitungen waren temporär (307)** → Google behält die Alt-URLs (`/preise`, `/hilfe-starten?anliegen=antrag`) inklusive Preis-Snippets im Index | **behoben** (`permanentRedirect`) |
+| 10 | `/alg1`, `/sicherheit`, `/was-wir-nicht-sind` und 135 `/datenbank/<leistung>`-Seiten fehlen in der Sitemap | **offen** (P1) |
+| 11 | 0 von 204 Seiten tragen `noindex` — Impressum/Datenschutz/AGB sollten in die Sitemap (Vertrauensseiten), Dashboard/404 nicht | teilweise bereits gelöst, Rest **offen** (P2) |
 
-Die Backlink-Bilanz (`01_seo/backlinks_und_erwaehnungen.md`) fehlt noch: Dieser Prüfstrang läuft zum Zeitpunkt dieses Berichts weiter. Solange sie fehlt, ist **nicht belegt**, welche externen Links auf `/preise`, `/hilfe-starten` oder `/wohngeld/antrag` zeigen — die Umleitungen für diese drei sind deshalb bewusst als Route erhalten geblieben (Altlinks laufen nicht ins Leere).
+### Backlink-Bilanz: **null externe Backlinks**
+
+Der Prüfstrang ist abgeschlossen (`01_seo/backlinks_und_erwaehnungen.md`, 13 Query-Varianten: Domain, Markenwort, Alt-URLs `/preise` `/hilfe-starten` `/wohngeld/antrag` `/antrag-vorbereiten`, dazu Reddit/X/Foren/Kleinanzeigen/Verzeichnisse):
+
+**Ergebnis: 0 externe Backlinks, 0 Marken-Erwähnungen.** Es existiert praktisch kein externer Link-Graph auf antragsbruder.de.
+
+Das ist die direkte Antwort auf die Ausgangssorge („wir haben so viele Backlinks auf unser Angebot") — sie trifft **nicht** zu. Es gibt also **keine externen Links, die durch das Entfernen der Preise kaputtgehen könnten**. Einschränkung: Der Suchindex des Prüfwerkzeugs ist schwächer als Google; für eine letzte Bestätigung wäre der Linkindex der Search Console zu prüfen (offen, P1). `/preise`, `/hilfe-starten` und `/wohngeld/antrag` bleiben trotzdem als Route erhalten — kostenlose Absicherung.
+
+**Aber:** Die **Alt-URLs sind bei Google noch mit Preis-Snippets indexiert** (z. B. `/en/antrag-vorbereiten` mit „€79–149" im Title). Das räumt sich erst mit dem nächsten Crawl — Titel/Description sind im Code bereits preisfrei, Sitemap-Neusubmit beschleunigt es. Zusätzlich waren die Umleitungen **temporär (307)**, wodurch Google die Alt-URLs im Index behält. Alle drei Umleitungen sind jetzt auf **dauerhaft (`permanentRedirect`)** umgestellt.
 
 ---
 
@@ -110,7 +120,7 @@ Aus `03_technik/code_und_sicherheit_audit.md`:
 **P0 — vor dem nächsten Launch zu klären (kein Code):**
 1. **Steuer-/Gewerbelage Malaysia ↔ Deutschland**: Ob die Leistung an deutsche Verbraucher im Inland umsatzsteuerpflichtig ist (§ 3a Abs. 5 Nr. 3 UStG, elektronisch erbrachte Leistung → Ort beim Empfänger; 10.000-€-Schwelle gilt für Drittlandsunternehmer nicht), ob eine Gewerbeanzeige nach § 14 GewO nötig ist und wie die MY-Seite (Sales/Service Tax) aussieht — **mit Steuerberater klären**. Das Gutachten stuft das ausdrücklich als offen/streitig ein.
 2. **Anwaltliches Gegenlesen** der neuen Website-Texte, der AGB-Preis-/Widerrufsklauseln und der RDG-Abgrenzung vor Veröffentlichung (RDG/UWG).
-3. **Backlink-Bilanz** fertigstellen und danach prüfen, ob `/preise`, `/hilfe-starten`, `/wohngeld/antrag` als Route bleiben oder anders behandelt werden.
+3. **GSC-Linkindex gegenprüfen** (letzte Bestätigung der Null-Backlink-Bilanz) und nach dem nächsten Crawl prüfen, ob die Preis-Snippets der Alt-URLs verschwunden sind.
 
 **P1 — inhaltlich nachziehen:**
 4. **Widerrufsprozess** sauber aufsetzen: Widerrufsbelehrung (14 Tage, § 355 BGB) im Angebot mitschicken und die Zustimmung zum Erlöschen des Widerrufsrechts **gesondert und nicht vorangehakt** einholen, wenn die Leistung vor Ablauf erbracht wird.

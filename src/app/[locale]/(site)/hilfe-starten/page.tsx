@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 import { locales, isLocale, defaultLocale, localeHref, type Locale } from "@/i18n/config";
 
 export function generateStaticParams() {
@@ -24,5 +24,5 @@ export default async function HilfeStartenPage({
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
   const target = localeHref(locale, "/kontakt");
   const query = sp.anliegen ? `?anliegen=${encodeURIComponent(sp.anliegen)}` : "";
-  redirect(`${target}${query}`);
+  permanentRedirect(`${target}${query}`);
 }

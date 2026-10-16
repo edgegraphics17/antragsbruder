@@ -1,0 +1,208 @@
+{
+ "meta": {
+  "domaene": "https://www.antragsbruder.de",
+  "datum": "2026-10-16",
+  "methode": "curl/urllib mit Chrome-UA; 228 Sitemap-URLs gecrawlt; HTML+Header in raw/, Kennzahlen nach Entfernen von <script> (Next.js RSC-Payload), daher keine Payload-Duplikat-Artefakte",
+  "rohdaten": "raw/ (html/, meta/, urls.csv, sitemap.xml, robots.txt, aggregates.json, hreflang_dangling.json, hreflang_target_probe.json, price_hits.json, datenbank_details.json, unlisted_target_probe.json, trust_*.txt, tabelle_de.md)",
+  "berichte_md": "audit-2026-10/01_seo/LIVE_CRAWL_BEFUNDE.md + raw/tabelle_de.md"
+ },
+ "sitemap": {
+  "typ": "flache urlset XML, kein gzip, kein Index",
+  "url_anzahl": 228,
+  "lastmod": "alle 228 identisch 2026-10-11T23:28:57.603Z (Build-Zeitstempel, nicht pfadbezogen, stale gegen Deploy vom 2026-10-16)",
+  "hreflang_gruppen": "10 xhtml:link pro Eintrag",
+  "phantom_urls": 24,
+  "redirect_urls_gelistet": 9,
+  "unvollstaendig": "fehlt komplett: 135 /datenbank-Details, /alg1, /sicherheit, /was-wir-nicht-sind"
+ },
+ "robots_txt": {
+  "disallow": [
+   "/api/",
+   "/dashboard",
+   "/admin",
+   "/teilen/",
+   "/anmelden",
+   "/konto-erstellen"
+  ],
+  "ccbot": "vollstaendig disallowed",
+  "sitemap_zeile": "vorhanden"
+ },
+ "crawl_status": {
+  "urls": 228,
+  "http_200": 204,
+  "http_404": 24,
+  "http_307_kette": 9,
+  "404_detail": "nur /redaktion, /redaktion/quellenstandard, /redaktion/redaktionsrichtlinien in den 8 Nicht-de-Locales (de-only, trotzdem gespiegelt gelistet)",
+  "307_detail": "/hilfe-starten x9 Locales -> /kontakt; zusaetzlich /preise -> /kontakt 307 (nicht in Sitemap); /admin -> /dashboard -> /anmelden (2 Hops); /api/health -> 404"
+ },
+ "befunde": [
+  {
+   "id": 1,
+   "kategorie": "sitemap",
+   "severity": "HOCH",
+   "befund": "24 Sitemap-URLs liefern 404 (/redaktion x8 Locale-Spiegel)",
+   "beleg": "GET alle 24; raw/analysis.json status-Feld"
+  },
+  {
+   "id": 2,
+   "kategorie": "sitemap",
+   "severity": "MITTEL",
+   "befund": "Sitemap listet 9 307-Weiterleitungen (/hilfe-starten), fuehrt 135 live /datenbank-Details und /alg1 nicht",
+   "beleg": "redirect_chain in raw/meta/*.json; raw/datenbank_details.json 135x200"
+  },
+  {
+   "id": 3,
+   "kategorie": "lastmod",
+   "severity": "MITTEL",
+   "befund": "einheitliches lastmod 2026-10-11T23:28:57.603Z fuer alle 228 URLs (Build-Zeitstempel, nicht Seiten-Aenderung, aelter als letzter Deploy)",
+   "beleg": "xml-Parse raw/sitemap.xml"
+  },
+  {
+   "id": 4,
+   "kategorie": "hreflang",
+   "severity": "HOCH",
+   "befund": "120 haengende hreflang-Ziele: 15 de-only-Pfade (wohngeld-Pillar+4 Sub, bafoeg-Pillar+5 Sub, blog, redaktion x3) veroeffentlichen je 8 Locale-Alternates, die 404 sind; Reziprozitaet fehlt",
+   "beleg": "raw/hreflang_dangling.json, Probe raw/hreflang_target_probe.json"
+  },
+  {
+   "id": 5,
+   "kategorie": "hreflang/canonical",
+   "severity": "MITTEL",
+   "befund": "18 Seiten ohne hreflang UND ohne canonical: /datenbank und /navigator in allen 9 Locales; zusaetzlich alle /datenbank-Details ohne canonical",
+   "beleg": "raw/urls.csv Spalten canonical/hreflang"
+  },
+  {
+   "id": 6,
+   "kategorie": "meta",
+   "severity": "MITTEL",
+   "befund": "Startseite (alle 9 Locales) ohne meta description, ohne og:description, ohne twitter:description im ausgelieferten Head",
+   "beleg": "home.html head-Metas: nur viewport/og:title/og:url/og:site_name/og:locale/og:type/twitter:card/twitter:title"
+  },
+  {
+   "id": 7,
+   "kategorie": "meta",
+   "severity": "MITTEL",
+   "befund": "og:image und twitter:image auf 0/228 Seiten, obwohl twitter:card=summary_large_image deklariert",
+   "beleg": "Head-Grep alle raw/html"
+  },
+  {
+   "id": 8,
+   "kategorie": "title",
+   "severity": "MITTEL",
+   "befund": "Home-Title dupliziert auf /datenbank und /navigator (je x9 Locales, markup-bereinigt echter Duplikat); /sicherheit und /was-wir-nicht-sind duplizieren /wer-wir-sind-Title",
+   "beleg": "raw/urls.csv title-Spalte; live-Head-Probe"
+  },
+  {
+   "id": 9,
+   "kategorie": "heading",
+   "severity": "MITTEL",
+   "befund": "/navigator ohne H1 (nur H2) in allen 9 Locales; 116 Woerter; alle uebrigen 200-Seiten genau 1 H1",
+   "beleg": "raw/urls.csv h1-Feld"
+  },
+  {
+   "id": 10,
+   "kategorie": "duenn",
+   "severity": "MITTEL",
+   "befund": "81/204 Seiten unter 300 Woertern; deutsche Duenne: ansprueche-checken 161, impressum 147, kontakt 162, navigator 116, papierkram-ordnen 264, redaktion 231, quellenstandard 185, redaktionsrichtlinien 264, unterlagen-check 260",
+   "beleg": "raw/urls.csv words (nach Script-Strip)"
+  },
+  {
+   "id": 11,
+   "kategorie": "waisen",
+   "severity": "HOCH",
+   "befund": "/antrag-vorbereiten, /papierkram-ordnen, /navigator von KEINER Seite verlinkt (auch nicht im RSC-Payload); /brief-verstehen und /unterlagen-check nur aus 3, /wohngeld/antrag nur aus 5 wohngeld-Seiten",
+   "beleg": "href-Grep ueber alle raw/html inkl. Payload"
+  },
+  {
+   "id": 12,
+   "kategorie": "kaputte-links",
+   "severity": "HOCH",
+   "befund": "Navigation/Links auf 16 Locale-Pfade die 404 sind: /en|ar|tr|ru|uk|pl|bg|ro/wohngeld und /blog (je aus 21 Seiten verlinkt); 10 /datenbank-Sluglinks mit Umlauten/Eszett 404 (135/145 ok); /alg1 (Footer+Nav, 36 Seiten) leitet auf /anmelden?next=/alg1 (Login-Gate statt Rechner)",
+   "beleg": "raw/unlisted_target_probe.json, raw/datenbank_details.json"
+  },
+  {
+   "id": 13,
+   "kategorie": "indexierung",
+   "severity": "NIEDRIG",
+   "befund": "/anmelden und /konto-erstellen liefern 200 OHNE meta noindex (nur robots.txt-Disallow); /teilen/<id> korrekt noindex,nofollow; 404-Seite korrekt noindex + echter 404-Code + branded",
+   "beleg": "live-Probe robots-meta"
+  },
+  {
+   "id": 14,
+   "kategorie": "bilder",
+   "severity": "OK",
+   "befund": "850 img-Tags, 0 ohne alt, 137 alt='' (dekorativ)",
+   "beleg": "raw/urls.csv imgs-Felder summiert"
+  },
+  {
+   "id": 15,
+   "kategorie": "json-ld",
+   "severity": "OK",
+   "befund": "JSON-LD ueberall parsebar; Organization/WebSite siteweit, FAQPage/Breadcrumb/Article/WebApplication vorhanden; Offer nur fuer Rechner mit price '0' EUR; KEINE Service/Offer mit den Euro-Festpreisen",
+   "beleg": "raw/price_hits.json JSONLD-* + Extraktion"
+  }
+ ],
+ "preise_funde": {
+  "kontext": "Betreiber will keine oeffentlichen Preise; AGB §4 sagt 'Eine öffentliche Preisliste besteht nicht' — die folgenden Live-Seiten widersprechen",
+  "funde": [
+   {
+    "url": "/antrag-vorbereiten (alle 9 Sprachversionen)",
+    "stelle": "<title> + Hero-Text",
+    "zitat": "Titel: 'Antrag vorbereiten – 79–149 € – Antragsbruder'; Body: 'Das kostet 79 bis 149 € je nach Aufwand.' / '79–149 € pro Antrag, je nach Aufwand' / CTA 'Antrag starten'; en-Titel '€79–149', ar '79–149 يورو'"
+   },
+   {
+    "url": "/wohngeld/antrag (alle 9)",
+    "stelle": "<title> + Angebotspaket",
+    "zitat": "Titel: 'Wir stellen deinen Wohngeld-Antrag – für 99 € – Antragsbruder'; Body: 'Antragsbruder Wohngeld-Service 99 € Einmalig, ohne versteckte Kosten', 'Jetzt beauftragen', 'Was in den 99 € enthalten ist – Ein fester Preis für den gesamten Vorgang – keine Zusatzkosten', 'Festpreis, keine versteckten Kosten'"
+   },
+   {
+    "url": "/brief-verstehen (alle 9)",
+    "stelle": "Body",
+    "zitat": "'Das kostet 29 bis 49 €, je nachdem wie umfangreich dein Brief ist.' (ar: '49 يورو')"
+   },
+   {
+    "url": "/papierkram-ordnen (alle 9)",
+    "stelle": "Body",
+    "zitat": "'Ordnung schaffen 149–299 €' (ar: '299 يورو')"
+   }
+  ],
+  "legitim_keine_eigenpreise": [
+   "/wohngeld/beantragen: 'Du benötigst keinen kostenpflichtigen Dienstleister...' (Ratgeber-Aussage)",
+   "Regel-/Freibetraege in Ratgebertexten (z.B. Einkommensgrenzen)",
+   "JSON-LD Offer price '0' der drei Rechner"
+  ]
+ },
+ "sprachfassungen": {
+  "locales": [
+   "de (praefixlos, /de->/)",
+   "en",
+   "ar",
+   "tr",
+   "ru",
+   "uk",
+   "pl",
+   "bg",
+   "ro"
+  ],
+  "uebersetzt": "echt — 0 von 21 gespiegelten Pfad-Gruppen mit identischem sichtbarem Text gegen de; Titles/Descs uebersetzt; og:locale, html lang und dir=rtl (ar) korrekt",
+  "abdeckung": "21/36 Pfade x9 gespiegelt; 15 Pfade de-only (wohngeld x5 inkl. Pillar, bafoeg x6, blog, redaktion x3)",
+  "preise_in_allen_locales": true
+ },
+ "recht": {
+  "impressum": "vollstaendig nach §5 DDG (Taswiq Media Einzelunternehmen, Karim Azzaoui, Taunusanlage 8, 60329 Frankfurt, info@antragsbruder.de) + §18 Abs.2 MStV + OS-Link + Nichtteilnahme-Hinweis; Luecke: keine USt-IdNr./Wirtschafts-Ident-Nr. genannt",
+  "datenschutz": "382 Woerter; Verantwortlicher, Art.-6-Gruende, Datenarten, Rechte, Beschwerderecht, TOMs vorhanden; Luecken: keine Auftragsverarbeiter/Empfaenger (Supabase, Vercel, Resend, Sentry laut CSP/Code), kein Drittland-Transfer-Abschnitt, keine konkreten Loeschfristen, Cookie-Abschnitt implizit leer",
+  "agb": "§4: 'Die Vergütung wird individuell besprochen ... Eine öffentliche Preisliste besteht nicht' — passt zum neuen Modell, widerspricht aber den 4 Preis-Seiten; §7 Widerrufsrecht nur 'richtet sich nach den Umständen' — keine konkrete Belehrung mit Frist/Musterformular (bei B2C-Fernabsatz Pflicht); keine Preis-/Paketanlagen mehr im AGB-Text selbst"
+ },
+ "technik": {
+  "redirects": "http->https ok, apex->www ok, /de->/ ok, Trailing-Slash 308 konsistent",
+  "security_headers": "CSP vorhanden (script-src 'unsafe-inline' 'unsafe-eval'), HSTS 6307200s+preload+includeSubDomains, X-Frame-Options DENY + frame-ancestors none, X-Content-Type-Options nosniff, Referrer-Policy strict-origin-when-cross-origin, Permissions-Policy; Vercel-Cache HIT age ~4.9d auf /",
+  "admin_flaechen": "/admin,/dashboard redirecten auf Login, robots-disallowed, nicht in Sitemap; /api/health 404; /anmelden,/konto-erstellen ohne noindex (siehe 13)",
+  "cwv_beobachtungen": "nicht gemessen, nur HTML-Befund: viewport 'maximum-scale=1,user-scalable=no' blockiert Zoom (A11y); img ohne width/height-Attribute (nur sizes/srcset/CSS aspect-ratio, CLS-Risiko); 6 self-hosted Fonts preloaded; alle Skripte async; RSC-Payload verdoppelt Inhalte (Home 92 KB, /datenbank >400 KB HTML)"
+ },
+ "methodik_luecken": [
+  "Keine Lighthouse/PageSpeed/CrUX-Messwerte (kein API-Zugang) — CWV nur als HTML-Beobachtung",
+  "Interne-Link-/Waisen-Analyse basiert auf ausgeliefertem HTML + Payload-Grep; rein client-seitig erzeugte Links koennen Unterzahl bedeuten (Waisen-Befund 11 wurde gegen Payload abgesichert: 0 href-Treffer)",
+  "Suchindex-Status (Google) ohne GSC nicht pruefbar; hreflang-Wirkung bleibt theoriebasiert",
+  "Kein Bot-Schutz/403 angetroffen — alle Befunde HTTP-verifiziert; USt-IdNr-Pflicht hangt von realer Steuerlage ab (nicht aus HTML pruefbar)"
+ ]
+}

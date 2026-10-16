@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 import { locales, isLocale, defaultLocale, localeHref, type Locale } from "@/i18n/config";
 
 export function generateStaticParams() {
@@ -16,5 +16,5 @@ export function generateStaticParams() {
 export default async function PreisePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params;
   const locale: Locale = isLocale(raw) ? raw : defaultLocale;
-  redirect(localeHref(locale, "/kontakt"));
+  permanentRedirect(localeHref(locale, "/kontakt"));
 }
