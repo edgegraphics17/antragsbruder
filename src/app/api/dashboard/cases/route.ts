@@ -5,7 +5,6 @@
 
 import { NextResponse } from 'next/server';
 import { createAuthServerClient } from '@/lib/auth-server';
-import { supabase as serviceSupabase } from '@/lib/supabase';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
 import { trackError } from '@/lib/sentry';
 
@@ -26,7 +25,7 @@ export async function GET() {
 
     const userId = session.user.id;
 
-    const { data: cases, error: casesError } = await serviceSupabase
+    const { data: cases, error: casesError } = await supabase
       .from('cases')
       .select('id, status, life_events, legal_reference_date, user_id, metadata, created_at, updated_at')
       .eq('user_id', userId)
@@ -54,7 +53,7 @@ export async function GET() {
     }> = [];
 
     for (const c of (cases || [])) {
-      const { data: docs, error: docsError } = await serviceSupabase.storage
+      const { data: docs, error: docsError } = await supabase.storage
         .from('antragsunterlagen')
         .list(`${userId}/${c.id}`);
 

@@ -8,7 +8,6 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createAuthServerClient } from '@/lib/auth-server';
-import { supabase } from '@/lib/supabase';
 import { trackError } from '@/lib/sentry';
 
 export async function GET(_request: NextRequest) {
@@ -23,7 +22,7 @@ export async function GET(_request: NextRequest) {
     const userId = sessionData.session.user.id;
 
     // Case-IDs des Nutzers
-    const { data: cases, error: casesError } = await supabase
+    const { data: cases, error: casesError } = await supabaseAuth
       .from('cases')
       .select('id, status, metadata')
       .eq('user_id', userId)
@@ -38,7 +37,7 @@ export async function GET(_request: NextRequest) {
       return NextResponse.json({ results: [] });
     }
 
-    const { data: results, error: resultsError } = await supabase
+    const { data: results, error: resultsError } = await supabaseAuth
       .from('benefit_results')
       .select(
         'id, case_id, benefit_type, status, confidence, discovery_reasons, blocking_facts, unresolved_questions, calculation, amount_quality, next_actions',

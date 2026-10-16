@@ -10,7 +10,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createAuthServerClient } from '@/lib/auth-server';
-import { supabase } from '@/lib/supabase';
 
 const parseBodySchema = z.object({
   storagePath: z.string().min(1),
@@ -43,7 +42,7 @@ export async function POST(request: NextRequest) {
     const { storagePath, caseId, text, meta } = parsed.data;
 
     // Ownership prüfen
-    const { data: caseRow } = await supabase
+    const { data: caseRow } = await supabaseAuth
       .from('cases')
       .select('user_id, metadata')
       .eq('id', caseId)
@@ -58,7 +57,7 @@ export async function POST(request: NextRequest) {
     const ocrMeta: Record<string, unknown> = { language: 'deu', ...(meta ?? {}) };
 
     // Ergebnis in documents_meta speichern (bestehenden Eintrag ersetzen)
-    const { data: existing } = await supabase
+    const { data: existing } = await supabaseAuth
       .from('documents_meta')
       .select('id')
       .eq('case_id', caseId)
@@ -67,7 +66,7 @@ export async function POST(request: NextRequest) {
 
     let dbRecord;
     if (existing?.id) {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseAuth
         .from('documents_meta')
         .update({ ocr_text: text, meta_json: ocrMeta, filename })
         .eq('id', existing.id)
@@ -76,7 +75,7 @@ export async function POST(request: NextRequest) {
       if (error) throw error;
       dbRecord = data;
     } else {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseAuth
         .from('documents_meta')
         .insert({
           case_id: caseId,
@@ -98,7 +97,7 @@ export async function POST(request: NextRequest) {
       ...existingMeta,
       documents_ocr: { ...documentsOcr, [storagePath]: ocrMeta },
     };
-    await supabase
+    await supabaseAuth
       .from('cases')
       .update({
         metadata: enrichedMeta,

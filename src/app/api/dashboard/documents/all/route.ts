@@ -8,7 +8,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createAuthServerClient } from '@/lib/auth-server';
-import { supabase } from '@/lib/supabase';
 import { getSignedUrl, type DocumentRecord } from '@/lib/storage';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
 import { trackError } from '@/lib/sentry';
@@ -30,7 +29,7 @@ export async function GET(_request: NextRequest) {
     const userId = sessionData.session.user.id;
 
     // Eigene Cases (Berechtigungsfilter)
-    const { data: cases, error: casesError } = await supabase
+    const { data: cases, error: casesError } = await supabaseAuth
       .from('cases')
       .select('id')
       .eq('user_id', userId);
@@ -44,7 +43,7 @@ export async function GET(_request: NextRequest) {
       return NextResponse.json({ documents: [] });
     }
 
-    const { data: documents, error: docsError } = await supabase
+    const { data: documents, error: docsError } = await supabaseAuth
       .from('documents')
       .select('id, storage_path, filename, file_size, mime_type, case_id, uploaded_by, created_at')
       .in('case_id', caseIds)

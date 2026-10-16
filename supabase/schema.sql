@@ -207,54 +207,20 @@ alter table legal_parameters enable row level security;
 -- Policies: Öffentlicher Read-Zugriff (für MVP ohne Auth)
 -- Später: Anpassen für User-basierten Zugriff
 
-create policy "Allow public read on cases"
-  on cases for select using (true);
 
-create policy "Allow public insert on cases"
-  on cases for insert with check (true);
 
-create policy "Allow public update on cases"
-  on cases for update using (true);
 
-create policy "Allow public delete on cases"
-  on cases for delete using (true);
 
-create policy "Allow public read on facts"
-  on facts for select using (true);
 
-create policy "Allow public insert on facts"
-  on facts for insert with check (true);
 
-create policy "Allow public update on facts"
-  on facts for update using (true);
 
-create policy "Allow public read on benefit_results"
-  on benefit_results for select using (true);
 
-create policy "Allow public insert on benefit_results"
-  on benefit_results for insert with check (true);
 
-create policy "Allow public read on actions"
-  on actions for select using (true);
 
-create policy "Allow public insert on actions"
-  on actions for insert with check (true);
 
-create policy "Allow public update on actions"
-  on actions for update using (true);
 
-create policy "Allow public read on emergencies"
-  on emergencies for select using (true);
 
-create policy "Allow public read/write on documents_meta"
-  on documents_meta for select using (true);
-create policy "Allow public insert on documents_meta"
-  on documents_meta for insert with check (true);
-create policy "Allow public update on documents_meta"
-  on documents_meta for update using (true);
 
-create policy "Allow public insert on emergencies"
-  on emergencies for insert with check (true);
 
 create policy "Allow public read on rules"
   on rules for select using (true);
@@ -359,14 +325,8 @@ create policy "Users manage own persons" on persons
     exists (select 1 from cases c where c.id = persons.case_id and c.user_id = auth.uid())
   );
 drop policy if exists "Allow public read on persons" on persons;
-create policy "Allow public read on persons" on persons
-  for select using (true);
 drop policy if exists "Allow public insert on persons" on persons;
-create policy "Allow public insert on persons" on persons
-  for insert with check (true);
 drop policy if exists "Allow public update on persons" on persons;
-create policy "Allow public update on persons" on persons
-  for update using (true);
 
 drop policy if exists "Users manage own relationships" on relationships;
 create policy "Users manage own relationships" on relationships
@@ -376,14 +336,8 @@ create policy "Users manage own relationships" on relationships
     exists (select 1 from cases c where c.id = relationships.case_id and c.user_id = auth.uid())
   );
 drop policy if exists "Allow public read on relationships" on relationships;
-create policy "Allow public read on relationships" on relationships
-  for select using (true);
 drop policy if exists "Allow public insert on relationships" on relationships;
-create policy "Allow public insert on relationships" on relationships
-  for insert with check (true);
 drop policy if exists "Allow public update on relationships" on relationships;
-create policy "Allow public update on relationships" on relationships
-  for update using (true);
 
 drop policy if exists "Allow public read on legal_sources" on legal_sources;
 create policy "Allow public read on legal_sources" on legal_sources
