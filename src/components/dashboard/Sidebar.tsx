@@ -242,6 +242,15 @@ function SidebarContent() {
 
       {/* Footer */}
       <div className="mt-auto flex flex-col gap-2 px-4 py-6">
+        {/* Eigener Zugang zu Auskunft und Löschung (Art. 15 und 17 DSGVO) –
+            ohne diesen Einstieg wären die Rechte nur per E-Mail ausübbar. */}
+        <Link
+          href={localeHref(locale, '/konto')}
+          className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-white/70 transition-colors hover:bg-white/5 hover:text-white"
+        >
+          <IconSettings className="h-4 w-4 shrink-0" />
+          Konto &amp; Daten
+        </Link>
         <button
           type="button"
           onClick={handleLogout}

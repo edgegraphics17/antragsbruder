@@ -12,6 +12,9 @@ const PROTECTED_PREFIXES = [
   "dokumente",
   "foerderungen",
   "profil",
+  // Kontoseite (Datenauskunft und Löschung): muss angemeldet sein. Die beiden
+  // API-Endpunkte prüfen die Sitzung zusätzlich selbst.
+  "konto",
 ];
 
 // Sub-Seiten, die früher unter /dashboard/<x> geplant waren und jetzt
