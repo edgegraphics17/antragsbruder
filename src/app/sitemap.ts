@@ -29,9 +29,10 @@ const routes: {
   { path: "/fuer-unternehmen", priority: 0.7, changeFrequency: "monthly" },
   { path: "/faq", priority: 0.6, changeFrequency: "monthly" },
   { path: "/kontakt", priority: 0.8, changeFrequency: "monthly" },
-  { path: "/redaktion", priority: 0.5, changeFrequency: "monthly" },
-  { path: "/redaktion/redaktionsrichtlinien", priority: 0.4, changeFrequency: "monthly" },
-  { path: "/redaktion/quellenstandard", priority: 0.4, changeFrequency: "monthly" },
+  // Redaktion gibt es nur auf Deutsch; ohne deOnly lieferte die Sitemap 24 × 404.
+  { path: "/redaktion", priority: 0.5, changeFrequency: "monthly", deOnly: true },
+  { path: "/redaktion/redaktionsrichtlinien", priority: 0.4, changeFrequency: "monthly", deOnly: true },
+  { path: "/redaktion/quellenstandard", priority: 0.4, changeFrequency: "monthly", deOnly: true },
   { path: "/impressum", priority: 0.3, changeFrequency: "monthly" },
   { path: "/datenschutz", priority: 0.3, changeFrequency: "monthly" },
   { path: "/agb", priority: 0.3, changeFrequency: "monthly" },
