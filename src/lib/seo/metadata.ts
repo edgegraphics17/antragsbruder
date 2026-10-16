@@ -56,11 +56,27 @@ export function buildPageMetadata({
     languages[l] = `https://${site.domain}${localeHref(l, path)}`;
   }
 
+  // Vorschaubild für Social-Media und Messenger. Es wird hier explizit gesetzt,
+  // weil Seiten mit eigenem openGraph-Block das per Dateikonvention geerbte Bild
+  // nicht mehr mitbekommen – nachgeprüft am erzeugten HTML. Ausserdem wäre die
+  // per Konvention erzeugte Adresse /opengraph-image nicht erreichbar: das
+  // dynamische Segment [locale] verschluckt sie (liefert 404).
+  // Die Datei liegt statisch unter public/og.png, erzeugt aus /api/og.
+  const ogImage = {
+    url: `https://${site.domain}/og.png`,
+    width: 1200,
+    height: 630,
+    alt: `${site.name} — Sozialleistungen verstehen und richtig beantragen`,
+  };
+
   return {
     // Ohne expliziten Title greift der Root-Default (Startseiten-Pattern) –
     // verhindert doppelte Site-Suffixe wie "Antragsbruder – Antragsbruder".
     ...(title ? { title } : {}),
-    description,
+    // Nur setzen, wenn es eine gibt. Ein explizit auf undefined gesetztes Feld
+    // überschreibt in Next die Vererbung – dadurch hatte die Startseite gar
+    // keine Meta-Description, obwohl das [locale]-Layout eine definiert.
+    ...(description ? { description } : {}),
     alternates: {
       canonical,
       languages,
@@ -71,16 +87,18 @@ export function buildPageMetadata({
     ...(noindex ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       ...(title ? { title } : {}),
-      description,
+      ...(description ? { description } : {}),
       url: pageUrl,
       siteName: site.name,
       locale,
       type: ogType,
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       ...(title ? { title } : {}),
-      description,
+      ...(description ? { description } : {}),
+      images: [ogImage.url],
     },
   };
 }

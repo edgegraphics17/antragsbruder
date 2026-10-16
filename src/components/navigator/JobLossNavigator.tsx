@@ -138,10 +138,14 @@ export default function JobLossNavigator() {
     return (
       <section className="py-16">
         <Container>
+          {/* as="h1": Diese Startansicht ist der Seitenkopf. Ohne die Angabe
+              renderte die Überschrift als h2 – die Seite hatte damit gar keine
+              h1 (der h1 im Ergebnis-View erscheint erst nach den Fragen). */}
           <SectionHeading
+            as="h1"
             eyebrow="Navigator"
             title="Ich habe meinen Job verloren"
-            lede="Wir prüfen, welche Leistungen und nächsten Schritte für dich relevant sein könnten."
+            lede="Wir prüfen, welche Leistungen und nächste Schritte für dich relevant sein könnten."
           />
           <div className="mt-8 max-w-xl">
             <p className="text-ink-soft">

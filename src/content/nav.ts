@@ -46,7 +46,10 @@ const structure: StructureGroup[] = [
       { key: "wohngeldRechner", href: "/wohngeld/rechner" },
       { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
       { key: "bafoegRechner", href: "/bafoegrechner" },
-      { key: "alg1Rechner", href: "/alg1" },
+      // "alg1Rechner" entfernt (2026-10-16): /alg1 ist ein anmeldepflichtiger
+      // Antragsablauf und leitet anonyme Besucher auf /anmelden um. Ein Eintrag
+      // in der öffentlichen Navigation versprach dagegen einen frei nutzbaren
+      // Rechner. Der Ablauf ist weiter über das Dashboard erreichbar.
     ],
   },
   {
@@ -73,7 +76,7 @@ const footerStructure: Record<"produkt" | "unternehmen" | "legal", StructureLink
     { key: "wohngeldRechner", href: "/wohngeld/rechner" },
     { key: "grundsicherungRechner", href: "/grundsicherungsrechner" },
     { key: "bafoegRechner", href: "/bafoegrechner" },
-    { key: "alg1Rechner", href: "/alg1" },
+    // Kein "alg1Rechner" mehr: /alg1 ist anmeldepflichtig (siehe oben).
     { key: "datenbank", href: "/datenbank" },
   ],
   unternehmen: [
