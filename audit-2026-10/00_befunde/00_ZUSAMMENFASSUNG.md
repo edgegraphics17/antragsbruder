@@ -14,6 +14,25 @@ Dies ist der **Einstieg**. Die drei Detailberichte liegen daneben:
 
 ---
 
+## 0. Kritischster Befund: RLS-Leck — Sozialdaten waren öffentlich lesbar (**behoben**)
+
+**Das schwerste Problem der Seite stand nicht auf der Website, sondern in der Datenbank.**
+
+Auf `persons`, `relationships`, `facts`, `benefit_results`, `actions` und `emergencies` lag neben den korrekten Owner-Policies **zusätzlich je eine Policy mit `USING (true)` / `WITH CHECK (true)`**. Postgres verknüpft Policies derselben Operation per **OR** — die permissiven Policies haben das Eigentümer-Scoping damit vollständig ausgehebelt. Zusätzlich war die Policy `profiles: service role full access` **für alle Rollen** offen, nicht nur für `service_role`.
+
+Weil der Anon-Key zwangsläufig im Client-Bundle steht, war das kein theoretisches Risiko, sondern ein offener Zugang. Betroffen (Zahlen aus der Live-DB): **32 Fact-Zeilen, 27 Fälle und 8 Profile angemeldeter Nutzer** — also Einkommens-, Miet- und Haushaltsdaten echter Antragsteller. Das ist ein Verstoß gegen Art. 32 DSGVO (und bei Sozialdaten besonders sensibel).
+
+**Behoben** (Migration `supabase/migrations/20261016_harden_personal_data_rls.sql`, auf die Live-DB angewendet):
+- 17 permissive Policies entfernt; Owner-Policies für `facts`, `benefit_results`, `actions`, `emergencies` ergänzt (Existenzprüfung über `cases.case_id` + `cases.user_id = auth.uid()`).
+- Der anonyme Grundsicherungs-Erstecheck bleibt möglich, aber **nur** für Fälle ohne Nutzerbezug (`entry_type='BENEFIT_GRUNDSICHERUNG' AND user_id IS NULL`).
+- `supabase/schema.sql` bereinigt: dort standen zusätzlich permissive Policies für `cases` (read/insert/update/**delete**) und `documents_meta`. Ohne diese Bereinigung hätte jede frisch aufgesetzte Umgebung das Loch neu geöffnet.
+
+**Verifiziert** (Rolle `anon` gegen die Live-DB): `facts` (mit und ohne Nutzerbezug), `persons`, `relationships`, `profiles`, `benefit_results` und `cases` mit Nutzerbezug liefern jetzt **0 sichtbare Zeilen** — vorher vollständig lesbar. Der öffentliche Grundsicherungsrechner rechnet unverändert korrekt (Live-Test: HTTP 200 mit vollständigem Ergebnis).
+
+**Funktionaler Nebeneffekt, der zugleich ein Fehler war:** Die Routen `dashboard/results`, `dashboard/documents/all`, `dashboard/documents/parse` und `dashboard/cases` lasen mit dem **sitzungslosen** Anon-Client — unter RLS liefert der keine Zeilen. Diese Listen waren also schon vorher leer. Sie nutzen jetzt den Session-Client, wodurch RLS die Eigentümerschaft durchsetzt und die Listen tatsächlich Daten zeigen.
+
+**Verbleibender Design-Punkt (P1):** Soll ein öffentlicher Flow wieder anonyme Falldaten *schreiben*, muss das über einen serverseitigen Service-Role-Pfad laufen — nicht über Anon-Schreibrechte. Derzeit schreibt seit dem 17.09.2026 kein anonymer Pfad mehr (geprüft über die Zeitstempel); dieser Umstand sollte beim Wiederaufbau des Erstechecks bewusst entschieden werden.
+
 ## 1. Was in diesem Durchlauf bereits geändert wurde
 
 Zwei Commits, jeweils verifiziert (tsc, Lint, 198/198 Tests, Build):
@@ -102,7 +121,9 @@ Das ist die direkte Antwort auf die Ausgangssorge („wir haben so viele Backlin
 
 Aus `03_technik/code_und_sicherheit_audit.md`:
 
-**In diesem Durchlauf behoben:** offener LLM-Proxy `/api/chat/*` + totes `ChatWidget`; GET-Mailtrigger in `/api/auth/reset-password`; Passwort im Query-String in `/api/auth/update-password`.
+**In diesem Durchlauf behoben:** **RLS-Leck auf den Falldaten (siehe Abschnitt 0 — schwerster Befund des Audits)**; offener LLM-Proxy `/api/chat/*` + totes `ChatWidget`; GET-Mailtrigger in `/api/auth/reset-password`; Passwort im Query-String in `/api/auth/update-password`; vier Dashboard-Routen, die mit sitzungslosem Client lasen (Listen waren leer).
+
+**Weiterhin offen aus dem Technik-Audit:** serverseitige Fehlermeldungen/Stacks in ~20 API-Responses; HTML-Injection über `userName`/`fileName` in Transaktions-Mails; Open Redirect nach Login über `?next=//evil.com`; gefälschte Client-IP in zwei Routen (alle Nutzer teilen einen Rate-Limit-Bucket); Health-Check meldet dauerhaft `error`.
 
 **Offen, priorisiert:**
 - **Rate-Limiting fehlt** auf 11 Routen (u. a. `api/crisis/scan`, `api/rechner/grundsicherung/evaluate`, `api/dashboard/*`). Zusätzlich: Der In-Memory-Limiter ist auf Vercel-Serverless **pro Instanz wirkungslos** → für Produktion ein externer Store (z. B. Upstash) nötig. (P1, Aufwand M)
