@@ -9,11 +9,12 @@ import { createAuthServerClient } from '@/lib/auth-server';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
 import { signinSchema } from '@/lib/api-validation';
 import { trackError } from '@/lib/sentry';
+import { safeAuthMessage } from '@/lib/api-error';
 
 export async function POST(request: Request) {
   // Rate-Limiting: Login ist brute-force-anfällig
   const ip = getClientIp(request);
-  const rate = checkRateLimit(ip, 'auth');
+  const rate = await checkRateLimit(ip, 'auth');
   if (!rate.allowed) {
     return NextResponse.json(
       {
@@ -50,7 +51,7 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      return NextResponse.json({ error: error instanceof Error ? error.message : String(error) }, { status: 401 });
+      return NextResponse.json({ error: safeAuthMessage(error) }, { status: 401 });
     }
 
     return NextResponse.json({
@@ -59,6 +60,6 @@ export async function POST(request: Request) {
     });
   } catch (err: unknown) {
     trackError(err, { route: 'auth.signin' });
-    return NextResponse.json({ error: (err instanceof Error ? err.message : String(err)) ?? 'Interner Fehler' }, { status: 500 });
+    return NextResponse.json({ error: (safeAuthMessage(err)) ?? 'Interner Fehler' }, { status: 500 });
   }
 }

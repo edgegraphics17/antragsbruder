@@ -8,6 +8,7 @@
 // per console.log ausgegeben (dev-Modus). In Production ist ein Key zwingend.
 
 import { Resend } from 'resend';
+import { escapeHtml } from '@/lib/html';
 
 const resendKey = process.env.RESEND_API_KEY;
 
@@ -98,10 +99,10 @@ function statusChangeHtml(
 <div class="container">
   <div class="header"><h1>Antragsbruder — Status-Update</h1></div>
   <div class="content">
-    <p>Hallo ${userName},</p>
+    <p>Hallo ${escapeHtml(userName)},</p>
     <p>dein Antrags-Status hat sich geändert:</p>
-    <span class="status-badge status-${status}">${label}</span>
-    <p style="margin-top:16px"><strong>Antrag:</strong> ${benefitType || 'Allgemeiner Antrag'}</p>
+    <span class="status-badge status-${escapeHtml(status)}">${escapeHtml(label)}</span>
+    <p style="margin-top:16px"><strong>Antrag:</strong> ${escapeHtml(benefitType || 'Allgemeiner Antrag')}</p>
     <p>Du kannst deinen Antrag jederzeit im Dashboard einsehen und weiter bearbeiten.</p>
     <a class="cta" href="${appUrl}/dashboard">Zum Dashboard →</a>
   </div>
@@ -141,10 +142,10 @@ function uploadConfirmationHtml(
 <div class="container">
   <div class="header"><h1>Antragsbruder — Unterlage hochgeladen</h1></div>
   <div class="content">
-    <p>Hallo ${userName},</p>
+    <p>Hallo ${escapeHtml(userName)},</p>
     <p>deine Unterlage wurde erfolgreich hochgeladen:</p>
-    <p class="file-name">${fileName}</p>
-    <p>Antrags-ID: ${caseId}</p>
+    <p class="file-name">${escapeHtml(fileName)}</p>
+    <p>Antrags-ID: ${escapeHtml(caseId)}</p>
     <a class="cta" href="${appUrl}/dashboard">Zum Dashboard →</a>
   </div>
   <div class="footer">
@@ -191,9 +192,9 @@ function reminderHtml(
 <div class="container">
   <div class="header"><h1>Antragsbruder — Erinnerung</h1></div>
   <div class="content">
-    <p>Hallo ${userName},</p>
+    <p>Hallo ${escapeHtml(userName)},</p>
     <p class="urgency">${urgencyText} — ${daysRemaining} Tage verbleibend</p>
-    <p>dein Antrag (<strong>${benefitType || 'Allgemeiner Antrag'}</strong>, ID: ${caseId}) wartet noch auf weitere Schritte.</p>
+    <p>dein Antrag (<strong>${escapeHtml(benefitType || 'Allgemeiner Antrag')}</strong>, ID: ${escapeHtml(caseId)}) wartet noch auf weitere Schritte.</p>
     <p>Vervollständige deinen Antrag, bevor die Frist abläuft.</p>
     <a class="cta" href="${appUrl}/dashboard">Zum Dashboard →</a>
   </div>
@@ -266,7 +267,7 @@ export async function sendStatusChangeEmail(
     to: userEmail,
     subject: `Antrags-Status: ${status} — Antragsbruder`,
     html,
-    text: `Hallo ${userName},\n\ndein Antrags-Status hat sich geändert: ${status}.\n\nAntrag: ${benefitType || 'Allgemeiner Antrag'}\nCase-ID: ${caseId}\n\nZum Dashboard: ${APP_URL}/dashboard`,
+    text: `Hallo ${escapeHtml(userName)},\n\ndein Antrags-Status hat sich geändert: ${status}.\n\nAntrag: ${escapeHtml(benefitType || 'Allgemeiner Antrag')}\nCase-ID: ${escapeHtml(caseId)}\n\nZum Dashboard: ${APP_URL}/dashboard`,
   });
 }
 
@@ -279,9 +280,9 @@ export async function sendUploadConfirmationEmail(
   const html = uploadConfirmationHtml(userName, fileName, caseId, APP_URL);
   return sendEmail({
     to: userEmail,
-    subject: `Unterlage hochgeladen: ${fileName} — Antragsbruder`,
+    subject: `Unterlage hochgeladen: ${escapeHtml(fileName)} — Antragsbruder`,
     html,
-    text: `Hallo ${userName},\n\ndeine Unterlage wurde hochgeladen:\n${fileName}\nCase-ID: ${caseId}\n\nZum Dashboard: ${APP_URL}/dashboard`,
+    text: `Hallo ${escapeHtml(userName)},\n\ndeine Unterlage wurde hochgeladen:\n${escapeHtml(fileName)}\nCase-ID: ${escapeHtml(caseId)}\n\nZum Dashboard: ${APP_URL}/dashboard`,
   });
 }
 
@@ -297,6 +298,6 @@ export async function sendReminderEmail(
     to: userEmail,
     subject: `Erinnerung: ${daysRemaining} Tage verbleibend — Antragsbruder`,
     html,
-    text: `Hallo ${userName},\n\nErinnerung: dein Antrag (ID: ${caseId}) hat noch ${daysRemaining} Tage.\n\nZum Dashboard: ${APP_URL}/dashboard`,
+    text: `Hallo ${escapeHtml(userName)},\n\nErinnerung: dein Antrag (ID: ${escapeHtml(caseId)}) hat noch ${daysRemaining} Tage.\n\nZum Dashboard: ${APP_URL}/dashboard`,
   });
 }

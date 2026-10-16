@@ -11,9 +11,10 @@ import { createAuthServerClient } from '@/lib/auth-server';
 import { getSignedUrl, type DocumentRecord } from '@/lib/storage';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
 import { trackError } from '@/lib/sentry';
+import { safeMessage } from '@/lib/api-error';
 
 export async function GET(_request: NextRequest) {
-  const rate = checkRateLimit(getClientIp(_request), 'default');
+  const rate = await checkRateLimit(getClientIp(_request), 'default');
   if (!rate.allowed) {
     return NextResponse.json({ error: 'Zu viele Anfragen.' }, { status: 429 });
   }
@@ -70,7 +71,7 @@ export async function GET(_request: NextRequest) {
   } catch (err: unknown) {
     trackError(err, { route: 'dashboard.documents.all' });
     return NextResponse.json(
-      { error: err instanceof Error ? err.message : 'Fehler beim Laden' },
+      { error: safeMessage(err) },
       { status: 500 },
     );
   }

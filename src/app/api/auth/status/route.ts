@@ -7,10 +7,11 @@ import { NextResponse } from 'next/server';
 import { createAuthServerClient } from '@/lib/auth-server';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
 import { trackError } from '@/lib/sentry';
+import { safeAuthMessage } from '@/lib/api-error';
 
 export async function GET(request: Request) {
   const ip = getClientIp(request);
-  const rate = checkRateLimit(ip, 'default');
+  const rate = await checkRateLimit(ip, 'default');
   if (!rate.allowed) {
     return NextResponse.json(
       { error: 'Zu viele Anfragen. Bitte warte einen Moment.' },
@@ -35,6 +36,6 @@ export async function GET(request: Request) {
     });
   } catch (err: unknown) {
     trackError(err, { route: 'auth.status' });
-    return NextResponse.json({ error: (err instanceof Error ? err.message : String(err)) ?? 'Interner Fehler' }, { status: 500 });
+    return NextResponse.json({ error: (safeAuthMessage(err)) ?? 'Interner Fehler' }, { status: 500 });
   }
 }

@@ -6,6 +6,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createAuthServerClient } from '@/lib/auth-server';
+import { safeMessage } from '@/lib/api-error';
 
 // --- GET: Case-Details laden ---
 export async function GET(
@@ -74,7 +75,7 @@ export async function GET(
       })),
     });
   } catch (err: unknown) {
-    const msg = err instanceof Error ? err.message : 'Unbekannter Fehler';
+    const msg = safeMessage(err);
     return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
@@ -139,7 +140,7 @@ export async function PATCH(
 
     return NextResponse.json({ case: data });
   } catch (err: unknown) {
-    const msg = err instanceof Error ? err.message : 'Unbekannter Fehler';
+    const msg = safeMessage(err);
     return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

@@ -7,10 +7,11 @@ import { NextResponse } from 'next/server';
 import { createAuthServerClient } from '@/lib/auth-server';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
 import { trackError } from '@/lib/sentry';
+import { safeMessage } from '@/lib/api-error';
 
-export async function GET() {
-  const ip = getClientIp({ headers: new Headers() } as Request);
-  const rate = checkRateLimit(ip, 'default');
+export async function GET(request: Request) {
+  const ip = getClientIp(request);
+  const rate = await checkRateLimit(ip, 'default');
   if (!rate.allowed) {
     return NextResponse.json({ error: 'Zu viele Anfragen.' }, { status: 429 });
   }
@@ -70,6 +71,6 @@ export async function GET() {
     return NextResponse.json({ cases: enrichedCases });
   } catch (err: unknown) {
     trackError(err, { route: 'dashboard.cases' });
-    return NextResponse.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
+    return NextResponse.json({ error: safeMessage(err) }, { status: 500 });
   }
 }

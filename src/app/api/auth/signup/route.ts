@@ -10,6 +10,7 @@ import { createAuthServerClient } from '@/lib/auth-server';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
 import { signupSchema } from '@/lib/api-validation';
 import { trackError } from '@/lib/sentry';
+import { safeAuthMessage } from '@/lib/api-error';
 
 export async function POST(request: Request) {
   // ============================================================
@@ -30,7 +31,7 @@ export async function POST(request: Request) {
 
   // Rate-Limiting: Auth-Endpunkte sind brute-force-angreifbar
   const ip = getClientIp(request);
-  const rate = checkRateLimit(ip, 'auth');
+  const rate = await checkRateLimit(ip, 'auth');
   if (!rate.allowed) {
     return NextResponse.json(
       {
@@ -73,13 +74,13 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      if ((error instanceof Error ? error.message : String(error)).includes('already registered')) {
+      if ((safeAuthMessage(error)).includes('already registered')) {
         return NextResponse.json(
           { error: 'Diese E-Mail ist bereits registriert' },
           { status: 409 },
         );
       }
-      return NextResponse.json({ error: error instanceof Error ? error.message : String(error) }, { status: 400 });
+      return NextResponse.json({ error: safeAuthMessage(error) }, { status: 400 });
     }
 
     return NextResponse.json({
@@ -89,6 +90,6 @@ export async function POST(request: Request) {
     });
   } catch (err: unknown) {
     trackError(err, { route: 'auth.signup' });
-    return NextResponse.json({ error: (err instanceof Error ? err.message : String(err)) ?? 'Interner Fehler' }, { status: 500 });
+    return NextResponse.json({ error: (safeAuthMessage(err)) ?? 'Interner Fehler' }, { status: 500 });
   }
 }

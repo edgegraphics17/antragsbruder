@@ -11,7 +11,7 @@ import { trackError } from '@/lib/sentry';
 
 export async function POST(request: Request) {
   const ip = getClientIp(request);
-  const rate = checkRateLimit(ip, 'default');
+  const rate = await checkRateLimit(ip, 'default');
   if (!rate.allowed) {
     return NextResponse.json({ error: 'Zu viele Anfragen.' }, { status: 429 });
   }

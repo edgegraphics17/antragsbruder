@@ -9,6 +9,7 @@ import { NextResponse } from "next/server";
 import { scanTextForCrisis, mergeCrisisIndicators } from "@/engine/crisis-engine/crisisKeywords";
 import { crisisEngine } from "@/engine/crisis-engine/CrisisEngine";
 import type { CrisisResult, CrisisSeverity } from "@/engine/types";
+import { safeMessage } from '@/lib/api-error';
 
 // Für den MVP: wir simulieren FactStore-Ergebnis aus den Indikatoren
 // (in der Zukunft könnte hier der FactStore gefragt werden)
@@ -144,7 +145,7 @@ export async function POST(request: Request) {
     });
   } catch (err: unknown) {
     console.error("Crisis scan API error:", err);
-    const msg = err instanceof Error ? err.message : String(err);
+    const msg = safeMessage(err);
     return NextResponse.json(
       { error: msg || "Interner Fehler beim Krisenscan" },
       { status: 500 }

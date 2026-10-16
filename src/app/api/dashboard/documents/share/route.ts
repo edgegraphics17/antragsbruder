@@ -7,6 +7,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAuthServerClient } from '@/lib/auth-server';
 import { createBundle } from '@/lib/share';
+import { safeMessage } from '@/lib/api-error';
 
 export async function POST(request: NextRequest) {
   try {
@@ -30,7 +31,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ token: result.token, expiresAt: result.expiresAt }, { status: 201 });
   } catch (err: unknown) {
-    const msg = err instanceof Error ? err.message : 'Unbekannter Fehler';
+    const msg = safeMessage(err);
     return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

@@ -8,6 +8,7 @@ import { z } from 'zod';
 import { createAuthServerClient } from '@/lib/auth-server';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
 import { trackError } from '@/lib/sentry';
+import { safeAuthMessage } from '@/lib/api-error';
 
 const verifyEmailSchema = z.object({
   token: z.string().optional(),
@@ -15,7 +16,7 @@ const verifyEmailSchema = z.object({
 
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
-  const rate = checkRateLimit(ip, 'default');
+  const rate = await checkRateLimit(ip, 'default');
   if (!rate.allowed) {
     return NextResponse.json({ error: 'Zu viele Anfragen.' }, { status: 429 });
   }
@@ -40,7 +41,7 @@ export async function POST(request: NextRequest) {
         email: '',
       });
       if (error) {
-        return NextResponse.json({ error: error instanceof Error ? error.message : String(error) }, { status: 400 });
+        return NextResponse.json({ error: safeAuthMessage(error) }, { status: 400 });
       }
       return NextResponse.json({ success: true });
     }
@@ -66,6 +67,6 @@ export async function POST(request: NextRequest) {
     });
   } catch (err: unknown) {
     trackError(err, { route: 'auth.verify-email' });
-    return NextResponse.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
+    return NextResponse.json({ error: safeAuthMessage(err) }, { status: 500 });
   }
 }

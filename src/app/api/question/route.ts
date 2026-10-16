@@ -10,10 +10,11 @@ import { masterOrchestrator } from '@/engine';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
 import { questionSubmitSchema } from '@/lib/api-validation';
 import { trackError } from '@/lib/sentry';
+import { safeMessage } from '@/lib/api-error';
 
 export async function POST(request: Request) {
   const ip = getClientIp(request);
-  const rate = checkRateLimit(ip, 'default');
+  const rate = await checkRateLimit(ip, 'default');
   if (!rate.allowed) {
     return NextResponse.json({ error: 'Zu viele Anfragen.' }, { status: 429 });
   }
@@ -50,7 +51,7 @@ export async function POST(request: Request) {
     trackError(error, { route: 'question.submit' });
     return NextResponse.json({
       error: 'Failed to process answer',
-      details: error instanceof Error ? error.message : String(error),
+      details: safeMessage(error),
       stack: process.env.NODE_ENV === 'development' ? error instanceof Error ? error.stack : undefined : undefined,
     }, { status: 500 });
   }

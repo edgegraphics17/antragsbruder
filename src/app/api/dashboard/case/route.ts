@@ -7,6 +7,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAuthServerClient } from '@/lib/auth-server';
 import { v4 as uuidv4 } from 'uuid';
+import { safeMessage } from '@/lib/api-error';
 
 // --- POST: Neuen Case erstellen ---
 export async function POST(request: NextRequest) {
@@ -71,7 +72,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ case: data }, { status: 201 });
   } catch (err: unknown) {
-    const msg = err instanceof Error ? err.message : 'Unbekannter Fehler';
+    const msg = safeMessage(err);
     return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

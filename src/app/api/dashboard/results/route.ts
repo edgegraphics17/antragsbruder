@@ -9,6 +9,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAuthServerClient } from '@/lib/auth-server';
 import { trackError } from '@/lib/sentry';
+import { safeMessage } from '@/lib/api-error';
 
 export async function GET(_request: NextRequest) {
   try {
@@ -60,7 +61,7 @@ export async function GET(_request: NextRequest) {
   } catch (err: unknown) {
     trackError(err, { route: 'dashboard.results' });
     return NextResponse.json(
-      { error: err instanceof Error ? err.message : 'Fehler beim Laden' },
+      { error: safeMessage(err) },
       { status: 500 },
     );
   }

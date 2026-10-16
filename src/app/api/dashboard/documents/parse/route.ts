@@ -10,6 +10,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createAuthServerClient } from '@/lib/auth-server';
+import { safeMessage } from '@/lib/api-error';
 
 const parseBodySchema = z.object({
   storagePath: z.string().min(1),
@@ -112,7 +113,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (err: unknown) {
     console.error('Parse-Fehler:', err);
-    const msg = err instanceof Error ? err.message : 'Unbekannter Fehler';
+    const msg = safeMessage(err);
     return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

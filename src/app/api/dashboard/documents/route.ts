@@ -19,11 +19,12 @@ import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
 import { sendUploadConfirmationEmail } from '@/lib/email';
 import { documentUploadJsonSchema, documentUploadFormSchema } from '@/lib/api-validation';
 import { trackError } from '@/lib/sentry';
+import { safeMessage } from '@/lib/api-error';
 
 // --- GET: Dokumente auflisten ---
 export async function GET(request: NextRequest) {
   const ip = getClientIp(request);
-  const rate = checkRateLimit(ip, 'default');
+  const rate = await checkRateLimit(ip, 'default');
   if (!rate.allowed) {
     return NextResponse.json({ error: 'Zu viele Anfragen.' }, { status: 429 });
   }
@@ -54,14 +55,14 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ documents });
   } catch (err: unknown) {
     trackError(err, { route: 'dashboard.documents.get' });
-    return NextResponse.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
+    return NextResponse.json({ error: safeMessage(err) }, { status: 500 });
   }
 }
 
 // --- POST: Dokument hochladen ---
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
-  const rate = checkRateLimit(ip, 'upload');
+  const rate = await checkRateLimit(ip, 'upload');
   if (!rate.allowed) {
     return NextResponse.json(
       { error: 'Zu viele Anfragen. Bitte warte einen Moment.', retryAfter: '60' },
@@ -184,14 +185,14 @@ export async function POST(request: NextRequest) {
     });
   } catch (err: unknown) {
     trackError(err, { route: 'dashboard.documents.post' });
-    return NextResponse.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
+    return NextResponse.json({ error: safeMessage(err) }, { status: 500 });
   }
 }
 
 // --- DELETE: Dokument löschen ---
 export async function DELETE(request: NextRequest) {
   const ip = getClientIp(request);
-  const rate = checkRateLimit(ip, 'default');
+  const rate = await checkRateLimit(ip, 'default');
   if (!rate.allowed) {
     return NextResponse.json({ error: 'Zu viele Anfragen.' }, { status: 429 });
   }
@@ -214,6 +215,6 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (err: unknown) {
     trackError(err, { route: 'dashboard.documents.delete' });
-    return NextResponse.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
+    return NextResponse.json({ error: safeMessage(err) }, { status: 500 });
   }
 }

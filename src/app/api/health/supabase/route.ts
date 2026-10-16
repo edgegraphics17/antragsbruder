@@ -6,41 +6,42 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { checkRateLimit, getClientIp } from '@/lib/rate-limiter';
-import { trackError } from '@/lib/sentry';
+import { logApiError } from '@/lib/api-error';
 
-export async function GET() {
-  const ip = getClientIp({ headers: new Headers() } as Request);
-  const rate = checkRateLimit(ip, 'default');
+export async function GET(request: Request) {
+  // Vorher wurde ein leeres Headers-Objekt übergeben: alle Anfragen landeten im
+  // selben Zähler-Bucket (127.0.0.1) und das Limit war wirkungslos.
+  const ip = getClientIp(request);
+  const rate = await checkRateLimit(ip, 'default');
   if (!rate.allowed) {
-    return NextResponse.json({ error: 'Zu viele Anfragen.' }, { status: 429 });
+    return NextResponse.json(
+      { error: 'Zu viele Anfragen.' },
+      { status: 429, headers: { 'Retry-After': String(Math.ceil((rate.resetAt - Date.now()) / 1000)) } },
+    );
   }
 
   try {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('cases')
       .select('id')
       .limit(1);
 
-    if (error && error instanceof Error ? error.message : String(error) !== 'relation "cases" does not exist') {
-      return NextResponse.json({
-        status: 'error',
-        connected: false,
-        message: error instanceof Error ? error.message : String(error),
-      }, { status: 500 });
+    // Eine fehlende Tabelle ist ein Setup-Zustand, kein Ausfall. Vorher war die
+    // Bedingung durch Operator-Vorrang kaputt und der Check meldete dauerhaft
+    // Fehler, obwohl die Verbindung stand.
+    const missingTable = Boolean(error && /does not exist/i.test(error.message ?? ''));
+    if (error && !missingTable) {
+      logApiError('health.supabase', error);
+      return NextResponse.json({ status: 'error', connected: false }, { status: 500 });
     }
 
     return NextResponse.json({
       status: 'ok',
       connected: true,
-      message: 'Supabase verbunden',
       hasTables: !error,
     });
   } catch (err: unknown) {
-    trackError(err, { route: 'health.supabase' });
-    return NextResponse.json({
-      status: 'error',
-      connected: false,
-      message: err instanceof Error ? err.message : String(err),
-    }, { status: 500 });
+    logApiError('health.supabase', err);
+    return NextResponse.json({ status: 'error', connected: false }, { status: 500 });
   }
 }
