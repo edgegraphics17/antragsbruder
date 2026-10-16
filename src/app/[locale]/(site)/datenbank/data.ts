@@ -6,8 +6,35 @@ export function getAllBenefits(): Benefit[] {
   return benefits;
 }
 
+/**
+ * Normalisiert eine id aus der URL.
+ *
+ * Grund: 10 Einträge hatten Umlaute in der id (z. B. "agrarförderung-gak").
+ * Solche Adressen wurden von Next nicht ausgeliefert – die Detailseiten liefen
+ * auf 404, obwohl die Übersicht sie verlinkte. Die ids wurden deshalb auf
+ * ASCII umgestellt; diese Funktion fängt alte Links mit Umlauten weiter ab.
+ */
+export function normalizeBenefitId(raw: string): string {
+  let value = raw;
+  try {
+    value = decodeURIComponent(raw);
+  } catch {
+    // Ungültige Prozent-Kodierung: Rohwert verwenden.
+  }
+  return value
+    .toLowerCase()
+    .replace(/ä/g, "ae")
+    .replace(/ö/g, "oe")
+    .replace(/ü/g, "ue")
+    .replace(/ß/g, "ss")
+    .trim();
+}
+
 export function getBenefitById(id: string): Benefit | undefined {
-  return benefits.find((b) => b.id === id);
+  return (
+    benefits.find((b) => b.id === id) ??
+    benefits.find((b) => b.id === normalizeBenefitId(id))
+  );
 }
 
 export function getBenefitsByCategory(category: string): Benefit[] {

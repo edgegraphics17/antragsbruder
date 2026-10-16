@@ -111,7 +111,7 @@
   ],
   "compatible_with": ["weiterbildung"],
   "incompatible_with": [],
-  "related_benefits": ["kurzarbeitergeld", "weiterbildung", "beschaeftigungsförderung"],
+  "related_benefits": ["kurzarbeitergeld", "weiterbildung", "beschaeftigungsfoerderung"],
   "reduces": [],
   "user_content": {
     "short_explanation": "Das Qualifizierungschancengesetz fördert die Weiterbildung von Beschäftigten in Betrieben, die vom Strukturwandel betroffen sind.",

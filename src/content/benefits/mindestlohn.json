@@ -106,7 +106,7 @@
   ],
   "compatible_with": [],
   "incompatible_with": [],
-  "related_benefits": ["kurzarbeitergeld", "beschaeftigungsförderung"],
+  "related_benefits": ["kurzarbeitergeld", "beschaeftigungsfoerderung"],
   "reduces": [],
   "user_content": {
     "short_explanation": "Das Mindestlohngesetz sichert Ihnen einen Mindestlohn von 12,41 Euro pro Stunde zu – unabhängig von Ihrer Branche.",

@@ -134,14 +134,14 @@
   "compatible_with": [
     "arbeitsmarktzugang",
     "anerkennung_abschluss",
-    "familiezusammenführung",
+    "familiezusammenfuehrung",
     "integrationskurs"
   ],
   "incompatible_with": [],
   "related_benefits": [
     "arbeitsmarktzugang",
     "anerkennung_abschluss",
-    "familiezusammenführung"
+    "familiezusammenfuehrung"
   ],
   "user_content": {
     "short_explanation": "Der Aufenthaltstitel zum Zweck der Arbeit ermöglicht es Fachkräften, in Deutschland zu arbeiten und zu leben. Es gibt verschiedene Kategorien: Fachkräfte, EU Blue Card, IT-Spezialisten, Auszubildende.",

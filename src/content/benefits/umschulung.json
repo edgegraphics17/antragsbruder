@@ -112,7 +112,7 @@
     "§ 87a SGB III (Weiterbildungsprämie und Weiterbildungsgeld)"
   ],
   "compatible_with": ["arbeitslosengeld-i", "berufseinstieg"],
-  "incompatible_with": ["arbeitnehmerförderung"],
+  "incompatible_with": ["arbeitnehmerfoerderung"],
   "related_benefits": ["weiterbildung", "kurzarbeitergeld", "qualifizierungschancengesetz"],
   "reduces": [],
   "user_content": {

@@ -120,12 +120,12 @@
     "hilfsmittel"
   ],
   "incompatible_with": [
-    "vollstationäre_pflege"
+    "vollstationaere_pflege"
   ],
   "related_benefits": [
     "pflegegeld",
     "entlastungsleistungen",
-    "vollstationäre_pflege"
+    "vollstationaere_pflege"
   ],
   "reduces": [],
   "user_content": {

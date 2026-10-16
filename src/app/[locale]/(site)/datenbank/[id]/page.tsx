@@ -1,19 +1,64 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getBenefitById, getAllBenefits } from "../data";
 import type { Benefit } from "../data";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+import { isLocale, defaultLocale, localeHref, type Locale } from "@/i18n/config";
 
 export function generateStaticParams() {
   const benefits = getAllBenefits();
   return benefits.map((b) => ({ id: b.id }));
 }
 
+// Diese 145 Detailseiten hatten bis 2026-10-16 keinerlei eigene Metadaten: sie
+// erbten den Titel der Startseite und damit auch deren Canonical. Beschreibung
+// aus den vorhandenen Daten zusammengesetzt, nichts ausgedacht.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; id: string }>;
+}): Promise<Metadata> {
+  const { locale: rawLocale, id } = await params;
+  const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
+  const benefit = getBenefitById(id);
+  if (!benefit) return {};
+
+  const parts = [
+    benefit.amount?.description,
+    benefit.target_groups?.length
+      ? `Für: ${benefit.target_groups.slice(0, 4).join(", ")}.`
+      : "",
+    benefit.application?.method ? `Antrag: ${benefit.application.method}.` : "",
+  ].filter(Boolean);
+
+  const description = (
+    parts.join(" ") ||
+    `${benefit.official_name}: Voraussetzungen, Berechnung und Antragsweg im Überblick.`
+  ).slice(0, 300);
+
+  return buildPageMetadata({
+    locale,
+    path: `/datenbank/${benefit.id}`,
+    title: `${benefit.official_name}: Voraussetzungen, Höhe und Antrag`,
+    description,
+    ogType: "article",
+  });
+}
+
 export default async function BenefitPage({ params }: { params: Promise<{ locale: string; id: string }> }) {
-  const { id } = await params;
+  const { locale: rawLocale, id } = await params;
+  const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
   const benefit = getBenefitById(id);
 
   if (!benefit) {
     notFound();
+  }
+
+  // Alte Adressen mit Umlauten (z. B. /datenbank/agrarförderung-gak) dauerhaft
+  // auf die kanonische Adresse umleiten, statt sie ins Leere laufen zu lassen.
+  if (id !== benefit.id) {
+    permanentRedirect(localeHref(locale, `/datenbank/${benefit.id}`));
   }
 
   return (

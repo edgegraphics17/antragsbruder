@@ -118,7 +118,7 @@
   ],
   "compatible_with": [],
   "incompatible_with": ["arbeitslosengeld-i"],
-  "related_benefits": ["weiterbildung", "qualifizierungschancengesetz", "beschaeftigungsförderung"],
+  "related_benefits": ["weiterbildung", "qualifizierungschancengesetz", "beschaeftigungsfoerderung"],
   "reduces": [],
   "user_content": {
     "short_explanation": "Kurzarbeitergeld sichert Ihr Einkommen ab, wenn Ihr Betrieb aufgrund wirtschaftlicher Schwierigkeiten oder höherer Gewalt Arbeitszeiten abbauen muss.",

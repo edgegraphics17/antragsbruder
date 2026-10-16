@@ -142,14 +142,14 @@
     "integrationskurs",
     "deutschkurs",
     "beratung_migranten",
-    "medizinische_versorgung_flüchtlinge"
+    "medizinische_versorgung_fluechtlinge"
   ],
   "incompatible_with": [
     "arbeitsmarktzugang (teilweise)"
   ],
   "related_benefits": [
     "beratung_migranten",
-    "medizinische_versorgung_flüchtlinge"
+    "medizinische_versorgung_fluechtlinge"
   ],
   "user_content": {
     "short_explanation": "Asylbewerberleistungen decken Ihren Grundbedarf (Ernährung, Unterkunft, Kleidung, Gesundheit), während Sie auf den Asylentscheid warten. Die Leistungen werden vom Sozialamt gezahlt.",

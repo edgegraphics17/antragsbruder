@@ -193,7 +193,7 @@
     "updated_at": "2026-09-08"
   },
   {
-    "id": "agrarförderung-gak",
+    "id": "agrarfoerderung-gak",
     "official_name": "Gemeinschaftsaufgabe Verbesserung der Agrarstruktur und des Küstenschutzes (GAK)",
     "aliases": [
       "GAK",
@@ -964,7 +964,7 @@
     "reduces": []
   },
   {
-    "id": "arbeitnehmerförderung",
+    "id": "arbeitnehmerfoerderung",
     "official_name": "Allgemeine Arbeitnehmerförderung (Aufstiegsfortbildung, Meister-BAföG, Aufstiegsstipendium)",
     "aliases": [
       "Aufstiegs-BAföG",
@@ -2049,14 +2049,14 @@
     "compatible_with": [
       "arbeitsmarktzugang",
       "anerkennung_abschluss",
-      "familiezusammenführung",
+      "familiezusammenfuehrung",
       "integrationskurs"
     ],
     "incompatible_with": [],
     "related_benefits": [
       "arbeitsmarktzugang",
       "anerkennung_abschluss",
-      "familiezusammenführung"
+      "familiezusammenfuehrung"
     ],
     "user_content": {
       "short_explanation": "Der Aufenthaltstitel zum Zweck der Arbeit ermöglicht es Fachkräften, in Deutschland zu arbeiten und zu leben. Es gibt verschiedene Kategorien: Fachkräfte, EU Blue Card, IT-Spezialisten, Auszubildende.",
@@ -2291,11 +2291,11 @@
       "bildungskredit_kfw"
     ],
     "incompatible_with": [
-      "ausbildungsförderung"
+      "ausbildungsfoerderung"
     ],
     "related_benefits": [
       "bafoeg",
-      "ausbildungsförderung",
+      "ausbildungsfoerderung",
       "bildungskredit_kfw",
       "weiterbildungsfoerderung"
     ],
@@ -2517,7 +2517,7 @@
     "updated_at": "2026-09-08"
   },
   {
-    "id": "ausbildungsförderung",
+    "id": "ausbildungsfoerderung",
     "official_name": "Berufsausbildungsbeihilfe (BAB)",
     "aliases": [
       "BAB",
@@ -2732,7 +2732,7 @@
     "updated_at": "2026-09-08"
   },
   {
-    "id": "außergewöhnliche_belastungen",
+    "id": "aussergewoehnliche_belastungen",
     "official_name": "Außergewöhnliche Belastungen nach § 33 EStG",
     "aliases": [
       "Außergewöhnliche Belastungen",
@@ -3152,11 +3152,11 @@
       "bildungskredit_kfw"
     ],
     "incompatible_with": [
-      "ausbildungsförderung",
+      "ausbildungsfoerderung",
       "aufstiegsbafoeg"
     ],
     "related_benefits": [
-      "ausbildungsförderung",
+      "ausbildungsfoerderung",
       "aufstiegsbafoeg",
       "bildungskredit_kfw"
     ],
@@ -3696,7 +3696,7 @@
     ],
     "incompatible_with": [],
     "related_benefits": [
-      "beschaeftigungsförderung"
+      "beschaeftigungsfoerderung"
     ],
     "reduces": [],
     "user_content": {
@@ -3889,14 +3889,14 @@
       "§ 54a SGB III (Einstiegsqualifizierung)"
     ],
     "compatible_with": [
-      "ausbildungsförderung",
+      "ausbildungsfoerderung",
       "berufliche_reha"
     ],
     "incompatible_with": [],
     "related_benefits": [
       "weiterbildung",
       "umschulung",
-      "beschaeftigungsförderung"
+      "beschaeftigungsfoerderung"
     ],
     "reduces": [],
     "user_content": {
@@ -3963,7 +3963,7 @@
     "updated_at": "2026-09-08"
   },
   {
-    "id": "beschaeftigungsförderung",
+    "id": "beschaeftigungsfoerderung",
     "official_name": "Beschäftigungsförderung (Eingliederungszuschüsse und Einarbeitungszuschüsse)",
     "aliases": [
       "Eingliederungszuschuss",
@@ -4516,7 +4516,7 @@
       "stipendien"
     ],
     "incompatible_with": [
-      "ausbildungsförderung"
+      "ausbildungsfoerderung"
     ],
     "related_benefits": [
       "bafoeg",
@@ -7556,12 +7556,12 @@
       "hilfsmittel"
     ],
     "incompatible_with": [
-      "vollstationäre_pflege"
+      "vollstationaere_pflege"
     ],
     "related_benefits": [
       "pflegegeld",
       "verhinderungspflege",
-      "vollstationäre_pflege"
+      "vollstationaere_pflege"
     ],
     "reduces": [],
     "user_content": {
@@ -8831,7 +8831,7 @@
     "updated_at": "2026-09-08"
   },
   {
-    "id": "familiezusammenführung",
+    "id": "familiezusammenfuehrung",
     "official_name": "Familienzusammenführung",
     "aliases": [
       "Familiennachzug",
@@ -9182,7 +9182,7 @@
       "Landesforstgesetze der Bundesländer"
     ],
     "compatible_with": [
-      "agrarförderung-gak",
+      "agrarfoerderung-gak",
       "umweltprogramme-fakt",
       "biologischer-bau-foerderung"
     ],
@@ -11748,7 +11748,7 @@
     "valid_until": null
   },
   {
-    "id": "humanitärer_aufnahme",
+    "id": "humanitaerer_aufnahme",
     "official_name": "Humanitäre Aufnahme (Resettlement)",
     "aliases": [
       "Resettlement",
@@ -12089,13 +12089,13 @@
       "IHK-Gesetz"
     ],
     "compatible_with": [
-      "ausbildungsförderung",
+      "ausbildungsfoerderung",
       "bafoeg",
       "weiterbildungsfoerderung"
     ],
     "incompatible_with": [],
     "related_benefits": [
-      "ausbildungsförderung",
+      "ausbildungsfoerderung",
       "bafoeg",
       "weiterbildungsfoerderung"
     ],
@@ -13086,7 +13086,7 @@
     "updated_at": "2026-09-08"
   },
   {
-    "id": "kinderfrühförderung",
+    "id": "kinderfruehfoerderung",
     "official_name": "Kinderfrühförderung",
     "aliases": [
       "Früherkennung und Frühförderung behinderter Kinder",
@@ -14289,7 +14289,7 @@
     "related_benefits": [
       "weiterbildung",
       "qualifizierungschancengesetz",
-      "beschaeftigungsförderung"
+      "beschaeftigungsfoerderung"
     ],
     "reduces": [],
     "user_content": {
@@ -14945,7 +14945,7 @@
     "valid_until": null
   },
   {
-    "id": "medizinische_versorgung_flüchtlinge",
+    "id": "medizinische_versorgung_fluechtlinge",
     "official_name": "Medizinische Versorgung für Geflüchtete",
     "aliases": [
       "Gesundheitsversorgung Flüchtlinge",
@@ -15568,7 +15568,7 @@
     "incompatible_with": [],
     "related_benefits": [
       "kurzarbeitergeld",
-      "beschaeftigungsförderung"
+      "beschaeftigungsfoerderung"
     ],
     "reduces": [],
     "user_content": {
@@ -16129,7 +16129,7 @@
     "incompatible_with": [],
     "related_benefits": [
       "arbeitsmedizinische_vorsorge",
-      "kinderfrühförderung"
+      "kinderfruehfoerderung"
     ],
     "reduces": [],
     "user_content": {
@@ -16464,7 +16464,7 @@
     "related_benefits": [
       "pflegegeld",
       "pflegesachleistungen",
-      "vollstationäre_pflege"
+      "vollstationaere_pflege"
     ],
     "reduces": [],
     "user_content": {
@@ -16789,7 +16789,7 @@
       "hilfsmittel"
     ],
     "incompatible_with": [
-      "vollstationäre_pflege"
+      "vollstationaere_pflege"
     ],
     "related_benefits": [
       "pflegesachleistungen",
@@ -16971,7 +16971,7 @@
       "hilfsmittel"
     ],
     "incompatible_with": [
-      "vollstationäre_pflege"
+      "vollstationaere_pflege"
     ],
     "related_benefits": [
       "pflegegeld",
@@ -17571,13 +17571,13 @@
     ],
     "compatible_with": [
       "bafoeg",
-      "ausbildungsförderung",
+      "ausbildungsfoerderung",
       "stipendien"
     ],
     "incompatible_with": [],
     "related_benefits": [
       "bafoeg",
-      "ausbildungsförderung",
+      "ausbildungsfoerderung",
       "stipendien"
     ],
     "reduces": [],
@@ -17963,7 +17963,7 @@
     "related_benefits": [
       "kurzarbeitergeld",
       "weiterbildung",
-      "beschaeftigungsförderung"
+      "beschaeftigungsfoerderung"
     ],
     "reduces": [],
     "user_content": {
@@ -19027,12 +19027,12 @@
     ],
     "compatible_with": [
       "bafoeg",
-      "ausbildungsförderung"
+      "ausbildungsfoerderung"
     ],
     "incompatible_with": [],
     "related_benefits": [
       "bafoeg",
-      "ausbildungsförderung"
+      "ausbildungsfoerderung"
     ],
     "reduces": [],
     "user_content": {
@@ -19254,12 +19254,12 @@
       "integrationskurs",
       "deutschkurs",
       "beratung_migranten",
-      "medizinische_versorgung_flüchtlinge"
+      "medizinische_versorgung_fluechtlinge"
     ],
     "incompatible_with": [],
     "related_benefits": [
       "beratung_migranten",
-      "medizinische_versorgung_flüchtlinge"
+      "medizinische_versorgung_fluechtlinge"
     ],
     "user_content": {
       "short_explanation": "Asylbewerberleistungen decken Ihren Grundbedarf (Ernährung, Unterkunft, Kleidung, Gesundheit), während Sie auf den Asylentscheid warten. Die Leistungen werden vom Sozialamt gezahlt.",
@@ -21257,7 +21257,7 @@
       "kinderzuschlag"
     ],
     "incompatible_with": [
-      "ausbildungsförderung"
+      "ausbildungsfoerderung"
     ],
     "related_benefits": [
       "bafoeg",
@@ -21856,7 +21856,7 @@
       "berufseinstieg"
     ],
     "incompatible_with": [
-      "arbeitnehmerförderung"
+      "arbeitnehmerfoerderung"
     ],
     "related_benefits": [
       "weiterbildung",
@@ -22610,12 +22610,12 @@
       "hilfsmittel"
     ],
     "incompatible_with": [
-      "vollstationäre_pflege"
+      "vollstationaere_pflege"
     ],
     "related_benefits": [
       "pflegegeld",
       "entlastungsleistungen",
-      "vollstationäre_pflege"
+      "vollstationaere_pflege"
     ],
     "reduces": [],
     "user_content": {
@@ -22672,7 +22672,7 @@
     "updated_at": "2026-09-08"
   },
   {
-    "id": "vollstationäre_pflege",
+    "id": "vollstationaere_pflege",
     "official_name": "Vollstationäre Pflege",
     "aliases": [
       "Pflegeheimpflege",
@@ -23377,13 +23377,13 @@
       "berufseinstieg"
     ],
     "incompatible_with": [
-      "arbeitnehmerförderung"
+      "arbeitnehmerfoerderung"
     ],
     "related_benefits": [
       "kurzarbeitergeld",
       "qualifizierungschancengesetz",
       "umschulung",
-      "arbeitnehmerförderung"
+      "arbeitnehmerfoerderung"
     ],
     "reduces": [],
     "user_content": {
@@ -23611,12 +23611,12 @@
       "bildungskredit_kfw"
     ],
     "incompatible_with": [
-      "ausbildungsförderung"
+      "ausbildungsfoerderung"
     ],
     "related_benefits": [
       "aufstiegsbafoeg",
       "bildungskredit_kfw",
-      "ausbildungsförderung"
+      "ausbildungsfoerderung"
     ],
     "reduces": [],
     "user_content": {

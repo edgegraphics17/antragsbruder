@@ -114,7 +114,7 @@
   ],
   "compatible_with": ["berufseinstieg", "weiterbildung"],
   "incompatible_with": [],
-  "related_benefits": ["berufsunfähigkeitsversicherung_staat", "beschaeftigungsförderung"],
+  "related_benefits": ["berufsunfähigkeitsversicherung_staat", "beschaeftigungsfoerderung"],
   "reduces": [],
   "user_content": {
     "short_explanation": "Die berufliche Rehabilitation hilft Ihnen, Ihre Erwerbsfähigkeit zu erhalten oder wiederherzustellen – mit Maßnahmen, Übergangsgeld und individueller Unterstützung.",

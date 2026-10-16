@@ -119,7 +119,7 @@
     "hilfsmittel"
   ],
   "incompatible_with": [
-    "vollstationäre_pflege"
+    "vollstationaere_pflege"
   ],
   "related_benefits": [
     "pflegesachleistungen",

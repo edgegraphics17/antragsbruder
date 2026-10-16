@@ -111,9 +111,9 @@
     "§ 49 SGB III (Berufseinstiegsbegleitung)",
     "§ 54a SGB III (Einstiegsqualifizierung)"
   ],
-  "compatible_with": ["ausbildungsförderung", "berufliche_reha"],
+  "compatible_with": ["ausbildungsfoerderung", "berufliche_reha"],
   "incompatible_with": [],
-  "related_benefits": ["weiterbildung", "umschulung", "beschaeftigungsförderung"],
+  "related_benefits": ["weiterbildung", "umschulung", "beschaeftigungsfoerderung"],
   "reduces": [],
   "user_content": {
     "short_explanation": "Die Berufseinstiegsbegleitung und Einstiegsqualifizierung helfen Ihnen beim Start in die Berufswelt – mit Praktikum, Begleitung und Zuschüssen.",

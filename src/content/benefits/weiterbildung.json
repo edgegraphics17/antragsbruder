@@ -114,8 +114,8 @@
     "§ 115 SGB III (Umschulung)"
   ],
   "compatible_with": ["arbeitslosengeld-i", "berufseinstieg"],
-  "incompatible_with": ["arbeitnehmerförderung"],
-  "related_benefits": ["kurzarbeitergeld", "qualifizierungschancengesetz", "umschulung", "arbeitnehmerförderung"],
+  "incompatible_with": ["arbeitnehmerfoerderung"],
+  "related_benefits": ["kurzarbeitergeld", "qualifizierungschancengesetz", "umschulung", "arbeitnehmerfoerderung"],
   "reduces": [],
   "user_content": {
     "short_explanation": "Die Agentur für Arbeit fördert Ihre berufliche Weiterbildung mit einem Bildungsgutschein – die Kosten für Lehrgänge, Prüfungen und Fahrt werden übernommen.",
